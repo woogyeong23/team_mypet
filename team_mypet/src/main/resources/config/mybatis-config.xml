@@ -6,7 +6,6 @@
 
 	<typeAliases>
 		<typeAlias alias="memberVo" type="com.jeonju.mypet.vo.MemberVo"/>
-		<typeAlias alias="galleryVo" type="com.jeonju.mypet.vo.GalleryVo"/>
 	</typeAliases>  
 
 </configuration>  
