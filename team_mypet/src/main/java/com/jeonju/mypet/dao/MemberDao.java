@@ -20,4 +20,6 @@ public class MemberDao {
 		this.sqlSession = sqlSession;
 	}
 	
+	
+	
 }

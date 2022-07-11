@@ -10,5 +10,7 @@ import com.jeonju.mypet.dao.MemberDao;
 public class AjaxService {
 	
 
+	
+	
 
 }
