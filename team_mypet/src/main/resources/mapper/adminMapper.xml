@@ -4,21 +4,5 @@
 
 <mapper namespace = "com.jeonju.mypet.admin">
 
-	<select id="getMemberList" resultType="memberVo">
-		select * from spring_member
-	</select>
-	
-	<update id="updateMemberGrade" parameterType="map">
-		update spring_member set member_grade = #{member_grade}
-			where member_idx = #{member_idx}
-	</update>
-	
-	<delete id="deleteMemberInfo" parameterType="list">
-		delete from spring_member where member_idx in 
-		<foreach collection="list" item="member_idx" open="(" separator="," close=")" >
-			#{member_idx}
-		</foreach>
-	
-	</delete>
 
 </mapper>
