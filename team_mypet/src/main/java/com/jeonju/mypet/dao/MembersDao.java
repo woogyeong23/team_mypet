@@ -13,7 +13,7 @@ public class MembersDao {
 	
 	private SqlSession sqlSession;
 	
-	public static final String MAPPER = "com.jeonju.mypet.member";
+	public static final String MAPPER = "com.jeonju.mypet.members";
 	
 	@Autowired
 	public MembersDao(SqlSession sqlSession) {
