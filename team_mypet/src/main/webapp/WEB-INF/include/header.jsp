@@ -1,5 +1,6 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
+    <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <!DOCTYPE html>
 <!--[if lte IE 9]>
       <p class="browserupgrade">
@@ -32,25 +33,27 @@
                                 <li>
                                     <div class="select-position">
                                         <select id="select4">
-                                            <option value="0" selected>$ USD</option>
-                                            <option value="1">€ EURO</option>
-                                            <option value="2">$ CAD</option>
-                                            <option value="3">₹ INR</option>
-                                            <option value="4">¥ CNY</option>
-                                            <option value="5">৳ BDT</option>
+                                            <option value="0" selected>￦ won</option>
+                                            <option value="1">$ USD</option>
+                                            <option value="2">€ EURO</option>
+                                            <option value="3">$ CAD</option>
+                                            <option value="4">₹ INR</option>
+                                            <option value="5">¥ CNY</option>
+                                            <option value="6">৳ BDT</option>
                                         </select>
                                     </div>
                                 </li>
                                 <li>
                                     <div class="select-position">
                                         <select id="select5">
-                                            <option value="0" selected>English</option>
-                                            <option value="1">Español</option>
-                                            <option value="2">Filipino</option>
-                                            <option value="3">Français</option>
-                                            <option value="4">العربية</option>
-                                            <option value="5">हिन्दी</option>
-                                            <option value="6">বাংলা</option>
+                                            <option value="0" selected>한국어</option>
+                                            <option value="1">English</option>
+                                            <option value="2">Español</option>
+                                            <option value="3">Filipino</option>
+                                            <option value="4">Français</option>
+                                            <option value="5">العربية</option>
+                                            <option value="6">हिन्दी</option>
+                                            <option value="7">বাংলা</option>
                                         </select>
                                     </div>
                                 </li>
@@ -87,10 +90,10 @@
                             <c:otherwise>
                             <ul class="user-login"><!-- 로그인 X 상태 -->
                                 <li>
-                                    <a href="${pageContext.request.contextPath}/login.do">Sign In</a>
+                                    <a href="${pageContext.request.contextPath}/login.do">로그인</a>
                                 </li>
                                 <li>
-                                    <a href="${pageContext.request.contextPath}/join.do">Register</a>
+                                    <a href="${pageContext.request.contextPath}/join.do">회원가입</a>
                                 </li>
                             </ul>
                             </c:otherwise>
