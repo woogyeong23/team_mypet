@@ -12,8 +12,8 @@
 <h3>로그인</h3>
 
 <form name="loginForm" action="${pageContext.request.contextPath}/loginProcess.do" method="post">
-	<input type="email" name="member_id" value="" maxlength="80" placeholder="아이디(이메일)" /><br/>
-	<input type="password" name="member_pw"  value="" maxlength="20" placeholder="비밀번호"><br/>            
+	<input type="text" name="m_id" value="" maxlength="80" placeholder="아이디(이메일)" /><br/>
+	<input type="password" name="m_pwd"  value="" maxlength="20" placeholder="비밀번호"><br/>            
 	<input type="submit" value="로그인">
 	<input type="reset"  value="취소">
 </form> 

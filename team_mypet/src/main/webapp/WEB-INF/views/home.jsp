@@ -25,7 +25,7 @@
                         <div class="hero-slider">
                             <!-- Start Single Slider -->
                             <div class="single-slider"
-                                style="background-image: url(resources/assets/images/hero/slider-bg1.jpg);">
+                                style="background-image: url(resources/assets/images/hero/event01.jpg);">
                                 <div class="content">
                                     <h2><span>No restocking fee ($35 savings)</span>
                                         M75 Sport Watch
@@ -41,7 +41,7 @@
                             <!-- End Single Slider -->
                             <!-- Start Single Slider -->
                             <div class="single-slider"
-                                style="background-image: url(resources/assets/images/hero/slider-bg2.jpg);">
+                                style="background-image: url(resources/assets/images/hero/event02.jpg);">
                                 <div class="content">
                                     <h2><span>Big Sale Offer</span>
                                         Get the Best Deal on CCTV Camera

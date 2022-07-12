@@ -1,6 +1,7 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
     <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
+    
 <!DOCTYPE html>
 <!--[if lte IE 9]>
       <p class="browserupgrade">
@@ -75,29 +76,30 @@
                                 <i class="lni lni-user"></i>
                                 Hello <!-- 사용자 이름 or 닉네임 추가하면 될듯 -->
                             </div>
-                            <c:choose>
-                            <c:when test="${member_id != null}"><!-- 로그인이 이루어진 경우 -->
                             <ul class="user-login">
+                            <c:choose>
+                            <c:when test="${m_id != null}"><!-- 로그인이 이루어진 경우 -->
+                            
                             <li>
                                <a href="${pageContext.request.contextPath}/memberInfo.do">내정보</a> 
                             </li>
                             <li>
                                <a href="${pageContext.request.contextPath}/logout.do">로그아웃</a>
                             </li>
-                            </ul>
                             </c:when>
                             
                             <c:otherwise>
-                            <ul class="user-login"><!-- 로그인 X 상태 -->
+               
                                 <li>
                                     <a href="${pageContext.request.contextPath}/login.do">로그인</a>
                                 </li>
                                 <li>
                                     <a href="${pageContext.request.contextPath}/join.do">회원가입</a>
                                 </li>
-                            </ul>
+                            
                             </c:otherwise>
                             </c:choose>
+                            </ul>
                         </div>
                     </div>
                 </div>
@@ -297,9 +299,7 @@
                                             <li class="nav-item"><a href="blog-single-sidebar.html">이벤트 종료</a></li>
                                         </ul>
                                     </li>
-                                    <li class="nav-item">
-                                        <a href="contact.html" aria-label="Toggle navigation">커뮤니티</a>
-                                    </li>
+                                    <li class="nav-item"><a href="${pageContext.request.contextPath}/cbList.do" aria-label="Toggle navigation">커뮤니티</a></li>
                                 </ul>
                             </div> <!-- navbar collapse -->
                         </nav>
@@ -312,16 +312,16 @@
                         <h5 class="title">Follow Us:</h5>
                         <ul>
                             <li>
-                                <a href="javascript:void(0)"><i class="lni lni-facebook-filled"></i></a>
+                                <a href="https://ko-kr.facebook.com"><i class="lni lni-facebook-filled"></i></a>
                             </li>
                             <li>
-                                <a href="javascript:void(0)"><i class="lni lni-twitter-original"></i></a>
+                                <a href="https://twitter.com"><i class="lni lni-twitter-original"></i></a>
                             </li>
                             <li>
-                                <a href="javascript:void(0)"><i class="lni lni-instagram"></i></a>
+                                <a href="https://www.instagram.com/?hl=ko"><i class="lni lni-instagram"></i></a>
                             </li>
                             <li>
-                                <a href="javascript:void(0)"><i class="lni lni-skype"></i></a>
+                                <a href="https://skype.daesung.com/main.asp"><i class="lni lni-skype"></i></a>
                             </li>
                         </ul>
                     </div>

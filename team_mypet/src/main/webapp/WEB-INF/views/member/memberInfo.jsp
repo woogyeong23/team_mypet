@@ -12,19 +12,19 @@
 		<tr>
 			<td>아이디</td>
 			<!-- JSP페이지에서는 Controller에서 생성된 Model객체를 EL을 이용해서 사용 가능 -->
-			<td>${memberVo.member_id}</td>
+			<td>${memberVo.m_id}</td>
 		</tr>
 		<tr>
 			<td>비밀번호</td>
-			<td>${memberVo.member_pw}</td>
+			<td>${memberVo.m_pw}</td>
 		</tr>
 		<tr>
 			<td>이름</td>
-			<td>${memberVo.member_name}</td>
+			<td>${memberVo.m_name}</td>
 		</tr>
 		<tr>
 			<td>전화번호</td>
-			<td>${memberVo.member_phone}</td>
+			<td>${memberVo.m_phone}</td>
 		</tr>
 	</table><p/>
 	<a href="${pageContext.request.contextPath}/updateMember.do">정보수정</a>&nbsp;&nbsp;
