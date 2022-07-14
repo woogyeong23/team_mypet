@@ -6,6 +6,7 @@
 
 	<typeAliases>
 		<typeAlias alias="membersVo" type="com.jeonju.mypet.vo.MembersVo"/>
+		<typeAlias alias="productVo" type="com.jeonju.mypet.vo.ProductVo"/> <!-- 소현 -->
 	</typeAliases>  
 
 </configuration>  
