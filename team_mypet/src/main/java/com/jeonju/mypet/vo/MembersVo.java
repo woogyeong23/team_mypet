@@ -1,5 +1,6 @@
 package com.jeonju.mypet.vo;
 
+import java.util.Date;
 
 public class MembersVo {
 
@@ -13,11 +14,11 @@ public class MembersVo {
 	private String m_phone;
 	private int m_point;
 	private int m_rating;
-	private String m_wday;
+	private Date m_wday;
 	private String m_profile;
 	private String m_account;
 	private int m_grade;
-	private String m_delday;
+	private Date m_delday;
 	private String m_delyn;
 	public int getMidx() {
 		return midx;
@@ -79,12 +80,6 @@ public class MembersVo {
 	public void setM_rating(int m_rating) {
 		this.m_rating = m_rating;
 	}
-	public String getM_wday() {
-		return m_wday;
-	}
-	public void setM_wday(String m_wday) {
-		this.m_wday = m_wday;
-	}
 	public String getM_profile() {
 		return m_profile;
 	}
@@ -103,10 +98,16 @@ public class MembersVo {
 	public void setM_grade(int m_grade) {
 		this.m_grade = m_grade;
 	}
-	public String getM_delday() {
+	public Date getM_wday() {
+		return m_wday;
+	}
+	public void setM_wday(Date m_wday) {
+		this.m_wday = m_wday;
+	}
+	public Date getM_delday() {
 		return m_delday;
 	}
-	public void setM_delday(String m_delday) {
+	public void setM_delday(Date m_delday) {
 		this.m_delday = m_delday;
 	}
 	public String getM_delyn() {

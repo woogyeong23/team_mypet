@@ -1,5 +1,7 @@
 package com.jeonju.mypet.vo;
 
+import java.util.Date;
+import java.util.List;
 
 public class ProductVo {
 
@@ -11,19 +13,16 @@ public class ProductVo {
 	private int p_price;
 	private int p_discount;
 	private int p_disprice;
-	private String p_wday;
-	private String p_modifyday;
-	private String p_cancle_info;
-	private int p_dvprice;
-	private String p_dvcompany;
-	private int p_limit_cnt;
-	private int p_point;
-	private int p_add_dvprice;
-	private int p_free_dvprice;
-	private int p_size;
-	private int p_status;
-	private String p_delyn;
-	private String p_stock;
+	private Date p_wday;
+	private Date p_modifyday;
+	
+	private List<Product_ImgVo> product_imgs; 
+	public List<Product_ImgVo> getProduct_imgs() {
+		return product_imgs;
+	}
+	public void setProduct_imgs(List<Product_ImgVo> product_imgs) {
+		this.product_imgs = product_imgs;
+	}
 	
 	
 	public int getP_idx() {
@@ -74,16 +73,16 @@ public class ProductVo {
 	public void setP_disprice(int p_disprice) {
 		this.p_disprice = p_disprice;
 	}
-	public String getP_wday() {
+	public Date getP_wday() {
 		return p_wday;
 	}
-	public void setP_wday(String p_wday) {
+	public void setP_wday(Date p_wday) {
 		this.p_wday = p_wday;
 	}
-	public String getP_modifyday() {
+	public Date getP_modifyday() {
 		return p_modifyday;
 	}
-	public void setP_modifyday(String p_modifyday) {
+	public void setP_modifyday(Date p_modifyday) {
 		this.p_modifyday = p_modifyday;
 	}
 	public String getP_cancle_info() {
@@ -91,6 +90,12 @@ public class ProductVo {
 	}
 	public void setP_cancle_info(String p_cancle_info) {
 		this.p_cancle_info = p_cancle_info;
+	}
+	public String getP_ingerdient() {
+		return p_ingerdient;
+	}
+	public void setP_ingerdient(String p_ingerdient) {
+		this.p_ingerdient = p_ingerdient;
 	}
 	public int getP_dvprice() {
 		return p_dvprice;
@@ -152,6 +157,17 @@ public class ProductVo {
 	public void setP_stock(String p_stock) {
 		this.p_stock = p_stock;
 	}
-	
+	private String p_cancle_info;
+	private String p_ingerdient;
+	private int p_dvprice;
+	private String p_dvcompany;
+	private int p_limit_cnt;
+	private int p_point;
+	private int p_add_dvprice;
+	private int p_free_dvprice;
+	private int p_size;//0,1,2 소중대
+	private int p_status;
+	private String p_delyn;
+	private String p_stock;
 	
 }
