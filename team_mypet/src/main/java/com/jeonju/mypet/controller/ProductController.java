@@ -1,7 +1,10 @@
 package com.jeonju.mypet.controller;
 
 
+import java.util.ArrayList;
+import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
@@ -22,15 +25,13 @@ public class ProductController {
 	}
 	
 	@GetMapping("/productList.do")//get방식 요청 처리
-	public String getProductList(Model model) {
-		
+	public String getProductList(Model model){
 		List<ProductVo> productList = productService.getProductList();
-		//모델객체에 회원목록을 추가함
 		model.addAttribute("productList",productList);
-		
 		return "product/productList";
 	}
 	
+
 	//소현
 	
 }

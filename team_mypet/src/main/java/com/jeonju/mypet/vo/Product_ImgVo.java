@@ -2,10 +2,12 @@ package com.jeonju.mypet.vo;
 
 
 public class Product_ImgVo {
+
 	private int p_front_img;
 	private int p_idx;
 	private String p_ori_filename;
 	private String p_sys_filname;
+	
 	public int getP_front_img() {
 		return p_front_img;
 	}
@@ -30,6 +32,5 @@ public class Product_ImgVo {
 	public void setP_sys_filname(String p_sys_filname) {
 		this.p_sys_filname = p_sys_filname;
 	}
-	
 	
 }

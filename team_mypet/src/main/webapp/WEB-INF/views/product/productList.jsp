@@ -18,27 +18,33 @@
 <!-- ************************************************ -->
 	
 	
-	
+	 <section class="hero-area">
 	<!-- 소현 -->
-	<c:forEach var="productList" items="${productList}">
+	<div class="row">
+    	
+	<c:forEach var="productVo" items="${productList}">
+		<div class="col">
 				<div class="product-info">
-                            <span class="seller">${seller_idx}</span>
-                            <h4 class="title">
-                                <a href="productView.jsp">${p_name}</a>
+                            <span class="seller">${productVo.seller_idx}</span>
+                            <h4 class="p_name">
+                                <a href="productView.jsp">${productVo.p_name}</a>
                             </h4>
-                            <ul class="review">
+                            <ul class="star">
                                 <li><i class="lni lni-star-filled"></i></li>
                                 <li><i class="lni lni-star-filled"></i></li>
                                 <li><i class="lni lni-star-filled"></i></li>
                                 <li><i class="lni lni-star-filled"></i></li>
                                 <li><i class="lni lni-star"></i></li>
-                                <li><span>4.0 Review(s)</span></li>
                             </ul>
                             <div class="price">
-                                <span>${p_price}</span>
+                                <span>${productVo.p_price}</span>
                             </div>
-                        </div>		
-	</c:forEach>
+        	</div>		
+		</div>
+		</c:forEach>
+	
+	</div>
+	
 	<!-- 소현 -->
 	
 <!-- 푸터와 js************************************************ -->

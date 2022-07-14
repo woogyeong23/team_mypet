@@ -4,7 +4,7 @@
 <!-- 소현 -->
 <mapper namespace = "com.jeonju.mypet.product">
 
-	<select id="getProductList" resultType="hasg" parameterType="">
+	<select id="getProductList" resultType="productVo">
 		select * from product
 	</select>
 	

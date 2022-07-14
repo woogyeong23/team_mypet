@@ -1,7 +1,9 @@
 package com.jeonju.mypet.dao;
 
 
+import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 
 import org.apache.ibatis.session.SqlSession;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -23,10 +25,10 @@ public class ProductDao {
 		this.sqlSession = sqlSession;
 	}
 	
-	public List<ProductVo> getProductList() {
+	public List<ProductVo> getProductList(){
 		return sqlSession.selectList(MAPPER + ".getProductList");
 	}
-
+	
 	//소현
 	
 	
