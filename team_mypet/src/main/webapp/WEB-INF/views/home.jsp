@@ -10,7 +10,7 @@
     <jsp:include page="../include/head.jsp" />  
 <!-- ************************************************ -->
 </head>
-
+gdgd
 <body>
 <!-- 헤더와 네비************************************************ -->
     <jsp:include page="../include/header.jsp" />  
