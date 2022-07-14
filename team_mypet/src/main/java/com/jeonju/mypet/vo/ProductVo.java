@@ -15,6 +15,18 @@ public class ProductVo {
 	private int p_disprice;
 	private Date p_wday;
 	private Date p_modifyday;
+	private String p_cancle_info;
+	private String p_ingerdient;
+	private int p_dvprice;
+	private String p_dvcompany;
+	private int p_limit_cnt;
+	private int p_point;
+	private int p_add_dvprice;
+	private int p_free_dvprice;
+	private int p_size;//0,1,2 소중대
+	private int p_status;
+	private String p_delyn;
+	private String p_stock;
 	
 	private List<Product_ImgVo> product_imgs; 
 	public List<Product_ImgVo> getProduct_imgs() {
@@ -157,17 +169,4 @@ public class ProductVo {
 	public void setP_stock(String p_stock) {
 		this.p_stock = p_stock;
 	}
-	private String p_cancle_info;
-	private String p_ingerdient;
-	private int p_dvprice;
-	private String p_dvcompany;
-	private int p_limit_cnt;
-	private int p_point;
-	private int p_add_dvprice;
-	private int p_free_dvprice;
-	private int p_size;//0,1,2 소중대
-	private int p_status;
-	private String p_delyn;
-	private String p_stock;
-	
 }
