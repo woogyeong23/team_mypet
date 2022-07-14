@@ -29,6 +29,7 @@ public class ProductVo {
 	private String p_stock;
 	
 	private List<Product_ImgVo> product_imgs; 
+	
 	public List<Product_ImgVo> getProduct_imgs() {
 		return product_imgs;
 	}

@@ -18,13 +18,17 @@
 <!-- ************************************************ -->
 	
 	
-	 <section class="hero-area">
 	<!-- 소현 -->
+	<section class="trending-product section" style="margin-top: 12px;">
+        <div class="container">
+          
 	<div class="row">
     	
 	<c:forEach var="productVo" items="${productList}">
-		<div class="col">
+		<div class="col-lg-3">
 				<div class="product-info">
+                        <div class="product-image">
+                        	<span>${product_imgVo.p_ori_filename}</span>
                             <span class="seller">${productVo.seller_idx}</span>
                             <h4 class="p_name">
                                 <a href="productView.jsp">${productVo.p_name}</a>
@@ -34,17 +38,19 @@
                                 <li><i class="lni lni-star-filled"></i></li>
                                 <li><i class="lni lni-star-filled"></i></li>
                                 <li><i class="lni lni-star-filled"></i></li>
-                                <li><i class="lni lni-star"></i></li>
+                                <li><i class="lni lni-star-filled"></i></li>
                             </ul>
                             <div class="price">
                                 <span>${productVo.p_price}</span>
                             </div>
+                         </div>
         	</div>		
 		</div>
 		</c:forEach>
 	
 	</div>
-	
+	</div>
+	</section>
 	<!-- 소현 -->
 	
 <!-- 푸터와 js************************************************ -->

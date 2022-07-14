@@ -5,8 +5,7 @@
 <mapper namespace = "com.jeonju.mypet.product">
 
 	<select id="getProductList" resultType="productVo">
-		select * from product
+		select a.*,b.p_ori_filename from product a join product_img b on a.p_idx=b.p_idx where b.p_front_img;
 	</select>
-	
 <!-- 소현 -->
 </mapper>
