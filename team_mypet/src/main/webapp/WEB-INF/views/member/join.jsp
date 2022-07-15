@@ -6,47 +6,7 @@
 <meta charset="UTF-8">
 <title>회원 가입</title>
 	<script src="http://code.jquery.com/jquery-latest.min.js"></script>
-	    <!-- css************************************************ -->
-    <jsp:include page="../../include/head.jsp" />  
-    
-<!-- ************************************************ -->
 <style>
-
-     html,
-body {
-  height: 100%;
-}
-
-body {
-  display: flex;
-  align-items: center;
-  padding-top: 40px;
-  padding-bottom: 40px;
-  background-color: #f9fbd9;
-}
-
-.form-signin {
-  width: 100%;
-  max-width: 330px;
-  padding: 15px;
-  margin: auto;
-}
-
-.form-signin .checkbox {
-  font-weight: 400;
-}
-
-.form-signin .form-floating:focus-within {
-  z-index: 2;
-}
-
-.form-signin input {
-  margin-bottom: 5px;
-  border-top-left-radius: 0;
-  border-top-right-radius: 0;
-}
-
-
 
 </style>
 <script>
@@ -220,7 +180,11 @@ body {
 		 
 	</script>
     
-
+    <!-- css************************************************ -->
+    <jsp:include page="../../include/head.jsp" />  
+        <jsp:include page="../../include/login.jsp" />
+    
+<!-- ************************************************ -->
 </head>
 
  <body class="text-center">
@@ -252,7 +216,7 @@ body {
       <label for="floatingNick">nickname</label>
     </div>
     <div class="form-floating">
-      <input type="text" name="m_birth" value="" maxlength="80" class="form-control" id="floatingBirth">
+      <input type="text" name="m_birth" value="" maxlength="6" class="form-control" id="floatingBirth">
       <label for="floatingInput">birth</label>
     </div>
     <div class="form-floating">

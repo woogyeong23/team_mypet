@@ -5,7 +5,6 @@
 <!doctype html>
 <html>
   <head>
-  <link href="resources/assets/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-1BmE4kWBq78iYhFldvKuhfTAU6auU8tT94WrHftjDbrCEXSU1oBoqyl2QvZ6jIW3" crossorigin="anonymous">
 
     <link rel="canonical" href="https://getbootstrap.kr/docs/5.1/examples/sidebars/">
 
@@ -29,7 +28,6 @@
     </style>
     
     <!-- Custom styles for this template -->
-    <link href="resources/assets/css/sidebar.css" rel="stylesheet">
   </head>
   <body>
 
@@ -40,12 +38,9 @@
     <a href="/" class="d-flex align-items-center pb-3 mb-3 link-dark text-decoration-none border-bottom">
       <svg class="bi me-2" width="30" height="24"><use xlink:href="#bootstrap"/></svg>
       <span class="fs-5 fw-semibold">
-			<div>
-			<a href="" name="member_id">${memberVo.member_id}</a>
-			</div>
-	
-	<a href="${pageContext.request.contextPath}/deleteMember.do"></a></span>
-    </a>
+			<a href="" name="m_id">${memberVo.m_id}</a>
+			
+	    </a>
     <ul class="list-unstyled ps-0">
       <li class="mb-1">
         <button class="btn btn-toggle align-items-center rounded collapsed" data-bs-toggle="collapse" data-bs-target="#home-collapse" aria-expanded="true">

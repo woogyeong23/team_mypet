@@ -96,9 +96,6 @@
                                     <a href="${pageContext.request.contextPath}/join.do">회원가입</a>
                                     
                                 </li>
-                                <li>
-                                <a href="${pageContext.request.contextPath}/NewFile.do">회원가입2</a>
-                                </li>
                             </ul>
                             </c:otherwise>
                             </c:choose>
