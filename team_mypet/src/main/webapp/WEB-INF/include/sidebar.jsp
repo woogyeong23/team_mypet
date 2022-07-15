@@ -39,7 +39,6 @@
       <svg class="bi me-2" width="30" height="24"><use xlink:href="#bootstrap"/></svg>
       <span class="fs-5 fw-semibold">
 			<a href="" name="m_id">${m_id}</a>
-			
 	    </a>
     <ul class="list-unstyled ps-0">
       <li class="mb-1">
