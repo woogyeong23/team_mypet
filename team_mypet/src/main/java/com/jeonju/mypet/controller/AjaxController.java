@@ -1,6 +1,8 @@
 package com.jeonju.mypet.controller;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
 
 import com.jeonju.mypet.service.AjaxService;
@@ -18,6 +20,21 @@ public class AjaxController {
 		this.ajaxService = ajaxService;
 	}
 	
+	
+	@PostMapping("/checkId.do")
+	//@ResponseBody //Ajax통신의 응답내용을 보내는 것을 표시 <-- @RestController 로 대체 가능
+	public String checkId(@RequestParam("member_id") String id) {
+		
+		System.out.println("id: "+id);
+		
+		String result="N";//중복된 아이디 없음
+		
+		int flag = ajaxService.checkId(id);
+		
+		if(flag == 1) result = "Y";//중복된 아이디 있음(실패)
+		
+		return result;
+	}	
 	
 	
 	

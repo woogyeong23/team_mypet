@@ -41,6 +41,10 @@
 			<exclude-mapping path="/joinProcess.do"/>
 			<exclude-mapping path="/login.do"/>
 			<exclude-mapping path="/loginProcess.do"/>
+			<exclude-mapping path="/logout.do"/>
+			<exclude-mapping path="/NewFile.do"/>
+
+			
 		
 			<beans:bean id="loginInterceptor" class="com.jeonju.mypet.interceptor.LoginInterceptor"/>
 		</interceptor>

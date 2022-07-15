@@ -9,6 +9,15 @@ import com.jeonju.mypet.dao.MembersDao;
 @Service
 public class AjaxService {
 	
+	private MembersDao membersDao;
+
+	
+	public int checkId(String id) {
+		int result=0;
+		result = membersDao.checkId(id);
+		return result;
+	}
+	
 
 	
 	
