@@ -4,8 +4,7 @@
 
 <mapper namespace = "com.jeonju.mypet.seller">
 
-	<select id="getSellerProductList" parameterType="string" resultType="productVo">
-		select p_name, p_content from product where seller_idx = 1
-		
+	<select id="getSellerProductList" parameterType="string" resultType="Hashmap">
+		select a.p_name, p_content, p_category_small from product a join p_category b on a.p_category_idx=b.p_category_idx  where seller_idx = (select b.seller_idx from members a join sellerstory b on a.midx = b.midx where a.midx = 1) 		
 	</select>
 </mapper>

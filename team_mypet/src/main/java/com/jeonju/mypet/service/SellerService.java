@@ -1,6 +1,9 @@
 package com.jeonju.mypet.service;
 
 
+import java.util.HashMap;
+import java.util.List;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
@@ -16,7 +19,8 @@ public class SellerService {
 	public SellerService(SellerDao sellerDao) {
 		this.sellerDao = sellerDao;
 	}
-	public ProductVo seller_productList(String member_id) {
+	
+	public List<HashMap<String, Object>> seller_productList(String member_id) {
 		// TODO Auto-generated method stub
 		return sellerDao.getSellerProductList(member_id);
 	}

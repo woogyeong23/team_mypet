@@ -1,6 +1,9 @@
 package com.jeonju.mypet.dao;
 
 
+import java.util.HashMap;
+import java.util.List;
+
 import org.apache.ibatis.session.SqlSession;
 import org.springframework.stereotype.Repository;
 
@@ -12,15 +15,16 @@ public class SellerDao {
 
 	private SqlSession sqlSession;
 	
-	public static final String MAPPER = "ezen.dev.spring.seller";
+	public static final String MAPPER = "com.jeonju.mypet.seller";
 	
 	public SellerDao(SqlSession sqlSession) {
 		this.sqlSession = sqlSession;
 	}
 	
-	public ProductVo getSellerProductList(String member_id) {
+	public List<HashMap<String, Object>> getSellerProductList(String member_id) {
 		
-		return sqlSession.selectOne(MAPPER + ".getSellerProductList", member_id);
+		
+		return sqlSession.selectList(MAPPER + ".getSellerProductList", member_id);
 	}
 
 	
