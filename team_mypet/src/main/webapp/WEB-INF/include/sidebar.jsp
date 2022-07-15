@@ -34,11 +34,13 @@
 
 <main>
 
-  <div class="flex-shrink-0 p-3 bg-white" style="width: 280px;">
-    <a href="/" class="d-flex align-items-center pb-3 mb-3 link-dark text-decoration-none border-bottom">
+        <input type="file" name="m_profile" class="img-fluid" style="background-image:url(https://mdn.mozillademos.org/files/6457/mdn_logo_only_color.png)">
+  <div class="flex-shrink-0 p-3 bg-white" style="width: 280px;">  
+    <a href="${pageContext.request.contextPath}/memberInfo.do" class="d-flex align-items-center pb-3 mb-3 link-dark text-decoration-none border-bottom">
       <svg class="bi me-2" width="30" height="24"><use xlink:href="#bootstrap"/></svg>
       <span class="fs-5 fw-semibold">
 			${m_id}님
+			
 	    </a>
     <ul class="list-unstyled ps-0">
       <li class="mb-1">
