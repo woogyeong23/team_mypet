@@ -11,6 +11,8 @@
 <!-- ************************************************ -->
 <!-- CSS only -->
 <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-1BmE4kWBq78iYhFldvKuhfTAU6auU8tT94WrHftjDbrCEXSU1oBoqyl2QvZ6jIW3" crossorigin="anonymous">
+<link rel="stylesheet" href="resources/commu.css"/>
+
 </head>
 
 <body>
@@ -30,19 +32,22 @@
                 </div>
             </div>
             <div class="row">
-                <div class="col-lg-3 col-md-6 col-12">
+            
+            <c:forEach var="cv" items="${commuList}">
+                     
+                    <div class="col-lg-3 col-md-6 col-12">
                     <!-- Start Single Product -->
                     <div class="single-product">
                         <div class="product-image">
-                            <img src="resources/assets/images/products/dog01.jpg" alt="#">
+                            <img src="${pageContext.request.contextPath}/resources/image/${cv.cm_img}" alt="커뮤니티 이미지">
                             <div class="button">
-                                <a href="product-details.html" class="btn"><i class="lni lni-cart"></i> Add to Cart</a>
+                                <a href="${pageContext.request.contextPath}/cbView?cm_idx=${cv.cm_idx}" class="btn"><i class="lni lni-cart"></i> Add to Cart</a>
                             </div>
                         </div>
                         <div class="product-info">
-                            <span class="category">가방</span>
+                            <span class="category">Watches</span>
                             <h4 class="title">
-                                <a href="product-grids.html">Xiaomi Mi Band 5</a>
+                                <a href="${pageContext.request.contextPath}/cbView.do?${cv.cm_idx}">${cv.cm_subject}</a>
                             </h4>
                             <ul class="review">
                                 <li><i class="lni lni-star-filled"></i></li>
@@ -59,220 +64,20 @@
                     </div>
                     <!-- End Single Product -->
                 </div>
-                <div class="col-lg-3 col-md-6 col-12">
-                    <!-- Start Single Product -->
-                    <div class="single-product">
-                        <div class="product-image">
-                            <img src="resources/assets/images/products/paka02.jpg" alt="#">
-                            <span class="sale-tag">-25%</span>
-                            <div class="button">
-                                <a href="product-details.html" class="btn"><i class="lni lni-cart"></i> Add to Cart</a>
-                            </div>
-                        </div>
-                        <div class="product-info">
-                            <span class="category">고양이</span>
-                            <h4 class="title">
-                                <a href="product-grids.html">Big Power Sound Speaker</a>
-                            </h4>
-                            <ul class="review">
-                                <li><i class="lni lni-star-filled"></i></li>
-                                <li><i class="lni lni-star-filled"></i></li>
-                                <li><i class="lni lni-star-filled"></i></li>
-                                <li><i class="lni lni-star-filled"></i></li>
-                                <li><i class="lni lni-star-filled"></i></li>
-                                <li><span>5.0 Review(s)</span></li>
-                            </ul>
-                            <div class="price">
-                                <span>$275.00</span>
-                                <span class="discount-price">$300.00</span>
-                            </div>
-                        </div>
-                    </div>
-                    <!-- End Single Product -->
-                </div>
-                <div class="col-lg-3 col-md-6 col-12">
-                    <!-- Start Single Product -->
-                    <div class="single-product">
-                        <div class="product-image">
-                            <img src="resources/assets/images/products/dog02.jpg" alt="#">
-                            <div class="button">
-                                <a href="product-details.html" class="btn"><i class="lni lni-cart"></i> Add to Cart</a>
-                            </div>
-                        </div>
-                        <div class="product-info">
-                            <span class="category">컴퓨터</span>
-                            <h4 class="title">
-                                <a href="product-grids.html">키보드</a>
-                            </h4>
-                            <ul class="review">
-                                <li><i class="lni lni-star-filled"></i></li>
-                                <li><i class="lni lni-star-filled"></i></li>
-                                <li><i class="lni lni-star-filled"></i></li>
-                                <li><i class="lni lni-star-filled"></i></li>
-                                <li><i class="lni lni-star-filled"></i></li>
-                                <li><span>5.0 Review(s)</span></li>
-                            </ul>
-                            <div class="price">
-                                <span>$399.00</span>
-                            </div>
-                        </div>
-                    </div>
-                    <!-- End Single Product -->
-                </div>
-                <div class="col-lg-3 col-md-6 col-12">
-                    <!-- Start Single Product -->
-                    <div class="single-product">
-                        <div class="product-image">
-                            <img src="resources/assets/images/products/dog03.jpg" alt="#">
-                            <span class="new-tag">New</span>
-                            <div class="button">
-                                <a href="product-details.html" class="btn"><i class="lni lni-cart"></i> Add to Cart</a>
-                            </div>
-                        </div>
-                        <div class="product-info">
-                            <span class="category">카카오</span>
-                            <h4 class="title">
-                                <a href="product-grids.html">iphone 6x plus</a>
-                            </h4>
-                            <ul class="review">
-                                <li><i class="lni lni-star-filled"></i></li>
-                                <li><i class="lni lni-star-filled"></i></li>
-                                <li><i class="lni lni-star-filled"></i></li>
-                                <li><i class="lni lni-star-filled"></i></li>
-                                <li><i class="lni lni-star-filled"></i></li>
-                                <li><span>5.0 Review(s)</span></li>
-                            </ul>
-                            <div class="price">
-                                <span>$400.00</span>
-                            </div>
-                        </div>
-                    </div>
-                    <!-- End Single Product -->
-                </div>
-                <div class="col-lg-3 col-md-6 col-12">
-                    <!-- Start Single Product -->
-                    <div class="single-product">
-                        <div class="product-image">
-                            <img src="resources/assets/images/products/dog04.jpg" alt="#">
-                            <div class="button">
-                                <a href="product-details.html" class="btn"><i class="lni lni-cart"></i> Add to Cart</a>
-                            </div>
-                        </div>
-                        <div class="product-info">
-                            <span class="category">네이버</span>
-                            <h4 class="title">
-                                <a href="product-grids.html">Wireless Headphones</a>
-                            </h4>
-                            <ul class="review">
-                                <li><i class="lni lni-star-filled"></i></li>
-                                <li><i class="lni lni-star-filled"></i></li>
-                                <li><i class="lni lni-star-filled"></i></li>
-                                <li><i class="lni lni-star-filled"></i></li>
-                                <li><i class="lni lni-star-filled"></i></li>
-                                <li><span>5.0 Review(s)</span></li>
-                            </ul>
-                            <div class="price">
-                                <span>$350.00</span>
-                            </div>
-                        </div>
-                    </div>
-                    <!-- End Single Product -->
-                </div>
-                <div class="col-lg-3 col-md-6 col-12">
-                    <!-- Start Single Product -->
-                    <div class="single-product">
-                        <div class="product-image">
-                            <img src="resources/assets/images/products/dog05.jpg" alt="#">
-                            <div class="button">
-                                <a href="product-details.html" class="btn"><i class="lni lni-cart"></i> Add to Cart</a>
-                            </div>
-                        </div>
-                        <div class="product-info">
-                            <span class="category">Speaker</span>
-                            <h4 class="title">
-                                <a href="product-grids.html">Mini Bluetooth Speaker</a>
-                            </h4>
-                            <ul class="review">
-                                <li><i class="lni lni-star-filled"></i></li>
-                                <li><i class="lni lni-star-filled"></i></li>
-                                <li><i class="lni lni-star-filled"></i></li>
-                                <li><i class="lni lni-star-filled"></i></li>
-                                <li><i class="lni lni-star"></i></li>
-                                <li><span>4.0 Review(s)</span></li>
-                            </ul>
-                            <div class="price">
-                                <span>$70.00</span>
-                            </div>
-                        </div>
-                    </div>
-                    <!-- End Single Product -->
-                </div>
-                <div class="col-lg-3 col-md-6 col-12">
-                    <!-- Start Single Product -->
-                    <div class="single-product">
-                        <div class="product-image">
-                            <img src="resources/assets/images/products/dog06.jpg" alt="#">
-                            <span class="sale-tag">-50%</span>
-                            <div class="button">
-                                <a href="product-details.html" class="btn"><i class="lni lni-cart"></i> Add to Cart</a>
-                            </div>
-                        </div>
-                        <div class="product-info">
-                            <span class="category">Headphones</span>
-                            <h4 class="title">
-                                <a href="product-grids.html">PX7 Wireless Headphones</a>
-                            </h4>
-                            <ul class="review">
-                                <li><i class="lni lni-star-filled"></i></li>
-                                <li><i class="lni lni-star-filled"></i></li>
-                                <li><i class="lni lni-star-filled"></i></li>
-                                <li><i class="lni lni-star-filled"></i></li>
-                                <li><i class="lni lni-star"></i></li>
-                                <li><span>4.0 Review(s)</span></li>
-                            </ul>
-                            <div class="price">
-                                <span>$100.00</span>
-                                <span class="discount-price">$200.00</span>
-                            </div>
-                        </div>
-                    </div>
-                    <!-- End Single Product -->
-                </div>
-                <div class="col-lg-3 col-md-6 col-12">
-                    <!-- Start Single Product -->
-                    <div class="single-product">
-                        <div class="product-image">
-                            <img src="resources/assets/images/products/dog07.jpg" alt="#">
-                            <div class="button">
-                                <a href="product-details.html" class="btn"><i class="lni lni-cart"></i> Add to Cart</a>
-                            </div>
-                        </div>
-                        <div class="product-info">
-                            <span class="category">강아지</span>
-                            <h4 class="title">
-                                <a href="product-grids.html">Apple MacBook Air</a>
-                            </h4>
-                            <ul class="review">
-                                <li><i class="lni lni-star-filled"></i></li>
-                                <li><i class="lni lni-star-filled"></i></li>
-                                <li><i class="lni lni-star-filled"></i></li>
-                                <li><i class="lni lni-star-filled"></i></li>
-                                <li><i class="lni lni-star-filled"></i></li>
-                                <li><span>5.0 Review(s)</span></li>
-                            </ul>
-                            <div class="price">
-                                <span>$899.00</span>
-                            </div>
-                        </div>
-                    </div>
-                    <!-- End Single Product -->
-                </div>
-            </div>
+    </c:forEach>
+            
+         </div>
         </div>
     </section>
+    
+    
+    
+    
+    
+    
     <!-- End Trending Product Area -->
  <c:if test="${m_id != null}">
-<a href="${pageContext.request.contextPath}/cbInsert.do"><button type="button" class="btn btn-success">새글작성</button></a>
+ <div class="InsertBtn"><a href="${pageContext.request.contextPath}/cbInsert.do"><button type="button" class="btn btn-success" color="#aeddff">+</button></a></div>
 </c:if>  
 
 

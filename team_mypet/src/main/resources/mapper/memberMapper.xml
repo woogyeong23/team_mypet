@@ -14,7 +14,7 @@
 	</select> -->
 	
 	<select id="loginMember" parameterType="memberVo" resultType="memberVo">
-		select count(*) as m_auth, m_grade from members where m_id=#{m_id} and m_pwd=#{m_pwd}
+		select count(*) as m_auth, m_grade, midx, m_nick from members where m_id=#{m_id} and m_pwd=#{m_pwd}
 	</select>
 	
 	<select id="getMemberInfo" parameterType="string" resultType="memberVo">
@@ -26,4 +26,4 @@
 	</select>
 
 
-</mapper>
+</mapper> 

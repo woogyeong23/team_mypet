@@ -72,6 +72,8 @@ public class MemberController {
 		MemberVo resultVo = memberService.login(memberVo);
 		long m_auth = resultVo.getM_auth();
 		long m_grade = resultVo.getM_grade();
+		long midx = resultVo.getMidx();
+		String m_nick = resultVo.getM_nick();
 				
 		System.out.println("m_grade : "+ m_grade);
 		String viewPage = null;
@@ -79,12 +81,15 @@ public class MemberController {
 		if(m_auth==1) {  // 값이 유효해 로그인이 성공적으로 이루어진 경우
 			HttpSession session = request.getSession();
 			session.setAttribute("m_id", memberVo.getM_id());
-			session.setAttribute("m_nick", memberVo.getM_nick());
-
+			session.setAttribute("m_nick", m_nick);
+			session.setAttribute("midx", midx);
 			session.setAttribute("m_grade", m_grade);
 			
-			System.out.println("Session: "+ session.getAttribute("m_id"));
-			System.out.println("Session: "+ session.getAttribute("m_grade"));
+			System.out.println("Session m_id: "+ session.getAttribute("m_id"));
+			System.out.println("Session m_grade:"+ session.getAttribute("m_grade"));
+			System.out.println("Session m_midx:"+ session.getAttribute("midx"));
+			System.out.println("Session m_nick:"+ session.getAttribute("m_nick"));
+			
 			
 			viewPage = "redirect:/home.do";
 			
@@ -93,6 +98,15 @@ public class MemberController {
 		}
 		
 		return viewPage;
+	}
+	
+	
+	@GetMapping("/logout.do")
+	public String logout(HttpServletRequest request) {
+		HttpSession session = request.getSession();
+		session.invalidate();
+		
+		return "redirect:/home.do";
 	}
 	
 	

@@ -28,6 +28,8 @@
 <script type="text/javascript">
 function check(){ // 유효성 검사
 	var fm = document.frm;
+	var midx = $("input[name=midx]").val();
+	var cm_writer = $("input[name=cm_writer]").val();
 	
 	if(fm.cm_subject.value=="") { // 제목이 기입되지 않았을 경우
 		alert("제목을 입력해주세요.");
@@ -40,7 +42,7 @@ function check(){ // 유효성 검사
 		return;
 	}
 	
-	fm.action="cbInsertAfter.do";
+	fm.action="${pageContext.request.contextPath}/cbInsertProcess.do";
 	fm.enctype = "multipart/form-data";
 	fm.method = "post";
 	fm.submit();
@@ -61,12 +63,13 @@ $(document).ready(function() {
 <!-- 헤더와 네비************************************************ -->
     <jsp:include page="../../include/header.jsp" />  
 <!-- ************************************************ -->
-<form name="frm">
-<table align="center">
+<form name="frm" style="margin-left:150px;">
+<input type="hidden" name="midx" value="${midx}">
 <input type="hidden" name="cm_writer" value="${m_nick}">
-<textarea name="cm_subject" placeholder="제목을 입력해주세요"></textarea>
-<textarea name="cm_content" id="summernote" placeholder="내용을 입력해주세요"></textarea>
-</table></form>
+<div class="row col-8"><textarea name="cm_subject" placeholder="제목을 입력해주세요"></textarea></div>
+<div><textarea name="cm_content" id="summernote" placeholder="내용을 입력해주세요"></textarea></div>
+<div><input class="btn btn-primary" type="submit" value="Submit" name="btn" onclick="check();"></div>
+</form>
 
 
 <!-- 푸터와 js************************************************ -->

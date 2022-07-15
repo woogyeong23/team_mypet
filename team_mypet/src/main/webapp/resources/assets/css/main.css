@@ -31,6 +31,8 @@ p {
   padding: 0;
 }
 
+
+
 .navbar-toggler:focus,
 a:focus,
 input:focus,
@@ -4889,4 +4891,6 @@ top: 2px;
   .footer .footer-bottom .socila li span {
     display: none;
   }
+  
+ 
 }

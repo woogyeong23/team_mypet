@@ -1,6 +1,6 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
-    <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>   
     
 <!DOCTYPE html>
 <!--[if lte IE 9]>
@@ -300,6 +300,7 @@
                                         </ul>
                                     </li>
                                     <li class="nav-item"><a href="${pageContext.request.contextPath}/cbList.do" aria-label="Toggle navigation">커뮤니티</a></li>
+                                      <li class="nav-item"><a href="${pageContext.request.contextPath}/bestSellerList.do" aria-label="Toggle navigation">인기 작가</a></li>
                                 </ul>
                             </div> <!-- navbar collapse -->
                         </nav>
