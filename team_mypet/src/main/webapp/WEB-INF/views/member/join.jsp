@@ -10,7 +10,6 @@
 
 </style>
 
-
     
     <!-- css************************************************ -->
     <jsp:include page="../../include/head.jsp" />  
@@ -21,15 +20,15 @@
 
  <body class="text-center">
 <main class="form-signin">
-<form name="joinForm" action="${pageContext.request.contextPath}/joinKako.do" method="post">
+<form name="joinForm" action="${pageContext.request.contextPath}/joinKakao.do">
   	<a href="${pageContext.request.contextPath}/home.do">
     <img class="mb-4" src="resources/assets/images/DC.png" alt="" width="300" height="200" >
     </a>
     <h1 class="h3 mb-3 fw-normal" style="text-align:center">회원가입</h1>
-  
+
     <button class="w-100 btn btn-lg btn-primary" id="login_member"type="submit">카카오로 회원가입</button>
   </form>
-  <form name="joinForm" action="${pageContext.request.contextPath}/joinEm.do" method="post">
+  <form name="joinForm" action="${pageContext.request.contextPath}/joinEm.do">
     <button class="w-100 btn btn-lg btn-primary" id="login_member"type="submit">이메일로 회원가입</button>
   </form>
 </main>         

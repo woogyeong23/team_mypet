@@ -37,12 +37,14 @@
 			<mapping path="/*.do"/>
 			<exclude-mapping path="/home.do"/>
 			<exclude-mapping path="/join.do"/>
+			<exclude-mapping path="/joinKakao.do"/>
+			<exclude-mapping path="/joinEm.do"/>
 			<exclude-mapping path="/checkId.do"/>
 			<exclude-mapping path="/joinProcess.do"/>
 			<exclude-mapping path="/login.do"/>
 			<exclude-mapping path="/loginProcess.do"/>
 			<exclude-mapping path="/logout.do"/>
-			<exclude-mapping path="/NewFile.do"/>
+			
 
 			
 		
