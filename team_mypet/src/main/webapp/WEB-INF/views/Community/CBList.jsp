@@ -21,12 +21,12 @@
   <div class="band">
 
    <c:forEach var="cv" items="${commuList}">
-    <div class="item-1">
+    <div class="item">
           <a href="주소" class="card">
-            <div class="thumb" style="background-image: url(https://s3-us-west-2.amazonaws.com/s.cdpn.io/210284/flex-1.jpg);"></div>
+            <div class="thumb" style="background-image: url(${pageContext.request.contextPath}/resources/commuImg/${cv.cm_img});"></div>
             <article>
-              <h1>International Artist Feature: Malaysia</h1>
-              <span>Mary Winkler</span>
+              <h1>${cv.cm_subject}</h1>
+              <span>${cv.cm_writer}</span>
             </article>
           </a>
     </div>

@@ -21,11 +21,11 @@ public class CommunityController {
 		this.commuService = commuService;
 	}
 	
-	@GetMapping("/CBList")
+	@GetMapping("/CBList.do")
 	public String CBList(Model model) {
 		
 		List<CommunityVo> commuList = commuService.getCommuList();
-		model.addAttribute("commuList",commuList);
+		model.addAttribute("commuList", commuList);
 	
 		return "Community/CBList";
 	}

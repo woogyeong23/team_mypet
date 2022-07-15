@@ -4,9 +4,9 @@
 
 <mapper namespace = "com.jeonju.mypet.community">
 
-<select id="getCommuList" resultType="commuVo">
- select*from community
-</select>
+    <select id="getCommuList" resultType="communityVo">
+    select * from community
+    </select>
 
 
 </mapper>
