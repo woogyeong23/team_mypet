@@ -298,7 +298,7 @@
                                         </ul>
                                     </li>
                                     <li class="nav-item">
-                                        <a href="contact.html" aria-label="Toggle navigation">커뮤니티</a>
+                                        <a href="${pageContext.request.contextPath}/CBList" aria-label="Toggle navigation">커뮤니티</a>
                                     </li>
                                 </ul>
                             </div> <!-- navbar collapse -->
