@@ -29,10 +29,17 @@ public class MembersController {
 	public String login() {
 		return "member/login";
 	}
-	
 	@GetMapping("/join.do")
 	public String join() {
 		return "member/join";	
+	}
+	@GetMapping("/joinKakao.do")
+	public String joinKakao() {
+		return "member/joinKakao";	
+	}
+	@GetMapping("/joinEm.do")
+	public String joinEm() {
+		return "member/joinEm";	
 	}
 	@GetMapping("/NewFile.do")
 	public String NewFile() {
