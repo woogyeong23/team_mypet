@@ -28,6 +28,13 @@ public class ProductVo {
 	private String p_delyn;
 	private String p_stock;
 	
+	//소현
+	private int p_front_img;
+	private String p_ori_filename;
+	private String p_sys_filname;
+	private String seller_nick;
+	//소현
+
 	private List<Product_ImgVo> product_imgs; 
 	
 	public List<Product_ImgVo> getProduct_imgs() {
@@ -36,6 +43,26 @@ public class ProductVo {
 	public void setProduct_imgs(List<Product_ImgVo> product_imgs) {
 		this.product_imgs = product_imgs;
 	}
+	
+	public int getP_front_img() {
+		return p_front_img;
+	}
+	public void setP_front_img(int p_front_img) {
+		this.p_front_img = p_front_img;
+	}
+	public String getP_ori_filename() {
+		return p_ori_filename;
+	}
+	public void setP_ori_filename(String p_ori_filename) {
+		this.p_ori_filename = p_ori_filename;
+	}
+	public String getP_sys_filname() {
+		return p_sys_filname;
+	}
+	public void setP_sys_filname(String p_sys_filname) {
+		this.p_sys_filname = p_sys_filname;
+	}
+	
 	
 	
 	public int getP_idx() {
@@ -169,5 +196,11 @@ public class ProductVo {
 	}
 	public void setP_stock(String p_stock) {
 		this.p_stock = p_stock;
+	}
+	public String getSeller_nick() {
+		return seller_nick;
+	}
+	public void setSeller_nick(String seller_nick) {
+		this.seller_nick = seller_nick;
 	}
 }

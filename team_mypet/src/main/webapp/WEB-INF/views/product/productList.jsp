@@ -7,50 +7,66 @@
 <head>
 <meta charset="UTF-8">
 <title>상품 목록</title>
-<!-- css************************************************ -->
+<!-- css***************************************************** -->
     <jsp:include page="../../include/head.jsp" />  
-<!-- ************************************************ -->
+<!-- ******************************************************** -->
 </head>
 
 <body>
 <!-- 헤더와 네비************************************************ -->
     <jsp:include page="../../include/header.jsp" />  
-<!-- ************************************************ -->
-	
+<!-- ******************************************************** -->
 	
 	<!-- 소현 -->
 	<section class="trending-product section" style="margin-top: 12px;">
-        <div class="container">
-          
+    <div class="container">
 	<div class="row">
-    	
-	<c:forEach var="productVo" items="${productList}">
-		<div class="col-lg-3">
-				<div class="product-info">
-                        <div class="product-image">
-                        	<span>${product_imgVo.p_ori_filename}</span>
-                            <span class="seller">${productVo.seller_idx}</span>
-                            <h4 class="p_name">
-                                <a href="productView.jsp">${productVo.p_name}</a>
-                            </h4>
-                            <ul class="star">
-                                <li><i class="lni lni-star-filled"></i></li>
-                                <li><i class="lni lni-star-filled"></i></li>
-                                <li><i class="lni lni-star-filled"></i></li>
-                                <li><i class="lni lni-star-filled"></i></li>
-                                <li><i class="lni lni-star-filled"></i></li>
-                            </ul>
+                <c:forEach var="productVo" items="${productList}">
+				<!-- Start Single Product -->
+                <div class="col-lg-3">
+                    <div class="single-product">
+                    	<div class="product-image">
+                    	<c:choose>
+                    		<c:when test="${productVo.p_ori_filename == null}">
+                    	  		<img src="${pageContext.request.contextPath}/resources/assets/images/products/image.jpg" width="300px" height="300px">
+                       		</c:when>
+							<c:otherwise>     
+								<img src="${pageContext.request.contextPath}/resources/assets/images/products/${productVo.p_ori_filename}" width="300px" height="300px">
+							</c:otherwise>
+						</c:choose>
+						
+						<!--                             
+						<div class="button">
+                        <a href="product-details.html" class="btn"><i class="lni lni-cart"></i> Add to Cart</a>
+                        </div> 
+                        -->
+                        
+                        </div>
+                        <div class="product-info">
+                            <span class="seller">${productVo.seller_nick}</span>
+                            <h4 class="p_name">${productVo.p_name}</h4>
                             <div class="price">
                                 <span>${productVo.p_price}</span>
                             </div>
-                         </div>
-        	</div>		
-		</div>
-		</c:forEach>
-	
-	</div>
+                            <ul class="review">
+                                <li><i class="lni lni-star-filled"></i></li>
+                                <li><i class="lni lni-star-filled"></i></li>
+                                <li><i class="lni lni-star-filled"></i></li>
+                                <li><i class="lni lni-star-filled"></i></li>
+                                <li><i class="lni lni-star"></i></li>
+                            </ul>
+                        </div>
+                    </div> 
+                </div>
+				</c:forEach>
+                <!-- End Single Product -->
+    </div>
 	</div>
 	</section>
+	
+	
+	
+	
 	<!-- 소현 -->
 	
 <!-- 푸터와 js************************************************ -->

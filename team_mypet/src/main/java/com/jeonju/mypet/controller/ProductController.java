@@ -10,6 +10,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.RequestMapping;
 
 import com.jeonju.mypet.service.ProductService;
 import com.jeonju.mypet.vo.ProductVo;
@@ -31,7 +32,14 @@ public class ProductController {
 		return "product/productList";
 	}
 	
-
+	/*
+	 * @RequestMapping("/sellerNick.do") public ProductVo getsellerNick(Model model)
+	 * { model.addAttribute("seller_nick", seller_nick);
+	 * 
+	 * return sellerNick;
+	 * 
+	 * }
+	 */
 	//소현
 	
 }
