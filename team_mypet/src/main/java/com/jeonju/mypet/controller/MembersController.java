@@ -62,7 +62,7 @@ public class MembersController {
 		return viewPage;	
 	}
 	
-		@PostMapping("/loginProcess.do")
+	@PostMapping("/loginProcess.do")
 	public String loginProcess(@RequestParam("m_id") String m_id,
 			@RequestParam("m_pwd") String m_pwd,
 			HttpServletRequest request) {
@@ -111,17 +111,17 @@ public class MembersController {
 		}
 		
 		
-		@GetMapping("/idFind.do")
+		@GetMapping("/idfind.do")
 		public String idFind() {
 				
-			return "member/idFind";	
+			return "member/idfind";	
 		}
 		
 		
-		@GetMapping("/pwdFind.do")
-		public String pwdFind() {
+		@GetMapping("/pwdfind.do")
+		public String pwdfind() {
 				
-			return "member/pwdFind";	
+			return "member/pwdfind";	
 		}
 		
 		

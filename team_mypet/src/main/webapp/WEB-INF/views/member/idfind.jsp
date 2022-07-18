@@ -45,8 +45,8 @@
     <div class="checkbox mb-3">
       <label>
         <input type="checkbox" id="remember-me" ${checked}> Remember me
-		<a href="${pageContext.request.contextPath}/idFind.do">아이디찾기/</a>
-		<a href="${pageContext.request.contextPath}/pwdFind.do">비밀번호찾기</a>
+		<a href="${pageContext.request.contextPath}/idfind.do">아이디찾기/</a>
+		<a href="${pageContext.request.contextPath}/pwdfind.do">비밀번호찾기</a>
 		<a href="${pageContext.request.contextPath}/join.do">회원가입</a>
       </label>
     </div>
