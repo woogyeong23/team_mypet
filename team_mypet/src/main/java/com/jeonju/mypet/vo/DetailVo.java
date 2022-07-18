@@ -10,7 +10,7 @@ public class DetailVo {
 	private int detail_cnt;
 	private String detail_request;
 	private String detail_completeday;
-	
+	private int fixprice;
 	
 	private List<Detail_DayVo> detail_days; 
 	public List<Detail_DayVo> getDetail_days() {
@@ -69,6 +69,12 @@ public class DetailVo {
 	}
 	public void setDetail_completeday(String detail_completeday) {
 		this.detail_completeday = detail_completeday;
+	}
+	public int getFixprice() {
+		return fixprice;
+	}
+	public void setFixprice(int fixprice) {
+		this.fixprice = fixprice;
 	}
 	
 }

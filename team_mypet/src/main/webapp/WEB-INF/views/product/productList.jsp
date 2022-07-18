@@ -27,11 +27,11 @@
                     <div class="single-product">
                     	<div class="product-image">
                     	<c:choose>
-                    		<c:when test="${productVo.p_ori_filename == null}">
+                    		<c:when test="${productVo.p_sys_filename == null}">
                     	  		<img src="${pageContext.request.contextPath}/resources/assets/images/products/image.jpg" width="300px" height="300px">
                        		</c:when>
 							<c:otherwise>     
-								<img src="${pageContext.request.contextPath}/resources/assets/images/products/${productVo.p_ori_filename}" width="300px" height="300px">
+								<img src="${pageContext.request.contextPath}/resources/assets/images/products/${productVo.p_sys_filename}" width="300px" height="300px">
 							</c:otherwise>
 						</c:choose>
 						

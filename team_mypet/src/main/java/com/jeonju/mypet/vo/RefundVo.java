@@ -18,12 +18,12 @@ public class RefundVo {
 	private String refund_request;
 	private int detail_idx;
 	
-	private List<Refunds_DayVo> refunds_days; 
-	public List<Refunds_DayVo> getRefunds_days() {
-		return refunds_days;
+	private List<Refund_DayVo> refund_days; 
+	public List<Refund_DayVo> getRefund_days() {
+		return refund_days;
 	}
-	public void setRefunds_days(List<Refunds_DayVo> refunds_days) {
-		this.refunds_days = refunds_days;
+	public void setRefund_days(List<Refund_DayVo> refund_days) {
+		this.refund_days = refund_days;
 	}
 	
 	
