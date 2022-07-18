@@ -6,10 +6,7 @@
 <html>
   <head>
 
-    <link rel="canonical" href="https://getbootstrap.kr/docs/5.1/examples/sidebars/">
-
     <!-- Bootstrap core CSS -->
-<link href="/docs/5.1/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-1BmE4kWBq78iYhFldvKuhfTAU6auU8tT94WrHftjDbrCEXSU1oBoqyl2QvZ6jIW3" crossorigin="anonymous">
 
     <style>
       .bd-placeholder-img {
@@ -28,6 +25,7 @@
     </style>
     
     <!-- Custom styles for this template -->
+    <jsp:include page="../include/head.jsp" />  
   </head>
   <body>
 
@@ -35,7 +33,12 @@
 <main>
 <input type="hidden">
   <div class="flex-shrink-0 p-3 bg-white" style="width: 280px;">  
-  <img src="..." class="img-thumbnail" alt="...">
+  ​<picture>
+  <source srcset="/resources/assets/images/profile.jpg" type="image/svg+xml">
+  <img src="/resources/assets/images/profile.jpg" class="img-fluid img-thumbnail" alt="프로필" >
+</picture>
+  <img src="/resources/assets/images/profile.jpg" class="img-thumbnail" alt="프로필" style="width:25px;height:25px;">
+<img src="/resources/assets/images/profile.jpg" class="img-fluid" alt="프로필">
     <a href="${pageContext.request.contextPath}/memberInfo.do" class="d-flex align-items-center pb-3 mb-3 link-dark text-decoration-none border-bottom">
       <svg class="bi me-2" width="30" height="24"><use xlink:href="#bootstrap"/></svg>
       <span class="fs-5 fw-semibold">

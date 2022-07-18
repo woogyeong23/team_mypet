@@ -27,7 +27,7 @@
  <body class="text-center">
  
 <main class="form-signin">
-  <form name="loginForm" action="${pageContext.request.contextPath}/idFindProcess.do" method="post">
+  <form name="loginForm" action="${pageContext.request.contextPath}/pwdFindProcess.do" method="post">
   	<a href="${pageContext.request.contextPath}/home.do">
     <img class="mb-4" src="resources/assets/images/DC.png" alt="" width="250" height="200" >
     </a>
@@ -38,22 +38,13 @@
       <label for="floatingInput">Email address</label>
     </div>
     <div class="form-floating">
-      <input type="password"  name="m_pwd"  value="" maxlength="20" class="form-control" id="floatingPassword">
-      <label for="floatingPassword">Password</label>
+      <input type="text"  name="m_phone"  value="" maxlength="20" class="form-control" id="floatingInput">
+      <label for="floatingInput">phone</label>
     </div>
 
-    <div class="checkbox mb-3">
-      <label>
-        <input type="checkbox" id="remember-me" ${checked}> Remember me
-		<a href="${pageContext.request.contextPath}/idfind.do">아이디찾기/</a>
-		<a href="${pageContext.request.contextPath}/pwdfind.do">비밀번호찾기</a>
-		<a href="${pageContext.request.contextPath}/join.do">회원가입</a>
-      </label>
-    </div>
-    <button class="w-100 btn btn-lg btn-primary" id="login_member"type="submit">아이디 찾기</button>
+    <button class="w-100 btn btn-lg btn-primary" id="login_member"type="submit">비밀번호 찾기</button>
   </form>
 </main>         
 		
-<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/js/bootstrap.bundle.min.js" integrity="sha384-ka7Sk0Gln4gmtz2MlQnikT1wXgYsOg+OMhuP+IlRH9sENBO0LRn5q+8nbTov4+1p" crossorigin="anonymous"></script>
 </body>
 </html>        

@@ -20,13 +20,14 @@
     <jsp:include page="../../include/header.jsp" />  
 	<!-- ************************************************ -->
  
-
+<main>
 <!-- 사이더와 js************************************************ -->
     <jsp:include page="../../include/sidebar.jsp" />  
 	<!-- ************************************************ -->
 
 
-
+    <jsp:include page="../../include/membermain.jsp" />  
+</main>
 
 
 

@@ -71,9 +71,7 @@ public class MembersController {
 			loginInfo.put("m_id",m_id);
 			loginInfo.put("m_pwd",m_pwd);
 			
-			System.out.println(loginInfo);
 			HashMap<String, Long> resultMap = membersService.login(loginInfo);
-			System.out.println(resultMap);
 			long m_auth = resultMap.get("m_auth");
 			long m_grade = resultMap.get("m_grade");
 			
