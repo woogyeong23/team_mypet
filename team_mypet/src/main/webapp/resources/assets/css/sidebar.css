@@ -15,6 +15,7 @@ main {
   max-height: 100vh;
   overflow-x: auto;
   overflow-y: hidden;
+  
 }
 
 .b-example-divider {
@@ -79,6 +80,7 @@ main {
 .btn-toggle-nav a:hover,
 .btn-toggle-nav a:focus {
   background-color: #d2f4ea;
+  color : #ffff80;
 }
 
 .scrollarea {

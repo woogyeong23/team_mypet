@@ -46,9 +46,16 @@
         </div>
       </div>
     </div>
+    <hr>
+        <h3 class="pb-1 border-bottom" >최근</h3>
+    
+    
+    
+    
+    
+    
   </div>
-<hr>  
-<br>
+
 
  
  
