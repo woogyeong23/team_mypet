@@ -10,7 +10,7 @@
    <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1">
 
-    
+  
     	<script src="http://code.jquery.com/jquery-latest.min.js"></script>
     
      <script>
@@ -27,11 +27,11 @@
  <body class="text-center">
  
 <main class="form-signin">
-  <form name="loginForm" action="${pageContext.request.contextPath}/loginProcess.do" method="post">
+  <form name="loginForm" action="${pageContext.request.contextPath}/idFindProcess.do" method="post">
   	<a href="${pageContext.request.contextPath}/home.do">
     <img class="mb-4" src="resources/assets/images/DC.png" alt="" width="250" height="200" >
     </a>
-    <h1 class="h3 mb-3 fw-normal">로그인</h1>
+    <h1 class="h3 mb-3 fw-normal">아이디 찾기</h1>
 
     <div class="form-floating">
       <input type="email" name="m_id" value="" maxlength="80" class="form-control" id="floatingInput">
@@ -50,9 +50,10 @@
 		<a href="${pageContext.request.contextPath}/join.do">회원가입</a>
       </label>
     </div>
-    <button class="w-100 btn btn-lg btn-primary" id="login_member"type="submit">Sign in</button>
+    <button class="w-100 btn btn-lg btn-primary" id="login_member"type="submit">아이디 찾기</button>
   </form>
 </main>         
 		
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/js/bootstrap.bundle.min.js" integrity="sha384-ka7Sk0Gln4gmtz2MlQnikT1wXgYsOg+OMhuP+IlRH9sENBO0LRn5q+8nbTov4+1p" crossorigin="anonymous"></script>
 </body>
 </html>        

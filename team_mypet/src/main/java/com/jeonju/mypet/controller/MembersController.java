@@ -104,11 +104,32 @@ public class MembersController {
 		
 		
 		
-			@GetMapping("/memberInfo.do")
+		@GetMapping("/memberInfo.do")
 		public String memberInfo() {
 				
 			return "member/memberInfo";	
 		}
+		
+		
+		@GetMapping("/idFind.do")
+		public String idFind() {
+				
+			return "member/idFind";	
+		}
+		
+		
+		@GetMapping("/pwdFind.do")
+		public String pwdFind() {
+				
+			return "member/pwdFind";	
+		}
+		
+		
+		
+		
+		
+		
+		
 		
 		
 		
