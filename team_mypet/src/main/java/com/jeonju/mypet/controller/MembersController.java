@@ -55,9 +55,9 @@ public class MembersController {
 		String viewPage = null;
 		
 		if(result == 1) {
-			viewPage = "redirect:/home.do";
+			viewPage = "redirect:/login.do";
 		}else {
-		 viewPage = "member/join";
+		 viewPage = "member/joinEm";
 		}
 		return viewPage;	
 	}

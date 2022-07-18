@@ -35,6 +35,7 @@
 <main>
 <input type="hidden">
   <div class="flex-shrink-0 p-3 bg-white" style="width: 280px;">  
+  <img src="..." class="img-thumbnail" alt="...">
     <a href="${pageContext.request.contextPath}/memberInfo.do" class="d-flex align-items-center pb-3 mb-3 link-dark text-decoration-none border-bottom">
       <svg class="bi me-2" width="30" height="24"><use xlink:href="#bootstrap"/></svg>
       <span class="fs-5 fw-semibold">
@@ -43,52 +44,75 @@
 	    </a>
     <ul class="list-unstyled ps-0">
       <li class="mb-1">
-        <button class="btn btn-toggle align-items-center rounded collapsed" data-bs-toggle="collapse" data-bs-target="#home-collapse" aria-expanded="true">
-          Home
+        <button class="btn btn-toggle align-items-center rounded collapsed" data-bs-toggle="collapse" data-bs-target="#info-collapse" aria-expanded="true">
+          내 정보
         </button>
-        <div class="collapse show" id="home-collapse">
+        <div class="collapse show" id="info-collapse">
           <ul class="btn-toggle-nav list-unstyled fw-normal pb-1 small">
-            <li><a href="#" class="link-dark rounded"></a></li>
-            <li><a href="#" class="link-dark rounded">Updates</a></li>
-            <li><a href="#" class="link-dark rounded">Reports</a></li>
+            <li><a href="#" class="link-dark rounded">회원등급</a></li>
+            <li><a href="#" class="link-dark rounded">적립금</a></li>
+            <li><a href="#" class="link-dark rounded">회원정보관리</a></li>
+            <li><a href="#" class="link-dark rounded">펫정보관리</a></li>
           </ul>
         </div>
       </li>
       <li class="mb-1">
-        <button class="btn btn-toggle align-items-center rounded collapsed" data-bs-toggle="collapse" data-bs-target="#dashboard-collapse" aria-expanded="false">
-          Dashboard
+        <button class="btn btn-toggle align-items-center rounded collapsed" data-bs-toggle="collapse" data-bs-target="#oders-collapse" aria-expanded="false">
+          주문정보
         </button>
-        <div class="collapse" id="dashboard-collapse">
+        <div class="collapse" id="oders-collapse">
           <ul class="btn-toggle-nav list-unstyled fw-normal pb-1 small">
-            <li><a href="#" class="link-dark rounded">Overview</a></li>
-            <li><a href="#" class="link-dark rounded">Weekly</a></li>
-            <li><a href="#" class="link-dark rounded">Monthly</a></li>
-            <li><a href="#" class="link-dark rounded">Annually</a></li>
+            <li><a href="#" class="link-dark rounded">배송정보</a></li>
+            <li><a href="#" class="link-dark rounded">주문목록</a></li>
+            <li><a href="#" class="link-dark rounded">장바구니</a></li>
+            <li><a href="#" class="link-dark rounded">환물/교환 목록</a></li>
           </ul>
         </div>
       </li>
       <li class="mb-1">
-        <button class="btn btn-toggle align-items-center rounded collapsed" data-bs-toggle="collapse" data-bs-target="#orders-collapse" aria-expanded="false">
-          Orders
+        <button class="btn btn-toggle align-items-center rounded collapsed" data-bs-toggle="collapse" data-bs-target="#like-collapse" aria-expanded="false">
+          내 관심
         </button>
-        <div class="collapse" id="orders-collapse">
+        <div class="collapse" id="like-collapse">
           <ul class="btn-toggle-nav list-unstyled fw-normal pb-1 small">
-            <li><a href="#" class="link-dark rounded">New</a></li>
-            <li><a href="#" class="link-dark rounded">Processed</a></li>
-            <li><a href="#" class="link-dark rounded">Shipped</a></li>
-            <li><a href="#" class="link-dark rounded">Returned</a></li>
+            <li><a href="#" class="link-dark rounded">찜 목록</a></li>
+            <li><a href="#" class="link-dark rounded">팔로우 작가</a></li>
           </ul>
         </div>
       </li>
+       <li class="mb-1">
+        <button class="btn btn-toggle align-items-center rounded collapsed" data-bs-toggle="collapse" data-bs-target="#review-collapse" aria-expanded="false">
+          나의 구매 리뷰
+        </button>
+        <div class="collapse" id="review-collapse">
+          <ul class="btn-toggle-nav list-unstyled fw-normal pb-1 small">
+            <li><a href="#" class="link-dark rounded">리뷰 쓰기</a></li>
+            <li><a href="#" class="link-dark rounded">내가 쓴 리뷰</a></li>
+          </ul>
+        </div>
+      </li>
+      <li class="mb-1">
+        <button class="btn btn-toggle align-items-center rounded collapsed" data-bs-toggle="collapse" data-bs-target="#review-collapse" aria-expanded="false">
+          입점 정보
+        </button>
+        <div class="collapse" id="review-collapse">
+          <ul class="btn-toggle-nav list-unstyled fw-normal pb-1 small">
+            <li><a href="#" class="link-dark rounded">입점 신청하기</a></li>
+            <li><a href="#" class="link-dark rounded">입점 신청 목록</a></li>
+          </ul>
+        </div>
+      </li>
+      
       <li class="border-top my-3"></li>
+      
       <li class="mb-1">
         <button class="btn btn-toggle align-items-center rounded collapsed" data-bs-toggle="collapse" data-bs-target="#account-collapse" aria-expanded="false">
-          Account
+          나의 구매리뷰
         </button>
         <div class="collapse" id="account-collapse">
           <ul class="btn-toggle-nav list-unstyled fw-normal pb-1 small">
-            <li><a href="#" class="link-dark rounded">New...</a></li>
-            <li><a href="#" class="link-dark rounded">Profile</a></li>
+            <li><a href="#" class="link-dark rounded"></a></li>
+            <li><a href="#" class="link-dark rounded"></a></li>
             <li><a href="#" class="link-dark rounded">Settings</a></li>
             <li><a href="#" class="link-dark rounded">Sign out</a></li>
           </ul>

@@ -204,8 +204,8 @@
       <label for="floatingPassword">Password</label>
     </div>
     <div class="form-floating">
-      <input type="password"  name="m_pwd"  value="" maxlength="20" class="form-control" id="floatingPwd2">
-      <label for="floatingPassword">Password check</label>
+      <input type="password"  name="m_pwd2"  value="" maxlength="20" class="form-control" id="floatingPwd2">
+      <label for="floatingPassword2">Password check</label>
     </div>
     <div class="form-floating">
       <input type="text" name="m_name" value="" maxlength="80" class="form-control" id="floatingName">
