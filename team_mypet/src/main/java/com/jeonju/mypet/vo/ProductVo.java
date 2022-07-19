@@ -39,12 +39,18 @@ public class ProductVo {
 	
 	
 	//소현
+	private String m_nick;
 	private int p_front_img;
 	private String p_ori_filename;
 	private String p_sys_filename;
-	private String seller_nick;
 	
-	
+	public String getM_nick() {
+		return m_nick;
+	}
+	public void setM_nick(String m_nick) {
+		this.m_nick = m_nick;
+	}
+
 	public int getP_front_img() {
 		return p_front_img;
 	}
@@ -197,12 +203,6 @@ public class ProductVo {
 	}
 	public void setP_stock(String p_stock) {
 		this.p_stock = p_stock;
-	}
-	public String getSeller_nick() {
-		return seller_nick;
-	}
-	public void setSeller_nick(String seller_nick) {
-		this.seller_nick = seller_nick;
 	}
 
 }

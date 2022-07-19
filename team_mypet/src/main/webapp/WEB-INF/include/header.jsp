@@ -301,6 +301,12 @@
                                     <li class="nav-item">
                                         <a href="contact.html" aria-label="Toggle navigation">커뮤니티</a>
                                     </li>
+                                     <li class="nav-item">
+                                        <a href="productBest.do" aria-label="Toggle navigation">인기순</a>
+                                    </li>
+                                     <li class="nav-item">
+                                        <a href="productNew.do" aria-label="Toggle navigation">최신순</a>
+                                    </li>
                                 </ul>
                             </div> <!-- navbar collapse -->
                         </nav>

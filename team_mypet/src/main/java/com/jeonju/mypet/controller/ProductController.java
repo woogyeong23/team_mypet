@@ -6,6 +6,9 @@ import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
+import javax.servlet.http.HttpServletRequest;
+import javax.servlet.http.HttpSession;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -32,14 +35,24 @@ public class ProductController {
 		return "product/productList";
 	}
 	
-	/*
-	 * @RequestMapping("/sellerNick.do") public ProductVo getsellerNick(Model model)
-	 * { model.addAttribute("seller_nick", seller_nick);
-	 * 
-	 * return sellerNick;
-	 * 
-	 * }
-	 */
+	@GetMapping("/productView.do")
+	public String getproductView() {
+		
+		return "product/productView";
+	}
+	
+	@GetMapping("/productBest.do")
+	public String getproductBest() {
+		
+		return "product/productBest";
+	}
+	
+	@GetMapping("/productNew.do")
+	public String getproductNew() {
+		
+		return "product/productNew";
+	}
+	
 	//소현
 	
 }
