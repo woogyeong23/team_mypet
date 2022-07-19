@@ -22,6 +22,10 @@ public class ProductService {
 	public List<ProductVo> getProductList() {
 		return productDao.getProductList();
 	}
+
+	public List<ProductVo> productNewList() {
+		return productDao.productNewList();
+	}
 	
 	//소현
 }

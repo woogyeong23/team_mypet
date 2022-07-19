@@ -8,5 +8,21 @@
 		select a.*,b.* from product a join product_img b on a.p_idx=b.p_idx where b.p_front_img;
 	</select>
 
+	<select id="productNewList" resultType="productVo">
+		SELECT a.*,b.* 
+		FROM product a join product_img b on a.p_idx=b.p_idx 
+		WHERE b.p_front_img 
+		ORDER BY a.p_idx DESC;
+	</select>
+
+
+<!-- 
+	<select id="category" resultType="com.kubg.domain.GoodsViewVO">
+	select
+    	g.gdsNum, g.gdsName, g.cateCode, c.cateCodeRef, c.cateName, gdsPrice, gdsStock, gdsDes, gdsImg, gdsDate, g.gdsImg, g.gdsThumbImg
+    from tbl_goods g inner join goods_category c on g.cateCode = c.cateCode           
+    where g.cateCode = #{cateCode}
+	</select> -->
 <!-- 소현 -->
+
 </mapper>

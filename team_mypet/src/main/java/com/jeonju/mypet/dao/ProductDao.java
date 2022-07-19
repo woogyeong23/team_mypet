@@ -26,6 +26,10 @@ public class ProductDao {
 	public List<ProductVo> getProductList(){
 		return sqlSession.selectList(MAPPER + ".getProductList");
 	}
+
+	public List<ProductVo> productNewList() {
+		return sqlSession.selectList(MAPPER + ".productNewList");
+	}
 	
 	//소현
 	
