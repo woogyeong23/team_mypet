@@ -2,7 +2,7 @@ package com.jeonju.mypet.vo;
 
 import java.util.Date;
 
-public class Refunds_DayVo {
+public class Refund_DayVo {
 
 	private int refund_idx;
 	private int detail_idx;

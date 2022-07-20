@@ -4,5 +4,9 @@
 
 <mapper namespace = "com.jeonju.mypet.members">
 
+<select id="loginMembers" parameterType="map" resultType="map">
+   select count(*) as m_auth, m_grade, midx, m_nick from members where m_id = #{m_id} and m_pwd = #{m_pwd} 
+</select>
+
 
 </mapper>

@@ -7,6 +7,48 @@
     <select id="getCommuList" resultType="communityVo">
     select * from community
     </select>
+    
+    <select id="getCcmList" resultType="commu_commentVo">
+    select * from commu_comment where cm_idx = #{cmidx}
+    </select>
+    
+    <select id="getBSList" resultType="sellerStoryVo">
+    select * from sellerstory
+    </select>
+    
+    
+    
+    <insert id="InsertCB" parameterType="communityVo">
+    insert into community(midx, cm_subject, cm_content, cm_writer, cm_img, cm_origin_img)
+    <choose>
+      <when test="cm_img != null">
+      values(#{midx}, #{cm_subject}, #{cm_content}, #{cm_writer}, #{cm_img}, #{cm_origin_img})
+      </when>
+      <otherwise>
+      values(#{midx}, #{cm_subject}, #{cm_content}, #{cm_writer})
+      </otherwise>
+    </choose>
+    </insert>
+    
+    <select id="getCBView" parameterType="int" resultType="communityVo">
+      select cm_subject, cm_content, cm_wday, cm_img, cm_writer,cm_idx, midx from community where cm_idx= #{cmidx}
+    </select>
+    
+    
+<!--     <select id="getMax_cc_idx" resultType="int"> -->
+<!--     select max(cc_idx) from commu_comment -->
+<!--     </select> -->
+    
+    <insert id="InsertComment" parameterType="commu_commentVo">
+    <selectKey keyProperty="cc_origin" resultType="int" order="BEFORE">
+    select max(cc_idx)+1 from commu_comment
+    </selectKey>
+    insert into commu_comment(cc_origin, cc_content, cm_idx, cc_writer)
+<!--     select max(cc_idx)+1, #{cc_content}, #{cm_idx}, #{cc_writer} from commu_comment  -->
+    values (#{cc_origin}, #{cc_content}, #{cm_idx}, #{cc_writer})
+    </insert>
+    
+    
 
 
 </mapper>

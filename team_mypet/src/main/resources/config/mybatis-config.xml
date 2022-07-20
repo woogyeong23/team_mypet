@@ -23,7 +23,7 @@
 		<typeAlias alias="petVo" type="com.jeonju.mypet.vo.PetVo"/>
 		<typeAlias alias="product_imgVo" type="com.jeonju.mypet.vo.Product_ImgVo"/>
 		<typeAlias alias="productVo" type="com.jeonju.mypet.vo.ProductVo"/>
-		<typeAlias alias="refunds_dayVo" type="com.jeonju.mypet.vo.Refunds_DayVo"/>
+		<typeAlias alias="refund_dayVo" type="com.jeonju.mypet.vo.Refund_DayVo"/>
 		<typeAlias alias="refundVo" type="com.jeonju.mypet.vo.RefundVo"/>
 		<typeAlias alias="reviewVo" type="com.jeonju.mypet.vo.ReviewVo"/>
 		<typeAlias alias="review_replyVo" type="com.jeonju.mypet.vo.Review_ReplyVo"/>

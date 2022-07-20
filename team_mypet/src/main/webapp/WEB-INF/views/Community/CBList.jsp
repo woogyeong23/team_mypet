@@ -10,35 +10,70 @@
 <!-- css************************************************ -->
     <jsp:include page="../../include/head.jsp" />  
 <!-- ************************************************ -->
-<link rel="stylesheet" href="resources/CommunityCSS/CBList.css">
+<link rel="stylesheet" href="resources/Community/CBList.css">
 </head>
 <body>
 <!-- 헤더와 네비************************************************ -->
     <jsp:include page="../../include/header.jsp" />  
 <!-- ************************************************ -->
-  <div class="support-grid"></div>
+ 
 
-  <div class="band">
-
-   <c:forEach var="cv" items="${commuList}">
-    <div class="item">
-          <a href="주소" class="card">
-            <div class="thumb" style="background-image: url(${pageContext.request.contextPath}/resources/commuImg/${cv.cm_img});"></div>
-            <article>
-              <h1>${cv.cm_subject}</h1>
-              <span>${cv.cm_writer}</span>
-            </article>
-          </a>
-    </div>
-    
-    </c:forEach>
+ <!-- Start Trending Product Area -->
+    <section class="trending-product section" style="margin-top: 12px;">
+        <div class="container">
+            <div class="row">
+                <div class="col-12">
+                    <div class="section-title">
+                        <h2>커뮤니티</h2>
+                        <p>강의실 컴퓨터는 수시로 포맷을 진행하고 있습니다. 개인자료는 꼭 USB 또는 e-mail로 백업 해주세요.</p>
+                    </div>
+                </div>
+            </div>
+            <div class="row">
+            
+            <c:forEach var="cv" items="${commuList}">
+                     
+                    <div class="col-lg-3 col-md-6 col-12">
+                    <!-- Start Single Product -->
+                    <div class="single-product">
+                        <div class="product-image">
+                            <img src="${pageContext.request.contextPath}/resources/Community/upload/${cv.cm_img}" alt="커뮤니티 이미지">
+                            <div class="button">
+                                <a href="${pageContext.request.contextPath}/CBView.do?cm_idx=${cv.cm_idx}" class="btn"><i class="lni lni-cart"></i> Add to Cart</a>
+                            </div>
+                        </div>
+                        <div class="product-info">
+                            <span class="category">Watches</span>
+                            <h4 class="title">
+                                <a href="${pageContext.request.contextPath}/cbView.do?${cv.cm_idx}">${cv.cm_subject}</a>
+                            </h4>
+                            <ul class="review">
+                                <li><i class="lni lni-star-filled"></i></li>
+                                <li><i class="lni lni-star-filled"></i></li>
+                                <li><i class="lni lni-star-filled"></i></li>
+                                <li><i class="lni lni-star-filled"></i></li>
+                                <li><i class="lni lni-star"></i></li>
+                                <li><span>4.0 Review(s)</span></li>
+                            </ul>
+                            <div class="price">
+                                <span>$199.00</span>
+                            </div>
+                        </div>
+                    </div>
+                    <!-- End Single Product -->
+                </div>
+              </c:forEach>      
+         </div>
+        </div>
+    </section>
   
 
 
-</div>
+
+
   
  <c:if test="${m_id != null}">
- <div class="InsertBtn"><a href="${pageContext.request.contextPath}/cbInsert"><button type="button" class="btn btn-success" color="#aeddff">+</button></a></div>
+ <div class="InsertBtn"><a href="${pageContext.request.contextPath}/CBInsert.do"><button type="button" class="btn btn-success" color="#aeddff">+</button></a></div>
 </c:if>  
 
 <!-- 푸터와 js************************************************ -->

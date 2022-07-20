@@ -12,6 +12,9 @@ public class Commu_CommentVo {
 	private int cc_like;
 	private int cm_idx;
 	private int cc_origin;
+	private int cc_depth;
+	private int cc_level;
+
 	public int getCc_idx() {
 		return cc_idx;
 	}
@@ -72,7 +75,5 @@ public class Commu_CommentVo {
 	public void setCc_level(int cc_level) {
 		this.cc_level = cc_level;
 	}
-	private int cc_depth;
-	private int cc_level;
 	
 }

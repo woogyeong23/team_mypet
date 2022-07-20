@@ -76,7 +76,7 @@
                                 Hello <!-- 사용자 이름 or 닉네임 추가하면 될듯 -->
                             </div>
                             <c:choose>
-                            <c:when test="${member_id != null}"><!-- 로그인이 이루어진 경우 -->
+                            <c:when test="${m_id != null}"><!-- 로그인이 이루어진 경우 -->
                             <ul class="user-login">
                             <li>
                                <a href="${pageContext.request.contextPath}/memberInfo.do">내정보</a> 
@@ -299,6 +299,9 @@
                                     </li>
                                     <li class="nav-item">
                                         <a href="${pageContext.request.contextPath}/CBList.do" aria-label="Toggle navigation">커뮤니티</a>
+                                    </li>
+                                     <li class="nav-item">
+                                        <a href="${pageContext.request.contextPath}/BSellerList.do" aria-label="Toggle navigation">인기 작가</a>
                                     </li>
                                 </ul>
                             </div> <!-- navbar collapse -->

@@ -42,6 +42,8 @@
 			<exclude-mapping path="/login.do"/>
 			<exclude-mapping path="/loginProcess.do"/>
 			<exclude-mapping path="/CBList.do"/>
+			<exclude-mapping path="/CBView.do"/>
+			<exclude-mapping path="/BSellerList.do"/>
 		
 			<beans:bean id="loginInterceptor" class="com.jeonju.mypet.interceptor.LoginInterceptor"/>
 		</interceptor>

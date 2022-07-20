@@ -5,7 +5,31 @@
 <configuration>
 
 	<typeAliases>
+		<typeAlias alias="boardVo" type="com.jeonju.mypet.vo.BoardVo"/>
+		<typeAlias alias="cancle_dayVo" type="com.jeonju.mypet.vo.Cancle_DayVo"/>
+		<typeAlias alias="cancleVo" type="com.jeonju.mypet.vo.CancleVo"/>
+		<typeAlias alias="cartVo" type="com.jeonju.mypet.vo.CartVo"/>
+		<typeAlias alias="chatVo" type="com.jeonju.mypet.vo.ChatVo"/>
+		<typeAlias alias="chatRoomVo" type="com.jeonju.mypet.vo.ChatRoomVo"/>
+		<typeAlias alias="commu_commentVo" type="com.jeonju.mypet.vo.Commu_CommentVo"/>
+		<typeAlias alias="communityVo" type="com.jeonju.mypet.vo.CommunityVo"/>
+		<typeAlias alias="detail_dayVo" type="com.jeonju.mypet.vo.Detail_DayVo"/>
+		<typeAlias alias="detailVo" type="com.jeonju.mypet.vo.DetailVo"/>
+		<typeAlias alias="followVo" type="com.jeonju.mypet.vo.FollowVo"/>
+		<typeAlias alias="launchVo" type="com.jeonju.mypet.vo.LaunchVo"/>
 		<typeAlias alias="membersVo" type="com.jeonju.mypet.vo.MembersVo"/>
+		<typeAlias alias="ordersVo" type="com.jeonju.mypet.vo.OrdersVo"/>
+		<typeAlias alias="p_categoryVo" type="com.jeonju.mypet.vo.P_CategoryVo"/>
+		<typeAlias alias="petVo" type="com.jeonju.mypet.vo.PetVo"/>
+		<typeAlias alias="product_imgVo" type="com.jeonju.mypet.vo.Product_ImgVo"/>
+		<typeAlias alias="productVo" type="com.jeonju.mypet.vo.ProductVo"/>
+		<typeAlias alias="refund_dayVo" type="com.jeonju.mypet.vo.Refund_DayVo"/>
+		<typeAlias alias="refundVo" type="com.jeonju.mypet.vo.RefundVo"/>
+		<typeAlias alias="reviewVo" type="com.jeonju.mypet.vo.ReviewVo"/>
+		<typeAlias alias="review_replyVo" type="com.jeonju.mypet.vo.Review_ReplyVo"/>
+		<typeAlias alias="sellerStoryVo" type="com.jeonju.mypet.vo.SellerStoryVo"/>
+		<typeAlias alias="wishVo" type="com.jeonju.mypet.vo.WishVo"/>
+
 	</typeAliases>  
 
 </configuration>  

@@ -7,6 +7,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import com.jeonju.mypet.dao.CommunityDao;
+import com.jeonju.mypet.vo.Commu_CommentVo;
 import com.jeonju.mypet.vo.CommunityVo;
 
 @Service
@@ -20,10 +21,22 @@ public class CommunityService {
 		
 	}
 	
-	
 	public List<CommunityVo> getCommuList() {
 		return commuDao.getCommuList();
 	}
+
+	public int InsertCB(CommunityVo communityVo) {
+		return commuDao.InsertCB(communityVo);
+	}
+
+	public CommunityVo getCBView(int cmidx) {
+		return commuDao.getCBView(cmidx);
+	}
+
+	public List<Commu_CommentVo> getCcmList(int cmidx) {
+		return commuDao.getCcmList(cmidx);
+	}
+
 	
 	
 	
