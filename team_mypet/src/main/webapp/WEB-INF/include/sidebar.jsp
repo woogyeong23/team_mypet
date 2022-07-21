@@ -12,18 +12,15 @@
 
 <main>
 <input type="hidden">
-  <div class="flex-shrink-0 p-3 bg-white" style="width: 280px;">  
-  ​<picture>
-  <source srcset="/resources/assets/images/profile.jpg" type="image/svg+xml">
-  <img src="/resources/assets/images/profile.jpg" class="img-fluid img-thumbnail" alt="프로필" >
-</picture>
-  <img src="/resources/assets/images/profile.jpg" class="img-thumbnail" alt="프로필" style="width:25px;height:25px;">
-<img src="/resources/assets/images/profile.jpg" class="img-fluid" alt="프로필">
+  <div class="flex-shrink-0 p-3 bg-white" style="width: 280px;">
+  <div style="width:150px;height:150px;text-align:center;" >
+  <img src="resources/assets/images/profile.jpg" class="img-thumbnail" alt="프로필">
+</div>  
+  
     <a href="${pageContext.request.contextPath}/memberInfo.do" class="d-flex align-items-center pb-3 mb-3 link-dark text-decoration-none border-bottom">
       <svg class="bi me-2" width="30" height="24"><use xlink:href="#bootstrap"/></svg>
       <span class="fs-5 fw-semibold">
-			${m_id}님
-			
+			${midx}님
 	    </a>
     <ul class="list-unstyled ps-0">
       <li class="mb-1">
@@ -32,10 +29,10 @@
         </button>
         <div class="collapse show" id="info-collapse">
           <ul class="btn-toggle-nav list-unstyled fw-normal pb-1">
-            <li><a href="#" class="link-dark rounded">회원등급</a></li>
-            <li><a href="#" class="link-dark rounded">적립금</a></li>
-            <li><a href="#" class="link-dark rounded">회원정보관리</a></li>
-            <li><a href="#" class="link-dark rounded">펫정보관리</a></li>
+            <li><a href="${pageContext.request.contextPath}/membergrade.do" class="link-dark rounded">회원등급</a></li>
+            <li><a href="${pageContext.request.contextPath}/memberpoint.do" class="link-dark rounded">적립금</a></li>
+            <li><a href="${pageContext.request.contextPath}/membermodi.do" class="link-dark rounded">회원정보관리</a></li>
+            <li><a href="${pageContext.request.contextPath}/petmodi.do" class="link-dark rounded">펫정보관리</a></li>
           </ul>
         </div>
       </li>

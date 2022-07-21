@@ -8,6 +8,7 @@ import org.springframework.stereotype.Service;
 
 import com.jeonju.mypet.dao.MembersDao;
 import com.jeonju.mypet.vo.MembersVo;
+import com.jeonju.mypet.vo.PetVo;
 
 @Service
 public class MembersService {
@@ -27,11 +28,45 @@ public class MembersService {
 		return result;
 	}
 
-
+	//로그인
 	public HashMap<String, Long> login(HashMap<String, String>loginInfo) {
-		
 		return membersDao.loginMember(loginInfo);
 	}
+	public HashMap<String, String> login1(HashMap<String, String> loginInfo) {
+		return membersDao.loginMember1(loginInfo);
+	}
+	public HashMap<String, Integer> login2(HashMap<String, String> loginInfo) {
+		return membersDao.loginMember2(loginInfo);
+	}
+	
+	//수정화면
+	public MembersVo membermodi(int midx) {
+		return membersDao.membermodi(midx);
+	}
+	//수정실행
+	public int memberupdate(int midx) {
+		return membersDao.membermodiProcess(midx);
+
+	}
+
+	public PetVo petmodi(int midx) {
+		
+		return membersDao.petmodi(midx);
+	}
+
+	public int petmodiProcess(int midx) {
+		
+		return membersDao.petmodiProcess(midx);
+	}
+
+	
+
+
+	
+
+	
+
+	
 
 
 
