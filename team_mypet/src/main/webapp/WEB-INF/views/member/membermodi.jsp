@@ -201,6 +201,7 @@
 		<a href="${pageContext.request.contextPath}/memberdel.do" class="btn btn-s btn-white">회원탈퇴</a>
 		</div>
 		<div class="form-submit ta-c" id="button">
+		<input type="hidden" name="midx" value="${membersVo.midx}"> 
 		    <button class="w-100 btn btn-lg btn-primary" id="memberupdate"type="submit" name="">회원 정보 수정하기</button>
 		</div>
 	</form>

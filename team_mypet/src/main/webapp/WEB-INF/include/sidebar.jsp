@@ -32,7 +32,9 @@
             <li><a href="${pageContext.request.contextPath}/membergrade.do" class="link-dark rounded">회원등급</a></li>
             <li><a href="${pageContext.request.contextPath}/memberpoint.do" class="link-dark rounded">적립금</a></li>
             <li><a href="${pageContext.request.contextPath}/membermodi.do" class="link-dark rounded">회원정보관리</a></li>
-            <li><a href="${pageContext.request.contextPath}/petmodi.do" class="link-dark rounded">펫정보관리</a></li>
+            <li><a href="${pageContext.request.contextPath}/petmodi.do" class="link-dark rounded">펫정보입력</a></li>
+            <li><a href="${pageContext.request.contextPath}/petList.do" class="link-dark rounded">펫정보수정</a></li>
+
           </ul>
         </div>
       </li>

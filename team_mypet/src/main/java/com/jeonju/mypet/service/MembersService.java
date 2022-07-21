@@ -2,6 +2,9 @@ package com.jeonju.mypet.service;
 
 
 import java.util.HashMap;
+import java.util.List;
+
+import javax.servlet.http.HttpServletRequest;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -44,19 +47,20 @@ public class MembersService {
 		return membersDao.membermodi(midx);
 	}
 	//수정실행
-	public int memberupdate(int midx) {
-		return membersDao.membermodiProcess(midx);
+	public int memberupdate(MembersVo membersVo) {
+		return membersDao.membermodiProcess(membersVo);
 
 	}
 
-	public PetVo petmodi(int midx) {
+
+
+	public int petmodiProcess(PetVo petVo) {
 		
-		return membersDao.petmodi(midx);
+		return membersDao.petmodiProcess(petVo);
 	}
 
-	public int petmodiProcess(int midx) {
-		
-		return membersDao.petmodiProcess(midx);
+	public List<PetVo> petList(int midx) {
+		return membersDao.petList(midx);
 	}
 
 	

@@ -32,8 +32,10 @@
 <div class="title-style no-mt clf">
 <a href="#" class="txt fl">펫 정보 관리</a>
 </div>
-<form name="petmodiForm" action="${pageContext.request.contextPath}/petmodiProcess.do" method="post">
+
 	<table class="table-style-head-left">
+			<c:forEach var="petVo" items="${petVoList}">
+			<br>
 		<tbody>
 			<tr>
 				<th>
@@ -41,7 +43,7 @@
 				</th>
 				<td>
 				<div class="input-text size-m">
-				<input type="text" name="pet_name" value="" required>
+				<input type="text" name="pet_name" value="${petVo.pet_name}" required>
 				</div>
 				</td>
 			</tr>
@@ -50,12 +52,7 @@
 				성별	
 				</th>
 				<td>
-				<select name="pet_gender">
-				<option  value="1" selected>수컷
-				</option>
-				<option  value="2">암컷
-				</option>
-				</select>
+				<input type="text" name="pet_gender" value="${petVo.pet_gender}">
 				
 				</td>
 			</tr>
@@ -65,7 +62,7 @@
 				</th>
 				<td>
 				<div class="input-text size-s">
-				<input type="text" name="pet_age" value="" required>
+				<input type="text" name="pet_age" value="${petVo.pet_age}" required>
 				</div>
 				</td>
 			</tr>
@@ -74,10 +71,7 @@
 				타입
 				</th>
 				<td>
-				<input type="radio" name="pet_type" value="${petVo.pet_type}">강아지
-				<input type="radio" name="pet_type" value="${petVo.pet_type}">고양이
-				
-				
+				<input type="text" name="pet_type" value="${petVo.pet_type}">
 				</td>
 			</tr>
 			<tr>
@@ -90,15 +84,16 @@
 				</div>
 				</td>
 			</tr>
-			
+		
 		</tbody>
+		
+		<input type="hidden" name="midx" value="${petVo.midx}">		
+		</c:forEach>
+			
 	</table>
-	
-	<div class="form-submit ta-c">
-	<input type="hidden" name="midx" value="${petVo.midx}">
-	<input type="submit" value="펫 정보 수정하기" class="btn btn-m btn-point">
-	</div>
-</form>
+
+
+
 </article>
 </main>
 

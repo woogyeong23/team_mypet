@@ -1,6 +1,7 @@
 package com.jeonju.mypet.controller;
 
 import java.util.HashMap;
+import java.util.List;
 
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpSession;
@@ -155,49 +156,49 @@ public class MembersController {
 			return "member/membermodi";	
 		}
 		@PostMapping("/membermodiProcess.do")
-		public String membermodiProcess(HttpServletRequest request) {
-			
-			HttpSession Session = request.getSession();
-			int midx = (int) Session.getAttribute("midx");
-			
-			HashMap<String, Integer> map = new HashMap<String, Integer>();
-			map.put("midx", midx);
-			
+		public String membermodiProcess(Model model,MembersVo membersVo,HttpServletRequest request) {
+				
+
 			String result = null;
-			int flag = membersService.memberupdate(midx);
-			if(flag==1) result = "redirect:home.do";
-			result = "member/membermodi";
+			
+			int flag = membersService.memberupdate(membersVo);
+			System.out.println(flag);
+			if(flag==1) { result = "member/membermodi";
+			}else {
+			result = "/home";
+			}
+			model.addAttribute("membersVo",membersVo);
 			return result;	
 		}
-		
-		
-		
-		
 		@GetMapping("/petmodi.do")
-		public String petmodi(Model model,HttpServletRequest request) {
+		public String petmodi() {
+			
+			return "member/petmodi";	
+		}
+		
+		@GetMapping("/petList.do")
+		public String petList(Model model,HttpServletRequest request) {
 			HttpSession Session = request.getSession();
 			int midx = (int) Session.getAttribute("midx");
 			
-			PetVo petVo = membersService.petmodi(midx);
-			System.out.println(petVo);
-			model.addAttribute("petVo",petVo);
+			List<PetVo> petVoList = membersService.petList(midx);
+			System.out.println(petVoList);
+			model.addAttribute("petVoList",petVoList);
 
-			return "member/petmodi";	
+			return "member/petList";	
 		}
 		
 		@PostMapping("/petmodiProcess.do")
 		public String petmodiProcess(HttpServletRequest request, PetVo petVo,Model model) {
 		
-			HttpSession Session = request.getSession();
-			int midx = (int) Session.getAttribute("midx");
-			System.out.println(midx);
-			int result = membersService.petmodiProcess(midx);
+		
+			int result = membersService.petmodiProcess(petVo);
 			model.addAttribute("petVo",petVo);
 
 			String viewPage = null;
-			System.out.println();
-			if(result == 1) {
-				viewPage = "redirect:/petmodi.do";
+			System.out.println(model);
+			if(result != 0) {
+				viewPage = "redirect:/petList.do";
 			}else {
 			 viewPage = "/home";
 			}

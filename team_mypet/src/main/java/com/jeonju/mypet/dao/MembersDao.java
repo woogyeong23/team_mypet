@@ -2,6 +2,9 @@ package com.jeonju.mypet.dao;
 
 
 import java.util.HashMap;
+import java.util.List;
+
+import javax.servlet.http.HttpServletRequest;
 
 import org.apache.ibatis.session.SqlSession;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -38,21 +41,18 @@ public class MembersDao {
 			resultMap.put("m_grade",0L);
 			
 		}
-		System.out.println(resultMap);
 		return resultMap;
 	}
 	public HashMap<String, String> loginMember1(HashMap<String, String> loginInfo) {
 
-		HashMap<String, String> resultMap1= sqlSession.selectOne(MAPPER+".loginMember",loginInfo);
+		HashMap<String, String> resultMap1= sqlSession.selectOne(MAPPER+".loginMember1",loginInfo);
 		
-		System.out.println(resultMap1);
 		return resultMap1;
 	}
 	public HashMap<String, Integer> loginMember2(HashMap<String, String> loginInfo) {
 		
-		HashMap<String, Integer> resultMap2= sqlSession.selectOne(MAPPER+".loginMember",loginInfo);
+		HashMap<String, Integer> resultMap2= sqlSession.selectOne(MAPPER+".loginMember2",loginInfo);
 		
-		System.out.println(resultMap2);
 		return resultMap2;
 	}
 
@@ -64,16 +64,18 @@ public class MembersDao {
 		return sqlSession.selectOne(MAPPER+".getmembermodi", midx);
 	}
 
-	public int membermodiProcess(int midx) {
-		return sqlSession.update(MAPPER+".getmembermodiProcess", midx);
+	public int membermodiProcess(MembersVo membersVo) {
+		return sqlSession.update(MAPPER+".getmembermodiProcess", membersVo);
 	}
 
-	public PetVo petmodi(int midx) {
-		return sqlSession.selectOne(MAPPER+".getpetmodi",midx);
+
+
+	public int petmodiProcess(PetVo petVo) {
+		return sqlSession.insert(MAPPER+".getpetmodiProcess", petVo);
 	}
 
-	public int petmodiProcess(int midx) {
-		return sqlSession.insert(MAPPER+".getpetmodiProcess", midx);
+	public List<PetVo> petList(int midx) {
+		return sqlSession.selectList(MAPPER+".getpetmodi",midx);
 	}
 
 
