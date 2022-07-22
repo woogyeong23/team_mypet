@@ -268,6 +268,7 @@
                                         <ul class="sub-menu collapse" id="submenu-1-2">
               <!--소현-->                    <li class="nav-item"><a href="productList.do">전체</a></li>
                                             <li class="nav-item"><a href="productList.do">껌</a></li>
+                                        <!--     <li class="nav-item"><a href="/product/productList?i=1&l=1">껌</a></li> -->
                                             <li class="nav-item"><a href="productList.do">스낵</a></li>
                                             <li class="nav-item"><a href="login.html">뼈/육포</a></li>
                                             <li class="nav-item"><a href="register.html">스틱</a></li>

@@ -18,11 +18,19 @@ public class ProductService {
 	public ProductService(ProductDao productDao) {
 		this.productDao = productDao;
 	}
-	
+
+
+	//상품목록
+	/*
+	 * public List<ProductVo> getProductList(int p_category_idx, int
+	 * p_category_large) throws Exception { return
+	 * productDao.getProductList(p_category_idx,p_category_large); }
+	 */
 	public List<ProductVo> getProductList() {
 		return productDao.getProductList();
 	}
 
+	//최신순
 	public List<ProductVo> productNewList() {
 		return productDao.productNewList();
 	}

@@ -4,10 +4,19 @@
 <!-- 소현 -->
 <mapper namespace = "com.jeonju.mypet.product">
 
-	<select id="getProductList" resultType="productVo">
+
+
+ 	<select id="getProductList" resultType="productVo">
 		select a.*,b.* from product a join product_img b on a.p_idx=b.p_idx where b.p_front_img;
 	</select>
 
+
+	<!-- <select id="getProductList" resultType="productVo">
+	select p.*,c.p_category_large
+    from product p inner join p_category c on p.p_category_idx = c.p_category_idx
+    where p.p_category_idx = #{p_category_idx};
+	</select> -->
+ 
 	<select id="productNewList" resultType="productVo">
 		SELECT a.*,b.* 
 		FROM product a join product_img b on a.p_idx=b.p_idx 
@@ -16,13 +25,7 @@
 	</select>
 
 
-<!-- 
-	<select id="category" resultType="com.kubg.domain.GoodsViewVO">
-	select
-    	g.gdsNum, g.gdsName, g.cateCode, c.cateCodeRef, c.cateName, gdsPrice, gdsStock, gdsDes, gdsImg, gdsDate, g.gdsImg, g.gdsThumbImg
-    from tbl_goods g inner join goods_category c on g.cateCode = c.cateCode           
-    where g.cateCode = #{cateCode}
-	</select> -->
+	
 <!-- 소현 -->
 
 </mapper>

@@ -1,10 +1,16 @@
 package com.jeonju.mypet.controller;
 
 import java.util.List;
+
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestMethod;
+import org.springframework.web.bind.annotation.RequestParam;
 
 import com.jeonju.mypet.service.ProductService;
 import com.jeonju.mypet.vo.ProductVo;
@@ -13,12 +19,18 @@ import com.jeonju.mypet.vo.ProductVo;
 public class ProductController {
 	
 	//소현
+	
+	//private static final Logger logger = LoggerFactory.getLogger(ProductController.class);
+	
 	private ProductService productService;
 	
 	@Autowired //자동 의존 주입: 생성자 방식
 	public ProductController(ProductService productService) {
 		this.productService = productService;
 	}
+	
+	
+	//제품리스트
 	
 	@GetMapping("/productList.do")//get방식 요청 처리
 	public String getProductList(Model model){
@@ -27,18 +39,35 @@ public class ProductController {
 		return "product/productList";
 	}
 	
+	/*
+	@RequestMapping(value = "/productList", method = RequestMethod.GET)
+	public void getProductList(@RequestParam("i") int p_category_idx,
+						@RequestParam("l") int p_category_large, Model model) throws Exception {
+		logger.info("get productList");
+		
+		List<ProductVo> productList = productService.getProductList(p_category_idx,p_category_large);
+	
+		model.addAttribute("productList", productList);
+	}
+	*/
+	
+	
+	
+	//제품상세페이지
 	@GetMapping("/productView.do")
 	public String getproductView() {
 		
 		return "product/productView";
 	}
 	
+	//인기순
 	@GetMapping("/productBest.do")
 	public String getproductBest() {
 		
 		return "product/productBest";
 	}
 	
+	//최신순
 	@GetMapping("/productNew.do")
 	public String productNewList(Model model){
 		List<ProductVo> productList = productService.productNewList();
