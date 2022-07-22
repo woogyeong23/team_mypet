@@ -213,10 +213,10 @@ public class MembersController {
 			
 			return "member/memberorder";	
 		}
-		@GetMapping("/memberorders.do")
-		public String memberorders() {
+		@GetMapping("/memberorderList.do")
+		public String memberorderList() {
 			
-			return "member/memberorders";	
+			return "member/memberorderList";	
 		}
 		@GetMapping("/membercart.do")
 		public String membercart() {
