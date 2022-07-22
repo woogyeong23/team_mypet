@@ -23,7 +23,7 @@
     <jsp:include page="../../include/header.jsp" />  
 	<!-- ************************************************ -->
 
-<main>
+<main class="container">
 <aside>
 	<!-- 사이더와 js************************************************ -->
     <jsp:include page="../../include/sidebar.jsp" />  
@@ -32,10 +32,10 @@
 <div class="title-style no-mt clf">
 <a href="#" class="txt fl">펫 정보 관리</a>
 </div>
-
+<c:forEach var="petVo" items="${petVoList}">
+<br>
+<form>
 	<table class="table-style-head-left">
-			<c:forEach var="petVo" items="${petVoList}">
-			<br>
 		<tbody>
 			<tr>
 				<th>
@@ -83,25 +83,28 @@
 				<input type="text" name="pet_breed" value="${petVo.pet_breed}" required>
 				</div>
 				</td>
+				
 			</tr>
 		
 		</tbody>
 		
-		<input type="hidden" name="midx" value="${petVo.midx}">		
-		</c:forEach>
 			
 	</table>
 
-
+	<input type="hidden" name="midx" value="${petVo.midx}">
+	<input type="hidden" name="midx" value="${petVo.pet_idx}">	
+	<div class="form-submit ta-c">
+	<button type="submit" name="" class="btn btn-m btn-point">수정하기 </button>
+	</div>
+</form>
+	</c:forEach>
 
 </article>
 </main>
 
-
-
 <!-- 푸터와 js************************************************ -->
     <jsp:include page="../../include/footer.jsp" />  
 <!-- ************************************************ -->
-     
+
   </body>
 </html>

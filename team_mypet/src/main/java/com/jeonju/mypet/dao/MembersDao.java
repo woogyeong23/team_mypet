@@ -68,15 +68,18 @@ public class MembersDao {
 		return sqlSession.update(MAPPER+".getmembermodiProcess", membersVo);
 	}
 
-
-
+	
 	public int petmodiProcess(PetVo petVo) {
 		return sqlSession.insert(MAPPER+".getpetmodiProcess", petVo);
 	}
-
+	
 	public List<PetVo> petList(int midx) {
-		return sqlSession.selectList(MAPPER+".getpetmodi",midx);
+		return sqlSession.selectList(MAPPER+".getpetList",midx);
 	}
+
+
+
+
 
 
 	

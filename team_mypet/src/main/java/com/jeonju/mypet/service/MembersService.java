@@ -53,15 +53,18 @@ public class MembersService {
 	}
 
 
-
+	//펫추가
 	public int petmodiProcess(PetVo petVo) {
 		
 		return membersDao.petmodiProcess(petVo);
 	}
-
+	//펫리스트
 	public List<PetVo> petList(int midx) {
 		return membersDao.petList(midx);
 	}
+
+	
+
 
 	
 

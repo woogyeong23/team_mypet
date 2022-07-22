@@ -10,7 +10,6 @@
   <body>
 
 
-<main>
 <input type="hidden">
   <div class="flex-shrink-0 p-3 bg-white" style="width: 280px;">
   <div style="width:150px;height:150px;text-align:center;" >
@@ -44,10 +43,10 @@
         </button>
         <div class="collapse" id="oders-collapse">
           <ul class="btn-toggle-nav list-unstyled fw-normal pb-1">
-            <li><a href="#" class="link-dark rounded">배송정보</a></li>
-            <li><a href="#" class="link-dark rounded">주문목록</a></li>
-            <li><a href="#" class="link-dark rounded">장바구니</a></li>
-            <li><a href="#" class="link-dark rounded">환물/교환 목록</a></li>
+            <li><a href="${pageContext.request.contextPath}/.do" class="link-dark rounded">배송정보</a></li>
+            <li><a href="${pageContext.request.contextPath}/memberorders.do" class="link-dark rounded">주문목록</a></li>
+            <li><a href="${pageContext.request.contextPath}/memberCart.do" class="link-dark rounded">장바구니</a></li>
+            <li><a href="${pageContext.request.contextPath}/memberrefund.do" class="link-dark rounded">환물/교환 목록</a></li>
           </ul>
         </div>
       </li>
@@ -57,8 +56,8 @@
         </button>
         <div class="collapse" id="like-collapse">
           <ul class="btn-toggle-nav list-unstyled fw-normal pb-1">
-            <li><a href="#" class="link-dark rounded">찜 목록</a></li>
-            <li><a href="#" class="link-dark rounded">팔로우 작가</a></li>
+            <li><a href="${pageContext.request.contextPath}/memberLike.do" class="link-dark rounded">찜 목록</a></li>
+            <li><a href="${pageContext.request.contextPath}/memberFollow.do" class="link-dark rounded">팔로우 작가</a></li>
           </ul>
         </div>
       </li>
@@ -68,8 +67,8 @@
         </button>
         <div class="collapse" id="review-collapse">
           <ul class="btn-toggle-nav list-unstyled fw-normal pb-1">
-            <li><a href="#" class="link-dark rounded">리뷰 쓰기</a></li>
-            <li><a href="#" class="link-dark rounded">내가 쓴 리뷰</a></li>
+            <li><a href="${pageContext.request.contextPath}/memberreview.do" class="link-dark rounded">리뷰 쓰기</a></li>
+            <li><a href="${pageContext.request.contextPath}/membermyreview.do" class="link-dark rounded">내가 쓴 리뷰</a></li>
           </ul>
         </div>
       </li>
@@ -79,8 +78,8 @@
         </button>
         <div class="collapse" id="launch-collapse">
           <ul class="btn-toggle-nav list-unstyled fw-normal pb-1">
-            <li><a href="#" class="link-dark rounded">입점 신청하기</a></li>
-            <li><a href="#" class="link-dark rounded">입점 신청 목록</a></li>
+            <li><a href="${pageContext.request.contextPath}/petmodi.do" class="link-dark rounded">입점 신청하기</a></li>
+            <li><a href="${pageContext.request.contextPath}/petmodi.do" class="link-dark rounded">입점 신청 목록</a></li>
           </ul>
         </div>
       </li>
@@ -90,8 +89,8 @@
         </button>
         <div class="collapse" id="commu-collapse">
           <ul class="btn-toggle-nav list-unstyled fw-normal pb-1">
-            <li><a href="#" class="link-dark rounded">커뮤니티 글 작성</a></li>
-            <li><a href="#" class="link-dark rounded">커뮤니티 글 목록</a></li>
+            <li><a href="${pageContext.request.contextPath}/petmodi.do" class="link-dark rounded">커뮤니티 글 작성</a></li>
+            <li><a href="${pageContext.request.contextPath}/petmodi.do" class="link-dark rounded">커뮤니티 글 목록</a></li>
           </ul>
         </div>
       </li>
@@ -112,9 +111,6 @@
       </li>
     </ul>
   </div>
-  <div class="b-example-divider"></div>
-
-</main>
 
 
       <script src="../../resources/assets/js/sidebars.js"></script>

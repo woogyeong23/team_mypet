@@ -46,7 +46,7 @@
 		values(#{pet_name},#{pet_gender},#{pet_age},#{pet_type},#{pet_breed},#{midx})	
 	</insert>
 	<!-- 펫 정보 리스트 -->
-	<select id="getpetmodi" parameterType="int" resultType="petVo">
+	<select id="getpetList" parameterType="int" resultType="petVo">
 	select * from members a left outer join pet b ON a.midx = b.midx where a.midx=#{midx};
 	</select>
 </mapper>

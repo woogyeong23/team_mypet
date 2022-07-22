@@ -23,7 +23,7 @@
     <jsp:include page="../../include/header.jsp" />  
 	<!-- ************************************************ -->
 
-<main>
+<main class="container">
 <aside>
 	<!-- 사이더와 js************************************************ -->
     <jsp:include page="../../include/sidebar.jsp" />  
@@ -74,8 +74,9 @@
 				타입
 				</th>
 				<td>
-				<input type="radio" name="pet_type" value="${petVo.pet_type}">강아지
-				<input type="radio" name="pet_type" value="${petVo.pet_type}">고양이
+				
+				<input type="radio" name="pet_type" value="1">강아지
+				<input type="radio" name="pet_type" value="2">고양이
 				
 				
 				</td>
@@ -86,18 +87,21 @@
 				</th>
 				<td>
 				<div class="input-text size-s">
-				<input type="text" name="pet_breed" value="${petVo.pet_breed}" required>
+				<input type="text" name="pet_breed" value="" required>
 				</div>
+				</td>
+				<td>
 				</td>
 			</tr>
 			
 		</tbody>
+		
 	</table>
-	
 	<div class="form-submit ta-c">
-	<input type="hidden" name="midx" value="${petVo.midx}">
+	<input type="hidden" name="midx" value="${midx}">
 	<input type="submit" value="펫 정보 수정하기" class="btn btn-m btn-point">
 	</div>
+	
 </form>
 </article>
 </main>

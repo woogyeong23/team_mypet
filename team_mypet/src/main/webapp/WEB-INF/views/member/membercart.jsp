@@ -22,10 +22,7 @@
 	<!-- ************************************************ -->
 
 <main class="container">
-<aside>
-	<!-- 사이더와 js************************************************ -->
-    <jsp:include page="../../include/sidebar.jsp" />  
-</aside>
+
 <article>
 <div class="container px-3 py-4" id="hanging-icons" >
     <h3 class="pb-1 border-bottom" >내 정보</h3>

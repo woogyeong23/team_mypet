@@ -2,3 +2,4 @@
     pageEncoding="UTF-8"%>
 <!DOCTYPE html>
 <link rel="stylesheet" href="resources/assets/css/membermodi.css" />
+<link rel="stylesheet" href="resources/assets/css/idus.min.css" />
