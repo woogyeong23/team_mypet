@@ -3,13 +3,12 @@
 <!DOCTYPE html>
 <html>
 <head>
-    <meta charset="utf-8" />
+	<meta charset="utf-8" />
     <meta http-equiv="x-ua-compatible" content="ie=edge" />
     <meta name="description" content="" />
     <meta name="viewport" content="width=device-width, initial-scale=1" />
-    <link rel="shortcut icon" type="image/x-icon" href="assets/images/favicon.svg" />
-
     <link rel="stylesheet" href="assets/css/bootstrap.min.css" />
+    <link rel="shortcut icon" type="image/x-icon" href="assets/images/favicon.svg" />
     <link rel="stylesheet" href="assets/css/LineIcons.3.0.css" />
     <link rel="stylesheet" href="assets/css/tiny-slider.css" />
     <link rel="stylesheet" href="assets/css/glightbox.min.css" />
@@ -95,7 +94,6 @@
   justify-content: space-between;
 }
 
-
 </style>
 
 
@@ -113,9 +111,18 @@
 
 
 
-<section class="item-details section">
+<section class="item-details section" style="padding-top: 10px;">
 	<div class="container">
 		<div class="top-area">
+		
+			<nav style="--bs-breadcrumb-divider: url(&#34;data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='8' height='8'%3E%3Cpath d='M2.5 0L1 1.5 3.5 4 1 6.5 2.5 8l4-4-4-4z' fill='currentColor'/%3E%3C/svg%3E&#34;);" aria-label="breadcrumb">
+  				<ol class="breadcrumb" style="font-size: 15px">
+  					 <li class="breadcrumb-item"><a href="#">홈</a></li>
+   					 <li class="breadcrumb-item active" aria-current="page">강아지</li>
+  					 <li class="breadcrumb-item active" aria-current="page">개껌</li>
+  				</ol>
+			</nav>
+			
 			<div class="row align-items-center">
 				<!-- 상품이미지 -->
 				<div class="col-lg-6 col-md-12 col-12">
@@ -157,7 +164,7 @@
 							<div>
 								수량 : <input type="hidden" name="p_price" value="5500">
 								<input type="button" value=" + " name="add" style="width: 25px" >
-								<input type="text" name="amount" value="1" size="3" max="">
+								<input type="text" name="amount" value="1" size="3" max="" style="text-align: center;">
 								<input type="button" value=" - " name="min" style="width: 25px" >
 							</div>
 								<span>5,500 원</span> <!-- ${p_price} -->
@@ -192,28 +199,89 @@
 				</div>
 			</div>
 		</div>
+		<!-- 상품상세정보란 -->
 		<div class="product-details-info">
 			<div class="single-block">
 				<div class="row">
-					<div class="col-lg-6 col-12">
+					<div class="col-lg-12 col-12">
 						<div class="info-body custom-responsive-margin">
-							<h4>Details</h4>
-							<p>Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor</p>
+							<h4>상품상세정보</h4>
+							<p>맛있는 개껌 팔앙요</p>
 						</div>
+			
+
+						
+					<!-- 팝오버 -->
+		<div class="accordion accordion-flush" id="accordionFlushExample">
+		
+					<table style="width: 100%">
+					<tr>
+					<td width="50%">
+  <div class="accordion-item">
+    <h2 class="accordion-header" id="flush-headingOne">
+      <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#flush-collapseOne" aria-expanded="false" aria-controls="flush-collapseOne">
+        성분 표시
+      </button>
+    </h2>
+    <div id="flush-collapseOne" class="accordion-collapse collapse show" aria-labelledby="flush-headingOne">
+      <div class="accordion-body">츄잉</div>
+    </div>
+  </div>
+</td>
+<td width="50%">
+  <div class="accordion-item">
+    <h2 class="accordion-header" id="flush-headingTwo">
+      <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#flush-collapseTwo" aria-expanded="false" aria-controls="flush-collapseTwo">
+        배송/환불
+      </button>
+    </h2>
+    <div id="flush-collapseTwo" class="accordion-collapse collapse show" aria-labelledby="flush-headingTwo">
+      <div class="accordion-body">배송은 보통 3일을 소요합니다. 환불은 불가합니다.</div>
+    </div>
+  </div>
+  </td>
+  </tr>
+  </table>
+</div>
+					<!-- 팝오버끝 -->
+					
 					</div>
 				</div>
 			</div>
+			<!-- 리뷰 -->
 			<div class="single-block">
 			<div class="row">
 				<div class="col-lg-12 col-12">
 					<div class="reviews">
-						<h4 class="title">Latest Reviews</h4>
-						
-						<div class="col-lg-3 col-md-3 col-12">
-							<div class="review-button">
-								<button class="btn">리뷰작성</button>
+						<table style="width: 100%">
+						<tr>
+						<td style="width:10%;"><h4 class="title" style=" padding-bottom: 0px;">구매후기</h4></td>
+						<!-- 후기정렬 -->
+						<td style="align:left; width: 10%">
+							<div class="dropdown">
+							<button class="btn btn-secondary dropdown-toggle" type="button" style="height: 20px" id="dropdownMenuButton1" data-bs-toggle="dropdown" aria-expanded="false">후기정렬</button>
+							<ul class="dropdown-menu" aria-labelledby="dropdownMenuButton1">
+							<li><a class="dropdown-item" href="#">최신순</a></li>
+							<li><a class="dropdown-item" href="#">별점높은순</a></li>
+							<li><a class="dropdown-item" href="#">별점낮은순</a></li>
+							</ul>
 							</div>
+						</td>
+						<td style="align:left;">
+						<div class="form-check">
+						<input class="form-check-input" type="checkbox" value="" id="imgCheckbox">
+						<label>사진후기만보기</label>
 						</div>
+						</td>
+						<td align="right">
+						<div class="review-button">
+								<button class="btn">리뷰작성</button>
+						</div>
+						</td>
+						</tr>
+						</table>
+						
+						</div>	
 							<div class="single-review">
 								<img src="assets/images/blog/comment1.jpg" alt="#">
 									<div class="review-info">
