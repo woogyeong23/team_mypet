@@ -12,6 +12,13 @@
 	<!-- css************************************************ -->
 	    <jsp:include page="../../include/head.jsp" />  
 	<!-- ************************************************ -->
+
+	 <!-- Bootstrap core CSS -->
+    
+    <!-- Custom styles for this template -->
+    <link href="resources/assets/css/sidebar.css" rel="stylesheet">
+
+
 </head>
 
 <body>
@@ -20,8 +27,14 @@
 	<!-- ************************************************ -->
 	
 	
-	<section class="trending-product section">
-	hi
+<main class="container">
+<aside>
+	<!-- 사이더와 js************************************************ -->
+    <jsp:include page="../../include/sidebar.jsp" />  
+</aside>
+<article >
+
+	
 		<table border="1px">
 		<c:forEach var="productVo" items="${productListMap}">
 			<tr>
@@ -29,7 +42,15 @@
 			</tr>
 		</c:forEach>
 		</table>
-	</section>
+		
+		
+		
+ 	
+</article>
+</main>
+	
+	
+	
 	
 	
 	<!-- 푸터와 js************************************************ -->
