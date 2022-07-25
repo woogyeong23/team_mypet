@@ -266,9 +266,8 @@
                                             data-bs-target="#submenu-1-2" aria-controls="navbarSupportedContent"
                                             aria-expanded="false" aria-label="Toggle navigation">강아지</a>
                                         <ul class="sub-menu collapse" id="submenu-1-2">
-              <!--소현-->                    <li class="nav-item"><a href="productList.do">전체</a></li>
-                                            <li class="nav-item"><a href="productList.do">껌</a></li>
-                                        <!--     <li class="nav-item"><a href="/product/productList?i=1&l=1">껌</a></li> -->
+              <!--소현-->                    <li class="nav-item"><a href="productList.do?l=1">전체</a></li>
+                                         	<li class="nav-item"><a href="productList.do?i=1&l=1">껌</a></li>
                                             <li class="nav-item"><a href="productList.do">스낵</a></li>
                                             <li class="nav-item"><a href="login.html">뼈/육포</a></li>
                                             <li class="nav-item"><a href="register.html">스틱</a></li>

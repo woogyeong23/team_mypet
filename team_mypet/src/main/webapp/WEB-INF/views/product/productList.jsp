@@ -33,7 +33,7 @@
 				<!-- Start Single Product -->
                 <div class="col-lg-3">
                     <div class="single-product">
-                    	<div class="product-image">
+                    	<div class="product-image" style="position: relative;">
                     	<a href="productView.do">
                     	<c:choose>
                     		<c:when test="${productVo.p_sys_filename == null}">
@@ -49,6 +49,7 @@
                         <a href="product-details.html" class="btn"><i class="lni lni-cart"></i> Add to Cart</a>
                         </div> 
                         -->
+                        <div style="position: absolute; left: 4px; top: 4px;"> </div> <!-- 찜하기버튼 -->
                         </div>
                         
                         <div class="product-info">
@@ -68,7 +69,6 @@
                     </div> 
                 </div>
 				</c:forEach>
-                <!-- End Single Product -->
     </div>
 	</div>
 	</section>

@@ -5,17 +5,21 @@
 <mapper namespace = "com.jeonju.mypet.product">
 
 
-
+<!-- 
  	<select id="getProductList" resultType="productVo">
 		select a.*,b.* from product a join product_img b on a.p_idx=b.p_idx where b.p_front_img;
 	</select>
+ -->
 
-
-	<!-- <select id="getProductList" resultType="productVo">
-	select p.*,c.p_category_large
+	<select id="getProductList" resultType="productVo">
+	select a.*,b.*,c.*
+	from product a join p_category b on a.p_category_idx = b.p_category_idx join product_img c on a.p_idx=c.p_idx 
+	where a.p_category_idx= #{p_category_idx};
+	<!-- select p.*,c.p_category_large
     from product p inner join p_category c on p.p_category_idx = c.p_category_idx
     where p.p_category_idx = #{p_category_idx};
-	</select> -->
+	 -->
+	</select>
  
 	<select id="productNewList" resultType="productVo">
 		SELECT a.*,b.* 

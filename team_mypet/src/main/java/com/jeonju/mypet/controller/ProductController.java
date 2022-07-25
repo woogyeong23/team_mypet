@@ -2,14 +2,10 @@ package com.jeonju.mypet.controller;
 
 import java.util.List;
 
-import org.slf4j.Logger;
-import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
 
 import com.jeonju.mypet.service.ProductService;
@@ -32,24 +28,23 @@ public class ProductController {
 	
 	//제품리스트
 	
-	@GetMapping("/productList.do")//get방식 요청 처리
+/*	@GetMapping("/productList.do")//get방식 요청 처리
 	public String getProductList(Model model){
 		List<ProductVo> productList = productService.getProductList();
 		model.addAttribute("productList",productList);
 		return "product/productList";
-	}
+	} */
 	
-	/*
-	@RequestMapping(value = "/productList", method = RequestMethod.GET)
-	public void getProductList(@RequestParam("i") int p_category_idx,
+	@GetMapping("/productList.do")
+	public String getProductList(@RequestParam("i") int p_category_idx,
 						@RequestParam("l") int p_category_large, Model model) throws Exception {
-		logger.info("get productList");
 		
 		List<ProductVo> productList = productService.getProductList(p_category_idx,p_category_large);
 	
 		model.addAttribute("productList", productList);
+		
+		return "product/productList";
 	}
-	*/
 	
 	
 	

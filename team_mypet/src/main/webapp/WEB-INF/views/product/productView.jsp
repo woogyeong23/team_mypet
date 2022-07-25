@@ -1,5 +1,7 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
+<%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt"%>
 <!DOCTYPE html>
 <html>
 <head>
@@ -93,9 +95,20 @@
   display: flex;
   justify-content: space-between;
 }
+.reviewbox {
+  display: flex;
+  justify-content: space-between;
+}
+.reviewb {
+ display: flex;
+  justify-content: space-between;
+}
+.v-line {
+  border-left : thin solid gray;
+  height : 175px;
+}
 
 </style>
-
 
 
 
@@ -151,8 +164,27 @@
 							</tr>
 						</table>
 							<p style="font-size: 40px; color: black; margin: 0px 0px 50px;">강아지껌</p>
-							<h3 class="price">4,000원<span>6,000원</span><span style="color: red; font-size:15px; text-decoration: none; ">30%</span></h3>
-
+							<h3 class="price" style="margin-bottom:5px">4,000원<span>6,000원</span><span style="color: red; font-size:15px; text-decoration: none; ">30%</span></h3>
+							
+							
+							<!-- 별점 -->
+							<div class="row">
+              					<div class="col-lg-12">
+                    				<div class="single-product" style="border: none; box-shadow: 0px 0px 0px; margin:0px 0px 0px; padding: 0px">
+                       					<div class="product-info" style="padding: 0px">
+                            				<ul class="review" style="margin: 0px 0px 0px;">
+                                				<li><i class="lni lni-star-filled"></i></li>
+                                				<li><i class="lni lni-star-filled"></i></li>
+                                				<li><i class="lni lni-star-filled"></i></li>
+                               					<li><i class="lni lni-star-filled"></i></li>
+                                				<li><i class="lni lni-star"></i></li>
+                            				</ul>
+                        				</div>
+                    				</div> 
+                				</div>
+    						</div>
+							<!-- 별점끝 -->
+							
 						<div style="padding-bottom: 20px">
 							<p>적립금<span style="padding-left: 10px">5%</span></p>
 							<p>배송비<span style="padding-left: 10px">1,500원(5만원이상 무료배송)</span></p>
@@ -211,7 +243,7 @@
 			
 
 						
-					<!-- 팝오버 -->
+					<!-- 성분표시/환불 팝오버 -->
 		<div class="accordion accordion-flush" id="accordionFlushExample">
 		
 					<table style="width: 100%">
@@ -248,24 +280,25 @@
 					</div>
 				</div>
 			</div>
+				
+			</div>
 			<!-- 리뷰 -->
+			<div class="product-details-info">
 			<div class="single-block">
 			<div class="row">
 				<div class="col-lg-12 col-12">
 					<div class="reviews">
 						<table style="width: 100%">
 						<tr>
-						<td style="width:10%;"><h4 class="title" style=" padding-bottom: 0px;">구매후기</h4></td>
+						<td style="width:10%;"><h4 class="title" style="margin-bottom:0px;">구매후기</h4></td>
+						
 						<!-- 후기정렬 -->
-						<td style="align:left; width: 10%">
-							<div class="dropdown">
-							<button class="btn btn-secondary dropdown-toggle" type="button" style="height: 20px" id="dropdownMenuButton1" data-bs-toggle="dropdown" aria-expanded="false">후기정렬</button>
-							<ul class="dropdown-menu" aria-labelledby="dropdownMenuButton1">
-							<li><a class="dropdown-item" href="#">최신순</a></li>
-							<li><a class="dropdown-item" href="#">별점높은순</a></li>
-							<li><a class="dropdown-item" href="#">별점낮은순</a></li>
-							</ul>
-							</div>
+						<td style="align:left; width: 10%;">
+							<select style="border-radius: 5px">
+								<option value="" selected>최신순</option>
+								<option value="">별점낮은순</option>
+								<option value="">별점높은순</option>
+							</select>
 						</td>
 						<td style="align:left;">
 						<div class="form-check">
@@ -275,36 +308,72 @@
 						</td>
 						<td align="right">
 						<div class="review-button">
-								<button class="btn">리뷰작성</button>
+								<button class="btn" style="width: 100px; height:40px">리뷰작성</button>
 						</div>
 						</td>
 						</tr>
 						</table>
-						
+						<hr style="color:gray;">
 						</div>	
+
+						<!-- 리스트 반복문 -->
+
 							<div class="single-review">
-								<img src="assets/images/blog/comment1.jpg" alt="#">
-									<div class="review-info">
-										<ul class="stars">
-										<li><i class="lni lni-star-filled"></i></li>
-										<li><i class="lni lni-star-filled"></i></li>
-										<li><i class="lni lni-star-filled"></i></li>
-										<li><i class="lni lni-star-filled"></i></li>
-										<li><i class="lni lni-star-filled"></i></li>
-										</ul>
-										<span style="color: #99ccff;">강아지껌</span>
-										<p>Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod</p>
-									</div>
+								
+								<div class="reviewbox">
+								<!-- 이미지가 눌이 아니면 -->
+								<div class="col-lg-10">
+								<table>
+								
+								<tr>
+								<td rowspan="2">
+								<img src="${pageContext.request.contextPath}/resources/assets/images/products/gum1.jpg" style="width: 200px; height: 150px" alt="#"> <!-- 리뷰이미지 -->		
+								</td>
+								<td style="height: 30px">
+								<span style="color: #99ccff; font-size: 20px">강강(작성자닉)</span> <!-- 해당판매상품이름/상세페이지로링크 -->
+								별점		
+								</td>
+								</tr>
+								
+								<tr>
+								<td>
+								존맛탱
+								</td>
+								</tr>
+								
+								</table>
+								
+								<p class="reviewb">작성일 2022-06-07<span align="right" style="padding-right: 10px">댓글 수 0</span></p>
+								</div>
+								<div class='v-line'></div>
+								
+								<div class="col-lg-2" style="padding-left: 10px;">
+								<table style="height: 100%">
+								<tr><td><span style="color: #99ccff; font-size: 20px">강아지껌(상품명)</span></td></tr>
+								<tr><td>반려동물정보</td></tr>
+								<tr><td>종:고양이</td></tr>
+								<tr><td>이름:강산</td></tr>
+								<tr><td>나이:4</td></tr>
+								</table>
+								</div>
+								</div>
+								<hr>
+								
+						<!-- 리스트 반복문끝 -->
 							</div>
+						</div>
 					</div>
-				</div>
+				</div>	
 			</div>
-			</div>
-		</div>
-		
-		
 	</div>
 </section>
+				<!-- 리뷰끝 -->
+				
+				<!-- 판매자의 다른 상품 -->
+  				<!-- 판매자의 다른 상품끝 -->
+					
+				<!-- 비슷한 상품 -->
+				<!-- 비슷한 상품끝 -->
 
 
     <!-- ========================= JS here ========================= -->
