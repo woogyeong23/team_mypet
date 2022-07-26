@@ -29,8 +29,8 @@ public class CommunityService {
 		return commuDao.InsertCB(communityVo);
 	}
 
-	public CommunityVo getCBView(int cmidx) {
-		return commuDao.getCBView(cmidx);
+	public CommunityVo getCBView(int cm_idx) {
+		return commuDao.getCBView(cm_idx);
 	}
 
 	public List<Commu_CommentVo> getCcmList(int cmidx) {

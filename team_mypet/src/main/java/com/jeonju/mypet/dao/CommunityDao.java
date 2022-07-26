@@ -32,20 +32,24 @@ public class CommunityDao {
 		return sqlSession.insert(MAPPER+".InsertCB", communityVo);
 	}
 
-	public CommunityVo getCBView(int cmidx) {
-		return sqlSession.selectOne(MAPPER+".getCBView", cmidx);
+	public CommunityVo getCBView(int cm_idx) {
+		return sqlSession.selectOne(MAPPER+".getCBView", cm_idx);
 	}
 
 	public int InsertComment(Commu_CommentVo CCommentVo) {
 		return sqlSession.insert(MAPPER+".InsertComment", CCommentVo);
 	}
 
-	public List<Commu_CommentVo> getCcmList(int cmidx) {
-		return sqlSession.selectList(MAPPER+".getCcmList", cmidx);
+	public List<Commu_CommentVo> getCcmList(int cm_idx) {
+		return sqlSession.selectList(MAPPER+".getCcmList", cm_idx);
 	}
 
 	public List<SellerStoryVo> getBSList() {
 		return sqlSession.selectList(MAPPER+".getBSList");
+	}
+
+	public SellerStoryVo getBSellerView(int seller_idx) {
+		return sqlSession.selectOne(MAPPER+".getBSellerView", seller_idx);
 	}
 
 	

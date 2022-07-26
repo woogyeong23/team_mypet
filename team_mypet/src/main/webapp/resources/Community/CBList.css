@@ -46,4 +46,12 @@
     background: var(--bg-element1);
 }
 
+#side_menu {
+    position: fixed;
+    right: 20px;
+    top: 50%;
+    transform: translateY(-50%);
+    z-index: 100;
+}
+
 

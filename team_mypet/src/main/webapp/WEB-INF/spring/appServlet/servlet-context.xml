@@ -14,6 +14,7 @@
 
 	<!-- Handles HTTP GET requests for /resources/** by efficiently serving up static resources in the ${webappRoot}/resources directory -->
 	<resources mapping="/resources/**" location="/resources/" />
+	<resources location="/WEB-INF/views/ckeditor/" mapping="/ckeditor/**"/>
 
 	<!-- Resolves views selected for rendering by @Controllers to .jsp resources in the /WEB-INF/views directory -->
 	<beans:bean class="org.springframework.web.servlet.view.InternalResourceViewResolver">
@@ -26,6 +27,8 @@
 	              class="org.springframework.web.multipart.support.StandardServletMultipartResolver">
 	</beans:bean>
 	
+
+
 	<context:component-scan base-package="com.jeonju.mypet.controller" />
 	<context:component-scan base-package="com.jeonju.mypet.dao" />
 	<context:component-scan base-package="com.jeonju.mypet.service" />
@@ -44,6 +47,7 @@
 			<exclude-mapping path="/CBList.do"/>
 			<exclude-mapping path="/CBView.do"/>
 			<exclude-mapping path="/BSellerList.do"/>
+			<exclude-mapping path="/BSellerView.do"/>
 		
 			<beans:bean id="loginInterceptor" class="com.jeonju.mypet.interceptor.LoginInterceptor"/>
 		</interceptor>

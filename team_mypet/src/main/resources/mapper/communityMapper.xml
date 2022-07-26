@@ -9,12 +9,10 @@
     </select>
     
     <select id="getCcmList" resultType="commu_commentVo">
-    select * from commu_comment where cm_idx = #{cmidx}
+    select * from commu_comment where cm_idx = #{cm_idx}
     </select>
     
-    <select id="getBSList" resultType="sellerStoryVo">
-    select * from sellerstory
-    </select>
+    
     
     
     
@@ -31,7 +29,7 @@
     </insert>
     
     <select id="getCBView" parameterType="int" resultType="communityVo">
-      select cm_subject, cm_content, cm_wday, cm_img, cm_writer,cm_idx, midx from community where cm_idx= #{cmidx}
+      select cm_subject, cm_content, cm_wday, cm_img, cm_writer,cm_idx, midx from community where cm_idx= #{cm_idx}
     </select>
     
     
@@ -47,6 +45,17 @@
 <!--     select max(cc_idx)+1, #{cc_content}, #{cm_idx}, #{cc_writer} from commu_comment  -->
     values (#{cc_origin}, #{cc_content}, #{cm_idx}, #{cc_writer})
     </insert>
+    
+    
+    <!--SellerStory  -->
+    <select id="getBSList" resultType="sellerStoryVo">
+    select * from sellerstory
+    </select>
+    
+    <select id="getBSellerView" resultType="sellerStoryVo">
+    select seller_idx, seller_img, seller_intro, seller_openday, 
+    seller_starsavg, seller_total, seller_wishcnt, seller_ordercnt, seller_followcnt from sellerstory where seller_idx = #{seller_idx}
+    </select>
     
     
 

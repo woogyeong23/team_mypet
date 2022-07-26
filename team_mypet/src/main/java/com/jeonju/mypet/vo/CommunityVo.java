@@ -12,6 +12,7 @@ public class CommunityVo {
 	private String cm_delyn;
 	private String cm_img;
 	private String cm_writer;
+	// 추가
 	private String cm_origin_img;
 	
 	public int getCm_idx() {

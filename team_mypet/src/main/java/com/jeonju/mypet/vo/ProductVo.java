@@ -27,6 +27,9 @@ public class ProductVo {
 	private int p_status;
 	private String p_delyn;
 	private String p_stock;
+	// test code(22-07-23)
+	private String p_ori_filename;
+	// test code(22-07-23)
 	
 	private List<Product_ImgVo> product_imgs; 
 	public List<Product_ImgVo> getProduct_imgs() {
@@ -169,4 +172,15 @@ public class ProductVo {
 	public void setP_stock(String p_stock) {
 		this.p_stock = p_stock;
 	}
+	
+	
+	// test code(22-07-23)
+	public String getP_ori_filename() {
+		return p_ori_filename;
+	}
+	public void setP_ori_filename(String p_ori_filename) {
+		this.p_ori_filename = p_ori_filename;
+	}
+	// test code(22-07-23)
+	
 }
