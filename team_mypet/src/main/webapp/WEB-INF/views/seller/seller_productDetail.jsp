@@ -113,7 +113,7 @@
 	<!-- ************************************************ -->
 	    
 	<section class = "container">
-		<aside class="my-info">
+ 		<aside class="my-info">
     		<div class="profile-area">
        			<div class="outline">
            			<label
@@ -187,9 +187,81 @@
             	</nav>
     		</div>
 		</aside>
+	 <table border="1">
+	 	<tr>
+	 		<td style="width:100px">상태</td><td>${productVo.p_status }</td>
+	 	</tr>
+	 	<tr>
+	 		<td>분류1</td><td>${productVo.p_category_idx }</td>
+	 	</tr>
+	 	<tr>
+	 		<td>상품명</td><td>${productVo.p_name }</td>
+	 	</tr>
+	 	<tr>
+	 		<td>상품번호</td><td>${productVo.p_idx }</td>
+	 	</tr>
+	 	<c:forEach var="product_imgVo" items="${productVo.product_imgs}">
+	
+		 <tr>
+	 		<td>상품 이미지들</td>
+	 		<td><img src="${pageContext.request.contextPath}/resources/assets/images/product-details/${product_imgVo.p_sys_filname }"/></td>
+	 	</tr>
+	</c:forEach>
+	 	
+	 	<tr>
+	 		<td>크기</td><td>${productVo.p_size }</td>
+	 	</tr>
+	 	<tr>
+	 		<td>재고-주문제작</td><td>${productVo.p_stock }</td>
+	 	</tr>
+	 	<tr>
+	 		<td>재고-제한수량</td><td>${productVo.p_limit_cnt }</td>
+	 	</tr>
+	 	<tr>
+	 		<td>제품상세정보</td><td>${productVo.p_content }</td>
+	 	</tr>
+	 	<tr>
+	 		<td>원가격</td><td>${productVo.p_price }</td>
+	 	</tr>
+	 	<tr>
+	 		<td>할인률</td><td>${productVo.p_discount }</td>
+	 	</tr>
+	 	<tr>
+	 		<td>할인 적용 가격</td><td>${productVo.p_disprice }</td>
+	 	</tr>
+	 	<tr>
+	 		<td>적립금</td><td>${productVo.p_point }</td>
+	 	</tr>
+	 	<tr>
+	 		<td>일반 배송비</td><td>${productVo.p_dvprice }</td>
+	 	</tr>
+	 	<tr>
+	 		<td>추가배송비</td><td>${productVo.p_add_dvprice }</td>
+	 	</tr>
+	 	<tr>
+	 		<td>무료배송</td><td>${productVo.p_free_dvprice }</td>
+	 	</tr>
+	 	<tr>
+	 		<td>택배사</td><td>${productVo.p_dvcompany }</td>
+	 	</tr>
+	 	<tr>
+	 		<td>성분표시</td><td>${productVo.p_ingerdient }</td>
+	 	</tr>
+	 	<tr>
+	 		<td>배송/환불정보</td><td>${productVo.p_cancle_info }</td>
+	 	</tr>
+	 	<tr>
+	 		<td>등록일</td><td>${productVo.p_wday }</td>
+	 	</tr>
+	 	<tr>
+	 		<td>마지막 수정일</td><td>${productVo.p_modifyday }</td>
+	 	</tr>
+	 </table>
+			
 	
 	
-	hello 
+		
+	
 	</section>
 	
 	

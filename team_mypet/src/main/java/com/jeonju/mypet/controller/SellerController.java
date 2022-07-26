@@ -16,6 +16,7 @@ import org.springframework.web.bind.annotation.RequestParam;
 
 import com.jeonju.mypet.service.SellerService;
 import com.jeonju.mypet.vo.ProductVo;
+import com.jeonju.mypet.vo.Product_ImgVo;
 @Controller
 public class SellerController {
 	
@@ -57,20 +58,32 @@ public class SellerController {
 	}
 	
 	@GetMapping("/seller_productDetail.do")
-	public String seller_productDetail(Model model, HttpServletRequest request) {
+	public String seller_productDetail( Model model, HttpServletRequest request) {
 		//@RequestParam("p_idx") int p_idx,
-		HttpSession session = request.getSession();
+		//HttpSession session = request.getSession();
 		//String member_id = (String)session.getAttribute("member_id");
-		String member_id= "1";
+		//String member_id= "1";
 		//ProductVo productVo = sellerService.seller_productList(member_id); 
 		//Spring MVC에서 Controller에서 생성되는 Model객체는 뷰단(JSP페이지)에서 참조 가능
 		
 		
-		//p_idx=1;
 		
 		//List<HashMap<String, Object>> productListMap = sellerService.seller_productList(member_id);
 		
 		//model.addAttribute("productListMap", productListMap);
+		
+		String p_idx="2";
+		
+		ProductVo productVo = sellerService.seller_productDetail(p_idx);
+		
+		List<Product_ImgVo> productImgList = sellerService.seller_productImgs(p_idx);
+		productVo.setProduct_imgs(productImgList);
+		
+		
+		
+		model.addAttribute("productVo", productVo);
+		
+		
 		
 		
 		return "seller/seller_productDetail";

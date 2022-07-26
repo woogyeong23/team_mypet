@@ -8,6 +8,7 @@ import org.apache.ibatis.session.SqlSession;
 import org.springframework.stereotype.Repository;
 
 import com.jeonju.mypet.vo.ProductVo;
+import com.jeonju.mypet.vo.Product_ImgVo;
 
 
 @Repository
@@ -25,6 +26,16 @@ public class SellerDao {
 		
 		
 		return sqlSession.selectList(MAPPER + ".getSellerProductList", member_id);
+	}
+
+	public ProductVo getSellerProductDetail(String p_idx) {
+		// TODO Auto-generated method stub
+		return sqlSession.selectOne(MAPPER + ".getSellerProductDetail", p_idx);
+	}
+
+	public List<Product_ImgVo> getSellerProductImgs(String p_idx) {
+		// TODO Auto-generated method stub
+		return sqlSession.selectList(MAPPER + ".getSellerProductImgs", p_idx);
 	}
 
 	
