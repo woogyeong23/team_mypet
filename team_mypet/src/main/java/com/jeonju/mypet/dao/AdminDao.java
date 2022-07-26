@@ -19,13 +19,11 @@ public class AdminDao {
 	public AdminDao(SqlSession sqlSession) {
 		this.sqlSession = sqlSession;
 	}
+
 	
-	
-	
-	
-	
+}
 	
 	
 	
 
-}
+

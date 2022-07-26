@@ -8,6 +8,7 @@ public class DetailVo {
 	private int orders_idx;
 	private int p_idx;
 	private int detail_cnt;
+
 	private String detail_request;
 	private String detail_completeday;
 	
@@ -22,7 +23,10 @@ public class DetailVo {
 	private List<RefundVo> refunds; 
 	public List<RefundVo> getRefunds() {
 		return refunds;
-	}
+	}	
+	
+
+	private int fixprice;
 	public void setRefunds(List<RefundVo> refunds) {
 		this.refunds = refunds;
 	}
@@ -32,6 +36,13 @@ public class DetailVo {
 	}
 	public void setCancles(List<CancleVo> cancles) {
 		this.cancles = cancles;
+	}
+		
+	public int getFixprice() {
+		return fixprice;
+	}
+	public void setFixprice(int fixprice) {
+		this.fixprice = fixprice;
 	}
 	
 	public int getDetail_idx() {
