@@ -11,10 +11,29 @@
     <meta name="viewport" content="width=device-width, initial-scale=1">
 
   
-    	<script src="http://code.jquery.com/jquery-latest.min.js"></script>
-    
+    <script src="http://code.jquery.com/jquery-latest.min.js"></script>
      <script>
-  
+     $(function(){
+    	$("#id_find").click(function(){
+    		let m_name = $("#m_name").val();
+    		$ajax({
+    			type : "post",
+    			url : "${pageContext.request.contextPath}/idfindProcess.do",
+    			data : {"m_name":m_name},
+    			success : function(data){
+    				if(data==null){
+    					$("#id_finded").text("등록되어 있지 않은 이름입니다.").css("color","red");
+
+    				}else{
+    					$("#id_finded").text(data).css("color","green");
+
+    				}
+    					
+    			},
+    			error: function(error){alert(error);}
+    		});
+    	});  	 
+     });
     </script>
     
     <!-- css************************************************ -->
@@ -27,7 +46,7 @@
  <body class="text-center">
  
 <main class="form-signin">
-  <form name="loginForm" action="${pageContext.request.contextPath}/idFindProcess.do" method="post">
+<form>
   	<a href="${pageContext.request.contextPath}/home.do">
     <img class="mb-4" src="resources/assets/images/DC.png" alt="" width="250" height="200" >
     </a>
@@ -38,8 +57,9 @@
       <label for="floatingInput">name</label>
     </div>
     
-    <button class="w-100 btn btn-lg btn-primary" id="login_member"type="submit">아이디 찾기</button>
-  </form>
+    <button class="w-100 btn btn-lg btn-primary" id="id_find">아이디 찾기</button>
+    <div style="height:20px" ><span id="id_finded" style="font-size:12px;">gdgd</span></div>
+    </form>
 </main>         
 		
 </body>

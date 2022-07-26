@@ -5,6 +5,7 @@ import org.springframework.stereotype.Service;
 
 import com.jeonju.mypet.dao.AdminDao;
 import com.jeonju.mypet.dao.MembersDao;
+import com.jeonju.mypet.vo.MembersVo;
 
 @Service
 public class AjaxService {
@@ -12,9 +13,10 @@ public class AjaxService {
 	private MembersDao membersDao;
 
 	
-	public int checkId(String id) {
-		int result=0;
-		result = membersDao.checkId(id);
+	public String idfind(String m_name) {
+		String result = "";
+		result = membersDao.idfind(m_name);
+		System.out.println(result);
 		return result;
 	}
 	

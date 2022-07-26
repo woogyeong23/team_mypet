@@ -12,8 +12,7 @@
     <!-- Bootstrap core CSS -->
     
     <!-- Custom styles for this template -->
-    <link href="resources/assets/css/sidebar.css" rel="stylesheet">
-   
+    <link href="resources/assets/css/cart.css" rel="stylesheet">
   </head>
   <body>
 
@@ -21,192 +20,178 @@
     <jsp:include page="../../include/header.jsp" />  
 	<!-- ************************************************ -->
 
-<main class="container">
+<main >
+<aside class="container">
+		<div class="CartPage">
+      		<div class="PageHeader"> 
+   				<h2 class="PageHeader__title">
+   				장바구니</h2>
+   					<ol class="PageHeader__step">
+   						<li class="PageHeader__stepsItem PageHeader__stepsItem--active">
+   						<em>1.</em>
+   						<span>장바구니</span>
+   						
+   						</li>
+   						<li class="PageHeader__stepsItem PageHeader__stepsItem--active">
+   						<em>2.</em>
+   						<span>주문결제</span>
+   						
+   						</li>
+   						
+   					</ol>
+   					</div>
+   				<div class="CartArtistList">
+   					<div class="vue-sticky-placeholder" style="padding-top: 0px;"></div>
+   					<div class="CartList__sticky vue-sticky-el" style="position: static; top: auto; bottom: auto; left: auto; width: auto; z-index: 201;"></div>
+   					<div class="CartArtistItem">
+   						<div class="CartArtistItem__header">
+   						<label>
+							<div class="checkbox">   							
+   							<div class="input-checkbox">
+   							<input id="" type="checkbox" autocomplete="off" class="bp" value="">
+   							</div>
+   							</div>
+   							<span  class="CartArtistItem__title">디디얌 작가님</sqan>
+   						</label>
+   						</div>
+   							<section class="CartArtistItem__itemList">
+   								<ul>
+   									<div class="CartProductList">   						
+   										<div class="CartProductListItem">   						
+   											<div class="CartProductListItem__productInfo">   						
+			   									<div class="CartProductListItem__checkboxGroup">
+   													<div class="CartProductListItem__checkboxWrap" style="display: inline-block;">			
+   														<div class="checkbox">
+   															<div class="input-checkbox"  style="display: inline-block;"> 
+   																<input id="" type="checkbox" autocomplete="off" class="bp" value="ㅎㅇㅎㅇ">   						
+   						 									</div>
+   														</div>
+   													</div>
+   													<img>
+   												</div>
+   												<div data-v-2389adcc  class="CartProductListItem__productInfoTextGroup">
+   												<a href="#" class="CartProductListItem__productName">ㅎㅇㅎㅇ</a>
+   												
+   												</div>
+   												</div>
+   												<div class="CartProductListItem__optionInfo">
+   													<div class="CartOptionList">
+   														<div class="CartOptionListItem">
+   															<div class="CartOptionListItem__splitLeft">
+   																<em class="CartOptionListItem__optionText"></em>
+   																	<div class="CartOptionListItem__counter">
+   																		<label class="NumberCounter">
+   																			<button type="button" disabled="disabled" class="NumberCounter__button" onclick="">-</button>
+   																			<input name="cart_cnt" type="text" class="NumberCounter__input" value="0" readonly>
+   																			<button type="button" class="NumberCounter__button">+</button>   						
+   																		</label>
+   																	</div>
+   															</div>
+   														
+   															<div class="CartOptionListItem__splitRight">
+   																<em class="CartOptionListItem__totalPrice">12,000원</em>
+   																<div class="CartOptionListItem__btnGroup">
+   																	<div class="CartOptionEditingButtonGroup">
+   																		<button class="CartOptionEditingButtonGroup__button CartOptionEditingButtonGroup__button--right">
+   																		<i class="CartOptionEditingButtonGroup__buttonIcon idus-icon-close">
+   																		</i>
+   																		</button>
+   																	</div>
+   																</div>   														
+   															</div>
+   															
+   														</div>
+   													</div>
+   												</div>
+   						 					</div>
+   										</div>
+   										
+   								</ul>
+   							</section>
+   							<section class="CartArtistItem__section">
+   								<div class="CartArtistItem__label">
+   								작품 가격
+   								</div>
+   								<div class="CartArtistItem__price">
+   								1231223원
+	   							</div>
+   							</section>
+   							<section class="CartArtistItem__section">
+   								<div class="CartArtistItem__label">
+   								배송비
+   								</div>
+   								<div class="CartArtistItem__price">
+   								3,000원
+	   							</div>
+   							</section>
+   							<div class="vue-sticky-placeholder"></div>
+   						</div>   	
+			        
+   					
+   					
+   					
+   					
+   			<div class="vue-sticky-placeholder" style="padding-top: 0px;"></div>		
+        	<div  sticky-side="bottom" on-stick="handleChangeStickBottom"class="CartList__sticky vue-sticky-el"  style="position: static; top: auto; bottom: auto; left: auto; width: auto; z-index: 10;">
+        	
+        	<div class="CartCheckboxControl">
+        		<div class="checkbox">
+        			<div class="input-checkbox">
+        			<input type="checkbox" class="bp" autocomplete="off" id="cart-product-all-check" value="">
+        			</div>
+        			<label for="cart-product-all-check">
+        				<span class="CartCheckboxControl__label">
+        				전체 선택 (
+            			<span class="CartCheckboxControl__label--bold">1</span>
+            			/1)
+            			</span>
+        			</label>
+        		</div>
+        			<button class="CommonButton CommonButton--middle CommonButton--white " >선택 삭제</button>
+        	</div>
+        		<div class="CartCheckout">
+        			<div class="CartCheckoutDesktop">
+        				<div class="CartCheckoutDesktop__item">
+        					<div class="CartCheckoutDesktop__label">작품금액</div>
+        					<div class="CartCheckoutDesktop__value">
+        						<span>15,000</span>
+        						<span class="CartCheckoutDesktop__priceUnit">원</span>
+        					</div>
+        				</div>
+        				<div class="CartCheckoutDesktop__item--fixed">+</div>
+        				<div class="CartCheckoutDesktop__item">
+        					<div class="CartCheckoutDesktop__label">배송비</div>
+        					<div class="CartCheckoutDesktop__value">
+        						<span>3,000</span>
+        						<span class="CartCheckoutDesktop__priceUnit">원</span>
+        					</div>
+        				</div>
+        				<div class="CartCheckoutDesktop__item--fixed">=</div>
+        				<div class="CartCheckoutDesktop__item">
+        					<div class="CartCheckoutDesktop__label">결제 예정금액</div>
+        					<div class="CartCheckoutDesktop__value--highlight">
+        						<span>18,000</span>
+        						<span class="CartCheckoutDesktop__priceUnit">원</span>
+        					</div>
+        				</div>
+        			</div>
+        		</div>
+        		
+        		<div class="CartPage__bottom">
+        		<button type="submit" class="CommonButton CartPage__paymentButton CommonButton--large" onclick = "location.href = '${pageContext.request.contextPath}/memberpay.do'">
+        		주문하기
+        		</button>
+        		</div>
+        	</div>
+        	
+        	
+        	
+        	
+ 		</div>
 
-<article>
-<div class="container px-3 py-4" id="hanging-icons" >
-    <h3 class="pb-1 border-bottom" >내 정보</h3>
-    <div class="row g-3 py-4 row-cols-3 row-cols-lg-4">
-      <div class="col d-flex align-items-start">
-        <div class="icon-square bg-light text-dark flex-shrink-0 me-2">
-        </div>
-        <div>
-          <h4>적립금</h4>
-          <a href="${pageContext.request.contextPath}/memberpoint.do">
-            0 P
-          </a>
-        </div>
-      </div>
-      <div class="col d-flex align-items-start">
-        <div class="icon-square bg-light text-dark flex-shrink-0 me-2">
-        </div>
-        <div>
-          <h4>회원등금</h4>
-          <a href="${pageContext.request.contextPath}/membergrade.do">
-            Silver
-          </a>
-        </div>
-      </div>
-      <div class="col d-flex align-items-start">
-        <div class="icon-square bg-light text-dark flex-shrink-0 me-2">
-        </div>
-        <div>
-          <h4>주문배송</h4>
-          <a href="#">
-            0 건
-          </a>
-        </div>
-      </div>
-      <div class="col d-flex align-items-start">
-        <div class="icon-square bg-light text-dark flex-shrink-0 me-2">
-        </div>
-        <div>
-          <h4>교환/환불</h4>
-          <a href="#" >
-            0 건
-          </a>
-        </div>
-      </div>
-    </div>
-    
-    <hr>
-    
-        <h3 class="pb-1 border-bottom" >최근 주문내역</h3>
-         
-		<div class="row">
-                <div class="col-lg-3 col-md-6 col-12">
-                    <!-- Start Single Product -->
-                    <div class="single-product">
-                        <div class="product-image">
-                            <img src="resources/assets/images/products/product-1.jpg" alt="#">
-                            <div class="button">
-                                <a href="product-details.html" class="btn"><i class="lni lni-cart"></i> Add to Cart</a>
-                            </div>
-                        </div>
-                        <div class="product-info">
-                            <span class="category">Watches</span>
-                            <h4 class="title">
-                                <a href="product-grids.html">Xiaomi Mi Band 5</a>
-                            </h4>
-                            <ul class="review">
-                                <li><i class="lni lni-star-filled"></i></li>
-                                <li><i class="lni lni-star-filled"></i></li>
-                                <li><i class="lni lni-star-filled"></i></li>
-                                <li><i class="lni lni-star-filled"></i></li>
-                                <li><i class="lni lni-star"></i></li>
-                                <li><span>4.0 Review(s)</span></li>
-                            </ul>
-                            <div class="price">
-                                <span>$199.00</span>
-                            </div>
-                        </div>
-                    </div>
-                    <!-- End Single Product -->
-                </div>
-                <div class="col-lg-3 col-md-6 col-12">
-                    <!-- Start Single Product -->
-                    <div class="single-product">
-                        <div class="product-image">
-                            <img src="resources/assets/images/products/product-2.jpg" alt="#">
-                            <span class="sale-tag">-25%</span>
-                            <div class="button">
-                                <a href="product-details.html" class="btn"><i class="lni lni-cart"></i> Add to Cart</a>
-                            </div>
-                        </div>
-                        <div class="product-info">
-                            <span class="category">Speaker</span>
-                            <h4 class="title">
-                                <a href="product-grids.html">Big Power Sound Speaker</a>
-                            </h4>
-                            <ul class="review">
-                                <li><i class="lni lni-star-filled"></i></li>
-                                <li><i class="lni lni-star-filled"></i></li>
-                                <li><i class="lni lni-star-filled"></i></li>
-                                <li><i class="lni lni-star-filled"></i></li>
-                                <li><i class="lni lni-star-filled"></i></li>
-                                <li><span>5.0 Review(s)</span></li>
-                            </ul>
-                            <div class="price">
-                                <span>$275.00</span>
-                                <span class="discount-price">$300.00</span>
-                            </div>
-                        </div>
-                    </div>
-                    <!-- End Single Product -->
-                </div>
-                <div class="col-lg-3 col-md-6 col-12">
-                    <!-- Start Single Product -->
-                    <div class="single-product">
-                        <div class="product-image">
-                            <img src="resources/assets/images/products/product-3.jpg" alt="#">
-                            <div class="button">
-                                <a href="product-details.html" class="btn"><i class="lni lni-cart"></i> Add to Cart</a>
-                            </div>
-                        </div>
-                        <div class="product-info">
-                            <span class="category">Camera</span>
-                            <h4 class="title">
-                                <a href="product-grids.html">WiFi Security Camera</a>
-                            </h4>
-                            <ul class="review">
-                                <li><i class="lni lni-star-filled"></i></li>
-                                <li><i class="lni lni-star-filled"></i></li>
-                                <li><i class="lni lni-star-filled"></i></li>
-                                <li><i class="lni lni-star-filled"></i></li>
-                                <li><i class="lni lni-star-filled"></i></li>
-                                <li><span>5.0 Review(s)</span></li>
-                            </ul>
-                            <div class="price">
-                                <span>$399.00</span>
-                            </div>
-                        </div>
-                    </div>
-                    <!-- End Single Product -->
-                </div>
-                <div class="col-lg-3 col-md-6 col-12">
-                    <!-- Start Single Product -->
-                    <div class="single-product">
-                        <div class="product-image">
-                            <img src="resources/assets/images/products/product-4.jpg" alt="#">
-                            <span class="new-tag">New</span>
-                            <div class="button">
-                                <a href="product-details.html" class="btn"><i class="lni lni-cart"></i> Add to Cart</a>
-                            </div>
-                        </div>
-                        <div class="product-info">
-                            <span class="category">Phones</span>
-                            <h4 class="title">
-                                <a href="product-grids.html">iphone 6x plus</a>
-                            </h4>
-                            <ul class="review">
-                                <li><i class="lni lni-star-filled"></i></li>
-                                <li><i class="lni lni-star-filled"></i></li>
-                                <li><i class="lni lni-star-filled"></i></li>
-                                <li><i class="lni lni-star-filled"></i></li>
-                                <li><i class="lni lni-star-filled"></i></li>
-                                <li><span>5.0 Review(s)</span></li>
-                            </ul>
-                            <div class="price">
-                                <span>$400.00</span>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-                <a style="text-align:right;" href="#">
-            더보기
-          </a>
-               <!-- End Single Product -->
-                
-                
-            </div>        
-        
-        
-</div>
- 
-    </article>
+
+</aside>
 </main>
-
-
 
 <!-- 푸터와 js************************************************ -->
     <jsp:include page="../../include/footer.jsp" />  

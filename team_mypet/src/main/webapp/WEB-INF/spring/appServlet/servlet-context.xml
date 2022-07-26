@@ -38,6 +38,8 @@
 			<exclude-mapping path="/home.do"/>
 			<exclude-mapping path="/join.do"/>
 			<exclude-mapping path="/idfind.do"/>
+			<exclude-mapping path="/idfindProcess.do"/>
+			<exclude-mapping path="/pwdfindProcess.do"/>
 			<exclude-mapping path="/pwdfind.do"/>			
 			<exclude-mapping path="/joinKakao.do"/>
 			<exclude-mapping path="/joinEm.do"/>

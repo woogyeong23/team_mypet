@@ -15,9 +15,6 @@
 		
 	
 	
-	
-	
-	
 		$(function(){
 			
 			$("#member_id").blur(function(){

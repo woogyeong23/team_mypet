@@ -1,11 +1,13 @@
 package com.jeonju.mypet.controller;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
 
 import com.jeonju.mypet.service.AjaxService;
+import com.jeonju.mypet.vo.MembersVo;
 
 //Ajax통신 지원을 위해 pom.xml에 의존모듈(jackson)을 추가해 줌
 
@@ -21,17 +23,13 @@ public class AjaxController {
 	}
 	
 	
-	@PostMapping("/checkId.do")
+	@PostMapping("/idfindProcess.do")
 	//@ResponseBody //Ajax통신의 응답내용을 보내는 것을 표시 <-- @RestController 로 대체 가능
-	public String checkId(@RequestParam("member_id") String id) {
+	public String idFindProcess(@RequestParam("m_name") String m_name,Model model) {
 		
-		System.out.println("id: "+id);
 		
-		String result="N";//중복된 아이디 없음
 		
-		int flag = ajaxService.checkId(id);
-		
-		if(flag == 1) result = "Y";//중복된 아이디 있음(실패)
+		String result  = ajaxService.idfind(m_name);
 		
 		return result;
 	}	

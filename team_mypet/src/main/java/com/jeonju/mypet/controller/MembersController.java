@@ -230,7 +230,11 @@ public class MembersController {
 		}
 		
 		
-		
+		@GetMapping("/memberpay.do")
+		public String memberpay() {
+			
+			return "member/memberpay";	
+		}
 		
 		
 		

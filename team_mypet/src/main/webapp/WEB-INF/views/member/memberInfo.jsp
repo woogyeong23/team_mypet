@@ -25,6 +25,7 @@
 <aside>
 	<!-- 사이더와 js************************************************ -->
     <jsp:include page="../../include/sidebar.jsp" />  
+    
 </aside>
 <article>
 <div class="container px-3 py-4" id="hanging-icons" >

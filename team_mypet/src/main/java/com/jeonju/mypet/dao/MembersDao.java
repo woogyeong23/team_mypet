@@ -77,6 +77,10 @@ public class MembersDao {
 		return sqlSession.selectList(MAPPER+".getpetList",midx);
 	}
 
+	public String idfind(String m_name) {
+		return sqlSession.selectOne(MAPPER+".getidfind",m_name);
+	}
+
 
 
 
