@@ -32,7 +32,7 @@
 	
 	
 	<!-- Interceptor 설정: 로그인 여부 체크하는 LoginInterceptor 설정 -->
-	<interceptors>
+	<!-- <interceptors> 잠시 주석 처리
 		<interceptor>
 			<mapping path="/*.do"/>
 			<exclude-mapping path="/home.do"/>
@@ -45,7 +45,7 @@
 			<beans:bean id="loginInterceptor" class="com.jeonju.mypet.interceptor.LoginInterceptor"/>
 		</interceptor>
 	
-	</interceptors>
+	</interceptors> -->
 
 
 
