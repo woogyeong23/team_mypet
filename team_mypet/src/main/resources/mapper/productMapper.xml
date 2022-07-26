@@ -2,7 +2,35 @@
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
   "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 
-<mapper namespace = "com.jeonju.mypet.admin">
+<mapper namespace = "com.jeonju.mypet.product">
 
+<!-- 소현 -->
+
+	<select id="getProductList1" resultType="productVo">
+	select a.*,b.*,c.*
+	from product a join p_category b on a.p_category_idx = b.p_category_idx join product_img c on a.p_idx=c.p_idx 
+	where a.p_category_idx=#{p_category_idx};
+	</select>
+
+	<select id="getProductList2" resultType="productVo">
+	select a.*,b.*,c.*
+	from product a join p_category b on a.p_category_idx = b.p_category_idx join product_img c on a.p_idx=c.p_idx 
+	where b.p_category_large=#{p_category_large};
+	</select>
+	
+	
+	
+	
+ 
+	<select id="productNewList" resultType="productVo">
+		SELECT a.*,b.* 
+		FROM product a join product_img b on a.p_idx=b.p_idx 
+		WHERE b.p_front_img 
+		ORDER BY a.p_idx DESC;
+	</select>
+
+
+	
+<!-- 소현 -->
 
 </mapper>

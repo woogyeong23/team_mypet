@@ -7,6 +7,10 @@ public class Product_ImgVo {
 	private int p_idx;
 	private String p_ori_filename;
 	private String p_sys_filename;
+<<<<<<< HEAD
+=======
+	
+>>>>>>> branch 'master' of https://github.com/woogyeong23/team_mypet.git
 	public int getP_front_img() {
 		return p_front_img;
 	}

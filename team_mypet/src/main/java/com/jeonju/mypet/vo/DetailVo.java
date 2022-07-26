@@ -1,6 +1,5 @@
 package com.jeonju.mypet.vo;
 
-import java.util.Date;
 import java.util.List;
 
 public class DetailVo {
@@ -10,7 +9,7 @@ public class DetailVo {
 	private int p_idx;
 	private int detail_cnt;
 	private String detail_request;
-	private Date detail_completeday;
+	private String detail_completeday;
 	private int fixprice;
 	
 	private List<Detail_DayVo> detail_days; 
@@ -65,10 +64,10 @@ public class DetailVo {
 	public void setDetail_request(String detail_request) {
 		this.detail_request = detail_request;
 	}
-	public Date getDetail_completeday() {
+	public String getDetail_completeday() {
 		return detail_completeday;
 	}
-	public void setDetail_completeday(Date detail_completeday) {
+	public void setDetail_completeday(String detail_completeday) {
 		this.detail_completeday = detail_completeday;
 	}
 	public int getFixprice() {
