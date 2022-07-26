@@ -104,7 +104,7 @@
   justify-content: space-between;
 }
 .v-line {
-  border-left : thin solid gray;
+  border-left : thin solid #d3d3d3;
   height : 175px;
 }
 

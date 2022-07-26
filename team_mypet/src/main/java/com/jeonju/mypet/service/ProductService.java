@@ -22,10 +22,23 @@ public class ProductService {
 
 	//상품목록
 	
-	  public List<ProductVo> getProductList(int p_category_idx, int p_category_large) throws Exception { 
-	  return productDao.getProductList(p_category_idx,p_category_large); 
-	  }
+	/*
+	 * public List<ProductVo> getProductList(int p_category_idx, int
+	 * p_category_large) throws Exception { return
+	 * productDao.getProductList(p_category_idx,p_category_large); }
+	 */
 	 
+
+	  public List<ProductVo> getProductList(int p_category_idx, int p_category_large) throws Exception { 
+	  
+		  if (p_category_idx == 0) {
+			  return productDao.getProductList(p_category_large); 
+		  }else {
+			  return productDao.getProductList(p_category_idx, p_category_large);
+		  }
+	  
+	  }
+	
 	
 	/*
 	 * public List<ProductVo> getProductList() { return productDao.getProductList();

@@ -35,6 +35,8 @@ public class ProductController {
 		return "product/productList";
 	} */
 	
+	
+	
 	@GetMapping("/productList.do")
 	public String getProductList(@RequestParam("i") int p_category_idx,
 						@RequestParam("l") int p_category_large, Model model) throws Exception {
