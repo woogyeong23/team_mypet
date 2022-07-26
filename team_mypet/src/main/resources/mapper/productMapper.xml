@@ -15,7 +15,7 @@
 	<select id="getProductList2" resultType="productVo">
 	select a.*,b.*,c.*
 	from product a join p_category b on a.p_category_idx = b.p_category_idx join product_img c on a.p_idx=c.p_idx 
-	where a.p_category_idx=#{p_category_idx} or b.p_category_large=#{p_category_large};
+	where b.p_category_large=#{p_category_large};
 	</select>
 	
 	

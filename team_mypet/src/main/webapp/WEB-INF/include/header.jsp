@@ -280,9 +280,10 @@
                                             data-bs-target="#submenu-1-3" aria-controls="navbarSupportedContent"
                                             aria-expanded="false" aria-label="Toggle navigation">고양이</a>
                                         <ul class="sub-menu collapse" id="submenu-1-3">
+              <!--소현-->                    <li class="nav-item"><a href="productList.do?i=0&l=2">전체</a></li>
                                             <li class="nav-item"><a href="product-grids.html">츄르 </a></li>
                                             <li class="nav-item"><a href="product-list.html">스낵</a></li>
-                                            <li class="nav-item"><a href="product-details.html">캣잎</a></li>
+                                            <li class="nav-item"><a href="productList.do?i=9&l=2">캣잎</a></li>
                                             <li class="nav-item"><a href="cart.html">프리미엄</a></li>
                                             <li class="nav-item"><a href="checkout.html">스틱</a></li>
                            				</ul>
