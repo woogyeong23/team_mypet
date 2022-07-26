@@ -2,7 +2,18 @@
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
   "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 
-<mapper namespace = "com.jeonju.mypet.admin">
+<mapper namespace = "com.jeonju.mypet.seller">
 
-
+	<select id="getSellerProductList" parameterType="string" resultType="Hashmap">
+		select a.p_name, p_content, p_category_small from product a join p_category b on a.p_category_idx=b.p_category_idx  where seller_idx = (select b.seller_idx from members a join sellerstory b on a.midx = b.midx where a.midx = #{member_id}) 		
+	</select>
+	<select id="getSellerProductDetail" parameterType="string" resultType="productVo">
+		select * from product where p_idx=#{p_idx}
+	</select>
+	<select id="getSellerProductImgs" parameterType="string" resultType="product_imgVo">
+		select * from product_img where p_idx=#{p_idx}
+	</select>
+	
+	
+	
 </mapper>

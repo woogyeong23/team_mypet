@@ -30,6 +30,7 @@
 		  	<file-size-threshold>20971520</file-size-threshold><!-- 넘으면 temp에 넣고 업로드에 들어가지 않음: 20MB -->
 	 	</multipart-config>
 	</servlet>
+			
 		
 	<servlet-mapping>
 		<servlet-name>appServlet</servlet-name>
@@ -50,6 +51,7 @@
 		<filter-name>encodingFilter</filter-name>
 		<url-pattern>/*</url-pattern>
 	</filter-mapping>
+
 	
 
 

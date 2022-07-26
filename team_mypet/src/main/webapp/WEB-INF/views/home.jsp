@@ -51,6 +51,7 @@
     
     </style>
 <!-- ************************************************ -->
+
 <script type="text/javascript" src="//code.jquery.com/jquery-3.6.0.min.js"></script>
 <script type="text/javascript">
 $(function() {
@@ -78,6 +79,8 @@ $(function() {
 </script>
 </head>
 
+
+</head>
 <body>
      <div class="popup" >
      <div class="popup_in"><a id="popup_link" href="">지금 바로 가입하고 상품을 구입시 
@@ -186,7 +189,188 @@ $(function() {
                     </div>
                     <!-- End Single Product -->
                 </div>
+<<<<<<< HEAD
                 </c:forEach>
+=======
+                <div class="col-lg-3 col-md-6 col-12">
+                    <!-- Start Single Product -->
+                    <div class="single-product">
+                        <div class="product-image">
+                            <img src="resources/assets/images/products/product-3.jpg" alt="#">
+                            <div class="button">
+                                <a href="product-details.html" class="btn"><i class="lni lni-cart"></i> Add to Cart</a>
+                            </div>
+                        </div>
+                        <div class="product-info">
+                            <span class="category">Camera</span>
+                            <h4 class="title">
+                                <a href="product-grids.html">WiFi Security Camera</a>
+                            </h4>
+                            <ul class="review">
+                                <li><i class="lni lni-star-filled"></i></li>
+                                <li><i class="lni lni-star-filled"></i></li>
+                                <li><i class="lni lni-star-filled"></i></li>
+                                <li><i class="lni lni-star-filled"></i></li>
+                                <li><i class="lni lni-star-filled"></i></li>
+                                <li><span>5.0 Review(s)</span></li>
+                            </ul>
+                            <div class="price">
+                                <span>$399.00</span>
+                            </div>
+                        </div>
+                    </div>
+                    <!-- End Single Product -->
+                </div>
+                <div class="col-lg-3 col-md-6 col-12">
+                    <!-- Start Single Product -->
+                    <div class="single-product">
+                        <div class="product-image">
+                            <img src="resources/assets/images/products/product-4.jpg" alt="#">
+                            <span class="new-tag">New</span>
+                            <div class="button">
+                                <a href="product-details.html" class="btn"><i class="lni lni-cart"></i> Add to Cart</a>
+                            </div>
+                        </div>
+                        <div class="product-info">
+                            <span class="category">Phones</span>
+                            <h4 class="title">
+                                <a href="product-grids.html">iphone 6x plus</a>
+                            </h4>
+                            <ul class="review">
+                                <li><i class="lni lni-star-filled"></i></li>
+                                <li><i class="lni lni-star-filled"></i></li>
+                                <li><i class="lni lni-star-filled"></i></li>
+                                <li><i class="lni lni-star-filled"></i></li>
+                                <li><i class="lni lni-star-filled"></i></li>
+                                <li><span>5.0 Review(s)</span></li>
+                            </ul>
+                            <div class="price">
+                                <span>$400.00</span>
+                            </div>
+                        </div>
+                    </div>
+                    <!-- End Single Product -->
+                </div>
+                <div class="col-lg-3 col-md-6 col-12">
+                    <!-- Start Single Product -->
+                    <div class="single-product">
+                        <div class="product-image">
+                            <img src="resources/assets/images/products/product-5.jpg" alt="#">
+                            <div class="button">
+                                <a href="product-details.html" class="btn"><i class="lni lni-cart"></i> Add to Cart</a>
+                            </div>
+                        </div>
+                        <div class="product-info">
+                            <span class="category">Headphones</span>
+                            <h4 class="title">
+                                <a href="product-grids.html">Wireless Headphones</a>
+                            </h4>
+                            <ul class="review">
+                                <li><i class="lni lni-star-filled"></i></li>
+                                <li><i class="lni lni-star-filled"></i></li>
+                                <li><i class="lni lni-star-filled"></i></li>
+                                <li><i class="lni lni-star-filled"></i></li>
+                                <li><i class="lni lni-star-filled"></i></li>
+                                <li><span>5.0 Review(s)</span></li>
+                            </ul>
+                            <div class="price">
+                                <span>$350.00</span>
+                            </div>
+                        </div>
+                    </div>
+                    <!-- End Single Product -->
+                </div>
+                <div class="col-lg-3 col-md-6 col-12">
+                    <!-- Start Single Product -->
+                    <div class="single-product">
+                        <div class="product-image">
+                            <img src="resources/assets/images/products/product-6.jpg" alt="#">
+                            <div class="button">
+                                <a href="product-details.html" class="btn"><i class="lni lni-cart"></i> Add to Cart</a>
+                            </div>
+                        </div>
+                        <div class="product-info">
+                            <span class="category">Speaker</span>
+                            <h4 class="title">
+                                <a href="product-grids.html">Mini Bluetooth Speaker</a>
+                            </h4>
+                            <ul class="review">
+                                <li><i class="lni lni-star-filled"></i></li>
+                                <li><i class="lni lni-star-filled"></i></li>
+                                <li><i class="lni lni-star-filled"></i></li>
+                                <li><i class="lni lni-star-filled"></i></li>
+                                <li><i class="lni lni-star"></i></li>
+                                <li><span>4.0 Review(s)</span></li>
+                            </ul>
+                            <div class="price">
+                                <span>$70.00</span>
+                            </div>
+                        </div>
+                    </div>
+                    <!-- End Single Product -->
+                </div>
+                <div class="col-lg-3 col-md-6 col-12">
+                    <!-- Start Single Product -->
+                    <div class="single-product">
+                        <div class="product-image">
+                            <img src="resources/assets/images/products/product-7.jpg" alt="#">
+                            <span class="sale-tag">-50%</span>
+                            <div class="button">
+                                <a href="product-details.html" class="btn"><i class="lni lni-cart"></i> Add to Cart</a>
+                            </div>
+                        </div>
+                        <div class="product-info">
+                            <span class="category">Headphones</span>
+                            <h4 class="title">
+                                <a href="product-grids.html">PX7 Wireless Headphones</a>
+                            </h4>
+                            <ul class="review">
+                                <li><i class="lni lni-star-filled"></i></li>
+                                <li><i class="lni lni-star-filled"></i></li>
+                                <li><i class="lni lni-star-filled"></i></li>
+                                <li><i class="lni lni-star-filled"></i></li>
+                                <li><i class="lni lni-star"></i></li>
+                                <li><span>4.0 Review(s)</span></li>
+                            </ul>
+                            <div class="price">
+                                <span>$100.00</span>
+                                <span class="discount-price">$200.00</span>
+                            </div>
+                        </div>
+                    </div>
+                    </div>
+                    <!-- End Single Product -->
+                
+                <div class="col-lg-3 col-md-6 col-12">
+                    <!-- Start Single Product -->
+                    <div class="single-product">
+                        <div class="product-image">
+                            <img src="resources/assets/images/products/product-8.jpg" alt="#">
+                            <div class="button">
+                                <a href="product-details.html" class="btn"><i class="lni lni-cart"></i> Add to Cart</a>
+                            </div>
+                        </div>
+                        <div class="product-info">
+                            <span class="category">Laptop</span>
+                            <h4 class="title">
+                                <a href="product-grids.html">Apple MacBook Air</a>
+                            </h4>
+                            <ul class="review">
+                                <li><i class="lni lni-star-filled"></i></li>
+                                <li><i class="lni lni-star-filled"></i></li>
+                                <li><i class="lni lni-star-filled"></i></li>
+                                <li><i class="lni lni-star-filled"></i></li>
+                                <li><i class="lni lni-star-filled"></i></li>
+                                <li><span>5.0 Review(s)</span></li>
+                            </ul>
+                            <div class="price">
+                                <span>$899.00</span>
+                            </div>
+                        </div>
+                    </div>
+                    <!-- End Single Product -->
+                </div>
+>>>>>>> branch 'master' of https://github.com/woogyeong23/team_mypet.git
             </div>
         </div>
     </section>
@@ -336,10 +520,6 @@ $(function() {
 
 <!-- 푸터와 js************************************************ -->
     <jsp:include page="../include/footer.jsp" />  
-    <!-- JavaScript Bundle with Popper -->
-<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/js/bootstrap.bundle.min.js" integrity="sha384-ka7Sk0Gln4gmtz2MlQnikT1wXgYsOg+OMhuP+IlRH9sENBO0LRn5q+8nbTov4+1p" crossorigin="anonymous"></script>
-<!-- ************************************************ -->
-
 </body>
 
 </html>

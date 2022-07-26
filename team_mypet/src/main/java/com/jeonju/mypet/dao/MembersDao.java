@@ -2,10 +2,16 @@ package com.jeonju.mypet.dao;
 
 
 import java.util.HashMap;
+import java.util.List;
+
+import javax.servlet.http.HttpServletRequest;
 
 import org.apache.ibatis.session.SqlSession;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Repository;
+
+import com.jeonju.mypet.vo.MembersVo;
+import com.jeonju.mypet.vo.PetVo;
 
 
 @Repository
@@ -21,20 +27,68 @@ public class MembersDao {
 	public MembersDao(SqlSession sqlSession) {
 		this.sqlSession = sqlSession;
 	}
-    
-	// Test를 위해 임의로 작성한 코드(membersdao)  (
-	public HashMap<String, Long> loginMembers(HashMap<String, String> loginInfo) {
-		HashMap<String, Long> resultMap = sqlSession.selectOne(MAPPER+".loginMembers", loginInfo);
+
+	public int joinMember(MembersVo membersVo) {
+		
+		return sqlSession.insert(MAPPER+".joinMember",membersVo);
+	}
 	
-		if(resultMap.get("m_auth") == 0) {
-			resultMap.put("m_grade", 0L);
-			resultMap.put("midx", null);
-			resultMap.put("m_nick", null);
+	
+	public HashMap<String, Long> loginMember(HashMap<String, String> loginInfo) {
+
+		HashMap<String, Long> resultMap= sqlSession.selectOne(MAPPER+".loginMember",loginInfo);
+		if(resultMap.get("m_auth")==0){
+			resultMap.put("m_grade",0L);
+			
 		}
 		return resultMap;
 	}
-     
-     //  ) Test를 위해 임의로 작성한 코드
+	public HashMap<String, String> loginMember1(HashMap<String, String> loginInfo) {
+
+		HashMap<String, String> resultMap1= sqlSession.selectOne(MAPPER+".loginMember1",loginInfo);
+		
+		return resultMap1;
+	}
+	public HashMap<String, Integer> loginMember2(HashMap<String, String> loginInfo) {
+		
+		HashMap<String, Integer> resultMap2= sqlSession.selectOne(MAPPER+".loginMember2",loginInfo);
+		
+		return resultMap2;
+	}
+
+	public int checkId(String id) {
+		return sqlSession.selectOne(MAPPER+".checkId", id);
+	}
+
+	public MembersVo membermodi(int midx) {
+		return sqlSession.selectOne(MAPPER+".getmembermodi", midx);
+	}
+
+	public int membermodiProcess(MembersVo membersVo) {
+		return sqlSession.update(MAPPER+".getmembermodiProcess", membersVo);
+	}
+
+	
+	public int petmodiProcess(PetVo petVo) {
+		return sqlSession.insert(MAPPER+".getpetmodiProcess", petVo);
+	}
+	
+	public List<PetVo> petList(int midx) {
+		return sqlSession.selectList(MAPPER+".getpetList",midx);
+	}
+
+	public String idfind(String m_name) {
+		return sqlSession.selectOne(MAPPER+".getidfind",m_name);
+	}
+
+
+
+
+
+
+	
+
+	
 	
 	
 	

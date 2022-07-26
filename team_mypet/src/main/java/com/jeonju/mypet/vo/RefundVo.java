@@ -19,10 +19,10 @@ public class RefundVo {
 	private int detail_idx;
 	
 	private List<Refund_DayVo> refund_days; 
-	public List<Refund_DayVo> getRefunds_days() {
+	public List<Refund_DayVo> getRefund_days() {
 		return refund_days;
 	}
-	public void setRefunds_days(List<Refund_DayVo> refund_days) {
+	public void setRefund_days(List<Refund_DayVo> refund_days) {
 		this.refund_days = refund_days;
 	}
 	

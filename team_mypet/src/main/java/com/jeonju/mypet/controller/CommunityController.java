@@ -1,21 +1,22 @@
 package com.jeonju.mypet.controller;
 
 
+
 import java.io.File;
 import java.io.FileOutputStream;
 import java.io.IOException;
-import java.io.InputStream;
+
 import java.io.OutputStream;
 import java.io.PrintWriter;
 import java.text.SimpleDateFormat;
 import java.util.List;
-import java.util.UUID;
+
 
 import javax.servlet.http.HttpServletRequest;
-import javax.servlet.http.HttpServletRequestWrapper;
+
 import javax.servlet.http.HttpServletResponse;
 
-import org.apache.commons.io.FileUtils;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -23,10 +24,10 @@ import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
-import org.springframework.web.bind.annotation.ResponseBody;
+
 import org.springframework.web.multipart.MultipartFile;
 
-import com.google.gson.JsonObject;
+
 import com.jeonju.mypet.service.CommunityService;
 import com.jeonju.mypet.vo.Commu_CommentVo;
 import com.jeonju.mypet.vo.CommunityVo;
@@ -171,7 +172,7 @@ public class CommunityController {
 	
 	
 	
-	
+
 	
 	
 	

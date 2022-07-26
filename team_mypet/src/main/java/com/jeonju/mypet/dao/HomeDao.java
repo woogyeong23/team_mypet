@@ -9,7 +9,7 @@ import org.springframework.stereotype.Repository;
 
 import com.jeonju.mypet.vo.ProductVo;
 
-
+import com.jeonju.mypet.vo.MembersVo;
 
 
 @Repository
@@ -23,7 +23,7 @@ public class HomeDao {
 	public HomeDao(SqlSession sqlSession) {
 		this.sqlSession = sqlSession;
 	}
-
+	
 	public List<ProductVo> getHList() {
 		return sqlSession.selectList(MAPPER+".getHList");
 	}
@@ -36,14 +36,17 @@ public class HomeDao {
 		return sqlSession.selectOne(MAPPER+".resultCount", keyword);
 	}
 	
+	public int addProfile(MembersVo membersVo) {
+		return sqlSession.insert(MAPPER+".addGallery",membersVo);
+	}
+	
 	
 
 
+
 	
 	
 	
-	
-	
-	
+
 
 }

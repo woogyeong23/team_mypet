@@ -15,5 +15,3 @@
     <link rel="stylesheet" href="resources/assets/css/tiny-slider.css" />
     <link rel="stylesheet" href="resources/assets/css/glightbox.min.css" />
     <link rel="stylesheet" href="resources/assets/css/main.css" />
-    
-        

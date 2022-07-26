@@ -9,6 +9,7 @@ public class PageMaker {//하단의 페이지 네비게이션 바..
 	private boolean next;		//다음버튼
 	private int displayPageNum = 10;	//네비게이션에 보여줄 개수
 	private SearchCriteria scri;
+	
 	public int getTotalCount() {
 		return totalCount;
 	}
@@ -73,8 +74,6 @@ public class PageMaker {//하단의 페이지 네비게이션 바..
 		
 		prev = startPage == 1 ? false : true;//첫번째 페이지면 더 앞으로 갈 수 없다.
 		next = endPage*scri.getPerPageNum() >= totalCount ? false : true;//그 이상은 더이상 나타낼 데이터가 없으니까 버튼이 나타나지 않게..
-		
-		
 		
 	}
 	

@@ -1265,6 +1265,7 @@ top: -1px;
   text-align: center;
 }
 
+/* 버튼 */
 .button .btn {
   display: inline-block;
   text-transform: capitalize;
@@ -1308,6 +1309,7 @@ top: -1px;
   margin: 0;
 }
 
+/* 버튼 마우스올리면 색바뀌는 부분 */
 .button .btn:hover {
   color: #fff;
   background-color: #081828;
@@ -3395,7 +3397,7 @@ top: 2px;
 }
 
 .single-product .product-info .price span {
-  font-size: 17px;
+  font-size: 25px;
   font-weight: 700;
   color: #fae100;
   display: inline-block;
@@ -3676,7 +3678,7 @@ top: 2px;
 .item-details .product-info .price {
   color: #081828;
   display: block;
-  font-size: 24px;
+  font-size: 30px;
   font-weight: 600;
   margin-bottom: 15px;
 }
