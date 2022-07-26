@@ -20,6 +20,8 @@ public class MembersVo {
 	private int m_grade;
 	private Date m_delday;
 	private String m_delyn;
+	
+	
 	public int getMidx() {
 		return midx;
 	}

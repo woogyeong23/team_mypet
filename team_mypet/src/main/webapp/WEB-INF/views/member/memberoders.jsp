@@ -25,7 +25,6 @@
 <aside>
 	<!-- 사이더와 js************************************************ -->
     <jsp:include page="../../include/sidebar.jsp" />  
-    
 </aside>
 <article>
 <div class="container px-3 py-4" id="hanging-icons" >
@@ -56,7 +55,7 @@
         </div>
         <div>
           <h4>주문배송</h4>
-          <a href="${pageContext.request.contextPath}/memberorders.do">
+          <a href="#">
             0 건
           </a>
         </div>
@@ -66,7 +65,7 @@
         </div>
         <div>
           <h4>교환/환불</h4>
-          <a href="${pageContext.request.contextPath}/memberrefund.do" >
+          <a href="#" >
             0 건
           </a>
         </div>
@@ -74,9 +73,9 @@
     </div>
     
     <hr>
-    <a href="${pageContext.request.contextPath}/memberorders.do">
+    
         <h3 class="pb-1 border-bottom" >최근 주문내역</h3>
-         </a>
+         
 		<div class="row">
                 <div class="col-lg-3 col-md-6 col-12">
                     <!-- Start Single Product -->
@@ -196,7 +195,7 @@
                         </div>
                     </div>
                 </div>
-                <a style="text-align:right;" href="${pageContext.request.contextPath}/memberorders.do">
+                <a style="text-align:right;" href="#">
             더보기
           </a>
                <!-- End Single Product -->
