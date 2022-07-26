@@ -6,7 +6,8 @@ public class Product_ImgVo {
 	private int p_front_img;
 	private int p_idx;
 	private String p_ori_filename;
-	private String p_sys_filname;
+	private String p_sys_filename;
+	
 	public int getP_front_img() {
 		return p_front_img;
 	}
@@ -25,11 +26,11 @@ public class Product_ImgVo {
 	public void setP_ori_filename(String p_ori_filename) {
 		this.p_ori_filename = p_ori_filename;
 	}
-	public String getP_sys_filname() {
-		return p_sys_filname;
+	public String getP_sys_filename() {
+		return p_sys_filename;
 	}
-	public void setP_sys_filname(String p_sys_filname) {
-		this.p_sys_filname = p_sys_filname;
+	public void setP_sys_filename(String p_sys_filename) {
+		this.p_sys_filename = p_sys_filename;
 	}
 	
 }

@@ -27,8 +27,9 @@ public class ProductVo {
 	private int p_status;
 	private String p_delyn;
 	private String p_stock;
-	
+
 	private List<Product_ImgVo> product_imgs; 
+	
 	public List<Product_ImgVo> getProduct_imgs() {
 		return product_imgs;
 	}
@@ -36,6 +37,40 @@ public class ProductVo {
 		this.product_imgs = product_imgs;
 	}
 	
+	
+	//소현
+	private String m_nick;
+	private int p_front_img;
+	private String p_ori_filename;
+	private String p_sys_filename;
+	
+	public String getM_nick() {
+		return m_nick;
+	}
+	public void setM_nick(String m_nick) {
+		this.m_nick = m_nick;
+	}
+
+	public int getP_front_img() {
+		return p_front_img;
+	}
+	public void setP_front_img(int p_front_img) {
+		this.p_front_img = p_front_img;
+	}
+	public String getP_ori_filename() {
+		return p_ori_filename;
+	}
+	public void setP_ori_filename(String p_ori_filename) {
+		this.p_ori_filename = p_ori_filename;
+	}
+	public String getP_sys_filename() {
+		return p_sys_filename;
+	}
+	public void setP_sys_filename(String p_sys_filename) {
+		this.p_sys_filename = p_sys_filename;
+	}
+	//소현
+
 	
 	public int getP_idx() {
 		return p_idx;
@@ -169,4 +204,5 @@ public class ProductVo {
 	public void setP_stock(String p_stock) {
 		this.p_stock = p_stock;
 	}
+
 }

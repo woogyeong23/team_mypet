@@ -6,7 +6,6 @@ public class ReviewVo {
 
 	private int review_idx;
 	private int midx;
-	private int detail_idx;
 	private int product_idx;
 	private int orders_idx;
 	private String review_content;
@@ -27,12 +26,6 @@ public class ReviewVo {
 	}
 	public void setMidx(int midx) {
 		this.midx = midx;
-	}
-	public int getDetail_idx() {
-		return detail_idx;
-	}
-	public void setDetail_idx(int detail_idx) {
-		this.detail_idx = detail_idx;
 	}
 	public int getProduct_idx() {
 		return product_idx;
