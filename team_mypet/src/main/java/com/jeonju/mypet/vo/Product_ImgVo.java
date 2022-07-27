@@ -7,7 +7,6 @@ public class Product_ImgVo {
 	private int p_idx;
 	private String p_ori_filename;
 	private String p_sys_filename;
-	
 	public int getP_front_img() {
 		return p_front_img;
 	}

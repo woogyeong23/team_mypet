@@ -1,33 +1,7 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
-    <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
-    <!DOCTYPE html> 
-  <head>
-
- <!-- css************************************************ -->
-    <jsp:include page="../../include/head.jsp" />  
-<!-- ************************************************ -->
-
-
-    <!-- Bootstrap core CSS -->
-    
-    <!-- Custom styles for this template -->
-    <link href="resources/assets/css/sidebar.css" rel="stylesheet">
-   
-  </head>
-  <body>
-
-    <!-- 헤더와 js************************************************ -->
-    <jsp:include page="../../include/header.jsp" />  
-	<!-- ************************************************ -->
-
-<main class="container">
-<aside>
-	<!-- 사이더와 js************************************************ -->
-    <jsp:include page="../../include/sidebar.jsp" />  
-    
-</aside>
-<article>
+<!DOCTYPE html>
+	
 <div class="container px-3 py-4" id="hanging-icons" >
     <h3 class="pb-1 border-bottom" >내 정보</h3>
     <div class="row g-3 py-4 row-cols-3 row-cols-lg-4">
@@ -36,7 +10,7 @@
         </div>
         <div>
           <h4>적립금</h4>
-          <a href="${pageContext.request.contextPath}/memberpoint.do">
+          <a href="#">
             0 P
           </a>
         </div>
@@ -46,7 +20,7 @@
         </div>
         <div>
           <h4>회원등금</h4>
-          <a href="${pageContext.request.contextPath}/membergrade.do">
+          <a href="#">
             Silver
           </a>
         </div>
@@ -56,7 +30,7 @@
         </div>
         <div>
           <h4>주문배송</h4>
-          <a href="${pageContext.request.contextPath}/memberorders.do">
+          <a href="#">
             0 건
           </a>
         </div>
@@ -66,7 +40,7 @@
         </div>
         <div>
           <h4>교환/환불</h4>
-          <a href="${pageContext.request.contextPath}/memberrefund.do" >
+          <a href="#" >
             0 건
           </a>
         </div>
@@ -74,9 +48,7 @@
     </div>
     
     <hr>
-    <a href="${pageContext.request.contextPath}/memberorders.do">
         <h3 class="pb-1 border-bottom" >최근 주문내역</h3>
-         </a>
 		<div class="row">
                 <div class="col-lg-3 col-md-6 col-12">
                     <!-- Start Single Product -->
@@ -196,9 +168,6 @@
                         </div>
                     </div>
                 </div>
-                <a style="text-align:right;" href="${pageContext.request.contextPath}/memberorders.do">
-            더보기
-          </a>
                <!-- End Single Product -->
                 
                 
@@ -207,14 +176,7 @@
         
 </div>
  
-    </article>
-</main>
 
 
-
-<!-- 푸터와 js************************************************ -->
-    <jsp:include page="../../include/footer.jsp" />  
-<!-- ************************************************ -->
-     
-  </body>
-</html>
+ 
+ 

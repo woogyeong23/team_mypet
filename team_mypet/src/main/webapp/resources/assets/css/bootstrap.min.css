@@ -44,7 +44,9 @@
         scroll-behavior: smooth
     }
 }
-
+.content{
+	width:80%;
+}
 body {
     margin: 0;
     font-family: var(--bs-font-sans-serif);
@@ -642,6 +644,7 @@ progress {
     width: 100%;
     padding-right: var(--bs-gutter-x, .75rem);
     padding-left: var(--bs-gutter-x, .75rem);
+    padding-bottom : 1px;
     margin-right: auto;
     margin-left: auto
 }

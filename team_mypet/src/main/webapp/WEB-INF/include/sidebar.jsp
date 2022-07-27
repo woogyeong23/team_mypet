@@ -12,7 +12,7 @@
 
 <input type="hidden">
   <div class="flex-shrink-0 p-3 bg-white" style="width: 280px;">
-  <div style="text-align:center;" ><!-- 수정 -->
+  <div style="width:150px;height:150px;text-align:center;" >
   <img src="resources/assets/images/profile.jpg" class="img-thumbnail" alt="프로필">
 </div>  
   

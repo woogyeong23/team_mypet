@@ -3,6 +3,54 @@
   "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 
 <mapper namespace = "com.jeonju.mypet.members">
-
-
+	<insert id="joinMember" parameterType="membersVo">
+		insert into members(m_id,m_pwd,m_name,m_nick,m_birth,m_addr,m_phone) 
+		values(#{m_id},#{m_pwd},#{m_name},#{m_nick},#{m_birth},#{m_addr},#{m_phone})	
+	</insert>
+	
+	<!-- 로그인 -->
+	<select id="loginMember" parameterType="map" resultType="map">
+		select count(*) as m_auth,m_grade,midx,m_nick from members where m_id=#{m_id} and m_pwd=#{m_pwd}
+	</select>
+	<select id="loginMember1" parameterType="map" resultType="map">
+		select m_nick from members where m_id=#{m_id} and m_pwd=#{m_pwd}
+	</select>
+	<select id="loginMember2" parameterType="map" resultType="map">
+		select midx from members where m_id=#{m_id} and m_pwd=#{m_pwd}
+	</select>
+	<!-- 아이디찾기 -->	
+	<select id="getidfind" parameterType="string" resultType="string">
+		select ifnull(m_id,0) from members where m_name= #{m_name}
+	</select>
+	<!-- 아이디유효성 -->
+	<select id="checkId" parameterType="int" resultType="int">
+		select count(*) from members where midx= #{midx}
+	</select>
+	<!-- 내정보 -->	
+	<select id="getmembermodi" parameterType="int" resultType="membersVo" >
+		select * from members where midx= #{midx}
+	</select>
+	<!-- ㅇㅂㅁ -->
+	<insert id="addProfile" parameterType="membersVo">
+		insert into members(m_profile) values(#{m_profile})
+	</insert>
+	<!-- 회원정보수정 -->
+	<update id="getmembermodiProcess" parameterType="membersVo">
+	update members set m_name=#{m_name}, m_nick=#{m_nick},m_birth=#{m_birth},m_addr=#{m_addr},m_account=#{m_account}
+	 where midx=#{midx}
+	</update>
+	
+ 	<!-- 펫 정보 --> 
+<!-- 	<select id="getpetmodi" parameterType="int" resultType="petVo"> -->
+<!-- 	select * from members a left outer join pet b ON a.midx = b.midx where a.midx=#{midx}; -->
+<!-- 	</select> -->
+	<!-- 펫 정보 입력 -->
+	<insert id="getpetmodiProcess" parameterType="petVo">
+		insert into pet(pet_name,pet_gender,pet_age,pet_type,pet_breed,midx) 
+		values(#{pet_name},#{pet_gender},#{pet_age},#{pet_type},#{pet_breed},#{midx})	
+	</insert>
+	<!-- 펫 정보 리스트 -->
+	<select id="getpetList" parameterType="int" resultType="petVo">
+	select * from members a left outer join pet b ON a.midx = b.midx where a.midx=#{midx};
+	</select>
 </mapper>

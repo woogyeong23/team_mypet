@@ -73,10 +73,10 @@
                         <div class="top-end">
                             <div class="user">
                                 <i class="lni lni-user"></i>
-                                Hello <!-- 사용자 이름 or 닉네임 추가하면 될듯 -->
+                               ${midx}님 <!-- 사용자 이름 or 닉네임 추가하면 될듯 -->
                             </div>
                             <c:choose>
-                            <c:when test="${member_id != null}"><!-- 로그인이 이루어진 경우 -->
+                            <c:when test="${midx != null}"><!-- 로그인이 이루어진 경우 -->
                             <ul class="user-login">
                             <li>
                                <a href="${pageContext.request.contextPath}/memberInfo.do">내정보</a> 
@@ -94,6 +94,7 @@
                                 </li>
                                 <li>
                                     <a href="${pageContext.request.contextPath}/join.do">회원가입</a>
+                                    
                                 </li>
                             </ul>
                             </c:otherwise>

@@ -204,7 +204,7 @@
 	
 		 <tr>
 	 		<td>상품 이미지들</td>
-	 		<td><img src="${pageContext.request.contextPath}/resources/assets/images/product-details/${product_imgVo.p_sys_filname }"/></td>
+	 		<td><img src="${pageContext.request.contextPath}/resources/assets/images/product-details/${product_imgVo.p_sys_filename }"/></td>
 	 	</tr>
 	</c:forEach>
 	 	
