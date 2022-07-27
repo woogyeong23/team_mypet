@@ -24,12 +24,17 @@
 	<!-- 소현 -->
 	<section class="trending-product section" style="margin-top: 12px;">
     <div class="container">
+    
+    <!-- 홈 > 강아지 링크  -->
     		<nav style="--bs-breadcrumb-divider: url(&#34;data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='8' height='8'%3E%3Cpath d='M2.5 0L1 1.5 3.5 4 1 6.5 2.5 8l4-4-4-4z' fill='currentColor'/%3E%3C/svg%3E&#34;);" aria-label="breadcrumb">
   				<ol class="breadcrumb" style="font-size: 15px">
   					 <li class="breadcrumb-item"><a href="${pageContext.request.contextPath}/home.do">홈</a></li>
    					 <li class="breadcrumb-item active" aria-current="page"><a href="productList.do?i=0&l=1">강아지</a></li>
   				</ol>
 			</nav>
+	
+	<!-- 홈 > 강아지 링크 끝 -->
+	
 	<div class="row">
                 <c:forEach var="productVo" items="${productList}">
 				<!-- Start Single Product -->
