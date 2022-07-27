@@ -6,6 +6,7 @@
 
 <!-- 소현 -->
 
+	<!-- 상품목록 -->
 	<select id="getProductList1" resultType="productVo">
 	select a.*,b.*,c.*
 	from product a join p_category b on a.p_category_idx = b.p_category_idx join product_img c on a.p_idx=c.p_idx 
@@ -18,10 +19,15 @@
 	where b.p_category_large=#{p_category_large};
 	</select>
 	
+	<!-- 상품상세페이지 -->
+	<select id="getProductView" resultType="productVo">
+	select * 
+	from product
+	where p_idx = #{p_idx}
+	</select>
 	
 	
-	
- 
+ 	<!-- 상품최신순목록 -->
 	<select id="productNewList" resultType="productVo">
 		SELECT a.*,b.* 
 		FROM product a join product_img b on a.p_idx=b.p_idx 

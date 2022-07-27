@@ -163,7 +163,7 @@
 								<td style="text-align: right; "><button class="chat-button">판매자와채팅</button></td>
 							</tr>
 						</table>
-							<p style="font-size: 40px; color: black; margin: 0px 0px 50px;">강아지껌</p>
+							<p style="font-size: 40px; color: black; margin: 0px 0px 50px;">${productVo.p_name}</p>
 							<h3 class="price" style="margin-bottom:5px">4,000원<span>6,000원</span><span style="color: red; font-size:15px; text-decoration: none; ">30%</span></h3>
 							
 							

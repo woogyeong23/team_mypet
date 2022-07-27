@@ -41,7 +41,7 @@
                 <div class="col-lg-3">
                     <div class="single-product">
                     	<div class="product-image" style="position: relative;">
-                    	<a href="productView.do">
+                    	<a href="productView.do?p_idx=${productVo.p_idx}">
                     	<c:choose>
                     		<c:when test="${productVo.p_sys_filename == null}">
                     	  		<img src="${pageContext.request.contextPath}/resources/assets/images/products/image.jpg" width="300px" height="300px">

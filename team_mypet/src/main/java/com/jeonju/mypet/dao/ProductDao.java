@@ -36,10 +36,11 @@ public class ProductDao {
 			return sqlSession.selectList(MAPPER + ".getProductList2", p_category_large);
 		}
 		
-/*	public List<ProductVo> getProductList(){
-		return sqlSession.selectList(MAPPER + ".getProductList");
-	} */
-
+	//상품상세페이지
+	public ProductVo getProductView(int p_idx) {
+		return sqlSession.selectOne(MAPPER + ".getProductView", p_idx);
+	}
+	
 	//최신순
 	public List<ProductVo> productNewList() {
 		return sqlSession.selectList(MAPPER + ".productNewList");
