@@ -26,13 +26,13 @@
 	              class="org.springframework.web.multipart.support.StandardServletMultipartResolver">
 	</beans:bean>
 	
-	<context:component-scan base-package="com.jeonju.mypet.controller" />	
+	<context:component-scan base-package="com.jeonju.mypet.controller" />
 	<context:component-scan base-package="com.jeonju.mypet.dao" />
 	<context:component-scan base-package="com.jeonju.mypet.service" />
 	
 	
 	<!-- Interceptor 설정: 로그인 여부 체크하는 LoginInterceptor 설정 -->
-	<interceptors> 
+	<interceptors>
 		<interceptor>
 			<mapping path="/*.do"/>
 			<exclude-mapping path="/home.do"/>

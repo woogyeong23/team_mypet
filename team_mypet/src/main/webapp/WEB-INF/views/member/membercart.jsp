@@ -2,8 +2,49 @@
     pageEncoding="UTF-8"%>
     <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
     <!DOCTYPE html> 
+    <html>
   <head>
+<script src="http://code.jquery.com/jquery-latest.min.js"></script>
+<script type="text/javascript">
 
+$(document).ready(function(){
+	$(function(){
+		$("#NumberCounter__button1").on("click",function(){
+			let NumberCounter = $(this).parent("label").find("input");
+			let NC = NumberCounter.val()
+			
+			if(NC > 1){
+				
+			--NunberCounter;
+			$(this).attr("disabled",false);
+			
+			}
+			
+		});		
+	});
+	
+	
+		$(function(){
+			$("#NumberCounter__button2").click(function(e){
+				e.preventDefault();
+				let Nc = $('.NumberCounter__input').val();
+				let num = parseInt(Nc,10);
+				num++;
+				if(num>500){
+					alert("500");
+
+				}
+				
+
+				
+		
+			});		
+		});
+
+
+
+});
+</script>
  <!-- css************************************************ -->
     <jsp:include page="../../include/head.jsp" />  
 <!-- ************************************************ -->
@@ -20,7 +61,7 @@
     <jsp:include page="../../include/header.jsp" />  
 	<!-- ************************************************ -->
 
-<main >
+<main>
 <aside class="container">
 		<div class="CartPage">
       		<div class="PageHeader"> 
@@ -81,9 +122,9 @@
    																<em class="CartOptionListItem__optionText"></em>
    																	<div class="CartOptionListItem__counter">
    																		<label class="NumberCounter">
-   																			<button type="button" disabled="disabled" class="NumberCounter__button" onclick="">-</button>
-   																			<input name="cart_cnt" type="text" class="NumberCounter__input" value="0" readonly>
-   																			<button type="button" class="NumberCounter__button">+</button>   						
+   																			<button type="button" id="NumberCounter__button1" disabled="disabled" class="NumberCounter__button" >-</button>
+   																			<input name="cart_cnt" type="text" id="NumberCounter__input"name="NumberCounter__input" class="NumberCounter__input" value="1" readonly="readonly">
+   																			<button type="button" id="NumberCounter__button2" class="NumberCounter__button">+</button>   						
    																		</label>
    																	</div>
    															</div>
@@ -183,13 +224,8 @@
         		</button>
         		</div>
         	</div>
-        	
-        	
-        	
-        	
  		</div>
-
-
+	</div>
 </aside>
 </main>
 

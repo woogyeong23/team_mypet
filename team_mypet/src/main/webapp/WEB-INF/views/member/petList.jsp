@@ -2,8 +2,35 @@
     pageEncoding="UTF-8"%>
     <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
     <!DOCTYPE html> 
+    <html>
   <head>
-
+<script src="http://code.jquery.com/jquery-latest.min.js"></script>
+<script type="text/javascript">
+	$(function(){
+		$("#petDelete").click(function(){
+			let p_idx = $(this).attr("name");
+			
+			$ajax({
+				type:"post",
+				url:"${pageContext.request.contextPath}/petDelete.do",
+				data:{"p_idx":p_idx},
+				success:function(data){
+					if(data =="N"){
+						alert("삭제 실패!");
+					}else{
+						alert("삭제 성공!");
+						$("tr:has(input:checked)").remove();
+					}
+				},
+				error: function(error){alert("회원등급 수정 중 에러 발생!");}
+				
+			});
+			
+		});
+	});
+	
+		
+</script>
  <!-- css************************************************ -->
     <jsp:include page="../../include/head.jsp" />  
 <!-- ************************************************ -->
@@ -90,6 +117,7 @@
 		
 			
 	</table>
+	<button type="submit" name="${petVo.pet_idx}" class="btn btn-s btn-point" style="text-align:right" id="petDelete">삭제하기</button>
 
 	<input type="hidden" name="midx" value="${petVo.midx}">
 	<input type="hidden" name="midx" value="${petVo.pet_idx}">	
