@@ -21,9 +21,9 @@ public class SellerService {
 		this.sellerDao = sellerDao;
 	}
 	
-	public List<HashMap<String, Object>> seller_productList(String member_id) {
+	public List<HashMap<String, Object>> seller_productList(String midx) {
 		// TODO Auto-generated method stub
-		return sellerDao.getSellerProductList(member_id);
+		return sellerDao.getSellerProductList(midx);
 	}
 
 	public ProductVo seller_productDetail(String p_idx) {

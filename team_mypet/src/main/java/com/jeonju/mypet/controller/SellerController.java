@@ -37,8 +37,8 @@ public class SellerController {
 	public String seller_productList(Model model, HttpServletRequest request) {
 		
 		HttpSession session = request.getSession();
-		//String member_id = (String)session.getAttribute("member_id");
-		String member_id= "1";
+		int midx = (int) session.getAttribute("midx");
+		String member_id= Integer.toString(midx);
 		//ProductVo productVo = sellerService.seller_productList(member_id); 
 		//Spring MVC에서 Controller에서 생성되는 Model객체는 뷰단(JSP페이지)에서 참조 가능
 		
@@ -58,21 +58,10 @@ public class SellerController {
 	}
 	
 	@GetMapping("/seller_productDetail.do")
-	public String seller_productDetail( Model model, HttpServletRequest request) {
-		//@RequestParam("p_idx") int p_idx,
-		//HttpSession session = request.getSession();
-		//String member_id = (String)session.getAttribute("member_id");
-		//String member_id= "1";
-		//ProductVo productVo = sellerService.seller_productList(member_id); 
-		//Spring MVC에서 Controller에서 생성되는 Model객체는 뷰단(JSP페이지)에서 참조 가능
+	public String seller_productDetail( @RequestParam("p_idx") String p_idx, Model model, HttpServletRequest request) {
+		//@RequestParam("p_idx") String p_idx,
 		
 		
-		
-		//List<HashMap<String, Object>> productListMap = sellerService.seller_productList(member_id);
-		
-		//model.addAttribute("productListMap", productListMap);
-		
-		String p_idx="2";
 		
 		ProductVo productVo = sellerService.seller_productDetail(p_idx);
 		
