@@ -18,7 +18,7 @@ public class HomeService {
 	private HomeDao homeDao;
 	
 	@Autowired
-	public HomeService(HomeDao HomeDao) {
+	public HomeService(HomeDao homeDao) {
 		this.homeDao = homeDao;
 	}
 	

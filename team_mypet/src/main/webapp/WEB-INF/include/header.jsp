@@ -32,26 +32,35 @@
         <div class="topbar">
             <div class="container">
                 <div class="row align-items-center">
-                    <div class="col-lg-4 col-md-4 col-12">
+                 <div class="col-lg-4 col-md-4 col-12">
+                        <div class="top-left">
+                            <ul class="useful-links">
+                                <li><a style="color:black" href="${pageContext.request.contextPath}/home.do">지금 바로 가입하고 상품을 구입하면</a></li>
+                            </ul>
+                        </div>
                     </div>
                     <div class="col-lg-4 col-md-4 col-12">
                         <div class="top-middle">
-                            <ul class="useful-links">
-                                <li><a href="${pageContext.request.contextPath}/home.do">지금 바로 가입하고 상품을 구입하면</a></li>
-                            </ul>
+<!--                             <ul class="useful-links"> -->
+<%--                                 <li><a href="${pageContext.request.contextPath}/home.do">지금 바로 가입하고 상품을 구입하면</a></li> --%>
+<!--                             </ul> -->
                         </div>
                     </div>
                     <div class="col-lg-4 col-md-4 col-12">
                         <div class="top-end">
                             <div class="user">
                                 <i class="lni lni-user"></i>
-                        ${midx}님 <!-- 사용자 이름 or 닉네임 추가하면 될듯 -->
+                            
                             </div>
                             <c:choose>
                             <c:when test="${m_id != null}"><!-- 로그인이 이루어진 경우 -->
                             <ul class="user-login">
                             <li>
-                               <a href="${pageContext.request.contextPath}/memberInfo.do">내정보</a> 
+                            <p><span>${m_nick}</span>님 환영합니다!</p>
+                            </li>
+                            
+                            <li>
+                               <a href="${pageContext.request.contextPath}/memberInfo.do"> 내정보</a> 
                             </li>
                             <li>
                                <a href="${pageContext.request.contextPath}/logout.do">로그아웃</a>
@@ -239,7 +248,11 @@
                             <div class="collapse navbar-collapse sub-menu-bar" id="navbarSupportedContent">
                                 <ul id="nav" class="navbar-nav ms-auto">
                                     <li class="nav-item">
-                                        <a href="${pageContext.request.contextPath}/home.do" class="active" aria-label="Toggle navigation">Home</a>
+                                    <a href="productBest.do" aria-label="Toggle navigation">인기순</a> 
+<%--                        <a href="${pageContext.request.contextPath}/home.do" class="active" aria-label="Toggle navigation">Home</a> --%>
+                                    </li>
+                                     <li class="nav-item">
+                                     <a href="productNew.do" aria-label="Toggle navigation">최신순</a>
                                     </li>
                                     <li class="nav-item">
                                         <a class="dd-menu collapsed" href="javascript:void(0)" data-bs-toggle="collapse"
@@ -287,12 +300,12 @@
                                      <li class="nav-item">
                                         <a href="${pageContext.request.contextPath}/BSellerList.do" aria-label="Toggle navigation">인기 작가</a>
                                     </li>
-                                     <li class="nav-item">
-                                        <a href="productBest.do" aria-label="Toggle navigation">인기순</a>
-                                    </li>
-                                     <li class="nav-item">
-                                        <a href="productNew.do" aria-label="Toggle navigation">최신순</a>
-                                    </li>
+<!--                                      <li class="nav-item"> -->
+<!--                                         <a href="productBest.do" aria-label="Toggle navigation">인기순</a> -->
+<!--                                     </li> -->
+<!--                                      <li class="nav-item"> -->
+<!--                                         <a href="productNew.do" aria-label="Toggle navigation">최신순</a> -->
+<!--                                     </li> -->
                                 </ul>
                             </div> <!-- navbar collapse -->
                         </nav>
