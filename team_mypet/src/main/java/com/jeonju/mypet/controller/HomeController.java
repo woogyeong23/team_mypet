@@ -1,38 +1,53 @@
 package com.jeonju.mypet.controller;
 
+
+import java.util.List;
+
 import java.io.File;
 import java.io.IOException;
 import java.text.SimpleDateFormat;
 
 import javax.servlet.http.HttpServletRequest;
 
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
+
+import com.jeonju.mypet.service.HomeService;
+import com.jeonju.mypet.vo.ProductVo;
+
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.multipart.MultipartFile;
 
-import com.jeonju.mypet.service.HomeService;
 import com.jeonju.mypet.vo.MembersVo;
+
 @Controller
 public class HomeController {
 	
-private HomeService homeService;
+	private HomeService homeService;
+
 	
 	@Autowired //의존 자동 주입 : 생성자 방식
 	public HomeController(HomeService homeService) {
 		this.homeService = homeService;
 	}
 	
-	@GetMapping("/")//get방식 요청 처리
-	public String home1() {
+	@GetMapping("/")
+	public String home1(Model model) {
+		
+		List<ProductVo> hList = homeService.getHList();
+		model.addAttribute("HomeList",hList);
 		return "home";
 	}
 	
-	@GetMapping("/home.do")//get방식 요청 처리
-	public String home2() {
+	@GetMapping("/home.do")
+	public String home2(Model model) {
+		
+		List<ProductVo> hList = homeService.getHList();
+		model.addAttribute("HomeList",hList);
 		return "home";
 	}
 	
