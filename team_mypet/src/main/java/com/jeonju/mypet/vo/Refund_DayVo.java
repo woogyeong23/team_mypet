@@ -1,4 +1,3 @@
-
 package com.jeonju.mypet.vo;
 
 import java.util.Date;
@@ -36,3 +35,4 @@ public class Refund_DayVo {
 	}
 	
 }
+
