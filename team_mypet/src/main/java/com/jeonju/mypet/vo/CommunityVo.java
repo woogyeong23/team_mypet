@@ -1,9 +1,8 @@
 package com.jeonju.mypet.vo;
 
-import java.util.Date;
+import java.sql.Date;
 
 public class CommunityVo {
-
 	private int cm_idx;
 	private int midx;
 	private String cm_subject;
@@ -13,6 +12,9 @@ public class CommunityVo {
 	private String cm_delyn;
 	private String cm_img;
 	private String cm_writer;
+	// 추가
+	private String cm_origin_img;
+	
 	public int getCm_idx() {
 		return cm_idx;
 	}
@@ -67,5 +69,12 @@ public class CommunityVo {
 	public void setCm_writer(String cm_writer) {
 		this.cm_writer = cm_writer;
 	}
+	public String getCm_origin_img() {
+		return cm_origin_img;
+	}
+	public void setCm_origin_img(String cm_origin_img) {
+		this.cm_origin_img = cm_origin_img;
+	}
+	
 	
 }

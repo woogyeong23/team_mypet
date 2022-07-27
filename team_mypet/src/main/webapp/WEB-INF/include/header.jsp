@@ -1,7 +1,9 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
-    <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <!DOCTYPE html>
+
+
 <!--[if lte IE 9]>
       <p class="browserupgrade">
         You are using an <strong>outdated</strong> browser. Please
@@ -24,62 +26,41 @@
     <!-- Start Header Area -->
     <header class="header navbar-area">
         <!-- Start Topbar -->
+   
+
+       
         <div class="topbar">
             <div class="container">
                 <div class="row align-items-center">
-                    <div class="col-lg-4 col-md-4 col-12">
+                 <div class="col-lg-4 col-md-4 col-12">
                         <div class="top-left">
-                            <ul class="menu-top-link">
-                                <li>
-                                    <div class="select-position">
-                                        <select id="select4">
-                                            <option value="0" selected>￦ won</option>
-                                            <option value="1">$ USD</option>
-                                            <option value="2">€ EURO</option>
-                                            <option value="3">$ CAD</option>
-                                            <option value="4">₹ INR</option>
-                                            <option value="5">¥ CNY</option>
-                                            <option value="6">৳ BDT</option>
-                                        </select>
-                                    </div>
-                                </li>
-                                <li>
-                                    <div class="select-position">
-                                        <select id="select5">
-                                            <option value="0" selected>한국어</option>
-                                            <option value="1">English</option>
-                                            <option value="2">Español</option>
-                                            <option value="3">Filipino</option>
-                                            <option value="4">Français</option>
-                                            <option value="5">العربية</option>
-                                            <option value="6">हिन्दी</option>
-                                            <option value="7">বাংলা</option>
-                                        </select>
-                                    </div>
-                                </li>
+                            <ul class="useful-links">
+                                <li><a style="color:black" href="${pageContext.request.contextPath}/home.do">지금 바로 가입하고 상품을 구입하면</a></li>
                             </ul>
                         </div>
                     </div>
                     <div class="col-lg-4 col-md-4 col-12">
                         <div class="top-middle">
-                            <ul class="useful-links">
-                                <li><a href="${pageContext.request.contextPath}/home.do">Home</a></li>
-                                <li><a href="about-us.html">About Us</a></li>
-                                <li><a href="contact.html">Contact Us</a></li>
-                            </ul>
+<!--                             <ul class="useful-links"> -->
+<%--                                 <li><a href="${pageContext.request.contextPath}/home.do">지금 바로 가입하고 상품을 구입하면</a></li> --%>
+<!--                             </ul> -->
                         </div>
                     </div>
                     <div class="col-lg-4 col-md-4 col-12">
                         <div class="top-end">
                             <div class="user">
                                 <i class="lni lni-user"></i>
-                               ${midx}님 <!-- 사용자 이름 or 닉네임 추가하면 될듯 -->
+                            
                             </div>
                             <c:choose>
-                            <c:when test="${midx != null}"><!-- 로그인이 이루어진 경우 -->
+                            <c:when test="${m_id != null}"><!-- 로그인이 이루어진 경우 -->
                             <ul class="user-login">
                             <li>
-                               <a href="${pageContext.request.contextPath}/memberInfo.do">내정보</a> 
+                            <p><span>${m_nick}</span>님 환영합니다!</p>
+                            </li>
+                            
+                            <li>
+                               <a href="${pageContext.request.contextPath}/memberInfo.do"> 내정보</a> 
                             </li>
                             <li>
                                <a href="${pageContext.request.contextPath}/logout.do">로그아웃</a>
@@ -88,7 +69,7 @@
                             </c:when>
                             
                             <c:otherwise>
-                            <ul class="user-login"><!-- 로그인 X 상태 -->
+                            <ul class="user-login">  <!--로그인 X 상태  -->
                                 <li>
                                     <a href="${pageContext.request.contextPath}/login.do">로그인</a>
                                 </li>
@@ -104,7 +85,7 @@
                 </div>
             </div>
         </div>
-        <!-- End Topbar -->
+<!--         End Topbar -->
         <!-- Start Header Middle -->
         <div class="header-middle">
             <div class="container">
@@ -120,6 +101,7 @@
                         <!-- Start Main Menu Search -->
                         <div class="main-menu-search">
                             <!-- navbar search start -->
+                            <form action="${pageContext.request.contextPath}/KeywordSearch" method="post">
                             <div class="navbar-search search-style-5">
                                 <div class="search-select">
                                     <div class="select-position">
@@ -134,12 +116,14 @@
                                     </div>
                                 </div>
                                 <div class="search-input">
-                                    <input type="text" placeholder="Search">
+                                    <input type="text" name="keyword" id="keyword" placeholder="검색어를 입력해주세요.">
                                 </div>
                                 <div class="search-btn">
-                                    <button><i class="lni lni-search-alt"></i></button>
+                                   <button type="submit" class="search"><i class="lni lni-search-alt"></i></button>
+<!--                                      <input type="submit" name="submit"> -->
                                 </div>
                             </div>
+                            </form>
                             <!-- navbar search Ends -->
                         </div>
                         <!-- End Main Menu Search -->
@@ -153,6 +137,22 @@
                                         <span class="total-items">0</span>
                                     </a>
                                 </div>
+                                
+                                <c:choose>
+                                <c:when test="${m_grade == 1}">
+                                 <div class="wishlist">
+                                    <a href="javascript:void(0)">
+                                        <i class="lni lni-investment"></i>
+                                        <span class="total-items">0</span>
+                                    </a>
+                                </div>
+                                </c:when>
+                                <c:otherwise>
+                                
+                                </c:otherwise>
+                                </c:choose>
+                                
+                                   
                                 <div class="cart-items">
                                     <a href="javascript:void(0)" class="main-btn">
                                         <i class="lni lni-cart"></i>
@@ -212,6 +212,7 @@
         </div>
         <!-- End Header Middle -->
         <!-- Start Header Bottom -->
+        <div id="naver">
         <div class="container">
             <div class="row align-items-center">
                 <div class="col-lg-8 col-md-6 col-12">
@@ -227,24 +228,11 @@
                                         <li><a href="product-grids.html">고양이</a></li>
                                         <li><a href="product-grids.html">ㅂㅂㅂㅂ</a></li>
                                         <li><a href="product-grids.html">이벤트</a></li>
-                                        <li><a href="product-grids.html">컴퓨터</a></li>
-                                        <li><a href="product-grids.html">핸드폰</a></li>
-                                        <li><a href="product-grids.html">웨이브</a></li>
-                                        <li><a href="product-grids.html">책상</a></li>
-                                        <li><a href="product-grids.html">마우스</a></li>
                                     </ul>
                                 </li>
                                 <li><a href="product-grids.html">키보드</a></li>
                                 <li><a href="product-grids.html">모르겠다</a></li>
                                 <li><a href="product-grids.html">7월8일</a></li>
-                                <li><a href="product-grids.html">모니터</a></li>
-                                <li><a href="product-grids.html">줄</a></li>
-                                <li><a href="product-grids.html">시계</a></li>
-                                <li><a href="product-grids.html">제품</a></li>
-                                <li><a href="product-grids.html">알람</a></li>
-                                <li><a href="product-grids.html">슬슬 </a></li>
-                                <li><a href="product-grids.html">마무리 </a></li>
-                                <li><a href="product-grids.html">끝 </a></li>
                             </ul>
                         </div>
                         <!-- End Mega Category Menu -->
@@ -260,7 +248,11 @@
                             <div class="collapse navbar-collapse sub-menu-bar" id="navbarSupportedContent">
                                 <ul id="nav" class="navbar-nav ms-auto">
                                     <li class="nav-item">
-                                        <a href="${pageContext.request.contextPath}/home.do" class="active" aria-label="Toggle navigation">Home</a>
+                                    <a href="productBest.do" aria-label="Toggle navigation">인기순</a> 
+<%--                        <a href="${pageContext.request.contextPath}/home.do" class="active" aria-label="Toggle navigation">Home</a> --%>
+                                    </li>
+                                     <li class="nav-item">
+                                     <a href="productNew.do" aria-label="Toggle navigation">최신순</a>
                                     </li>
                                     <li class="nav-item">
                                         <a class="dd-menu collapsed" href="javascript:void(0)" data-bs-toggle="collapse"
@@ -303,14 +295,17 @@
                                         </ul>
                                     </li>
                                     <li class="nav-item">
-                                        <a href="contact.html" aria-label="Toggle navigation">커뮤니티</a>
+                                        <a href="${pageContext.request.contextPath}/CBList.do" aria-label="Toggle navigation">커뮤니티</a>
                                     </li>
                                      <li class="nav-item">
-                                        <a href="productBest.do" aria-label="Toggle navigation">인기순</a>
+                                        <a href="${pageContext.request.contextPath}/BSellerList.do" aria-label="Toggle navigation">인기 작가</a>
                                     </li>
-                                     <li class="nav-item">
-                                        <a href="productNew.do" aria-label="Toggle navigation">최신순</a>
-                                    </li>
+<!--                                      <li class="nav-item"> -->
+<!--                                         <a href="productBest.do" aria-label="Toggle navigation">인기순</a> -->
+<!--                                     </li> -->
+<!--                                      <li class="nav-item"> -->
+<!--                                         <a href="productNew.do" aria-label="Toggle navigation">최신순</a> -->
+<!--                                     </li> -->
                                 </ul>
                             </div> <!-- navbar collapse -->
                         </nav>
@@ -339,6 +334,7 @@
                     <!-- End Nav Social -->
                 </div>
             </div>
+        </div>
         </div>
         <!-- End Header Bottom -->
     </header>
