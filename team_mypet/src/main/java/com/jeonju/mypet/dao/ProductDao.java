@@ -35,6 +35,15 @@ public class ProductDao {
 	public List<ProductVo> getProductList(int p_category_large) throws Exception{
 			return sqlSession.selectList(MAPPER + ".getProductList2", p_category_large);
 		}
+	
+	//카테고리
+	public ProductVo getCodeName(int p_category_idx, int p_category_large) {
+		HashMap<String, Object> map = new HashMap<String, Object>();
+		map.put("p_category_idx", p_category_idx);
+		map.put("p_category_large", p_category_large);
+		
+		return sqlSession.selectOne(MAPPER + ".getCodeName", map);
+	}
 		
 	//상품상세페이지
 	public ProductVo getProductView(int p_idx) {
@@ -45,6 +54,7 @@ public class ProductDao {
 	public List<ProductVo> productNewList() {
 		return sqlSession.selectList(MAPPER + ".productNewList");
 	}
+	
 
 	
 	

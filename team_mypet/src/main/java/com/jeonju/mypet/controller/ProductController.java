@@ -32,12 +32,11 @@ public class ProductController {
 						@RequestParam("l") int p_category_large, Model model) throws Exception {
 		
 		List<ProductVo> productList = productService.getProductList(p_category_idx,p_category_large);
-		String categoryName = productList.get(0).getCategoryName();
-		String categoryLargeName = productList.get(0).getCategoryLargeName();
+		
+		ProductVo CodeName = productService.getCodeName(p_category_idx,p_category_large);
 		
 		model.addAttribute("productList", productList);
-		model.addAttribute("categoryName",categoryName);
-		model.addAttribute("categoryLargeName",categoryLargeName);
+		model.addAttribute("CodeName", CodeName);
 		
 		return "product/productList";
 	}

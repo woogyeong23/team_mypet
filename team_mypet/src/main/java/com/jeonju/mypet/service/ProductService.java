@@ -39,6 +39,11 @@ public class ProductService {
 	public List<ProductVo> productNewList() {
 		return productDao.productNewList();
 	}
+
+
+	public ProductVo getCodeName(int p_category_idx, int p_category_large) {
+		return productDao.getCodeName(p_category_idx, p_category_large);
+	}
 	
 	//소현
 }
