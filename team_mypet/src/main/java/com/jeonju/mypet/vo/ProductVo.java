@@ -43,6 +43,7 @@ public class ProductVo {
 	private int p_front_img;
 	private String p_ori_filename;
 	private String p_sys_filename;
+	private String p_category_name;
 	
 	public String getM_nick() {
 		return m_nick;
@@ -68,6 +69,12 @@ public class ProductVo {
 	}
 	public void setP_sys_filename(String p_sys_filename) {
 		this.p_sys_filename = p_sys_filename;
+	}
+	public String getP_category_name() {
+		return p_category_name;
+	}
+	public void setP_category_name(String p_category_name) {
+		this.p_category_name = p_category_name;
 	}
 	//소현
 
@@ -204,4 +211,5 @@ public class ProductVo {
 	public void setP_stock(String p_stock) {
 		this.p_stock = p_stock;
 	}
+	
 }
