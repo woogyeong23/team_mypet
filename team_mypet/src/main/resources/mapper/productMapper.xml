@@ -94,7 +94,7 @@
 	
 	
 	<!-- 상품상세페이지 -->
-	<select id="getProductView" resultType="productVo">
+	<select id="getProductView" resultType="productVo">	
 	select a.*,b.*,c.*
 	from product a join p_category b on a.p_category_idx = b.p_category_idx join product_img c on a.p_idx=c.p_idx 
 	where a.p_idx=#{p_idx};
