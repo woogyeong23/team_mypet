@@ -2,6 +2,9 @@ package com.jeonju.mypet.controller;
 
 import java.util.List;
 
+import javax.servlet.http.HttpServletRequest;
+import javax.servlet.http.HttpSession;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -9,7 +12,6 @@ import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 
 import com.jeonju.mypet.service.ProductService;
-import com.jeonju.mypet.vo.MemberVo;
 import com.jeonju.mypet.vo.ProductVo;
 
 @Controller
@@ -39,19 +41,19 @@ public class ProductController {
 	
 	//상품상세페이지
 	@GetMapping("/productView.do")
-	public String getproductView(@RequestParam("p_idx") int p_idx,Model model) {
-		System.out.println("상품번호" + p_idx);
-		
-		ProductVo productVo = productService.getProductView(p_idx);
-		model.addAttribute("productVo", productVo);
-		
-		return "product/productView";
+	public String getproductView(@RequestParam("p_idx") int p_idx, Model model) {
+		 System.out.println("상품번호 : " + p_idx);
+		 
+		 ProductVo productView = productService.getProductView(p_idx);
+		 model.addAttribute("productView", productView);
+	
+		 return "product/productView"; 
 	}
+	
 	
 	//인기순
 	@GetMapping("/productBest.do")
 	public String getproductBest() {
-		
 		return "product/productBest";
 	}
 	

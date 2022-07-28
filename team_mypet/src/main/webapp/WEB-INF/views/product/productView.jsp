@@ -142,10 +142,10 @@
 					<div class="product-images">
 						<main id="gallery"> 
 							<div class="main-img">
-								<img src="${pageContext.request.contextPath}/resources/assets/images/product-details/01.jpg" id="current" alt="#">
+									<img src="${pageContext.request.contextPath}/resources/assets/images/products/${productView.p_sys_filename}" width="300px" height="400px" id="current" alt="#">
 							</div>
 							<div class="images">
-								<img src="${pageContext.request.contextPath}/resources/assets/images/product-details/01.jpg" class="img" alt="#">
+								<img src="${pageContext.request.contextPath}/resources/assets/images/products/${productView.p_sys_filename}" class="img" alt="#">
 								<img src="${pageContext.request.contextPath}/resources/assets/images/product-details/02.jpg" class="img" alt="#">
 								<img src="${pageContext.request.contextPath}/resources/assets/images/product-details/03.jpg" class="img" alt="#">
 								<img src="${pageContext.request.contextPath}/resources/assets/images/product-details/04.jpg" class="img" alt="#">
@@ -159,13 +159,19 @@
 					<div class="product-info">
 						<table style="width: 100%; margin: 0px 0px 20px;">
 							<tr>
-								<td><h4 class="seller">개츄>></h4></td>
+								<td><h4 class="seller">${productView.m_nick}>></h4></td>
 								<td style="text-align: right; "><button class="chat-button">판매자와채팅</button></td>
 							</tr>
 						</table>
-							<p style="font-size: 40px; color: black; margin: 0px 0px 50px;">${productVo.p_name}</p>
-							<h3 class="price" style="margin-bottom:5px">4,000원<span>6,000원</span><span style="color: red; font-size:15px; text-decoration: none; ">30%</span></h3>
+							<p style="font-size: 40px; color: black; margin: 0px 0px 50px;">${productView.p_name}</p>
 							
+							<!-- 할인율이 있을 경우 할인율과 할인된 가격까지 표시, 할인율이 0%일 경우 본래 가격만 표시 -->
+							<c:if test="${productView.p_discount ne '0'}">
+							<h3 class="price" style="margin-bottom:5px">${productView.p_disprice}원<span>${productView.p_price}원</span><span style="color: red; font-size:15px; text-decoration: none; ">${productView.p_discount}%</span></h3>
+							</c:if>
+							<c:if test="${productView.p_discount eq '0'}">
+							<h3 class="price" style="margin-bottom:5px">${productView.p_price}원</h3>
+							</c:if>
 							
 							<!-- 별점 -->
 							<div class="row">
@@ -186,26 +192,26 @@
 							<!-- 별점끝 -->
 							
 						<div style="padding-bottom: 20px">
-							<p>적립금<span style="padding-left: 10px">5%</span></p>
-							<p>배송비<span style="padding-left: 10px">1,500원(5만원이상 무료배송)</span></p>
+							<p>적립금<span style="padding-left: 10px">${productView.p_point}</span></p>
+							<p>배송비<span style="padding-left: 10px">${productView.p_dvprice}원(${productView.p_free_dvprice}원이상 무료배송)</span></p>
 						</div>
 
 
 						<hr>
 						<div class="count">
 							<div>
-								수량 : <input type="hidden" name="p_price" value="5500">
+								수량 : <input type="hidden" name="p_count" value="5500">
 								<input type="button" value=" + " name="add" style="width: 25px" >
 								<input type="text" name="amount" value="1" size="3" max="" style="text-align: center;">
 								<input type="button" value=" - " name="min" style="width: 25px" >
 							</div>
-								<span>5,500 원</span> <!-- ${p_price} -->
+								<span>${productView.p_price} 원</span> <!-- ${p_price} -->
 						</div>	
 						<hr>
 
 						<div class="total">
-							구매가능수량 50개
-							<span>총 금액<span style="color:red; font-size: 20px; padding-left: 20px">4,000원</span></span>
+							구매가능수량 ${productView.p_limit_cnt}개
+							<span>총 금액<span style="color:red; font-size: 20px; padding-left: 20px">${productView.p_price}원</span></span>
 						</div>
 
 						<div class="bottom-content">
@@ -238,7 +244,7 @@
 					<div class="col-lg-12 col-12">
 						<div class="info-body custom-responsive-margin">
 							<h4>상품상세정보</h4>
-							<p>맛있는 개껌 팔앙요</p>
+							<p>${productView.p_content}</p>
 						</div>
 			
 
@@ -256,7 +262,7 @@
       </button>
     </h2>
     <div id="flush-collapseOne" class="accordion-collapse collapse show" aria-labelledby="flush-headingOne">
-      <div class="accordion-body">츄잉</div>
+      <div class="accordion-body">${productView.p_ingerdient}</div>
     </div>
   </div>
 </td>
@@ -268,7 +274,7 @@
       </button>
     </h2>
     <div id="flush-collapseTwo" class="accordion-collapse collapse show" aria-labelledby="flush-headingTwo">
-      <div class="accordion-body">배송은 보통 3일을 소요합니다. 환불은 불가합니다.</div>
+      <div class="accordion-body">${productView.p_cancle_info}</div>
     </div>
   </div>
   </td>

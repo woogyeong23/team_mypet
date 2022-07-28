@@ -44,7 +44,9 @@
         scroll-behavior: smooth
     }
 }
-
+.content{
+	width:80%;
+}
 body {
     margin: 0;
     font-family: var(--bs-font-sans-serif);
@@ -54,8 +56,9 @@ body {
     color: #212529;
     background-color: #fff;
     -webkit-text-size-adjust: 100%;
-    -webkit-tap-highlight-color: transparent
+    -webkit-tap-highlight-color: transparent;
 }
+
 
 [tabindex="-1"]:focus:not(:focus-visible) {
     outline: 0 !important
@@ -640,8 +643,11 @@ progress {
 .container-xl,
 .container-xxl {
     width: 100%;
+    position: sticky;
+    top: 0px;
     padding-right: var(--bs-gutter-x, .75rem);
     padding-left: var(--bs-gutter-x, .75rem);
+    padding-bottom : 1px;
     margin-right: auto;
     margin-left: auto
 }
