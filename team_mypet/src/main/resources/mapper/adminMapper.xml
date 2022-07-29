@@ -6,11 +6,18 @@
 
 
 
-
-
-	<select id="getMemberList" resultType="membersVo">
+	
+	
+		<select id="getMemberList" resultType="membersVo">
 		select * from member
 	</select>
+	
+
+	
+
+	
+	
+	
 	
 	<update id="updateMemberGrade" parameterType="map">
 		update member set member_grade = #{member_grade}
@@ -25,4 +32,23 @@
 	
 	</delete>
 
+
+
+
+
+
+
+
+
+
+	
+	
 </mapper>
+
+
+
+
+
+
+
+

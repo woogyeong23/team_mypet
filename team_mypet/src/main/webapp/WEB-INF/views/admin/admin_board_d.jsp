@@ -1,5 +1,6 @@
 <%@ page contentType="text/html; charset=UTF-8" %>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
+<%@ page session="true" %>
 <html>
 <head>
 	<title>관리자페이지</title>
@@ -99,9 +100,56 @@
 </header>
 
 <div class = "bodywrap">
-<div class = "imgslide">
 
-<img src="images/lee.jpg" alt="lee" width="1200px" height="600px">
+
+<table border="1">
+
+
+	<h2>게시글 상세</h2>
+	<table border="1">
+		<tbody>
+			<tr>
+				<th align="right">글번호</th>
+				<td>${vo.bidx}</td>
+			</tr>
+			<tr>
+				<th align="right">작성자</th>
+				<td>${vo.name}</td>
+			</tr>
+			<tr>
+				<th align="right">작성일</th>
+				<td>${vo.wdate}</td>
+			</tr>
+			<tr>
+				<th align="right">제목</th>
+				<td>${vo.title}</td>
+			</tr>
+			<tr>
+				<th align="right">내용</th>
+				<td>${vo.content}</td>
+			</tr>
+		</tbody>
+	</table>
+	
+	<c:if test="${login.midx eq vo.midx }">
+		<button>수정</button>
+		<button>삭제</button>
+	</c:if>
+	<button onclick="location.href='admin_borad.do'">목록</button>
+	
+
+
+
+
+
+	<form method="get" action="admin_borad.do">
+		<select name="searchType">
+			<option value="title" <c:if test="${!empty searchVO.searchType and searchVO.searchType eq 'title'}">selected</c:if>>제목</option>
+			<option value="contentWriter" <c:if test="${!empty searchVO.searchType and searchVO.searchType eq 'contentWriter'}">selected</c:if>>내용+작성자</option>
+		</select>
+		<input type="text" name="searchValue" <c:if test="${!empty searchVO.searchValue}">value="${searchVO.searchValue}"</c:if>>
+		<input type="submit" value="검색">
+	</form>
 
 </div>
     <div class ="contents">

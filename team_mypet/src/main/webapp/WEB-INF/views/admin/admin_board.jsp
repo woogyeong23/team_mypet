@@ -1,5 +1,6 @@
 <%@ page contentType="text/html; charset=UTF-8" %>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
+
 <html>
 <head>
 	<title>관리자페이지</title>
@@ -99,9 +100,56 @@
 </header>
 
 <div class = "bodywrap">
-<div class = "imgslide">
 
-<img src="images/lee.jpg" alt="lee" width="1200px" height="600px">
+
+<table border="1">
+
+
+
+	<h2>게시판 목록</h2>
+	
+
+
+		<thead>
+			<tr>
+				<th>글번호</th>
+				<th>제목</th>
+				<th>작성자</th>
+				<th>작성일</th>
+			</tr>
+		</thead>
+		<tbody>
+			<c:if test="${list.size() == 0 }">
+				<tr>
+					<td colspan="4">등록 된 게시글이 없습니다.</td>
+				</tr>
+			</c:if>
+			<c:if test="${list.size() > 0}">
+				<c:forEach var="vo" items="${list}">
+					<tr>
+						<td>${vo.bidx}</td>
+						<td><a href="admin_board_d.do?bidx=${vo.bidx}">${vo.midx}</a></td>
+						<td>${vo.name}</td>
+						<td>${vo.wdate}</td>
+					</tr>
+				</c:forEach>
+			</c:if>
+		</tbody>
+	</table>
+
+
+
+
+
+
+	<form method="get" action="admin_board.do">
+		<select name="searchType">
+			<option value="title" <c:if test="${!empty searchVO.searchType and searchVO.searchType eq 'title'}">selected</c:if>>제목</option>
+			<option value="contentWriter" <c:if test="${!empty searchVO.searchType and searchVO.searchType eq 'contentWriter'}">selected</c:if>>내용+작성자</option>
+		</select>
+		<input type="text" name="searchValue" <c:if test="${!empty searchVO.searchValue}">value="${searchVO.searchValue}"</c:if>>
+		<input type="submit" value="검색">
+	</form>
 
 </div>
     <div class ="contents">
@@ -111,13 +159,13 @@
                 <li>
 
                     <div class ="notice">
-                        공지사항자리
+                       
                     </div>
                   </li>
                   <li>
 
                     <div class ="gallery">
-                        이벤트 자리
+                        
                     </div>
                   </li>
 
@@ -127,12 +175,12 @@
         <div class ="otherwrap">
             <div class ="banner">
 
-            판매퍙 차트 자리
+           
 </div>
 
                 <div class ="shortcut">
 
-                    회원 관리
+                    
                 
 
             </div>

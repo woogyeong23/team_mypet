@@ -58,7 +58,7 @@
 </li>
 
 
-<li> <a href="${pageContext.request.contextPath}/admin_board.do">공지사항 관리</a>
+<li> <a href="${pageContext.request.contextPath}/admin_borad.do">공지사항 관리</a>
 
 
  
@@ -69,7 +69,7 @@
 
 
 
-<li> 	<a href="${pageContext.request.contextPath}/admin_board2.do">이벤트 관리</a>
+<li> 	<a href="${pageContext.request.contextPath}/admin_borad2.do">이벤트 관리</a>
 
 
     
@@ -96,28 +96,52 @@
     </div>
 
 
-</header>
 
-<div class = "bodywrap">
-<div class = "imgslide">
 
-<img src="images/lee.jpg" alt="lee" width="1200px" height="600px">
+    <div class ="contents">
+    <div class = "write">
+
+<h2>게시글 등록</h2>
+	<form action="admin_write.do" method="post">
+		<table>
+			<tbody>
+				<tr>
+					<th align="right">
+						제목 :
+					</th>
+					<td>
+						<input type="text" name="name">
+					</td>
+				</tr>
+				<tr>
+					<th align="right">
+						내용 : 
+					</th>
+					<td>
+						<textarea rows="10" cols="50" name="content"></textarea>
+					</td>
+				</tr>
+			</tbody>
+		</table>
+		
+		<button>저장</button>
+		
+	</form>
 
 </div>
-    <div class ="contents">
-  
+</div>
         
             <ul class ="tabmenu">
                 <li>
 
                     <div class ="notice">
-                        공지사항자리
+                   
                     </div>
                   </li>
                   <li>
 
                     <div class ="gallery">
-                        이벤트 자리
+                   
                     </div>
                   </li>
 
@@ -127,12 +151,12 @@
         <div class ="otherwrap">
             <div class ="banner">
 
-            판매퍙 차트 자리
+           
 </div>
 
                 <div class ="shortcut">
 
-                    회원 관리
+                 
                 
 
             </div>
@@ -143,7 +167,7 @@
 
 </div>
 
-
+</header>
 
 <footer>
 
