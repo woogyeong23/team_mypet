@@ -6,7 +6,7 @@ public class ReviewVo {
 
 	private int review_idx;
 	private int midx;
-	private int product_idx;
+	private int p_idx;
 	private int orders_idx;
 	private String review_content;
 	private int review_stars;
@@ -28,10 +28,10 @@ public class ReviewVo {
 		this.midx = midx;
 	}
 	public int getProduct_idx() {
-		return product_idx;
+		return p_idx;
 	}
 	public void setProduct_idx(int product_idx) {
-		this.product_idx = product_idx;
+		this.p_idx = product_idx;
 	}
 	public int getOrders_idx() {
 		return orders_idx;

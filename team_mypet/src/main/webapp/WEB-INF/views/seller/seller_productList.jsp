@@ -34,18 +34,6 @@ transform:translatY(-100%);
 }
 
 
-.reviewbox {
-  display: flex;
-  justify-content: space-between;
-}
-.reviewb {
- display: flex;
-  justify-content: space-between;
-}
-.v-line {
-  border-left : thin solid #d3d3d3;
-  height : 175px;
-}
 </style>
 
 </head>
@@ -58,25 +46,25 @@ transform:translatY(-100%);
 	<!-- ************************************************ -->
 	
 	
+	
+	
 	<section class="product-grids section">
+	
 		<div class="container">
 			<div class="row">
+			
 				<!-- sidebar -->
-				<div class="col-lg-3 col-12">
-
+				<div class="col-md-3 col-12">
 					<div class="product-sidebar">
-
 							<!-- 사이더와 js************************************************ -->
 						    <jsp:include page="../../include/seller_sidebar.jsp" />  
-
-
-
-
 					</div>
-
 				</div>
+				<!-- /sidebar -->
+				
 				<!-- content -->
-				<div class="col-lg-9 col-12">
+				<div class="col-md-9 col-12">
+					<!-- 세부검색 -->
 					<div class="product-grids-head">
 						<div class="product-grid-topbar">
 							<div class="row align-items-center">
@@ -92,7 +80,7 @@ transform:translatY(-100%);
 													<option>상품번호</option>
 												</select>
 											      <input class="form-control me-2" type="search" placeholder="Search" aria-label="Search" style="height: 40px; margin-top: 5px; margin-top: 0">
-											      <button class="btn btn-outline-success" type="submit" style="height: 40px; margin-top: 5px; margin-top: 0"; >Search</button>
+											      <button class="btn btn-outline-success" type="submit" style="width:100px; height: 40px; margin-top: 5px; margin-top: 0;" >검색</button>
 											    </form>
 											  </div>
 											</nav>
@@ -141,524 +129,190 @@ transform:translatY(-100%);
 												</select>
 											</div>
 											<!-- /카테고리 -->
-										
-											<span style="margin-bottom:10px">Showing: 1 - 12 items</span>
+											<!-- 검색결과 -->
+											<span style="margin-bottom:10px">검색결과: ()</span>
+											<!-- /검색결과 -->
 										</div>
+										<!-- 보기방식 -->
 										<nav>
 											<div class="nav nav-tabs" id="nav-tab" role="tablist">
 												<button class="nav-link active" id="nav-grid-tab" data-bs-toggle="tab" data-bs-target="#nav-grid" type="button" role="tab" aria-controls="nav-grid" aria-selected="true"><i class="lni lni-grid-alt"></i></button>
 												<button class="nav-link" id="nav-list-tab" data-bs-toggle="tab" data-bs-target="#nav-list" type="button" role="tab" aria-controls="nav-list" aria-selected="false"><i class="lni lni-list"></i></button>
 											</div>
 										</nav>
-										
+										<!-- /보기방식 -->
 									</div>
 								</div>
-							
 						</div>
 					</div>
+					<!-- /세부검색 -->
+					
+					
+					<!-- 검색결과 -->
 					<div class="tab-content" id="nav-tabContent">
+						<!-- 일반카드형식 뷰 -->
 						<div class="tab-pane fade show active" id="nav-grid" role="tabpanel" aria-labelledby="nav-grid-tab">
+							<!-- 일반카드 -->
 							<div class="row">
-								<div class="col-lg-4 col-md-6 col-12">
-	
-									<div class="single-product">
-										<div class="product-image">
-											<img src="assets/images/products/product-1.jpg" alt="#">
-												<div class="button">
-													<a href="product-details.html" class="btn"><i class="lni lni-cart"></i> Add to Cart</a>
+								<c:forEach var="productVo" items="${productListMap}">
+							
+									<div class="col-lg-4 col-md-6 col-12">
+										<div class="single-product">
+											<div class="product-image">
+												<img src="${pageContext.request.contextPath}/resources/assets/images/product-details/test3.PNG">
+											</div>
+											<div class="product-info">
+												<span>${productVo.p_sys_filename}카테고리: ${productVo.p_category_large} > ${productVo.p_category_small}</span>
+												<span class="category">상태${productVo.p_status}</span>
+												<h4 class="title">
+													<a href="product-grids.html">상품명: ${productVo.p_name} : 리뷰 총  ${productVo.cnt_reviews} 개 평균  ${productVo.avg_reviews_stars}</a>
+												</h4>
+												<ul class="review">
+													<li><i class="lni lni-star-filled"></i></li>
+													<li><i class="lni lni-star-filled"></i></li>
+													<li><i class="lni lni-star-filled"></i></li>
+													<li><i class="lni lni-star-filled"></i></li>
+													<li><i class="lni lni-star"></i></li>
+													<li><span>4.0 Review(s)</span></li>
+												</ul>
+												<div class="price">
+													<span>가격${productVo.p_price}</span>
 												</div>
-										
+												<span class="category">등록일: ${productVo.p_wday}</span>
+												<span class="category">마지막 수정일: ${productVo.p_modifyday}</span>
+											</div>
 										</div>
-										<div class="product-info">
-										<span class="category">Watches</span>
-										<h4 class="title">
-										<a href="product-grids.html">Xiaomi Mi Band 5</a>
-										</h4>
-										<ul class="review">
-										<li><i class="lni lni-star-filled"></i></li>
-										<li><i class="lni lni-star-filled"></i></li>
-										<li><i class="lni lni-star-filled"></i></li>
-										<li><i class="lni lni-star-filled"></i></li>
-										<li><i class="lni lni-star"></i></li>
-										<li><span>4.0 Review(s)</span></li>
+									</div>
+		
+								</c:forEach>
+							</div>		
+	
+	
+	
+								
+							<!-- /일반카드 -->
+							<!-- 일반카드 페이징 -->
+							<div class="row">
+								<div class="col-12">
+								 
+									<div class="pagination left">
+										<ul class="pagination-list">
+											<li><a href="javascript:void(0)">1</a></li>
+											<li class="active"><a href="javascript:void(0)">2</a></li>
+											<li><a href="javascript:void(0)">3</a></li>
+											<li><a href="javascript:void(0)">4</a></li>
+											<li><a href="javascript:void(0)"><i class="lni lni-chevron-right"></i></a></li>
 										</ul>
-											<div class="price">
-											<span>$199.00</span>
-											
-											</div>
-										</div>
 									</div>
-	
-	
-	|
 								</div>
-								<div class="col-lg-4 col-md-6 col-12">
-	
+							</div>
+							<!-- 일반카드 페이징 -->
+						</div>
+						<!-- /일반카드형식 뷰 -->
+						<!-- 일자카드형식 뷰 -->
+						<div class="tab-pane fade" id="nav-list" role="tabpanel" aria-labelledby="nav-list-tab">
+							<!-- 일자카드 -->
+							<div class="row">
+								<div class="col-lg-12 col-md-12 col-12">
+								
 									<div class="single-product">
-										<div class="product-image">
-											<img src="assets/images/products/product-2.jpg" alt="#">
-											<span class="sale-tag">-25%</span>
-												<div class="button">
-													<a href="product-details.html" class="btn"><i class="lni lni-cart"></i> Add to Cart</a>
+										<div class="row align-items-center">
+											<div class="col-lg-4 col-md-4 col-12">
+												<div class="product-image">
+													<img src="${pageContext.request.contextPath}/resources/assets/images/product-details/test2.PNG">
 												</div>
-										</div>
-										<div class="product-info">
-											<span class="category">Speaker</span>
-											<h4 class="title">
-											<a href="product-grids.html">Bluetooth Speaker</a>
-											</h4>
-											<ul class="review">
-											<li><i class="lni lni-star-filled"></i></li>
-											<li><i class="lni lni-star-filled"></i></li>
-											<li><i class="lni lni-star-filled"></i></li>
-											<li><i class="lni lni-star-filled"></i></li>
-											<li><i class="lni lni-star-filled"></i></li>
-											<li><span>5.0 Review(s)</span></li>
-											</ul>
-											<div class="price">
-												<span>$275.00</span>
-												<span class="discount-price">$300.00</span>
+											</div>
+											<div class="col-lg-8 col-md-8 col-12">
+												<div class="product-info">
+												<span class="category">상태</span>
+													<h4 class="title">
+													<a href="product-grids.html">상품명</a>
+													</h4>
+												
+													<div class="price">
+													<span>가격</span>
+													</div>
+												</div>
 											</div>
 										</div>
 									</div>
-										
+								
 								</div>
-<div class="col-lg-4 col-md-6 col-12">
+								<div class="col-lg-12 col-md-12 col-12">
+								
+									<div class="single-product">
+										<div class="row align-items-center">
+											<div class="col-lg-4 col-md-4 col-12">
+												<div class="product-image">
+													<img src="assets/images/products/product-2.jpg" alt="#">
+													<span class="sale-tag">-25%</span>
+												</div>
+											</div>
+											<div class="col-lg-8 col-md-8 col-12">
+												<div class="product-info">
+													<span class="category">Speaker</span>
+													<h4 class="title">
+														<a href="product-grids.html">Big Power Sound Speaker</a>
+													</h4>
+													<ul class="review">
+													<li><i class="lni lni-star-filled"></i></li>
+													<li><i class="lni lni-star-filled"></i></li>
+													<li><i class="lni lni-star-filled"></i></li>
+													<li><i class="lni lni-star-filled"></i></li>
+													<li><i class="lni lni-star-filled"></i></li>
+													<li><span>5.0 Review(s)</span></li>
+													</ul>
+													<div class="price">
+														<span>$275.00</span>
+														<span class="discount-price">$300.00</span>
+													</div>
+												</div>
+											</div>
+										</div>
+									</div>
+								</div>
+							</div>
+							<!-- /일자카드 -->
+							<!-- 일자카드 페이징 -->
+							<div class="row">
+								<div class="col-12">
+								
+									<div class="pagination left">
+										<ul class="pagination-list">
+											<li><a href="javascript:void(0)">1</a></li>
+											<li class="active"><a href="javascript:void(0)">2</a></li>
+											<li><a href="javascript:void(0)">3</a></li>
+											<li><a href="javascript:void(0)">4</a></li>
+											<li><a href="javascript:void(0)"><i class="lni lni-chevron-right"></i></a></li>
+										</ul>
+									</div>
+								
+								</div>
+							</div>
+							<!-- /일자카드 페이징 -->
+						</div>	
+						<!-- /일자카드형식 뷰 -->
+					</div>
+					<!-- /검색결과 -->
 
-<div class="single-product">
-<div class="product-image">
-<img src="assets/images/products/product-3.jpg" alt="#">
-<div class="button">
-<a href="product-details.html" class="btn"><i class="lni lni-cart"></i> Add to Cart</a>
-</div>
-</div>
-<div class="product-info">
-<span class="category">Camera</span>
-<h4 class="title">
-<a href="product-grids.html">WiFi Security Camera</a>
-</h4>
-<ul class="review">
-<li><i class="lni lni-star-filled"></i></li>
-<li><i class="lni lni-star-filled"></i></li>
-<li><i class="lni lni-star-filled"></i></li>
-<li><i class="lni lni-star-filled"></i></li>
-<li><i class="lni lni-star-filled"></i></li>
-<li><span>5.0 Review(s)</span></li>
-</ul>
-<div class="price">
-<span>$399.00</span>
-</div>
-</div>
-</div>
 
-</div>
-<div class="col-lg-4 col-md-6 col-12">
 
-<div class="single-product">
-<div class="product-image">
-<img src="assets/images/products/product-4.jpg" alt="#">
-<span class="new-tag">New</span>
-<div class="button">
-<a href="product-details.html" class="btn"><i class="lni lni-cart"></i> Add to Cart</a>
-</div>
-</div>
-<div class="product-info">
-<span class="category">Phones</span>
-<h4 class="title">
-<a href="product-grids.html">iphone 6x plus</a>
-</h4>
-<ul class="review">
-<li><i class="lni lni-star-filled"></i></li>
-<li><i class="lni lni-star-filled"></i></li>
-<li><i class="lni lni-star-filled"></i></li>
-<li><i class="lni lni-star-filled"></i></li>
-<li><i class="lni lni-star-filled"></i></li>
- <li><span>5.0 Review(s)</span></li>
-</ul>
-<div class="price">
-<span>$400.00</span>
-</div>
-</div>
-</div>
 
-</div>
-<div class="col-lg-4 col-md-6 col-12">
 
-<div class="single-product">
-<div class="product-image">
-<img src="assets/images/products/product-5.jpg" alt="#">
-<div class="button">
-<a href="product-details.html" class="btn"><i class="lni lni-cart"></i> Add to Cart</a>
-</div>
-</div>
-<div class="product-info">
-<span class="category">Headphones</span>
-<h4 class="title">
-<a href="product-grids.html">Wireless Headphones</a>
-</h4>
-<ul class="review">
-<li><i class="lni lni-star-filled"></i></li>
-<li><i class="lni lni-star-filled"></i></li>
-<li><i class="lni lni-star-filled"></i></li>
-<li><i class="lni lni-star-filled"></i></li>
-<li><i class="lni lni-star-filled"></i></li>
-<li><span>5.0 Review(s)</span></li>
-</ul>
-<div class="price">
-<span>$350.00</span>
-</div>
-</div>
-</div>
 
-</div>
-<div class="col-lg-4 col-md-6 col-12">
 
-<div class="single-product">
-<div class="product-image">
-<img src="assets/images/products/product-6.jpg" alt="#">
-<div class="button">
-<a href="product-details.html" class="btn"><i class="lni lni-cart"></i> Add to Cart</a>
-</div>
-</div>
-<div class="product-info">
-<span class="category">Speaker</span>
-<h4 class="title">
-<a href="product-grids.html">Mini Bluetooth Speaker</a>
-</h4>
-<ul class="review">
-<li><i class="lni lni-star-filled"></i></li>
- <li><i class="lni lni-star-filled"></i></li>
-<li><i class="lni lni-star-filled"></i></li>
-<li><i class="lni lni-star-filled"></i></li>
-<li><i class="lni lni-star"></i></li>
-<li><span>4.0 Review(s)</span></li>
-</ul>
-<div class="price">
-<span>$70.00</span>
-</div>
-</div>
-</div>
-
-</div>
-<div class="col-lg-4 col-md-6 col-12">
-
-<div class="single-product">
-<div class="product-image">
-<img src="assets/images/products/product-7.jpg" alt="#">
-<span class="sale-tag">-50%</span>
-<div class="button">
-<a href="product-details.html" class="btn"><i class="lni lni-cart"></i> Add to Cart</a>
-</div>
-</div>
-<div class="product-info">
-<span class="category">Headphones</span>
-<h4 class="title">
-<a href="product-grids.html">Wireless Headphones</a>
-</h4>
-<ul class="review">
-<li><i class="lni lni-star-filled"></i></li>
-<li><i class="lni lni-star-filled"></i></li>
-<li><i class="lni lni-star-filled"></i></li>
-<li><i class="lni lni-star-filled"></i></li>
-<li><i class="lni lni-star"></i></li>
-<li><span>4.0 Review(s)</span></li>
-</ul>
-<div class="price">
-<span>$100.00</span>
-<span class="discount-price">$200.00</span>
-</div>
-</div>
-</div>
-
-</div>
-<div class="col-lg-4 col-md-6 col-12">
-
-<div class="single-product">
-<div class="product-image">
-<img src="assets/images/products/product-8.jpg" alt="#">
-<div class="button">
-<a href="product-details.html" class="btn"><i class="lni lni-cart"></i> Add to Cart</a>
-</div>
- </div>
-<div class="product-info">
-<span class="category">Laptop</span>
-<h4 class="title">
-<a href="product-grids.html">Apple MacBook Air</a>
-</h4>
-<ul class="review">
-<li><i class="lni lni-star-filled"></i></li>
-<li><i class="lni lni-star-filled"></i></li>
-<li><i class="lni lni-star-filled"></i></li>
-<li><i class="lni lni-star-filled"></i></li>
-<li><i class="lni lni-star-filled"></i></li>
-<li><span>5.0 Review(s)</span></li>
-</ul>
-<div class="price">
-<span>$899.00</span>
-</div>
-</div>
-</div>
-
-</div>
-<div class="col-lg-4 col-md-6 col-12">
-
-<div class="single-product">
-<div class="product-image">
-<img src="assets/images/products/product-2.jpg" alt="#">
-<span class="sale-tag">-25%</span>
-<div class="button">
-<a href="product-details.html" class="btn"><i class="lni lni-cart"></i> Add to Cart</a>
-</div>
-</div>
-<div class="product-info">
-<span class="category">Speaker</span>
-<h4 class="title">
-<a href="product-grids.html">Bluetooth Speaker</a>
-</h4>
-<ul class="review">
-<li><i class="lni lni-star-filled"></i></li>
-<li><i class="lni lni-star-filled"></i></li>
-<li><i class="lni lni-star-filled"></i></li>
-<li><i class="lni lni-star-filled"></i></li>
-<li><i class="lni lni-star-filled"></i></li>
-<li><span>5.0 Review(s)</span></li>
-</ul>
-<div class="price">
-<span>$275.00</span>
-<span class="discount-price">$300.00</span>
-</div>
-</div>
-</div>
-
-</div>
-</div>
-<div class="row">
-<div class="col-12">
- 
-<div class="pagination left">
-<ul class="pagination-list">
-<li><a href="javascript:void(0)">1</a></li>
-<li class="active"><a href="javascript:void(0)">2</a></li>
-<li><a href="javascript:void(0)">3</a></li>
-<li><a href="javascript:void(0)">4</a></li>
-<li><a href="javascript:void(0)"><i class="lni lni-chevron-right"></i></a></li>
-</ul>
-</div>
-
-</div>
-</div>
-</div>
-<div class="tab-pane fade" id="nav-list" role="tabpanel" aria-labelledby="nav-list-tab">
-<div class="row">
-<div class="col-lg-12 col-md-12 col-12">
-
-<div class="single-product">
-<div class="row align-items-center">
-<div class="col-lg-4 col-md-4 col-12">
-<div class="product-image">
-<img src="assets/images/products/product-1.jpg" alt="#">
-<div class="button">
-<a href="product-details.html" class="btn"><i class="lni lni-cart"></i> Add to
-Cart</a>
-</div>
-</div>
-</div>
-<div class="col-lg-8 col-md-8 col-12">
-<div class="product-info">
-<span class="category">Watches</span>
-<h4 class="title">
-<a href="product-grids.html">Xiaomi Mi Band 5</a>
-</h4>
-<ul class="review">
-<li><i class="lni lni-star-filled"></i></li>
-<li><i class="lni lni-star-filled"></i></li>
-<li><i class="lni lni-star-filled"></i></li>
-<li><i class="lni lni-star-filled"></i></li>
-<li><i class="lni lni-star"></i></li>
-<li><span>4.0 Review(s)</span></li>
-</ul>
-<div class="price">
-<span>$199.00</span>
-</div>
-</div>
-</div>
-</div>
-</div>
-
-</div>
-<div class="col-lg-12 col-md-12 col-12">
-
-<div class="single-product">
-<div class="row align-items-center">
-<div class="col-lg-4 col-md-4 col-12">
-<div class="product-image">
-<img src="assets/images/products/product-2.jpg" alt="#">
-<span class="sale-tag">-25%</span>
-<div class="button">
-<a href="product-details.html" class="btn"><i class="lni lni-cart"></i> Add to
-Cart</a>
-</div>
-</div>
-</div>
-<div class="col-lg-8 col-md-8 col-12">
-<div class="product-info">
-<span class="category">Speaker</span>
-<h4 class="title">
-<a href="product-grids.html">Big Power Sound Speaker</a>
-</h4>
-<ul class="review">
-<li><i class="lni lni-star-filled"></i></li>
-<li><i class="lni lni-star-filled"></i></li>
-<li><i class="lni lni-star-filled"></i></li>
-<li><i class="lni lni-star-filled"></i></li>
-<li><i class="lni lni-star-filled"></i></li>
-<li><span>5.0 Review(s)</span></li>
-</ul>
-<div class="price">
-<span>$275.00</span>
-<span class="discount-price">$300.00</span>
-</div>
-</div>
-</div>
-</div>
-</div>
-
-</div>
-<div class="col-lg-12 col-md-12 col-12">
-
-<div class="single-product">
-<div class="row align-items-center">
-<div class="col-lg-4 col-md-4 col-12">
-<div class="product-image">
-<img src="assets/images/products/product-3.jpg" alt="#">
-<div class="button">
-<a href="product-details.html" class="btn"><i class="lni lni-cart"></i> Add to
-Cart</a>
- </div>
-</div>
-</div>
-<div class="col-lg-8 col-md-8 col-12">
-<div class="product-info">
-<span class="category">Camera</span>
-<h4 class="title">
-<a href="product-grids.html">WiFi Security Camera</a>
-</h4>
-<ul class="review">
-<li><i class="lni lni-star-filled"></i></li>
-<li><i class="lni lni-star-filled"></i></li>
-<li><i class="lni lni-star-filled"></i></li>
-<li><i class="lni lni-star-filled"></i></li>
-<li><i class="lni lni-star-filled"></i></li>
-<li><span>5.0 Review(s)</span></li>
-</ul>
-<div class="price">
-<span>$399.00</span>
-</div>
-</div>
-</div>
-</div>
-</div>
-
-</div>
-<div class="col-lg-12 col-md-12 col-12">
-
-<div class="single-product">
-<div class="row align-items-center">
-<div class="col-lg-4 col-md-4 col-12">
-<div class="product-image">
-<img src="assets/images/products/product-4.jpg" alt="#">
-<span class="new-tag">New</span>
-<div class="button">
-<a href="product-details.html" class="btn"><i class="lni lni-cart"></i> Add to
-Cart</a>
-</div>
-</div>
-</div>
-<div class="col-lg-8 col-md-8 col-12">
-<div class="product-info">
-<span class="category">Phones</span>
-<h4 class="title">
-<a href="product-grids.html">iphone 6x plus</a>
-</h4>
-<ul class="review">
-<li><i class="lni lni-star-filled"></i></li>
-<li><i class="lni lni-star-filled"></i></li>
-<li><i class="lni lni-star-filled"></i></li>
- <li><i class="lni lni-star-filled"></i></li>
-<li><i class="lni lni-star-filled"></i></li>
-<li><span>5.0 Review(s)</span></li>
-</ul>
-<div class="price">
-<span>$400.00</span>
-</div>
-</div>
-</div>
-</div>
-</div>
-
-</div>
-<div class="col-lg-12 col-md-12 col-12">
-
-<div class="single-product">
-<div class="row align-items-center">
-<div class="col-lg-4 col-md-4 col-12">
-<div class="product-image">
-<img src="assets/images/products/product-7.jpg" alt="#">
-<span class="sale-tag">-50%</span>
-<div class="button">
-<a href="product-details.html" class="btn"><i class="lni lni-cart"></i> Add to
-Cart</a>
-</div>
-</div>
-</div>
-<div class="col-lg-8 col-md-8 col-12">
-<div class="product-info">
-<span class="category">Headphones</span>
-<h4 class="title">
-<a href="product-grids.html">PX7 Wireless Headphones</a>
-</h4>
-<ul class="review">
-<li><i class="lni lni-star-filled"></i></li>
-<li><i class="lni lni-star-filled"></i></li>
-<li><i class="lni lni-star-filled"></i></li>
-<li><i class="lni lni-star-filled"></i></li>
-<li><i class="lni lni-star"></i></li>
-<li><span>4.0 Review(s)</span></li>
-</ul>
-<div class="price">
-<span>$100.00</span>
-<span class="discount-price">$200.00</span>
-</div>
-</div>
-</div>
-</div>
-</div>
-
-</div>
-</div>
-<div class="row">
- <div class="col-12">
-
-<div class="pagination left">
-<ul class="pagination-list">
-<li><a href="javascript:void(0)">1</a></li>
-<li class="active"><a href="javascript:void(0)">2</a></li>
-<li><a href="javascript:void(0)">3</a></li>
-<li><a href="javascript:void(0)">4</a></li>
-<li><a href="javascript:void(0)"><i class="lni lni-chevron-right"></i></a></li>
-</ul>
-</div>
-
-</div>
-</div>
-</div>
-</div>
-</div>
-</div>
-</div>
-</div>
-</section>
+			
+					
+					
+					<!-- 검색결과 -->
+				</div>
+				<!-- content -->
+			</div>
+		</div>
+	</section>
 	
+</div>
+
 	
 	
 	

@@ -5,7 +5,13 @@
 <mapper namespace = "com.jeonju.mypet.seller">
 
 	<select id="getSellerProductList" parameterType="string" resultType="Hashmap">
-		select a.p_idx, a.p_name, p_content, p_category_small from product a join p_category b on a.p_category_idx=b.p_category_idx  where seller_idx = (select b.seller_idx from members a join sellerstory b on a.midx = b.midx where a.midx = #{midx}) 		
+		select a.p_idx, p_name, p_price, p_discount, p_disprice, p_wday, p_modifyday, p_status, p_category_large, p_category_small,
+			ifnull(avg(review_stars),0) as avg_reviews_stars, count(review_stars) as cnt_reviews
+			,p_sys_filename
+			from product a join p_category b on a.p_category_idx = b.p_category_idx left join review c on a.p_idx = c.p_idx
+			where a.p_idx in (select p_idx from product where seller_idx=(select seller_idx from sellerstory where midx=#{midx}))
+			group by a.p_idx
+
 	</select>
 	<select id="getSellerProductDetail" parameterType="string" resultType="productVo">
 		select * from product where p_idx=#{p_idx}
