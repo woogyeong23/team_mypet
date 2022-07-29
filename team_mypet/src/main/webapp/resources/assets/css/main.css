@@ -889,7 +889,8 @@ ol {
 
 @media only screen and (min-width: 480px) and (max-width: 767px) {
   .container {
-    width: 450px;
+  position: sticky;
+  top: 0px;
   }
 }
 
@@ -1264,6 +1265,7 @@ top: -1px;
   text-align: center;
 }
 
+/* 버튼 */
 .button .btn {
   display: inline-block;
   text-transform: capitalize;
@@ -1307,6 +1309,7 @@ top: -1px;
   margin: 0;
 }
 
+/* 버튼 마우스올리면 색바뀌는 부분 */
 .button .btn:hover {
   color: #fff;
   background-color: #081828;
@@ -1436,7 +1439,7 @@ top: -1px;
 }
 
 .header .topbar {
-  background-color: #081828;
+/*   background-color: #081828; */
   padding: 18px 0;
 }
 
@@ -1522,7 +1525,8 @@ top: -1px;
 }
 
 .header .topbar .top-middle .useful-links li a {
-  color: #fff;
+/*   color: #fff; */
+  color: #470D21;
   font-size: 14px;
   font-weight: 500;
 }
@@ -1582,7 +1586,8 @@ top: -1px;
 }
 
 .header .topbar .top-end .user-login li a {
-  color: #fff;
+/*   color: #fff; */
+  color: #470D21;
   font-weight: 500;
   font-size: 14px;
   white-space: nowrap;
@@ -2598,6 +2603,7 @@ top: 2px;
   transition: all 0.3s ease-out 0s;
   padding: 0;
   border-bottom: 1px solid #eee;
+
 }
 
 .navbar-area.sticky {
@@ -2696,7 +2702,7 @@ top: 2px;
   font-weight: 600;
   transition: all 0.3s ease-out 0s;
   position: relative;
-  text-transform: capitalize;
+
 }
 
 .navbar-nav .nav-item:hover .dd-menu::before {
@@ -2867,7 +2873,9 @@ top: 2px;
 .hero-area {
   position: relative;
   background-color: #fff;
-  margin-top: 12px;
+/*   margin-top: 12px; */
+  margin:0;
+  width: 100%;
 }
 
 @media only screen and (min-width: 768px) and (max-width: 991px) {
@@ -2945,7 +2953,9 @@ top: 2px;
   background-position: center;
   background-repeat: no-repeat;
   height: 500px;
+  width: 100%;
   position: relative;
+ 
 }
 
 @media only screen and (min-width: 768px) and (max-width: 991px) {
@@ -3254,8 +3264,8 @@ top: 2px;
   -webkit-transition: all 0.4s ease;
   transition: all 0.4s ease;
   margin-top: 30px;
-  -webkit-box-shadow: 0px 0px 20px #00000012;
-  box-shadow: 0px 0px 20px #00000012;
+/*   -webkit-box-shadow: 0px 0px 20px #00000012; */
+/*   box-shadow: 0px 0px 20px #00000012; */
   padding: 8px;
   background: #fff;
 }
@@ -3387,7 +3397,7 @@ top: 2px;
 }
 
 .single-product .product-info .price span {
-  font-size: 17px;
+  font-size: 25px;
   font-weight: 700;
   color: #fae100;
   display: inline-block;
@@ -3668,7 +3678,7 @@ top: 2px;
 .item-details .product-info .price {
   color: #081828;
   display: block;
-  font-size: 24px;
+  font-size: 30px;
   font-weight: 600;
   margin-bottom: 15px;
 }
@@ -4890,3 +4900,4 @@ top: 2px;
     display: none;
   }
 }
+

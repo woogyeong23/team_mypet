@@ -6,55 +6,31 @@
 <meta charset="UTF-8">
 <title>회원 가입</title>
 	<script src="http://code.jquery.com/jquery-latest.min.js"></script>
-	<script>
-		$(function(){
-			
-			$("#checkId").click(function(){
-				
-				let member_id = $("#member_id").val();
-				
-				$.ajax({
-					type:'post',
-					url:"${pageContext.request.contextPath}/checkId.do",
-					data: {"member_id":member_id},
-					success: function(data){
-						if(data == "N"){
-							result = "사용 가능한 아이디입니다.";
-							$("#result_checkId").html(result).css("color", "green");
-							$("#member_pw").trigger("focus");
-						}else{
-							result = "이미 사용중인 아이디입니다.";
-							$("#result_checkId").html(result).css("color", "red");
-							$("#member_id").val("").trigger("focus");
-						}
-					},
-					error: function(error){alert(error);}
-				});
-			
-			});
-			
-		});
-	
-	
-	
-	</script>
+<style>
 
+</style>
+
+    
+    <!-- css************************************************ -->
+    <jsp:include page="../../include/head.jsp" />  
+        <jsp:include page="../../include/login.jsp" />
+    
+<!-- ************************************************ -->
 </head>
 
-<body>
+ <body class="text-center">
+<main class="form-signin">
+<form name="joinForm" action="${pageContext.request.contextPath}/joinKakao.do">
+  	<a href="${pageContext.request.contextPath}/home.do">
+    <img class="mb-4" src="resources/assets/images/DC.png" alt="" width="300" height="200" >
+    </a>
+    <h1 class="h3 mb-3 fw-normal" style="text-align:center">회원가입</h1>
 
-<h3>회원정보를 입력해주세요</h3>
-
-<form name="joinForm" action="${pageContext.request.contextPath}/joinProcess.do" method="post">
-	<input type="email" name="member_id" id="member_id" value="" maxlength="80" placeholder="아이디(이메일)" />
-	<input type="button" id="checkId" value="중복검사"/><br/>
-	<div style="height:20px"><span id="result_checkId" style="font-size:12px;"></span></div>
-	
-	<input type="password" name="member_pw"  value="" maxlength="20" placeholder="비밀번호"><p/>            
-	<input type="text" name="member_name" maxlength="40" value="" placeholder="이름"><p/>
-	<input type="tel" name="member_phone"  value="" autocomplete="off" placeholder="휴대폰 번호"><p/>
-	<input type="submit" value="가입하기">
-	<input type="reset"  value="취소하기">
-</form> 
+    <button class="w-100 btn btn-lg btn-primary" id="login_member"type="submit">카카오로 회원가입</button>
+  </form>
+  <form name="joinForm" action="${pageContext.request.contextPath}/joinEm.do">
+    <button class="w-100 btn btn-lg btn-primary" id="login_member"type="submit">이메일로 회원가입</button>
+  </form>
+</main>         
 
 </body></html>        
