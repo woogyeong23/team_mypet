@@ -33,6 +33,12 @@ public class AdminService {
 		}
 
 
+		public List<BoardVo> getBoardList() {
+			
+			return adminDao.getBoardList();
+		}
+
+
 
 }
 	

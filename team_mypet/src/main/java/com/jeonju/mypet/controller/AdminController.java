@@ -1,8 +1,10 @@
 package com.jeonju.mypet.controller;
 
+import java.util.HashMap;
 import java.util.List;
 
 import javax.servlet.http.HttpServletRequest;
+import javax.servlet.http.HttpSession;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
@@ -45,11 +47,19 @@ public class AdminController {
 		return "admin/admin_home";
 	}
 	
+
+	
+	
 	
 	@GetMapping("/admin_board.do")
-	public String adminboard() {
+	public String adminboard(Model model, HttpServletRequest request) {
 		
-			
+		//int a=1;
+		//ProductVo productVo = new ProductVo();
+		
+		List<BoardVo> BoardList = adminService.getBoardList();
+		
+		model.addAttribute("BoardList", BoardList);
 		
 		
 		return "admin/admin_board";

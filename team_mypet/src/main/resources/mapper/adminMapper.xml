@@ -14,8 +14,11 @@
 	
 
 	
-
 	
+	<select id="getBoardList" resultType="boardVo">
+		SELECT * FROM board where board_name=1
+		
+	</select>
 	
 	
 	

@@ -109,28 +109,25 @@
 	<h2>게시판 목록</h2>
 	
 
-
 		<thead>
 			<tr>
 				<th>글번호</th>
 				<th>제목</th>
-				<th>작성자</th>
 				<th>작성일</th>
 			</tr>
 		</thead>
 		<tbody>
-			<c:if test="${list.size() == 0 }">
+			<c:if test="${BoardList.size() == 0 }">
 				<tr>
 					<td colspan="4">등록 된 게시글이 없습니다.</td>
 				</tr>
 			</c:if>
-			<c:if test="${list.size() > 0}">
-				<c:forEach var="vo" items="${list}">
+			<c:if test="${BoardList.size() > 0}">
+				<c:forEach var="BoardVo" items="${BoardList}">
 					<tr>
-						<td>${vo.bidx}</td>
-						<td><a href="admin_board_d.do?bidx=${vo.bidx}">${vo.midx}</a></td>
-						<td>${vo.name}</td>
-						<td>${vo.wdate}</td>
+						<td>${BoardVo.bidx}</td>
+						<td>${BoardVo.board_subject}</td>
+						<td>${BoardVo.board_wday}</td>
 					</tr>
 				</c:forEach>
 			</c:if>

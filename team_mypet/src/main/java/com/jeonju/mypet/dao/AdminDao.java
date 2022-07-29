@@ -46,6 +46,15 @@ public class AdminDao {
 
 
 
+	public List<BoardVo> getBoardList() {
+		// TODO Auto-generated method stub
+		return sqlSession.selectList(MAPPER + ".getBoardList");
+	}
+
+
+
+
+
 
 
 }
