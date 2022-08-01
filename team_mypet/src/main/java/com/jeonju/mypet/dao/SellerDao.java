@@ -22,10 +22,10 @@ public class SellerDao {
 		this.sqlSession = sqlSession;
 	}
 	
-	public List<HashMap<String, Object>> getSellerProductList(String midx) {
+	public List<HashMap<String, Object>> getSellerProductList(HashMap<String, String> searchInfo) {
 		
 		
-		return sqlSession.selectList(MAPPER + ".getSellerProductList", midx);
+		return sqlSession.selectList(MAPPER + ".getSellerProductList", searchInfo);
 	}
 
 	public ProductVo getSellerProductDetail(String p_idx) {

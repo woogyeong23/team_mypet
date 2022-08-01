@@ -4,12 +4,24 @@
 
 <mapper namespace = "com.jeonju.mypet.seller">
 
-	<select id="getSellerProductList" parameterType="string" resultType="Hashmap">
-		select a.p_idx, p_name, p_price, p_discount, p_disprice, p_wday, p_modifyday, p_status, p_category_large, p_category_small,
+	<select id="getSellerProductList" resultType="Hashmap">
+		select a.p_idx, p_name, p_price, p_discount, p_disprice, p_wday, p_modifyday, p_status, a.p_category_idx, p_category_large, p_category_small,
 			ifnull(avg(review_stars),0) as avg_reviews_stars, count(review_stars) as cnt_reviews
 			,p_sys_filename
 			from product a join p_category b on a.p_category_idx = b.p_category_idx left join review c on a.p_idx = c.p_idx
-			where a.p_idx in (select p_idx from product where seller_idx=(select seller_idx from sellerstory where midx=#{midx}))
+			where a.p_idx in (select p_idx from product where seller_idx=(select seller_idx from sellerstory where midx=#{member_id}))
+			<if  test="searching == 'searchTotal'">
+					and (a.p_idx like CONCAT('%',#{keyword},'%') or p_name like CONCAT('%',#{keyword},'%'))
+			</if>
+			<if  test="searching == 'searchName' ">
+					and p_name like  CONCAT('%',#{keyword},'%')
+			</if>
+			<if  test="searching == 'searchNum' ">
+					and a.p_idx like CONCAT('%',#{keyword},'%')
+			</if>
+			
+			
+			
 			group by a.p_idx
 
 	</select>

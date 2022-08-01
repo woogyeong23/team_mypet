@@ -27,32 +27,40 @@ public class SellerController {
 		this.sellerService = sellerService;
 	}
 	
-	@GetMapping("/test.do")//get방식 요청 처리
-	public String adminHome() {
-		return "seller/test";
-	}
-	
 	
 	@GetMapping("/seller_productList.do")
-	public String seller_productList(Model model, HttpServletRequest request) {
+	public String seller_productList(String searching, 
+			String keyword, String sorting, String status, String category,
+			Model model, HttpServletRequest request) {
 		
 		HttpSession session = request.getSession();
 		int midx = (int) session.getAttribute("midx");
 		String member_id= Integer.toString(midx);
-		//ProductVo productVo = sellerService.seller_productList(member_id); 
-		//Spring MVC에서 Controller에서 생성되는 Model객체는 뷰단(JSP페이지)에서 참조 가능
 		
+		if(searching == null)
+			searching="";
+		if(keyword == null)
+			keyword = "";
+		if(sorting == null)
+			sorting = "";
+		if(status == null)
+			status = "";
+		if(category == null)
+			category = "";
 		
-		//List<ProductVo> productList = sellerService.seller_productList(member_id);
-		//System.out.println("asdf"+productList);
-		
-		//model.addAttribute("productList", productList);
-		
-		
-		List<HashMap<String, Object>> productListMap = sellerService.seller_productList(member_id);
+		HashMap<String, String> searchInfo = new HashMap<String, String>();
+		searchInfo.put("member_id", member_id);
+		searchInfo.put("searching", searching);
+		searchInfo.put("sorting", sorting);
+		searchInfo.put("status", status);
+		searchInfo.put("category", category);
+		searchInfo.put("keyword", keyword);
+		System.out.println("********************************************");
+		System.out.println(searching+keyword+sorting+status+category);
+		List<HashMap<String, Object>> productListMap = sellerService.seller_productList(searchInfo);
 		
 		model.addAttribute("productListMap", productListMap);
-		
+		model.addAttribute("searchInfo",searchInfo);
 		
 		return "seller/seller_productList";
 	}
