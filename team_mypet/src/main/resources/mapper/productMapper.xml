@@ -8,55 +8,13 @@
 
 	<!-- 상품목록 -->
 	<select id="getProductList1" resultType="productVo" parameterType="hashMap">
-	select a.*,b.*,c.*,
-	CASE
-	WHEN #{p_category_idx} = '0' THEN '전체'
-	WHEN #{p_category_idx} = '1' THEN '개껌'
-	WHEN #{p_category_idx} = '2' THEN '스낵'
-	WHEN #{p_category_idx} = '3' THEN '뼈/육포'
-	WHEN #{p_category_idx} = '4' THEN '스틱'
-	WHEN #{p_category_idx} = '5' THEN '프리미엄'
-	WHEN #{p_category_idx} = '6' THEN '통살'
-	WHEN #{p_category_idx} = '7' THEN '츄르'
-	WHEN #{p_category_idx} = '8' THEN '스낵'
-	WHEN #{p_category_idx} = '9' THEN '캣잎'
-	WHEN #{p_category_idx} = '10' THEN '통살'
-	WHEN #{p_category_idx} = '11' THEN '프리미엄'
-	WHEN #{p_category_idx} = '12' THEN '스틱'
-	ELSE '잉'
-	END AS categoryName,
-	CASE
-	WHEN #{p_category_large} = '1' THEN '강아지'
-	WHEN #{p_category_large} = '2' THEN '고양이'
-	ELSE '잉'
-	END AS categoryLargeName
+	select a.*,b.*,c.*
 	from product a join p_category b on a.p_category_idx = b.p_category_idx join product_img c on a.p_idx=c.p_idx 
 	where a.p_category_idx=#{p_category_idx};
 	</select>
 	
 	<select id="getProductList2" resultType="productVo">
-	select a.*,b.*,c.*,
-	CASE
-	WHEN #{p_category_idx} = '0' THEN '전체'
-	WHEN #{p_category_idx} = '1' THEN '개껌'
-	WHEN #{p_category_idx} = '2' THEN '스낵'
-	WHEN #{p_category_idx} = '3' THEN '뼈/육포'
-	WHEN #{p_category_idx} = '4' THEN '스틱'
-	WHEN #{p_category_idx} = '5' THEN '프리미엄'
-	WHEN #{p_category_idx} = '6' THEN '통살'
-	WHEN #{p_category_idx} = '7' THEN '츄르'
-	WHEN #{p_category_idx} = '8' THEN '스낵'
-	WHEN #{p_category_idx} = '9' THEN '캣잎'
-	WHEN #{p_category_idx} = '10' THEN '통살'
-	WHEN #{p_category_idx} = '11' THEN '프리미엄'
-	WHEN #{p_category_idx} = '12' THEN '스틱'
-	ELSE '잉'
-	END AS categoryName,
-	CASE
-	WHEN #{p_category_large} = '1' THEN '강아지'
-	WHEN #{p_category_large} = '2' THEN '고양이'
-	ELSE '잉'
-	END AS categoryLargeName
+	select a.*,b.*,c.*
 	from product a join p_category b on a.p_category_idx = b.p_category_idx join product_img c on a.p_idx=c.p_idx 
 	where b.p_category_large=#{p_category_large};
 	</select>
@@ -65,7 +23,6 @@
 	<select id="getCodeName" resultType="productVo" parameterType="HashMap">
 	  SELECT *,
       CASE
-      WHEN p_category_idx = '0' THEN '전체'
       WHEN p_category_idx = '1' THEN '개껌'
       WHEN p_category_idx = '2' THEN '스낵'
       WHEN p_category_idx = '3' THEN '뼈/육포'
@@ -86,10 +43,7 @@
       ELSE '잉'
       END AS categoryLargeName
       FROM p_category
-      WHERE
-          p_category_idx=#{p_category_idx}
-          AND
-          p_category_large=#{p_category_large}
+      WHERE p_category_idx=#{p_category_idx} and p_category_large=#{p_category_large};
 	</select>
 	
 	

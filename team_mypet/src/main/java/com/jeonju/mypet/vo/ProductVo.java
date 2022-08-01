@@ -45,6 +45,8 @@ public class ProductVo {
 	private String p_sys_filename;
 	private String categoryName;
 	private String categoryLargeName;
+	private String p_category_large;
+	
 	public String getM_nick() {
 		return m_nick;
 	}
@@ -82,6 +84,12 @@ public class ProductVo {
 	}
 	public void setCategoryLargeName(String categoryLargeName) {
 		this.categoryLargeName = categoryLargeName;
+	}
+	public String getP_category_large() {
+		return p_category_large;
+	}
+	public void setP_category_large(String p_category_large) {
+		this.p_category_large = p_category_large;
 	}
 	//소현
 

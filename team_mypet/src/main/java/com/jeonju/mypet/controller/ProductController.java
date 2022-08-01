@@ -38,6 +38,7 @@ public class ProductController {
 		model.addAttribute("productList", productList);
 		model.addAttribute("CodeName", CodeName);
 		
+		
 		return "product/productList";
 	}
 	

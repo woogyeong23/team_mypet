@@ -127,15 +127,6 @@
 <section class="item-details section" style="padding-top: 10px;">
 	<div class="container">
 		<div class="top-area">
-		
-			<nav style="--bs-breadcrumb-divider: url(&#34;data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='8' height='8'%3E%3Cpath d='M2.5 0L1 1.5 3.5 4 1 6.5 2.5 8l4-4-4-4z' fill='currentColor'/%3E%3C/svg%3E&#34;);" aria-label="breadcrumb">
-  				<ol class="breadcrumb" style="font-size: 15px">
-  					 <li class="breadcrumb-item"><a href="#">홈</a></li>
-   					 <li class="breadcrumb-item active" aria-current="page">강아지</li>
-  					 <li class="breadcrumb-item active" aria-current="page">개껌</li>
-  				</ol>
-			</nav>
-			
 			<div class="row align-items-center">
 				<!-- 상품이미지 -->
 				<div class="col-lg-6 col-md-12 col-12">
