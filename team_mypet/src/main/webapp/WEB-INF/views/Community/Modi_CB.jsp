@@ -4,7 +4,7 @@
 <html>
 <head>
 <meta charset="UTF-8">
-<title>커뮤니티 글 작성 페이지</title>
+<title>커뮤니티 게시글 수정하기</title>
 
 <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
   <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
@@ -19,7 +19,6 @@
 
  <script>
 $(document).ready(function() {
-	
 
 	var toolbar = [
 		    // 글꼴 설정
@@ -60,12 +59,7 @@ $(document).ready(function() {
             }
          };
         $('#summernote').summernote(setting);
-       
         });
-        
-
-
-        
         
 function uploadSummernoteImageFile(file, el) {
 	data = new FormData();
@@ -83,40 +77,38 @@ function uploadSummernoteImageFile(file, el) {
 		}
 	});
 }
-
-
-
+        
+        
 </script>
-
 </head>
 <body>
-<h3 style="text-align:center">커뮤니티 글 작성</h3>
-<form action="${pageContext.request.contextPath}/CBInsertProcess.do" method="post" enctype="multipart/form-data">
+<h3 style="text-align:center">커뮤니티 글 수정하기</h3>
+<form action="${pageContext.request.contextPath}/Modi_CBProcess.do" method="post" enctype="multipart/form-data">
 	<table border="1px" align="center">
 			<tr>
 				<td>제목</td>
-				<td><textarea rows="1" cols="50" name="cm_subject" id="cm_subject"></textarea></td>
+				<td><textarea rows="1" cols="50" name="cm_subject">${commuVo.cm_subject}</textarea></td>
 			</tr>
 			<tr>
 			    <td>대표사진 설정</td>
-				<td><input type="file" name="uploadImg" multiple/></td>
+				<td><input type="file" name="uploadImg" multiple/> 기존 대표 사진:${commuVo.cm_origin_img}</td>
 			</tr>
 			<tr>
 			<td>내용</td>
-			<td><textarea id="summernote" name="cm_content"></textarea>
-                <input type="hidden" name="midx" id="midx" value="${midx}">
-                <input type="hidden" name="cm_writer" value="${m_nick}"></td>
+			<td><textarea id="summernote" name="cm_content" >${commuVo.cm_content}</textarea>
+                <input type="text" name="cm_writer" value="${commuVo.cm_writer}"></td>
 			</tr>
 			<tr>
 				<td colspan="2" align="center">
 					<input type="button" value="메인페이지" onclick="document.location.href='${pageContext.request.contextPath}/home.do'"/>&nbsp;|&nbsp;
-					<input type="submit"  value="등록하기"/>
-				
+					<input type="submit" value="등록하기 "/>
 				</td>
 			</tr>
 		</table>
 
 </form>
+
+
 
 </body>
 </html>

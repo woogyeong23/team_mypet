@@ -52,6 +52,22 @@ public class CommunityDao {
 		return sqlSession.selectOne(MAPPER+".getBSellerView", seller_idx);
 	}
 
+	public int getReplyCount(int cm_idx) {
+		return sqlSession.selectOne(MAPPER+".getReplyCount", cm_idx);
+	}
+
+	public int CCInsert(Commu_CommentVo CCommentVo) {
+		return sqlSession.insert(MAPPER+".CCInsert", CCommentVo);
+	}
+	
+	public int UpDepth(Commu_CommentVo cCommentVo) {
+		return sqlSession.update(MAPPER+".UpDepth", cCommentVo);
+	}
+
+	public CommunityVo modi_CB(int cm_idx) {
+		return sqlSession.selectOne(MAPPER+".modi_CB", cm_idx);
+	}
+
 	
 
 	

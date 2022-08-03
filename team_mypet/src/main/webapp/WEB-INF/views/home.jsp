@@ -47,7 +47,7 @@
     #popup_link{
     color: #FFFFFF;
     }
-    
+
     
     </style>
 <!-- ************************************************ -->
@@ -72,8 +72,17 @@ $(function() {
 	  $('#popup_close').click(function(){
 	        $('.popup').stop().slideUp()
 	    });
-	   
+	  
+// 	  $('.user-login li:nth-child(3) a').mouseenter(function(){
+// 	        $('.depth').stop().slideDown()
+// 	    });
+// 	    $('.user-login li:nth-child(3) a').mouseleave(function () {
+// 	        $('.depth').stop().slideUp()
+// 	  });
+	  
+	  
 	});
+	
 	
 	
 </script>
@@ -92,58 +101,63 @@ $(function() {
 <!-- ************************************************ -->
     <!-- Start Hero Area -->
     <section class="hero-area">
-        <div class="container">
+<!--         <div class="container"> -->
             <div class="row">
-                <div class="col-lg-12">
+                <div class="col-lg-12 col-12">
                     <div class="slider-head">
                         <!-- Start Hero Slider -->
                         <div class="hero-slider">
                             <!-- Start Single Slider -->
-                            <div class="single-slider"
-                                style="background-image: url(resources/assets/images/hero/rkstlrEVENT01.jpg);">
-                                <div class="content">
+                            <a href="#">
+                            <div class="single-slider" style="background-image: url(resources/assets/images/hero/rkstlrEVENT01.jpg);">
+                                
+<!--                                 <div class="content"> -->
+                                  
 <!--                                     <h2><span>ㄱㅇㅈㄱㅇㅈㅇㅈㅇㅈㅈㅇㅈㅈㅇㅈㅈㅇㅈㅈㅇㅇㅈㅇㅈㅇㅇㅈㅈㅇㅈㅈㅇ</span> -->
 <!--                                        ㄱㅇㅈㄱㅇㅈㅇㅈㅇㅈㅈㅇㅈㅈㅇㅈㅈㅇㅈㅈㅇㅇㅈㅇㅈㅇㅇㅈㅈㅇㅈㅈㅇ -->
 <!--                                     </h2> -->
 <!--                                     <p>ㄱㅇㅈㄱㅇㅈㅇㅈㅇㅈㅈㅇㅈㅈㅇㅈㅈㅇㅈㅈㅇㅇㅈㅇㅈㅇㅇㅈㅈㅇㅈㅈㅇ -->
 <!--                                         ㄱㅇㅈㄱㅇㅈㅇㅈㅇㅈㅈㅇㅈㅈㅇㅈㅈㅇㅈㅈㅇㅇㅈㅇㅈㅇㅇㅈㅈㅇㅈㅈㅇ</p> -->
 <!--                                     <h3><span>ㄱㅇㅈㄱㅇㅈㅇㅈㅇㅈㅈㅇㅈㅈㅇㅈㅈㅇㅈㅈㅇㅇㅈㅇㅈㅇㅇㅈㅈㅇㅈㅈㅇ</span> 1,000,000 원</h3> -->
-                                    <div class="button">
-                                        <a href="product-grids.html" class="btn">Shop Now</a>
-                                    </div>
-                                </div>
-                            </div>
+<!--                                     <div class="button"> -->
+<!--                                         <a href="product-grids.html" class="btn">Shop Now</a> -->
+<!--                                     </div> -->
+<!--                                 </div> -->
+
+                            </div>  </a>
                             <!-- End Single Slider -->
                             <!-- Start Single Slider -->
+                            <a href="#">
                             <div class="single-slider"
                                 style="background-image: url(resources/assets/images/hero/EventDetail_02.jpg);">
-                                <div class="content">
+<!--                                 <div class="content"> -->
 <!--                                     <h2><span>ㄱㅇㅈㄱㅇㅈㅇㅈㅇㅈㅈㅇㅈㅈㅇㅈㅈㅇㅈㅈㅇㅇㅈㅇㅈㅇㅇㅈㅈㅇㅈㅈㅇ</span> -->
 <!--                                        ㄱㄴㄷㄷㄹㅇㅇㅇㅇㅇㅇㅇㅇ -->
 <!--                                     </h2> -->
 <!--                                     <p>ㄱㅇㅈㄱㅇㅈㅇㅈㅇㅈㅈㅇㅈㅈㅇㅈㅈㅇㅈㅈㅇㅇㅈㅇㅈㅇㅇㅈㅈㅇㅈㅈㅇ -->
 <!--                                         ㄱㅇㅈㄱㅇㅈㅇㅈㅇㅈㅈㅇㅈㅈㅇㅈㅈㅇㅈㅈㅇㅇㅈㅇㅈㅇㅇㅈㅈㅇㅈㅈㅇ</p> -->
 <!--                                     <h3><span>ㄱㅇㅈㄱㅇㅈㅇㅈㅇㅈㅈㅇㅈㅈㅇㅈㅈㅇㅈㅈㅇㅇㅈㅇㅈㅇㅇㅈㅈㅇㅈㅈㅇ</span> 1,000,000 원</h3> -->
-                                    <div class="button">
-                                        <a href="product-grids.html" class="btn">클릭</a>
-                                    </div>
-                                </div>
+<!--                                     <div class="button"> -->
+<!--                                         <a href="product-grids.html" class="btn">클릭</a> -->
+<!--                                     </div> -->
+<!--                                 </div> -->
                             </div>
+                            </a>
                             <!-- End Single Slider -->
                         </div>
                         <!-- End Hero Slider -->
                     </div>
                 </div>
-                <div class="col-lg-4 col-12">
-                    <div class="row">
-                        <div class="col-lg-12 col-md-6 col-12 md-custom-padding">
-                            <!-- Start Small Banner -->
-                            <!-- Start Small Banner -->
-                        </div>
-                    </div>
-                </div>
+<!--                 <div class="col-lg-4 col-12"> -->
+<!--                     <div class="row"> -->
+<!--                         <div class="col-lg-12 col-md-6 col-12 md-custom-padding"> -->
+<!--                             Start Small Banner -->
+<!--                             Start Small Banner -->
+<!--                         </div> -->
+<!--                     </div> -->
+<!--                 </div> -->
             </div>
-        </div>
+<!--         </div> -->
     </section>
     <!-- End Hero Area -->
 
@@ -175,12 +189,17 @@ $(function() {
                                 <a href="product-grids.html">${hv.p_name}</a>
                             </h4>
                             <ul class="review">
+<%--                             <c:forEach items="${hv. }"> --%> <!-- 별점 구현 보류 -->
+                            
+<%--                             </c:forEach> --%>
+                           
+                            
                                 <li><i class="lni lni-star-filled"></i></li>
                                 <li><i class="lni lni-star-filled"></i></li>
                                 <li><i class="lni lni-star-filled"></i></li>
                                 <li><i class="lni lni-star-filled"></i></li>
                                 <li><i class="lni lni-star-filled"></i></li>
-                                <li><span>5.0 Review(s)</span></li>
+<!--                                 <li><span>5.0 </span></li> -->
                             </ul>
                             <div class="price">
                                 <span>${hv.p_price}</span>
@@ -218,7 +237,7 @@ $(function() {
                         <div class="product-info">
                             <span class="category">${hv.p_name}</span>
                             <h4 class="title">
-                                <a href="product-grids.html">${hv.p_name}</a>
+                                <a href="#">${hv.p_name}</a>
                             </h4>
                             <ul class="review">
                                 <li><i class="lni lni-star-filled"></i></li>
@@ -248,7 +267,6 @@ $(function() {
                 <div class="col-12">
                     <div class="section-title">
                         <h2>띠링~ 신상품입니다.</h2>
-                        <p>강의실 컴퓨터는 수시로 포맷을 진행하고 있습니다. 개인자료는 꼭 USB 또는 e-mail로 백업 해주세요.</p>
                     </div>
                 </div>
             </div>

@@ -57,6 +57,7 @@
 			<exclude-mapping path="/CBView.do"/>
 			<exclude-mapping path="/BSellerList.do"/>
 			<exclude-mapping path="/BSellerView.do"/>
+			<exclude-mapping path="/realTime-review"/>
 
 			<exclude-mapping path="/logout.do"/>
 			

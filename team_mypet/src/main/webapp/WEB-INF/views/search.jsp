@@ -9,12 +9,41 @@
 <!-- css************************************************ -->
     <jsp:include page="../include/head.jsp" />  
 <!-- ************************************************ -->
+<style type="text/css">
+.result_span{
+    display: inline-block;
+    overflow: hidden;
+    max-width: 840px;
+    color: rgb(95, 0, 128);
+    text-align: center;
+    white-space: nowrap;
+    text-overflow: ellipsis;
+    vertical-align: top;
+}
+
+.result{
+position: relative;
+width:100%;
+height: 400px;
+}
+
+.result_in{
+position: absolute;
+top: 50%;
+left: 50%;
+transform: translate(-50%,-50%);
+}
+
+
+
+</style>
+
 </head>
 <body>
 <!-- 헤더와 네비************************************************ -->
     <jsp:include page="../include/header.jsp" />  
 <!-- ************************************************ -->
-<h3 style="text-align:center">--  상품 검색 결과  --</h3>
+<h3 style="text-align:center"></h3>
 
 <!-- Start Trending Product Area -->
     <section class="trending-product section" style="margin-top: 12px;">
@@ -22,30 +51,26 @@
             <div class="row">
                 <div class="col-12">
                     <div class="section-title">
-                        <h2>강아지 간식</h2>
-                        
-                        
-                        
-                        <p><span style="font-size: 1.2em">${resultCount}</span>개가 검색되었습니다.</p>
-                
-                    
-                    
-                    
-                    
-               
+                        <h2><span class="result_span">'${keyword}'</span>에 대한 검색 결과</h2>
                     </div>
                 </div>
             </div>
             <div class="row">
                 <c:choose>
                     <c:when test="${resultCount == 0}">
-                     
-                     검색된 상품이 없습니다.
-                    
+                    <div class="result">
+                    <div class="result_in">
+                    <h1 style="color:rgb(181, 181, 181); text-align:center"><i class="lni lni-search-alt"></i></h1>
+                               <br>
+                   <h5 style="color: rgb(181, 181, 181);">검색된 상품이 없습니다.</h5>
+                   </div>
+                    </div>
                     </c:when>
                     
              <c:otherwise>
+             <p>총 <span class="result_span">${resultCount}</span> 건</p>
               <c:forEach var="sv" items="${SearchList}">
+             
                 <div class="col-lg-3 col-md-6 col-12">
                     <!-- Start Single Product -->
                     <div class="single-product">
