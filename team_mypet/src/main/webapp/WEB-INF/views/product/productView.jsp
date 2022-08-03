@@ -110,6 +110,97 @@
 
 </style>
 
+<script>
+
+//수량버튼1
+/* const formform = document.getElementByName("form1"),
+pprice=document.form1.pprice,
+pcount=document.form1.pcount,
+add=document.form1.add,
+minus=document.form1.minus,
+sum=document.form1.sum;
+
+if(formform){
+	sum.value=pprice.value;
+	
+	let countval=pcount.value,
+		sumval=sum.value,
+		priceval=pprice.value;
+
+	if(add){
+		add.addEventListener('click',function(){
+			countval++;
+			sumval=countval*priceval;
+			pcount.value=countval;
+			sum.value=sumval;
+			console.log(countval,sumval,priceval);
+		});
+	}
+
+	if(minus){
+		minus.addEventListener('click',function(){
+			if (countval>1){
+			countval--;
+			sumval=countval*priceval;
+			pcount.value=countval;
+			sum.value=sumval;
+			console.log(countval,sumval,priceval);
+			}else{
+				countval=1;
+			}
+		});
+	}
+} */
+
+//수량버튼2
+	let count = $(".pcount").val();
+	$(".plus_btn").on("click", function(){
+		$(".pcount").val(++count);
+	});
+	$(".minus_btn").on("click", function(){
+		if(count > 1){
+			$(".pcount").val(--count);	
+		}
+	});
+
+
+
+
+
+/*
+//서버로 전송할 데이터
+const form = {
+		p_idx : '${productVo.p_idx}',
+		p_name : '${productVo.p_name}',
+		p_count:'',
+		
+}
+
+//장바구니추가버튼
+$("#btn_cart").on("click",function(e){
+	form.p_count = $(".quantity_input").val();
+	$.ajax({
+		url : '${pageContext.request.contextPath}/membercart.do', //호출할 url
+		type : 'GET', // 호출할 방법(get,post)
+		data : form, //서버로 보낼 데이터
+		success : function(result){ //요청 성공시 수행될 메서드, 파라미터는 서버가 반환하는 값
+			cartAlert(result);
+		} 
+	})
+});
+
+
+function cartAlert(result){
+	if(result =='0'){
+		alert("장바구니에 추가할 수량을 선택해주세요.");
+	}else{
+		alert("장바구니에 추가되었습니다.")
+	}
+		
+}
+*/
+
+</script>
 
 
 <!-- css***************************************************** -->
@@ -187,15 +278,18 @@
 
 
 						<hr>
+						<form name="formform">
 						<div class="count">
 							<div>
-								수량 : <input type="hidden" name="p_count" value="5500">
-								<input type="button" value=" + " name="add" style="width: 25px" >
-								<input type="text" name="amount" value="1" size="3" max="" style="text-align: center;">
-								<input type="button" value=" - " name="min" style="width: 25px" >
+								수량 :
+								<input type="button" class="plus_btn" name="add" value=" + "  style="width: 25px" >
+								<!-- <input type="hidden" class="pprice" name="pprice" value="50">
+								 --><input type="text" class="pcount" name="pcount" value="1" size="3" max="" style="text-align: center;">
+								<input type="button" class="minus_btn" name="minus" value=" - " style="width: 25px">
 							</div>
-								<span>${productView.p_price} 원</span> <!-- ${p_price} -->
-						</div>	
+								<span><input type="text" name="sum" size="11" readonly="readonly"> 원</span> <!-- ${p_price} -->
+						</div>
+						</form>	
 						<hr>
 
 						<div class="total">
@@ -203,11 +297,12 @@
 							<span>총 금액<span style="color:red; font-size: 20px; padding-left: 20px">${productView.p_price}원</span></span>
 						</div>
 
+
 						<div class="bottom-content">
 							<div class="row align-items-end">
 								<div class="col-lg-4 col-md-4 col-12">
 									<div class="button cart-button">
-										<button class="btn" style="width:100%;">장바구니</button>
+										<button id="btn_cart" class="btn" style="width:100%;">장바구니</button>
 									</div>
 								</div>
 								<div class="col-lg-4 col-md-4 col-12">
@@ -370,6 +465,8 @@
 				<!-- 비슷한 상품 -->
 				<!-- 비슷한 상품끝 -->
 
+						
+<!-- 수량버튼 스크립트 -->
 
     <!-- ========================= JS here ========================= -->
     <script src="assets/js/bootstrap.min.js"></script>
