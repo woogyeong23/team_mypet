@@ -10,6 +10,7 @@ import com.jeonju.mypet.dao.CommunityDao;
 import com.jeonju.mypet.dao.HomeDao;
 import com.jeonju.mypet.vo.Commu_CommentVo;
 import com.jeonju.mypet.vo.ProductVo;
+import com.jeonju.mypet.vo.ReviewVo;
 import com.jeonju.mypet.vo.SellerStoryVo;
 
 @Service
@@ -51,6 +52,19 @@ public class JoeAjaxService {
 
 	public int resultCount(String keyword) {
 		return homeDao.resultCount(keyword);
+	}
+
+	public List<ReviewVo> getReviewList() {
+		return homeDao.getReviewList();
+	}
+
+	public int CCInsert(Commu_CommentVo CCommentVo) {
+		return commuDao.CCInsert(CCommentVo);
+	}
+
+	public int UpDepth(Commu_CommentVo cCommentVo) {
+	   return commuDao.UpDepth(cCommentVo);
+		
 	}
 	
 	
