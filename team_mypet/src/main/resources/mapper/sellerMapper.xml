@@ -5,25 +5,70 @@
 <mapper namespace = "com.jeonju.mypet.seller">
 
 	<select id="getSellerProductList" resultType="Hashmap">
-		select a.p_idx, p_name, p_price, p_discount, p_disprice, p_wday, p_modifyday, p_status, a.p_category_idx, p_category_large, p_category_small,
-			ifnull(avg(review_stars),0) as avg_reviews_stars, count(review_stars) as cnt_reviews
-			,p_sys_filename
-			from product a join p_category b on a.p_category_idx = b.p_category_idx left join review c on a.p_idx = c.p_idx
-			where a.p_idx in (select p_idx from product where seller_idx=(select seller_idx from sellerstory where midx=#{member_id}))
+		select p.*, sum(detail_cnt) as sales
+					from
+						(select a.p_idx, a.p_name, p_price, p_discount, p_disprice, p_wday, p_modifyday, p_status, b.p_category_idx, p_category_large, p_category_small,
+						p_sys_filename,ifnull(avg(review_stars),0) as avg_reviews_stars, count(review_stars) as cnt_reviews
+						from product a  join p_category b on a.p_category_idx = b.p_category_idx left join review c on a.p_idx = c.p_idx
+						where a.p_idx in (select p_idx from product where seller_idx=(select seller_idx from sellerstory where midx=#{member_id}))
+						group by a.p_idx)
+					as p left join detail d on p.p_idx = d.p_idx
+					where p.p_idx in (select p_idx from product where seller_idx=(select seller_idx from sellerstory where midx=#{member_id}))
 			<if  test="searching == 'searchTotal'">
-					and (a.p_idx like CONCAT('%',#{keyword},'%') or p_name like CONCAT('%',#{keyword},'%'))
+					and (p.p_idx like CONCAT('%',#{keyword},'%') or p_name like CONCAT('%',#{keyword},'%'))
 			</if>
 			<if  test="searching == 'searchName' ">
 					and p_name like  CONCAT('%',#{keyword},'%')
 			</if>
 			<if  test="searching == 'searchNum' ">
-					and a.p_idx like CONCAT('%',#{keyword},'%')
+					and p.p_idx like CONCAT('%',#{keyword},'%')
 			</if>
-			
-			
-			
-			group by a.p_idx
 
+			
+			<choose>
+				<when test="status=='00'">
+				</when>
+				<otherwise>
+					and p.p_status=#{status}
+				</otherwise>
+			</choose>
+			
+			<choose>
+				<when test="category=='00'">
+					and (p_category_large=1 or p_category_large=2)
+				</when>
+				<when test="category=='01'">
+					and p_category_large=1
+				</when>
+				<when test="category=='02'">
+					and p_category_large=2
+				</when>
+				<otherwise>
+					and p_category_idx=#{category}
+				</otherwise>
+			</choose>
+					group by p.p_idx
+					
+			<choose>
+				<when test="sorting=='newest'">
+					order by p.p_wday desc
+				</when>
+				<when test="sorting=='sales'">
+					order by sales desc
+				</when>
+				<when test="sorting=='highPrice'">
+					order by p.p_disprice desc
+				</when>
+				<when test="sorting=='lowPrice'">
+					order by p.p_disprice asc
+				</when>
+				<when test="sorting=='reviews'">
+					order by p.cnt_reviews desc
+				</when>
+				<when test="sorting=='stars'">
+					order by p.avg_reviews_stars desc
+				</when>
+			</choose>
 	</select>
 	<select id="getSellerProductDetail" parameterType="string" resultType="productVo">
 		select * from product where p_idx=#{p_idx}

@@ -18,24 +18,24 @@
     <!-- Custom styles for this template -->
     <link href="resources/assets/css/sidebar.css" rel="stylesheet">
     
-<style>
-html, body{
-height: 100%
-}
-
-#wrap {
-min-height: 100%;
-position: relative;
-padding-bottom: 60px;
-}
-
-footer {
-position: relative;
-transform:translatY(-100%);
-}
-
-
-</style>
+	<style>
+		html, body{
+			height: 100%
+		}
+		
+		#wrap {
+			min-height: 100%;
+			position: relative;
+			padding-bottom: 60px;
+		}
+		
+		footer {
+			position: relative;
+			transform:translatY(-100%);
+		}
+		
+	
+	</style>
 
 </head>
 
@@ -65,6 +65,8 @@ transform:translatY(-100%);
 				
 				<!-- content -->
 				<div class="col-md-9 col-12">
+					<h1 class="pb-1 border-bottom" style="margin-bottom:10px">판매상품</h1>
+					
 					<!-- 세부검색 -->
 					<form class="d-flex" action="${pageContext.request.contextPath}/seller_productList.do" method="get">
 					
@@ -105,25 +107,25 @@ transform:translatY(-100%);
 											<!-- 상태 -->
 											<div style=" float:right; margin-right:5px;">
 											<select class="form-select" name = "status" id="status" >
-													<option value="0" <c:if test="${searchInfo.get('status') == '0'}">selected</c:if>>전체</option>
-													<option value="1" <c:if test="${searchInfo.get('status') == '1'}">selected</c:if>>판매중</option>
-													<option value="2" <c:if test="${searchInfo.get('status') == '2'}">selected</c:if>>품절</option>
-													<option value="3" <c:if test="${searchInfo.get('status') == '3'}">selected</c:if>>삭제</option>
+													<option value="00" <c:if test="${searchInfo.get('status') == '00'}">selected</c:if>>전체</option>
+													<option value="0" <c:if test="${searchInfo.get('status') == '0'}">selected</c:if>>판매중</option>
+													<option value="1" <c:if test="${searchInfo.get('status') == '1'}">selected</c:if>>품절</option>
+													<option value="2" <c:if test="${searchInfo.get('status') == '2'}">selected</c:if>>삭제</option>
 												</select>
 											</div>
 											<!-- /상태 -->
 											<!-- 카테고리 -->
 											<div style=" float:right; margin-right:5px;">
 											<select class="form-select" name = "category" id="category" >
-													<option value="0" <c:if test="${searchInfo.get('category') == '0'}">selected</c:if>>전체</option>
-													<option value="00" <c:if test="${searchInfo.get('category') == '00'}">selected</c:if>>강아지</option>
+													<option value="00" <c:if test="${searchInfo.get('category') == '00'}">selected</c:if>>전체</option>
+													<option value="01" <c:if test="${searchInfo.get('category') == '01'}">selected</c:if>>강아지</option>
 													<option value="1" <c:if test="${searchInfo.get('category') == '1'}">selected</c:if>>강아지-껌</option>
 													<option value="2" <c:if test="${searchInfo.get('category') == '2'}">selected</c:if>>강아지-스낵</option>
 													<option value="3" <c:if test="${searchInfo.get('category') == '3'}">selected</c:if>>강아지-뼈/육포</option>
 													<option value="4" <c:if test="${searchInfo.get('category') == '4'}">selected</c:if>>강아지-스틱</option>
 													<option value="5" <c:if test="${searchInfo.get('category') == '5'}">selected</c:if>>강아지-프리미엄</option>
 													<option value="6" <c:if test="${searchInfo.get('category') == '6'}">selected</c:if>>강아지-통살</option>
-													<option value="01" <c:if test="${searchInfo.get('category') == '01'}">selected</c:if>>고양이</option>
+													<option value="02" <c:if test="${searchInfo.get('category') == '02'}">selected</c:if>>고양이</option>
 													<option value="7" <c:if test="${searchInfo.get('category') == '7'}">selected</c:if>>고양이-츄르</option>
 													<option value="8" <c:if test="${searchInfo.get('category') == '8'}">selected</c:if>>고양이-스낵</option>
 													<option value="9" <c:if test="${searchInfo.get('category') == '9'}">selected</c:if>>고양이-캣잎</option>
@@ -198,7 +200,7 @@ transform:translatY(-100%);
 													</c:choose>
 												</span>
 												<h4 class="title">
-													<a href="product-grids.html">${productVo.p_name}</a>
+													<a href="${pageContext.request.contextPath}/seller_productDetail.do?p_idx=${productVo.p_idx}">${productVo.p_name}</a>
 												</h4>
 												<ul class="review">
 												<c:forEach var="cnt" begin="1" end="${productVo.avg_reviews_stars}" step="1">

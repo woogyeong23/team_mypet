@@ -38,15 +38,15 @@ public class SellerController {
 		String member_id= Integer.toString(midx);
 		
 		if(searching == null)
-			searching="";
+			searching="searchTotal";
 		if(keyword == null)
 			keyword = "";
 		if(sorting == null)
-			sorting = "";
+			sorting = "newest";
 		if(status == null)
-			status = "";
+			status = "00";
 		if(category == null)
-			category = "";
+			category = "00";
 		
 		HashMap<String, String> searchInfo = new HashMap<String, String>();
 		searchInfo.put("member_id", member_id);
@@ -56,7 +56,7 @@ public class SellerController {
 		searchInfo.put("category", category);
 		searchInfo.put("keyword", keyword);
 		System.out.println("********************************************");
-		System.out.println(searching+keyword+sorting+status+category);
+		System.out.println(member_id+searching+keyword+sorting+status+category);
 		List<HashMap<String, Object>> productListMap = sellerService.seller_productList(searchInfo);
 		
 		model.addAttribute("productListMap", productListMap);
@@ -84,5 +84,12 @@ public class SellerController {
 		
 		
 		return "seller/seller_productDetail";
+	}
+	
+	@GetMapping("/seller_productRegist.do")
+	public String loginProcess(Model model, HttpServletRequest request) {
+		
+		
+		return "seller/seller_productRegist";
 	}
 }
