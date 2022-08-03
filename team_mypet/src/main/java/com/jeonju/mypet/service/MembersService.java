@@ -4,8 +4,6 @@ package com.jeonju.mypet.service;
 import java.util.HashMap;
 import java.util.List;
 
-import javax.servlet.http.HttpServletRequest;
-
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
@@ -37,9 +35,6 @@ public class MembersService {
 	}
 	public HashMap<String, String> login1(HashMap<String, String> loginInfo) {
 		return membersDao.loginMember1(loginInfo);
-	}
-	public HashMap<String, Integer> login2(HashMap<String, String> loginInfo) {
-		return membersDao.loginMember2(loginInfo);
 	}
 	
 	//수정화면

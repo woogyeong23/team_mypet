@@ -34,9 +34,6 @@
                 <div class="row align-items-center">
                  <div class="col-lg-4 col-md-4 col-12">
                         <div class="top-left">
-                            <ul class="useful-links">
-                                <li><a style="color:black" href="${pageContext.request.contextPath}/home.do">지금 바로 가입하고 상품을 구입하면</a></li>
-                            </ul>
                         </div>
                     </div>
                     <div class="col-lg-4 col-md-4 col-12">
@@ -58,12 +55,12 @@
                             <li>
                             <p><span>${m_nick}</span>님 환영합니다!</p>
                             </li>
-                            
-                            <li>
-                               <a href="${pageContext.request.contextPath}/memberInfo.do"> 내정보</a> 
-                            </li>
                             <li>
                                <a href="${pageContext.request.contextPath}/logout.do">로그아웃</a>
+                            </li>
+                            <li>
+                               <a href="${pageContext.request.contextPath}/rhror.do">고객센터</a>
+                             
                             </li>
                             </ul>
                             </c:when>
@@ -75,7 +72,9 @@
                                 </li>
                                 <li>
                                     <a href="${pageContext.request.contextPath}/join.do">회원가입</a>
-                                    
+                                </li>
+                                 <li >
+                                    <a href="${pageContext.request.contextPath}/rhror.do">고객센터</a>
                                 </li>
                             </ul>
                             </c:otherwise>
@@ -103,18 +102,18 @@
                             <!-- navbar search start -->
                             <form action="${pageContext.request.contextPath}/KeywordSearch" method="post">
                             <div class="navbar-search search-style-5">
-                                <div class="search-select">
-                                    <div class="select-position">
-                                        <select id="select1">
-                                            <option selected>All</option>
-                                            <option value="1">option 01</option>
-                                            <option value="2">option 02</option>
-                                            <option value="3">option 03</option>
-                                            <option value="4">option 04</option>
-                                            <option value="5">option 05</option>
-                                        </select>
-                                    </div>
-                                </div>
+<!--                                 <div class="search-select"> -->
+<!--                                     <div class="select-position"> -->
+<!--                                         <select id="select1"> -->
+<!--                                             <option selected>All</option> -->
+<!--                                             <option value="1">option 01</option> -->
+<!--                                             <option value="2">option 02</option> -->
+<!--                                             <option value="3">option 03</option> -->
+<!--                                             <option value="4">option 04</option> -->
+<!--                                             <option value="5">option 05</option> -->
+<!--                                         </select> -->
+<!--                                     </div> -->
+<!--                                 </div> -->
                                 <div class="search-input">
                                     <input type="text" name="keyword" id="keyword" placeholder="검색어를 입력해주세요.">
                                 </div>
@@ -130,7 +129,29 @@
                     </div>
                     <div class="col-lg-4 col-md-2 col-5">
                         <div class="middle-right-area">
+                         <div class="nav-hotline">
+<!--                                 <i class="lni lni-phone"></i> -->
+<!--                                 <h3>Hotline: -->
+<!--                                     <span>(+100) 123 456 7890</span> -->
+<!--                                 </h3> -->
+                            </div>
+                            
                             <div class="navbar-cart">
+                            
+                              <c:choose>
+                             <c:when test="${midx != null}">
+                             <div class="wishlist">
+                                    <a href="${pageContext.request.contextPath}/memberInfo.do">
+                                        <i class="lni lni-user"></i>
+<!--                                 <span class="total-items">0</span> -->
+                                    </a>
+                                </div>
+                                </c:when>
+                                <c:otherwise>
+                                
+                                </c:otherwise>
+                                </c:choose>
+                            
                                 <div class="wishlist">
                                     <a href="javascript:void(0)">
                                         <i class="lni lni-heart"></i>
@@ -216,24 +237,25 @@
         <div id="naver">
         <div class="container">
             <div class="row align-items-center">
-                <div class="col-lg-8 col-md-6 col-12">
+                <div class="col-lg-12 col-md-6 col-12">
                     <div class="nav-inner">
                         <!-- Start Mega Category Menu -->
                         <div class="mega-category-menu">
                             <span class="cat-button"><i class="lni lni-menu"></i>전체 카테고리</span>
                             <ul class="sub-category">
-                                <li><a href="product-grids.html">더보기 <i class="lni lni-chevron-right"></i></a>
+                                <li><a href="#">강아지</a></li>
+                                <li><a href="#">고양이</a></li>
+                                <li><a href="#">이벤트</a></li>
+                                <li><a href="#">커뮤니티</a></li>
+                                <li><a href="#">인기작가</a></li>
+                                 <li><a href="#">더보기<i class="lni lni-chevron-right"></i></a>
                                     <ul class="inner-sub-category">
-                                        <li><a href="product-grids.html">강아지</a></li>
-                                        <li><a href="product-grids.html">ㅇㅇㅇㅇ</a></li>
-                                        <li><a href="product-grids.html">고양이</a></li>
-                                        <li><a href="product-grids.html">ㅂㅂㅂㅂ</a></li>
-                                        <li><a href="product-grids.html">이벤트</a></li>
+                                        <li><a href="product-grids.html">공지사항</a></li>
+                                        <li><a href="product-grids.html">자주하는 질문</a></li>
+                                        <li><a href="product-grids.html">1:1문의</a></li>
+                                        <li><a href="product-grids.html">입점문의</a></li>
                                     </ul>
                                 </li>
-                                <li><a href="product-grids.html">키보드</a></li>
-                                <li><a href="product-grids.html">모르겠다</a></li>
-                                <li><a href="product-grids.html">7월8일</a></li>
                             </ul>
                         </div>
                         <!-- End Mega Category Menu -->
@@ -249,11 +271,11 @@
                             <div class="collapse navbar-collapse sub-menu-bar" id="navbarSupportedContent">
                                 <ul id="nav" class="navbar-nav ms-auto">
                                     <li class="nav-item">
-                                    <a href="productBest.do" aria-label="Toggle navigation">인기순</a> 
+                                    <a href="productBest.do" aria-label="Toggle navigation">인기상품</a> 
 <%--                        <a href="${pageContext.request.contextPath}/home.do" class="active" aria-label="Toggle navigation">Home</a> --%>
                                     </li>
                                      <li class="nav-item">
-                                     <a href="productNew.do" aria-label="Toggle navigation">최신순</a>
+                                     <a href="productNew.do" aria-label="Toggle navigation">신상품</a>
                                     </li>
                                     <li class="nav-item">
                                         <a class="dd-menu collapsed" href="javascript:void(0)" data-bs-toggle="collapse"
@@ -301,39 +323,36 @@
                                      <li class="nav-item">
                                         <a href="${pageContext.request.contextPath}/BSellerList.do" aria-label="Toggle navigation">인기 작가</a>
                                     </li>
-<!--                                      <li class="nav-item"> -->
-<!--                                         <a href="productBest.do" aria-label="Toggle navigation">인기순</a> -->
-<!--                                     </li> -->
-<!--                                      <li class="nav-item"> -->
-<!--                                         <a href="productNew.do" aria-label="Toggle navigation">최신순</a> -->
-<!--                                     </li> -->
+                                     <li class="nav-item">
+                                        <a href="${pageContext.request.contextPath}/realTime-review" aria-label="Toggle navigation">실시간 후기</a>
+                                    </li>
                                 </ul>
                             </div> <!-- navbar collapse -->
                         </nav>
                         <!-- End Navbar -->
                     </div>
                 </div>
-                <div class="col-lg-4 col-md-6 col-12">
-                    <!-- Start Nav Social -->
-                    <div class="nav-social">
-                        <h5 class="title">Follow Us:</h5>
-                        <ul>
-                            <li>
-                                <a href="javascript:void(0)"><i class="lni lni-facebook-filled"></i></a>
-                            </li>
-                            <li>
-                                <a href="javascript:void(0)"><i class="lni lni-twitter-original"></i></a>
-                            </li>
-                            <li>
-                                <a href="javascript:void(0)"><i class="lni lni-instagram"></i></a>
-                            </li>
-                            <li>
-                                <a href="javascript:void(0)"><i class="lni lni-skype"></i></a>
-                            </li>
-                        </ul>
-                    </div>
-                    <!-- End Nav Social -->
-                </div>
+<!--                 <div class="col-lg-4 col-md-6 col-12"> -->
+<!--                     Start Nav Social -->
+<!--                     <div class="nav-social"> -->
+<!--                         <h5 class="title">Follow Us:</h5> -->
+<!--                         <ul> -->
+<!--                             <li> -->
+<!--                                 <a href="javascript:void(0)"><i class="lni lni-facebook-filled"></i></a> -->
+<!--                             </li> -->
+<!--                             <li> -->
+<!--                                 <a href="javascript:void(0)"><i class="lni lni-twitter-original"></i></a> -->
+<!--                             </li> -->
+<!--                             <li> -->
+<!--                                 <a href="javascript:void(0)"><i class="lni lni-instagram"></i></a> -->
+<!--                             </li> -->
+<!--                             <li> -->
+<!--                                 <a href="javascript:void(0)"><i class="lni lni-skype"></i></a> -->
+<!--                             </li> -->
+<!--                         </ul> -->
+<!--                     </div> -->
+<!--                     End Nav Social -->
+<!--                 </div> -->
             </div>
         </div>
         </div>

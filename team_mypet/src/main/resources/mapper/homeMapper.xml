@@ -14,13 +14,23 @@ SELECT a.p_idx as p_idx, seller_idx, p_category_idx, p_name, p_content,
 SELECT a.p_idx as p_idx, seller_idx, p_category_idx, p_name, p_content, 
 p_price, p_discount, p_ori_filename
 FROM product a LEFT OUTER JOIN product_img b 
-ON a.p_idx = b.p_idx WHERE p_content LIKE CONCAT('%',#{keyword},'%') OR p_name LIKE CONCAT('%',#{keyword},'%')
+ON a.p_idx = b.p_idx 
+WHERE p_content LIKE CONCAT('%',#{keyword},'%') OR p_name LIKE CONCAT('%',#{keyword},'%')
 </select>
 
 <select id="resultCount" resultType="int">
 SELECT DISTINCT COUNT(a.p_idx) FROM 
 product a LEFT OUTER JOIN product_img b 
-ON a.p_idx = b.p_idx WHERE p_content LIKE CONCAT('%',#{keyword},'%') OR p_name LIKE CONCAT('%',#{keyword},'%')
+ON a.p_idx = b.p_idx 
+WHERE p_content LIKE CONCAT('%',#{keyword},'%') OR p_name LIKE CONCAT('%',#{keyword},'%')
+</select>
+
+<select id="getReviewList" resultType="reviewVo">
+SELECT product.p_idx as p_idx,product_img.p_ori_filename as p_ori_filename, 
+product.p_name as p_name, review_stars, review_content
+  FROM product INNER JOIN product_img ON product.p_idx = product_img.p_idx
+INNER JOIN review ON product.p_idx = review.p_idx ORDER BY review_idx DESC;
+
 </select>
 
 

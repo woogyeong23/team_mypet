@@ -7,6 +7,7 @@
 <head>
 <meta charset="UTF-8">
 <title>BestSellerList 페이지 입니다.</title>
+
 <!-- css************************************************ -->
     <jsp:include page="../../include/head.jsp" />  
 <!-- ************************************************ -->
@@ -15,6 +16,25 @@
 <!-- 헤더와 네비************************************************ -->
     <jsp:include page="../../include/header.jsp" />  
 <!-- ************************************************ -->
+ <!-- Start Breadcrumbs -->
+    <div class="breadcrumbs">
+        <div class="container">
+            <div class="row align-items-center">
+                <div class="col-lg-6 col-md-6 col-12">
+                    <div class="breadcrumbs-content">
+                        <h1 class="page-title">인기작가</h1>
+                    </div>
+                </div>
+                <div class="col-lg-6 col-md-6 col-12">
+                    <ul class="breadcrumb-nav">
+                        <li><a href="${pageContext.request.contextPath}/home.do"><i class="lni lni-home"></i> Home</a></li>
+                        <li><a href="#">인기작가</a></li>
+<!--                         <li>Single Product</li> -->
+                    </ul>
+                </div>
+            </div>
+        </div>
+    </div>
 
 <!-- Start Trending Product Area -->
     <section class="trending-product section" style="margin-top: 12px;">
@@ -38,25 +58,27 @@
                         
                             <img src="${pageContext.request.contextPath}/resources/Community/upload/image.jpg" alt="커뮤니티 이미지">
                             <div class="button">
-                                <a href="${pageContext.request.contextPath}/BSellerView.do?seller_idx=${bsv.seller_idx}" class="btn"><i class="lni lni-cart"></i> Add to Cart</a>
+                                <a href="${pageContext.request.contextPath}/BSellerView.do?seller_idx=${bsv.seller_idx}" class="btn"><i class="lni lni-cart"></i>작가 보러가기</a>
                             </div>
                         </div>
                         <div class="product-info">
-                            <span class="category">Watches</span>
+                             <a href="${pageContext.request.contextPath}/BSellerView.do?seller_idx=${bsv.seller_idx}"><span class="category">${bsv.m_nick}</span></a>
                             <h4 class="title">
                                 <a href="">${bsv.seller_intro}</a>
                             </h4>
                             <ul class="review">
-                                <li><i class="lni lni-star-filled"></i></li>
-                                <li><i class="lni lni-star-filled"></i></li>
-                                <li><i class="lni lni-star-filled"></i></li>
-                                <li><i class="lni lni-star-filled"></i></li>
-                                <li><i class="lni lni-star"></i></li>
-                                <li><span>4.0 Review(s)</span></li>
+                             <c:forEach begin="1" end="${bsv.seller_starsavg}" >
+                              <li><i class="lni lni-star-filled"></i></li>
+                             </c:forEach>
+                             
+                             <c:forEach begin="1" end="${5-bsv.seller_starsavg}" >
+                              <li><i class="lni lni-star"></i></li>
+                             </c:forEach>
+                                <li><span>${bsv.seller_starsavg}Review(s)</span></li>
                             </ul>
-                            <div class="price">
-                                <span>$199.00</span>
-                            </div>
+<!--                             <div class="price"> -->
+<!--                                 <span>$199.00</span> -->
+<!--                             </div> -->
                         </div>
                     </div>
                     <!-- End Single Product -->
