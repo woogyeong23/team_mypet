@@ -33,9 +33,17 @@ public class CommunityService {
 		return commuDao.getCBView(cm_idx);
 	}
 
-	public List<Commu_CommentVo> getCcmList(int cmidx) {
-		return commuDao.getCcmList(cmidx);
+	public List<Commu_CommentVo> getCcmList(int cm_idx) {
+		return commuDao.getCcmList(cm_idx);
 	}
+
+	public int getReplyCount(int cm_idx) {
+		return commuDao.getReplyCount(cm_idx);
+	}
+
+	public CommunityVo modi_CB(int cm_idx) {
+		return commuDao.modi_CB(cm_idx);
+	} 
 
 	
 	
