@@ -2,79 +2,106 @@ package com.jeonju.mypet.vo;
 
 public class PageMaker {//하단의 페이지 네비게이션 바..
 
-	private int totalCount;		//전체 데이터 갯수
-	private int startPage;		//첫번째 번호
-	private int endPage;		//마지막 번호
-	private boolean prev;		//이전 버튼
-	private boolean next;		//다음버튼
-	private int displayPageNum = 10;	//네비게이션에 보여줄 개수
-	private SearchCriteria scri;
-	
-	public int getTotalCount() {
-		return totalCount;
-	}
-	public void setTotalCount(int totalCount) {
-		this.totalCount = totalCount;
-		calcData();
-		
-	}
+	/* 시작 페이지 */
+    private int startPage;
+    
+    /* 끝 페이지 */
+    private int endPage;
+    
+    /* 이전 페이지, 다음 페이지 존재유무 */
+    private boolean prev, next;
+    
+    /*전체 게시물 수*/
+    private int total;
+    
+    /* 현재 페이지, 페이지당 게시물 표시수 정보 */
+    private Criteria cri;
+
+    
+    
+    
 	public int getStartPage() {
 		return startPage;
 	}
+
 	public void setStartPage(int startPage) {
 		this.startPage = startPage;
 	}
+
 	public int getEndPage() {
 		return endPage;
 	}
+
 	public void setEndPage(int endPage) {
 		this.endPage = endPage;
 	}
+
 	public boolean isPrev() {
 		return prev;
 	}
+
 	public void setPrev(boolean prev) {
 		this.prev = prev;
 	}
+
 	public boolean isNext() {
 		return next;
 	}
+
 	public void setNext(boolean next) {
 		this.next = next;
 	}
-	public int getDisplayPageNum() {
-		return displayPageNum;
+
+	public int getTotal() {
+		return total;
 	}
-	public void setDisplayPageNum(int displayPageNum) {
-		this.displayPageNum = displayPageNum;
+
+	public void setTotal(int total) {
+		this.total = total;
 	}
-	public SearchCriteria getScri() {
-		return scri;
+
+	public Criteria getCri() {
+		return cri;
 	}
-	public void setScri(SearchCriteria scri) {
-		this.scri = scri;
+
+	public void setCri(Criteria cri) {
+		this.cri = cri;
+	}
+ 
+	
+    /*  현재 페이지에 대한 정보인 'Criteria'와 게시물의 총개수인 'total'을 파라미터를 부여한 생성자 */
+    public PageMaker(Criteria cri, int total) {
+        
+        this.cri = cri;
+        this.total = total;
+        
+        /* 마지막 페이지 */
+        this.endPage = (int)(Math.ceil(cri.getPageNum()/10.0))*10;
+        /* 시작 페이지 */
+        this.startPage = this.endPage - 9;
+        
+        /* 전체 마지막 페이지 */
+        int realEnd = (int)(Math.ceil(total * 1.0/cri.getAmount()));
+        
+        /* 전체 마지막 페이지(realend)가 화면에 보이는 마지막페이지(endPage)보다 작은 경우, 보이는 페이지(endPage) 값 조정 */
+        if(realEnd < this.endPage) {
+            this.endPage = realEnd;
+        }
+        
+        /* 시작 페이지(startPage)값이 1보다 큰 경우 true */
+        this.prev = this.startPage > 1;
+        
+        /* 마지막 페이지(endPage)값이 1보다 큰 경우 true */
+        this.next = this.endPage < realEnd;
+        
+        
+    }
+
+	@Override
+	public String toString() {
+		return "PageMaker [startPage=" + startPage + ", endPage=" + endPage + ", prev=" + prev + ", next=" + next
+				+ ", total=" + total + ", cri=" + cri + "]";
 	}
 	
-	
-	
-	//시작페이지 끝페이지 이전 다음 버튼 값을 생성하는 메소드
-	public void calcData()
-	{
-		//ceil 올림함수 
-		endPage = (int)(Math.ceil(scri.getPage()/(double)displayPageNum)*displayPageNum) ; //(int)( 1.0 * 10)
-		
-		startPage = (endPage-displayPageNum)+1;
-		
-		int tempEndPage = (int)Math.ceil(totalCount/(double)scri.getPerPageNum()); //perPageNum 15로 나눔. 실제 페이지 개수
-	
-		if(endPage > tempEndPage)
-		{
-			endPage = tempEndPage;	//11~20이 계산이지만 실제론 17까지 밖에 없다면 11~17을 보여줘야함.
-		}
-		
-		prev = startPage == 1 ? false : true;//첫번째 페이지면 더 앞으로 갈 수 없다.
-		next = endPage*scri.getPerPageNum() >= totalCount ? false : true;//그 이상은 더이상 나타낼 데이터가 없으니까 버튼이 나타나지 않게..
-		
-	}
 	
 }

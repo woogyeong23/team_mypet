@@ -19,6 +19,28 @@
 	where b.p_category_large=#{p_category_large};
 	</select>
 	
+	<!-- 상품이미지리스트 -->
+	<select id="getproductImgs" resultType="Product_ImgVo">
+	select a.*
+	from product_img a join product b on a.p_idx=b.p_idx
+	where b.p_idx=#{p_idx};
+	</select>
+	
+	
+	<!-- 상품목록(페이징) -->
+    <select id="getListPaging" resultType="productVo">
+        select * from (
+                select p_name,p_price
+                from product order by p_idx DESC) A
+        limit #{skip},#{amount}
+    </select>
+ 
+	<!-- 상품게시물 총개수 -->
+    <select id="getTotal" resultType="int">
+        select count(*) from product
+    </select>
+    
+    
 	<!-- 카테고리 -->
 	<select id="getCodeName" resultType="productVo" parameterType="HashMap">
 	  SELECT *,
@@ -49,9 +71,9 @@
 	
 	<!-- 상품상세페이지 -->
 	<select id="getProductView" resultType="productVo">	
-	select a.*,b.*,c.*
+	select a.*, b.*, MIN(p_front_img), c.p_sys_filename, c.p_idx
 	from product a join p_category b on a.p_category_idx = b.p_category_idx join product_img c on a.p_idx=c.p_idx 
-	where a.p_idx=#{p_idx};
+	where a.p_idx=#{p_idx}
 	</select>
 	
 	
@@ -62,6 +84,7 @@
 		WHERE b.p_front_img 
 		ORDER BY a.p_idx DESC;
 	</select>
+
 
 
 	

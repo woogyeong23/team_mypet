@@ -136,11 +136,9 @@
 									<img src="${pageContext.request.contextPath}/resources/assets/images/products/${productView.p_sys_filename}" width="300px" height="400px" id="current" alt="#">
 							</div>
 							<div class="images">
-								<img src="${pageContext.request.contextPath}/resources/assets/images/products/${productView.p_sys_filename}" class="img" alt="#">
-								<img src="${pageContext.request.contextPath}/resources/assets/images/product-details/02.jpg" class="img" alt="#">
-								<img src="${pageContext.request.contextPath}/resources/assets/images/product-details/03.jpg" class="img" alt="#">
-								<img src="${pageContext.request.contextPath}/resources/assets/images/product-details/04.jpg" class="img" alt="#">
-								<img src="${pageContext.request.contextPath}/resources/assets/images/product-details/05.jpg" class="img" alt="#">
+								<c:forEach var="Product_ImgVo" items="${product_imgs}">
+								<img src="${pageContext.request.contextPath}/resources/assets/images/products/${Product_ImgVo.p_sys_filename}" class="img" alt="#">	
+								</c:forEach>
 							</div>
 						</main>
 					</div>

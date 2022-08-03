@@ -236,6 +236,17 @@
   -webkit-box-shadow: 0px 4px 4px #0000000f;
   box-shadow: 0px 4px 4px #0000000f;
 }
+
+.pagination {
+list-style: none;
+	width : 30%;
+	display: inline-block;
+}
+
+.pagination li {
+	float: left;
+	margin-left : 5px;
+		}
 </style>
 </head>
 
@@ -253,7 +264,7 @@
   					 <li class="breadcrumb-item"><a href="${pageContext.request.contextPath}/home.do">홈</a></li>
   					 <c:choose>
   					 <c:when test="${CodeName.categoryName eq null}">
-   					 <li class="breadcrumb-item active" aria-current="page">전체</li>	 
+   					 <li class="breadcrumb-item active" aria-current="page">전체</li>	 	 
   					 </c:when>
   					 <c:otherwise>
   					 <li class="breadcrumb-item active" aria-current="page">${CodeName.categoryLargeName}</li>
@@ -303,13 +314,48 @@
                 </div>
 				</c:forEach>
     </div>
+    
+    
+    <!-- 페이징 -->
+<div>
+			<ul class="pagination">
+				<c:if test="${pageMaker.prev }">
+					<li class="pagination_button">
+						<a href="${pageMaker.startPage - 1 }">Previous</a>
+					</li>
+				</c:if>
+				
+				<c:forEach var="num" begin="${pageMaker.startPage }" end="${pageMaker.endPage }">
+					<li class="pagination_button">
+						<a href="${num }">${num }</a>
+					</li>
+				</c:forEach>
+				
+				<c:if test="${pageMaker.next }">
+					<li class="pagination_button">
+						<a href="${pageMaker.endPage + 1 }">Next</a>
+					</li>
+				</c:if>
+			</ul>
+		</div>
+    
+    
 	</div>
 	</section>
 	
-	
-	
-	
-	<!-- 소현 -->
+	<script>
+		$(document).ready(function() {
+			var listForm = $("#listForm");
+			
+			$(".pagination_button a").on("click", function(e) {
+				e.preventDefault();
+				
+				listForm.find("input[name='pageNum']").val($(this).attr("href"));
+				listForm.submit();
+			});
+		});
+	</script>
+		<!-- 소현 -->
 	
 <!-- 푸터와 js************************************************ -->
     <jsp:include page="../../include/footer.jsp" />  
