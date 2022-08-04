@@ -77,17 +77,10 @@ public class MembersController {
 			
 
 			HashMap<String, Long> resultMap = membersService.login(loginInfo);
-			System.out.println("*************************************************auth:"+resultMap.get("m_auth")+"g:"+resultMap.get("m_grade")+"midx:"+resultMap.get("midx"));
-			
+
 			long m_auth = resultMap.get("m_auth");
-			System.out.println("*************************************************auth:"+resultMap.get("m_auth")+"g:"+resultMap.get("m_grade")+"midx:"+resultMap.get("midx"));
-
 			long m_grade = resultMap.get("m_grade");
-			System.out.println("*************************************************auth:"+resultMap.get("m_auth")+"g:"+resultMap.get("m_grade")+"midx:"+resultMap.get("midx"));
-
-			//long midx = (long) resultMap.get("midx");
-			System.out.println("*********midx****************************************auth:"+resultMap.get("m_auth")+"g:"+resultMap.get("m_grade")+"midx:"+resultMap.get("midx"));
-
+			
 			HashMap<String, String> resultMap1 = membersService.login1(loginInfo);
 			String m_nick = resultMap1.get("m_nick");
 	

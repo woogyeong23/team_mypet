@@ -65,11 +65,11 @@
                                 <a href="">${rv.p_name}</a>
                             </h4>
                             <ul class="review">
-                            <c:forEach begin="1" end="${rv.review_stars}" >
+                            <c:forEach begin="1" end="${rv.review_stars}">
                               <li><i class="lni lni-star-filled"></i></li>
                              </c:forEach>
                              
-                             <c:forEach begin="1" end="${5-rv.review_stars}" >
+                             <c:forEach begin="1" end="${5-rv.review_stars}">
                               <li><i class="lni lni-star"></i></li>
                              </c:forEach>
                                 <li><span>${rv.review_stars} 점</span></li>
