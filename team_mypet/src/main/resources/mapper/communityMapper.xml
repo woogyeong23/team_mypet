@@ -5,18 +5,12 @@
 <mapper namespace = "com.jeonju.mypet.community">
 
     <select id="getCommuList" resultType="communityVo">
-    select * from community where cm_delyn = 'N'
+    SELECT * FROM community WHERE cm_delyn = 'N'
     </select>
     
     
     <!-- CBView -->
-    <select id="getCcmList" resultType="commu_commentVo">
-    select * from commu_comment where cm_idx = #{cm_idx}
-    </select>
-    
-    <select id="getReplyCount" resultType="int">
-    SELECT DISTINCT COUNT(cc_idx) FROM commu_comment WHERE cm_idx=#{cm_idx}
-    </select>
+   
     
     <insert id="InsertCB" parameterType="communityVo">
     INSERT INTO community(midx, cm_subject, cm_content, cm_writer, cm_img, cm_origin_img)
@@ -34,6 +28,17 @@
     SELECT cm_subject, cm_content, cm_wday, cm_img, cm_writer,cm_idx, midx from community WHERE cm_idx= #{cm_idx}
     </select>
    
+   
+   <!-- 댓글 -->
+    <select id="getCcmList" resultType="commu_commentVo">
+    SELECT * FROM commu_comment WHERE cc_delyn = 'N' AND cm_idx = #{cm_idx} ORDER BY cc_origin DESC, cc_depth ASC;
+    </select>
+    
+    <select id="getReplyCount" resultType="int">
+    SELECT DISTINCT COUNT(cc_idx) FROM commu_comment WHERE cc_delyn = 'N' AND cm_idx=#{cm_idx} 
+    </select>
+   
+   
     <insert id="InsertComment" parameterType="commu_commentVo">
     <selectKey keyProperty="cc_origin" resultType="int" order="BEFORE">
      SELECT max(cc_idx)+1 FROM commu_comment
@@ -43,25 +48,44 @@
     </insert>
     
     <update id="UpDepth" parameterType="commu_commentVo">
-    UPDATE commu_comment SET cc_depth = cc_depth +1 WHERE cc_origin = #{cc_origin}
-    AND cc_depth>#{cc_depth}
+    UPDATE commu_comment SET cc_depth = cc_depth+1 WHERE cc_origin = #{cc_origin}
+    AND cc_depth > #{cc_depth}
     </update>
+    
     <insert id="CCInsert" parameterType="commu_commentVo">
     INSERT INTO commu_comment(cm_idx, cc_content, cc_writer, cc_origin, cc_depth, cc_level)
-    VALUES( #{cm_idx}, #{cc_content}, #{cc_writer}, #{cc_origin}, #{cc_depth}, #{cc_level})
+    VALUES( #{cm_idx}, #{cc_content}, #{cc_writer}, #{cc_origin}, #{cc_depth}+1, #{cc_level}+1)
     </insert>
     
     <!--SellerStory  -->
     <select id="getBSList" resultType="sellerStoryVo">
     SELECT m_nick, seller_idx, seller_img, seller_intro, seller_starsavg, seller_followcnt
      FROM sellerstory INNER JOIN members ON members.midx = sellerstory.midx
-    
     </select>
     
     <select id="getBSellerView" resultType="sellerStoryVo">
     SELECT seller_idx, seller_img, seller_intro, seller_openday, 
     seller_starsavg, seller_total, seller_wishcnt, seller_ordercnt, seller_followcnt 
-    FROM sellerstory where seller_idx = #{seller_idx}
+    FROM sellerstory WHERE seller_idx = #{seller_idx}
+    </select>
+    
+    <select id="getBSPList" resultType="productVo">
+<!--     SELECT product.p_idx as p_idx, p_ori_filename, p_price, p_name, p_category_idx, seller_idx, p_content -->
+<!--      FROM product INNER JOIN product_img ON product.p_idx = product_img.p_idx -->
+<!--     WHERE seller_idx = #{seller_idx} ORDER BY p_idx DESC -->
+    
+    SELECT a.p_idx as p_idx, seller_idx, p_category_idx, p_name, p_content,
+    p_price, p_discount, p_ori_filename
+    FROM product a LEFT OUTER JOIN product_img b ON a.p_idx = b.p_idx 
+    WHERE seller_idx = #{seller_idx} ORDER BY p_idx DESC
+    </select>
+    
+    <select id="getAList" resultType="reviewVo">
+SELECT product.p_idx as p_idx,product_img.p_ori_filename as p_ori_filename, 
+product.p_name as p_name, review_stars, review_content
+FROM product INNER JOIN product_img ON product.p_idx = product_img.p_idx
+INNER JOIN review ON product.p_idx = review.p_idx
+WHERE seller_idx = #{seller_idx} ORDER BY review_idx DESC;
     </select>
     
      <select id="modi_CB" parameterType="int" resultType="communityVo">

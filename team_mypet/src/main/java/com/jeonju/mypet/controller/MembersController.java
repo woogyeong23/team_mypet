@@ -78,7 +78,6 @@ public class MembersController {
 			HashMap<String, Long> resultMap = membersService.login(loginInfo);
 			long m_auth = resultMap.get("m_auth");
 			long m_grade = resultMap.get("m_grade");
-			long midx = resultMap.get("midx");
 			
 			HashMap<String, String> resultMap1 = membersService.login1(loginInfo);
 			String m_nick = resultMap1.get("m_nick");
@@ -92,7 +91,7 @@ public class MembersController {
 				session.setAttribute("m_id",m_id);
 				session.setAttribute("m_grade",m_grade);
 				session.setAttribute("m_nick",m_nick);
-				session.setAttribute("midx",midx);
+				session.setAttribute("midx",resultMap.get("midx"));
 
 				viewPage = "redirect:/home.do";
 						
