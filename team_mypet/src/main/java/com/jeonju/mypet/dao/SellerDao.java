@@ -37,8 +37,12 @@ public class SellerDao {
 		// TODO Auto-generated method stub
 		return sqlSession.selectList(MAPPER + ".getSellerProductImgs", p_idx);
 	}
-
-	
+	public int checkPName(String p_name) {
+		return sqlSession.selectOne(MAPPER+".checkPName", p_name);
+	}
+	public int checkId(String id) {
+		return sqlSession.selectOne(MAPPER+".checkId", id);
+	}
 	
 	
 	

@@ -86,7 +86,86 @@ $(document).ready(function() {
 		}
 </script>
 		    
+	<script>
+		
 	
+	
+		//할인가격 계산
+		/* 
+		document.getElementById("calPrice").onclick = function() { alert('새로운 함수입니다.');};
+		
+		$("#calPriceb").click(function(){
+		   $("#p_disprice").text("Javascript");
+		   $("#p_disprice").val("Javascript");
+		   $("#p_disprice").css('color', 'blue');
+		});
+		
+		
+		function calPricea(e) {
+			
+			var p_price  = document.getElementById("p_disprice");
+			var p_discount  = document.getElementById("p_discount");
+		    var p_disprice = document.getElementById("p_disprice");
+		 	var result=p_price*p_discount/100;
+		 	alert(p_price);
+		    //p_disprice.innerHTML = result;
+		 	$('#p_disprice').val('adf');
+		    
+		    
+		} */
+	//-----------
+	//카테고리 고르기
+	 function categoryChange(e) {
+		    var dog = ["-------","개껌", "스낵", "뼈/육포", "스틱", "프리미엄", "통살"];
+		    var cat = ["-------","츄르", "스낵", "캣잎", "통살", "프리미엄", "스틱"];
+		    var target = document.getElementById("p_category_small");
+		 
+		    if(e.value == "1") var d = dog;
+		    else if(e.value == "2") var d = cat;
+		 
+		    target.options.length = 0;
+		 
+		    for (x in d) {
+		        var opt = document.createElement("option");
+		        opt.value = d[x];
+		        opt.innerHTML = d[x];
+		        target.appendChild(opt);
+		    }    
+		}
+	//--------------
+	
+	//상품명 중복 체크
+		$(function(){
+			
+			$("#checkPName").click(function(){
+				
+				let p_name = $("#p_name").val();
+				alert(p_name);
+				$.ajax({
+					type:'post',
+					url:"${pageContext.request.contextPath}/checkPName.do",
+					data: {"p_name":p_name},
+					success: function(data){
+						if(data == "N"){
+							result = "사용 가능한 상품명입니다.";
+							$("#result_checkPName").html(result).css("color", "green");
+							$("#p_category_large").trigger("focus");
+						}else{
+							result = "이미 사용중인 상품명입니다.";
+							$("#result_checkPName").html(result).css("color", "red");
+							$("#p_name").val("").trigger("focus");
+						}
+					},
+					error: function(error){alert(error);}
+				});
+			
+			});
+			
+		});
+	//-----------
+	
+	
+	</script>
 
 </head>
 
@@ -102,7 +181,7 @@ $(document).ready(function() {
 	
 	<section class="product-grids section">
 	
-		<div class=""><!-- 이거 씌우면 이미지 안됨... -->
+		<div class="container">
 			<div class="row">
 			
 				<!-- sidebar -->
@@ -117,14 +196,106 @@ $(document).ready(function() {
 				<!-- content -->
 				<div class="col-md-9 col-12">
 					<div class="tab-content" id="nav-tabContent">
-						<h3 class="pb-1 border-bottom" style="margin-bottom:10px">판매상품 상세내역</h3>
-						<form action="${pageContext.request.contextPath}/CBInsertProcess.do" method="post" enctype="multipart/form-data">
-						
-  <textarea class="summernote" name="editordata"></textarea	>					<input type="button" value="등록">
-					
-						
-						
+						<h3 class="pb-1 border-bottom" style="margin-bottom:10px">판매상품 등록하기</h3>
+						<form name="frm" action="${pageContext.request.contextPath}/registProcess.do" method="post"  enctype="multipart/form-data">
+							
+							<table class="table-style-head-left" style="margin-left:0;">
+								<tbody>
+									<tr>
+								 		<th style="width:120px">상품명</th>
+										<td>
+								 			<input type="text" name="p_name" id="p_name" maxlength="40" value="" placeholder="입력하세요">
+								 			<input type="button" id="checkPName" value="중복검사"/><br/>
+											<div style="height:20px"><span id="result_checkPName" style="font-size:12px;"></span></div>
+								 		</td>
+								 	</tr>
+								 	<tr>
+								 		<th>분류</th>
+								 		<td>
+								 			<select class="form-select" name = "p_category_large" id="p_category_large" onchange="categoryChange(this)" style="margin-bottom:10px;">
+												<option value="yet" >------</option>
+												<option value="1" >강아지</option>
+												<option value="2"  >고양이</option>
+											</select>
+
+								 			<select class="form-select" name = "p_category_small" id="p_category_small" >
+												<option value="yet" >------</option>
+											</select>
+												
+								 		</td>
+								 	</tr>			
+									<tr>
+								 		<th>상품 이미지들</th>
+								 		<td></td>
+								 	</tr>						
+								 	<tr>
+								 		<th>크기</th>
+								 		<td>
+								 			<input type="radio" name="p_size" value="all" style="display:none;">
+								 			<input type="radio" name="p_size" value="0"> 소형
+								 			<input type="radio" name="p_size" value="1"> 중형
+								 			<input type="radio" name="p_size" value="2"> 대형
+								 		</td>
+								 	</tr>
+								 	<tr>
+								 		<th>제품상세정보</th>
+								 		<td>
+								 			<textarea id="summernote" name="p_content"></textarea>
+								 			<!-- <input type="text" name="p_content" maxlength="40" value="" placeholder="입력하세요"> -->
+								 		</td>
+								 	</tr>
+								 	<tr>
+								 		<th>재고-주문제작</th>
+								 		<td><input type="text" name="p_status" maxlength="40" value="" placeholder="입력하세요"></td>
+								 	</tr>
+								 	<tr>
+								 		<th>재고-제한수량</th><td><input type="text" name="p_stock" maxlength="40" value="" placeholder="입력하세요"></td>
+								 	</tr>
+								 	
+								 	<tr>
+								 		<th>원가격</th><td><input type="text" name="p_price" id="p_price" maxlength="40" value="" placeholder="입력하세요"></td>
+								 	</tr>
+								 	<tr>
+								 		<th>할인률</th><td><input type="text" name="p_discount" id="p_discount" maxlength="40" value="" placeholder="입력하세요"></td>
+								 	</tr>
+								 	<tr>
+								 		<th>할인 적용 가격</th>
+								 		<td>
+								 			<input type="text" name="p_disprice" id="p_disprice" maxlength="100" value="" placeholder="적용버튼을 누르세요">
+								 			<input type="button" id="calPrice" onclick="calPrice(this)"value="적용" style="margin-left:5px;" /><br/>
+								 		</td>
+								 	</tr>
+								 	<tr>
+								 		<th>일반 배송비</th><td><input type="text" name="p_dvprice" maxlength="40" value="" placeholder="입력하세요"></td>
+								 	</tr>
+								 	<tr>
+								 		<th>추가배송비</th><td><input type="text" name="p_add_dvprice" maxlength="40" value="" placeholder="입력하세요"></td>
+								 	</tr>
+								 	<tr>
+								 		<th>무료배송</th><td><input type="text" name="p_free_dvprice" maxlength="40" value="" placeholder="입력하세요"></td>
+								 	</tr>
+								 	<tr>
+								 		<th>택배사</th><td><input type="text" name="p_dvcompany" maxlength="40" value="" placeholder="입력하세요"></td>
+								 	</tr>
+								 	<tr>
+								 		<th>성분표시</th><td><input type="text" name="p_ingerdient" maxlength="40" value="" placeholder="입력하세요"></td>
+								 	</tr>
+								 	<tr>
+								 		<th>배송/환불정보</th><td><input type="text" name="p_cancle_info" maxlength="40" value="" placeholder="입력하세요"></td>
+								 	</tr>
+								 	
+								
+								</tbody>
+								
+									
+							</table>
+							
+							<input type="submit" value="등록">
 						</form>
+						
+						
+						
+						
 					</div>
 				</div>
 				<!-- /content -->

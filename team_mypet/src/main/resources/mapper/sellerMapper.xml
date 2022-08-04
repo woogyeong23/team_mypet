@@ -7,7 +7,7 @@
 	<select id="getSellerProductList" resultType="Hashmap">
 		select p.*, sum(detail_cnt) as sales
 					from
-						(select a.p_idx, a.p_name, p_price, p_discount, p_disprice, p_wday, p_modifyday, p_status, b.p_category_idx, p_category_large, p_category_small,
+						(select a.p_idx, a.p_name, p_price, p_discount, p_disprice, p_wday, p_modifyday, p_size, p_status, b.p_category_idx, p_category_large, p_category_small,
 						p_sys_filename,ifnull(avg(review_stars),0) as avg_reviews_stars, count(review_stars) as cnt_reviews
 						from product a  join p_category b on a.p_category_idx = b.p_category_idx left join review c on a.p_idx = c.p_idx
 						where a.p_idx in (select p_idx from product where seller_idx=(select seller_idx from sellerstory where midx=#{member_id}))
@@ -76,7 +76,11 @@
 	<select id="getSellerProductImgs" parameterType="string" resultType="product_imgVo">
 		select * from product_img where p_idx=#{p_idx}
 	</select>
-	
-	
+	<select id="checkPName" parameterType="string" resultType="int">
+		select count(*) from product where p_name = #{p_name}
+	</select>
+	<select id="checkId" parameterType="string" resultType="int">
+		select count(*) from spring_member where member_id=#{member_id}
+	</select>
 	
 </mapper>

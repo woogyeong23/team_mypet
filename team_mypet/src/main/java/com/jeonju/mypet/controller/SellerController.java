@@ -1,6 +1,7 @@
 package com.jeonju.mypet.controller;
 
 
+import java.io.IOException;
 import java.util.HashMap;
 import java.util.List;
 
@@ -11,8 +12,11 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestParam;
+import org.springframework.web.bind.annotation.ResponseBody;
+import org.springframework.web.multipart.MultipartFile;
 
 import com.jeonju.mypet.service.SellerService;
 import com.jeonju.mypet.vo.ProductVo;
@@ -55,7 +59,7 @@ public class SellerController {
 		searchInfo.put("status", status);
 		searchInfo.put("category", category);
 		searchInfo.put("keyword", keyword);
-		System.out.println("********************************************");
+		//System.out.println("********************************************");
 		System.out.println(member_id+searching+keyword+sorting+status+category);
 		List<HashMap<String, Object>> productListMap = sellerService.seller_productList(searchInfo);
 		
@@ -92,4 +96,70 @@ public class SellerController {
 		
 		return "seller/seller_productRegist";
 	}
+	@PostMapping("/checkPName.do")
+	@ResponseBody //Ajax통신의 응답내용을 보내는 것을 표시
+	public String checkPName(@RequestParam("p_name") String p_name) {
+		
+		//System.out.println("p_name: "+p_name);
+		
+		String result="N";//중복된 아이디 없음
+		
+		int flag = sellerService.checkPName(p_name);
+		
+		if(flag == 1) result = "Y";//중복된 아이디 있음
+		
+		return result;
+	}
+
+	/*
+	 * //test
+	 * 
+	 * @PostMapping("/checkId.do")
+	 * 
+	 * @ResponseBody //Ajax통신의 응답내용을 보내는 것을 표시 public String
+	 * checkId(@RequestParam("member_id") String id) {
+	 * 
+	 * System.out.println("id: "+id);
+	 * 
+	 * String result="N";//중복된 아이디 없음
+	 * 
+	 * int flag = sellerService.checkId(id);
+	 * 
+	 * if(flag == 1) result = "Y";//중복된 아이디 있음
+	 * 
+	 * return result; }
+	 */
+	@PostMapping("/registProcess.do")
+	@ResponseBody
+	public String registProcess(
+			String p_name, String p_category_large, String p_category_small, String p_size, String p_content, String p_status,
+			
+			Model model, HttpServletRequest request)throws Exception{
+		
+		
+		int result=0;//중복된 아이디 없음
+		String viewPage = "";
+		System.out.println("****************************************"+p_name+p_category_large+p_category_small+p_size+p_content+p_status);
+		
+		
+		return "seller/seller_productList";
+	}
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
 }

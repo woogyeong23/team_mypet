@@ -35,7 +35,18 @@ public class SellerService {
 		// TODO Auto-generated method stub
 		return sellerDao.getSellerProductImgs(p_idx);
 	}
+
+	public  int checkPName(String p_name) {
+		// TODO Auto-generated method stub
+		int result=0;
+		result=sellerDao.checkPName(p_name);
+		return result;
+	}
 	
-	
+	public int checkId(String id) {
+		int result=0;
+		result = sellerDao.checkId(id);
+		return result;
+	}
 	
 }

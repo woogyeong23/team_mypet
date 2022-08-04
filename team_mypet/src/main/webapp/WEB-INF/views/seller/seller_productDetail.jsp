@@ -89,14 +89,30 @@
 							 			</td>
 							 	</tr>
 							 	<tr>
-							 		<th>분류1</th><td>${productVo.p_category_idx }</td>
+							 		<th>분류</th>
+							 		<td>
+							 			<c:choose>
+							 				<c:when test="${productVo.p_category_idx ==1}">강아지 > 개껌</c:when>
+							 				<c:when test="${productVo.p_category_idx ==2}">강아지 > 스낵</c:when>
+							 				<c:when test="${productVo.p_category_idx ==3}">강아지 > 뼈/육포</c:when>
+							 				<c:when test="${productVo.p_category_idx ==4}">강아지 > 스틱</c:when>
+							 				<c:when test="${productVo.p_category_idx ==5}">강아지 > 프리미엄</c:when>
+							 				<c:when test="${productVo.p_category_idx ==6}">강아지 > 통살</c:when>
+							 				<c:when test="${productVo.p_category_idx ==7}">고양이 > 츄르</c:when>
+							 				<c:when test="${productVo.p_category_idx ==8}">고양이 > 스낵</c:when>
+							 				<c:when test="${productVo.p_category_idx ==9}">고양이 > 캣잎</c:when>
+							 				<c:when test="${productVo.p_category_idx ==10}">고양이 > 통살</c:when>
+							 				<c:when test="${productVo.p_category_idx ==11}">고양이 > 프리미엄</c:when>
+							 				<c:when test="${productVo.p_category_idx ==12}">고양이 > 스틱</c:when>
+							 			</c:choose>
+							 		</td>
 							 	</tr>
 							 	
 							 	<c:forEach var="product_imgVo" items="${productVo.product_imgs}">
 						
 								 <tr>
 							 		<th>상품 이미지들</th>
-							 		<td><%-- <img src="${pageContext.request.contextPath}/resources/assets/images/product-details/${product_imgVo.p_sys_filname }"/> --%></td>
+							 		<td><img src="${pageContext.request.contextPath}/resources/assets/images/products/${product_imgVo.p_sys_filename }"/></td>
 							 	</tr>
 								</c:forEach>
 						
