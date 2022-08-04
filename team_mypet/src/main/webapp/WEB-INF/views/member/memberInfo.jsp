@@ -2,8 +2,8 @@
     pageEncoding="UTF-8"%>
     <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
     <!DOCTYPE html> 
-  <head>
-
+<html>  
+<head>
  <!-- css************************************************ -->
     <jsp:include page="../../include/head.jsp" />  
 <!-- ************************************************ -->
@@ -13,10 +13,29 @@
     
     <!-- Custom styles for this template -->
     <link href="resources/assets/css/sidebar.css" rel="stylesheet">
-   
+   	
+   	
+   	<!-- CSS -->
+<style>
+html, body{
+height: 100%;
+}
+#wrap{
+min-height: 100%;
+position: relative;
+padding-bottom: 60px;
+}
+footer {
+position: relative;
+transform:translatY(-100%);
+}
+ 
+</style>
+   	<!-- CSS  끝 -->
+   	
   </head>
   <body>
-
+<div id= "wrap">
     <!-- 헤더와 js************************************************ -->
     <jsp:include page="../../include/header.jsp" />  
 	<!-- ************************************************ -->
@@ -74,9 +93,7 @@
     </div>
     
     <hr>
-    <a href="${pageContext.request.contextPath}/memberorders.do">
-        <h3 class="pb-1 border-bottom" >최근 주문내역</h3>
-         </a>
+    <a href="${pageContext.request.contextPath}/memberorders.do"><h3 class="pb-1 border-bottom">최근 주문내역</h3></a>
 		<div class="row">
                 <div class="col-lg-3 col-md-6 col-12">
                     <!-- Start Single Product -->
@@ -210,7 +227,7 @@
     </article>
 </main>
 
-
+</div>
 
 <!-- 푸터와 js************************************************ -->
     <jsp:include page="../../include/footer.jsp" />  
