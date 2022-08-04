@@ -19,7 +19,7 @@
 	width: 100%;
 	background-color:#FFFFF0
     }
-   <!--  nav sticky -->
+   
     
     .popup{
    width:100%; 
