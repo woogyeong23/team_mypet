@@ -21,7 +21,7 @@
     <jsp:include page="../../include/header.jsp" />  
 	<!-- ************************************************ -->
 
-<main class="Mcontainer">
+<main class="content">
 <aside>
 	<!-- 사이더와 js************************************************ -->
     <jsp:include page="../../include/sidebar.jsp" />  

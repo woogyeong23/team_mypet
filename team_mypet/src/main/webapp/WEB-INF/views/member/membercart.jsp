@@ -12,28 +12,8 @@
 
 $(document).ready(function(){
 	
-	function itemTotal(){
-		console.log("아이템토탈임");
-	//적립금란
-	let Price = $('input[name="p_price"]').val();
-	let Count = $('#input[name="cart_cnt"]').val();
-	let sum = 0;
-	let PirceCount = Price.length;
-	let Pricevol = 0;
-	let Point = 0;
-	Point = Math.floor(Point);
-	Point = Price * 0.05;
-	$("#CartArtistItem__Point").html(Point);
-	$("#CartArtistItem__Price").html(Price);
-
-	for(int i=0; i< PriceCount ;i++){
-		sum += parseInt(Price[i].value) * parseInt(Count[i].value);
-		Pricevol += parseInt(Count[i].value);
-	}
-	var summ = new Intl.NumberFormat('ko-KR', { style: 'currency', currency: 'KRW' }).format(sum);
-	$("#totalPrice").html(sum);
-	}
 	
+
 	//수량 감소
 	$("#NumberCounter__button1").click(function(){
 		let NC = $(this).parent().find("#NumberCounter__input");
@@ -50,74 +30,80 @@ $(document).ready(function(){
 		
 		NC.val(parseInt(NCV)+1);
 	});
-	//체크정보
+	
 	setTotalInfo();
-	//체크된 박스 값 넣기
-	$("#item_checkedbox").on("change",function(){
-		
-		setTotalInfo($("#CartProductListItem"));
+
+	$("#artist_checkedbox").on("change", function(){
+
+		setTotalInfo("#CartArtistItem");
 
 	});
 	
-	//값들 부르기
-	$(function setTotalInfo(){
-		let totalPrice = 0;
-		let totalCount = 0;
-		let totalKind = 0;
-		let totalPoint = 0;
-		let deliveryPrice = 0;
-		let finalTotalPrice = 0;
-		
-		$("#CartArtistItem").each(function(index,element){
-			if(($element).find("#item_checkedbox").is(":checked") == true){
-			
-				totalPrice += parseInt($(element).find("#CartArtistItem__totalPrice") );
-				totalCount += parseInt($(element).find("#NumberCounter__input") );
-				totalKind += 1;
-				totalPoint += parseInt($(element).find("#CartArtistItem__totalPoint ") );
-			}
-		});
-	if(totalPrice >= 30000){
-		deliveryPrice = 0;
-	}else if(totalPrice == 0){
-		deliveryPrice = 0;
-	}else{
-		deliveryPrice = 3000;
-	}
-		
-	 finalTotalPrice = totalPrice + deliveryPrice;
-		
-	 
-	 $("#totalPrice_span").text(totalPrice);
-	 $("#deliveryPrice_span").text(deliveryPrice);
-	 $("#totalPoint_span").text(totalPoint);
-	 $("#finalTotalPrice_span").text(finalTotalPrice);
-	 
-	 
-	});
 	
 	//모든 체크 박스 선택
 	$("#cart-product-all-check").on("click", function(){
 		if($("#cart-product-all-check").prop("checked")){
 			$("#item_checkedbox").attr("checked",true);
+			$("#artist_checkedbox").attr("checked",true);
 		}else{
 			$("#item_checkedbox").attr("checked",false);
+			$("#artist_checkedbox").attr("checked",false);
 		}
-		alert("체크된거..");
-		setTotalInfo($("#CartProductListItem"));
-
-	});
-	//모든 체크 박스 해제
-	$("#cart-product-check-reset").on("click", function(){
-		if($("#cart-product-check-reset").prop("checked")){
-			$("#item_checkedbox").attr("checked",false);
-		}
-		alert("체크안된거..");
-		setTotalInfo($("#CartProductListItem"));
-
 	});
 	
+	
+	
+	
+	
+	
+	
+	function setTotalInfo(){
+		
+		let Price = $("#p_price_input").val();	// 총 가격
+		let Price_cnt = Price.length;
+		let totalPrice = 0;				// 총 가격
+		let totalPoint = 0;				// 총 마일리지
+		let deliveryPrice = 0;			// 배송비
+		let finalTotalPrice = 0; 		// 최종 가격(총 가격 + 배송비)
+		let cnt = $("#NumberCounter__input").val();
+		
+		$("#CartArtistItem").each(function(index, element){
+			
+			if($(element).find(".individual_cart_checkbox").is(":checked") === true){	//체크여부
+				for (var i = 0; i < Price_cnt; i++){
+					// 총 가격
+					totalPrice += parseInt($(element).Price[i]) * parseInt($(element).cnt[i]);
+					// 총 마일리지
+					totalPoint += parseInt($(element).Price[i]) * 0.05;	
+				}
+					
+			}
 
+		});
+		
+		
+		/* 배송비 결정 */
+		if(totalPrice >= 30000){
+			deliveryPrice = 0;
+		} else if(totalPrice == 0){
+			deliveryPrice = 0;
+		} else {
+			deliveryPrice = 3000;	
+		}
+		
+			finalTotalPrice = totalPrice + deliveryPrice;
+		
+		/* ※ 세자리 컴마 Javscript Number 객체의 toLocaleString() */
+		
+		// 총 가격
+		$("#totalPrice_span").text(totalPrice);
+		// 총 마일리지
+		$("#totalPoint_span").text(totalPoint);
+		// 배송비
+		$("#delivery_price").text(deliveryPrice);	
+		// 최종 가격(총 가격 + 배송비)
+		$("#finalTotalPrice_span").text(finalTotalPrice);		
+	}
 
 
 });
@@ -166,19 +152,17 @@ $(document).ready(function(){
    					<div class="CartList__sticky vue-sticky-el" style="position: static; top: auto; bottom: auto; left: auto; width: auto; z-index: 201;"></div>
    					
    					<c:forEach items="${cart}" var="cart" varStatus="status">
-   					
-   					<input type="hidden" name="p_idx" id="p_idx_input" value="${cart.p_idx}">   					
+   					<div class="CartArtistItem" id="CartArtistItem">
    					<input type="hidden" name="p_price" id="p_price_input" value="${cart.p_price}">
    					<input type="hidden" name="p_idx" id="p_idx_input" value="${cart.p_idx}">
    					<input type="hidden" name="p_name" id="p_name_input" value="${cart.p_name}">
    					<input type="hidden" name="p_content" id="p_content_input" value="${cart.p_content}">
-   					
-   					<div class="CartArtistItem" id="CartArtistItem">
+   					<input type="hidden" name="cart_cnt" id="cart_cnt_input" value="${cart.cart_cnt}">
    						<div class="CartArtistItem__header">
    						<label>
 							<div class="checkbox">   							
    							<div class="input-checkbox">
-   							<input id="" type="checkbox" autocomplete="off" class="bp" value="${cart.p_content}" checked="checked">
+   							<input id="artist_checkedbox" type="checkbox" autocomplete="off" class="bp" value="${cart.p_content}" checked="checked">
    							</div>
    							</div>
    							<span  class="CartArtistItem__title">${cart.p_content}</sqan> <!-- 작가이름 -->
@@ -212,7 +196,7 @@ $(document).ready(function(){
    																	<div class="CartOptionListItem__counter">
    																		<label class="NumberCounter">
    																			<button type="button" id="NumberCounter__button1"  class="NumberCounter__button" >-</button>
-   																			<input  type="text" name="cart_cnt" id="NumberCounter__input" class="NumberCounter__input" value="1" readonly="readonly" onchange="itemTotal();">
+   																			<input  type="text" name="cart_cnt" id="NumberCounter__input" class="NumberCounter__input" value="1" readonly="readonly">
    																			<button type="button" id="NumberCounter__button2" class="NumberCounter__button">+</button>   						
    																		</label>
    																	</div>
@@ -246,7 +230,7 @@ $(document).ready(function(){
    								<div class="CartArtistItem__label">
    								작품 가격
    								</div>
-   								<div class="CartArtistItem__price" id="CartArtistItem__totalPrice" >
+   								<div class="CartArtistItem__price" id="totalPrice_span" >
    								 <!-- 작품 가격 -->
 	   							</div>
    							</section>
@@ -254,7 +238,7 @@ $(document).ready(function(){
    								<div class="CartArtistItem__label">
    								배송비
    								</div>
-   								<div class="CartArtistItem__price" id="CartArtistItem__deliveryPrice" >
+   								<div class="CartArtistItem__price" id="delivery_price" >
    								<!-- 배송비 -->
 	   							</div>
    							</section>
@@ -266,14 +250,14 @@ $(document).ready(function(){
    			<div class="vue-sticky-placeholder" style="padding-top: 0px;"></div>		
         	<div  sticky-side="bottom" on-stick="handleChangeStickBottom"class="CartList__sticky vue-sticky-el"  style="position: static; top: auto; bottom: auto; left: auto; width: auto; z-index: 10;">   	
         	<div class="CartCheckboxControl">
-        		<div class="checkbox">
+        		<div class="checkbox" id="checkbox">
         			<div class="input-checkbox">
         			<input type="checkbox" class="bp" autocomplete="off" id="cart-product-all-check" value="" checked="checked">
         			</div>
         			<label for="cart-product-all-check">
         				<span class="CartCheckboxControl__label">
         				전체 선택 (
-            			<span class="CartCheckboxControl__label--bold">1</span>
+            			<span class="CartCheckboxControl__label--bold" id="totalcnt">1</span>
             			/${cartCount}) 
             			</span>
         			</label>
@@ -293,7 +277,7 @@ $(document).ready(function(){
         				<div class="CartCheckoutDesktop__item">
         					<div class="CartCheckoutDesktop__label">배송비</div>
         					<div class="CartCheckoutDesktop__value">
-        						<span id="deliveryPrice">3,000</span>
+        						<span id="delivery_price">3,000</span>
         						<span class="CartCheckoutDesktop__priceUnit">원</span>
         					</div>
         				</div>
@@ -303,6 +287,10 @@ $(document).ready(function(){
         					<div class="CartCheckoutDesktop__value--highlight" >
         						<span id="finalTotalPrice_span">18,000</span>
         						<span class="CartCheckoutDesktop__priceUnit">원</span>
+        						<em class="CartOptionListItem__totalPrice">적립금 :
+   								<a id="totalPoint_span"></a>
+   								</em>  	<!-- 예상적립금 -->	
+        						
         					</div>
         				</div>
         			</div>

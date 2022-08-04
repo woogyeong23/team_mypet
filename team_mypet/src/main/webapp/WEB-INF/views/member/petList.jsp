@@ -6,11 +6,16 @@
   <head>
 <script src="http://code.jquery.com/jquery-latest.min.js"></script>
 <script type="text/javascript">
+$(document).ready(function(){
 	$(function(){
 		$("#petDelete").click(function(){
+			
 			let pet_idx_arr = new Array();
+			
 			$("input:checked").each(function(index,item){
+				
 				pet_idx_arr[index] = $(item).val();
+				
 			});
 
 			$ajax({
@@ -54,7 +59,7 @@
 		});
 	});
 	
-		
+});
 </script>
  <!-- css************************************************ -->
     <jsp:include page="../../include/head.jsp" />  
@@ -75,7 +80,7 @@
     <jsp:include page="../../include/header.jsp" />  
 	<!-- ************************************************ -->
 
-<main class="container">
+<main class="content">
 <aside>
 	<!-- 사이더와 js************************************************ -->
     <jsp:include page="../../include/sidebar.jsp" />  
@@ -87,9 +92,10 @@
 </div>
 
 <br>
-	<table class="table-style-head-left">
-			<c:forEach var="petVo" items="${petVoList}">
+<c:forEach var="petVo" items="${petVoList}">
 			<input type="checkbox" value="${petVo.pet_idx}">
+	<table class="table-style-head-left">
+			
 		<tbody>
 			<tr>
 				<th>
@@ -139,25 +145,19 @@
 				</td>
 			</tr>
 		</tbody>
-		</c:forEach>
 		<tr>
 			<td>
-				<input type="hidden" name="midx" value="${petVo.midx}">
-				<input type="hidden" name="midx" value="${petVo.pet_idx}">	
 				<button class="btn btn-m btn-point" id="petUpdate">수정하기 </button>
+			</td>
+			<td>
 				<button class="btn btn-m btn-point" id="petDelete">삭제하기</button>
 			</td>
 		</tr>
 	</table> 
+	<input type="hidden" name="midx" value="${petVo.midx}">
+	<input type="hidden" name="midx" value="${petVo.pet_idx}">	
+	</c:forEach>
 
-	
-	
-	
-
-
-
-
-	
 
 </article>
 
