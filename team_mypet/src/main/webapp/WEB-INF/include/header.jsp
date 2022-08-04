@@ -155,7 +155,7 @@
                                 </c:choose>
                                 
                                     <!-- Shopping Item -->
-                                       <jsp:include page="memberCartHeader.jsp" />
+                                       <jsp:include page="cartHeaderView.jsp" />
                                     <!--/ End Shopping Item -->
                                     
                             </div>

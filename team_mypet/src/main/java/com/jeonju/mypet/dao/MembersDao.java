@@ -81,8 +81,8 @@ public class MembersDao {
 		return sqlSession.selectOne(MAPPER+".getidfind",m_name);
 	}
 
-	public int petdelinfo(List<Integer> pet_idx_arr) {
-		return sqlSession.delete(MAPPER+".getpetdel",pet_idx_arr);
+	public int petdelinfo(List<Integer> pet_idx_list) {
+		return sqlSession.delete(MAPPER+".getpetdel",pet_idx_list);
 	}
 
 	public int petupinfo(int pet_idx) {

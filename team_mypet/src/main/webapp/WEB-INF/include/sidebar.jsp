@@ -3,7 +3,7 @@
     <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
    
 <!doctype html>
-<section  style="padding-top: 10px;padding-bottom:500px;">
+<aside>
 <input type="hidden">
   <div class="flex-shrink-0 p-3 bg-white" style="width: 280px;" >
   <div style="width:150px;height:150px;" >
@@ -106,7 +106,6 @@
       <li class="border-top my-3"></li>
     </ul>
   </div>
-</section>
-
+</aside>
       <script src="../../resources/assets/js/sidebars.js"></script>
 

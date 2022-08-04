@@ -28,23 +28,7 @@ main {
     margin-left: auto;
 }
 
-.Mcontainer,
-.Mcontainer-fluid,
-.Mcontainer-lg,
-.Mcontainer-md,
-.Mcontainer-sm,
-.Mcontainer-xl,
-.Mcontainer-xxl {
-    width: 100%;
-    position: sticky;
-    top: auto;
-    bottom: auto;
-    padding-right: var(--bs-gutter-x, .75rem);
-    padding-left: var(--bs-gutter-x, .75rem);
-    padding-bottom : 1px;
-    margin-right: auto;
-    margin-left: auto
-}
+
 .b-example-divider {
   flex-shrink: 0;
   width: 1.5rem;
@@ -82,15 +66,24 @@ main {
   background-color: #d2f4ea;
    color : #ffff80;
 }
-
-.btn-toggle::before {
-  width: 1.25em;
-  line-height: 0;
-  content: url("data:image/svg+xml,%3csvg xmlns='http://www.w3.org/2000/svg' width='16' height='16' viewBox='0 0 16 16'%3e%3cpath fill='none' stroke='rgba%280,0,0,.5%29' stroke-linecap='round' stroke-linejoin='round' stroke-width='2' d='M5 14l6-6-6-6'/%3e%3c/svg%3e");
-  transition: transform .35s ease;
-  transform-origin: .5em 50%;
+.inner-w, .inner-w400, .inner-w800 {
+    width: 1056px;
+    margin: 0 auto;
+    position: relative;
 }
-
+.layout-split {
+    padding-top: 36px;
+    position: relative;
+}
+.layout-split:after {
+    content: '';
+    display: block;
+    clear: both;
+}
+.content {
+    padding-bottom: 64px;
+    background: #fff;
+}
 .btn-toggle[aria-expanded="true"] {
   color: rgba(0, 0, 0, .85);
 }

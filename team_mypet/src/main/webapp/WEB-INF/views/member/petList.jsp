@@ -15,14 +15,14 @@
 
 			$ajax({
 				type:"post",
-				url:"${pageContext.request.contextPath}/petDelete.do",
+				url:"${pageContext.request.contextPath}/petdelete.do",
 				data:{"pet_idx_arr":pet_idx_arr},
 				success:function(data){
 					if(data =="Y"){
 						alert("삭제 실패!");
 					}else{
 						alert("삭제 성공!");
-						$("form:has(input:checked)").remove();
+						$("table:has(input:checked)").remove();
 					}
 				},
 				error: function(error){alert("삭제 중 에러 발생!");}
@@ -30,9 +30,8 @@
 			});
 			
 		});
-	});
 	
-	$(function(){
+	
 		$("#petUpdate").click(function(){
 			let pet_idx = $(this).attr("name");
 			
@@ -76,20 +75,21 @@
     <jsp:include page="../../include/header.jsp" />  
 	<!-- ************************************************ -->
 
-<main class="Mcontainer">
+<main class="container">
 <aside>
 	<!-- 사이더와 js************************************************ -->
     <jsp:include page="../../include/sidebar.jsp" />  
 </aside>
-<aside>
+<article>
+
 <div class="title-style no-mt clf">
 <a href="#" class="txt fl">펫 정보 관리</a>
 </div>
-<c:forEach var="petVo" items="${petVoList}">
+
 <br>
-<form>
-	<input type="checkbox" value="${petVo.pet_idx}">
 	<table class="table-style-head-left">
+			<c:forEach var="petVo" items="${petVoList}">
+			<input type="checkbox" value="${petVo.pet_idx}">
 		<tbody>
 			<tr>
 				<th>
@@ -138,21 +138,29 @@
 				</div>
 				</td>
 			</tr>
-		
 		</tbody>
-		
-	</table>
+		</c:forEach>
+		<tr>
+			<td>
+				<input type="hidden" name="midx" value="${petVo.midx}">
+				<input type="hidden" name="midx" value="${petVo.pet_idx}">	
+				<button class="btn btn-m btn-point" id="petUpdate">수정하기 </button>
+				<button class="btn btn-m btn-point" id="petDelete">삭제하기</button>
+			</td>
+		</tr>
+	</table> 
 
-	<input type="hidden" name="midx" value="${petVo.midx}">
-	<input type="hidden" name="midx" value="${petVo.pet_idx}">	
-	<div class="form-submit ta-c">
-	<button name="${petVo.pet_idx}" class="btn btn-m btn-point" id=" ">수정하기 </button>
-	<button name="${petVo.pet_idx}" class="btn btn-m btn-point" id="petDelete">삭제하기</button>
-	</div>
-</form>
-	</c:forEach>
+	
+	
+	
 
-</aside>
+
+
+
+	
+
+</article>
+
 </main>
 
 <!-- 푸터와 js************************************************ -->

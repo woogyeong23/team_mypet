@@ -5,6 +5,46 @@
 <!DOCTYPE html>
 <html>
 <head>
+<script src="http://code.jquery.com/jquery-latest.min.js"></script>
+<script type="text/javascript">
+var p_idx = ${productVo.p_idx};
+
+	$(document).ready(function() {
+						
+						$("#cartmemberInto").on("click",function() {
+											
+											$.ajax({
+													type : "POST",
+													url : "${pageContext.request.contextPath}/cartMemInto.do",
+													dataType : "json",
+													data : {
+														'p_idx' : p_idx
+													},
+													error : function(request,status, error) {
+														alert("code:"+ request.status+ "\n"+ "message:"
+																+ request.responseText+ "\n"+ "error:"+ error);
+													},
+													success : function(data) {
+														if (data == 1) {
+															cartHeaderView();
+															toastr.options.preventDuplicates = true;
+																toastr
+																	.success("장바구니 추가완료");
+														} else if (data == 2) {
+															toastr.options.preventDuplicates = true;
+																toastr
+																	.warning("이미 추가 된 상품입니다");
+														}
+														}
+												});
+									});
+	});
+  
+</script>
+
+
+
+
 	<meta charset="utf-8" />
     <meta http-equiv="x-ua-compatible" content="ie=edge" />
     <meta name="description" content="" />
@@ -211,7 +251,7 @@
 						<div class="bottom-content">
 							<div class="row align-items-end">
 								<div class="col-lg-4 col-md-4 col-12">
-									<div class="button cart-button">
+									<div class="button cart-button" id="cartmemberInto">
 										<button class="btn" style="width:100%;" >장바구니</button>
 									</div>
 								</div>

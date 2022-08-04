@@ -44,8 +44,27 @@
         scroll-behavior: smooth
     }
 }
-.content{
-	width:80%;
+.container,
+.container-fluid,
+.container-lg,
+.container-md,
+.container-sm,
+.container-xl,
+.container-xxl {
+    width: 100%;
+    position: sticky;
+    top: 0px;
+      max-height: 100vh;
+    padding-right: var(--bs-gutter-x, .75rem);
+    padding-left: var(--bs-gutter-x, .75rem);
+    padding-bottom : 1px;
+    margin-right: auto;
+    margin-left: auto
+}
+.content {
+       position: sticky;
+    width: 70%;
+    margin: 0 auto;
 }
 body {
     margin: 0;

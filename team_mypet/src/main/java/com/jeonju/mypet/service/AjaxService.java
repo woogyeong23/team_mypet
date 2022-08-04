@@ -25,8 +25,8 @@ public class AjaxService {
 	}
 
 
-	public int petdelinfo(List<Integer> pet_idx_arr) {
-		return membersDao.petdelinfo(pet_idx_arr);
+	public int petdelinfo(List<Integer> pet_idx_list) {
+		return membersDao.petdelinfo(pet_idx_list);
 	}
 
 

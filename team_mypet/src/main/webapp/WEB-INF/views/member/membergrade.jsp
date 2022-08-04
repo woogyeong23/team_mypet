@@ -21,12 +21,12 @@
     <jsp:include page="../../include/header.jsp" />  
 	<!-- ************************************************ -->
 
-<main class="Mcontainer" style="">
-<aside>
+<main>
+
 	<!-- 사이더와 js************************************************ -->
     <jsp:include page="../../include/sidebar.jsp" />  
-</aside>
-<article>
+
+<section>
 <div class="container px-3 py-4" id="hanging-icons" >
     <h3 class="pb-1 border-bottom" >내 정보</h3>
     <div class="row g-3 py-4 row-cols-3 row-cols-lg-4">
@@ -206,7 +206,7 @@
         
 </div>
  
-    </article>
+    </section>
 </main>
 
 

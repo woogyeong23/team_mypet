@@ -23,12 +23,12 @@
     <jsp:include page="../../include/header.jsp" />  
 	<!-- ************************************************ -->
 
-<main class="Mcontainer">
+<main class="container">
 <aside>
 	<!-- 사이더와 js************************************************ -->
     <jsp:include page="../../include/sidebar.jsp" />  
 </aside>
-<article >
+<article>
 <div class="title-style no-mt clf">
 <a href="#" class="txt fl">펫 정보 관리</a>
 </div>
@@ -90,10 +90,7 @@
 				<input type="text" name="pet_breed" value="" required>
 				</div>
 				</td>
-				<td>
-				</td>
 			</tr>
-			
 		</tbody>
 		
 	</table>

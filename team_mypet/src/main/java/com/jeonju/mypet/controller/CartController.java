@@ -29,6 +29,7 @@ public class CartController {
 	public CartController(CartService cartService) {
 		this.cartService = cartService;
 	}
+	//카트 리스트
 	@GetMapping("/membercart.do")
 	public String membercart(CartVo cartVo,Model model,HttpServletRequest request) {
 		
@@ -49,9 +50,9 @@ public class CartController {
 		return "member/membercart";	
 	}
 	
-	
-	@GetMapping("/memberCartHeader")
-	public List<ProductVo> memberCartHeader(CartVo cartVo,Model model,HttpServletRequest request)throws Exception {
+	//헤더부분 카트리스트
+	@GetMapping("/cartHeaderView")
+	public List<ProductVo> cartHeaderView(CartVo cartVo,Model model,HttpServletRequest request)throws Exception {
 		
 		HttpSession Session = request.getSession();
 		int midx = (int) Session.getAttribute("midx");
@@ -66,10 +67,11 @@ public class CartController {
 		return list;	
 	}
 	
-	
+	//장바구니 추가 부분
 	@GetMapping("/cartMemInto.do")
 	public int cartMemInto(CartVo cartVo,Model model,HttpServletRequest request) {
 		
+		LOGGER.info("p_idx=" + cartVo.getP_idx());		
 		HttpSession Session = request.getSession();
 		int midx = (int) Session.getAttribute("midx");
 		

@@ -36,15 +36,15 @@ public class AjaxController {
 		return result;
 	}	
 	
-	@PostMapping("/petDelete.do")
-	public String petDelete(@RequestParam("pet_idx_arr") List<Integer> pet_idx_arr) {
+	@PostMapping("/petdelete.do")
+	public String petDelete(@RequestParam("pet_idx_arr[]") List<Integer> pet_idx_list) {
 		
 		
 		
 		String result="N";//회원 삭제 실패
 		
-		int flag = ajaxService.petdelinfo(pet_idx_arr);
-		System.out.println(pet_idx_arr);
+		int flag = ajaxService.petdelinfo(pet_idx_list);
+		System.out.println(pet_idx_list);
 		if(flag == 1) result = "Y";//회원 삭제 성공
 		System.out.println("result: "+result);
 

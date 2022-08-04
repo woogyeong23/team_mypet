@@ -97,17 +97,14 @@
 
 
 
-<main class="Mcontainer">
+<main class="container">
 
-	<aside>
+
 		<!-- 사이더************************************************ -->
 	    <jsp:include page="../../include/sidebar.jsp" />  
 	    <!-- 사이더************************************************ -->
-	    
-	</aside>
-	
-	
-	<article>
+
+	<section style="width:50%">
 	<div class="title-style no-mt clf">
 	<a href="#" class="txt fl">회원 정보 관리</a>
 	</div>
@@ -202,10 +199,10 @@
 		</div>
 		<div class="form-submit ta-c" id="button">
 		<input type="hidden" name="midx" value="${membersVo.midx}"> 
-		    <button class="w-100 btn btn-lg btn-primary" id="memberupdate"type="submit" name="">회원 정보 수정하기</button>
+		<button class="w-100 btn btn-lg btn-primary" id="memberupdate"type="submit" name="">회원 정보 수정하기</button>
 		</div>
 	</form>
-	</article>
+	</section>
 </main>
 
 
