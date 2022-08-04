@@ -642,6 +642,9 @@ progress {
 .container-xl,
 .container-xxl {
     width: 100%;
+    position: sticky;
+    top: auto;
+    bottom: auto;
     padding-right: var(--bs-gutter-x, .75rem);
     padding-left: var(--bs-gutter-x, .75rem);
     padding-bottom : 1px;

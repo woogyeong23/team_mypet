@@ -8,18 +8,44 @@
 <script type="text/javascript">
 	$(function(){
 		$("#petDelete").click(function(){
-			let p_idx = $(this).attr("name");
-			
+			let pet_idx_arr = new Array();
+			$("input:checked").each(function(index,item){
+				pet_idx_arr[index] = $(item).val();
+			});
+
 			$ajax({
 				type:"post",
 				url:"${pageContext.request.contextPath}/petDelete.do",
-				data:{"p_idx":p_idx},
+				data:{"pet_idx_arr":pet_idx_arr},
 				success:function(data){
-					if(data =="N"){
+					if(data =="Y"){
 						alert("삭제 실패!");
 					}else{
 						alert("삭제 성공!");
-						$("tr:has(input:checked)").remove();
+						$("form:has(input:checked)").remove();
+					}
+				},
+				error: function(error){alert("삭제 중 에러 발생!");}
+				
+			});
+			
+		});
+	});
+	
+	$(function(){
+		$("#petUpdate").click(function(){
+			let pet_idx = $(this).attr("name");
+			
+			
+			$ajax({
+				type:"post",
+				url:"${pageContext.request.contextPath}/petUpdate.do",
+				data:{"pet_idx":pet_idx},
+				success:function(data){
+					if(data =="Y"){
+						alert("수정 실패!");
+					}else{
+						alert("수정 성공!");
 					}
 				},
 				error: function(error){alert("회원등급 수정 중 에러 발생!");}
@@ -50,7 +76,7 @@
     <jsp:include page="../../include/header.jsp" />  
 	<!-- ************************************************ -->
 
-<main class="container">
+<main class="Mcontainer">
 <aside>
 	<!-- 사이더와 js************************************************ -->
     <jsp:include page="../../include/sidebar.jsp" />  
@@ -62,6 +88,7 @@
 <c:forEach var="petVo" items="${petVoList}">
 <br>
 <form>
+	<input type="checkbox" value="${petVo.pet_idx}">
 	<table class="table-style-head-left">
 		<tbody>
 			<tr>
@@ -110,19 +137,17 @@
 				<input type="text" name="pet_breed" value="${petVo.pet_breed}" required>
 				</div>
 				</td>
-				
 			</tr>
 		
 		</tbody>
 		
-			
 	</table>
-	<button type="submit" name="${petVo.pet_idx}" class="btn btn-s btn-point" style="text-align:right" id="petDelete">삭제하기</button>
 
 	<input type="hidden" name="midx" value="${petVo.midx}">
 	<input type="hidden" name="midx" value="${petVo.pet_idx}">	
 	<div class="form-submit ta-c">
-	<button type="submit" name="" class="btn btn-m btn-point">수정하기 </button>
+	<button name="${petVo.pet_idx}" class="btn btn-m btn-point" id=" ">수정하기 </button>
+	<button name="${petVo.pet_idx}" class="btn btn-m btn-point" id="petDelete">삭제하기</button>
 	</div>
 </form>
 	</c:forEach>

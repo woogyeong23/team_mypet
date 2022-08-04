@@ -97,7 +97,7 @@
 
 
 
-<main class="container">
+<main class="Mcontainer">
 
 	<aside>
 		<!-- 사이더************************************************ -->

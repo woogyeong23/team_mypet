@@ -23,7 +23,7 @@
     <jsp:include page="../../include/header.jsp" />  
 	<!-- ************************************************ -->
 
-<main class="container">
+<main class="Mcontainer">
 <aside>
 	<!-- 사이더와 js************************************************ -->
     <jsp:include page="../../include/sidebar.jsp" />  

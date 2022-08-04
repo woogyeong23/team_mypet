@@ -3,6 +3,23 @@
   "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 
 <mapper namespace = "com.jeonju.mypet.cart">
-
-
+	<select id="getcartMemCheck" parameterType="int">
+		select COUNT(*) from cart where cart_idx = #{cart_idx}
+	</select>
+	<insert id="getcartMemInto" parameterType="cartVo">
+		insert into cart(p_idx, midx)
+		VALUES(#{p_idx},#{midx});
+	</insert>
+<!-- 	<select id="gercartList" parameterType="int" resultType="cartVo"> -->
+<!-- 		select * from cart where midx=#{midx} -->
+<!-- 	</select> -->
+	<select id="getcartList" parameterType="list" resultType="cartVo">
+		select a.cart_idx,b.p_idx,b.p_content,b.p_name,b.p_price,c.p_front_img,c.p_ori_filename,c.p_sys_filename  from cart a left outer join product b on a.p_idx = b.p_idx left outer join product_img c on b.p_idx = c.p_idx where midx=#{midx};
+	</select>
+	<select id="getcartCount" resultType="int">
+		select count(*) from cart where midx=#{midx}
+	</select>
+	
+	
+	
 </mapper>

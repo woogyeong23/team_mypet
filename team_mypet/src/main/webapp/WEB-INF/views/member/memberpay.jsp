@@ -20,8 +20,8 @@
     <jsp:include page="../../include/header.jsp" />  
 	<!-- ************************************************ -->
 	
-<main style="padding-bottom:0px;">
-<article class="container" >
+<main>
+<article class="Mcontainer" >
 	
 	<form class="form-payment">
 		<div class="inner-w800" style="width:800px;">

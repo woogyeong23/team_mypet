@@ -51,6 +51,19 @@
 	</insert>
 	<!-- 펫 정보 리스트 -->
 	<select id="getpetList" parameterType="int" resultType="petVo">
-	select * from members a left outer join pet b ON a.midx = b.midx where a.midx=#{midx};
+	select * from members a left outer join pet b ON a.midx = b.midx where a.midx=#{midx}
 	</select>
+	<!-- 펫삭제 -->
+	<delete id="getpetdel" parameterType="list">
+	delete from pet where pet_idx in
+		<foreach collection="list" item="pet_idx" open="(" separator="," close=")" >
+		#{pet_idx}
+		</foreach>
+	</delete>
+	<!-- 펫정보수정 -->
+	<update id="getpetup" parameterType="petVo">
+	update pet set pet_name=#{pet_name}, pet_gender=#{pet_gender},pet_birth=#{pet_birth},
+	pet_age=#{pet_age},pet_type=#{pet_type},pet_breed=#{pet_breed}
+	 where pet_idx=#{pet_idx}
+	</update>
 </mapper>

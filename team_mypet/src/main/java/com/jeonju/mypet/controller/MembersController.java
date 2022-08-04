@@ -14,6 +14,7 @@ import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 
 import com.jeonju.mypet.service.MembersService;
+import com.jeonju.mypet.vo.CartVo;
 import com.jeonju.mypet.vo.MembersVo;
 import com.jeonju.mypet.vo.PetVo;
 
@@ -207,6 +208,7 @@ public class MembersController {
 			}
 			return viewPage;	
 		}
+
 		
 		@GetMapping("/memberorder.do")
 		public String memberorder() {
@@ -218,11 +220,7 @@ public class MembersController {
 			
 			return "member/memberorderList";	
 		}
-		@GetMapping("/membercart.do")
-		public String membercart() {
-			
-			return "member/membercart";	
-		}
+		
 		@GetMapping("/memberrefund.do")
 		public String memberrefund() {
 			

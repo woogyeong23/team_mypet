@@ -1,5 +1,7 @@
 package com.jeonju.mypet.controller;
 
+import java.util.List;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.PostMapping;
@@ -34,7 +36,34 @@ public class AjaxController {
 		return result;
 	}	
 	
-	
+	@PostMapping("/petDelete.do")
+	public String petDelete(@RequestParam("pet_idx_arr") List<Integer> pet_idx_arr) {
+		
+		
+		
+		String result="N";//회원 삭제 실패
+		
+		int flag = ajaxService.petdelinfo(pet_idx_arr);
+		System.out.println(pet_idx_arr);
+		if(flag == 1) result = "Y";//회원 삭제 성공
+		System.out.println("result: "+result);
+
+		return result;
+	}
+	@PostMapping("/petUpdate.do")
+	public String petUpdate(@RequestParam("pet_idx") int pet_idx) {
+		
+		
+		
+		String result="N";//회원 삭제 실패
+		
+		int flag = ajaxService.petupinfo(pet_idx);
+		System.out.println(pet_idx);
+		if(flag == 1) result = "Y";//회원 삭제 성공
+		System.out.println("result: "+result);
+
+		return result;
+	}
 	
 	
 	

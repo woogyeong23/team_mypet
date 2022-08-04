@@ -28,6 +28,23 @@ main {
     margin-left: auto;
 }
 
+.Mcontainer,
+.Mcontainer-fluid,
+.Mcontainer-lg,
+.Mcontainer-md,
+.Mcontainer-sm,
+.Mcontainer-xl,
+.Mcontainer-xxl {
+    width: 100%;
+    position: sticky;
+    top: auto;
+    bottom: auto;
+    padding-right: var(--bs-gutter-x, .75rem);
+    padding-left: var(--bs-gutter-x, .75rem);
+    padding-bottom : 1px;
+    margin-right: auto;
+    margin-left: auto
+}
 .b-example-divider {
   flex-shrink: 0;
   width: 1.5rem;

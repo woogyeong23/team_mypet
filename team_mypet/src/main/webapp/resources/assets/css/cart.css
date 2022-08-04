@@ -4,7 +4,12 @@
     background: #fff;
     
 }
-	
+.CartList__sticky {
+    background-color: rgb(213 193 193 / 90%);
+}
+.PageHeader__step li.active .icon-num {
+    color: #333;
+}
 .PageHeader {
     position: relative;
     display: flex;
