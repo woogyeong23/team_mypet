@@ -6,6 +6,7 @@
     <html>
   <head>
 
+
  <!-- css************************************************ -->
     <jsp:include page="../../include/head.jsp" />  
 <!-- ************************************************ -->
@@ -36,6 +37,7 @@ transform:translatY(-100%);
 </style>
 
    
+
   </head>
   <body>
 <div id="wrap">
@@ -96,9 +98,7 @@ transform:translatY(-100%);
     </div>
     
     <hr>
-    <a href="${pageContext.request.contextPath}/memberorders.do">
-        <h3 class="pb-1 border-bottom" >최근 주문내역</h3>
-         </a>
+    <a href="${pageContext.request.contextPath}/memberorders.do"><h3 class="pb-1 border-bottom">최근 주문내역</h3></a>
 		<div class="row">
                 <div class="col-lg-3 col-md-6 col-12">
                     <!-- Start Single Product -->
@@ -234,6 +234,7 @@ transform:translatY(-100%);
 
 
 </div>
+
 <!-- 푸터와 js************************************************ -->
     <jsp:include page="../../include/footer.jsp" />  
 <!-- ************************************************ -->

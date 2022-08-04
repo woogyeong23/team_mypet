@@ -285,10 +285,10 @@
               <!--소현-->                    <li class="nav-item"><a href="productList.do?i=0&l=1">전체</a></li>
                                          	<li class="nav-item"><a href="productList.do?i=1&l=1">껌</a></li>
                                             <li class="nav-item"><a href="productList.do?i=2&l=1">스낵</a></li>
-                                            <li class="nav-item"><a href="login.html">뼈/육포</a></li>
-                                            <li class="nav-item"><a href="register.html">스틱</a></li>
-                                            <li class="nav-item"><a href="mail-success.html">프리미엄</a></li>
-                                            <li class="nav-item"><a href="404.html">통살</a></li>
+                                            <li class="nav-item"><a href="productList.do?i=3&l=1">뼈/육포</a></li>
+                                            <li class="nav-item"><a href="productList.do?i=4&l=1">스틱</a></li>
+                                            <li class="nav-item"><a href="productList.do?i=5&l=1">프리미엄</a></li>
+                                            <li class="nav-item"><a href="productList.do?i=6&l=1">통살</a></li>
                                         </ul>
                                     </li>
                                     <li class="nav-item">
@@ -297,11 +297,12 @@
                                             aria-expanded="false" aria-label="Toggle navigation">고양이</a>
                                         <ul class="sub-menu collapse" id="submenu-1-3">
               <!--소현-->                    <li class="nav-item"><a href="productList.do?i=0&l=2">전체</a></li>
-                                            <li class="nav-item"><a href="product-grids.html">츄르 </a></li>
-                                            <li class="nav-item"><a href="product-list.html">스낵</a></li>
+                                            <li class="nav-item"><a href="productList.do?i=7&l=2">츄르 </a></li>
+                                            <li class="nav-item"><a href="productList.do?i=8&l=2">스낵</a></li>
                                             <li class="nav-item"><a href="productList.do?i=9&l=2">캣잎</a></li>
-                                            <li class="nav-item"><a href="cart.html">프리미엄</a></li>
-                                            <li class="nav-item"><a href="checkout.html">스틱</a></li>
+                                            <li class="nav-item"><a href="productList.do?i=10&l=2">통살</a></li>
+                                            <li class="nav-item"><a href="productList.do?i=11&l=2">프리미엄</a></li>
+                                            <li class="nav-item"><a href="productList.do?i=12&l=2">스틱</a></li>
                            				</ul>
                            
                            <!-- 소현 --> 

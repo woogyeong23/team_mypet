@@ -43,6 +43,9 @@ public class ProductVo {
 	private int p_front_img;
 	private String p_ori_filename;
 	private String p_sys_filename;
+	private String categoryName;
+	private String categoryLargeName;
+	private String p_category_large;
 	
 	public String getM_nick() {
 		return m_nick;
@@ -68,6 +71,25 @@ public class ProductVo {
 	}
 	public void setP_sys_filename(String p_sys_filename) {
 		this.p_sys_filename = p_sys_filename;
+	}
+	
+	public String getCategoryName() {
+		return categoryName;
+	}
+	public void setCategoryName(String categoryName) {
+		this.categoryName = categoryName;
+	}
+	public String getCategoryLargeName() {
+		return categoryLargeName;
+	}
+	public void setCategoryLargeName(String categoryLargeName) {
+		this.categoryLargeName = categoryLargeName;
+	}
+	public String getP_category_large() {
+		return p_category_large;
+	}
+	public void setP_category_large(String p_category_large) {
+		this.p_category_large = p_category_large;
 	}
 	//소현
 
@@ -204,4 +226,5 @@ public class ProductVo {
 	public void setP_stock(String p_stock) {
 		this.p_stock = p_stock;
 	}
+
 }
