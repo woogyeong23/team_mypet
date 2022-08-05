@@ -4,5 +4,11 @@
 
 <mapper namespace = "com.jeonju.mypet.cart">
 
-
+	<insert id="insertCart">
+		insert into cart(midx, p_idx, cart_cnt)
+		values(#{midx},#{p_idx},#{cart_cnt});
+	</insert>
+	
+	
+	
 </mapper>

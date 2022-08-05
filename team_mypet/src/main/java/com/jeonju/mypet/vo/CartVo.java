@@ -7,8 +7,53 @@ public class CartVo {
 	private int midx;
 	private int p_idx;
 	private String delyn;
-	private int cart_cnt;
-	private String cart_request;
+	private int cart_cnt;	//상품수량
+	private String cart_request; //요구사항
+	
+	//소현
+	private String p_name;
+	private int p_point;
+	private int p_price;
+	private int p_dvprice;
+	private int p_disprice;
+	
+	public String getP_name() {
+		return p_name;
+	}
+	public void setP_name(String p_name) {
+		this.p_name = p_name;
+	}
+	public int getP_point() {
+		return p_point;
+	}
+	public void setP_point(int p_point) {
+		this.p_point = p_point;
+	}
+	public int getP_price() {
+		return p_price;
+	}
+	public void setP_price(int p_price) {
+		this.p_price = p_price;
+	}
+	public int getP_dvprice() {
+		return p_dvprice;
+	}
+	public void setP_dvprice(int p_dvprice) {
+		this.p_dvprice = p_dvprice;
+	}
+	public int getP_disprice() {
+		return p_disprice;
+	}
+	public void setP_disprice(int p_disprice) {
+		this.p_disprice = p_disprice;
+	}
+	
+	
+	//소현끝
+	
+	
+	
+	
 	public int getCart_idx() {
 		return cart_idx;
 	}

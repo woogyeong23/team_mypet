@@ -9,50 +9,16 @@
     <meta http-equiv="x-ua-compatible" content="ie=edge" />
     <meta name="description" content="" />
     <meta name="viewport" content="width=device-width, initial-scale=1" />
-    <link rel="stylesheet" href="resources/assets/css/bootstrap.min.css" />
+    <link rel="stylesheet" href="assets/css/bootstrap.min.css" />
     <link rel="shortcut icon" type="image/x-icon" href="assets/images/favicon.svg" />
-    <link rel="stylesheet" href="resources/assets/css/LineIcons.3.0.css" />
-    <link rel="stylesheet" href="resources/assets/css/tiny-slider.css" />
-    <link rel="stylesheet" href="resources/assets/css/glightbox.min.css" />
-    <link rel="stylesheet" href="resources/assets/css/main.css" />
+    <link rel="stylesheet" href="assets/css/LineIcons.3.0.css" />
+    <link rel="stylesheet" href="assets/css/tiny-slider.css" />
+    <link rel="stylesheet" href="assets/css/glightbox.min.css" />
+    <link rel="stylesheet" href="assets/css/main.css" />
 <title>제품상세페이지</title>
 
 <script src="https://code.jquery.com/jquery-1.12.4.min.js"></script>
-<script>
-/*
-//서버로 전송할 데이터
-const form = {
-		p_idx : '${productVo.p_idx}',
-		p_name : '${productVo.p_name}',
-		p_count:'',
-		
-}
 
-//장바구니추가버튼
-$("#btn_cart").on("click",function(e){
-	form.p_count = $(".quantity_input").val();
-	$.ajax({
-		url : '${pageContext.request.contextPath}/membercart.do', //호출할 url
-		type : 'GET', // 호출할 방법(get,post)
-		data : form, //서버로 보낼 데이터
-		success : function(result){ //요청 성공시 수행될 메서드, 파라미터는 서버가 반환하는 값
-			cartAlert(result);
-		} 
-	})
-});
-
-
-function cartAlert(result){
-	if(result =='0'){
-		alert("장바구니에 추가할 수량을 선택해주세요.");
-	}else{
-		alert("장바구니에 추가되었습니다.")
-	}
-		
-}
-*/
-
-</script>
 
 
 <style>
@@ -227,12 +193,15 @@ function cartAlert(result){
 						<div class="count">
 						<!-- 수량변경 버튼 -->
 							<div>
+								<form class="cart_form" method="get" action="${pageContext.request.contextPath}/membercart.do">
+								<input type="hidden" name="p_idx" value="${productView.p_idx}">
 								<span style="float:left; padding-right: 10px">수량 :</span>
 								<div class="qty" style="float:left;">					
         							<div class="plus" style="float: left; padding-right:10px"><a href="javascript:change_qty2('p')"><img src="${pageContext.request.contextPath}/resources/assets/images/logo/add.png" width="20px" height="20px" alt="+"></a></div>
         							<input type="text" style="float: left; text-align: center;" size="3" name="ct_qty" id="ct_qty" value="1" readonly="readonly">
        								<div class="minus" style="float: left; padding-left:10px"><a href="javascript:change_qty2('m')"><img src="${pageContext.request.contextPath}/resources/assets/images/logo/minus.png" width="20px" height="20px" alt="-"></a></div>
-								</div>      							
+								</div> 
+								</form>     							
       						</div>
       						
 <!-- 수량변경 스크립트 -->
@@ -243,7 +212,7 @@ Number.prototype.format = function(){
 	  var reg = /(^[+-]?\d+)(\d{3})/;
 	  var n = (this + '');
 
-	  while (reg.test(n)) n = n.replace(reg, '$1' + ',' + '$2');
+	  while (reg.test(n)) n = n.replace(reg, '$1' + ',' + '$2'); // 2,500 <-
 
 	  return n;
 	};
@@ -285,6 +254,47 @@ Number.prototype.format = function(){
 	  $("#total_amount").html(show_total_amount.format());
 	}
 </script>
+
+<script>
+//장바구니
+//서버로 전송할 데이터
+const form = {
+		p_idx : '${productView.p_idx}',
+		p_name : '${productView.p_name}',
+		p_point : '${productView.p_point}',
+		p_prict : '${productView.p_price}',
+		p_disprict : '${productView.p_disprice}',
+		p_dvprice : '${productView.p_dvprice}',
+		p_count: ''
+}
+
+//장바구니추가버튼
+$("#btn_cart").on("click",function(e){
+	form.p_count = $("#ct_qty").val();
+	$.ajax({
+		url : '${pageContext.request.contextPath}/insertCart.do', //호출할 url
+		type : 'GET', // 호출할 방법(get,post)
+		data : form, //서버로 보낼 데이터
+		success : function(result){ //요청 성공시 수행될 메서드, 파라미터는 서버가 반환하는 값
+			cartAlert(result);
+		},
+	      error: function() {
+	          alert("에러 발생");
+	      }
+	})
+});
+
+
+function cartAlert(result){
+	if(result =='0'){
+		alert("장바구니에 추가할 수량을 선택해주세요.");
+	}else{
+		alert("장바구니에 추가되었습니다.")
+	}
+		
+}
+
+</script>
 						</div>
 						</div>
 						<hr>
@@ -294,6 +304,7 @@ Number.prototype.format = function(){
 						</div>
 						<!-- 수량변경 버튼 끝 -->
 
+						
 						<div class="bottom-content">
 							<div class="row align-items-end">
 								<div class="col-lg-4 col-md-4 col-12">
@@ -301,23 +312,27 @@ Number.prototype.format = function(){
 										<button id="btn_cart" class="btn" style="width:100%;">장바구니</button>
 									</div>
 								</div>
+						
+						
 								<div class="col-lg-4 col-md-4 col-12">
 									<div class="order-button">
-										<button class="btn">구매하기</button>
+										<button type="button" class="btn">구매하기</button> <!-- button의 기본 타입은 submit이므로 submit 버튼이 아니라면 type="button"을 따로 지정해줘야함 -->
 									</div>
 								</div>
 								<div class="col-lg-4 col-md-4 col-12">
 									<div class="wish-button">
-										<button class="btn"><i class="lni lni-heart"></i></button>
+										<button type="button" class="btn"><i class="lni lni-heart"></i></button>
 									</div>
 								</div>
 							</div>
 						</div>
-						
 						</div>
 					</div>
 				</div>
 			</div>
+			
+			
+			
 		<!-- 상품상세정보란 -->
 		<div class="product-details-info">
 			<div class="single-block">
@@ -332,7 +347,6 @@ Number.prototype.format = function(){
 						
 					<!-- 성분표시/환불 팝오버 -->
 					<div class="accordion accordion-flush" id="accordionFlushExample">
-		
 						<table style="width: 100%">
 							<tr>
 							<td width="50%">
@@ -367,8 +381,7 @@ Number.prototype.format = function(){
 					</div>
 				</div>
 			</div>
-				
-			</div>
+		</div>
 			<!-- 리뷰 -->
 			<div class="product-details-info">
 			<div class="single-block">
@@ -466,10 +479,10 @@ Number.prototype.format = function(){
 <!-- 수량버튼 스크립트 -->
 
     <!-- ========================= JS here ========================= -->
-    <script src="resources/assets/js/bootstrap.min.js"></script>
-    <script src="resources/assets/js/tiny-slider.js"></script>
-    <script src="resources/assets/js/glightbox.min.js"></script>
-    <script src="resources/assets/js/main.js"></script>
+    <script src="assets/js/bootstrap.min.js"></script>
+    <script src="assets/js/tiny-slider.js"></script>
+    <script src="assets/js/glightbox.min.js"></script>
+    <script src="assets/js/main.js"></script>
     <script type="text/javascript">
         const current = document.getElementById("current");
         const opacity = 0.6;
