@@ -3,6 +3,7 @@ package com.jeonju.mypet.service;
 
 import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -47,6 +48,26 @@ public class SellerService {
 		int result=0;
 		result = sellerDao.checkId(id);
 		return result;
+	}
+
+	public int addProduct(Map<String, String> param) {
+		// TODO Auto-generated method stub
+		return sellerDao.addProduct(param);
+	}
+
+	public int getPIdx() {
+		// TODO Auto-generated method stub
+		return sellerDao.getPIdx();
+	}
+
+	public void addProductImg(HashMap<String,String> imgFileName) {
+		// TODO Auto-generated method stub
+		sellerDao.addProductImg(imgFileName);
+	}
+
+	public String getSellerIdx(String member_id) {
+		// TODO Auto-generated method stub
+		return sellerDao.getSellerIdx(member_id);
 	}
 	
 }

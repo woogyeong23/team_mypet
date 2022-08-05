@@ -112,7 +112,7 @@
 						
 								 <tr>
 							 		<th>상품 이미지들</th>
-							 		<td><img src="${pageContext.request.contextPath}/resources/assets/images/products/${product_imgVo.p_sys_filename }"/></td>
+							 		<td><img src="${pageContext.request.contextPath}/resources/product/${product_imgVo.p_sys_filename }"/></td>
 							 	</tr>
 								</c:forEach>
 						

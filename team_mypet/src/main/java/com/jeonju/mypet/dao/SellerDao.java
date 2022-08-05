@@ -3,6 +3,7 @@ package com.jeonju.mypet.dao;
 
 import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 
 import org.apache.ibatis.session.SqlSession;
 import org.springframework.stereotype.Repository;
@@ -42,6 +43,26 @@ public class SellerDao {
 	}
 	public int checkId(String id) {
 		return sqlSession.selectOne(MAPPER+".checkId", id);
+	}
+
+	public int addProduct(Map<String, String> param) {
+		// TODO Auto-generated method stub
+		return sqlSession.insert(MAPPER+".addProduct", param);
+	}
+
+	public int getPIdx() {
+		// TODO Auto-generated method stub
+		return sqlSession.selectOne(MAPPER+".getPIdx");
+	}
+
+	public void addProductImg(HashMap<String,String> imgFileName) {
+		// TODO Auto-generated method stub
+		sqlSession.insert(MAPPER+".addProductImg", imgFileName);
+	}
+
+	public String getSellerIdx(String member_id) {
+		// TODO Auto-generated method stub
+		return sqlSession.selectOne(MAPPER+".getSellerIdx",member_id);
 	}
 	
 	

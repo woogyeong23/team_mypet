@@ -170,7 +170,7 @@
 									<div class="col-lg-4 col-md-6 col-12">
 										<div class="single-product">
 											<div class="product-image">
-												<img src="${pageContext.request.contextPath}/resources/assets/images/products/${productVo.p_sys_filename}">
+												<img src="${pageContext.request.contextPath}/resources/product/${productVo.p_sys_filename}"  width="300px" height="300px">
 												<c:if test="${productVo.p_discount != 0}"><!-- member_grade: 0(일반회원), 1(관리자), 2(슈퍼관리자) -->
 													<span class="sale-tag">-${productVo.p_discount}%</span>
 												</c:if>
@@ -266,7 +266,7 @@
 											<div class="row align-items-center">
 												<div class="col-lg-4 col-md-4 col-12">
 													<div class="product-image">
-														<img src="${pageContext.request.contextPath}/resources/assets/images/products/${productVo.p_sys_filename}">
+														<img src="${pageContext.request.contextPath}/resources/product/${productVo.p_sys_filename}">
 														<c:if test="${productVo.p_discount != 0}"><!-- member_grade: 0(일반회원), 1(관리자), 2(슈퍼관리자) -->
 															<span class="sale-tag">-${productVo.p_discount}%</span>
 														</c:if>
