@@ -6,6 +6,7 @@ import java.util.List;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+
 import com.jeonju.mypet.dao.CommunityDao;
 import com.jeonju.mypet.dao.HomeDao;
 import com.jeonju.mypet.vo.Commu_CommentVo;
@@ -38,9 +39,15 @@ public class JoeAjaxService {
 		return result;
 	}
 
+    // bsview 작동
 	public List<SellerStoryVo> getBSList() {
 		return commuDao.getBSList();
 	}
+	
+	public List<ProductVo> getBSPList(int seller_idx) {
+		return commuDao.getBSPList(seller_idx);
+	}
+	
 
 	public SellerStoryVo getBSellerView(int seller_idx) {
 		return commuDao.getBSellerView(seller_idx);
@@ -62,10 +69,14 @@ public class JoeAjaxService {
 		return commuDao.CCInsert(CCommentVo);
 	}
 
-	public int UpDepth(Commu_CommentVo cCommentVo) {
-	   return commuDao.UpDepth(cCommentVo);
-		
+	public  int UpDepth(Commu_CommentVo CCommentVo) {
+	   return commuDao.UpDepth(CCommentVo);
 	}
+
+	public List<ReviewVo> getAList(int seller_idx) {
+		return commuDao.getAList(seller_idx);
+	}
+
 	
 	
 	

@@ -87,7 +87,11 @@
          </div>
         </div>
     </section>
+    
+    
+<ul class="artist-list" data-ui="scroll-paging" data-param="2">
 
+</ul>
 
 
 

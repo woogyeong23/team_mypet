@@ -54,11 +54,11 @@ var targetID;
    });
  }
 
- for(var j = 0; j < target.length; j++){
-	    btnPopClose[j].addEventListener('click', function(){
-	      this.parentNode.parentNode.style.display = 'none';
-	    });
-     }
+//  for(var j = 0; j < target.length; j++){
+// 	    btnPopClose[j].addEventListener('click', function(){
+// 	      this.parentNode.parentNode.style.display = 'none';
+// 	    });
+//      }
  
  
  
@@ -66,7 +66,7 @@ var targetID;
  $(".Re_reply").each(function(){
 		$(this).click(function(){
 			
-	    let cc_content=$(this).prev().prev().val(); //댓글 내용
+	    let cc_content= $(this).prev().val(); //댓글 내용
 	    let cc_writer = "${m_nick}";
 		let cm_idx = "${communityVo.cm_idx}";
 		    
@@ -145,23 +145,7 @@ var targetID;
         background: #007AAE;
         cursor: pointer;
     }
-    
-    #that{
-    position: relative;
-    text-align: center;
-    width: 100%;
-    height: 200px;
-    background-color: gray;
-    }
-    
-    #that_in{
-    position: absolute;
-    top: 50%;
-    left: 50%;
-    transform: translate(-50%,-50%);
-    background-color: white;
-    }
-    
+     
     .cla{
     font-size: 18px;
     font-weight: 700;
@@ -173,8 +157,8 @@ var targetID;
     }
     
     .box {
-    width: 34px;
-    height: 34px; 
+    width: 45px;
+    height: 45px; 
     border-radius: 70%;
     overflow: hidden;
     float:left;
@@ -192,6 +176,162 @@ var targetID;
     justify-content: space-between;
     padding-bottom: 30px;
     }
+    
+#asd{
+    display: flex;
+    flex: 1;
+    padding: 8px 12px;
+    border-style: none;
+    border-radius: 18px;
+    background-color: #f5f5f5;
+}
+
+.comment{
+    padding: 0;
+    width: 100%;
+    max-height: 80px;
+    font-size: 14px;
+    caret-color: #fae100;
+    color: #333333;
+    background-color: transparent;
+    border: none;
+    resize: none;
+    outline: none;
+    overflow: auto;
+}
+
+
+#commentBtn{
+    align-self: center;
+    margin-left: 8px;
+    padding: 8px;
+    line-height: 17px;
+    font-weight: 700;
+    font-size: 14px;
+    color: #fae100;
+    border: 0 none;
+    background: transparent;
+    border-radius: 0;
+    display: inline-block;
+}
+
+#tre{
+width:100%;
+padding: 8px 16px;
+    display: flex;
+}
+
+#follow{
+    background-color: rgb(255, 255, 255);
+    min-width: 63px;
+    width: 63px;
+    height: 28px;
+    font-size: 12px;
+    color: #fae100;
+    border: 1px solid #fae100;
+    border-radius: 4px;
+}
+
+.CommentContent{
+position: relative;
+    display: flex;
+    padding: 12px 16px;
+}
+
+.CommentContentProfile{
+position: relative;
+    padding-right: 8px;
+}
+
+.CommentContent__wrap{
+    flex: 1;
+}
+
+.CommentContent__header{
+    padding: 5px 0;
+}
+
+.CommentContent__userName{
+    line-height: 17px;
+    padding-bottom: 5px;
+    font-weight: 700;
+    font-size: 14px;
+    color: #333333;
+}
+
+.CommentContent__body{
+    line-height: 21px;
+    font-size: 14px;
+}
+
+.CommentContent__commentText{
+    font-weight: 400;
+    color: #333333;
+    word-break: break-all;
+}
+
+.CommentContent__footer {
+    padding-top: 8px;
+}
+
+.CommentContentAction__wrap{
+    margin: 0;
+    padding: 0;
+    border: 0;
+    font-size: 100%;
+    font: inherit;
+    vertical-align: baseline;
+}
+.CommentContent__createAt {
+    line-height: 14px;
+    font-weight: 400;
+    font-size: 12px;
+    color: #acacac;
+}
+
+.CommentContentAction__wrap > *:not(:first-child) {
+    padding-left: 20px;
+}
+
+.CommentContentActionButton {
+    font-weight: 700;
+    font-size: 12px;
+    line-height: 14px;
+    color: #999999;
+}
+
+button {
+    border: 0 none;
+    background: transparent;
+    cursor: pointer;
+    -webkit-border-radius: 0;
+    -moz-border-radius: 0;
+    border-radius: 0;
+    display: inline-block;
+    padding: 0;
+    margin: 0;
+}
+.Re_reply{
+ align-self: center;
+    margin-left: 8px;
+    padding: 8px;
+    line-height: 17px;
+    font-weight: 700;
+    font-size: 14px;
+    color: #fae100;
+    border: 0 none;
+    background: transparent;
+    border-radius: 0;
+    display: inline-block;
+}
+
+.ReplyListItem__content {
+   padding-left: 52px;
+}
+
+.ReplyListItem__action {
+  padding-left: 72px;
+}
     
 
     
@@ -212,12 +352,12 @@ var targetID;
         <img class="profile" src="${pageContext.request.contextPath}/resources/Community/upload/${communityVo.cm_img}">
                    </div>
                     <div style="float:left">
-                   <span style="color:black">${communityVo.cm_writer}</span>
+                   <span style="font-size:1.3em; color:black">${communityVo.cm_writer}</span>
                    <br>
                    <span style="">${communityVo.cm_wday}</span>       
                    </div>
                </div>
-                              <div><input type="button" value="팔로우"></div>
+                              <div><input type="button" id="follow" value="+ 팔로우"></div>
        </div>
 
                        
@@ -240,50 +380,119 @@ var targetID;
 </c:choose>
 
       <div class="cla">댓글 <span>${replyCount}</span></div>
+      
 <div class="row">
-  <div class="col-lg-12 col-12" id="that">
-    <div id="that_in">
+  <div class="col-lg-12 col-12">
+       
  <c:choose> 
   <c:when test="${m_id !=null}">
-<textarea rows="5" cols="200" class="comment" placeholder="댓글을 입력해주세요."></textarea>
-<button type="button" class="btn btn-primary" id="commentBtn">댓글작성</button>
+<div id="tre">
+<div id="asd">
+  <textarea rows="1" class="comment" maxlength="500" placeholder="댓글을 입력해주세요."></textarea>
+</div>
+
+<button type="button" id="commentBtn">등록</button>
+</div>
   </c:when>
 
   <c:otherwise>
-<textarea rows="10" cols="50" class="comment" placeholder="로그인 후 댓글을 입력해주세요." readonly></textarea>
+<div id="tre">
+   <div id="asd">
+    <textarea rows="10" cols="50" class="comment" placeholder="로그인 후 댓글을 입력해주세요." readonly></textarea>
+   </div>
+</div>    
   </c:otherwise>
 </c:choose>
-     </div>
+       
   </div>
 </div>
  
 <c:forEach var="cl" items="${ccmList}">
-<div>작성자 : ${cl.cc_writer}</div>
-<div>내용 : ${cl.cc_content}</div>
-<div>날짜 : ${cl.cc_wday}</div>
-
 <c:choose>
-<c:when test="${m_id != null}">
-<a href="#pop_info_${cl.cc_idx}" class="btn_open"><button type="button" class="btn btn-secondary">답글</button></a>
-</c:when>
-  <c:otherwise></c:otherwise>
-</c:choose>
+         <c:when test="${cl.cc_depth == 0}">
+         <!--  답글 아닐 경우 -->
+<div class="CommentContent">
+<div class="CommentContentProfile">
+<!-- 프로필 사진 들어가면 좋음-->
+</div>
 
+<div class="CommentContent__wrap">
+     <div class="CommentContent__header">
+         <strong class="CommentContent__userName">${cl.cc_writer}</strong>
+     </div>
+     
+<p class="CommentContent__body">
+        <span class="CommentContent__commentText">${cl.cc_content}</span>
+</p>
+<div class="CommentContentAction CommentContent__footer">
+       <div class="CommentContentAction__wrap">
+            <span class="CommentContent__createAt">${cl.cc_wday}</span>
+  <c:choose>
+       <c:when test="${midx != null}">
+<a href="#pop_info_${cl.cc_idx}" class="btn_open"><button type="button" class="CommentContentActionButton">답글하기</button></a>
+        </c:when>
+        <c:otherwise></c:otherwise> 
+  </c:choose>
+         </div>
+       </div>
+    </div>
+  </div>
+         </c:when>
+  <c:otherwise>
+  <!-- 답글일 경우 -->
+  <div class="CommentContent ReplyListItem__content">
+   <div class="CommentContentProfile">
+   <!-- 프로필 사진 들어가면 좋음-->
+   </div>
+         <div class="CommentContent__wrap">
+           <div class="CommentContent__header">
+                    <strong class="CommentContent__userName">${cl.cc_writer}</strong>
+           </div>
+                    <p class="CommentContent__body">
+                    <span class="CommentContent__commentText">${cl.cc_content}</span>
+                   </p>
+            <div class="CommentContentAction CommentContent__footer">
+            <div class="CommentContentAction__wrap">
+            <span class="CommentContent__createAt">${cl.cc_wday}</span>
+  <c:choose>
+       <c:when test="${midx != null}">
+<a href="#pop_info_${cl.cc_idx}" class="btn_open"><button type="button" class="CommentContentActionButton">답글하기</button></a>
+        </c:when>
+              <c:otherwise></c:otherwise> 
+  </c:choose>
+            </div>
+          </div>
+       </div>
+    </div>
+    <div class="ReplyListItem__action">
+    </div>
+  </c:otherwise>
+</c:choose>
  <!-- 실제 구현되는 답글하기 팝업창 -->
- <div id="pop_info_${cl.cc_idx}" class="pop_wrap" style="display:none;">
-	 <div class="pop_inner">
-    <textarea rows="5" cols="80" class="Re_retext"
-             placeholder="댓글을 작성해주세요." style="border:1; padding: 16px 16px 24px; margin:0px 0px 16px; background:#FFFFFF;"></textarea>
-             <br>
-     <button type="button" class="Re_reply" style="font: 16px -apple-system, BlinkMacSystemFont; Color:#FFFFFF; Background:#12B886; Padding:0px 20px;">댓글쓰기</button>
-           <input type="hidden" id="ridx" value="${cl.cc_idx}">
-             <input type="hidden" id="origin" value="${cl.cc_origin}">
-             <input type="hidden" id="depth" value="${cl.cc_depth}">
-              <input type="hidden" id="level" value="${cl.cc_level}">
-      <button type="button" class="btn_close">닫기</button>
-  </div>
-  </div>
+
+	
+<div id="pop_info_${cl.cc_idx}" class="pop_wrap" style="display:none;">
+    <div class="pop_inner">
+        <div id="tre">
+            <div id="asd">
+                 <textarea rows="1" class="comment" maxlength="500" placeholder="답글을 입력해주세요."></textarea>
+                    <button type="button" class="Re_reply">등록</button>
+                    <input type="hidden" id="ridx" value="${cl.cc_idx}">
+                    <input type="hidden" id="origin" value="${cl.cc_origin}">
+                    <input type="hidden" id="depth" value="${cl.cc_depth}">
+                    <input type="hidden" id="level" value="${cl.cc_level}">
+             </div>   
+       </div>
+   </div>
+</div>
+
+           
+<!--       <button type="button" class="btn_close">닫기</button> -->
 </c:forEach>
+
+
+
+
 
 </div>
 
