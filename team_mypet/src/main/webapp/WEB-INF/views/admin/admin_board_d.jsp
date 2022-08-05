@@ -39,7 +39,7 @@
     <nav class = "menu">
            <ul class ="navi">
             
-            <li><a href="${pageContext.request.contextPath}/#">구매자 관리</a>
+            <li><a href="${pageContext.request.contextPath}/admin_buyer.do ">구매자 관리</a>
            
             
 
@@ -81,7 +81,7 @@
 
 
 
-<li>	<a href="${pageContext.request.contextPath}/#">1:1문의 사항</a>
+<li>	<a href="${pageContext.request.contextPath}/admin_mune.do">1:1문의 사항</a>
 
 
  

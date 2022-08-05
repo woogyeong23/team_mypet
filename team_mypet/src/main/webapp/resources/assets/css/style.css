@@ -114,26 +114,98 @@ color: #333333;
 background-color: #30a3f3;
 }
 
+
+
 .bodywrap{
+	
 
 width: 1200px;
-height: 500px;
+height: 800px;
 
 }
 
+
+	
+	
 
 
 .imgslide{
- 
-    width: 1200px;
-    height: 700px;
+	
+ 	
+    width: 400px;
+    height:200px;
 
 }
 
+
+.aa{
+	
+	
+	float :left;
+    width: 400px;
+    height:200px;
+	
+}
+
+
+.bb{
+	
+	
+	float :left;
+    width: 400px;
+    height:200px;
+	
+}
+
+
+
+
+
+.cc{
+	
+	
+	float :left;
+    width: 400px;
+    height:200px;
+	
+}
+
+
+.dd{
+	
+	
+	float :left;
+    width: 400px;
+    height:200px;
+	
+}
+
+
+
+
+.ff{
+	
+	
+	float :left;
+    width: 400px;
+    height:200px;
+	
+}
+
+
+.ee{
+	
+	
+	float :left;
+    width: 400px;
+    height:200px;
+	
+}
+
 .contents{
-    float: left;
-    width: 1200px;
-    height: 200px;
+    float:left;
+    width:1200px;
+    height:700px;
 }
 
 .tabmenu{

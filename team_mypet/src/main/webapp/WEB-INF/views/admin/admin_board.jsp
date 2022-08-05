@@ -39,7 +39,7 @@
     <nav class = "menu">
            <ul class ="navi">
             
-            <li><a href="${pageContext.request.contextPath}/#">구매자 관리</a>
+            <li><a href="${pageContext.request.contextPath}/admin_buyer.do">구매자 관리</a>
            
             
 
@@ -81,7 +81,7 @@
 
 
 
-<li>	<a href="${pageContext.request.contextPath}/#">1:1문의 사항</a>
+<li>	<a href="${pageContext.request.contextPath}/admin_mune.do">1:1문의 사항</a>
 
 
  
@@ -101,12 +101,13 @@
 
 <div class = "bodywrap">
 
+  
 
 <table border="1">
 
 
 
-	<h2>게시판 목록</h2>
+	<h2>공지사항</h2>
 	
 
 		<thead>
@@ -139,19 +140,8 @@
 
 
 
-	<form method="get" action="admin_board.do">
-		<select name="searchType">
-			<option value="title" <c:if test="${!empty searchVO.searchType and searchVO.searchType eq 'title'}">selected</c:if>>제목</option>
-			<option value="contentWriter" <c:if test="${!empty searchVO.searchType and searchVO.searchType eq 'contentWriter'}">selected</c:if>>내용+작성자</option>
-		</select>
-		<input type="text" name="searchValue" <c:if test="${!empty searchVO.searchValue}">value="${searchVO.searchValue}"</c:if>>
-		<input type="submit" value="검색">
-	</form>
-
-</div>
-    <div class ="contents">
-  
-        
+    
+        <div class ="contents">
             <ul class ="tabmenu">
                 <li>
 
@@ -163,6 +153,7 @@
 
                     <div class ="gallery">
                         
+
                     </div>
                   </li>
 
@@ -171,7 +162,14 @@
 
         <div class ="otherwrap">
             <div class ="banner">
-
+<form method="get" action="admin_board.do">
+		<select name="searchType">
+			<option value="title" <c:if test="${!empty searchVO.searchType and searchVO.searchType eq 'title'}">selected</c:if>>제목</option>
+			<option value="contentWriter" <c:if test="${!empty searchVO.searchType and searchVO.searchType eq 'contentWriter'}">selected</c:if>>내용+작성자</option>
+		</select>
+		<input type="text" name="searchValue" <c:if test="${!empty searchVO.searchValue}">value="${searchVO.searchValue}"</c:if>>
+		<input type="submit" value="검색">
+	</form>
            
 </div>
 
@@ -180,6 +178,9 @@
                     
                 
 
+
+</div>
+
             </div>
         </div>
 
@@ -187,8 +188,7 @@
         
 
 </div>
-
-
+	
 
 <footer>
 

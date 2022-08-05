@@ -38,7 +38,7 @@
     <nav class = "menu">
            <ul class ="navi">
             
-            <li><a href="${pageContext.request.contextPath}/#">구매자 관리</a>
+            <li><a href="${pageContext.request.contextPath}/admin_buyer.do">구매자 관리</a>
            
             
 
@@ -80,7 +80,7 @@
 
 
 
-<li>	<a href="${pageContext.request.contextPath}/#">1:1문의 사항</a>
+<li>	<a href="${pageContext.request.contextPath}/admin_mune.do">1:1문의 사항</a>
 
 
  
@@ -101,7 +101,7 @@
 <div class = "bodywrap">
 <div class = "imgslide">
 
-<img src="images/lee.jpg" alt="lee" width="1200px" height="600px">
+
 
 </div>
     <div class ="contents">
@@ -111,13 +111,13 @@
                 <li>
 
                     <div class ="notice">
-                        공지사항자리
+                        
                     </div>
                   </li>
                   <li>
 
                     <div class ="gallery">
-                        이벤트 자리
+                     
                     </div>
                   </li>
 
@@ -127,13 +127,12 @@
         <div class ="otherwrap">
             <div class ="banner">
 
-            판매퍙 차트 자리
+           
 </div>
 
                 <div class ="shortcut">
 
-                    회원 관리
-                
+                   
 
             </div>
         </div>

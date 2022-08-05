@@ -1,6 +1,6 @@
 package com.jeonju.mypet.controller;
 
-import java.util.HashMap;
+
 import java.util.List;
 
 import javax.servlet.http.HttpServletRequest;
@@ -16,7 +16,10 @@ import org.springframework.web.bind.annotation.RequestMapping;
 
 import com.jeonju.mypet.service.AdminService;
 import com.jeonju.mypet.vo.BoardVo;
+import com.jeonju.mypet.vo.CommunityVo;
 import com.jeonju.mypet.vo.MembersVo;
+
+
 
 
 
@@ -57,7 +60,11 @@ public class AdminController {
 		//int a=1;
 		//ProductVo productVo = new ProductVo();
 		
+		
+		
 		List<BoardVo> BoardList = adminService.getBoardList();
+		
+		
 		
 		model.addAttribute("BoardList", BoardList);
 		
@@ -67,19 +74,57 @@ public class AdminController {
 
 
 	
+	@GetMapping("/memberList.do")//get방식 요청 처리
+	public String getMembersList(Model model, HttpServletRequest request) {
+		
+		
+		
+		List<MembersVo> memberList = adminService.getMembersList();
 	
-
-	@GetMapping("/boardList.do")//get방식 요청 처리
-	public String getboardList(Model model) {
 		
-		List<BoardVo> boardList = adminService.getboardList();
-		//모델객체에 회원목록을 추가함
-		model.addAttribute("boardList",boardList);
 		
-		return "admin/boardList";
+	
+		model.addAttribute("memberList",memberList);
+		
+		return "admin/admin_memberList";
 	}
 	
 	
+	
+
+
+	@GetMapping("/admin_community.do")
+	public String admincommunity(Model model, HttpServletRequest request) {
+		
+		//int a=1;
+		//ProductVo productVo = new ProductVo();
+		
+		
+		
+		List<CommunityVo> CommunityList = adminService.getCommunityList();
+		
+		
+		
+		model.addAttribute("CommunityList", CommunityList);
+		
+		
+		return "admin/admin_community";
+	}
+	
+	@GetMapping("/admin_mune.do")
+	public String adminmune(Model model, HttpServletRequest request) {
+		
+		//int a=1;
+		//ProductVo productVo = new ProductVo();
+		
+		List<BoardVo> MuneList = adminService.getMuneList();
+		
+		model.addAttribute("MuneList", MuneList);
+		
+		
+		return "admin/admin_mune";
+	}
+
 
 
 	
@@ -89,7 +134,14 @@ public class AdminController {
 	
 	
 	@GetMapping("/admin_board2.do")
-	public String adminboard2() {
+	public String adminboard2(Model model, HttpServletRequest request) {
+		
+		
+		
+		List<BoardVo> EventList = adminService.getEventList();
+		
+		model.addAttribute("EventList", EventList);
+		
 		return "admin/admin_board2";
 	}
 	
@@ -103,12 +155,16 @@ public class AdminController {
 		return "admin/admin_board_d";
 	}
 	
+
+	
+
+@GetMapping("/admin_buyer.do")
+public String adminbuyer() {
+	return "admin/admin_buyer";
 }
 	
 
-	
-	
-
+}
 	
 	
 	

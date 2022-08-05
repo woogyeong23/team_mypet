@@ -8,8 +8,8 @@
 
 	
 	
-		<select id="getMemberList" resultType="membersVo">
-		select * from member
+		<select id="getMembersList" resultType="membersVo">
+		select * from members
 	</select>
 	
 
@@ -20,17 +20,38 @@
 		
 	</select>
 	
+		<select id="getEventList" resultType="boardVo">
+		SELECT * FROM board where board_name=2
+		
+	</select>
 	
 	
-	<update id="updateMemberGrade" parameterType="map">
-		update member set member_grade = #{member_grade}
-			where member_idx = #{member_idx}
+	
+		<select id="getMuneList" resultType="boardVo">
+		SELECT * FROM board where board_name=0
+		
+	</select>
+	
+	
+		<select id="getCommunityList" resultType="communityVo">
+		SELECT * FROM community
+		
+	</select>
+	
+	
+	
+	<update id="updateMemberGrade" parameterType="map" >
+		update members set m_grade= #{m_grade}
+			where midx = #{midx}
 	</update>
 	
+	
+
+	
 	<delete id="deleteMemberInfo" parameterType="list">
-		delete from member where member_idx in 
-		<foreach collection="list" item="member_idx" open="(" separator="," close=")" >
-			#{member_idx}
+		delete from members where midx in 
+		<foreach collection="list" item="midx" open="(" separator="," close=")" >
+			#{midx}
 		</foreach>
 	
 	</delete>
