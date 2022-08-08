@@ -103,15 +103,10 @@
 		*/
 		function calPrice2() {
 			
-			alert('작동');
 			var p_price  = document.getElementById("p_price").value;
 			var p_discount  = document.getElementById("p_discount").value;
-		    var p_disprice = document.getElementById("p_disprice").value;
 		 	var result=p_price*(100-p_discount)/100;
 		    //p_disprice.innerHTML = result;
-		    alert(p_price);
-		    alert(p_discount);
-		    alert(result);
 		 	document.getElementById("p_disprice").value=result;
 
 		    
@@ -282,7 +277,7 @@
 								 		<th>할인 적용 가격</th>
 								 		<td>
 								 			<input type="text" name="p_disprice" id="p_disprice" maxlength="100" value="" placeholder="적용버튼을 누르세요">
-								 			<button id="calPrice" onClick="calPrice2()">적용</button>
+								 			<input type="button" value="적용"  onClick="calPrice2()" />
 								 		</td>
 								 	</tr>
 								 	<tr>
