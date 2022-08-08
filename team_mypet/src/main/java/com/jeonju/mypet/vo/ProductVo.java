@@ -27,7 +27,9 @@ public class ProductVo {
 	private int p_status;
 	private String p_delyn;
 	private String p_stock;
-
+	private int midx;
+	
+	
 	private List<Product_ImgVo> product_imgs; 
 	
 	public List<Product_ImgVo> getProduct_imgs() {
@@ -70,7 +72,7 @@ public class ProductVo {
 		this.p_sys_filename = p_sys_filename;
 	}
 	//소현
-
+	
 	
 	public int getP_idx() {
 		return p_idx;
@@ -203,5 +205,11 @@ public class ProductVo {
 	}
 	public void setP_stock(String p_stock) {
 		this.p_stock = p_stock;
+	}
+	public int getMidx() {
+		return midx;
+	}
+	public void setMidx(int midx) {
+		this.midx = midx;
 	}
 }

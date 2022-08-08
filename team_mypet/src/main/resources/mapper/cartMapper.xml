@@ -3,10 +3,16 @@
   "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 
 <mapper namespace = "com.jeonju.mypet.cart">
+
 	<!-- 장바구니 유효성검사 -->
-	<select id="getcartMemCheck" parameterType="int">
-		select COUNT(*) from cart where cart_idx = #{cart_idx}
+	<select id="gercartMemCheck" resultType="Boolean" parameterType="cartVo">
+		select
+		<![CDATA[
+		if(count(*) < 0,'false','true') 
+		]]>
+		from cart where midx = #{midx} and p_idx = #{p_idx}
 	</select>
+	
 	<!-- 장바구니 추가 -->
 	<insert id="getcartMemInto" parameterType="cartVo">
 		insert into cart(p_idx, midx)
@@ -15,13 +21,15 @@
 
 	<!-- 카트 리스트 -->
 	<select id="getcartList" parameterType="list" resultType="cartVo">
-		select a.cart_idx,b.p_idx,b.p_content,b.p_name,b.p_price,c.p_front_img,c.p_ori_filename,c.p_sys_filename  from cart a left outer join product b on a.p_idx = b.p_idx left outer join product_img c on b.p_idx = c.p_idx where midx=#{midx};
+		select a.cart_idx,b.p_idx,b.p_content,b.p_name,b.p_discount,b.p_disprice,b.p_price,c.p_front_img,c.p_ori_filename,c.p_sys_filename  from cart a left outer join product b on a.p_idx = b.p_idx left outer join product_img c on b.p_idx = c.p_idx where midx=#{midx};
 	</select>
 	<!-- 카트 몇개 들어있는지 -->
 	<select id="getcartCount" resultType="int">
 		select count(*) from cart where midx=#{midx}
 	</select>
-	
+	<update id="getcartmodip" parameterType="cartVo">
+	update cart set cart_cnt=#{cart_cnt} where midx=#{midx} and cart_idx=#{cart_idx};
+	</update>
 	
 	
 </mapper>

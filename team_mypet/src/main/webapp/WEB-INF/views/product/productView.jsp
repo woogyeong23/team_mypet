@@ -7,39 +7,31 @@
 <head>
 <script src="http://code.jquery.com/jquery-latest.min.js"></script>
 <script type="text/javascript">
-var p_idx = ${productVo.p_idx};
 
 	$(document).ready(function() {
-						
-						$("#cartmemberInto").on("click",function() {
-											
-											$.ajax({
-													type : "POST",
-													url : "${pageContext.request.contextPath}/cartMemInto.do",
-													dataType : "json",
-													data : {
-														'p_idx' : p_idx
-													},
-													error : function(request,status, error) {
-														alert("code:"+ request.status+ "\n"+ "message:"
-																+ request.responseText+ "\n"+ "error:"+ error);
-													},
-													success : function(data) {
-														if (data == 1) {
-															cartHeaderView();
-															toastr.options.preventDuplicates = true;
-																toastr
-																	.success("장바구니 추가완료");
-														} else if (data == 2) {
-															toastr.options.preventDuplicates = true;
-																toastr
-																	.warning("이미 추가 된 상품입니다");
-														}
-														}
-												});
-									});
+		let p_idx = ${productVo.p_idx}
+		$("#add_cart").click(function(){
+			
+			alert("asd");
+			
+			$.ajax({
+				type : "POST",
+				url : "${pageContext.request.contextPath}/cartMemInto.do",
+				async : false,
+				data : {'p_idx' : p_idx},
+				success : function(data) {
+					if (data == 'add_success') {
+						toastr.options.preventDuplicates = true;
+						toastr.success("장바구니 추가완료");
+					} else if (data == 'already_existed') {
+						toastr.options.preventDuplicates = true;
+						toastr.warning("이미 추가 된 상품입니다");
+					}
+				}
+			});
+		});
 	});
-  
+	
 </script>
 
 
@@ -196,6 +188,9 @@ var p_idx = ${productVo.p_idx};
 				</div>
 				<!-- 상품이미지 옆 박스 -->
 				<div class="col-lg-6 col-md-12 col-12">
+					<input type="hidden" name="p_idx" value="${productVo.p_idx}">
+					<input type="hidden" name="midx" value="${productVo.midx}">
+										
 					<div class="product-info">
 						<table style="width: 100%; margin: 0px 0px 20px;">
 							<tr>
@@ -252,7 +247,7 @@ var p_idx = ${productVo.p_idx};
 							<div class="row align-items-end">
 								<div class="col-lg-4 col-md-4 col-12">
 									<div class="button cart-button" id="cartmemberInto">
-										<button class="btn" style="width:100%;" >장바구니</button>
+										<button type="button" class="btn" id="add_cart" style="width:100%;">장바구니</button>
 									</div>
 								</div>
 								<div class="col-lg-4 col-md-4 col-12">

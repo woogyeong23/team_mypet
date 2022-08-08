@@ -23,7 +23,7 @@ public class CartService {
 	
 	
 	
-	public int cartMemCheck(CartVo cartVo) {
+	public boolean cartMemCheck(CartVo cartVo) {
 		return cartDao.cartMemCheck(cartVo);
 	}
 
@@ -34,6 +34,7 @@ public class CartService {
 
 
 	public List<ProductVo> cartList(CartVo cartVo) {
+		
 		return cartDao.cartList(cartVo);
 	}
 

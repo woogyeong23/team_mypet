@@ -77,7 +77,7 @@ function cartHeaderDel(cart_idx){
 
 </script>
 <div class="cart-items">
-      <a href="javascript:void(0)" class="main-btn">
+      <a href="javascript:memberCartHeader" class="main-btn">
       <i class="lni lni-cart"></i>
        <span class="total-items">2</span>
       </a>

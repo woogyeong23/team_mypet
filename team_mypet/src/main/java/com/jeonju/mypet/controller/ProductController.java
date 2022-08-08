@@ -2,6 +2,9 @@ package com.jeonju.mypet.controller;
 
 import java.util.List;
 
+import javax.servlet.http.HttpServletRequest;
+import javax.servlet.http.HttpSession;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -9,6 +12,7 @@ import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 
 import com.jeonju.mypet.service.ProductService;
+import com.jeonju.mypet.vo.CartVo;
 import com.jeonju.mypet.vo.ProductVo;
 
 @Controller
@@ -52,7 +56,15 @@ public class ProductController {
 	
 	//제품상세페이지
 	@GetMapping("/productView.do")
-	public String getproductView() {
+	public String getproductView(ProductVo productVo,CartVo cartVo,Model model,HttpServletRequest request) {
+		
+		HttpSession Session = request.getSession();
+		int midx = (int) Session.getAttribute("midx");
+		
+		productVo.setMidx(midx);
+		
+		
+		model.addAttribute("productVo",productVo);
 		
 		return "product/productView";
 	}

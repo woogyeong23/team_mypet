@@ -21,7 +21,7 @@
     <jsp:include page="../../include/header.jsp" />  
 	<!-- ************************************************ -->
 
-<main>
+<main class="content">
 
 	<!-- 사이더와 js************************************************ -->
     <jsp:include page="../../include/sidebar.jsp" />  
@@ -34,42 +34,14 @@
         <div class="icon-square bg-light text-dark flex-shrink-0 me-2">
         </div>
         <div>
-          <h4>적립금</h4>
-          <a href="${pageContext.request.contextPath}/memberpoint.do">
-            0 P
-          </a>
-        </div>
-      </div>
-      <div class="col d-flex align-items-start">
-        <div class="icon-square bg-light text-dark flex-shrink-0 me-2">
-        </div>
-        <div>
           <h4>회원등금</h4>
           <a href="${pageContext.request.contextPath}/membergrade.do">
             Silver
           </a>
         </div>
       </div>
-      <div class="col d-flex align-items-start">
-        <div class="icon-square bg-light text-dark flex-shrink-0 me-2">
-        </div>
-        <div>
-          <h4>주문배송</h4>
-          <a href="#">
-            0 건
-          </a>
-        </div>
-      </div>
-      <div class="col d-flex align-items-start">
-        <div class="icon-square bg-light text-dark flex-shrink-0 me-2">
-        </div>
-        <div>
-          <h4>교환/환불</h4>
-          <a href="#" >
-            0 건
-          </a>
-        </div>
-      </div>
+      
+      
     </div>
     
     <hr>

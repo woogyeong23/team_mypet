@@ -25,18 +25,19 @@ public class CartDao {
 	}
 	
 	
-	public int cartMemCheck(CartVo cartVo) {
-		return sqlSession.selectOne(MAPPER+".gercartMemCheck",cartVo);
+	public boolean cartMemCheck(CartVo cartVo) {
+		boolean result = sqlSession.selectOne(MAPPER+".gercartMemCheck",cartVo);
+		return result;
 	}
 	
 	public int cartMemInto(CartVo cartVo) {
 		return sqlSession.insert(MAPPER+".getcartMemInto",cartVo);
 	}
 
-
 	public List<ProductVo> cartList(CartVo cartVo) {
 		return sqlSession.selectList(MAPPER+".getcartList",cartVo);
 	}
+	
 
 
 	public int cartCount(CartVo cartVo) {

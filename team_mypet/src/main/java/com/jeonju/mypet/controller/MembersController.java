@@ -70,7 +70,7 @@ public class MembersController {
 	public String loginProcess(@RequestParam("m_id") String m_id,
 			@RequestParam("m_pwd") String m_pwd,
 			HttpServletRequest request) {
-
+			
 			HashMap<String, String> loginInfo = new HashMap<String, String>(); 
 			loginInfo.put("m_id",m_id);
 			loginInfo.put("m_pwd",m_pwd);
