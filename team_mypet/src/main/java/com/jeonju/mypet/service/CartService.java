@@ -46,6 +46,13 @@ public class CartService {
 
 
 
+	public int modifycartcnt(CartVo cartVo) {
+		return cartDao.modifycartcnt(cartVo);
+
+	}
+
+
+
 	
 	
 	

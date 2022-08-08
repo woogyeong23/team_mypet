@@ -45,6 +45,14 @@ public class CartDao {
 	}
 
 
+	public int modifycartcnt(CartVo cartVo) {
+		return sqlSession.update(MAPPER+".getmodifycntcart",cartVo);
+	}
+
+
+	
+
+
 	
 
 

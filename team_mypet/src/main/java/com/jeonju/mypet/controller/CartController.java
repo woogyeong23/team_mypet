@@ -63,7 +63,7 @@ public class CartController {
 			cartVo.setMidx(midx);
 			list = cartService.cartList(cartVo);
 			
-			
+			System.out.println(list);
 		return list;	
 	}
 	
@@ -88,8 +88,17 @@ public class CartController {
 		return data; 
 	}
 	
-	
-	
+						
+	@PostMapping("/cntupdate.do")
+	public String cntupdate(CartVo cartVo) {
+		
+		cartService.modifycartcnt(cartVo);
+		
+		System.out.println("카운트:"+cartVo);
+		
+		return "redirect:/cart.do";
+		
+	}
 	
 	
 	

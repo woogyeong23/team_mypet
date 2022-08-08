@@ -216,14 +216,7 @@ label {
     -webkit-font-smoothing: antialiased;
     -moz-osx-font-smoothing: grayscale;
 }
-.NumberCounter__plus {
-    border-top-left-radius: 2px;
-    border-bottom-left-radius: 2px;
-}
-.NumberCounter__minus {
-    border-top-left-radius: 2px;
-    border-bottom-left-radius: 2px;
-}
+
 .NumberCounter__input{
     display: inline-block;
     vertical-align: middle;
@@ -255,6 +248,7 @@ label {
     vertical-align: middle;
     font-weight: bold;
 }
+
 .NumberCounter__plus {
     display: inline-block;
     vertical-align: middle;
@@ -266,6 +260,14 @@ label {
     line-height: 24px;
     vertical-align: middle;
     font-weight: bold;
+}
+.NumberCounter__plus {
+    border-top-left-radius: 2px;
+    border-bottom-left-radius: 2px;
+}
+.NumberCounter__minus {
+    border-top-left-radius: 2px;
+    border-bottom-left-radius: 2px;
 }
 .CartOptionListItem__totalPrice {
     font-size: 12px;

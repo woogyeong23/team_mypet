@@ -21,11 +21,12 @@ $(document).ready(function(){
 		let minus = $(cnt_minus).val();
 
 		let cnt_input = "#NumberCounter__input"+p_idx;
-		let cnt = $("#cart_cnt_input").val();
 		let cntV = $(cnt_input).val();
 		
+		let cnt = $("#cart_cnt_input").val();
+		
 			if(cntV > 1){
-				$(cnt_input).val(cnt--);
+				$(cnt_input).val(--cntV);
 				console.log("minus");
 			}
 	});
@@ -39,14 +40,26 @@ $(document).ready(function(){
 		let cnt = $("#cart_cnt_input").val();
 		let cntV = $(cnt_input).val();
 		
-				$(cnt_input).val(cnt++);
+				$(cnt_input).val(++cntV);
 				console.log("plus");
 		
 	});
 
-	$(".NumberCounter__button").on("click", function(){
-
+	$(".NumberCounter__minus").on("click", function(){
+		let cart_idx = $(this).data("cart_idx");
+		let cart_cnt = $(this).find("input").val();
+		$(".update_cart_idx").val(cart_idx);
+		$(".update_cart_cnt").val(cart_cnt);
+		$(".cnt_update_form").submit();
 		
+	});
+	$(".NumberCounter__plus").on("click", function(){
+		let cart_idx = $(this).data("cart_idx");
+		let cart_cnt = $(this).find("input").val();
+		$(".update_cart_idx").val(cart_idx);
+		$(".update_cart_cnt").val(cart_cnt);
+		$(".cnt_update_form").submit();
+	
 	});
 	
 	
@@ -140,7 +153,41 @@ $(document).ready(function(){
     <c:set var="Price" value="0" />
     <c:set var="totaldelPrice" value="0" />
     <c:set var="totalPrice" value="0" />
-    
+    <style>
+    .NumberCounter__minus {
+    display: inline-block;
+    vertical-align: middle;
+    color: #666666;
+    font-size: 12px;
+    border: 1px solid #ccc;
+    width: 24px;
+    height: 24px;
+    line-height: 24px;
+    vertical-align: middle;
+    font-weight: bold;
+}
+
+.NumberCounter__plus {
+    display: inline-block;
+    vertical-align: middle;
+    color: #666666;
+    font-size: 12px;
+    border: 1px solid #ccc;
+    width: 24px;
+    height: 24px;
+    line-height: 24px;
+    vertical-align: middle;
+    font-weight: bold;
+}
+.NumberCounter__plus {
+    border-top-left-radius: 2px;
+    border-bottom-left-radius: 2px;
+}
+.NumberCounter__minus {
+    border-top-left-radius: 2px;
+    border-bottom-left-radius: 2px;
+}
+    </style>
   </head>
   
   <body>
@@ -222,7 +269,7 @@ $(document).ready(function(){
    																	<div class="CartOptionListItem__counter">
    																		<label class="NumberCounter">
    																			<button type="button" id="NumberCounter__minus${cart.p_idx}" name="${cart.p_idx}" class="NumberCounter__minus"  data-cartId="${cart.cart_idx}" >-</button>
-   																			<input  type="text" name="cart_cnt" id="NumberCounter__input${cart.p_idx}" class="NumberCounter__input" value="1" readonly="readonly">
+   																			<input  type="text" name="cart_cnt" id="NumberCounter__input${cart.p_idx}" class="NumberCounter__input" value="${cart.cart_cnt}" readonly="readonly">
    																			<button type="button" id="NumberCounter__plus${cart.p_idx}" name="${cart.p_idx}" class="NumberCounter__plus"  data-cartId="${cart.cart_idx}">+</button>   						
    																		</label>
    																	</div>
@@ -329,9 +376,10 @@ $(document).ready(function(){
         	</div>
  		</div>
 	</div>
-	<form name="ef" action="cartcnt">
-	<input type="hidden" name="cartNum">
-	<input type="hidden" name="oqty">
+<form action="${pageContext.request.contextPath}/cntupdate.do" method="post" class="cnt_update_form">
+	<input type="hidden" name="cart_idx_input" class="update_cart_idx">
+	<input type="hidden" name="cart_cnt" class="update_cart_cnt">
+	<input type="hidden" name="midx" value="${cart.midx}">
 </form>
 </aside>
 </main>
