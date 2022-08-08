@@ -71,11 +71,13 @@ public class MembersController {
 			HttpServletRequest request) {
 
 			HashMap<String, String> loginInfo = new HashMap<String, String>(); 
+			
 			loginInfo.put("m_id",m_id);
 			loginInfo.put("m_pwd",m_pwd);
 			
-			
+
 			HashMap<String, Long> resultMap = membersService.login(loginInfo);
+
 			long m_auth = resultMap.get("m_auth");
 			long m_grade = resultMap.get("m_grade");
 			
