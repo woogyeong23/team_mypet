@@ -159,10 +159,11 @@
                                     </a>
                                 </div>
                                 
+                                <!-- 판매자 전용 버튼 -->
                                 <c:choose>
                                 <c:when test="${m_grade == 1}">
                                  <div class="wishlist">
-                                    <a href="javascript:void(0)">
+                                    <a href="${pageContext.request.contextPath}/seller_productList.do">
                                         <i class="lni lni-investment"></i>
                                         <span class="total-items">0</span>
                                     </a>
@@ -172,7 +173,7 @@
                                 
                                 </c:otherwise>
                                 </c:choose>
-                                
+                                <!-- /판매자 전용 버튼 -->
                                    
                                 <div class="cart-items">
                                     <a href="javascript:void(0)" class="main-btn">
