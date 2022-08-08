@@ -70,6 +70,9 @@ public class ProductDao {
 	public List<Product_ImgVo> getProductImgs(int p_idx) {
 		return sqlSession.selectList(MAPPER + ".getproductImgs",p_idx);
 	}
+	public ProductVo reviewWrite(int p_idx) {
+		return sqlSession.selectOne(MAPPER + ".reviewWrite",p_idx);
+	}
 	
 
 	

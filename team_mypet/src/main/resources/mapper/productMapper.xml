@@ -87,8 +87,12 @@
 		ORDER BY a.p_idx DESC;
 	</select>
 
-
-
+	<!-- 리뷰작성화면 -->
+	<select id="reviewWrite" resultType="productVo">
+	select a.p_name, a.p_idx, a.m_nick, MIN(p_front_img), c.p_sys_filename
+	from product a join product_img c on a.p_idx=c.p_idx join sellerStory b on a.seller_idx=b.seller_idx
+	where a.p_idx=#{p_idx}
+	</select>
 	
 <!-- 소현 -->
 

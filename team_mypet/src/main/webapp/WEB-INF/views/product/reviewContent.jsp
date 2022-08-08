@@ -448,7 +448,7 @@ function cartAlert(result){
 						</td>
 						<td align="right">
 						<div class="review-button">
-								<a href="reviewWrite.do?p_idx=${productView.p_idx}"><button class="btn" id="reviewWritebtn" style="width: 100px; height:40px">리뷰작성</button></a>
+								<button class="btn" style="width: 100px; height:40px">리뷰작성</button>
 						</div>
 						</td>
 						</tr>

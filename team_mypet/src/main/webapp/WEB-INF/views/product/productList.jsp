@@ -8,7 +8,7 @@
 
 <head>
 <meta charset="UTF-8">
-<title>상품 목록</title>
+<title>마이펫 상품목록</title>
 <!-- css***************************************************** -->
     <jsp:include page="../../include/head.jsp" />  
     <!-- fontAwesome Icon link -->

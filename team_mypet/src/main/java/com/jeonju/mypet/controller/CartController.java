@@ -16,6 +16,7 @@ import org.springframework.web.bind.annotation.ModelAttribute;
 
 import com.jeonju.mypet.service.CartService;
 import com.jeonju.mypet.vo.CartVo;
+import com.jeonju.mypet.vo.MembersVo;
 import com.jeonju.mypet.vo.ProductVo;
 
 @Controller
@@ -56,22 +57,25 @@ public class CartController {
 	// 소현 끝
 
 	//카트 리스트
-		@GetMapping("/membercart.do")
-		public String membercart(CartVo cart,Model model,HttpServletRequest request) {
-			
-			HttpSession Session = request.getSession();
-			int midx = (int) Session.getAttribute("midx");
-			cart.setMidx(midx);
-			
-			 List<ProductVo> list = cartService.cartList(cart);
-			 ProductVo productVo = new ProductVo();
-			model.addAttribute("cartlist", list );
-			model.addAttribute("cartCount",cartService.countCart(cart.getP_idx(), midx));
-			
-			System.out.println(list);
-			 
-			return "member/membercart";	
-		}
+	@GetMapping("/membercart.do")
+	public String membercart(CartVo cartVo,Model model,HttpServletRequest request) {
+		
+		HttpSession Session = request.getSession();
+		int midx = (int) Session.getAttribute("midx");
+		
+		MembersVo membersVo = new MembersVo();
+		membersVo.getM_nick();
+		
+		cartVo.setMidx(midx);
+		List<ProductVo> list = cartService.cartList(cartVo);
+		ProductVo productVo = new ProductVo();
+		model.addAttribute("cart", list );
+		model.addAttribute("cartCount",cartService.countCart(cartVo.getP_idx(),midx));
+		
+		System.out.println(list);
+		 
+		return "member/membercart";	
+	}
 		
 		//헤더부분 카트리스트
 		@GetMapping("/cartHeaderView")
