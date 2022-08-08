@@ -169,33 +169,32 @@ $(function() {
             <div class="row">
                 <div class="col-12">
                     <div class="section-title">
-                        <h2>지금 가장 핫한 간식</h2>
-                        <p>강의실 컴퓨터는 수시로 포맷을 진행하고 있습니다. 개인자료는 꼭 USB 또는 e-mail로 백업 해주세요.</p>
+                      <h2><a href="#">지금 가장 핫한 간식&nbsp; <i class="lni lni-chevron-right" ></i></a></h2>
+                      <p>adfsafasfsdfsdfasdf</p>
                     </div>
                 </div>
             </div>
             <div class="row">
-              <c:forEach var="hv" items="${HomeList}" varStatus="status" end="4">
+              <c:forEach var="hv" items="${HomeList}" varStatus="status" end="3">
                 <div class="col-lg-3 col-md-6 col-12">
                     <!-- Start Single Product -->
-                    <div class="single-product">
-                        <div class="product-image">
-                            <img src="${pageContext.request.contextPath}/resources/Home/images/${hv.p_ori_filename}" alt="#">
-                            <div class="button">
-                                <a href="product-details.html" class="btn"><i class="lni lni-cart"></i> Add to Cart</a>
-                            </div>
+                    <div class="single-product" style="border:none;">
+                    <a href="#">
+                        <div class="product-image" style="height: 320px; ">
+                            <img style="height:100%" src="${pageContext.request.contextPath}/resources/Home/images/${hv.p_ori_filename}" alt="#">
+<!--                             <div class="button"> -->
+<!--                                 <a href="product-details.html" class="btn"><i class="lni lni-cart"></i> Add to Cart</a> -->
+<!--                             </div> -->
                         </div>
+                        </a>
+                        
                         <div class="product-info">
-                            <span class="category">${hv.p_name}</span>
+                        
+                           <a href="#"> <span class="category">${hv.p_name}</span></a>
                             <h4 class="title">
-                                <a href="product-grids.html">${hv.p_name}</a>
+                                <a href="#">${hv.p_name}</a>
                             </h4>
                             <ul class="review">
-<%--                             <c:forEach items="${hv. }"> --%> <!-- 별점 구현 보류 -->
-                            
-<%--                             </c:forEach> --%>
-                           
-                            
                                 <li><i class="lni lni-star-filled"></i></li>
                                 <li><i class="lni lni-star-filled"></i></li>
                                 <li><i class="lni lni-star-filled"></i></li>
@@ -204,9 +203,11 @@ $(function() {
 <!--                                 <li><span>5.0 </span></li> -->
                             </ul>
                             <div class="price">
-                                <span>${hv.p_price}</span>
+                                <a href="#"><span style="color:black; font-size: 16px;
+                                 font-weight: 800;">${hv.p_price} 원</span></a>
                             </div>
-                        </div>
+                       </div>
+                        
                     </div>
                     <!-- End Single Product -->
                 </div>
@@ -220,24 +221,27 @@ $(function() {
             <div class="row">
                 <div class="col-12">
                     <div class="section-title">
-                        <h2>마감 임박!</h2>
-                        <p>강의실 컴퓨터는 수시로 포맷을 진행하고 있습니다. 개인자료는 꼭 USB 또는 e-mail로 백업 해주세요.</p>
+                       <h2><a href="#">마감 임박!</a></h2>
                     </div>
                 </div>
             </div>
             <div class="row">
-              <c:forEach var="hv" items="${HomeList}" varStatus="status" end="4">
+              <c:forEach var="hv" items="${HomeList}" varStatus="status" end="3">
                 <div class="col-lg-3 col-md-6 col-12">
                     <!-- Start Single Product -->
-                    <div class="single-product">
-                        <div class="product-image">
-                            <img src="${pageContext.request.contextPath}/resources/Home/images/${hv.p_ori_filename}" alt="#">
-                            <div class="button">
-                                <a href="product-details.html" class="btn"><i class="lni lni-cart"></i> Add to Cart</a>
-                            </div>
+                    <div class="single-product" style="border:none;">
+                    <a href="#">
+                        <div class="product-image" style="height: 320px; ">
+                            <img style="height:100%" src="${pageContext.request.contextPath}/resources/Home/images/${hv.p_ori_filename}" alt="#">
+<!--                             <div class="button"> -->
+<!--                                 <a href="product-details.html" class="btn"><i class="lni lni-cart"></i> Add to Cart</a> -->
+<!--                             </div> -->
                         </div>
+                        </a>
+                        
                         <div class="product-info">
-                            <span class="category">${hv.p_name}</span>
+                        
+                           <a href="#"> <span class="category">${hv.p_name}</span></a>
                             <h4 class="title">
                                 <a href="#">${hv.p_name}</a>
                             </h4>
@@ -247,12 +251,14 @@ $(function() {
                                 <li><i class="lni lni-star-filled"></i></li>
                                 <li><i class="lni lni-star-filled"></i></li>
                                 <li><i class="lni lni-star-filled"></i></li>
-                                <li><span>5.0 Review(s)</span></li>
+<!--                                 <li><span>5.0 </span></li> -->
                             </ul>
                             <div class="price">
-                                <span>${hv.p_price}</span>
+                                <a href="#"><span style="color:black; font-size: 16px;
+                                 font-weight: 800;">${hv.p_price} 원</span></a>
                             </div>
-                        </div>
+                       </div>
+                        
                     </div>
                     <!-- End Single Product -->
                 </div>
@@ -268,25 +274,29 @@ $(function() {
             <div class="row">
                 <div class="col-12">
                     <div class="section-title">
-                        <h2>띠링~ 신상품입니다.</h2>
+                        <h2><a href="#">띠링~ 신상품입니다.</a></h2>
                     </div>
                 </div>
             </div>
             <div class="row">
-              <c:forEach var="hv" items="${HomeList}" varStatus="status" end="4">
+               <c:forEach var="hv" items="${HomeList}" varStatus="status" end="3">
                 <div class="col-lg-3 col-md-6 col-12">
                     <!-- Start Single Product -->
-                    <div class="single-product">
-                        <div class="product-image">
-                            <img src="${pageContext.request.contextPath}/resources/Home/images/${hv.p_ori_filename}" alt="#">
-                            <div class="button">
-                                <a href="product-details.html" class="btn"><i class="lni lni-cart"></i> Add to Cart</a>
-                            </div>
+                    <div class="single-product" style="border:none;">
+                    <a href="#">
+                        <div class="product-image" style="height: 320px; ">
+                            <img style="height:100%" src="${pageContext.request.contextPath}/resources/Home/images/${hv.p_ori_filename}" alt="#">
+<!--                             <div class="button"> -->
+<!--                                 <a href="product-details.html" class="btn"><i class="lni lni-cart"></i> Add to Cart</a> -->
+<!--                             </div> -->
                         </div>
+                        </a>
+                        
                         <div class="product-info">
-                            <span class="category">${hv.p_name}</span>
+                        
+                           <a href="#"> <span class="category">${hv.p_name}</span></a>
                             <h4 class="title">
-                                <a href="product-grids.html">${hv.p_name}</a>
+                                <a href="#">${hv.p_name}</a>
                             </h4>
                             <ul class="review">
                                 <li><i class="lni lni-star-filled"></i></li>
@@ -294,12 +304,14 @@ $(function() {
                                 <li><i class="lni lni-star-filled"></i></li>
                                 <li><i class="lni lni-star-filled"></i></li>
                                 <li><i class="lni lni-star-filled"></i></li>
-                                <li><span>5.0 Review(s)</span></li>
+<!--                                 <li><span>5.0 </span></li> -->
                             </ul>
                             <div class="price">
-                                <span>${hv.p_price}</span>
+                                <a href="#"><span style="color:black; font-size: 16px;
+                                 font-weight: 800;">${hv.p_price} 원</span></a>
                             </div>
-                        </div>
+                       </div>
+                        
                     </div>
                     <!-- End Single Product -->
                 </div>
@@ -315,26 +327,30 @@ $(function() {
             <div class="row">
                 <div class="col-12">
                     <div class="section-title">
-                        <h2>간식도둑 상품!</h2>
+                        <h2><a href="#">간식도둑 상품!</a></h2>
                         <p>강의실 컴퓨터는 수시로 포맷을 진행하고 있습니다. 개인자료는 꼭 USB 또는 e-mail로 백업 해주세요.</p>
                     </div>
                 </div>
             </div>
             <div class="row">
-              <c:forEach var="hv" items="${HomeList}" varStatus="status" end="4">
+               <c:forEach var="hv" items="${HomeList}" varStatus="status" end="3">
                 <div class="col-lg-3 col-md-6 col-12">
                     <!-- Start Single Product -->
-                    <div class="single-product">
-                        <div class="product-image">
-                            <img src="${pageContext.request.contextPath}/resources/Home/images/${hv.p_ori_filename}" alt="#">
-                            <div class="button">
-                                <a href="product-details.html" class="btn"><i class="lni lni-cart"></i> Add to Cart</a>
-                            </div>
+                    <div class="single-product" style="border:none;">
+                    <a href="#">
+                        <div class="product-image" style="height: 320px; ">
+                            <img style="height:100%" src="${pageContext.request.contextPath}/resources/Home/images/${hv.p_ori_filename}" alt="#">
+<!--                             <div class="button"> -->
+<!--                                 <a href="product-details.html" class="btn"><i class="lni lni-cart"></i> Add to Cart</a> -->
+<!--                             </div> -->
                         </div>
+                        </a>
+                        
                         <div class="product-info">
-                            <span class="category">${hv.p_name}</span>
+                        
+                           <a href="#"> <span class="category">${hv.p_name}</span></a>
                             <h4 class="title">
-                                <a href="product-grids.html">${hv.p_name}</a>
+                                <a href="#">${hv.p_name}</a>
                             </h4>
                             <ul class="review">
                                 <li><i class="lni lni-star-filled"></i></li>
@@ -342,12 +358,14 @@ $(function() {
                                 <li><i class="lni lni-star-filled"></i></li>
                                 <li><i class="lni lni-star-filled"></i></li>
                                 <li><i class="lni lni-star-filled"></i></li>
-                                <li><span>5.0 Review(s)</span></li>
+<!--                                 <li><span>5.0 </span></li> -->
                             </ul>
                             <div class="price">
-                                <span>${hv.p_price}</span>
+                                <a href="#"><span style="color:black; font-size: 16px;
+                                 font-weight: 800;">${hv.p_price} 원</span></a>
                             </div>
-                        </div>
+                       </div>
+                        
                     </div>
                     <!-- End Single Product -->
                 </div>

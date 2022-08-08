@@ -5,7 +5,9 @@
 <mapper namespace = "com.jeonju.mypet.community">
 
     <select id="getCommuList" resultType="communityVo">
-    SELECT * FROM community WHERE cm_delyn = 'N'
+    SELECT cm_idx, community.midx as midx, cm_subject,cm_wday, cm_writer,
+     cm_img, cm_origin_img, m_profile, community_like_cnt, cm_comment_cnt, cm_view_cnt
+     FROM community INNER JOIN members ON members.midx = community.midx WHERE cm_delyn = 'N'
     </select>
     
     
@@ -25,7 +27,8 @@
     </insert>
     
     <select id="getCBView" parameterType="int" resultType="communityVo">
-    SELECT cm_subject, cm_content, cm_wday, cm_img, cm_writer,cm_idx, midx from community WHERE cm_idx= #{cm_idx}
+    SELECT cm_subject, cm_content, cm_wday, cm_img, cm_writer,cm_idx, community.midx as midx, m_profile, community_like_cnt
+    FROM community INNER JOIN members ON members.midx = community.midx WHERE cm_idx= #{cm_idx}
     </select>
    
    
@@ -57,16 +60,20 @@
     VALUES( #{cm_idx}, #{cc_content}, #{cc_writer}, #{cc_origin}, #{cc_depth}+1, #{cc_level}+1)
     </insert>
     
+    
+    
     <!--SellerStory  -->
     <select id="getBSList" resultType="sellerStoryVo">
-    SELECT m_nick, seller_idx, seller_img, seller_intro, seller_starsavg, seller_followcnt
+    SELECT m_nick,m_profile, seller_idx, seller_img, seller_intro, seller_starsavg, seller_followcnt
      FROM sellerstory INNER JOIN members ON members.midx = sellerstory.midx
     </select>
-    
+
     <select id="getBSellerView" resultType="sellerStoryVo">
     SELECT seller_idx, seller_img, seller_intro, seller_openday, 
-    seller_starsavg, seller_total, seller_wishcnt, seller_ordercnt, seller_followcnt 
-    FROM sellerstory WHERE seller_idx = #{seller_idx}
+    seller_starsavg, seller_total, seller_wishcnt, seller_ordercnt, seller_followcnt,
+    m_profile,m_nick 
+    FROM sellerstory INNER JOIN members ON members.midx = sellerstory.midx 
+    WHERE seller_idx = #{seller_idx}
     </select>
     
     <select id="getBSPList" resultType="productVo">
@@ -80,15 +87,75 @@
     WHERE seller_idx = #{seller_idx} ORDER BY p_idx DESC
     </select>
     
-    <select id="getAList" resultType="reviewVo">
-SELECT product.p_idx as p_idx,product_img.p_ori_filename as p_ori_filename, 
-product.p_name as p_name, review_stars, review_content
-FROM product INNER JOIN product_img ON product.p_idx = product_img.p_idx
-INNER JOIN review ON product.p_idx = review.p_idx
-WHERE seller_idx = #{seller_idx} ORDER BY review_idx DESC;
+    <select id="getBSPCount" resultType="int">
+    SELECT DISTINCT COUNT(p_idx) FROM product WHERE p_delyn = 'N' AND seller_idx = #{seller_idx}
     </select>
     
-     <select id="modi_CB" parameterType="int" resultType="communityVo">
+    <select id="getAList" resultType="reviewVo">
+  SELECT product.p_idx as p_idx,product_img.p_ori_filename as p_ori_filename, 
+  product.p_name as p_name, review_stars, review_content
+  FROM product INNER JOIN product_img ON product.p_idx = product_img.p_idx
+  INNER JOIN review ON product.p_idx = review.p_idx
+  WHERE seller_idx = #{seller_idx} ORDER BY review_idx DESC;
+    </select>
+    
+    <select id="getBSRCount" resultType="int">
+  SELECT DISTINCT COUNT(review_idx)
+  FROM product INNER JOIN product_img ON product.p_idx = product_img.p_idx
+  INNER JOIN review ON product.p_idx = review.p_idx
+  WHERE seller_idx = #{seller_idx}
+    </select>
+    
+    <select id="getfollowCNT" resultType="int">
+    SELECT DISTINCT COUNT(follow_idx)
+    FROM follow WHERE delyn = 'N' 
+    AND seller_idx = #{seller_idx} AND midx = #{midx} 
+    </select>
+    
+    <insert id="getCmLike" parameterType="community_likeVo">
+    INSERT INTO community_like(cm_idx, midx)
+    VALUES (#{cm_idx},#{midx})
+    </insert>
+    
+    <select id="getCmLikeYn" resultType="int">
+    SELECT DISTINCT COUNT(cm_like_idx)
+    FROM community_like WHERE cm_like_delyn = 'N' 
+    AND cm_idx = #{cm_idx} AND midx = #{midx}
+    </select>
+    
+    <update id="getCmBad" parameterType="community_likeVo">
+    UPDATE community_like SET cm_like_delyn ='Y' 
+    WHERE cm_like_delyn = 'N' AND cm_idx = #{cm_idx} 
+    AND midx = #{midx} 
+    </update>
+    
+    <update id="plusCmLikeCnt" parameterType="community_likeVo">
+    UPDATE community SET community_like_cnt = community_like_cnt +1 
+    WHERE cm_idx = #{cm_idx}
+    </update>
+    
+    <update id="minusCmLikeCnt" parameterType="community_likeVo">
+    UPDATE community SET community_like_cnt = community_like_cnt -1 
+    WHERE cm_idx = #{cm_idx}
+    </update>
+    
+    <update id="plusCmCommentCnt" parameterType="commu_commentVo">
+    UPDATE community SET cm_comment_cnt = cm_comment_cnt +1 
+    WHERE cm_idx = #{cm_idx}
+    </update>
+    
+    <update id="plusCmView" parameterType="int">
+    UPDATE community SET cm_view_cnt = cm_view_cnt +1
+    WHERE cm_idx = #{cm_idx}
+    </update>
+    
+   
+    
+    
+    
+    
+    
+    <select id="modi_CB" parameterType="int" resultType="communityVo">
     SELECT cm_subject, cm_content, cm_img, cm_idx, cm_writer,cm_origin_img FROM community WHERE cm_idx= #{cm_idx}
     </select>
     

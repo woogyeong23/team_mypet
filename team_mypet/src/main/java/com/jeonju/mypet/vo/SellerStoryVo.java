@@ -19,6 +19,7 @@ public class SellerStoryVo {
 	
 	// test
 	private String m_nick;
+	private String m_profile;
 	//
 	
 	public int getSeller_idx() {
@@ -93,12 +94,23 @@ public class SellerStoryVo {
 	public void setSeller_followcnt(int seller_followcnt) {
 		this.seller_followcnt = seller_followcnt;
 	}
+	
+	//test
 	public String getM_nick() {
 		return m_nick;
 	}
 	public void setM_nick(String m_nick) {
 		this.m_nick = m_nick;
 	}
+	public String getM_profile() {
+		return m_profile;
+	}
+	public void setM_profile(String m_profile) {
+		this.m_profile = m_profile;
+	}
+	
+	//test
+	
 	
 	
 	

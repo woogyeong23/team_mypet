@@ -9,6 +9,7 @@ import org.springframework.stereotype.Repository;
 
 import com.jeonju.mypet.vo.ProductVo;
 import com.jeonju.mypet.vo.ReviewVo;
+import com.jeonju.mypet.vo.FollowVo;
 import com.jeonju.mypet.vo.MembersVo;
 
 
@@ -42,6 +43,22 @@ public class HomeDao {
 
 	public List<ReviewVo> getReviewList() {
 		return sqlSession.selectList(MAPPER+".getReviewList");
+	}
+
+	public int getFollow(FollowVo followVo) {
+		return sqlSession.insert(MAPPER+".getFollow",followVo);
+	}
+
+	public int getUnfollow(FollowVo followVo) {
+		return sqlSession.update(MAPPER+".getFollow",followVo);
+	}
+
+	public int plusFollowCNT(FollowVo followVo) {
+		return sqlSession.update(MAPPER+".plusFollowCNT",followVo);
+	}
+
+	public int minusFollowCNT(FollowVo followVo) {
+		return sqlSession.update(MAPPER+".minusFollowCNT",followVo);
 	}
 	
 	

@@ -10,6 +10,7 @@ import java.util.List;
 
 
 import javax.servlet.http.HttpServletRequest;
+import javax.servlet.http.HttpSession;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
@@ -24,6 +25,7 @@ import org.springframework.web.multipart.MultipartFile;
 import com.jeonju.mypet.service.CommunityService;
 import com.jeonju.mypet.vo.Commu_CommentVo;
 import com.jeonju.mypet.vo.CommunityVo;
+import com.jeonju.mypet.vo.Community_likeVo;
 
 @Controller
 public class CommunityController {
@@ -65,6 +67,7 @@ public class CommunityController {
 		String extension="";
 		String fileName2="";
 		String cm_img="";
+		String view="";
 		
 		if(cm_origin_img.length() == 0) cm_origin_img = null;
 		
@@ -90,8 +93,17 @@ public class CommunityController {
 				uploadImg.transferTo(new File(fullPath));
 		}	
 				
+		 if(cm_subject.length()==0) {
+			request.setAttribute("msg", "제목을 입력해주세요.");
+			view = "Community/CBInsert";
+		  }
+		 else if(cm_content.length()==0){
+			 request.setAttribute("msg", "내용을 입력해주세요");
+			 view = "Community/CBInsert";
+		 }
+		 else {
 		        
-				
+		       
 				int result=0;//0:입력 실패
 				
 				CommunityVo communityVo = new CommunityVo();
@@ -105,39 +117,57 @@ public class CommunityController {
 				result = commuService.InsertCB(communityVo);
 		
 				
-				String viewPage = "Community/CBInsert";
+				 
 				
-				if(result == 1) {
+				 if(result == 1) {
 					model.addAttribute("subject", cm_subject);
 					model.addAttribute("content", cm_content);
 					model.addAttribute("writer", cm_writer);
 					model.addAttribute("img", cm_img);
 					
-					viewPage = "Community/InsertCB_result";	
-				}
-
-				return viewPage;
+					view = "Community/InsertCB_result";	
+				}}
+		 
+		 return view;
+		
 	}
 	
 	
 	@GetMapping("/CBView.do")
-	public String CBView( int cm_idx, Model model) {
+	public String CBView( int cm_idx, Model model, HttpServletRequest request) {
 		
 		CommunityVo communityVo = commuService.getCBView(cm_idx);
-	     
 		List<Commu_CommentVo> ccmList = commuService.getCcmList(cm_idx);
-		
 		int replyCount = commuService.getReplyCount(cm_idx);
+		int plusCmView = commuService.plusCmView(cm_idx);
 		
-		model.addAttribute("communityVo", communityVo);
+		long midx = 0;
 		
-		model.addAttribute("ccmList", ccmList);
+		HttpSession session = request.getSession();
 		
-		model.addAttribute("replyCount", replyCount);
-		
+		if(session.getAttribute("midx") != null ) {
+//			midx = (int)session.getAttribute("midx");
+			midx = (long) session.getAttribute("midx");
+			
+			Community_likeVo community_likeVo = new Community_likeVo();
+			community_likeVo.setMidx((int) midx);
+			community_likeVo.setCm_idx(cm_idx);
+			
+			int CmLikeYn = commuService.getCmLikeYn(community_likeVo);
+			
+			model.addAttribute("CmLikeYn", CmLikeYn);
+			model.addAttribute("communityVo", communityVo);
+			model.addAttribute("ccmList", ccmList);
+			model.addAttribute("replyCount", replyCount);
+			model.addAttribute("plusCmView",plusCmView);
+		} else {	
+			model.addAttribute("communityVo", communityVo);
+			model.addAttribute("ccmList", ccmList);
+			model.addAttribute("replyCount", replyCount);
+			model.addAttribute("plusCmView",plusCmView);
+		}
 		
 		return "Community/CBView";
-	
 	}
 	
 	@GetMapping("/modi_cm")

@@ -1,11 +1,12 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
-    <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <!DOCTYPE html>
 <html>
 <head>
 <meta charset="UTF-8">
 <title>인기작가 자세히 보기 페이지</title>
+
 
 <!-- CSS only -->
 <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-1BmE4kWBq78iYhFldvKuhfTAU6auU8tT94WrHftjDbrCEXSU1oBoqyl2QvZ6jIW3" crossorigin="anonymous">
@@ -14,10 +15,7 @@
     <jsp:include page="../../include/head.jsp" />  
 <!-- ************************************************ -->
 <style type="text/css">
-body {
-    font-family: 'Nanum Barun Gothic', sans-serif;
-    font-size: 12px;
-}
+
 
 .content{
     max-width:719px;
@@ -27,12 +25,11 @@ body {
     padding-bottom: 32px;
     background: #fff;
 }
-.quick-profile{
-     width: 526px;
-    padding: 55px 0px 36px;
-    background-color: #ffffff;
-    margin: 0 auto;
-    }
+.profile {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+}
    
     .artist-home .artist-contents {
     background-color: #f5f5f5;
@@ -44,34 +41,260 @@ body {
     padding: 0 6px;
 }
 
+.result_span{
+    display: inline-block;
+    overflow: hidden;
+    max-width: 840px;
+    color: rgb(95, 0, 128);
+    text-align: center;
+    white-space: nowrap;
+    text-overflow: ellipsis;
+    vertical-align: top;
+}
+
+.result{
+position: relative;
+width:100%;
+height: 400px;
+}
+
+.result_in{
+position: absolute;
+top: 50%;
+left: 50%;
+transform: translate(-50%,-50%);
+}
+
+
+button {
+    border: 0 none;
+    background: transparent;
+    cursor: pointer;
+    -webkit-border-radius: 0;
+    -moz-border-radius: 0;
+    border-radius: 0;
+    display: inline-block;
+    padding: 0;
+    margin: 0;
+    justify-content: center;
+    align-items: center;
+    font-weight: bold;
+    line-height: 1.5;
+}
+
+.following{
+background-color: rgb(255, 255, 255);
+ min-width: 65%;
+  width: 65%;
+  height: 36px; 
+ font-size: 14px;
+  color: rgb(51, 51, 51);
+   border: 1px solid rgb(217, 217, 217); 
+ border-radius: 4px;
+ margin-top: 20px;
+}
+
+
+
+.follow {
+    background-color: rgb(255, 123, 48);
+    min-width: 65%;
+    width: 65%;
+    height: 36px;
+    font-size: 14px;
+    color: rgb(255, 255, 255);
+    border: 1px solid rgb(255, 123, 48);
+    border-radius: 4px;
+    margin-top: 20px;
+}
+  button.follow {
+    background-color: #ff7b30;
+    color: #ffffff;
+    width: 65%;
+    border: none;
+}
+
+  button {
+    border-radius: 4px;
+    height: 36px;
+    font-size: 14px;
+    font-weight: bold;
+    line-height: 1.5;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+button.follow {
+    border: 1px solid #ff7b30;
+}
+
+
+a, button, .tab, input {
+  -webkit-tap-highlight-color: transparent;
+}
+
+
+.bs_review li{
+  display: inlin-block;
+  float: left;
+}
+.bs_review li i {
+ color: #fecb00;
+  font-size: 13px;
+}   
+.bs_review li span{
+  display: inline-block;
+  margin-left: 4px;
+  color: #888;
+  font-size: 13px;
+}  
+     
+
+
+
+
+
 </style>
+
+<script type="text/javascript" src="//code.jquery.com/jquery-3.6.0.min.js"></script>
+<script type="text/javascript">
+$(document).ready(function(){
+	
+	$("#fl").click(function(){
+		
+		let midx = "${midx}";
+		let seller_idx = "${SSV.seller_idx}";
+		
+		$.ajax({
+			type: 'post',
+			url: "${pageContext.request.contextPath}/Follow.do",
+			data: {"midx" : midx, "seller_idx" : seller_idx},
+			
+			success: function(data){
+				if(data == "Y") {
+					alert("해당 작가님을 팔로우 하였습니다.");
+					location.reload();
+				}else{
+					alert("해당 작가 팔로우를 실패 하였습니다.");
+				}
+			},
+			error : function(error){ alert(error); }
+	 });
+	
+	});
+	
+	
+	$("#ufl").click(function(){
+		
+		let midx = "${midx}";
+		let seller_idx = "${SSV.seller_idx}";
+		
+		$.ajax({
+			type: 'post',
+			url: "${pageContext.request.contextPath}/Unfollow.do",
+			data: {"midx" : midx, "seller_idx" : seller_idx},
+			
+			success: function(data){
+				if(data == "Y") {
+					alert("해당 작가님을 언팔로우 하였습니다.");
+					location.reload();
+				}else{
+					alert("언팔로우 하는데 실패 하였습니다.");
+				}
+			},
+			error : function(error){ alert(error); }
+	 });
+	
+	});
+	
+
+	
+	
+	
+});
+</script>
 </head>
 <body>
 <!-- 헤더와 네비************************************************ -->
     <jsp:include page="../../include/header.jsp" />  
 <!-- ************************************************ -->
+<div style="display: flex; width:100%; padding: 55px 0px 36px; height: 400px;">
+   <div style="position:relative; top:50%; left:30%">
+     <div style="position:relative; float:left; width:150px; height: 150px; border-radius: 70%; overflow: hidden;">
+   <img class="profile" src="${pageContext.request.contextPath}/resources/Extra/img/${SSV.m_profile}">
+     </div>
+   
+     <div class="review-area"style="position:relative; float:left; margin-left:30px;">
+     <span style="font-size: 16px;font-weight: bold; color: #333333;">
+     작가 닉네임 : ${SSV.m_nick}</span>
+     <br>
+     
+     <p>작가 시작일 : ${SSV.seller_openday}</p>
+ <div style="position:relative">
+ <ul class="bs_review">
+       <c:forEach begin="1" end="${SSV.seller_starsavg}">
+       <li><i class="lni lni-star-filled"></i></li>
+       </c:forEach>
+       
+       <c:forEach begin="1" end="${5-SSV.seller_starsavg}">
+       <li><i class="lni lni-star"></i></li>
+       </c:forEach>
+       
+       <li><span>${SSV.seller_starsavg}</span></li>
+</ul>
+</div>
+ <br>
+ <br>
+     <div style="position:relative; float:left;">
+     <p>팔로워</p>
+       <span style="font-size: 16px;font-weight: bold; color: #333333; margin-left:20px;">
+       ${SSV.seller_followcnt}</span>
+       <p></p>
+     </div>
+   
+     
+      <div style="position:relative; margin-left:100px;">
+      <p>상품 찜</p>
+       <span style="font-size: 16px;font-weight: bold; color: #333333; margin-left:20px;">
+       ${SSV.seller_followcnt}</span>
+      </div>
+        
+<c:choose>
+   <c:when test="${midx == null}">
+<button type="button" class="follow" id=""
+style="background-color: rgb(255, 123, 48); min-width: 65%; width: 65%; 
+height: 36px; font-size: 14px; color: rgb(255, 255, 255); border: 1px solid rgb(255, 123, 48); 
+border-radius: 4px;">
+<i class="lni lni-plus"></i>
+    팔로우
+</button>
+   </c:when>
+        <c:when test="${followCNT == 1}">
+<button type="button" class="following" id="ufl">
+<i class="lni lni-checkmark"></i>
+    팔로우하는 작가
+</button>
+        </c:when>
+   <c:otherwise>
+<button type="button" class="follow" id="fl">
+<i class="lni lni-plus"></i>
+    팔로우
+</button>
+   </c:otherwise>
+</c:choose>
+     </div>
+   </div>
+</div>
 
  <div class="artist-home">
  
-         <section class="quick-profile">
-         <div class="profile-area"></div>
-         <div></div>
-<div> 작가(판매자 idx) : ${SSV.seller_idx} </div>
-<div> 작가 intro : ${SSV.seller_intro}</div>
-<div> 작가 시작일 : ${SSV.seller_openday}</div>
-<div> 작가 평균 별점 : ${SSV.seller_starsavg}</div>
-<div> 작가 매출액 : ${SSV.seller_total}</div>
-<div> 작가 상품 찜 갯수? : ${SSV.seller_wishcnt}</div>
-<div> 작가 주문 횟수? : ${SSV.seller_ordercnt}</div>
-<div> 작가 팔로우수 : ${SSV.seller_followcnt}</div>
-         </section>
+              
 <section class="artist-contents">
 
 
 
-
-
- <section class="trending-product section" style="margin-top: 12px;">
+ <section class="trending-product section" style="margin-top: 12px; background-color:#F5F5F5;">
         <div class="container">
             <div class="row">
                 <div class="col-12">
@@ -80,11 +303,14 @@ body {
                     </div>
                 </div>
             </div>
+     
             <div class="row">
+            <p>
+              <span class="result_span">Intro</span>작가(판매자의 말)</p>
                 <div class="col-lg-3 col-md-6 col-12">
-                    <!-- Start Single Product -->
-                    ${SSV.seller_intro}
-                    <!-- End Single Product -->
+              <div style="top:50%; left:50%; width:100%; height:300px; text-align:center;">
+                   ${SSV.seller_intro}
+             </div>
                 </div>
             </div>
         </div>
@@ -98,12 +324,25 @@ body {
             <div class="row">
                 <div class="col-12">
                     <div class="section-title" style="background-color:#FFFFFF ">
-                        <h2>판매 작품</h2>
+                        <h2>판매중인 상품</h2>
                     </div>
                 </div>
             </div>
             <div class="row">
+            <c:choose>
+            <c:when test="${BSPCount == 0 }">
+             <div class="result">
+                    <div class="result_in">
+                    <h1 style="color:rgb(181, 181, 181); text-align:center"><i class="lni lni-empty-file"></i></h1>
+                               <br>
+                   <h5 style="color: rgb(181, 181, 181);">작가(판매자)님이 판매중인 상품이 없습니다.</h5>
+                   </div>
+                    </div>
+            </c:when>
+       <c:otherwise>
+          <p>총 <span class="result_span">${BSPCount}</span>개의 상품을 판매하고 있어요</p>
              <c:forEach var="bp" items="${BSPList}" end="7">
+             
                 <div class="col-lg-3 col-md-6 col-12">
                     <!-- Start Single Product -->
                     <div class="single-product">
@@ -134,6 +373,8 @@ body {
                     <!-- End Single Product -->
                 </div>
                 </c:forEach>
+            </c:otherwise>
+                </c:choose>
             </div>
         </div>
     </section>
@@ -145,6 +386,7 @@ body {
     <section class="trending-product section" style="margin-top: 12px;">
         <div class="container">
             <div class="row">
+          
                 <div class="col-12">
                     <div class="section-title">
                         <h2>실시간 후기</h2>
@@ -153,7 +395,21 @@ body {
             </div>
             <div class="row">
             
-            <c:forEach var="al" items="${aList}">
+             <c:choose>
+            <c:when test="${BSRCount == 0 }">
+              <div class="result">
+                    <div class="result_in">
+                    <h1 style="color:rgb(181, 181, 181); text-align:center"><i class="lni lni-empty-file"></i></h1>
+                               <br>
+                   <h5 style="color: rgb(181, 181, 181);">작가(판매자)님의 상품에 대한 리뷰가 없습니다.</h5>
+                   </div>
+                    </div>
+            
+            
+                </c:when>
+       <c:otherwise>
+           <p>총 <span class="result_span">${BSRCount}</span>개의 리뷰가 있어요</p>
+            <c:forEach var="al" items="${aList}" end="7">
                      
                     <div class="col-lg-3 col-md-6 col-12">
                     <!-- Start Single Product -->
@@ -187,7 +443,9 @@ body {
                     </div>
                     <!-- End Single Product -->
                 </div>
-              </c:forEach>      
+              </c:forEach>   
+           </c:otherwise>
+       </c:choose>   
          </div>
         </div>
     </section>

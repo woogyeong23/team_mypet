@@ -19,6 +19,9 @@
 
  <script>
 $(document).ready(function() {
+	// alert 창이 먼저 나오는 오류 수정 필요
+	var msg = "${msg}";
+	alert(msg);
 	
 
 	var toolbar = [

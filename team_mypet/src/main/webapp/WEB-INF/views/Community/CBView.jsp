@@ -34,9 +34,7 @@ $("#commentBtn").click(function(){
 				alert("댓글 작성하기 실패!");
 			}
 		}, 
-		error: 
-			function(request,status,error){ alert("code:"+request.status+"\n"+"message:"+request.responseText+"\n"+"error:"+error);
-			}
+		error : function(error){ alert(error);}
 	});
 });
 
@@ -94,20 +92,58 @@ var targetID;
 					alert("알수없는 오류로 인해 작성하신 댓글이 누락되었습니다.");
 				} 
 	        },
-			error : function(error){ //에러 발생시
-				alert(error);
-			}
+			error : function(error){ alert(error); }
 		});
 	    
 	}); 
-	});	
+	});
+ 
+  $("#good").click(function(){
+	 let midx = "${midx}";
+	 let cm_idx = "${communityVo.cm_idx}";
+	 
+	 $.ajax({
+		 type: 'post',
+		 url: "${pageContext.request.contextPath}/cmLike",
+		 data: {"midx" : midx, "cm_idx" : cm_idx},
+		 
+		 success: function(data){
+				if(data == "Y") {
+					location.reload();
+				}else{
+					alert("알수없는 오류로 인해 '좋아요'가 누락되었습니다.");
+				}
+			},
+			error : function(error){ alert(error); }
+	 });
+  });
+  
+  $("#bad").click(function(){
+		 let midx = "${midx}";
+		 let cm_idx = "${communityVo.cm_idx}";
+		 
+		 $.ajax({
+			 type: 'post',
+			 url: "${pageContext.request.contextPath}/cmBad",
+			 data: {"midx" : midx, "cm_idx" : cm_idx},
+			 
+			 success: function(data){
+					if(data == "Y") {
+						location.reload();
+					}else{
+						alert("알수없는 오류로 인해 '좋아요 취소'가 누락되었습니다.");
+					}
+				},
+				error : function(error){ alert(error); }
+		 });
+	  });
+  
+  
  
 
 });
 </script>
 
-<!-- CSS only -->
-<link href="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-1BmE4kWBq78iYhFldvKuhfTAU6auU8tT94WrHftjDbrCEXSU1oBoqyl2QvZ6jIW3" crossorigin="anonymous">
 
 <!-- css************************************************ -->
     <jsp:include page="../../include/head.jsp" />  
@@ -149,6 +185,11 @@ var targetID;
     .cla{
     font-size: 18px;
     font-weight: 700;
+    position:relative;
+    margin-top: 15px;
+    display: flex;
+    height: 30px;
+    width:100%;
     }
     
     .ckr{
@@ -221,16 +262,7 @@ padding: 8px 16px;
     display: flex;
 }
 
-#follow{
-    background-color: rgb(255, 255, 255);
-    min-width: 63px;
-    width: 63px;
-    height: 28px;
-    font-size: 12px;
-    color: #fae100;
-    border: 1px solid #fae100;
-    border-radius: 4px;
-}
+
 
 .CommentContent{
 position: relative;
@@ -332,6 +364,58 @@ button {
 .ReplyListItem__action {
   padding-left: 72px;
 }
+
+.cmBTN_area {
+   display:flax; 
+   position:relative;
+   height:70px;
+ }
+
+.cmBTN_area .good_area{
+   position:relative;
+   top:50%;
+   left:50%;
+ }
+ 
+ .cmBTN_area .good_area .good{
+  height: 50px;
+  width: 50px;
+  line-height: 50px;
+  display: inline-block;
+  border-radius: 50%;
+  border: 1px solid #eee;
+  color: #555;
+  font-size: 22px;
+  text-align: center;
+  position: relative;
+  margin-right: 12px;
+ }
+ .cmBTN_area .good_area .good:hover {
+ color: #fff;
+ background-color:rgb(237,73,86);
+ border-color: transparent;
+ }
+ 
+ .cmBTN_area .good_area .liked{
+  height: 50px;
+  width: 50px;
+  line-height: 50px;
+  display: inline-block;
+  border-radius: 50%;
+  border: 1px solid #eee;
+  color: #fff;
+  background-color:rgb(237,73,86);
+  font-size: 22px;
+  text-align: center;
+  position: relative;
+  margin-right: 12px;
+ }
+ 
+  .cmBTN_area .good_area .liked:hover {
+ color: #fff;
+ background-color:#555;
+ border-color: transparent;
+ }
     
 
     
@@ -349,7 +433,7 @@ button {
         <div id="dd" >
                 <div>
                    <div class="box">
-        <img class="profile" src="${pageContext.request.contextPath}/resources/Community/upload/${communityVo.cm_img}">
+        <img class="profile" src="${pageContext.request.contextPath}/resources/Extra/img/${communityVo.m_profile}">
                    </div>
                     <div style="float:left">
                    <span style="font-size:1.3em; color:black">${communityVo.cm_writer}</span>
@@ -357,7 +441,7 @@ button {
                    <span style="">${communityVo.cm_wday}</span>       
                    </div>
                </div>
-                              <div><input type="button" id="follow" value="+ 팔로우"></div>
+                             
        </div>
 
                        
@@ -370,6 +454,25 @@ button {
                </div>
 
 
+<div class="cmBTN_area">
+   <div class="good_area">
+   <c:choose>
+   
+     <c:when test="${midx == null}">
+     <button type="button" class="good"><i class="lni lni-heart"></i></button>
+     </c:when>
+   
+     <c:when test="${CmLikeYn == 1}">
+     <button type="button" class="liked" id="bad"><i class="lni lni-heart"></i></button>
+     </c:when>
+   
+     <c:otherwise>
+     <button type="button" class="good" id="good"><i class="lni lni-heart"></i></button>
+     </c:otherwise>
+   
+   </c:choose>
+   <p> 좋아요 <span>${communityVo.community_like_cnt}</span>개</p>
+   </div>
 
 <c:choose>
 <c:when test="${midx == communityVo.midx}">
@@ -378,9 +481,8 @@ button {
 </c:when>
 <c:otherwise></c:otherwise>
 </c:choose>
-
-      <div class="cla">댓글 <span>${replyCount}</span></div>
-      
+</div>
+<div class="cla">댓글 <span>${replyCount}</span></div>
 <div class="row">
   <div class="col-lg-12 col-12">
        
@@ -502,7 +604,6 @@ button {
 <!-- 푸터와 js************************************************ -->
     <jsp:include page="../../include/footer.jsp" />  
     
-<!-- JavaScript Bundle with Popper -->
-<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/js/bootstrap.bundle.min.js" integrity="sha384-ka7Sk0Gln4gmtz2MlQnikT1wXgYsOg+OMhuP+IlRH9sENBO0LRn5q+8nbTov4+1p" crossorigin="anonymous"></script>
+
 </body>
 </html>

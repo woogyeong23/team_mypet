@@ -20,6 +20,8 @@ import org.springframework.web.multipart.MultipartFile;
 import com.google.gson.JsonObject;
 import com.jeonju.mypet.service.JoeAjaxService;
 import com.jeonju.mypet.vo.Commu_CommentVo;
+import com.jeonju.mypet.vo.Community_likeVo;
+import com.jeonju.mypet.vo.FollowVo;
 
 
 //Ajax통신 지원을 위해 pom.xml에 의존모듈(jackson)을 추가해 줌
@@ -36,33 +38,89 @@ public class JoeAjaxController {
 	}
 
 	@PostMapping("/InsertComment.do")
-	public String InsertComment(Commu_CommentVo CCommentVo) {
+	public String InsertComment(Commu_CommentVo ccommentVo) {
 		
-		String ww = "N";
+		 String ww = "N";
 		
-		 int flag = joeAjaxService.InsertComment(CCommentVo);
+		 int flag = joeAjaxService.InsertComment(ccommentVo);
+		 int plus = joeAjaxService.plusCmCommentCnt(ccommentVo);
 		 
-		 if(flag == 1)
+		 if(flag+plus == 2)
 		   ww = "I";
 		
 		 return ww;
 	}
 	
 	@PostMapping("/CCInsert")
-	public String CCInsert(Commu_CommentVo CCommentVo) {
+	public String CCInsert(Commu_CommentVo ccommentVo) {
 		System.out.println("111122222222222222");
 		
 		String qw = "N";
 		
-		int qq = joeAjaxService.UpDepth(CCommentVo);
-		int flag = joeAjaxService.CCInsert(CCommentVo);
+		int qq = joeAjaxService.UpDepth(ccommentVo);
+		int flag = joeAjaxService.CCInsert(ccommentVo);
+		int plus = joeAjaxService.plusCmCommentCnt(ccommentVo);
 		
-		System.out.println(qq+flag+"=qq+flag");
+		System.out.println(qq+flag+plus+"=qq+flag");
 		
-		if(flag+qq != 0)
+		// qq 는  대댓글 작성시에만 작동
+		
+		if(flag+qq+plus !=0)
 			qw = "H";
 		
 		return qw;
+	}
+	
+	@PostMapping("/Follow.do")
+	public String Follow(FollowVo followVo) {
+		String ff="";
+		
+		int flag = joeAjaxService.getFollow(followVo);
+		int plus = joeAjaxService.plusFollowCNT(followVo);
+		
+		if(flag+plus == 2)
+			ff = "Y";
+		
+		return ff;
+	}
+	
+	@PostMapping("/Unfollow")
+	public String Unfollow(FollowVo followVo) {
+		String uu ="";
+		
+		int flag = joeAjaxService.getUnfollow(followVo);
+		int minus = joeAjaxService.minusFollowCNT(followVo);
+		
+		
+		if(flag+minus == 2)
+			uu = "Y";
+		
+		return uu;
+	}
+	
+	@PostMapping("/cmLike")
+	public String CmLike(Community_likeVo community_likeVo) {
+		String ll = "";
+		
+		int flag = joeAjaxService.getCmLike(community_likeVo);
+		int plus = joeAjaxService.plusCmLikeCnt(community_likeVo);
+		
+		if(flag+plus == 2)
+			ll = "Y";
+		
+		return ll;
+	}
+	
+	@PostMapping("/cmBad")
+	public String CmBad(Community_likeVo community_likeVo) {
+		String bb ="";
+		
+		int flag = joeAjaxService.getCmBad(community_likeVo);
+		int minus = joeAjaxService.minusCmLikeCnt(community_likeVo);
+		
+		if(flag+minus == 2)
+			bb ="Y";
+	   return bb;
 	}
 	
 	
