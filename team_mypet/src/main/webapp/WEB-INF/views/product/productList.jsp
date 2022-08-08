@@ -288,11 +288,11 @@ list-style: none;
                     	<a href="productView.do?p_idx=${productVo.p_idx}">
                     			<img src="${pageContext.request.contextPath}/resources/product/${productVo.p_sys_filename}" width="300px" height="300px">
 						</a>
-						<!--                             
+						                          
 						<div class="button">
                         <a href="product-details.html" class="btn"><i class="lni lni-cart"></i> Add to Cart</a>
                         </div> 
-                        -->
+                        
                         <div style="position: absolute; left: 4px; top: 4px;"> </div> <!-- 찜하기버튼 -->
                         </div>
                         

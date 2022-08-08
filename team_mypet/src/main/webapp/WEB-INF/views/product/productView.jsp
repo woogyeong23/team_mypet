@@ -21,12 +21,12 @@
 
 <!-- 수량변경 스크립트 -->
 <script>
-
+/*
 $(document).ready(function() {
 	let p_idx = ${productVo.p_idx}
 	$("#add_cart").click(function(){
 		
-		alert("asd");
+		alert("장바구니 추가중");
 		
 		$.ajax({
 			type : "POST",
@@ -44,33 +44,34 @@ $(document).ready(function() {
 			}
 		});
 	});
-});
+});*/
 
-/* 
+// 2,500 <-
  Number.prototype.format = function(){
 	  if(this==0) return 0;
 
 	  var reg = /(^[+-]?\d+)(\d{3})/;
 	  var n = (this + '');
 
-	  while (reg.test(n)) n = n.replace(reg, '$1' + ',' + '$2'); // 2,500 <-
+	  while (reg.test(n)) n = n.replace(reg, '$1' + ',' + '$2');
 
 	  return n;
 	};
 
-	String.prototype.format = function(){
+	
+	
+String.prototype.format = function(){
 	  var num = parseFloat(this);
 	  if( isNaN(num) ) return "0";
-
 	  return num.format();
 	};
 	    
-	var basic_amount = parseInt(${productView.p_price});
+var basic_amount = parseInt(${productView.p_price});
 
-	function change_qty2(t){
+function change_qty2(t){
 	  //var min_qty = '수량버튼'*1;
 	  var min_qty = 1;
-	  var this_qty = $("#ct_qty").val()*1;
+	  var this_qty = $("#cart_cnt").val()*1;
 	  var max_qty = ${productView.p_limit_cnt}; // 현재 재고
 	  if(t=="m"){
 	    this_qty -= 1;
@@ -89,11 +90,11 @@ $(document).ready(function() {
 	    }
 
 	  var show_total_amount = basic_amount * this_qty;
-	  //$("#ct_qty_txt").text(this_qty); 
-	  $("#ct_qty").val(this_qty);
+	  //$("#cart_cnt_txt").text(this_qty); 
+	  $("#cart_cnt").val(this_qty);
 	  $("#it_pay").val(show_total_amount);
 	  $("#total_amount").html(show_total_amount.format());
-	} */
+	}
 	
 	
 /* 
@@ -111,7 +112,7 @@ const form = {
 
 //장바구니추가버튼
 $("#btn_cart").on("click",function(e){
-	form.p_count = $("#ct_qty").val();
+	form.p_count = $("#cart_cnt").val();
 	$.ajax({
 		url : "${pageContext.request.contextPath}/member/membercart/insertCart.do", //호출할 url
 		type : 'post', // 호출할 방법(get,post)
@@ -319,9 +320,15 @@ function cartAlert(result){
 								<span style="float:left; padding-right: 10px">수량 :</span>
 								<div class="qty" style="float:left;">					
         							<div class="plus" style="float: left; padding-right:10px"><a href="javascript:change_qty2('p')"><img src="${pageContext.request.contextPath}/resources/assets/images/logo/add.png" width="20px" height="20px" alt="+"></a></div>
-        							<input type="text" style="float: left; text-align: center;" size="3" name="ct_qty" id="ct_qty" value="1" readonly="readonly">
+        							<input type="text" style="float: left; text-align: center;" size="3" name="cart_cnt" id="cart_cnt" value="1" readonly="readonly">
        								<div class="minus" style="float: left; padding-left:10px"><a href="javascript:change_qty2('m')"><img src="${pageContext.request.contextPath}/resources/assets/images/logo/minus.png" width="20px" height="20px" alt="-"></a></div>
-								</div>    							
+								</div>     
+								<!-- <div>
+								수량 : <input type="hidden" name="p_price" value="5500">
+								<input type="button" value=" + " name="add" style="width: 25px" >
+								<input type="text" name="amount" value="1" size="3" max="" style="text-align: center;">
+								<input type="button" value=" - " name="min" style="width: 25px" >
+								</div>	 -->						
       						</div>
       						
 
@@ -339,7 +346,9 @@ function cartAlert(result){
 							<div class="row align-items-end">
 								<div class="col-lg-4 col-md-4 col-12">
 									<div class="button cart-button">
-										<button id="btn_cart" class="btn" style="width:100%;">장바구니</button>
+										<!-- <button type="button" class="btn" id="add_cart" style="width:100%;">장바구니</button>
+									  -->
+										<button id="btn_cart" class="btn" style="width:100%;">장바구니</button> 
 									</div>
 								</div>
 						

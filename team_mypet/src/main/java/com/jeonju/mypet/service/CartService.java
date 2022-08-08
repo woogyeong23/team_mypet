@@ -16,6 +16,7 @@ public class CartService {
 	//소현
 	private CartDao cartDao;
 
+	
 	@Autowired
 	public CartService(CartDao cartDao) {
 		this.cartDao = cartDao;
@@ -37,8 +38,12 @@ public class CartService {
 	}
 	
 	//소현 끝
-	
-	
+
+	public List<ProductVo> cartList(CartVo cartVo) {
+		return cartDao.cartList(cartVo);
+	}
+
+	/*
 	public int cartMemCheck(CartVo cartVo) {
 		return cartDao.cartMemCheck(cartVo);
 	}
@@ -49,13 +54,10 @@ public class CartService {
 
 
 
-	public List<ProductVo> cartList(CartVo cartVo) {
-		return cartDao.cartList(cartVo);
-	}
-
 
 
 	public int cartCount(CartVo cartVo) {
 		return cartDao.cartCount(cartVo);
 	}
+	*/
 }

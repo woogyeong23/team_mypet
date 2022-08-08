@@ -54,7 +54,7 @@
                     <div class="single-product">
                         <div class="product-image">
                         
-                            <img src="${pageContext.request.contextPath}/resources/image/${rv.p_ori_filename}" alt="상품 이미지">
+                            <img src="${pageContext.request.contextPath}/resources/product/${rv.p_ori_filename}" alt="상품 이미지" width="300" height="300">
                             <div class="button">
                                 <a href="#" class="btn"><i class="lni lni-cart"></i> Add to Cart</a>
                             </div>

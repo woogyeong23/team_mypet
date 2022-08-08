@@ -47,8 +47,11 @@ public class CartDao {
 	}
 	
 	//소현끝
-	
-	
+
+	public List<ProductVo> cartList(CartVo cartVo) {
+		return sqlSession.selectList(MAPPER+".getcartList",cartVo);
+	}
+	/*
 	public int cartMemCheck(CartVo cartVo) {
 		return sqlSession.selectOne(MAPPER+".gercartMemCheck",cartVo);
 	}
@@ -58,16 +61,13 @@ public class CartDao {
 	}
 
 
-	public List<ProductVo> cartList(CartVo cartVo) {
-		return sqlSession.selectList(MAPPER+".getcartList",cartVo);
-	}
 
 
 	public int cartCount(CartVo cartVo) {
 		return sqlSession.selectOne(MAPPER+".getcartCount",cartVo);
 	}
 
-	
+	*/
 	
 	
 	

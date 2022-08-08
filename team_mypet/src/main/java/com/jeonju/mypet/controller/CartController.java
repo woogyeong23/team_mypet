@@ -48,6 +48,8 @@ public class CartController {
 			//있으면 update
 			cartService.updateCart(cart);
 		}
+		
+		System.out.println(cart.getCart_cnt());
 		return "member/membercart";
 	}
 		
@@ -55,18 +57,17 @@ public class CartController {
 
 	//카트 리스트
 		@GetMapping("/membercart.do")
-		public String membercart(CartVo cartVo,Model model,HttpServletRequest request) {
+		public String membercart(CartVo cart,Model model,HttpServletRequest request) {
 			
 			HttpSession Session = request.getSession();
 			int midx = (int) Session.getAttribute("midx");
+			cart.setMidx(midx);
 			
-			cartVo.setMidx(midx);
-			 List<ProductVo> list = cartService.cartList(cartVo);
+			 List<ProductVo> list = cartService.cartList(cart);
 			 ProductVo productVo = new ProductVo();
-			model.addAttribute("cart", list );
-			model.addAttribute("cartCount",cartService.cartCount(cartVo));
+			model.addAttribute("cartlist", list );
+			model.addAttribute("cartCount",cartService.countCart(cart.getP_idx(), midx));
 			
-			 
 			System.out.println(list);
 			 
 			return "member/membercart";	
@@ -89,6 +90,7 @@ public class CartController {
 			return list;	
 		}
 		
+		/*
 		//장바구니 추가 부분
 		@GetMapping("/cartMemInto.do")
 		public int cartMemInto(CartVo cartVo,Model model,HttpServletRequest request) {
@@ -105,5 +107,6 @@ public class CartController {
 			
 			return 1;	
 		}
+		*/
 	
 }
