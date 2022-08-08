@@ -1,9 +1,12 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
     <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
-    <!DOCTYPE html> 
-<html>  
-<head>
+   
+    <!DOCTYPE html>  
+    <html>
+  <head>
+
+
  <!-- css************************************************ -->
     <jsp:include page="../../include/head.jsp" />  
 <!-- ************************************************ -->
@@ -13,29 +16,31 @@
     
     <!-- Custom styles for this template -->
     <link href="resources/assets/css/sidebar.css" rel="stylesheet">
-   	
-   	
-   	<!-- CSS -->
+
 <style>
 html, body{
-height: 100%;
+height: 100%
 }
-#wrap{
+
+#wrap {
 min-height: 100%;
 position: relative;
 padding-bottom: 60px;
 }
+
 footer {
 position: relative;
 transform:translatY(-100%);
 }
- 
+
+
 </style>
-   	<!-- CSS  끝 -->
-   	
+
+   
+
   </head>
   <body>
-<div id= "wrap">
+<div id="wrap">
     <!-- 헤더와 js************************************************ -->
     <jsp:include page="../../include/header.jsp" />  
 	<!-- ************************************************ -->
@@ -226,6 +231,7 @@ transform:translatY(-100%);
  
     </article>
 </main>
+
 
 </div>
 

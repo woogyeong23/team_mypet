@@ -16,6 +16,7 @@ import com.jeonju.mypet.vo.ProductVo;
 import com.jeonju.mypet.vo.ReviewVo;
 import com.jeonju.mypet.vo.SellerStoryVo;
 
+
 @Controller
 public class ExtraController {
 	
@@ -30,8 +31,11 @@ public class ExtraController {
 	public String BSellerList(Model model) {
 
 		List<SellerStoryVo> BestSellerList = joeAjaxService.getBSList();
+		
+		
 		model.addAttribute("BestSellerList", BestSellerList);
-
+		
+		
 		return "Extra/BSellerList";
 	}
 	
@@ -39,8 +43,13 @@ public class ExtraController {
 	   public String BSellerView( @RequestParam("seller_idx") int seller_idx, Model model,
 	  HttpServletRequest request) { 
 		   SellerStoryVo SSVo = joeAjaxService.getBSellerView(seller_idx);
+		   List<ProductVo> BSPList = joeAjaxService.getBSPList(seller_idx);
+		   List<ReviewVo> aList = joeAjaxService.getAList(seller_idx);
+		   
 		   
 		   model.addAttribute("SSV", SSVo);
+		   model.addAttribute("BSPList",BSPList);
+		   model.addAttribute("aList", aList);
 		   
 		   return "Extra/BSellerView";
 		   

@@ -31,6 +31,29 @@
     display: flex;
     justify-content: space-between;
     }
+    
+#follow{
+    background-color: rgb(255, 255, 255);
+    min-width: 63px;
+    width: 63px;
+    height: 28px;
+    font-size: 12px;
+    color: #fae100;
+    border: 1px solid #fae100;
+    border-radius: 4px;
+}
+
+button {
+    border: 0 none;
+    background: transparent;
+    cursor: pointer;
+    -webkit-border-radius: 0;
+    -moz-border-radius: 0;
+    border-radius: 0;
+    display: inline-block;
+    padding: 0;
+    margin: 0;
+}
 </style>
 
 </head>
@@ -90,11 +113,13 @@
                    <span class="category">${cv.cm_wday}</span>       
                               </div>
                               </div>
-                              <div><input type="button" value="팔로우"></div>
+                              <div><input type="button" id="follow" value="+ 팔로우"></div>
                               </div>
                               
                    
                         <div class="product-image">
+<%--                         <a style="background-image: url(${pageContext.request.contextPath}/resources/Community/upload/${cv.cm_img});"  --%>
+<%--                         target="_blank" href="${pageContext.request.contextPath}/CBView.do?cm_idx=${cv.cm_idx}"></a> --%>
                         <img src="${pageContext.request.contextPath}/resources/Community/upload/${cv.cm_img}" alt="커뮤니티 이미지">
                         </div>
                         <div class="product-info">

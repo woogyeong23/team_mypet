@@ -50,6 +50,7 @@ public class JoeAjaxController {
 	
 	@PostMapping("/CCInsert")
 	public String CCInsert(Commu_CommentVo CCommentVo) {
+		System.out.println("111122222222222222");
 		
 		String qw = "N";
 		

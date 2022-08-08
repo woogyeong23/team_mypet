@@ -10,7 +10,7 @@
    
 <!-- css************************************************ -->
     <jsp:include page="../include/head.jsp" />
-   
+   <!--  nav sticky -->
     <style type="text/css">
     #naver.fixed{
 	position: fixed;
@@ -19,6 +19,9 @@
 	width: 100%;
 	background-color:#FFFFF0
     }
+    
+     /*  nav sticky */
+
     
     .popup{
    width:100%; 
@@ -35,6 +38,7 @@
   transform: translate(-50%,-50%);
     }
     
+    
     #popup_close{
     background-color: #D9D7F1;
     border: none;
@@ -47,14 +51,16 @@
     #popup_link{
     color: #FFFFFF;
     }
-
+ 
     
     </style>
 <!-- ************************************************ -->
 
 <script type="text/javascript" src="//code.jquery.com/jquery-3.6.0.min.js"></script>
 <script type="text/javascript">
+
 $(function() {
+	  //nav
 	  var lnb = $("#naver").offset().top;
 	 
 	  $(window).scroll(function() {
@@ -67,20 +73,16 @@ $(function() {
 	      $("#naver").removeClass("fixed");
 	    }
 	  });
+	  //nav
+	  
+	  
+	  
 	  
 	  // topbar event popup 지우기
 	  $('#popup_close').click(function(){
 	        $('.popup').stop().slideUp()
 	    });
-	  
-// 	  $('.user-login li:nth-child(3) a').mouseenter(function(){
-// 	        $('.depth').stop().slideDown()
-// 	    });
-// 	    $('.user-login li:nth-child(3) a').mouseleave(function () {
-// 	        $('.depth').stop().slideUp()
-// 	  });
-	  
-	  
+	    
 	});
 	
 	
@@ -118,8 +120,9 @@ $(function() {
 <!--                                     </h2> -->
 <!--                                     <p>ㄱㅇㅈㄱㅇㅈㅇㅈㅇㅈㅈㅇㅈㅈㅇㅈㅈㅇㅈㅈㅇㅇㅈㅇㅈㅇㅇㅈㅈㅇㅈㅈㅇ -->
 <!--                                         ㄱㅇㅈㄱㅇㅈㅇㅈㅇㅈㅈㅇㅈㅈㅇㅈㅈㅇㅈㅈㅇㅇㅈㅇㅈㅇㅇㅈㅈㅇㅈㅈㅇ</p> -->
-<!--                                     <h3><span>ㄱㅇㅈㄱㅇㅈㅇㅈㅇㅈㅈㅇㅈㅈㅇㅈㅈㅇㅈㅈㅇㅇㅈㅇㅈㅇㅇㅈㅈㅇㅈㅈㅇ</span> 1,000,000 원</h3> -->
-<!--                                     <div class="button"> -->
+<!--                         
+
+             <div class="button"> -->
 <!--                                         <a href="product-grids.html" class="btn">Shop Now</a> -->
 <!--                                     </div> -->
 <!--                                 </div> -->
