@@ -19,6 +19,100 @@
 
 <script src="https://code.jquery.com/jquery-1.12.4.min.js"></script>
 
+<!-- 수량변경 스크립트 -->
+<script>
+Number.prototype.format = function(){
+	  if(this==0) return 0;
+
+	  var reg = /(^[+-]?\d+)(\d{3})/;
+	  var n = (this + '');
+
+	  while (reg.test(n)) n = n.replace(reg, '$1' + ',' + '$2'); // 2,500 <-
+
+	  return n;
+	};
+
+	String.prototype.format = function(){
+	  var num = parseFloat(this);
+	  if( isNaN(num) ) return "0";
+
+	  return num.format();
+	};
+	    
+	var basic_amount = parseInt(${productView.p_price});
+
+	function change_qty2(t){
+	  //var min_qty = '수량버튼'*1;
+	  var min_qty = 1;
+	  var this_qty = $("#ct_qty").val()*1;
+	  var max_qty = ${productView.p_limit_cnt}; // 현재 재고
+	  if(t=="m"){
+	    this_qty -= 1;
+	    if(this_qty<min_qty){
+	      //alert("최소구매수량 이상만 구매할 수 있습니다.");
+	      alert("수량은 1개 이상부터 가능합니다.");
+	      return;
+	      }
+	    }
+	    else if(t=="p"){
+	      this_qty += 1;
+	      if(this_qty>max_qty){
+	        alert("구매 가능 수량을 초과합니다.");
+	        return;
+	        }
+	    }
+
+	  var show_total_amount = basic_amount * this_qty;
+	  //$("#ct_qty_txt").text(this_qty); 
+	  $("#ct_qty").val(this_qty);
+	  $("#it_pay").val(show_total_amount);
+	  $("#total_amount").html(show_total_amount.format());
+	}
+	
+	
+/* 
+//장바구니
+//서버로 전송할 데이터
+const form = {
+		p_idx : '${productView.p_idx}',
+		p_name : '${productView.p_name}',
+		p_point : '${productView.p_point}',
+		p_prict : '${productView.p_price}',
+		p_disprict : '${productView.p_disprice}',
+		p_dvprice : '${productView.p_dvprice}',
+		p_count: ''
+}
+
+//장바구니추가버튼
+$("#btn_cart").on("click",function(e){
+	form.p_count = $("#ct_qty").val();
+	$.ajax({
+		url : "${pageContext.request.contextPath}/member/membercart/insertCart.do", //호출할 url
+		type : 'post', // 호출할 방법(get,post)
+		data : form, //서버로 보낼 데이터
+		success : function(result){ //요청 성공시 수행될 메서드, 파라미터는 서버가 반환하는 값
+			cartAlert(result);
+		},
+	      error: function() {
+	          alert("에러 발생");
+	      }
+	})
+});
+
+
+function cartAlert(result){
+	if(result == '0'){
+		alert("장바구니에 추가를 하지 못하였습니다.");
+	} else if(result == '1'){
+		alert("장바구니에 추가되었습니다.");
+	} else if(result == '2'){
+		alert("장바구니에 이미 추가되어져 있습니다.");
+	} else if(result == '5'){
+		alert("로그인이 필요합니다.");	
+	}
+}
+ */
+</script>
 
 
 <style>
@@ -187,114 +281,24 @@
 							<p>배송비<span style="padding-left: 10px">${productView.p_dvprice}원(${productView.p_free_dvprice}원이상 무료배송)</span></p>
 						</div>
 						
-						
+						<form class="cart_form" method="get" action="${pageContext.request.contextPath}/insertCart.do">
+							
 						<hr>
 						<div class="col-lg-12">
 						<div class="count">
 						<!-- 수량변경 버튼 -->
+								
 							<div>
-								<form class="cart_form" method="get" action="${pageContext.request.contextPath}/membercart.do">
 								<input type="hidden" name="p_idx" value="${productView.p_idx}">
 								<span style="float:left; padding-right: 10px">수량 :</span>
 								<div class="qty" style="float:left;">					
         							<div class="plus" style="float: left; padding-right:10px"><a href="javascript:change_qty2('p')"><img src="${pageContext.request.contextPath}/resources/assets/images/logo/add.png" width="20px" height="20px" alt="+"></a></div>
         							<input type="text" style="float: left; text-align: center;" size="3" name="ct_qty" id="ct_qty" value="1" readonly="readonly">
        								<div class="minus" style="float: left; padding-left:10px"><a href="javascript:change_qty2('m')"><img src="${pageContext.request.contextPath}/resources/assets/images/logo/minus.png" width="20px" height="20px" alt="-"></a></div>
-								</div> 
-								</form>     							
+								</div>    							
       						</div>
       						
-<!-- 수량변경 스크립트 -->
-<script>
-Number.prototype.format = function(){
-	  if(this==0) return 0;
 
-	  var reg = /(^[+-]?\d+)(\d{3})/;
-	  var n = (this + '');
-
-	  while (reg.test(n)) n = n.replace(reg, '$1' + ',' + '$2'); // 2,500 <-
-
-	  return n;
-	};
-
-	String.prototype.format = function(){
-	  var num = parseFloat(this);
-	  if( isNaN(num) ) return "0";
-
-	  return num.format();
-	};
-	    
-	var basic_amount = parseInt(${productView.p_price});
-
-	function change_qty2(t){
-	  //var min_qty = '수량버튼'*1;
-	  var min_qty = 1;
-	  var this_qty = $("#ct_qty").val()*1;
-	  var max_qty = ${productView.p_limit_cnt}; // 현재 재고
-	  if(t=="m"){
-	    this_qty -= 1;
-	    if(this_qty<min_qty){
-	      //alert("최소구매수량 이상만 구매할 수 있습니다.");
-	      alert("수량은 1개 이상부터 가능합니다.");
-	      return;
-	      }
-	    }
-	    else if(t=="p"){
-	      this_qty += 1;
-	      if(this_qty>max_qty){
-	        alert("구매 가능 수량을 초과합니다.");
-	        return;
-	        }
-	    }
-
-	  var show_total_amount = basic_amount * this_qty;
-	  //$("#ct_qty_txt").text(this_qty); 
-	  $("#ct_qty").val(this_qty);
-	  $("#it_pay").val(show_total_amount);
-	  $("#total_amount").html(show_total_amount.format());
-	}
-</script>
-
-<script>
-//장바구니
-//서버로 전송할 데이터
-const form = {
-		p_idx : '${productView.p_idx}',
-		p_name : '${productView.p_name}',
-		p_point : '${productView.p_point}',
-		p_prict : '${productView.p_price}',
-		p_disprict : '${productView.p_disprice}',
-		p_dvprice : '${productView.p_dvprice}',
-		p_count: ''
-}
-
-//장바구니추가버튼
-$("#btn_cart").on("click",function(e){
-	form.p_count = $("#ct_qty").val();
-	$.ajax({
-		url : '${pageContext.request.contextPath}/insertCart.do', //호출할 url
-		type : 'GET', // 호출할 방법(get,post)
-		data : form, //서버로 보낼 데이터
-		success : function(result){ //요청 성공시 수행될 메서드, 파라미터는 서버가 반환하는 값
-			cartAlert(result);
-		},
-	      error: function() {
-	          alert("에러 발생");
-	      }
-	})
-});
-
-
-function cartAlert(result){
-	if(result =='0'){
-		alert("장바구니에 추가할 수량을 선택해주세요.");
-	}else{
-		alert("장바구니에 추가되었습니다.")
-	}
-		
-}
-
-</script>
 						</div>
 						</div>
 						<hr>
@@ -326,6 +330,7 @@ function cartAlert(result){
 								</div>
 							</div>
 						</div>
+						</form>
 						</div>
 					</div>
 				</div>

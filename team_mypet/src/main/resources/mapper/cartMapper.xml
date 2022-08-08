@@ -4,11 +4,51 @@
 
 <mapper namespace = "com.jeonju.mypet.cart">
 
+
+	<!-- 소현 -->
+	
+	<!-- 장바구니 추가 -->
 	<insert id="insertCart">
 		insert into cart(midx, p_idx, cart_cnt)
-		values(#{midx},#{p_idx},#{cart_cnt});
+		values(#{midx},#{p_idx},#{cart_cnt})
 	</insert>
 	
+	<!-- 장바구니에 해당 상품이 있는지 확인 -->
+	<select id="countCart" resultType="int" parameterType="HashMap">
+		select count(*)
+		from cart
+		where midx=#{midx}
+		and p_idx=#{p_idx}
+	</select>
+	
+	
+	<!-- 장바구니에 해당 상품이 이미 있다면 (수량)업데이트 -->
+	<update id="updateCart">
+		update cart
+		set cart_cnt = cart_cnt + #{cart_cnt}
+		where midx=#{midx}
+		and p_idx=#{p_idx}
+	</update>
+	<!-- 소현 끝 -->
+	
+	<!-- 장바구니 유효성검사 -->
+	<select id="getcartMemCheck" parameterType="int">
+		select COUNT(*) from cart where cart_idx = #{cart_idx}
+	</select>
+	<!-- 장바구니 추가 -->
+	<insert id="getcartMemInto" parameterType="cartVo">
+		insert into cart(p_idx, midx)
+		VALUES(#{p_idx},#{midx});
+	</insert>
+
+	<!-- 카트 리스트 -->
+	<select id="getcartList" parameterType="list" resultType="cartVo">
+		select a.cart_idx,b.p_idx,b.p_content,b.p_name,b.p_price,c.p_front_img,c.p_ori_filename,c.p_sys_filename  from cart a left outer join product b on a.p_idx = b.p_idx left outer join product_img c on b.p_idx = c.p_idx where midx=#{midx};
+	</select>
+	<!-- 카트 몇개 들어있는지 -->
+	<select id="getcartCount" resultType="int">
+		select count(*) from cart where midx=#{midx}
+	</select>
 	
 	
 </mapper>

@@ -47,7 +47,7 @@ public class CartVo {
 	public void setP_disprice(int p_disprice) {
 		this.p_disprice = p_disprice;
 	}
-	
+
 	
 	//소현끝
 	
