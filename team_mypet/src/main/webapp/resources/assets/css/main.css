@@ -1570,7 +1570,7 @@ top: -1px;
 
 .header .topbar .top-end .user-login li {
   display: inline-block;
-  border-right: 1px solid rgba(255, 255, 255, 0.459);
+  border-right: 1px solid rgb(215,217,215);
   padding: 0px 10px;
   white-space: nowrap;
 }

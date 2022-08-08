@@ -48,16 +48,28 @@ $(document).ready(function(){
 	$(".NumberCounter__minus").on("click", function(){
 		let cart_idx = $(this).data("cart_idx");
 		let cart_cnt = $(this).find("input").val();
-		$(".update_cart_idx").val(cart_idx);
-		$(".update_cart_cnt").val(cart_cnt);
+		alert(cart_cnt);
+		
+
+		$("#update_cart_idx").val(cart_idx);
+		$("#update_cart_cnt").val(cart_cnt);
 		$(".cnt_update_form").submit();
+		
 		
 	});
 	$(".NumberCounter__plus").on("click", function(){
+		
+		let p_idx = $(this).attr("name");
+		let cnt_plus = "#NumberCounter__plus"+p_idx;
+		let cnt_pid = $(cnt_plus).attr("id");
+		var p_price  = document.getElementById(cnt_pid).value;
+
 		let cart_idx = $(this).data("cart_idx");
-		let cart_cnt = $(this).find("input").val();
-		$(".update_cart_idx").val(cart_idx);
-		$(".update_cart_cnt").val(cart_cnt);
+		let cart_cnt = $(this).parent().find("input[name='cart_cnt']").val();
+		alert(cart_cnt);
+
+		$("#update_cart_idx").val(cart_idx);
+		$("#update_cart_cnt").val(cart_cnt);
 		$(".cnt_update_form").submit();
 	
 	});
@@ -231,6 +243,8 @@ $(document).ready(function(){
    					<input type="hidden" name="p_name" id="p_name_input" value="${cart.p_name}">
    					<input type="hidden" name="p_content" id="p_content_input" value="${cart.p_content}">
    					<input type="hidden" name="cart_cnt" id="cart_cnt_input" value="${cart.cart_cnt}">
+   					<input type="hidden" name="midx" id="midx_input" value="${cart.midx}">
+   					
    						<div class="CartArtistItem__header">
    						<label>
 							<div class="checkbox">   							
@@ -254,13 +268,18 @@ $(document).ready(function(){
    						 									</div>
    														</div>
    													</div>
-   													<img >
+   													<img src="${pageContext.request.contextPath}/resources/product/${cart.p_sys_filename}">
    												</div>
    												<div  class="CartProductListItem__productInfoTextGroup">
    												<a href="#" class="CartProductListItem__productName" >${cart.p_name}</a> <!-- 상품이름 -->
    												
    												</div>
    												</div>
+   												<form action="${pageContext.request.contextPath}/cntupdate.do" method="post" class="cnt_update_form">
+													<input type="hidden" name="cart_idx" class="${cart_idx}" id="cart_idx">
+													<input type="hidden" name="cart_cnt" class="${cart_cnt}" id="cart_cnt">
+													<input type="hidden" name="midx" value="${cart.midx}">
+												</form>
    												<div class="CartProductListItem__optionInfo">
    													<div class="CartOptionList">
    														<div class="CartOptionListItem">
@@ -268,6 +287,7 @@ $(document).ready(function(){
    																<em class="CartOptionListItem__optionText"></em>
    																	<div class="CartOptionListItem__counter">
    																		<label class="NumberCounter">
+   																		
    																			<button type="button" id="NumberCounter__minus${cart.p_idx}" name="${cart.p_idx}" class="NumberCounter__minus"  data-cartId="${cart.cart_idx}" >-</button>
    																			<input  type="text" name="cart_cnt" id="NumberCounter__input${cart.p_idx}" class="NumberCounter__input" value="${cart.cart_cnt}" readonly="readonly">
    																			<button type="button" id="NumberCounter__plus${cart.p_idx}" name="${cart.p_idx}" class="NumberCounter__plus"  data-cartId="${cart.cart_idx}">+</button>   						
@@ -316,6 +336,9 @@ $(document).ready(function(){
    							</section>
    							<div class="vue-sticky-placeholder"></div>
    						</div>   	
+   						
+   						
+   						
 					</c:forEach>
    					
    					
@@ -376,11 +399,7 @@ $(document).ready(function(){
         	</div>
  		</div>
 	</div>
-<form action="${pageContext.request.contextPath}/cntupdate.do" method="post" class="cnt_update_form">
-	<input type="hidden" name="cart_idx_input" class="update_cart_idx">
-	<input type="hidden" name="cart_cnt" class="update_cart_cnt">
-	<input type="hidden" name="midx" value="${cart.midx}">
-</form>
+
 </aside>
 </main>
 

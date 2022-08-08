@@ -8,7 +8,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Repository;
 
 import com.jeonju.mypet.vo.ProductVo;
-
+import com.jeonju.mypet.vo.ReviewVo;
 import com.jeonju.mypet.vo.MembersVo;
 
 
@@ -38,6 +38,10 @@ public class HomeDao {
 	
 	public int addProfile(MembersVo membersVo) {
 		return sqlSession.insert(MAPPER+".addGallery",membersVo);
+	}
+
+	public List<ReviewVo> getReviewList() {
+		return sqlSession.selectList(MAPPER+".getReviewList");
 	}
 	
 	

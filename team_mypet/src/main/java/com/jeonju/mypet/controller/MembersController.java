@@ -72,16 +72,20 @@ public class MembersController {
 			HttpServletRequest request) {
 			
 			HashMap<String, String> loginInfo = new HashMap<String, String>(); 
+			
 			loginInfo.put("m_id",m_id);
 			loginInfo.put("m_pwd",m_pwd);
 			
+
 			HashMap<String, Long> resultMap = membersService.login(loginInfo);
+
 			long m_auth = resultMap.get("m_auth");
 			long m_grade = resultMap.get("m_grade");
+			
 			HashMap<String, String> resultMap1 = membersService.login1(loginInfo);
 			String m_nick = resultMap1.get("m_nick");
-			HashMap<String, Integer> resultMap2 = membersService.login2(loginInfo);
-			int midx = resultMap2.get("midx");
+	
+			
 			
 			String viewPage = null;
 			
@@ -90,7 +94,7 @@ public class MembersController {
 				session.setAttribute("m_id",m_id);
 				session.setAttribute("m_grade",m_grade);
 				session.setAttribute("m_nick",m_nick);
-				session.setAttribute("midx",midx);
+				session.setAttribute("midx",resultMap.get("midx"));
 
 				viewPage = "redirect:/home.do";
 						

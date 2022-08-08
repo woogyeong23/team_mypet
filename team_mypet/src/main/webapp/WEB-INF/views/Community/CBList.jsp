@@ -11,11 +11,76 @@
     <jsp:include page="../../include/head.jsp" />  
 <!-- ************************************************ -->
 <link rel="stylesheet" href="resources/Community/CBList.css">
+
+<style type="text/css">
+.box {
+    width: 34px;
+    height: 34px; 
+    border-radius: 70%;
+    overflow: hidden;
+    float:left;
+    background: #BDBDBD;
+}
+.profile {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+}
+
+#dd{
+    display: flex;
+    justify-content: space-between;
+    }
+    
+#follow{
+    background-color: rgb(255, 255, 255);
+    min-width: 63px;
+    width: 63px;
+    height: 28px;
+    font-size: 12px;
+    color: #fae100;
+    border: 1px solid #fae100;
+    border-radius: 4px;
+}
+
+button {
+    border: 0 none;
+    background: transparent;
+    cursor: pointer;
+    -webkit-border-radius: 0;
+    -moz-border-radius: 0;
+    border-radius: 0;
+    display: inline-block;
+    padding: 0;
+    margin: 0;
+}
+</style>
+
 </head>
 <body>
 <!-- 헤더와 네비************************************************ -->
     <jsp:include page="../../include/header.jsp" />  
 <!-- ************************************************ -->
+    <!-- Start Breadcrumbs -->
+    <div class="breadcrumbs">
+        <div class="container">
+            <div class="row align-items-center">
+                <div class="col-lg-6 col-md-6 col-12">
+                    <div class="breadcrumbs-content">
+                        <h1 class="page-title">커뮤니티</h1>
+                    </div>
+                </div>
+                <div class="col-lg-6 col-md-6 col-12">
+                    <ul class="breadcrumb-nav">
+                        <li><a href="${pageContext.request.contextPath}/home.do"><i class="lni lni-home"></i>Home</a></li>
+                        <li><a href="#">커뮤니티</a></li>
+<!--                         <li>Single Product</li> -->
+                    </ul>
+                </div>
+            </div>
+        </div>
+    </div>
+    <!-- End Breadcrumbs -->
  
 
  <!-- Start Trending Product Area -->
@@ -35,29 +100,33 @@
                      
                     <div class="col-lg-3 col-md-6 col-12">
                     <!-- Start Single Product -->
+                   
                     <div class="single-product">
+                  <div id="dd" >
+                <div>
+                   <div class="box">
+    <img class="profile" src="${pageContext.request.contextPath}/resources/Community/upload/${cv.cm_img}">
+                   </div>
+                     <div style="float:left">
+                   <span class="category" style="color:black">${cv.cm_writer}</span>
+                   <br>
+                   <span class="category">${cv.cm_wday}</span>       
+                              </div>
+                              </div>
+                              <div><input type="button" id="follow" value="+ 팔로우"></div>
+                              </div>
+                              
+                   
                         <div class="product-image">
-                            <img src="${pageContext.request.contextPath}/resources/Community/upload/${cv.cm_img}" alt="커뮤니티 이미지">
-                            <div class="button">
-                                <a href="${pageContext.request.contextPath}/CBView.do?cm_idx=${cv.cm_idx}" class="btn"><i class="lni lni-cart"></i> Add to Cart</a>
-                            </div>
+<%--                         <a style="background-image: url(${pageContext.request.contextPath}/resources/Community/upload/${cv.cm_img});"  --%>
+<%--                         target="_blank" href="${pageContext.request.contextPath}/CBView.do?cm_idx=${cv.cm_idx}"></a> --%>
+                        <img src="${pageContext.request.contextPath}/resources/Community/upload/${cv.cm_img}" alt="커뮤니티 이미지">
                         </div>
                         <div class="product-info">
-                            <span class="category">Watches</span>
-                            <h4 class="title">
-                                <a href="${pageContext.request.contextPath}/cbView.do?cm_idx=${cv.cm_idx}">${cv.cm_subject}</a>
+                            
+                            <h4 class="title" style="overflow: hidden;">
+                                <a href="${pageContext.request.contextPath}/CBView.do?cm_idx=${cv.cm_idx}">${cv.cm_subject}</a>
                             </h4>
-                            <ul class="review">
-                                <li><i class="lni lni-star-filled"></i></li>
-                                <li><i class="lni lni-star-filled"></i></li>
-                                <li><i class="lni lni-star-filled"></i></li>
-                                <li><i class="lni lni-star-filled"></i></li>
-                                <li><i class="lni lni-star"></i></li>
-                                <li><span>4.0 Review(s)</span></li>
-                            </ul>
-                            <div class="price">
-                                <span>$199.00</span>
-                            </div>
                         </div>
                     </div>
                     <!-- End Single Product -->

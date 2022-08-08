@@ -4,8 +4,6 @@ package com.jeonju.mypet.dao;
 import java.util.HashMap;
 import java.util.List;
 
-import javax.servlet.http.HttpServletRequest;
-
 import org.apache.ibatis.session.SqlSession;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Repository;
@@ -39,6 +37,7 @@ public class MembersDao {
 		HashMap<String, Long> resultMap= sqlSession.selectOne(MAPPER+".loginMember",loginInfo);
 		if(resultMap.get("m_auth")==0){
 			resultMap.put("m_grade",0L);
+			resultMap.put("midx",null);
 			
 		}
 		return resultMap;
@@ -49,12 +48,7 @@ public class MembersDao {
 		
 		return resultMap1;
 	}
-	public HashMap<String, Integer> loginMember2(HashMap<String, String> loginInfo) {
-		
-		HashMap<String, Integer> resultMap2= sqlSession.selectOne(MAPPER+".loginMember2",loginInfo);
-		
-		return resultMap2;
-	}
+
 
 	public int checkId(String id) {
 		return sqlSession.selectOne(MAPPER+".checkId", id);
