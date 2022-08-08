@@ -64,6 +64,16 @@ public class SellerDao {
 		// TODO Auto-generated method stub
 		return sqlSession.selectOne(MAPPER+".getSellerIdx",member_id);
 	}
+
+	public List<ProductVo> getSellerProductVoList(String member_id) {
+		// TODO Auto-generated method stub
+		return sqlSession.selectList(MAPPER + ".getSellerProductVoList", member_id);
+	}
+
+	public List<HashMap<String, Object>> getSellerOrdersList(HashMap<String, String> searchInfo) {
+		// TODO Auto-generated method stub
+		return sqlSession.selectList(MAPPER + ".getSellerOrdersList", searchInfo);
+	}
 	
 	
 	

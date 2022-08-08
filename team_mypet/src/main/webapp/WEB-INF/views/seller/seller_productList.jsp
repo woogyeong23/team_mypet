@@ -298,7 +298,7 @@
 															</c:choose>
 														</span>
 														<h4 class="title">
-															<a href="product-grids.html">${productVo.p_name}</a>
+															<a href="${pageContext.request.contextPath}/seller_productDetail.do?p_idx=${productVo.p_idx}">${productVo.p_name}</a>
 														</h4>
 														<ul class="review">
 														<c:forEach var="cnt" begin="1" end="${productVo.avg_reviews_stars}" step="1">

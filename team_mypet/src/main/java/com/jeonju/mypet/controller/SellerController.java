@@ -241,9 +241,66 @@ public class SellerController {
 		
 		
 	}
+	@RequestMapping(value="/seller_ordersList.do", method = {RequestMethod.GET, RequestMethod.POST})
+	public String seller_orderList(String searching, 
+			String keyword, String status, String product,
+			Model model, HttpServletRequest request){
+		
+
+		HttpSession session = request.getSession();
+		int midx = (int) session.getAttribute("midx");
+		String member_id= Integer.toString(midx);
+		
+		if(searching == null)
+			searching="searchTotal";
+		if(keyword == null)
+			keyword = "";
+		if(status == null)
+			status = "1";
+		if(product == null)
+			product = "00";
+		
+		HashMap<String, String> searchInfo = new HashMap<String, String>();
+		searchInfo.put("member_id", member_id);
+		searchInfo.put("searching", searching);
+		searchInfo.put("status", status);
+		searchInfo.put("product", product);
+		searchInfo.put("keyword", keyword);
+		//System.out.println("********************************************");
+		System.out.println(member_id+searching+keyword+status+product);
+		List<HashMap<String, Object>> ordersListMap = sellerService.seller_ordersList(searchInfo);
+		List<ProductVo> productVoList = sellerService.seller_productVoList(member_id);
+		//System.out.println("************************************");
+		for(ProductVo p: productVoList)
+		{
+			//System.out.println(p.getP_idx());
+		}
+		for(HashMap<String, Object> p: ordersListMap)
+		{
+			//System.out.println(p.get("p_idx"));
+		}
+		model.addAttribute("ordersListMap", ordersListMap);
+		model.addAttribute("searchInfo",searchInfo);
+		model.addAttribute("productVoList",productVoList);
+
+		
+		
+		
+		
+		return "seller/seller_ordersList";
+		
+	}
 	
-	
-	
+	@RequestMapping(value="/seller_ordersDetail.do", method = {RequestMethod.GET, RequestMethod.POST})
+	public String seller_ordersDetail( @RequestParam("detail_idx") String detail_idx, Model model, HttpServletRequest request) {
+		
+		//System.out.println("************************************");
+
+		//System.out.println(detail_idx);
+		
+		
+		return "seller/seller_ordersDetail";
+	}
 	
 	
 	
