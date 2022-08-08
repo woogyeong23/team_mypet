@@ -21,7 +21,33 @@
 
 <!-- 수량변경 스크립트 -->
 <script>
-Number.prototype.format = function(){
+
+$(document).ready(function() {
+	let p_idx = ${productVo.p_idx}
+	$("#add_cart").click(function(){
+		
+		alert("asd");
+		
+		$.ajax({
+			type : "POST",
+			url : "${pageContext.request.contextPath}/cartMemInto.do",
+			async : false,
+			data : {'p_idx' : p_idx},
+			success : function(data) {
+				if (data == 'add_success') {
+					toastr.options.preventDuplicates = true;
+					toastr.success("장바구니 추가완료");
+				} else if (data == 'already_existed') {
+					toastr.options.preventDuplicates = true;
+					toastr.warning("이미 추가 된 상품입니다");
+				}
+			}
+		});
+	});
+});
+
+/* 
+ Number.prototype.format = function(){
 	  if(this==0) return 0;
 
 	  var reg = /(^[+-]?\d+)(\d{3})/;
@@ -67,7 +93,7 @@ Number.prototype.format = function(){
 	  $("#ct_qty").val(this_qty);
 	  $("#it_pay").val(show_total_amount);
 	  $("#total_amount").html(show_total_amount.format());
-	}
+	} */
 	
 	
 /* 
@@ -229,11 +255,11 @@ function cartAlert(result){
 					<div class="product-images">
 						<main id="gallery"> 
 							<div class="main-img">
-									<img src="${pageContext.request.contextPath}/resources/assets/images/products/${productView.p_sys_filename}" width="300px" height="400px" id="current" alt="#">
+									<img src="${pageContext.request.contextPath}/resources/product/${productView.p_sys_filename}" width="300px" height="400px" id="current" alt="#">
 							</div>
 							<div class="images">
 								<c:forEach var="Product_ImgVo" items="${product_imgs}">
-								<img src="${pageContext.request.contextPath}/resources/assets/images/products/${Product_ImgVo.p_sys_filename}" class="img" alt="#">	
+								<img src="${pageContext.request.contextPath}/resources/product/${Product_ImgVo.p_sys_filename}" class="img" alt="#">	
 								</c:forEach>
 							</div>
 						</main>

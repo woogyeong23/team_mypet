@@ -10,13 +10,15 @@
 	<select id="getProductList1" resultType="productVo" parameterType="hashMap">
 	select a.*,b.*,c.*
 	from product a join p_category b on a.p_category_idx = b.p_category_idx join product_img c on a.p_idx=c.p_idx 
-	where a.p_category_idx=#{p_category_idx};
+	where a.p_category_idx=#{p_category_idx}
+	GROUP by a.p_idx;
 	</select>
 	
 	<select id="getProductList2" resultType="productVo">
 	select a.*,b.*,c.*
 	from product a join p_category b on a.p_category_idx = b.p_category_idx join product_img c on a.p_idx=c.p_idx 
-	where b.p_category_large=#{p_category_large};
+	where b.p_category_large=#{p_category_large}
+	GROUP by a.p_idx;
 	</select>
 	
 	<!-- 상품이미지리스트 -->
@@ -79,9 +81,9 @@
 	
  	<!-- 상품최신순목록 -->
 	<select id="productNewList" resultType="productVo">
-		SELECT a.*,b.* 
-		FROM product a join product_img b on a.p_idx=b.p_idx 
-		WHERE b.p_front_img 
+		SELECT a.*,b.*
+		FROM product a join product_img b on a.p_idx=b.p_idx
+		group by a.p_idx
 		ORDER BY a.p_idx DESC;
 	</select>
 

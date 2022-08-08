@@ -286,7 +286,7 @@ list-style: none;
                     <div class="single-product">
                     	<div class="product-image" style="position: relative;">
                     	<a href="productView.do?p_idx=${productVo.p_idx}">
-                    			<img src="${pageContext.request.contextPath}/resources/assets/images/products/${productVo.p_sys_filename}" width="300px" height="300px">
+                    			<img src="${pageContext.request.contextPath}/resources/product/${productVo.p_sys_filename}" width="300px" height="300px">
 						</a>
 						<!--                             
 						<div class="button">
