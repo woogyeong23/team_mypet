@@ -97,22 +97,26 @@
 		$("#calPriceb").click(function(){
 		   $("#p_disprice").text("Javascript");
 		   $("#p_disprice").val("Javascript");
-		   $("#p_disprice").css('color', 'blue');
+		   $("#p_disprice").css('color', 'blue');		    $('#p_disprice').val('adf');
 		});
 		
-		
-		function calPricea(e) {
+		*/
+		function calPrice2() {
 			
-			var p_price  = document.getElementById("p_disprice");
-			var p_discount  = document.getElementById("p_discount");
-		    var p_disprice = document.getElementById("p_disprice");
-		 	var result=p_price*p_discount/100;
-		 	alert(p_price);
+			alert('작동');
+			var p_price  = document.getElementById("p_price").value;
+			var p_discount  = document.getElementById("p_discount").value;
+		    var p_disprice = document.getElementById("p_disprice").value;
+		 	var result=p_price*(100-p_discount)/100;
 		    //p_disprice.innerHTML = result;
-		 	$('#p_disprice').val('adf');
+		    alert(p_price);
+		    alert(p_discount);
+		    alert(result);
+		 	document.getElementById("p_disprice").value=result;
+
 		    
 		    
-		} */
+		} 
 	//-----------
 	//카테고리 고르기
 	 function categoryChange(e) {
@@ -278,7 +282,7 @@
 								 		<th>할인 적용 가격</th>
 								 		<td>
 								 			<input type="text" name="p_disprice" id="p_disprice" maxlength="100" value="" placeholder="적용버튼을 누르세요">
-								 			<input type="button" id="calPrice" onclick="calPrice(this)"value="적용" style="margin-left:5px;" /><br/>
+								 			<button id="calPrice" onClick="calPrice2()">적용</button>
 								 		</td>
 								 	</tr>
 								 	<tr>

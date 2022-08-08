@@ -16,6 +16,8 @@ import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.multipart.MultipartFile;
@@ -132,8 +134,8 @@ public class SellerController {
 	 * 
 	 * return result; }
 	 */
-	@PostMapping("/registProcess.do")
-	@ResponseBody
+	
+	@RequestMapping(value="/registProcess.do", method = {RequestMethod.GET, RequestMethod.POST})
 	public String registProcess(MultipartHttpServletRequest mRequest,
 			@RequestParam Map<String, String> param,
 			Model model, HttpServletRequest request
@@ -233,7 +235,7 @@ public class SellerController {
 	  
 	  if(result ==1) { viewPage = "gallery/fileUpload_result"; }
 	 
-		return "gallery/fileUpload_result";
+		return "redirect:/seller_productList.do";
 		
 		
 		
