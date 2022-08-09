@@ -4,32 +4,50 @@
 
 <mapper namespace = "com.jeonju.mypet.cart">
 
-	<!-- 장바구니 유효성검사 -->
-	<select id="gercartMemCheck" resultType="Boolean" parameterType="cartVo">
-		select
-		<![CDATA[
-		if(count(*) < 0,'false','true') 
-		]]>
-		from cart where midx = #{midx} and p_idx = #{p_idx}
-	</select>
+		<!-- 장바구니 유효성검사 -->
+<!-- 	<select id="gercartMemCheck" resultType="Boolean" parameterType="cartVo"> -->
+<!-- 		select -->
+<!-- 		<![CDATA[ -->
+<!--  		if(count(*) < 0,'false','true') -->
+<!-- 		]]> -->
+<!-- 		from cart where midx = #{midx} and p_idx = #{p_idx} -->
+<!-- 	</select> -->
+
 	
 	<!-- 장바구니 추가 -->
-	<insert id="getcartMemInto" parameterType="cartVo">
-		insert into cart(p_idx, midx)
-		VALUES(#{p_idx},#{midx});
+	<insert id="insertCart" parameterType="cartVo">
+		insert into cart(midx, p_idx, cart_cnt)
+		values(#{midx},#{p_idx},#{cart_cnt})
 	</insert>
+
+	<!-- 장바구니에 해당 상품이 이미 있다면 (수량)업데이트 -->
+	<update id="updateCart" parameterType="cartVo">
+		update cart
+		<![CDATA[
+		 set cart_cnt = cart_cnt + #{cart_cnt}
+		]]>
+		where midx=#{midx}
+		and p_idx=#{p_idx}
+	</update>
+
 
 	<!-- 카트 리스트 -->
 	<select id="getcartList" parameterType="list" resultType="cartVo">
 		select a.cart_idx,a.cart_cnt,a.midx,b.p_idx,b.p_content,b.p_name,b.p_discount,b.p_disprice,b.p_price,c.p_front_img,c.p_ori_filename,c.p_sys_filename  from cart a left outer join product b on a.p_idx = b.p_idx left outer join product_img c on b.p_idx = c.p_idx where midx=#{midx};
 	</select>
-	<!-- 카트 몇개 들어있는지 -->
-	<select id="getcartCount" resultType="int">
+	<!-- 카트에 상품 들어있는지 -->
+	<select id="getcountCart" resultType="int">
+		select count(*) from cart where midx=#{midx} and p_idx = #{p_idx}
+	</select>
+	<!-- 카트에 상품이 몇개 들어있는지 -->
+	<select id="getcountMemberCart" resultType="int">
 		select count(*) from cart where midx=#{midx}
 	</select>
 	<update id="getmodifycntcart" parameterType="cartVo">
-	update cart set cart_cnt=#{cart_cnt} where midx=#{midx} and cart_idx=#{cart_idx};
+	update cart set cart_cnt=#{cart_cnt} where midx=#{midx} and cart_idx=#{cart_idx}
 	</update>
-	
-	
+	<!-- 카트삭제버튼 -->
+	<delete id="deleteCart" parameterType="cartVo">
+	delete from cart where cart_idx=#{cart_idx} and midx=#{midx}
+	</delete>
 </mapper>

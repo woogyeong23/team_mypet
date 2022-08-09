@@ -3,6 +3,7 @@ package com.jeonju.mypet.service;
 
 import java.util.List;
 
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
@@ -22,15 +23,12 @@ public class CartService {
 	}
 	
 	
-	
-	public boolean cartMemCheck(CartVo cartVo) {
-		return cartDao.cartMemCheck(cartVo);
-	}
-
-	public int cartMemInto(CartVo cartVo) {
-		return cartDao.cartMemInto(cartVo);
-	}
-
+//	public boolean cartMemCheck(CartVo cartVo) {
+//		return cartDao.cartMemCheck(cartVo);
+//	}
+//	public int cartMemInto(CartVo cartVo) {
+//		return cartDao.cartMemInto(cartVo);
+//	}
 
 
 	public List<ProductVo> cartList(CartVo cartVo) {
@@ -40,21 +38,33 @@ public class CartService {
 
 
 
-	public int cartCount(CartVo cartVo) {
-		return cartDao.cartCount(cartVo);
+	public int countCart(CartVo cartVo) {
+		return cartDao.countCart(cartVo);
 	}
 
-
+	public int countMemberCart(CartVo cartVo) {
+		return cartDao.countMemberCart(cartVo);
+	}
 
 	public int modifycartcnt(CartVo cartVo) {
 		return cartDao.modifycartcnt(cartVo);
+	}
 
+	public int insertCart(CartVo cartVo) {
+		return cartDao.insertCart(cartVo);
+	}
+
+	public int updateCart(CartVo cartVo) {
+		return cartDao.updateCart(cartVo);
+	}
+	
+	public int deleteCart(CartVo cartVo) {
+		return cartDao.deleteCart(cartVo);
 	}
 
 
 
-	
-	
-	
-	
+
+
+
 }

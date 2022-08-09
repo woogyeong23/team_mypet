@@ -13,6 +13,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 
@@ -41,9 +42,8 @@ public class CartController {
 		
 		cartVo.setMidx(midx);
 		 List<ProductVo> list = cartService.cartList(cartVo);
-		 ProductVo productVo = new ProductVo();
 		model.addAttribute("cart", list );
-		model.addAttribute("cartCount",cartService.cartCount(cartVo));
+		model.addAttribute("countCart",cartService.countMemberCart(cartVo));
 		
 		 
 		System.out.println(list);
@@ -63,48 +63,88 @@ public class CartController {
 			cartVo.setMidx(midx);
 			list = cartService.cartList(cartVo);
 			
-			System.out.println(list);
+			
 		return list;	
 	}
 	
-	//장바구니 추가 부분
-	@PostMapping("/cartMemInto.do")
-	public String cartMemInto(@RequestParam("p_idx") int p_idx,CartVo cartVo,Model model,HttpServletRequest request) {
-		
-		HttpSession Session = request.getSession();
-		int midx = (int) Session.getAttribute("midx");
-		
-		cartVo.setMidx(midx);
-		cartVo.setP_idx(p_idx);
-		String data;
-		boolean isAlreadyexisted = cartService.cartMemCheck(cartVo);
-		if(isAlreadyexisted == true) {
-			data = "already_existed";
-		}else {
-			cartService.cartMemInto(cartVo);
-			data = "add_success";
-
-		}
-		return data; 
-	}
-	
+//	//장바구니 추가 부분
+//	@PostMapping("/cartMemInto.do")
+//	public String cartMemInto(@RequestParam("p_idx") int p_idx,CartVo cartVo,Model model,HttpServletRequest request) {
+//		
+//		HttpSession Session = request.getSession();
+//		int midx = (int) Session.getAttribute("midx");
+//		
+//		cartVo.setMidx(midx);
+//		cartVo.setP_idx(p_idx);
+//		String data;
+//		boolean isAlreadyexisted = cartService.cartMemCheck(cartVo);
+//		if(isAlreadyexisted == true) {
+//			data = "already_existed";
+//		}else {
+//			cartService.cartMemInto(cartVo);
+//			data = "add_success";
+//
+//		}
+//		return data; 
+//	}
+//	
 						
-	@PostMapping("/cntupdate.do")
-	public String cntupdate(CartVo cartVo) {
+	@PostMapping("/updatecnt.do")
+	public String updatecnt(CartVo cartVo) throws Exception {
 		
-		cartService.modifycartcnt(cartVo);
+		String result; 
+				
+		int cnt = cartService.modifycartcnt(cartVo);
 		
 		System.out.println("카운트:"+cartVo);
 		
-		return "redirect:/cart.do";
+		if(cnt == 1) {
+			result = "Y";
+		}else {
+			result = "N";
+		}
+		
+		
+		return result;
 		
 	}
 	
+		//장바구니 상품 추가
+		@GetMapping("/insertCart.do") 
+		public String insertCart(@ModelAttribute CartVo cartVo, HttpSession session) throws Exception{ 
+			int midx = (int) session.getAttribute("midx");
+			cartVo.setMidx(midx);
+			
+			//장바구니에 기존 상품이 있는지 검사
+			int count = cartService.countCart(cartVo);
+			
+			if(count == 0) {
+				//없으면 insert
+				cartService.insertCart(cartVo);
+			}else {
+				//있으면 update
+				cartService.updateCart(cartVo);
+			}
+			
+			System.out.println(cartVo.getCart_cnt());
+			
+			return "redirect:/membercart.do";
 	
 	
+		}
 	
-	
-	
-	
+		
+		@PostMapping("/deletecart.do")
+		public String deletecart(CartVo cartVo, HttpSession session) {
+			
+			int midx = (int) session.getAttribute("midx");
+			cartVo.setMidx(midx);
+			String result = "N";
+			int delete = cartService.deleteCart(cartVo);
+			if(delete == 1) {
+				 result = "Y";
+			}System.out.println("삭제:"+cartVo);
+			return result;
+		}
 	
 }

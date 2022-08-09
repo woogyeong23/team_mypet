@@ -13,6 +13,8 @@ public class CartVo {
 	//상품
 	private String p_name; // join용
 	private String p_content;
+	
+
 	private int p_price;
 	private String m_nick;
 	private int p_discount;
@@ -27,6 +29,33 @@ public class CartVo {
 	private int salePrice;
 	private int totalPrice;
 	private int totalPoint;
+
+	
+	
+	public String getP_content() {
+		return p_content;
+	}
+	public void setP_content(String p_content) {
+		this.p_content = p_content;
+	}
+	public String getP_name() {
+		return p_name;
+	}
+	public void setP_name(String p_name) {
+		this.p_name = p_name;
+	}
+	public int getP_price() {
+		return p_price;
+	}
+	public void setP_price(int p_price) {
+		this.p_price = p_price;
+	}
+	public int getP_disprice() {
+		return p_disprice;
+	}
+	public void setP_disprice(int p_disprice) {
+		this.p_disprice = p_disprice;
+	}
 	
 	public int getCart_idx() {
 		return cart_idx;
@@ -66,25 +95,7 @@ public class CartVo {
 	}
 	
 	
-	
-	public String getP_name() {
-		return p_name;
-	}
-	public void setP_name(String p_name) {
-		this.p_name = p_name;
-	}
-	public String getP_content() {
-		return p_content;
-	}
-	public void setP_content(String p_content) {
-		this.p_content = p_content;
-	}
-	public int getP_price() {
-		return p_price;
-	}
-	public void setP_price(int p_price) {
-		this.p_price = p_price;
-	}
+
 	public String getM_nick() {
 		return m_nick;
 	}
@@ -98,12 +109,7 @@ public class CartVo {
 		this.p_discount = p_discount;
 	}
 	
-	public int getP_disprice() {
-		return p_disprice;
-	}
-	public void setP_disprice(int p_disprice) {
-		this.p_disprice = p_disprice;
-	}
+
 	
 	
 	public String getP_ori_filename() {
@@ -119,9 +125,6 @@ public class CartVo {
 		this.p_sys_filename = p_sys_filename;
 	}
 	
-	
-	
-	
 	public int getTotalPrice() {
 		return totalPrice;
 	}
@@ -130,7 +133,7 @@ public class CartVo {
 		return totalPoint;
 	}
 	public void setTotalPoint() {
-		this.totalPoint = (int) (this.totalPrice * 0.05);
+		this.totalPoint = (int) (this.totalPrice * this.p_discount);
 	}
 	
 	@Override

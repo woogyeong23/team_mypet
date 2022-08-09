@@ -36,8 +36,8 @@
 	<context:component-scan base-package="com.jeonju.mypet.service" />
 	
 	
-	<!-- Interceptor 설정: 로그인 여부 체크하는 LoginInterceptor 설정 -->
 	<interceptors> 
+		<!-- Interceptor 설정: 로그인 여부 체크하는 LoginInterceptor 설정 -->	
 		<interceptor>
 			<mapping path="/*.do"/>
 			<exclude-mapping path="/home.do"/>
@@ -61,17 +61,21 @@
 
 			<exclude-mapping path="/logout.do"/>
 			
-
+			<!-- 소현 -->
+			<exclude-mapping path="/productList.do"/>
+			<exclude-mapping path="/productNew.do"/>
+			<exclude-mapping path="/productBest.do"/>
+			<exclude-mapping path="/productView.do"/>
 			
-
-		
+				
 			<beans:bean id="loginInterceptor" class="com.jeonju.mypet.interceptor.LoginInterceptor"/>
 		</interceptor>
+
 	
 	</interceptors>
 
 
-
+	
 
 
 

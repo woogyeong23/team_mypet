@@ -18,7 +18,7 @@ $(document).ready(function(){
 				
 			});
 
-			$ajax({
+			$.ajax({
 				type:"post",
 				url:"${pageContext.request.contextPath}/petdelete.do",
 				data:{"pet_idx_arr":pet_idx_arr},
@@ -41,7 +41,7 @@ $(document).ready(function(){
 			let pet_idx = $(this).attr("name");
 			
 			
-			$ajax({
+			$.ajax({
 				type:"post",
 				url:"${pageContext.request.contextPath}/petUpdate.do",
 				data:{"pet_idx":pet_idx},

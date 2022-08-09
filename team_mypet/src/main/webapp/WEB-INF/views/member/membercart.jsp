@@ -12,8 +12,8 @@
 
 $(document).ready(function(){
 	
-	
-	
+
+	//버튼
 	$(".NumberCounter__minus").on("click", function(){
 		
 		let p_idx = $(this).attr("name");
@@ -30,6 +30,7 @@ $(document).ready(function(){
 				console.log("minus");
 			}
 	});
+	//버튼
 	$(".NumberCounter__plus").on("click", function(){
 		
 		let p_idx = $(this).attr("name");
@@ -44,35 +45,68 @@ $(document).ready(function(){
 				console.log("plus");
 		
 	});
-
+	//cnt -1
 	$(".NumberCounter__minus").on("click", function(){
+		
 		let cart_idx = $(this).data("cart_idx");
-		let cart_cnt = $(this).find("input").val();
-		alert(cart_cnt);
-		
+		let midx = $("#midx_input").val();
+		let p_idx = $("#p_idx_input").val();
+		let cart_cnt = $(this).parent().find("input[name='cart_cnt']").val();
 
-		$("#update_cart_idx").val(cart_idx);
-		$("#update_cart_cnt").val(cart_cnt);
-		$(".cnt_update_form").submit();
-		
-		
+		$.ajax({
+			type:"post",
+			url:"${pageContext.request.contextPath}/updatecnt.do",
+			data:{"cart_cnt": cart_cnt,"cart_idx":cart_idx,
+					"midx":midx,"p_idx":p_idx},
+			success:function(data){
+				if(data =="Y"){
+				}else{
+				}
+			}
+		});
 	});
+	
+	//cnt +1
 	$(".NumberCounter__plus").on("click", function(){
 		
-		let p_idx = $(this).attr("name");
-		let cnt_plus = "#NumberCounter__plus"+p_idx;
-		let cnt_pid = $(cnt_plus).attr("id");
-		var p_price  = document.getElementById(cnt_pid).value;
-
 		let cart_idx = $(this).data("cart_idx");
+		let midx = $("#midx_input").val();
+		let p_idx = $("#p_idx_input").val();
 		let cart_cnt = $(this).parent().find("input[name='cart_cnt']").val();
-		alert(cart_cnt);
-
-		$("#update_cart_idx").val(cart_idx);
-		$("#update_cart_cnt").val(cart_cnt);
-		$(".cnt_update_form").submit();
-	
+		
+		$.ajax({
+			type:"post",
+			url:"${pageContext.request.contextPath}/updatecnt.do",
+			data:{"cart_cnt": cart_cnt,"cart_idx":cart_idx,
+					"midx":midx,"p_idx":p_idx},
+			success:function(data){
+				if(data =="Y"){
+				}else{
+				}
+			}
+		});
 	});
+	
+	
+	//삭제
+	$(".CartOptionEditingButtonGroup__button").on("click", function(){
+		
+		let cart_idx = $(this).attr("name");
+		let midx = $("#midx_input").val();
+		
+		$.ajax({
+			type:"post",
+			url:"${pageContext.request.contextPath}/deletecart.do",
+			data:{"cart_idx":cart_idx,"midx":midx},
+			success:function(data){
+				if(data =="Y"){
+					$("table:has(input:checked)").remove();
+				}else{
+				}
+			}
+		});
+	});
+	
 	
 	
 	setTotalInfo();
@@ -91,10 +125,10 @@ $(document).ready(function(){
 		let artistbx = artistchk.value;
 		if($("#cart-product-all-check").prop("checked")){
 			$("#item_checkedbox").attr("checked",false);
-			artistbx.attr("checked",true);
+			artistbx.is("checked",true);
 		}else{
 			$("#item_checkedbox").attr("checked",false);
-			artistbx.attr("checked",false);
+			artistbx.is("checked",false);
 		}
 	});
 	
@@ -112,7 +146,8 @@ $(document).ready(function(){
 		
 		$("#CartArtistItem").each(function(index, item){
 			
-			if($(item).find(".individual_cart_checkbox").is(":checked") === true ){	//체크여부
+			if($(item).find(".artist_checkedbox").is(":checked") === true ){	//체크여부
+				
 				for (var i = 0; i < Price_cnt; i++){
 					// 총 가격
 					totalPrice += parseInt($(item).Price[i]) * parseInt($(item).Cnt[i]);
@@ -213,6 +248,7 @@ $(document).ready(function(){
 
 
 
+
 <aside class="content">
 		<div class="CartPage">
       		<div class="PageHeader"> 
@@ -240,31 +276,30 @@ $(document).ready(function(){
    					<input type="hidden" name="p_price" id="p_price_input" value="${cart.p_price}">
    					<input type="hidden" name="p_idx" id="p_idx_input" value="${cart.p_idx}">
    					<input type="hidden" name="cart_idx" id="cart_idx_input" value="${cart.cart_idx}">   					
+   					<input type="hidden" name="midx" id="midx_input" value="${cart.midx}">
    					<input type="hidden" name="p_name" id="p_name_input" value="${cart.p_name}">
    					<input type="hidden" name="p_content" id="p_content_input" value="${cart.p_content}">
    					<input type="hidden" name="cart_cnt" id="cart_cnt_input" value="${cart.cart_cnt}">
-   					<input type="hidden" name="midx" id="midx_input" value="${cart.midx}">
-   					
    						<div class="CartArtistItem__header">
    						<label>
 							<div class="checkbox">   							
-   							<div class="input-checkbox">
-   							<input id="artist_checkedbox${cart.p_idx}" data-cartNum="${cart.cart_idx}" type="checkbox" autocomplete="off" class="bp" value="${cart.p_content}" checked="checked">
+   								<div class="input-checkbox">
+   									<input id="artist_checkedbox${cart.p_idx}" data-cartNum="${cart.cart_idx}" type="checkbox" autocomplete="off" class="bp" value="${m_nick}" checked="checked" >
+   								</div>
    							</div>
-   							</div>
-   							<span  class="CartArtistItem__title">${cart.p_content}</sqan> <!-- 작가이름 -->
+   							<span  class="CartArtistItem__title" >${m_nick}</span> <!-- 작가이름 -->
    						</label>
    						</div>
-   							<section class="CartArtistItem__itemList">
+   							<section class="CartArtistItem__itemList" >
    								<ul>
    									<div class="CartProductList">   						
    										<div class="CartProductListItem" id="CartProductListItem">   						
    											<div class="CartProductListItem__productInfo">   						
 			   									<div class="CartProductListItem__checkboxGroup">
-   													<div class="CartProductListItem__checkboxWrap" style="display: inline-block;">			
+   													<div class="CartProductListItem__checkboxWrap" style="display:inline-block;" >			
    														<div class="checkbox">
    															<div class="input-checkbox"  style="display: inline-block;"> 
-   																<input id="item_checkedbox" data-cartNum="${cart.cart_idx}" type="checkbox" autocomplete="off" class="bp" value="${cart.p_name}" checked="checked">   						
+   																<input id="item_checkedbox" data-cartNum="${cart.cart_idx}" type="checkbox" autocomplete="off" class="bp" value="${pageContext.request.contextPath}/resources/product/${cart.p_sys_filename}" checked="checked" >   						
    						 									</div>
    														</div>
    													</div>
@@ -275,40 +310,34 @@ $(document).ready(function(){
    												
    												</div>
    												</div>
-   												<form action="${pageContext.request.contextPath}/cntupdate.do" method="post" class="cnt_update_form">
-													<input type="hidden" name="cart_idx" class="${cart_idx}" id="cart_idx">
-													<input type="hidden" name="cart_cnt" class="${cart_cnt}" id="cart_cnt">
-													<input type="hidden" name="midx" value="${cart.midx}">
-												</form>
+   												
    												<div class="CartProductListItem__optionInfo">
    													<div class="CartOptionList">
    														<div class="CartOptionListItem">
    															<div class="CartOptionListItem__splitLeft">
    																<em class="CartOptionListItem__optionText"></em>
    																	<div class="CartOptionListItem__counter">
-   																		<label class="NumberCounter">
-   																		
-   																			<button type="button" id="NumberCounter__minus${cart.p_idx}" name="${cart.p_idx}" class="NumberCounter__minus"  data-cartId="${cart.cart_idx}" >-</button>
+   																		<label class="NumberCounter">											
+   																			<button type="button" id="NumberCounter__minus${cart.p_idx}" name="${cart.p_idx}" class="NumberCounter__minus"  data-cart_idx="${cart.cart_idx}" >-</button>
    																			<input  type="text" name="cart_cnt" id="NumberCounter__input${cart.p_idx}" class="NumberCounter__input" value="${cart.cart_cnt}" readonly="readonly">
-   																			<button type="button" id="NumberCounter__plus${cart.p_idx}" name="${cart.p_idx}" class="NumberCounter__plus"  data-cartId="${cart.cart_idx}">+</button>   						
+   																			<button type="button" id="NumberCounter__plus${cart.p_idx}" name="${cart.p_idx}" class="NumberCounter__plus"  data-cart_idx="${cart.cart_idx}">+</button>   						
    																		</label>
    																	</div>
    															</div>
    														
    															<div class="CartOptionListItem__splitRight"  >
-   																<em class="CartOptionListItem__totalPrice" id="CartArtistItem__Price" ><fmt:formatNumber pattern="###,###,###" value="${cart.p_price}"/></em> <!-- 상품가격 -->
+   																<em class="CartOptionListItem__totalPrice" id="CartArtistItem__Price" >개당 금액:<fmt:formatNumber pattern="###,###,###" value="${cart.p_price}"/></em> <!-- 상품가격 -->
    																
    																<div class="CartOptionListItem__btnGroup">
    																	<div class="CartOptionEditingButtonGroup">
-   																		<button id="Delete__button" class="CartOptionEditingButtonGroup__button CartOptionEditingButtonGroup__button--right">
+   																		<button id="delete__button${cart.cart_idx}" name="${cart.cart_idx}" class="CartOptionEditingButtonGroup__button CartOptionEditingButtonGroup__button--right">
    																		 X
    																		</button>
    																	</div>
    																</div> 
-   																<br>
-   																<em class="CartOptionListItem__totalPrice">예상 적립금 :
-   																	<a id="CartArtistItem__Point"></a>
-   																</em>  	<!-- 예상적립금 -->													
+<!--    																<em class="CartOptionListItem__totalPrice">예상 적립금 : -->
+<!--    																	<a id="CartArtistItem__Point"></a> -->
+<!--    																</em>  	예상적립금													 -->
    															</div>
    														</div>
    													</div>
@@ -323,6 +352,7 @@ $(document).ready(function(){
    								작품 가격
    								</div>
    								<div class="CartArtistItem__price" id="totalPrice_span">
+
    								 <!-- 작품 가격 -->
 	   							</div>
    							</section>
@@ -331,14 +361,13 @@ $(document).ready(function(){
    								배송비
    								</div>
    								<div class="CartArtistItem__price" id="delivery_price">
+
    								<!-- 배송비 -->
 	   							</div>
    							</section>
    							<div class="vue-sticky-placeholder"></div>
    						</div>   	
-   						
-   						
-   						
+   				
 					</c:forEach>
    					
    					
@@ -353,7 +382,7 @@ $(document).ready(function(){
         				<span class="CartCheckboxControl__label">
         				전체 선택 (
             			<span class="CartCheckboxControl__label--bold" id="totalcnt">1</span>
-            			/${cartCount}) 
+            			/${countCart}) 
             			</span>
         			</label>
         		</div>
@@ -399,9 +428,11 @@ $(document).ready(function(){
         	</div>
  		</div>
 	</div>
-
 </aside>
 </main>
+
+
+
 
 <!-- 푸터와 js************************************************ -->
     <jsp:include page="../../include/footer.jsp" />  

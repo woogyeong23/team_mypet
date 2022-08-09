@@ -63,6 +63,11 @@ public class ProductService {
 	public List<Product_ImgVo> getProductImgs(int p_idx) {
 		return productDao.getProductImgs(p_idx);
 	}
+
+
+	public ProductVo reviewWrite(int p_idx) {
+		return productDao.reviewWrite(p_idx);
+	}
 	
 	//소현
 }

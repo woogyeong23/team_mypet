@@ -8,7 +8,7 @@
 
 <head>
 <meta charset="UTF-8">
-<title>상품 목록</title>
+<title>마이펫 상품목록</title>
 <!-- css***************************************************** -->
     <jsp:include page="../../include/head.jsp" />  
     <!-- fontAwesome Icon link -->
@@ -286,13 +286,13 @@ list-style: none;
                     <div class="single-product">
                     	<div class="product-image" style="position: relative;">
                     	<a href="productView.do?p_idx=${productVo.p_idx}">
-                    			<img src="${pageContext.request.contextPath}/resources/assets/images/products/${productVo.p_sys_filename}" width="300px" height="300px">
+                    			<img src="${pageContext.request.contextPath}/resources/product/${productVo.p_sys_filename}" width="300px" height="300px">
 						</a>
-						<!--                             
+						                          
 						<div class="button">
                         <a href="product-details.html" class="btn"><i class="lni lni-cart"></i> Add to Cart</a>
                         </div> 
-                        -->
+                        
                         <div style="position: absolute; left: 4px; top: 4px;"> </div> <!-- 찜하기버튼 -->
                         </div>
                         
