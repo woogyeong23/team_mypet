@@ -16,6 +16,19 @@ public class ReviewVo {
 	private String delyn;
 	private Date review_delday;
 	
+	
+	//소현
+	private String review_nick;
+
+	public String getReview_nick() {
+		return review_nick;
+	}
+	public void setReview_nick(String review_nick) {
+		this.review_nick = review_nick;
+	}
+	
+	//소현
+	
     //  test 22.7.29
 	private String p_ori_filename;
 	private String p_name;
@@ -104,7 +117,6 @@ public class ReviewVo {
 		this.p_ori_filename = p_ori_filename;
 	}
 	//
-	
 	
 	
 	

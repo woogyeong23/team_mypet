@@ -1,8 +1,7 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
 <!DOCTYPE html>
-
-    <!-- Start Footer Area -->
+<!-- Start Footer Area -->
     <footer class="footer">
         <!-- Start Footer Top -->
         <div class="footer-top">
@@ -199,3 +198,4 @@
             }
         });
     </script>
+    

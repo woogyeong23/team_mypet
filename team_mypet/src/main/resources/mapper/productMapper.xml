@@ -94,6 +94,21 @@
 	where a.p_idx=#{p_idx}
 	</select>
 	
+	<!-- 상세페이지 리뷰 -->
+	<select id="getReviewList" resultType="ReviewVo">
+	select a.*, b.p_name
+	from review a join product b on a.p_idx=b.p_idx join orders c on a.orders_idx=c.orders_idx
+	where b.p_idx=#{p_idx}
+	</select>
+	
+	<!-- 상세페이지 판매자의다른상품리스트 -->
+	<select id="getSellerPlist" resultType="productVo">
+	SELECT b.*
+	from sellerstory a join product b on a.seller_idx=b.seller_idx
+	where b.seller_idx=#{seller_idx};
+	</select>
+	
+	
 <!-- 소현 -->
 
 </mapper>

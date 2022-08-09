@@ -11,6 +11,7 @@ import org.springframework.stereotype.Repository;
 import com.jeonju.mypet.vo.Criteria;
 import com.jeonju.mypet.vo.ProductVo;
 import com.jeonju.mypet.vo.Product_ImgVo;
+import com.jeonju.mypet.vo.ReviewVo;
 
 
 @Repository
@@ -72,6 +73,13 @@ public class ProductDao {
 	}
 	public ProductVo reviewWrite(int p_idx) {
 		return sqlSession.selectOne(MAPPER + ".reviewWrite",p_idx);
+	}
+	
+	public List<ReviewVo> getReviewList(int p_idx) {
+		return sqlSession.selectList(MAPPER + ".getReviewList",p_idx);
+	}
+	public List<ProductVo> getSellerPlist(ProductVo product) {
+		return sqlSession.selectList(MAPPER + ".getReviewList",product);
 	}
 	
 

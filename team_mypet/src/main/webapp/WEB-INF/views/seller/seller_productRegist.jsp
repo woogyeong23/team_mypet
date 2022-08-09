@@ -327,7 +327,7 @@
 	
 	
 	<!-- 푸터와 js************************************************ -->
-    <jsp:include page="../../include/footer.jsp" />  
+     <jsp:include page="../../include/footer.jsp" /> 
 	<!-- ************************************************ -->
 <script>
 $('.summernote').summernote({

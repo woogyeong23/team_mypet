@@ -3,16 +3,6 @@
   "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 
 <mapper namespace = "com.jeonju.mypet.cart">
-
-		<!-- 장바구니 유효성검사 -->
-<!-- 	<select id="gercartMemCheck" resultType="Boolean" parameterType="cartVo"> -->
-<!-- 		select -->
-<!-- 		<![CDATA[ -->
-<!--  		if(count(*) < 0,'false','true') -->
-<!-- 		]]> -->
-<!-- 		from cart where midx = #{midx} and p_idx = #{p_idx} -->
-<!-- 	</select> -->
-
 	
 	<!-- 장바구니 추가 -->
 	<insert id="insertCart" parameterType="cartVo">

@@ -22,6 +22,7 @@ import com.jeonju.mypet.vo.Criteria;
 import com.jeonju.mypet.vo.PageMaker;
 import com.jeonju.mypet.vo.ProductVo;
 import com.jeonju.mypet.vo.Product_ImgVo;
+import com.jeonju.mypet.vo.ReviewVo;
 
 @Controller
 public class ProductController {
@@ -59,15 +60,23 @@ public class ProductController {
 	
 	//상품상세페이지
 	@GetMapping("/productView.do")
-	public String getproductView(@RequestParam("p_idx") int p_idx, Model model) {
+	public String getproductView(@RequestParam("p_idx") int p_idx,ProductVo product,Model model) {
 		 System.out.println("상품번호 : " + p_idx);
-		 
+
 		 ProductVo productView = productService.getProductView(p_idx);
 		 model.addAttribute("productView", productView);
 	
 		 List<Product_ImgVo> product_imgs = productService.getProductImgs(p_idx);
 		 model.addAttribute("product_imgs",product_imgs);
-		 
+
+		List<ReviewVo> reviewList = productService.getReviewList(p_idx);
+		model.addAttribute("reviewList", reviewList);
+		
+		List<ProductVo> sellerPlist = productService.getSellerPlist(product);
+		model.addAttribute("sellerPlist",sellerPlist);
+		
+
+		
 		 return "product/productView"; 
 	}
 	
@@ -87,7 +96,17 @@ public class ProductController {
 	}
 	
 	@GetMapping("/reviewWrite.do")
-	public String reviewWrite() {
+	public String reviewWrite(int p_idx,Model model) {
+		
+
+		ProductVo ReviewWP = productService.getProductView(p_idx);
+		
+		
+		model.addAttribute("ReviewWP",ReviewWP);
+		
+		System.out.println("리뷰상품번호"+ p_idx);
+		System.out.println("작가닉"+ ReviewWP.getM_nick());
+		
 			 return "product/reviewWrite"; 
 	}
 	

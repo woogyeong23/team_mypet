@@ -9,6 +9,7 @@ import com.jeonju.mypet.dao.ProductDao;
 import com.jeonju.mypet.vo.Criteria;
 import com.jeonju.mypet.vo.ProductVo;
 import com.jeonju.mypet.vo.Product_ImgVo;
+import com.jeonju.mypet.vo.ReviewVo;
 
 @Service
 public class ProductService {
@@ -68,6 +69,18 @@ public class ProductService {
 	public ProductVo reviewWrite(int p_idx) {
 		return productDao.reviewWrite(p_idx);
 	}
+
+
+	public List<ReviewVo> getReviewList(int p_idx) {
+		return productDao.getReviewList(p_idx);
+	}
+
+
+	public List<ProductVo> getSellerPlist(ProductVo product) {
+		return productDao.getSellerPlist(product);
+	}
+
+
 	
 	//소현
 }
