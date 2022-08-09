@@ -107,10 +107,46 @@
 			
 	</insert>
 	
+	<select id="getSellerProductVoList" parameterType="string" resultType="productVo">
+		select p_idx, p_name
+		from product
+		where seller_idx = (select seller_idx from sellerstory where midx=#{member_id})
+	</select>
 	
+	<select id="getSellerOrdersList" resultType="Hashmap">
+		select a.seller_idx, a.p_idx, p_name, b.detail_idx, detail_status, fixprice, orders_day,c.orders_idx, c.midx, d.m_name, d.m_id
+		from product a join detail b on a.p_idx=b.p_idx join orders c on b.orders_idx=c.orders_idx join members d on c.midx=d.midx join detail_day e on b.detail_idx=e.detail_idx
+		where a.seller_idx = (select midx from sellerstory where midx=#{member_id})
+		
 	
-	
-	
+			<if  test="searching == 'searchTotal'">
+					and (d.m_name like CONCAT('%',#{keyword},'%') or d.m_id like CONCAT('%',#{keyword},'%'))
+			</if>
+			<if  test="searching == 'searchName' ">
+					and d.m_name like  CONCAT('%',#{keyword},'%')
+			</if>
+			<if  test="searching == 'searchEmail' ">
+					and d.m_id like CONCAT('%',#{keyword},'%')
+			</if>
+
+			
+			<choose>
+				<when test="status=='00'">
+				</when>
+				<otherwise>
+					and detail_status=#{status}
+				</otherwise>
+			</choose>
+			
+			<choose>
+				<when test="product=='00'">
+				</when>
+				<otherwise>
+					and a.p_idx=#{product}
+				</otherwise>
+			</choose>
+					
+	</select>
 	
 	
 	

@@ -69,5 +69,15 @@ public class SellerService {
 		// TODO Auto-generated method stub
 		return sellerDao.getSellerIdx(member_id);
 	}
+
+	public List<ProductVo> seller_productVoList(String member_id) {
+		// TODO Auto-generated method stub
+		return sellerDao.getSellerProductVoList(member_id);
+	}
+
+	public List<HashMap<String, Object>> seller_ordersList(HashMap<String, String> searchInfo) {
+		// TODO Auto-generated method stub
+		return sellerDao.getSellerOrdersList(searchInfo);
+	}
 	
 }
