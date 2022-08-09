@@ -5,6 +5,91 @@
 <!DOCTYPE html>
 <html>
 <head>
+<script src="http://code.jquery.com/jquery-latest.min.js"></script>
+<script type="text/javascript">
+
+	$(document).ready(function() {
+		let p_idx = ${productVo.p_idx}
+		$("#add_cart").click(function(){
+			
+			alert("asd");
+			
+			$.ajax({
+				type : "POST",
+				url : "${pageContext.request.contextPath}/cartMemInto.do",
+				async : false,
+				data : {'p_idx' : p_idx},
+				success : function(data) {
+					if (data == 'add_success') {
+						toastr.options.preventDuplicates = true;
+						toastr.success("장바구니 추가완료");
+					} else if (data == 'already_existed') {
+						toastr.options.preventDuplicates = true;
+						toastr.warning("이미 추가 된 상품입니다");
+					}
+				}
+			});
+		});
+	});
+	
+	function change_qty2(t){
+		  //var min_qty = '수량버튼'*1;
+		  var min_qty = 1;
+		  var this_qty = $("#cart_cnt").val()*1;
+		  var max_qty = ${productView.p_limit_cnt}; // 현재 재고
+		  if(t=="m"){
+		    this_qty -= 1;
+		    if(this_qty<min_qty){
+		      //alert("최소구매수량 이상만 구매할 수 있습니다.");
+		      alert("수량은 1개 이상부터 가능합니다.");
+		      return;
+		      }
+		    }
+		    else if(t=="p"){
+		      this_qty += 1;
+		      if(this_qty>max_qty){
+		        alert("구매 가능 수량을 초과합니다.");
+		        return;
+		        }
+		    }
+		  var show_total_amount = basic_amount * this_qty;
+		  //$("#cart_cnt_txt").text(this_qty); 
+		  $("#cart_cnt").val(this_qty);
+		  $("#it_pay").val(show_total_amount);
+		  $("#total_amount").html(show_total_amount.format());
+		}
+		
+	//장바구니추가버튼
+	$("#btn_cart").on("click",function(e){
+		form.p_count = $("#cart_cnt").val();
+		$.ajax({
+			url : "${pageContext.request.contextPath}/member/membercart/insertCart.do", //호출할 url
+			type : 'post', // 호출할 방법(get,post)
+			data : form, //서버로 보낼 데이터
+			success : function(result){ //요청 성공시 수행될 메서드, 파라미터는 서버가 반환하는 값
+				cartAlert(result);
+			},
+		      error: function() {
+		          alert("에러 발생");
+		      }
+		})
+	});
+	function cartAlert(result){
+		if(result == '0'){
+			alert("장바구니에 추가를 하지 못하였습니다.");
+		} else if(result == '1'){
+			alert("장바구니에 추가되었습니다.");
+		} else if(result == '2'){
+			alert("장바구니에 이미 추가되어져 있습니다.");
+		} else if(result == '5'){
+			alert("로그인이 필요합니다.");	
+		}
+	}
+</script>
+
+
+
+
 	<meta charset="utf-8" />
     <meta http-equiv="x-ua-compatible" content="ie=edge" />
     <meta name="description" content="" />
@@ -96,35 +181,6 @@ function change_qty2(t){
 	  $("#total_amount").html(show_total_amount.format());
 	}
 	
-	
-/* 
-//장바구니
-//서버로 전송할 데이터
-const form = {
-		p_idx : '${productView.p_idx}',
-		p_name : '${productView.p_name}',
-		p_point : '${productView.p_point}',
-		p_prict : '${productView.p_price}',
-		p_disprict : '${productView.p_disprice}',
-		p_dvprice : '${productView.p_dvprice}',
-		p_count: ''
-}
-
-//장바구니추가버튼
-$("#btn_cart").on("click",function(e){
-	form.p_count = $("#cart_cnt").val();
-	$.ajax({
-		url : "${pageContext.request.contextPath}/member/membercart/insertCart.do", //호출할 url
-		type : 'post', // 호출할 방법(get,post)
-		data : form, //서버로 보낼 데이터
-		success : function(result){ //요청 성공시 수행될 메서드, 파라미터는 서버가 반환하는 값
-			cartAlert(result);
-		},
-	      error: function() {
-	          alert("에러 발생");
-	      }
-	})
-});
 
 
 function cartAlert(result){
@@ -138,7 +194,7 @@ function cartAlert(result){
 		alert("로그인이 필요합니다.");	
 	}
 }
- */
+
 </script>
 
 
@@ -268,6 +324,9 @@ function cartAlert(result){
 				</div>
 				<!-- 상품이미지 옆 박스 -->
 				<div class="col-lg-6 col-md-12 col-12">
+					<input type="hidden" name="p_idx" value="${productVo.p_idx}">
+					<input type="hidden" name="midx" value="${productVo.midx}">
+										
 					<div class="product-info">
 						<table style="width: 100%; margin: 0px 0px 20px;">
 							<tr>
@@ -307,9 +366,8 @@ function cartAlert(result){
 							<p>적립금<span style="padding-left: 10px">${productView.p_point}</span></p>
 							<p>배송비<span style="padding-left: 10px">${productView.p_dvprice}원(${productView.p_free_dvprice}원이상 무료배송)</span></p>
 						</div>
-						
 						<form class="cart_form" method="get" action="${pageContext.request.contextPath}/insertCart.do">
-							
+	
 						<hr>
 						<div class="col-lg-12">
 						<div class="count">
@@ -345,9 +403,8 @@ function cartAlert(result){
 						<div class="bottom-content">
 							<div class="row align-items-end">
 								<div class="col-lg-4 col-md-4 col-12">
+
 									<div class="button cart-button">
-										<!-- <button type="button" class="btn" id="add_cart" style="width:100%;">장바구니</button>
-									  -->
 										<button id="btn_cart" class="btn" style="width:100%;">장바구니</button> 
 									</div>
 								</div>

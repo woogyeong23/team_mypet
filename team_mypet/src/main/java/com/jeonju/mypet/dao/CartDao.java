@@ -1,6 +1,7 @@
 package com.jeonju.mypet.dao;
 
 
+import java.util.List;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
@@ -10,13 +11,13 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Repository;
 
 import com.jeonju.mypet.vo.CartVo;
+import com.jeonju.mypet.vo.MembersVo;
 import com.jeonju.mypet.vo.ProductVo;
 
 
 @Repository
 public class CartDao {
 
-	//소현
 	private SqlSession sqlSession;
 	
 	public static final String MAPPER = "com.jeonju.mypet.cart";
@@ -25,51 +26,48 @@ public class CartDao {
 	public CartDao(SqlSession sqlSession) {
 		this.sqlSession = sqlSession;
 	}
-
-	//소현
 	
-	//장바구니 추가
-	public int insertCart(CartVo cart)  throws Exception {
-		return sqlSession.insert(MAPPER + ".insertCart", cart);
+	//유효성검사
+	public boolean cartMemCheck(CartVo cartVo) {
+		boolean result = sqlSession.selectOne(MAPPER+".gercartMemCheck",cartVo);
+		return result;
 	}
 
-	//장바구니에 해당 상품이 들어있는지 확인
-	public int countCart(int p_idx, int midx) {
-		Map<String, Object> map = new HashMap<String, Object>();
-		map.put("p_idx", p_idx);
-		map.put("midx", midx);
-		return sqlSession.selectOne(MAPPER + ".countCart",map);
-	}
-
-	//장바구니에 해당 상품이 이미 들어있다면 업데이트
-	public void updateCart(CartVo cart) {
-		sqlSession.update(MAPPER + ".updateCart",cart);
-	}
-	
-	//소현끝
-
+	//리스트뿌리기
 	public List<ProductVo> cartList(CartVo cartVo) {
 		return sqlSession.selectList(MAPPER+".getcartList",cartVo);
 	}
-	/*
-	public int cartMemCheck(CartVo cartVo) {
-		return sqlSession.selectOne(MAPPER+".gercartMemCheck",cartVo);
-	}
 	
-	public int cartMemInto(CartVo cartVo) {
-		return sqlSession.insert(MAPPER+".getcartMemInto",cartVo);
+	//수량변경
+	public int modifycartcnt(CartVo cartVo) {
+		return sqlSession.update(MAPPER+".getmodifycntcart",cartVo);
 	}
 
 
-
-
-	public int cartCount(CartVo cartVo) {
-		return sqlSession.selectOne(MAPPER+".getcartCount",cartVo);
+	//상품 넣을때 카운트
+	public int countCart(CartVo cartVo) {
+		return sqlSession.selectOne(MAPPER+".getcountCart",cartVo);
+	}
+	//장바구니 안에 카운트 (midx)
+	public int countMemberCart(CartVo cartVo) {
+		return sqlSession.selectOne(MAPPER+".getcountMemberCart",cartVo);
 	}
 
-	*/
+	//장바구니 넣기
+	public int insertCart(CartVo cartVo) {
+		return sqlSession.insert(MAPPER+".insertCart",cartVo);
+	}
+
+	//넣어져 있는거면 업데이트 하기
+	public int updateCart(CartVo cartVo) {
+		return sqlSession.update(MAPPER+".updateCart",cartVo);
+	}
+	//품목 삭제하기
+	public int deleteCart(CartVo cartVo) {
+		return sqlSession.delete(MAPPER+".deleteCart",cartVo);
+	}
 	
-	
-	
+
+
 
 }

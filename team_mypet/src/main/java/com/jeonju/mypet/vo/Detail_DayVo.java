@@ -7,6 +7,8 @@ public class Detail_DayVo {
 	private int detail_idx;
 	private int detail_status;
 	private Date detail_progressday;
+	
+	
 	public int getDetail_idx() {
 		return detail_idx;
 	}

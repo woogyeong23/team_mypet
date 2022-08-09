@@ -13,25 +13,11 @@
   
     <script src="http://code.jquery.com/jquery-latest.min.js"></script>
      <script>
-     $(function(){
+     $(function findid(){
+    	 
     	$("#id_find").click(function(){
     		let m_name = $("#m_name").val();
-    		$ajax({
-    			type : "post",
-    			url : "${pageContext.request.contextPath}/idfindProcess.do",
-    			data : {"m_name":m_name},
-    			success : function(data){
-    				if(data==null){
-    					$("#id_finded").text("등록되어 있지 않은 이름입니다.").css("color","red");
-
-    				}else{
-    					$("#id_finded").text(data).css("color","green");
-
-    				}
-    					
-    			},
-    			error: function(error){alert(error);}
-    		});
+    		
     	});  	 
      });
     </script>

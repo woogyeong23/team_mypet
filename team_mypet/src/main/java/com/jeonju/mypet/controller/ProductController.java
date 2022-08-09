@@ -17,6 +17,7 @@ import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 
 import com.jeonju.mypet.service.ProductService;
+import com.jeonju.mypet.vo.CartVo;
 import com.jeonju.mypet.vo.Criteria;
 import com.jeonju.mypet.vo.PageMaker;
 import com.jeonju.mypet.vo.ProductVo;

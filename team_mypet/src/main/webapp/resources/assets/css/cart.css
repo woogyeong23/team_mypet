@@ -4,7 +4,12 @@
     background: #fff;
     
 }
-	
+.CartList__sticky {
+    background-color: rgb(213 193 193 / 90%);
+}
+.PageHeader__step li.active .icon-num {
+    color: #333;
+}
 .PageHeader {
     position: relative;
     display: flex;
@@ -211,10 +216,7 @@ label {
     -webkit-font-smoothing: antialiased;
     -moz-osx-font-smoothing: grayscale;
 }
-.NumberCounter__button:first-child {
-    border-top-left-radius: 2px;
-    border-bottom-left-radius: 2px;
-}
+
 .NumberCounter__input{
     display: inline-block;
     vertical-align: middle;
@@ -234,7 +236,7 @@ label {
     color: #333333;
     font-weight: bold;
 }
-.NumberCounter__button {
+.NumberCounter__minus {
     display: inline-block;
     vertical-align: middle;
     color: #666666;
@@ -245,6 +247,27 @@ label {
     line-height: 24px;
     vertical-align: middle;
     font-weight: bold;
+}
+
+.NumberCounter__plus {
+    display: inline-block;
+    vertical-align: middle;
+    color: #666666;
+    font-size: 12px;
+    border: 1px solid #ccc;
+    width: 24px;
+    height: 24px;
+    line-height: 24px;
+    vertical-align: middle;
+    font-weight: bold;
+}
+.NumberCounter__plus {
+    border-top-left-radius: 2px;
+    border-bottom-left-radius: 2px;
+}
+.NumberCounter__minus {
+    border-top-left-radius: 2px;
+    border-bottom-left-radius: 2px;
 }
 .CartOptionListItem__totalPrice {
     font-size: 12px;
@@ -258,17 +281,18 @@ label {
     vertical-align: top;
     min-width: 85px;
 }
-.NumberCounter__button:disabled {
+.NumberCounter__minus:disabled {
+    border-color: #b4b4b4;
+    background: #f5f5f5;
+}
+.NumberCounter__plus:disabled {
     border-color: #b4b4b4;
     background: #f5f5f5;
 }
 .CartOptionListItem__counter .NumberCounter__input {
     font-size: 10px;
 }
-.NumberCounter__button:last-child {
-    border-top-right-radius: 2px;
-    border-bottom-right-radius: 2px;
-}
+
 .CartOptionListItem__btnGroup {
     display: inline-block;
     margin-left: 10px;

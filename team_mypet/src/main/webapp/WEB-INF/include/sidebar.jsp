@@ -3,18 +3,12 @@
     <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
    
 <!doctype html>
-<html>
-  <head>
-
-  </head>
-  <body>
-
-
+<aside>
 <input type="hidden">
-  <div class="flex-shrink-0 p-3 bg-white" style="width: 280px;">
-  <div style="width:150px;height:150px;text-align:center;" >
+  <div class="flex-shrink-0 p-3 bg-white" style="width: 280px;" >
+  <div style="width:150px;height:150px;" >
   <img src="resources/assets/images/profile.jpg" class="img-thumbnail" alt="프로필">
-</div>  
+</div>
   
     <a href="${pageContext.request.contextPath}/memberInfo.do" class="d-flex align-items-center pb-3 mb-3 link-dark text-decoration-none border-bottom">
       <svg class="bi me-2" width="30" height="24"><use xlink:href="#bootstrap"/></svg>
@@ -109,10 +103,9 @@
           </ul>
         </div>
       </li>
+      <li class="border-top my-3"></li>
     </ul>
   </div>
-
-
+</aside>
       <script src="../../resources/assets/js/sidebars.js"></script>
-  </body>
-</html>
+

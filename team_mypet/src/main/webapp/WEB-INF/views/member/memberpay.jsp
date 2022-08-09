@@ -7,23 +7,22 @@
  <!-- css************************************************ -->
     <jsp:include page="../../include/head.jsp" />  
 <!-- ************************************************ -->
-<!-- css************************************************ -->
-    <jsp:include page="../../include/pay.jsp" />  
-<!-- ************************************************ -->
+
 
     <!-- Bootstrap core CSS -->
     
-    <!-- Custom styles for this template -->
-    <link href="resources/assets/css/sidebar.css" rel="stylesheet">
-   
+    <link href="resources/assets/css/pay.css" rel="stylesheet">
+
   </head>
   <body>
 
     <!-- 헤더와 js************************************************ -->
     <jsp:include page="../../include/header.jsp" />  
 	<!-- ************************************************ -->
-<main style="padding-bottom : 0px;">
-<aside class="container">
+	
+<main style="padding-bottom:0px;">
+<article class="container" >
+	
 	<form class="form-payment">
 		<div class="inner-w800" style="width:800px;">
 		<div class="title-style clf">
@@ -173,7 +172,7 @@
    		</div>
 	</form>
 
-</aside>
+</article>
 </main>
 
 
