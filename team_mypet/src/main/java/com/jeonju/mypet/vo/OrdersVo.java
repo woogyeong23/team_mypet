@@ -19,9 +19,28 @@ public class OrdersVo {
 	private int orders_point;
 	private String orders_dv_request;
 	private Date orders_completeday;
+	private String m_name;
+	private String m_id;
+	private String bundleprice;
 	
-	
-	
+	public String getBundleprice() {
+		return bundleprice;
+	}
+	public void setBundleprice(String bundleprice) {
+		this.bundleprice = bundleprice;
+	}
+	public String getM_name() {
+		return m_name;
+	}
+	public void setM_name(String m_name) {
+		this.m_name = m_name;
+	}
+	public String getM_id() {
+		return m_id;
+	}
+	public void setM_id(String m_id) {
+		this.m_id = m_id;
+	}
 	private List<DetailVo> details; 
 	public List<DetailVo> getDetails() {
 		return details;

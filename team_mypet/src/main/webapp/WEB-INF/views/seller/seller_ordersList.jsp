@@ -102,6 +102,8 @@
 													<option value="2" <c:if test="${searchInfo.get('status') == '2'}">selected</c:if>>준비중</option>
 													<option value="3" <c:if test="${searchInfo.get('status') == '3'}">selected</c:if>>배송중</option>
 													<option value="4" <c:if test="${searchInfo.get('status') == '4'}">selected</c:if>>배송완료</option>
+													<option value="5" <c:if test="${searchInfo.get('status') == '5'}">selected</c:if>>구매확정</option>
+													<option value="6" <c:if test="${searchInfo.get('status') == '6'}">selected</c:if>>부분배송</option>
 												</select>
 											</div>
 											<!-- /상태 -->
@@ -138,31 +140,45 @@
 					
 					<!-- 검색결과 -->
 					<table class="table">
-  <thead>
-    <tr>
-      <th scope="col">주문번호</th>
-      <th scope="col">상품명</th>
-      <th scope="col">고객 이메일/이름</th>
-      <th scope="col">상태</th>
-      <th scope="col">가격</th>
-      <th scope="col">주문날짜</th>
-    </tr>
-  </thead>
-  <tbody class="table-group-divider">
-    <c:forEach var="HashMap" items="${ordersListMap}">
-		<tr>
-	      <!-- <th scope="row">1</th> -->
-	      <td><a href="${pageContext.request.contextPath}/seller_ordersDetail.do?detail_idx=${HashMap.detail_idx}">${HashMap.detail_idx}</a></td>
-	      <td>${HashMap.p_name}</td>
-	      <td>${HashMap.m_name}/${HashMap.m_id}</td>
-	      <td>${HashMap.detail_status}</td>
-	      <td><fmt:formatNumber value="${HashMap.fixprice}" pattern="#,###" />원</td>
-	      <td>${HashMap.orders_day}</td>
-	    </tr>
-	</c:forEach>
-    
-  </tbody>
-</table>
+					  <thead>
+					    <tr>
+					      <th scope="col">주문번호</th>
+					      <th scope="col">상품명</th>
+					      <th scope="col">고객 이메일/이름</th>
+					      <th scope="col">상태</th>
+					      <th scope="col">가격</th>
+					      <th scope="col">주문날짜</th>
+					    </tr>
+					  </thead>
+					  <tbody class="table-group-divider">
+					    <c:forEach var="OrdersVo" items="${ordersVoList}">
+							<tr>
+						      <!-- <th scope="row">1</th> -->
+						      <td><a href="${pageContext.request.contextPath}/seller_ordersDetail.do?orders_idx=${OrdersVo.orders_idx}&midx=${OrdersVo.midx}">${OrdersVo.orders_idx}</a></td>
+						      <td>
+						      	<c:forEach var="DetailVo" items="${OrdersVo.details}">
+									${DetailVo.p_name}.
+								</c:forEach>
+						      </td>
+						      <td>${OrdersVo.m_name}/${OrdersVo.m_id}</td>
+						      <td>
+						     	 <c:choose>
+						     	 	<c:when test="${OrdersVo.orders_status == 0}">입금대기</c:when>
+									<c:when test="${OrdersVo.orders_status == 1}">결제완료</c:when>
+									<c:when test="${OrdersVo.orders_status == 2}">준비중</c:when>
+									<c:when test="${OrdersVo.orders_status == 3}">배송중</c:when>
+									<c:when test="${OrdersVo.orders_status == 4}">배송완료</c:when>
+									<c:when test="${OrdersVo.orders_status == 5}">구매확정</c:when>
+									<c:when test="${OrdersVo.orders_status == 6}">부분배송</c:when>
+								</c:choose>
+						      </td>
+						      <td><fmt:formatNumber value="${OrdersVo.bundleprice }" pattern="#,###" />원</td>
+						      <td>${OrdersVo.orders_day}</td>
+						    </tr>
+						</c:forEach>
+					    
+					  </tbody>
+					</table>
 					<!-- /검색결과 -->
 
 

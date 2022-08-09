@@ -37,6 +37,262 @@
 			transform:translatY(-100%);
 		}
 		
+		html, body, div, span, applet, object, iframe, h1, h2, h3, h4, h5, h6, p, blockquote, pre, a, abbr, acronym, address, big, cite, code, del, dfn, em, img, ins, kbd, q, s, samp, small, strike, strong, sub, sup, tt, var, b, u, i, center, dl, dt, dd, ol, ul, li, fieldset, form, label, legend, table, caption, tbody, tfoot, thead, tr, th, td, article, aside, canvas, details, embed, figure, figcaption, footer, header, hgroup, menu, nav, output, ruby, section, summary, time, mark, audio, video {
+    margin: 0;
+    padding: 0;
+    border: 0;
+    font: inherit;
+    vertical-align: baseline;
+}
+		div {
+    display: block;
+}
+	
+	.table-style.type2 {
+    width: 100%;
+    border: 1px solid #d9d9d9;
+}
+	.table-style:first-child {
+    margin-top: 0;
+}
+	table {
+    border-collapse: collapse;
+    border-spacing: 0;
+    table-layout: fixed;
+    box-sizing: border-box;
+}
+	table>* {
+    color: inherit;
+    font-size: inherit;
+}
+	colgroup {
+    display: table-column-group;
+}
+	col {
+    display: table-column;
+}
+
+	element.style {
+    width: 120px;
+}
+	thead {
+    display: table-header-group;
+	}
+	.table-style.type2.th-bd tr th {
+    border-left: 1px solid #d9d9d9;
+}
+	.table-style.type2 th:first-child {
+    text-indent: 16px;
+}
+	.table-style.type2 th {
+    background-color: #f5f5f5;
+    line-height: 1.3em;
+    vertical-align: middle;
+}
+	.table-style th {
+    padding: 12px 0;
+    background: #f5f5f5;
+}
+	.table-style th, .table-style td {
+    color: #666;
+}
+	.ta-c {
+    text-align: center !important;
+}
+	th {
+    display: table-cell;
+    }
+	tbody {
+    border-color: inherit;
+}
+	.table-style.type2 td {
+    padding: 16px 0;
+}
+.table-style th:first-child, .table-style td:first-child {
+    border-left: 0 none;
+    text-align: left;
+}
+.table-style td {
+    border-top: 1px solid #d9d9d9;
+}
+	.list-item-wrap div.list-item, .table-style.type2 div.list-item {
+    display: table;
+    width: 100%;
+}
+	.table-style .list-item {
+    position: relative;
+}
+.table-style .list-item {
+    padding: 16px 0;
+    overflow: hidden;
+}
+	.list-item-wrap div.list-item, .table-style.type2 div.list-item {
+    display: table;
+    width: 100%;
+}
+	.table-style .list-item {
+    position: relative;
+}
+.table-style .list-item {
+    padding: 16px 0;
+    overflow: hidden;
+}
+	.list-item-wrap .list-item .area-img, .table-style.type2 .list-item .area-img {
+    width: 50px;
+    vertical-align: top;
+}
+.list-item-wrap .list-item .area-txt, .list-item-wrap .list-item .area-img, .table-style.type2 .list-item .area-txt, .table-style.type2 .list-item .area-img {
+    float: none;
+    display: table-cell;
+}
+.table-style.disable-ui td .area-img {
+    margin-left: 0;
+}
+	.list-item-wrap .list-item [data-ui=list-checker], .table-style.type2 .list-item [data-ui=list-checker] {
+    display: none;
+}
+	element.style {
+    background-image: url(https://image.idus.com/image/files/3dfb8d4…_320.jpg);
+}
+	.list-item-wrap .list-item .img-bg, .list-item-wrap .list-item .artist_card__img, .table-style.type2 .list-item .img-bg, .table-style.type2 .list-item .artist_card__img {
+    display: inline-block;
+    width: 64px;
+    height: 64px;
+    background: #efefef;
+    vertical-align: top;
+	background-size: cover;
+    background-repeat: no-repeat;
+    background-position: center;
+}	
+	.table-style .area-img .img-bg, .table-style .area-img .artist_card__img {
+    margin-left: 16px;
+}	
+	
+	.list-item-wrap .list-item .area-txt, .table-style.type2 .list-item .area-txt {
+    width: auto;
+    padding-left: 8px;
+    padding-right: 20px;
+    vertical-align: middle;
+    overflow: hidden;
+}
+	.table-style .area-txt {
+    margin-left: 8px;
+}
+	.table-style.type2 td {
+    padding: 16px 0;
+}
+	.table-style td {
+    border-top: 1px solid #d9d9d9;
+}
+	.wow-b {
+    word-wrap: break-word;
+}
+	.table-style.type2 .td-controller .col+.col {
+    margin-top: 5px;
+}
+	.wow-b {
+    word-wrap: break-word;
+}
+	.table-style.type2 .td-controller {
+    padding-left: 10px;
+    padding-right: 10px;
+    vertical-align: middle;
+}
+.table-style.type2 td {
+    padding: 16px 0;
+}
+.table-style td {
+    border-top: 1px solid #d9d9d9;
+}
+	.order-result.root {
+    display: table;
+    width: 100%;
+    table-layout: fixed;
+    border-collapse: collapse;
+}
+	.order-result .row {
+    display: table-row;
+}
+	.order-result .col {
+    display: table-cell;
+    border: 1px solid #555;
+    padding: 20px;
+    vertical-align: top;
+}
+	.order-result.artist-list .artist-item {
+    overflow: hidden;
+}
+	.order-result.artist-list .artist-name+.value-list {
+    margin-top: 10px;
+}
+.order-result.artist-list .value-list {
+    overflow: hidden;
+    border: 1px solid #d9d9d9;
+    background: #faf9f9;
+    padding: 10px 20px;
+}	
+	.order-result .col.no-spacing {
+    padding: 0;
+}
+.order-result .col {
+    display: table-cell;
+    border: 1px solid #555;
+    padding: 20px;
+    vertical-align: top;
+}	
+	.order-result .row {
+    display: table-row;
+}	
+	.order-result .col>.row.result-list {
+    padding: 24px;
+    background: #faf9f9;
+}
+.order-result .col>.row {
+    display: block;
+    width: 100%;
+}	
+		
+		
+		
+		.order-memo {
+    margin-top: 10px;
+}
+	.textarea {
+    height: 50px;
+}	
+	.textarea .textarea-div, .textarea textarea {
+    font-size: 14px;
+    line-height: 20px;
+    border: 1px solid #acacac;
+    width: 100%;
+    height: 100%;
+    -webkit-box-sizing: border-box;
+    -moz-box-sizing: border-box;
+    box-sizing: border-box;
+    padding: 8px;
+    /* -webkit-border-radius: 2px; */
+    -moz-border-radius: 2px;
+    border-radius: 2px;
+    -webkit-transition: all 150ms;
+    -o-transition: all 150ms;
+    -moz-transition: all 150ms;
+    transition: all 150ms;
+    resize: none;
+    -webkit-appearance: none;
+    -moz-appearance: none;
+    appearance: none;
+}	
+	.order-result.artist-list .value-name {
+    float: left;
+}	
+		.order-result.artist-list .value-price {
+    float: right;
+}
+	.order-result.artist-list .value-item {
+    overflow: hidden;
+}	
+		
+		
 	
 	</style>
 
@@ -69,248 +325,147 @@
 				<!-- content -->
 				<div class="col-md-9 col-12">
 					<div class="tab-content" id="nav-tabContent">
-						<h3 class="pb-1 border-bottom" style="margin-bottom:10px">주문 상세내역</h3>
+						<h3 class="pb-1 border-bottom" style="margin-bottom:10px; font-size: 24px;font-weight: bold;vertical-align: middle;color: #333;">주문 상세내역</h3>
+						
+						
 						<section>
-            <div class="title-style no-mt clf">
-                <div class="txt fl">주문 상세보기</div>
-            </div>
-
-            <div>
-                        <table class="table-style disable-ui type2 th-bd" data-active="">
-            <colgroup>
-                <col>
-                <col style="width:120px">
-                <col style="width:120px">
-            </colgroup>
-            <thead>
-                                    <tr class="m-hide">
-                        <th class="ta-c">작품</th>
-                        <th class="ta-c">판매 작가</th>
-                        <th class="ta-c"></th>
-                    </tr>
-                            </thead>
-            <tbody>
-                                    <tr>
-            <td>
-                <div class="list-item">
-                    <div class="area-img">
-                        <input class="bp" data-ui="list-checker" name="prd-name" type="checkbox" value="some-prd" checked="">
-                        <div class="img-bg" style="background-image: url(https://image.idus.com/image/files/3dfb8d4bf34c4ae6b5aa816dd1179270_320.jpg)"></div>
-                    </div>
-                    <div class="area-txt">
-                        <div class="list-head">
-                                                        <div class="row">
-                                <div class="col">
-                                    <a href="/w/product/8f2deda2-e9cb-42fc-85cc-ef529b760f93" class="title-txt" for="prd-name"> [9월할인] 리얼 전신 3d 도베르만 석고방향제</a>
-                                </div>
-                                <div class="col icon">
-                                    <span class="ico outline positive">작가 발송 완료</span>
-                                </div>
-                            </div>
-                        </div>
-                        <ul class="list-options">
-                                                            <li>
-                                    <span class="option-txt">
-                                                                                색상 : 블랙탄                                             /                                                                                     향 : 가든파티                                             /                                                                                     받침석고 : 추가안함                                             /                                                                                     향추가 : 5ml(+ 2000 원)                                             /                                                                                     선물포장 : 포장상자(+ 1500 원)                                                                                                                        </span>
-                                    <em class="option-count">1개</em>
-                                </li>
-                                                            <li>
-                                    <span class="option-txt">
-                                                                                색상 : 블랙                                             /                                                                                     향 : 미드섬머나잇                                             /                                                                                     받침석고 : 추가안함                                             /                                                                                     향추가 : 안함                                             /                                                                                     선물포장 : 포장상자(+ 1500 원)                                                                                                                        </span>
-                                    <em class="option-count">1개</em>
-                                </li>
-                                                                                        <div class="order-memo">
-                                    <div class="textarea">
-                                        <div class="textarea-div">예쁘게 해주세영~~</div>
-                                    </div>
-                                </div>
-                                                    </ul>
-                    </div>
-                </div>
-            </td>
-            <td class="td-controller wow-b row fixed">
-                <div class="col">
-                    <span class="txt">말짜사롱</span>
-                </div>
-                <div class="col">
-                    <a href="/w/message/2cb33e56-d68a-426e-af3a-82e4336c5ecc" class="btn btn-s btn-white" type="button">메시지로 문의</a>
-                </div>
-
-            </td>
-            <td class="td-controller row">
-                                                                                        <div class="col">
-                                <a class="btn btn-s btn-point" type="button" href="/w/me/order/review/0392cc9c-abcc-464b-b26b-c2796d05d274" data-modal-id="modal-review" data-modal-trigger="modal-link">구매후기 작성</a>
-                            </div>
-
-                            
-                                                                                                            <div class="col">
-                        <a href="https://m.search.daum.net/search?q=CJ%EB%8C%80%ED%95%9C%ED%86%B5%EC%9A%B4+633998494850" target="_blank" class="btn btn-s btn-white" data-tracking="">발송 정보 조회</a>
-                    </div>
-                                                    </td>
-
-        </tr>
-                                </tbody>
-        </table>
-                    </div>
-
+	            			<table class="table" style="border : 1px solid #d9d9d9;">
+							  <thead>
+							    <tr>
+							      <th scope="col">주문번호</th>
+							      <th scope="col">고객 이메일/이름</th>
+							      <th scope="col">상태</th>
+							      <th scope="col">가격</th>
+							      <th scope="col">주문날짜</th>
+							    </tr>
+							  </thead>
+							  <tbody class="table-group-divider">
+									<tr>
+								      <td>${orders.orders_idx}</td>
+								      <td>${orders.m_name} / ${orders.m_id}</td>
+								      <td>
+								     	 <c:choose>
+								     	 	<c:when test="${orders.orders_status == 0}">입금대기</c:when>
+											<c:when test="${orders.orders_status == 1}">결제완료</c:when>
+											<c:when test="${orders.orders_status == 2}">준비중</c:when>
+											<c:when test="${orders.orders_status == 3}">배송중</c:when>
+											<c:when test="${orders.orders_status == 4}">배송완료</c:when>
+											<c:when test="${orders.orders_status == 5}">구매확정</c:when>
+										</c:choose>
+								      </td>
+								      <td><fmt:formatNumber value="${orders.bundleprice}" pattern="#,###" />원</td>
+								      <td>${orders.orders_day}</td>
+								    </tr>					    
+							  </tbody>
+							</table>
+							<table class="table" style="border : 1px solid #d9d9d9;">
+							  <thead>
+							    <tr>
+							      <th scope="col">주문번호</th>
+							      <th scope="col">고객 이메일/이름</th>
+							      <th scope="col">상태</th>
+							      <th scope="col">가격</th>
+							      <th scope="col">주문날짜</th>
+							    </tr>
+							  </thead>
+							  <tbody class="table-group-divider">
+									<tr>
+								      <td><a href="${pageContext.request.contextPath}/seller_ordersDetail.do?detail_idx=${ordersContent.detail_idx}">${ordersContent.detail_idx}</a></td>
+								      <td>${ordersContent.p_name}</td>
+								      <td>${ordersContent.m_name} / ${ordersContent.m_id}</td>
+								      <td>
+								     	 <c:choose>
+								     	 	<c:when test="${ordersContent.detail_status == 0}">입금대기</c:when>
+											<c:when test="${ordersContent.detail_status == 1}">결제완료</c:when>
+											<c:when test="${ordersContent.detail_status == 2}">준비중</c:when>
+											<c:when test="${ordersContent.detail_status == 3}">배송중</c:when>
+											<c:when test="${ordersContent.detail_status == 4}">배송완료</c:when>
+											<c:when test="${ordersContent.detail_status == 5}">구매확정</c:when>
+										</c:choose>
+								      </td>
+								      <td><fmt:formatNumber value="${ordersContent.fixprice}" pattern="#,###" />원</td>
+								      <td>${ordersContent.orders_day}</td>
+								    </tr>					    
+							  </tbody>
+							</table>
                 
-            <div class="">
-                <h2 class="title2-style mt30">배송 정보</h2>
-                                <table class="table-style-head-left">
-                    <tbody>
-                        <tr>
-                            <th>받는분</th>
-                            <td>썸머킴</td>
-                        </tr>
-                        <tr>
-                            <th>전화</th>
-                            <td>010-6586-8819</td>
-                        </tr>
-                                                <tr>
-                            <th>주소</th>
-                            <td>54945
-전라북도 전주시 완산구 새터로 95 (서신동, 동아한일아파트)
-115-103</td>
-                        </tr>
-                    </tbody>
-                </table>
-            </div>
+				            <div class="">
+				                <h2 class="title2-style mt30">배송 정보</h2>
+				                <table class="table-style-head-left">
+				                    <tbody>
+				                        <tr>
+				                            <th>받는분</th>
+				                            <td>${ordersContent.orders_name}</td>
+				                        </tr>
+				                        <tr>
+				                            <th>전화</th>
+				                            <td>${ordersContent.orders_phone}</td>
+				                        </tr>
+				                        <tr>
+				                            <th>주소</th>
+				                            <td>${ordersContent.orders_addr} ${ordersContent.orders_detailaddr}</td>
+				                        </tr>
+				                    </tbody>
+				                </table>
+				            </div>
 
-                            <div class="">
-                    <h2 class="title2-style mt30">결제 정보</h2>
-                    <div class="order-result root">
-                        <div class="row">
-                            <div class="col order-result artist-list">
-                                                                    <div class="artist-item">
-                                        <div class="artist-name">
-                                            말짜사롱 작가님
-                                        </div>
-                                        <div class="value-list">
-                                                                                            <div class="value-item">
-                                                    <div class="value-name">
-                                                        리얼 전신 3d 도베르만 석고방향제                                                    </div>
-                                                    <div class="value-price">
-                                                        21,000원                                                    </div>
-                                                </div>
-                                                                                        <div class="value-item">
-                                                <div class="value-name">
-                                                    배송비
-                                                </div>
-                                                <div class="value-price">
-                                                    3,000원                                                </div>
-                                            </div>
-                                            <div class="value-item">
-                                                <div class="value-name">
-                                                    제주 / 도서산간 추가비용
-                                                </div>
-                                                <div class="value-price">
-                                                    0원                                                </div>
-                                            </div>
-                                            <div class="value-item">
-                                                <div class="value-name">
-                                                    할인쿠폰
-                                                </div>
-                                                <div class="value-price">
-                                                    0원                                                </div>
-                                            </div>
-                                            <div class="value-item">
-                                                <div class="value-name">
-                                                    배송비 할인쿠폰
-                                                </div>
-                                                <div class="value-price">
-                                                    0원                                                </div>
-                                            </div>
-                                        </div>
-                                    </div>
-                                                            </div>
-                            <div class="col no-spacing bg">
-                                <div class="row order-result result-list">
-                                    <div class="result-item">
-                                        <div class="result-name">
-                                            작품금액
-                                        </div>
-                                        <div class="result-value">
-                                            21,000원                                        </div>
-                                    </div>
-                                    <div class="order-result result-item">
-                                        <div class="result-name">
-                                            배송비
-                                        </div>
-                                        <div class="result-value">
-                                            3,000원                                        </div>
-                                    </div>
-                                    <div class="order-result result-item">
-                                        <div class="result-name">
-                                            제주 / 도서산간 추가비용
-                                        </div>
-                                        <div class="result-value">
-                                            0원                                        </div>
-                                    </div>
-                                    <div class="order-result result-item">
-                                        <div class="result-name">
-                                            작가쿠폰할인
-                                        </div>
-                                        <div class="result-value">
-                                            0원                                        </div>
-                                    </div>
-                                    <div class="order-result result-item">
-                                        <div class="result-name">
-                                            아이디어스 VIP 클럽
-                                        </div>
-                                        <div class="result-value">
-                                            0원                                        </div>
-                                    </div>
-                                    
-
-                                    <div class="order-result result-item">
-                                        <div class="result-name">
-                                            아이디어스 쿠폰
-                                        </div>
-                                        <div class="result-value">
-                                            -2,000원                                        </div>
-                                    </div>
-                                    <div class="order-result result-item">
-                                        <div class="result-name">
-                                            작가 후원하기
-                                        </div>
-                                        <div class="result-value">
-                                            0원                                        </div>
-                                    </div>
-                                </div>
-                                                                <div class="row point">
-                                    <dl class="clf">
-                                        <dt class="fl pb"><b>적립금 적립</b></dt>
-                                        <dd class="fr pb"><b class="hilight blue">380P</b></dd>
-                                        <dt class="fl">적립기준</dt>
-                                        <dd class="fr">결제 완료시 적립 예정 상태로 바로 적립</dd>
-                                        <dt class="fl">가용시점</dt>
-                                        <dd class="fr">작품 발송일로부터 7일 후 적립금 사용 가능</dd>
-                                        <dt class="fl">유효기간</dt>
-                                        <dd class="fr">적립일로부터 6개월</dd>
-                                    </dl>
-                                </div>
-                                                            </div>
-
-                        </div>
-                        <div class="row">
-                            <div class="col order-result account">
-                                <div class="account-name">결제방법</div>
-                                <div class="account-value">
-                                    <span class="account-bank">
-                                        토스                                    </span>
-                                </div>
-                            </div>
-                            <div class="col order-result order-total">
-                                <span class="order-name">
-                                    총 결제 금액
-                                </span>
-                                <span class="order-price">
-                                        22,000원                                </span>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-
+                   
+			                 <div >
+			                    <h2 class="title2-style mt30">결제 정보</h2>
+			                    <div class="order-result root">
+			                        <div class="row">
+			                            <div class="col order-result artist-list">
+			                                    <div class="artist-item">
+			                                        <div class="value-list" style="color:black">
+			                                            <div class="value-item">
+			                                                <div class="value-name">
+			                                                        ${ordersContent.p_name} ( ${ordersContent.detail_cnt} )   
+			                                                </div>
+			                                                <div class="value-price">
+			                                                        <fmt:formatNumber value="${ordersContent.p_dvprice}" pattern="#,###" />원                                                  
+			                                                </div>
+			                                            </div>
+			                                            <div class="value-item">
+			                                                <div class="value-name">
+			                                                    배송비
+			                                                </div>
+			                                                <div class="value-price">
+			                                                    3,000원                                                
+			                                                </div>
+			                                            </div>
+			                                            <div class="value-item">
+			                                                <div class="value-name">
+			                                                    제주 / 도서산간 추가비용
+			                                                </div>
+			                                                <div class="value-price">
+			                                                    0원
+			                                                </div>
+			                                            </div>
+			                                            <div class="value-item">
+			                                                <div class="value-name">
+			                                                    할인쿠폰
+			                                                </div>
+			                                                <div class="value-price">
+			                                                    0원                                                
+			                                                </div>
+			                                            </div>
+			                                            <div class="value-item">
+			                                                <div class="value-name">
+			                                                    배송비 할인쿠폰
+			                                                </div>
+			                                                <div class="value-price">
+			                                                    0원 
+			                                                </div>
+			                                            </div>
+			                                        </div>
+			                                    </div>
+			                            </div>
+			                            
+			
+			                        </div>
+			                        
+			                	</div>    
+							</div>
                                     </section>
 						
 						<input type="button" value="수정">
