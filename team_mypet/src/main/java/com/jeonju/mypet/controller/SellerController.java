@@ -292,6 +292,8 @@ public class SellerController {
 			List<DetailVo> detailVoList = sellerService.seller_detailVoList(info);
 			o.setDetails(detailVoList);
 			
+			
+			
 			String bundleprice = sellerService.seller_ordersPrice(info);
 			o.setBundleprice(bundleprice);
 		}
@@ -355,15 +357,15 @@ public class SellerController {
 	public String seller_profile( 
 			Model model, HttpServletRequest request
 			) throws IllegalStateException, IOException{
-
-		HttpSession session = request.getSession();
-		int midx = (int) session.getAttribute("midx");
-		String member_id= Integer.toString(midx);
-		
-		SellerStoryVo sellerStoryVo = sellerService.seller_profile(member_id);
-		model.addAttribute("sellerStoryVo",sellerStoryVo);
-
-		
+				
+				  HttpSession session = request.getSession(); int midx = (int)
+				  session.getAttribute("midx"); 
+				  String member_id= Integer.toString(midx);
+				  
+				  SellerStoryVo sellerStoryVo = sellerService.seller_profile(member_id);
+				  model.addAttribute("sellerStoryVo",sellerStoryVo);
+				  
+				 
 		return "seller/seller_profile";
 	}
 
@@ -394,11 +396,66 @@ public class SellerController {
 		return "seller/seller_profile";
 	}
 	
+	@RequestMapping(value="/seller_account.do", method = {RequestMethod.GET, RequestMethod.POST})
+	public String seller_account( 
+			Model model, HttpServletRequest request
+			) throws IllegalStateException, IOException{
+		
+		
+		//System.out.println(detail_idx);
+		HttpSession session = request.getSession(); int midx = (int)
+		session.getAttribute("midx"); 
+		String member_id= Integer.toString(midx);
+			
+		SellerStoryVo sellerStoryVo = sellerService.seller_profile(member_id);
+		  model.addAttribute("sellerStoryVo",sellerStoryVo);
+
+		
+		
+		return "seller/seller_account";
+	}
 	
+	@RequestMapping(value="/seller_accountModif.do", method = {RequestMethod.GET, RequestMethod.POST})
+	public String seller_accountModif( 
+			Model model, HttpServletRequest request
+			) throws IllegalStateException, IOException{
+		HttpSession session = request.getSession(); int midx = (int)
+				session.getAttribute("midx"); 
+				String member_id= Integer.toString(midx);
+					
+				SellerStoryVo sellerStoryVo = sellerService.seller_profile(member_id);
+				  model.addAttribute("sellerStoryVo",sellerStoryVo);
+
+
+		System.out.println(sellerStoryVo.getSeller_bank());
+		
+		
+		return "seller/seller_accountModif";
+	}
 	
-	
-	
-	
+	@RequestMapping(value="/seller_accountModifProcess.do", method = {RequestMethod.GET, RequestMethod.POST})
+	public String seller_accountModifProcess( SellerStoryVo sellerStoryVo,
+			
+			Model model, HttpServletRequest request
+			) throws IllegalStateException, IOException{
+		HttpSession session = request.getSession(); int midx = (int)
+				session.getAttribute("midx"); 
+				String member_id= Integer.toString(midx);
+				
+				String viewPage = null;
+				int flag = sellerService.updateSellerAccount(sellerStoryVo);
+				System.out.println(flag);
+				if(flag==1) { viewPage = "redirect:/seller_account.do";
+				}else {
+					viewPage = "/home";
+				}
+				model.addAttribute("membersVo",sellerStoryVo);
+				
+					  
+				
+				
+		return viewPage;
+	}
 	
 	
 	

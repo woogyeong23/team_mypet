@@ -7,7 +7,7 @@
 <html>
 <head>
 <meta charset="UTF-8">
-<title>프로필 관리</title>
+<title>계좌등록 수정</title>
 	<script src="http://code.jquery.com/jquery-latest.min.js"></script>
 	<!-- css************************************************ -->
 	    <jsp:include page="../../include/head.jsp" />  
@@ -25,17 +25,7 @@
 	
 	
 	</script>
-	<!-- 파일 업로드 추가 시작-->
-	<script>
-	    var cnt = 1;
-	    function fn_addFile(){
-	 		
 	
-	        $("#d_file").append("<br>" + "<input multiple='multiple'  type='file' name='file' required='required'>");
-	        cnt++;
-	    }
-	</script>
-	<!-- 파일 업로드 추가 끝-->
 </head>
 
 <body>
@@ -65,17 +55,37 @@
 				<!-- content -->
 				<div class="col-md-9 col-12">
 					<div class="tab-content" id="nav-tabContent">
-						<h3 class="pb-1 border-bottom" style="margin-bottom:10px">프로필 관리</h3>
-						<form name="frm" action="${pageContext.request.contextPath}/seller_profileModif.do" method="post"  enctype="multipart/form-data">
-							<div class="row">
-								<div class="col-12">
-								<div class="form-group message">
-								<textarea name="introduce" placeholder="${sellerStoryVo.seller_intro}" ></textarea>
-								</div>
-								</div>
-							</div>
-							<img src="${pageContext.request.contextPath}/resources/seller/${sellerStoryVo.seller_img}">
-							<input type="submit" value="수정">
+						<h3 class="pb-1 border-bottom" style="margin-bottom:10px">계좌관리</h3>
+						<form name="frm" action="${pageContext.request.contextPath}/seller_accountModif.do" method="post">
+							<table class="table-style-head-left">
+								<tbody>
+									
+										<th>
+										은행
+										</th>
+										<td>	
+										<div class="input-text size-m">
+										<input type="text" name="bank" value="${sellerStoryVo.seller_bank}" disabled>
+										</div>
+										</td>
+									</tr>
+									<tr>
+										<th>
+										계좌번호	
+										</th>
+										<td>
+										<div class="input-text size-m">
+										<input type="text" name="account" value="${sellerStoryVo.seller_account_number}" disabled>
+										</div>
+										</td>
+									</tr>
+									<tr>
+										<td colspan=2>
+											<button type="submit"class="btn btn-light" style="">수정하기</button>
+										</td>
+									</tr>
+								</tbody>
+							</table>
 						</form>
 						
 						

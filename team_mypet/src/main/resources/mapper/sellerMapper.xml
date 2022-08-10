@@ -86,7 +86,7 @@
 	<insert id="addProduct" parameterType="map">
 		
 		INSERT INTO product(seller_idx,p_category_idx,p_name,p_content,p_price,p_discount,p_disprice,p_cancle_info,p_ingerdient,p_dvprice,p_dvcompany,p_limit_cnt,p_point,p_add_dvprice,p_free_dvprice,p_size,p_status,p_stock)
-		 VALUES( #{seller_idx}, #{p_category_idx},#{p_name},#{p_content},#{p_price},#{p_discount},#{p_disprice},#{p_cancle_info},#{p_ingerdient},#{p_dvprice},#{p_dvcompany},#{p_limit_cnt},#{p_point},#{p_add_dvprice},#{p_free_dvprice},#{p_size},#{p_status},#{p_stock})
+		 VALUES( #{seller_idx}, #{p_category_idx},#{p_name},#{p_content},#{p_price},#{p_discount},#{p_disprice},#{p_cancle_info},#{p_ingerdient},#{p_dvprice},#{p_dvcompany},#{p_limit_cnt},#{p_point},#{p_add_dvprice},#{p_free_dvprice},#{p_size},0,#{p_stock})
 
 			
 	</insert>
@@ -115,7 +115,7 @@
 	
 	<select id="getSellerOrdersList" resultType="ordersVo">
 		
-		select orders.*, m_name, m_id
+		select orders.*, m_name, m_id, members.midx
 						from orders  join members on orders.midx=members.midx
 						where orders_idx in (select DISTINCT c.orders_idx
 											from product a join detail b on a.p_idx=b.p_idx join orders c on b.orders_idx=c.orders_idx 
@@ -124,11 +124,7 @@
 													from detail_day ) a
 													where a.num=1) e on b.detail_idx=e.detail_idx
 											where a.seller_idx = (select midx from sellerstory where midx=#{member_id})
-											<if test="status!='00'">
-												<if test="product!='00'">
-													and a.p_idx=#{product} and e.detail_status=#{product}
-												</if>
-											</if>
+											
 											<choose>
 												<when test="product=='00'">
 												</when>
@@ -270,4 +266,22 @@
 
 					
 	</select>
+	
+	<select id="getSeller_profile" resultType="sellerStoryVo">
+		select b.*
+		from members a join sellerstory b on a.midx=b.midx
+		where a.midx=#{member_id}
+					
+	</select>
+	
+	<update id="updateSellerAccount" parameterType="sellerStoryVo">
+	update sellerstory set seller_bank=#{seller_bank}, seller_account_number=#{seller_account_number}
+	 where midx=#{midx}
+	</update>
+	
+	
+	
+	
+	
+	
 </mapper>

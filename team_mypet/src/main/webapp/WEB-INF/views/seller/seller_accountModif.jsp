@@ -7,7 +7,7 @@
 <html>
 <head>
 <meta charset="UTF-8">
-<title>프로필 관리</title>
+<title>계좌수정하기</title>
 	<script src="http://code.jquery.com/jquery-latest.min.js"></script>
 	<!-- css************************************************ -->
 	    <jsp:include page="../../include/head.jsp" />  
@@ -25,17 +25,7 @@
 	
 	
 	</script>
-	<!-- 파일 업로드 추가 시작-->
-	<script>
-	    var cnt = 1;
-	    function fn_addFile(){
-	 		
 	
-	        $("#d_file").append("<br>" + "<input multiple='multiple'  type='file' name='file' required='required'>");
-	        cnt++;
-	    }
-	</script>
-	<!-- 파일 업로드 추가 끝-->
 </head>
 
 <body>
@@ -65,17 +55,44 @@
 				<!-- content -->
 				<div class="col-md-9 col-12">
 					<div class="tab-content" id="nav-tabContent">
-						<h3 class="pb-1 border-bottom" style="margin-bottom:10px">프로필 관리</h3>
-						<form name="frm" action="${pageContext.request.contextPath}/seller_profileModif.do" method="post"  enctype="multipart/form-data">
-							<div class="row">
-								<div class="col-12">
-								<div style="border : 1px solid #d9d9d9;">
-								${sellerStoryVo.seller_intro}
-								</div>
-								</div>
-							</div>
-							<img src="${pageContext.request.contextPath}/resources/seller/${sellerStoryVo.seller_img}">
-							<input type="submit" value="수정">
+						<h3 c    ="frm" action="${pageContext.request.contextPath}/seller_accountModifProcess.do" method="post">
+							<table class="table-style-head-left">
+								<tbody>
+									
+										<th>
+										은행
+										</th>
+										<td>	
+										<div class="input-text size-m">
+											<select class="form-select" name="bank" id="bank"  style="height: 40px; width: 130px; margin-right: 5px; margin-top: 0">
+													<option value="국민" <c:if test="${sellerStoryVo.seller_bank == '국민'}">selected</c:if>>국민</option>
+													<option value="하나" <c:if test="${sellerStoryVo.seller_bank == '하나'}">selected</c:if>>하나</option>
+													<option value="농협" <c:if test="${sellerStoryVo.seller_bank == '농협'}">selected</c:if>>농협</option>
+													<option value="신한" <c:if test="${sellerStoryVo.seller_bank == '신한'}">selected</c:if>>신한</option>
+													<option value="우리" <c:if test="${sellerStoryVo.seller_bank == '우리'}">selected</c:if>>우리</option>
+												</select>
+											
+											
+										</div>
+										</td>
+									</tr>
+									<tr>
+										<th>
+										계좌번호	
+										</th>
+										<td>
+										<div class="input-text size-m">
+										<input type="text" name="account" value="${sellerStoryVo.seller_account_number}">
+										</div>
+										</td>
+									</tr>
+									<tr>
+										<td colspan=2>
+											<button type="submit"class="btn btn-light" style="">수정하기</button>
+										</td>
+									</tr>
+								</tbody>
+							</table>
 						</form>
 						
 						

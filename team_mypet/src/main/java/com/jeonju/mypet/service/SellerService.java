@@ -132,5 +132,10 @@ public class SellerService {
 		// TODO Auto-generated method stub
 		return sellerDao.seller_ordersMap(info);
 	}
+
+	public int updateSellerAccount(SellerStoryVo sellerStoryVo) {
+		// TODO Auto-generated method stub
+		return sellerDao.updateSellerAccount(sellerStoryVo);
+	}
 	
 }

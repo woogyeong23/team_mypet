@@ -128,6 +128,11 @@ public class SellerDao {
 		// TODO Auto-generated method stub
 		return sqlSession.selectOne(MAPPER+".seller_ordersMap",info);
 	}
+
+	public int updateSellerAccount(SellerStoryVo sellerStoryVo) {
+		// TODO Auto-generated method stub
+		return sqlSession.update(MAPPER+".updateSellerAccount", sellerStoryVo);
+	}
 	
 	
 	
