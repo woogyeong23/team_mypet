@@ -10,6 +10,7 @@ import com.jeonju.mypet.dao.AdminDao;
 import com.jeonju.mypet.vo.BoardVo;
 import com.jeonju.mypet.vo.CommunityVo;
 import com.jeonju.mypet.vo.MembersVo;
+import com.jeonju.mypet.vo.OrdersVo;
 
 
 
@@ -66,6 +67,32 @@ public class AdminService {
 			return adminDao.getCommunityList();
 		
 		}
+
+
+	public List<OrdersVo> getOrdersList() {
+		// TODO Auto-generated method stub
+		return adminDao.getOrdersList();
+
+	
+	
+	}
+
+
+	public List<OrdersVo> getLaunchList() {
+		// TODO Auto-generated method stub
+		return adminDao.getLaunchList();
+	}
+
+
+
+	public int awInsert(BoardVo boardVo) {
+		// TODO Auto-generated method stub
+		
+		
+		System.out.println("앙ㅇㅇㅇㅇㅇㅇㅇㅇㅇㅇㅇㅇㅇㅇㅇㅇㅇㅇㅇㅇㅇㅇㅇㅇㅇㅇㅇㅇㅇㅇㅇㅇㅇㅇㅇㅇㅇㅇㅇㅇㅇㅇㅇㅇㅇㅇㅇㅇㅇㅇㅇㅇㅇㅇㅇㅇㅇㅇㅇㅇㅇㅇㅇㅇㅇㅇㅇㅇㅇㅇㅇㅇㅇㅇㅇㅇㅇ" );
+		return adminDao.awInsert(boardVo);
+		}
+
 
 }
 	

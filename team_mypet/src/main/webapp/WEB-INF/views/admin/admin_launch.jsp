@@ -107,41 +107,42 @@
 
 
 
-	<h2>공지사항</h2>
+	<h2>입점신청</h2>
 	
 
 		<thead>
-		<td><a href="${pageContext.request.contextPath}/admin_write.do">글쓰기</a></td>
 			<tr>
-				<th>글번호</th>
+				<th>번호</th>
 				<th>제목</th>
-			<th>작성일</th>
+				<th>작성자</th>
+				<th>작성일</th>
+				<th>파일</th>
+				<th>답변상태</th>
+				<th>답변내용</th>
 			</tr>
 		</thead>
 		<tbody>
-			<c:if test="${BoardList.size() == 0 }">
+			<c:if test="${LaunchList.size() == 0 }">
 				<tr>
 					<td colspan="4">등록 된 게시글이 없습니다.</td>
 				</tr>
 			</c:if>
-			<c:if test="${BoardList.size() > 0}">
-				<c:forEach var="BoardVo" items="${BoardList}">
+			<c:if test="${LaunchList.size() > 0}">
+				<c:forEach var="LaunchVo" items="${LaunchList}">
 					<tr>
-						<td>${BoardVo.bidx}</td>
-						<td>${BoardVo.board_subject}</td>
-					   <td>${BoardVo.board_wday}</td>
+						<td>${LaunchVo.launch_idx}</td>
+						<td>${LaunchVo.launch_subject}</td>
+						<td>${LaunchVo.launch_writer}</td>
+						<td>${LaunchVo.launch_wday}</td>
+						<td>${LaunchVo.launch_filename}</td>
+						<td>${LaunchVo.launch_status}</td>
+						<td>${LaunchVo.launch_answer}</td>
 					</tr>
-					
-				</c:forEach>	
-
-			
+				</c:forEach>
 			</c:if>
-			
-			
 		</tbody>
-	
-		
 	</table>
+
 
 
 

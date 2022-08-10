@@ -1,6 +1,5 @@
 <%@ page contentType="text/html; charset=UTF-8" %>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
-
 <html>
 <head>
 	<title>관리자페이지</title>
@@ -31,7 +30,7 @@
 
 
 
-관리자
+ <li><a href="${pageContext.request.contextPath}/admin.do">관리자</a> </li>
 
   
 </div>
@@ -100,94 +99,133 @@
 </header>
 
 <div class = "bodywrap">
-
-  
-
-<table border="1">
+<div class = "imgslide">
 
 
+<div class = "aa">
 
-	<h2>공지사항</h2>
-	
-
-		<thead>
-		<td><a href="${pageContext.request.contextPath}/admin_write.do">글쓰기</a></td>
-			<tr>
-				<th>글번호</th>
-				<th>제목</th>
-			<th>작성일</th>
-			</tr>
-		</thead>
-		<tbody>
-			<c:if test="${BoardList.size() == 0 }">
-				<tr>
-					<td colspan="4">등록 된 게시글이 없습니다.</td>
-				</tr>
-			</c:if>
-			<c:if test="${BoardList.size() > 0}">
-				<c:forEach var="BoardVo" items="${BoardList}">
-					<tr>
-						<td>${BoardVo.bidx}</td>
-						<td>${BoardVo.board_subject}</td>
-					   <td>${BoardVo.board_wday}</td>
-					</tr>
-					
-				</c:forEach>	
-
-			
-			</c:if>
-			
-			
-		</tbody>
-	
+                       
+           
+				
+				
+				
 		
-	</table>
+             
+<li><a href="${pageContext.request.contextPath}/memberList.do">구매자 리스트</a></li>
+<br>
+
+
+	
+를 볼 수 있는
+페이지입니다. <br>
+       </div>
+       
+  
+       
+       
+       <div class = "bb">
+
+ <li><a href="${pageContext.request.contextPath}/admin_buyer.do">커뮤니티 글</a></li>
+ 
+ <br>
+ 
+ 
+을 볼 수 있는
+페이지입니다. <br>
+
+
+
+     </div>
+     
+         <div class = "cc">
+<li><a href="${pageContext.request.contextPath}/admin_buyer.do">주문 내역</a>  </li>
+<br>
 
 
 
 
+을 볼 수 있는
+페이지입니다. <br>
 
+</div>
+
+
+
+
+<div class = "dd">
+
+<li><a href="${pageContext.request.contextPath}/admin_buyer.do">고객문의 내역</a>  </li>
+<br>
+
+
+
+
+을 볼 수 있는
+페이지입니다. <br>
+
+
+</div>
+
+
+
+<div class = "ee">
+             <li><a href="${pageContext.request.contextPath}/admin_buyer.do">후기</a> </li>
+             
+            
     
-        <div class ="contents">
+     <br>
+             
+를볼 수 있는
+페이지입니다. <br>
+             
+          </div>      
+                 
+             
+             <div class = "ff">
+<li><a href="${pageContext.request.contextPath}/admin_buyer.do">입점신청</a>  </li>
+<br>
+
+
+
+
+글을 볼 수 있는
+페이지입니다. <br>
+
+
+
+
+</div>
+
+
+    <div class ="contents">
+  
+        
             <ul class ="tabmenu">
                 <li>
 
                     <div class ="notice">
                        
                     </div>
-                  </li>
+                  
                   <li>
 
                     <div class ="gallery">
-                        
-
+                         
                     </div>
-                  </li>
+                  
 
     </ul>
 
 
         <div class ="otherwrap">
             <div class ="banner">
-<form method="get" action="admin_board.do">
-		<select name="searchType">
-			<option value="title" <c:if test="${!empty searchVO.searchType and searchVO.searchType eq 'title'}">selected</c:if>>제목</option>
-			<option value="contentWriter" <c:if test="${!empty searchVO.searchType and searchVO.searchType eq 'contentWriter'}">selected</c:if>>내용+작성자</option>
-		</select>
-		<input type="text" name="searchValue" <c:if test="${!empty searchVO.searchValue}">value="${searchVO.searchValue}"</c:if>>
-		<input type="submit" value="검색">
-	</form>
+
            
 </div>
 
                 <div class ="shortcut">
 
-                    
-                
-
-
-</div>
-
+     
             </div>
         </div>
 
@@ -195,7 +233,8 @@
         
 
 </div>
-	
+
+
 
 <footer>
 
@@ -214,9 +253,7 @@
 
 
 <div class ="copy">
-
-copyright 자리
-
+ 
 
 
 </div>

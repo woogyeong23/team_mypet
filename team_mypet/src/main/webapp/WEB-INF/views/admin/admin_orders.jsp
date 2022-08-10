@@ -111,11 +111,14 @@
 	
 
 		<thead>
-		<td><a href="${pageContext.request.contextPath}/admin_write.do">글쓰기</a></td>
 			<tr>
-				<th>글번호</th>
-				<th>제목</th>
-			<th>작성일</th>
+				<th>구매번호</th>
+				<th>상품명</th>
+			
+				<th>가격</th>
+				<th>판매자</th>
+				<th>배송상태</th>
+				<th>구매일시</th>
 			</tr>
 		</thead>
 		<tbody>
@@ -127,21 +130,19 @@
 			<c:if test="${BoardList.size() > 0}">
 				<c:forEach var="BoardVo" items="${BoardList}">
 					<tr>
-						<td>${BoardVo.bidx}</td>
+						<td>${BoardVo.orders_idx}</td>
+						<td>${BoardVo.orders_name}</td>
+						
+						<td>${BoardVo.orders_totalprice}</td>
 						<td>${BoardVo.board_subject}</td>
-					   <td>${BoardVo.board_wday}</td>
+						<td>${BoardVo.board_wday}</td>
+						<td>${BoardVo.board_wday}</td>
 					</tr>
-					
-				</c:forEach>	
-
-			
+				</c:forEach>
 			</c:if>
-			
-			
 		</tbody>
-	
-		
 	</table>
+
 
 
 

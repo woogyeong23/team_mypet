@@ -37,7 +37,12 @@
 		SELECT * FROM community
 		
 	</select>
-	
+
+
+	<select id="getLaunchList" resultType="launchVo">
+		SELECT * FROM launch
+		
+	</select>	
 	
 	
 	<update id="updateMemberGrade" parameterType="map" >
@@ -60,9 +65,19 @@
 
 
 
-
-
-
+<insert id="awInsert" parameterType="boardVo">
+    insert into community(bidx,midx,board_name,board_subject,board_content,board_writer,board_origin_bidx,board_depth,borad_level_,bord_front_image)
+    <choose>
+    
+      <when test="bord_front_image != null">
+      values(#{bidx},#{midx}, #{board_name}, #{board_subject}, #{board_content}, #{board_writer}, #{board_origin_bidx}, #{board_depth}, #{borad_level_}, #{bord_front_image}
+      </when>
+      
+      <otherwise>
+      values(#{bidx},#{midx}, #{board_name}, #{board_subject}, #{board_content}, #{board_writer}, #{board_origin_bidx}, #{board_depth}, #{borad_level_})
+      </otherwise>
+    </choose>
+    </insert>
 
 
 	

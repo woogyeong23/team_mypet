@@ -11,6 +11,7 @@ import org.springframework.stereotype.Repository;
 import com.jeonju.mypet.vo.BoardVo;
 import com.jeonju.mypet.vo.CommunityVo;
 import com.jeonju.mypet.vo.MembersVo;
+import com.jeonju.mypet.vo.OrdersVo;
 
 
 @Repository
@@ -89,6 +90,27 @@ public class AdminDao {
 		return sqlSession.selectList(MAPPER + ".getCommunityList");
 	}
 
+
+
+	public List<OrdersVo> getOrdersList() {
+		// TODO Auto-generated method stub
+		return sqlSession.selectList(MAPPER + ".getOrdersList");
+	}
+
+
+
+	public List<OrdersVo> getLaunchList() {
+		// TODO Auto-generated method stub
+		return sqlSession.selectList(MAPPER + ".getLaunchList");
+	}
+
+
+
+	public int awInsert(BoardVo boardVo) {
+		// TODO Auto-generated method stub
+		System.out.println("앙ㅇㅇㅇㅇㅇㅇㅇㅇㅇㅇㅇㅇㅇㅇㅇㅇㅇㅇㅇㅇㅇㅇㅇㅇㅇㅇㅇㅇㅇㅇㅇㅇㅇㅇㅇㅇㅇㅇㅇㅇㅇㅇㅇㅇㅇㅇㅇㅇㅇㅇㅇㅇㅇㅇㅇㅇㅇㅇㅇㅇㅇㅇㅇㅇㅇㅇㅇㅇㅇㅇㅇㅇㅇㅇㅇㅇㅇ" );
+			return sqlSession.insert(MAPPER+".awInsert", boardVo);
+		}
 
 	
 

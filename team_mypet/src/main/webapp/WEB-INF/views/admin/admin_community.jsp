@@ -107,41 +107,36 @@
 
 
 
-	<h2>공지사항</h2>
+	<h2>커뮤니티 글 </h2>
 	
 
 		<thead>
-		<td><a href="${pageContext.request.contextPath}/admin_write.do">글쓰기</a></td>
 			<tr>
-				<th>글번호</th>
+				<th>번호</th>
 				<th>제목</th>
-			<th>작성일</th>
+				<th>작성자</th>
+				<th>작성일</th>
 			</tr>
 		</thead>
 		<tbody>
-			<c:if test="${BoardList.size() == 0 }">
+			<c:if test="${CommunityList.size() == 0 }">
 				<tr>
 					<td colspan="4">등록 된 게시글이 없습니다.</td>
 				</tr>
 			</c:if>
-			<c:if test="${BoardList.size() > 0}">
-				<c:forEach var="BoardVo" items="${BoardList}">
+			<c:if test="${CommunityList.size() > 0}">
+				<c:forEach var="CommunityVo" items="${CommunityList}">
 					<tr>
-						<td>${BoardVo.bidx}</td>
-						<td>${BoardVo.board_subject}</td>
-					   <td>${BoardVo.board_wday}</td>
+						<td>${CommunityVo.midx}</td>
+						<td>${CommunityVo.cm_subject}</td>
+						<td>${CommunityVo.cm_content}</td>
+						<td>${CommunityVo.cm_wday}</td>
 					</tr>
-					
-				</c:forEach>	
-
-			
+				</c:forEach>
 			</c:if>
-			
-			
 		</tbody>
-	
-		
 	</table>
+
 
 
 
