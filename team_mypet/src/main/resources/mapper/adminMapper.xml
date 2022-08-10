@@ -66,22 +66,49 @@
 
 
 <insert id="awInsert" parameterType="boardVo">
-    insert into community(bidx,midx,board_name,board_subject,board_content,board_writer,board_origin_bidx,board_depth,borad_level_,bord_front_image)
+    insert into board(midx,board_name,board_subject,board_content,board_writer,board_origin_bidx,board_depth,borad_level_,bord_front_image)
     <choose>
     
       <when test="bord_front_image != null">
-      values(#{bidx},#{midx}, #{board_name}, #{board_subject}, #{board_content}, #{board_writer}, #{board_origin_bidx}, #{board_depth}, #{borad_level_}, #{bord_front_image}
+      values(#{midx},1, #{board_subject}, #{board_content}, #{board_writer}, #{board_origin_bidx},#{board_depth},#{borad_level_},#{bord_front_image})
       </when>
-      
       <otherwise>
-      values(#{bidx},#{midx}, #{board_name}, #{board_subject}, #{board_content}, #{board_writer}, #{board_origin_bidx}, #{board_depth}, #{borad_level_})
+      values(#{midx},1, #{board_subject}, #{board_content}, #{board_writer}, #{board_origin_bidx},#{board_depth},#{borad_level_})
+      </otherwise>
+    </choose>
+    </insert>
+    
+    
+    
+    <insert id="awInsert2" parameterType="boardVo">
+    insert into board(midx,board_name,board_subject,board_content,board_writer,board_origin_bidx,board_depth,borad_level_,bord_front_image)
+    <choose>
+    
+      <when test="bord_front_image != null">
+      values(#{midx},2, #{board_subject}, #{board_content}, #{board_writer}, #{board_origin_bidx},#{board_depth},#{borad_level_},#{bord_front_image})
+      </when>
+      <otherwise>
+      values(#{midx},2, #{board_subject}, #{board_content}, #{board_writer}, #{board_origin_bidx},#{board_depth},#{borad_level_})
       </otherwise>
     </choose>
     </insert>
 
 
-	
-	
+
+  <insert id="awInsert0" parameterType="boardVo">
+    insert into board(midx,board_name,board_subject,board_content,board_writer,board_origin_bidx,board_depth,borad_level_,bord_front_image)
+    <choose>
+    
+      <when test="bord_front_image != null">
+      values(#{midx},0, #{board_subject}, #{board_content}, #{board_writer}, #{board_origin_bidx},#{board_depth},#{borad_level_},#{bord_front_image})
+      </when>
+      <otherwise>
+      values(#{midx},0, #{board_subject}, #{board_content}, #{board_writer}, #{board_origin_bidx},#{board_depth},#{borad_level_})
+      </otherwise>
+    </choose>
+    </insert>
+
+
 </mapper>
 
 

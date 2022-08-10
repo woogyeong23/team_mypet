@@ -19,7 +19,7 @@ public class LoginInterceptor implements HandlerInterceptor {
 		HttpSession session = request.getSession();
 		String m_id = (String)session.getAttribute("m_id");
 		
-		if(m_id != null) {
+		if(m_id == null) {
 			response.sendRedirect(request.getContextPath()+"/login.do");
 			return false;//Controller로 사용자 요청이 전달되지 못하도록 함
 		}

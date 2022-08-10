@@ -108,10 +108,22 @@ public class AdminDao {
 
 	public int awInsert(BoardVo boardVo) {
 		// TODO Auto-generated method stub
-		System.out.println("앙ㅇㅇㅇㅇㅇㅇㅇㅇㅇㅇㅇㅇㅇㅇㅇㅇㅇㅇㅇㅇㅇㅇㅇㅇㅇㅇㅇㅇㅇㅇㅇㅇㅇㅇㅇㅇㅇㅇㅇㅇㅇㅇㅇㅇㅇㅇㅇㅇㅇㅇㅇㅇㅇㅇㅇㅇㅇㅇㅇㅇㅇㅇㅇㅇㅇㅇㅇㅇㅇㅇㅇㅇㅇㅇㅇㅇㅇ" );
+		System.out.println("dao옴ㅇㅇㅇㅇㅇㅇㅇㅇㅇㅇㅇㅇㅇㅇㅇㅇㅇㅇㅇㅇㅇㅇㅇㅇㅇㅇㅇㅇㅇㅇㅇㅇㅇㅇㅇㅇㅇㅇㅇㅇㅇㅇㅇㅇㅇㅇㅇㅇㅇㅇㅇㅇㅇㅇㅇㅇㅇㅇㅇㅇㅇㅇㅇㅇㅇㅇㅇㅇㅇㅇㅇㅇㅇㅇㅇㅇ" );
 			return sqlSession.insert(MAPPER+".awInsert", boardVo);
 		}
 
+
+
+	public int awInsert2(BoardVo boardVo) {
+		// TODO Auto-generated method stub
+		return sqlSession.insert(MAPPER+".awInsert2", boardVo);
+	}
+
+	
+	public int awInsert0(BoardVo boardVo) {
+		// TODO Auto-generated method stub
+		return sqlSession.insert(MAPPER+".awInsert0", boardVo);
+	}
 	
 
 }

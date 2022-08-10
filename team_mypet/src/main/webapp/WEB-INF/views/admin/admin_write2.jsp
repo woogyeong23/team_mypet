@@ -38,7 +38,7 @@
     <nav class = "menu">
            <ul class ="navi">
             
-            <li><a href="${pageContext.request.contextPath}/admin_buyer.do">구매자 관리</a>
+            <li><a href="${pageContext.request.contextPath}/#">구매자 관리</a>
            
             
 
@@ -58,7 +58,7 @@
 </li>
 
 
-<li> <a href="${pageContext.request.contextPath}/admin_board.do">공지사항 관리</a>
+<li> <a href="${pageContext.request.contextPath}/admin_borad.do">공지사항 관리</a>
 
 
  
@@ -69,7 +69,7 @@
 
 
 
-<li> 	<a href="${pageContext.request.contextPath}/admin_board2.do">이벤트 관리</a>
+<li> 	<a href="${pageContext.request.contextPath}/admin_borad2.do">이벤트 관리</a>
 
 
     
@@ -96,72 +96,53 @@
     </div>
 
 
-</header>
-
-<div class = "bodywrap">
-<div class ="contents">
 
 
+    <div class ="contents">
+    <div class = "write">
 
-
-<table border="1">
-
-
-
-
-
-
-	<h2>1:1문의사항</h2>
-	
-
-		<thead>
-				<td><a href="${pageContext.request.contextPath}/admin_write0.do">글쓰기</a></td>
+<h3 style="text-align:center">이벤트 글 작성</h3>
+<form action="${pageContext.request.contextPath}/AWInsertProcess2.do" method="post" enctype="multipart/form-data">
+	<table border="1px" align="center">
 			<tr>
-				<th>글번호</th>
-				<th>제목</th>
-				<th>작성일</th>
+				<td>제목</td>
+				<td><textarea rows="1" cols="50" name="board_subject" id="board_subject"></textarea></td>
 			</tr>
-		</thead>
-		<tbody>
-			<c:if test="${MuneList.size() == 0 }">
-				<tr>
-					<td colspan="4">등록 된 게시글이 없습니다.</td>
-				</tr>
-			</c:if>
-			<c:if test="${MuneList.size() > 0}">
-				<c:forEach var="BoardVo" items="${MuneList}">
-					<tr>
-						<td>${BoardVo.bidx}</td>
-						<td>${BoardVo.board_subject}</td>
-						<td>${BoardVo.board_wday}</td>
-					</tr>
-				</c:forEach>
-			</c:if>
-		</tbody>
-	</table>
+			<tr>
+			    <td>대표사진 설정</td>
+				<td><input type="file" name="uploadImg" multiple/></td>
+			</tr>
+			<tr>
+			<td>내용</td>
+			<td><textarea id="summernote" name="board_content"></textarea>
+                <input type="hidden" name="midx" id="midx" value="${midx}">
+                <input type="hidden" name="board_writer" value="${m_nick}"></td>
+			</tr>
+			<tr>
+				<td colspan="2" align="center">
+					<input type="button" value="메인페이지" onclick="document.location.href='${pageContext.request.contextPath}/home.do'"/>&nbsp;|&nbsp;
+					<input type="submit"  value="등록하기"/>
+				
+				</td>
+			</tr>
+		</table>
 
-
-</div>
-
+</form>
 
 </div>
-
-
-
-    
-  
+</div>
         
             <ul class ="tabmenu">
                 <li>
 
                     <div class ="notice">
-                        
+                   
                     </div>
                   </li>
                   <li>
 
                     <div class ="gallery">
-                    
+                   
                     </div>
                   </li>
 
@@ -170,20 +151,13 @@
 
         <div class ="otherwrap">
             <div class ="banner">
-	<form method="get" action="admin_board2.do">
-		<select name="searchType">
-			<option value="title" <c:if test="${!empty searchVO.searchType and searchVO.searchType eq 'title'}">selected</c:if>>제목</option>
-			<option value="contentWriter" <c:if test="${!empty searchVO.searchType and searchVO.searchType eq 'contentWriter'}">selected</c:if>>내용+작성자</option>
-		</select>
-		<input type="text" name="searchValue" <c:if test="${!empty searchVO.searchValue}">value="${searchVO.searchValue}"</c:if>>
-		<input type="submit" value="검색">
-	</form>
-          
+
+           
 </div>
 
                 <div class ="shortcut">
 
-                   
+                 
                 
 
             </div>
@@ -194,8 +168,7 @@
 
 </div>
 
-
-
+</header>
 
 <footer>
 

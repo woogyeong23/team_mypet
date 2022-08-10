@@ -106,28 +106,23 @@
 	<table border="1px" align="center">
 			<tr>
 				<td>제목</td>
-				<td><textarea rows="1" cols="50" name="board_subject"></textarea></td>
+				<td><textarea rows="1" cols="50" name="board_subject" id="board_subject"></textarea></td>
 			</tr>
 			<tr>
-			    <td>그림파일</td>
+			    <td>대표사진 설정</td>
 				<td><input type="file" name="uploadImg" multiple/></td>
 			</tr>
 			<tr>
 			<td>내용</td>
-			<td><textarea  rows="20" name="board_content" id="description"></textarea>
-			<script type="text/javascript">
-			//이미지 업로드 안됨
-			CKEDITOR.replace("description",{
-			    filebrowserUploadUrl : "${pageContext.request.contextPath}/imageUpload.do"
-			}); //이미지 업로드 기능을 추가하기위한 코드
-			</script>
-                <input type="hidden" name="midx" value="${midx}">
-                <input type="hidden" name="board_writer" value="111"></td>
+			<td><textarea id="summernote" name="board_content"></textarea>
+                <input type="hidden" name="midx" id="midx" value="${midx}">
+                <input type="hidden" name="board_writer" value="${m_nick}"></td>
 			</tr>
 			<tr>
 				<td colspan="2" align="center">
 					<input type="button" value="메인페이지" onclick="document.location.href='${pageContext.request.contextPath}/home.do'"/>&nbsp;|&nbsp;
-					<input type="submit" value="등록하기 "/>
+					<input type="submit"  value="등록하기"/>
+				
 				</td>
 			</tr>
 		</table>

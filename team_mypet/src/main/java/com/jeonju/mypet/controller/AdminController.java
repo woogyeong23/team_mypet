@@ -229,37 +229,41 @@ public String adminwrite() {
 	return "admin/admin_write";
 }
 	
+
+
+
+@GetMapping("/admin_write2.do")
+public String adminwrite2() {
+	return "admin/admin_write2";
 	
+}
 
 
-
-
+@GetMapping("/admin_write0.do")
+public String adminwrite0() {
+	return "admin/admin_write0";
+	
+}
 
 
 @PostMapping("/AWInsertProcess.do")
 public String AWInsertProcess(@RequestParam("board_subject") String board_subject,
 		
 		@RequestParam("board_content") String board_content, 
-		@RequestParam("midx") int midx, 
-		@RequestParam("bidx") int bidx, 
+		@RequestParam("midx") int midx,  
 		@RequestParam("uploadImg") MultipartFile uploadImg,
-		@RequestParam("board_origin_bidx") int board_origin_bidx, 
-		@RequestParam("board_name") int board_name,
-		@RequestParam("board_depth") int board_depth,
-		@RequestParam("borad_level_") int borad_level_,
 		@RequestParam("board_writer") String board_writer, Model model, HttpServletRequest request) 
 				throws IllegalStateException, IOException{
 	
 	String  bord_front_image= uploadImg.getOriginalFilename();
 	
-	int dot_idx =  bord_front_image.lastIndexOf(".");
-	String fileName1 =  bord_front_image.substring(0, dot_idx);
-	String extension =  bord_front_image.substring(dot_idx+1);
-	String fileName2 = fileName1 + new SimpleDateFormat("_yyyyMMdd_hhmmss").format(System.currentTimeMillis());
-	String  bordfrontimage = fileName2+"."+extension;
+	int Midx =  bord_front_image.lastIndexOf(".");
+	
+
 	
 	
 	
+	System.out.println("dmdkㅇㅇㅇㅇㅇㅇㅇㅇㅇㅇㅇㅇㅇㅇㅇㅇㅇㅇㅇㅇㅇㅇㅇㅇㅇㅇㅇㅇㅇㅇㅇㅇㅇㅇㅇㅇㅇㅇㅇㅇㅇㅇㅇㅇㅇㅇㅇㅇㅇㅇㅇㅇㅇㅇㅇㅇㅇㅇㅇㅇㅇㅇㅇㅇㅇㅇㅇㅇㅇㅇㅇㅇㅇㅇㅇㅇㅇ" );
 	String upload_dir = "resources/Community/upload/";
 	
 	String realPath = request.getServletContext().getRealPath(upload_dir);
@@ -273,12 +277,8 @@ public String AWInsertProcess(@RequestParam("board_subject") String board_subjec
 			
 			BoardVo BoardVo = new BoardVo();
 			BoardVo.setBoard_subject(board_subject);
-			BoardVo.setBidx(bidx);
+			
 			BoardVo.setMidx(midx);
-			BoardVo.setBoard_origin_bidx(board_origin_bidx);
-			BoardVo.setBoard_name(board_name);
-			BoardVo.setBoard_depth(board_depth);
-			BoardVo.setBorad_level_(borad_level_);
 			BoardVo.setBoard_writer(board_writer);
 			BoardVo.setBoard_content(board_content);
 			BoardVo.setBord_front_image(bord_front_image);
@@ -295,12 +295,124 @@ public String AWInsertProcess(@RequestParam("board_subject") String board_subjec
 				model.addAttribute("content", board_content);
 				model.addAttribute("writer", board_writer);
 				model.addAttribute("image", bord_front_image);
-				viewPage = "admin/admin_write";	
+				viewPage = "admin/admin_write_result";	
 			}
 
 			return viewPage;
 }
 
 
+
+@PostMapping("/AWInsertProcess2.do")
+public String AWInsertProcess2(@RequestParam("board_subject") String board_subject,
+		
+		@RequestParam("board_content") String board_content, 
+		@RequestParam("midx") int midx,  
+		@RequestParam("uploadImg") MultipartFile uploadImg,
+		@RequestParam("board_writer") String board_writer, Model model, HttpServletRequest request) 
+				throws IllegalStateException, IOException{
+	
+	String  bord_front_image= uploadImg.getOriginalFilename();
+	
+	int Midx =  bord_front_image.lastIndexOf(".");
+	
+
+	
+	
+	
+
+	String upload_dir = "resources/Community/upload/";
+	
+	String realPath = request.getServletContext().getRealPath(upload_dir);
+	System.out.println("이클립스로 저장된 파일의 실제 경로: " + realPath);
+	
+	
+			if(board_subject.length() == 0) board_subject = null;
+			if(board_content.length() == 0) board_content= null;
+			
+			int result=0;//0:입력 실패
+			
+			BoardVo BoardVo = new BoardVo();
+			BoardVo.setBoard_subject(board_subject);
+			
+			BoardVo.setMidx(midx);
+			BoardVo.setBoard_writer(board_writer);
+			BoardVo.setBoard_content(board_content);
+			BoardVo.setBord_front_image(bord_front_image);
+	     
+		  
+			
+			
+	result = adminService.awInsert2(BoardVo);
+			
+			String viewPage = "admin/admin_write2";
+			
+			if(result == 1) {
+				model.addAttribute("subject", board_subject);
+				model.addAttribute("content", board_content);
+				model.addAttribute("writer", board_writer);
+				model.addAttribute("image", bord_front_image);
+				viewPage = "admin/admin_write_result";	
+			}
+
+			return viewPage;
 }
+
+
+@PostMapping("/AWInsertProcess0.do")
+public String AWInsertProcess0(@RequestParam("board_subject") String board_subject,
+		
+		@RequestParam("board_content") String board_content, 
+		@RequestParam("midx") int midx,  
+		@RequestParam("uploadImg") MultipartFile uploadImg,
+		@RequestParam("board_writer") String board_writer, Model model, HttpServletRequest request) 
+				throws IllegalStateException, IOException{
+	
+	String  bord_front_image= uploadImg.getOriginalFilename();
+	
+	int Midx =  bord_front_image.lastIndexOf(".");
+	
+
+	
+	
+	
+
+	String upload_dir = "resources/Community/upload/";
+	
+	String realPath = request.getServletContext().getRealPath(upload_dir);
+	System.out.println("이클립스로 저장된 파일의 실제 경로: " + realPath);
+	
+	
+			if(board_subject.length() == 0) board_subject = null;
+			if(board_content.length() == 0) board_content= null;
+			
+			int result=0;//0:입력 실패
+			
+			BoardVo BoardVo = new BoardVo();
+			BoardVo.setBoard_subject(board_subject);
+			
+			BoardVo.setMidx(midx);
+			BoardVo.setBoard_writer(board_writer);
+			BoardVo.setBoard_content(board_content);
+			BoardVo.setBord_front_image(bord_front_image);
+	     
+		  
+			
+			
+	result = adminService.awInsert0(BoardVo);
+			
+			String viewPage = "admin/admin_write0";
+			
+			if(result == 1) {
+				model.addAttribute("subject", board_subject);
+				model.addAttribute("content", board_content);
+				model.addAttribute("writer", board_writer);
+				model.addAttribute("image", bord_front_image);
+				viewPage = "admin/admin_write_result";	
+			}
+
+			return viewPage;
+}
+}
+
 

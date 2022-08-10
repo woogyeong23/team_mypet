@@ -115,7 +115,9 @@
 	
 
 		<thead>
+		<td><a href="${pageContext.request.contextPath}/admin_write2.do">글쓰기</a></td>
 			<tr>
+			
 				<th>글번호</th>
 				<th>제목</th>
 				<th>작성일</th>

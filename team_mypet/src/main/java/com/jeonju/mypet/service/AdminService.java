@@ -89,10 +89,19 @@ public class AdminService {
 		// TODO Auto-generated method stub
 		
 		
-		System.out.println("앙ㅇㅇㅇㅇㅇㅇㅇㅇㅇㅇㅇㅇㅇㅇㅇㅇㅇㅇㅇㅇㅇㅇㅇㅇㅇㅇㅇㅇㅇㅇㅇㅇㅇㅇㅇㅇㅇㅇㅇㅇㅇㅇㅇㅇㅇㅇㅇㅇㅇㅇㅇㅇㅇㅇㅇㅇㅇㅇㅇㅇㅇㅇㅇㅇㅇㅇㅇㅇㅇㅇㅇㅇㅇㅇㅇㅇㅇ" );
+		System.out.println("서비스까지옴ㅇㅇㅇㅇㅇㅇㅇㅇㅇㅇㅇㅇㅇㅇㅇㅇㅇㅇㅇㅇㅇㅇㅇㅇㅇㅇㅇㅇㅇㅇㅇㅇㅇㅇㅇㅇㅇㅇㅇㅇㅇㅇㅇㅇㅇㅇㅇㅇㅇㅇㅇㅇㅇㅇㅇㅇㅇㅇㅇㅇㅇㅇㅇㅇㅇㅇㅇㅇㅇㅇㅇㅇㅇㅇㅇ" );
 		return adminDao.awInsert(boardVo);
 		}
 
+
+	public int awInsert2(BoardVo boardVo) {
+		// TODO Auto-generated method stub
+		return adminDao.awInsert2(boardVo);
+	}
+	public int awInsert0(BoardVo boardVo) {
+		// TODO Auto-generated method stub
+		return adminDao.awInsert0(boardVo);
+	}
 
 }
 	
