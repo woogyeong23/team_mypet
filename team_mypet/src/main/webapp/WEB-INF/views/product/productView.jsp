@@ -5,52 +5,195 @@
 <!DOCTYPE html>
 <html>
 <head>
+<script src="http://code.jquery.com/jquery-latest.min.js"></script>
+<script type="text/javascript">
+
+	$(document).ready(function() {
+		let p_idx = ${productVo.p_idx}
+		$("#add_cart").click(function(){
+			
+			alert("asd");
+			
+			$.ajax({
+				type : "POST",
+				url : "${pageContext.request.contextPath}/cartMemInto.do",
+				async : false,
+				data : {'p_idx' : p_idx},
+				success : function(data) {
+					if (data == 'add_success') {
+						toastr.options.preventDuplicates = true;
+						toastr.success("장바구니 추가완료");
+					} else if (data == 'already_existed') {
+						toastr.options.preventDuplicates = true;
+						toastr.warning("이미 추가 된 상품입니다");
+					}
+				}
+			});
+		});
+	});
+	
+	function change_qty2(t){
+		  //var min_qty = '수량버튼'*1;
+		  var min_qty = 1;
+		  var this_qty = $("#cart_cnt").val()*1;
+		  var max_qty = ${productView.p_limit_cnt}; // 현재 재고
+		  if(t=="m"){
+		    this_qty -= 1;
+		    if(this_qty<min_qty){
+		      //alert("최소구매수량 이상만 구매할 수 있습니다.");
+		      alert("수량은 1개 이상부터 가능합니다.");
+		      return;
+		      }
+		    }
+		    else if(t=="p"){
+		      this_qty += 1;
+		      if(this_qty>max_qty){
+		        alert("구매 가능 수량을 초과합니다.");
+		        return;
+		        }
+		    }
+		  var show_total_amount = basic_amount * this_qty;
+		  //$("#cart_cnt_txt").text(this_qty); 
+		  $("#cart_cnt").val(this_qty);
+		  $("#it_pay").val(show_total_amount);
+		  $("#total_amount").html(show_total_amount.format());
+		}
+		
+	//장바구니추가버튼
+	$("#btn_cart").on("click",function(e){
+		form.p_count = $("#cart_cnt").val();
+		$.ajax({
+			url : "${pageContext.request.contextPath}/member/membercart/insertCart.do", //호출할 url
+			type : 'post', // 호출할 방법(get,post)
+			data : form, //서버로 보낼 데이터
+			success : function(result){ //요청 성공시 수행될 메서드, 파라미터는 서버가 반환하는 값
+				cartAlert(result);
+			},
+		      error: function() {
+		          alert("에러 발생");
+		      }
+		})
+	});
+	function cartAlert(result){
+		if(result == '0'){
+			alert("장바구니에 추가를 하지 못하였습니다.");
+		} else if(result == '1'){
+			alert("장바구니에 추가되었습니다.");
+		} else if(result == '2'){
+			alert("장바구니에 이미 추가되어져 있습니다.");
+		} else if(result == '5'){
+			alert("로그인이 필요합니다.");	
+		}
+	}
+</script>
+
+
+
+
 	<meta charset="utf-8" />
     <meta http-equiv="x-ua-compatible" content="ie=edge" />
     <meta name="description" content="" />
     <meta name="viewport" content="width=device-width, initial-scale=1" />
-    <link rel="stylesheet" href="resources/assets/css/bootstrap.min.css" />
+    <link rel="stylesheet" href="assets/css/bootstrap.min.css" />
     <link rel="shortcut icon" type="image/x-icon" href="assets/images/favicon.svg" />
-    <link rel="stylesheet" href="resources/assets/css/LineIcons.3.0.css" />
-    <link rel="stylesheet" href="resources/assets/css/tiny-slider.css" />
-    <link rel="stylesheet" href="resources/assets/css/glightbox.min.css" />
-    <link rel="stylesheet" href="resources/assets/css/main.css" />
+    <link rel="stylesheet" href="assets/css/LineIcons.3.0.css" />
+    <link rel="stylesheet" href="assets/css/tiny-slider.css" />
+    <link rel="stylesheet" href="assets/css/glightbox.min.css" />
+    <link rel="stylesheet" href="assets/css/main.css" />
 <title>제품상세페이지</title>
 
 <script src="https://code.jquery.com/jquery-1.12.4.min.js"></script>
+
+<!-- 수량변경 스크립트 -->
 <script>
 /*
-//서버로 전송할 데이터
-const form = {
-		p_idx : '${productVo.p_idx}',
-		p_name : '${productVo.p_name}',
-		p_count:'',
+$(document).ready(function() {
+	let p_idx = ${productVo.p_idx}
+	$("#add_cart").click(function(){
 		
-}
+		alert("장바구니 추가중");
+		
+		$.ajax({
+			type : "POST",
+			url : "${pageContext.request.contextPath}/cartMemInto.do",
+			async : false,
+			data : {'p_idx' : p_idx},
+			success : function(data) {
+				if (data == 'add_success') {
+					toastr.options.preventDuplicates = true;
+					toastr.success("장바구니 추가완료");
+				} else if (data == 'already_existed') {
+					toastr.options.preventDuplicates = true;
+					toastr.warning("이미 추가 된 상품입니다");
+				}
+			}
+		});
+	});
+});*/
 
-//장바구니추가버튼
-$("#btn_cart").on("click",function(e){
-	form.p_count = $(".quantity_input").val();
-	$.ajax({
-		url : '${pageContext.request.contextPath}/membercart.do', //호출할 url
-		type : 'GET', // 호출할 방법(get,post)
-		data : form, //서버로 보낼 데이터
-		success : function(result){ //요청 성공시 수행될 메서드, 파라미터는 서버가 반환하는 값
-			cartAlert(result);
-		} 
-	})
-});
+// 2,500 <-
+ Number.prototype.format = function(){
+	  if(this==0) return 0;
+
+	  var reg = /(^[+-]?\d+)(\d{3})/;
+	  var n = (this + '');
+
+	  while (reg.test(n)) n = n.replace(reg, '$1' + ',' + '$2');
+
+	  return n;
+	};
+
+	
+	
+String.prototype.format = function(){
+	  var num = parseFloat(this);
+	  if( isNaN(num) ) return "0";
+	  return num.format();
+	};
+	    
+var basic_amount = parseInt(${productView.p_price});
+
+function change_qty2(t){
+	  //var min_qty = '수량버튼'*1;
+	  var min_qty = 1;
+	  var this_qty = $("#cart_cnt").val()*1;
+	  var max_qty = ${productView.p_limit_cnt}; // 현재 재고
+	  if(t=="m"){
+	    this_qty -= 1;
+	    if(this_qty<min_qty){
+	      //alert("최소구매수량 이상만 구매할 수 있습니다.");
+	      alert("수량은 1개 이상부터 가능합니다.");
+	      return;
+	      }
+	    }
+	    else if(t=="p"){
+	      this_qty += 1;
+	      if(this_qty>max_qty){
+	        alert("구매 가능 수량을 초과합니다.");
+	        return;
+	        }
+	    }
+
+	  var show_total_amount = basic_amount * this_qty;
+	  //$("#cart_cnt_txt").text(this_qty); 
+	  $("#cart_cnt").val(this_qty);
+	  $("#it_pay").val(show_total_amount);
+	  $("#total_amount").html(show_total_amount.format());
+	}
+	
 
 
 function cartAlert(result){
-	if(result =='0'){
-		alert("장바구니에 추가할 수량을 선택해주세요.");
-	}else{
-		alert("장바구니에 추가되었습니다.")
+	if(result == '0'){
+		alert("장바구니에 추가를 하지 못하였습니다.");
+	} else if(result == '1'){
+		alert("장바구니에 추가되었습니다.");
+	} else if(result == '2'){
+		alert("장바구니에 이미 추가되어져 있습니다.");
+	} else if(result == '5'){
+		alert("로그인이 필요합니다.");	
 	}
-		
 }
-*/
 
 </script>
 
@@ -146,6 +289,22 @@ function cartAlert(result){
   height : 175px;
 }
 
+		html, body{
+			height: 100%
+		}
+		
+		#wrap {
+			min-height: 100%;
+			position: relative;
+			padding-bottom: 60px;
+		}
+		
+		footer {
+			position: relative;
+			transform:translatY(-100%);
+		}
+		
+	
 </style>
 
 <!-- css***************************************************** -->
@@ -154,11 +313,12 @@ function cartAlert(result){
 </head>
 
 <body>
+
 <!-- 헤더와 네비************************************************ -->
     <jsp:include page="../../include/header.jsp" />  
 <!-- ******************************************************** -->
 
-
+<div id="wrap">
 
 <section class="item-details section" style="padding-top: 10px;">
 	<div class="container">
@@ -169,11 +329,11 @@ function cartAlert(result){
 					<div class="product-images">
 						<main id="gallery"> 
 							<div class="main-img">
-									<img src="${pageContext.request.contextPath}/resources/assets/images/products/${productView.p_sys_filename}" width="300px" height="400px" id="current" alt="#">
+									<img src="${pageContext.request.contextPath}/resources/product/${productView.p_sys_filename}" width="300px" height="400px" id="current" alt="#">
 							</div>
 							<div class="images">
 								<c:forEach var="Product_ImgVo" items="${product_imgs}">
-								<img src="${pageContext.request.contextPath}/resources/assets/images/products/${Product_ImgVo.p_sys_filename}" class="img" alt="#">	
+								<img src="${pageContext.request.contextPath}/resources/product/${Product_ImgVo.p_sys_filename}" class="img" alt="#">	
 								</c:forEach>
 							</div>
 						</main>
@@ -181,6 +341,9 @@ function cartAlert(result){
 				</div>
 				<!-- 상품이미지 옆 박스 -->
 				<div class="col-lg-6 col-md-12 col-12">
+					<input type="hidden" name="p_idx" value="${productVo.p_idx}">
+					<input type="hidden" name="midx" value="${productVo.midx}">
+										
 					<div class="product-info">
 						<table style="width: 100%; margin: 0px 0px 20px;">
 							<tr>
@@ -220,71 +383,30 @@ function cartAlert(result){
 							<p>적립금<span style="padding-left: 10px">${productView.p_point}</span></p>
 							<p>배송비<span style="padding-left: 10px">${productView.p_dvprice}원(${productView.p_free_dvprice}원이상 무료배송)</span></p>
 						</div>
-						
-						
+						<form class="cart_form" method="get" action="${pageContext.request.contextPath}/insertCart.do">
+	
 						<hr>
 						<div class="col-lg-12">
 						<div class="count">
 						<!-- 수량변경 버튼 -->
+								
 							<div>
+								<input type="hidden" name="p_idx" value="${productView.p_idx}">
 								<span style="float:left; padding-right: 10px">수량 :</span>
 								<div class="qty" style="float:left;">					
         							<div class="plus" style="float: left; padding-right:10px"><a href="javascript:change_qty2('p')"><img src="${pageContext.request.contextPath}/resources/assets/images/logo/add.png" width="20px" height="20px" alt="+"></a></div>
-        							<input type="text" style="float: left; text-align: center;" size="3" name="ct_qty" id="ct_qty" value="1" readonly="readonly">
+        							<input type="text" style="float: left; text-align: center;" size="3" name="cart_cnt" id="cart_cnt" value="1" readonly="readonly">
        								<div class="minus" style="float: left; padding-left:10px"><a href="javascript:change_qty2('m')"><img src="${pageContext.request.contextPath}/resources/assets/images/logo/minus.png" width="20px" height="20px" alt="-"></a></div>
-								</div>      							
+								</div>     
+								<!-- <div>
+								수량 : <input type="hidden" name="p_price" value="5500">
+								<input type="button" value=" + " name="add" style="width: 25px" >
+								<input type="text" name="amount" value="1" size="3" max="" style="text-align: center;">
+								<input type="button" value=" - " name="min" style="width: 25px" >
+								</div>	 -->						
       						</div>
       						
-<!-- 수량변경 스크립트 -->
-<script>
-Number.prototype.format = function(){
-	  if(this==0) return 0;
 
-	  var reg = /(^[+-]?\d+)(\d{3})/;
-	  var n = (this + '');
-
-	  while (reg.test(n)) n = n.replace(reg, '$1' + ',' + '$2');
-
-	  return n;
-	};
-
-	String.prototype.format = function(){
-	  var num = parseFloat(this);
-	  if( isNaN(num) ) return "0";
-
-	  return num.format();
-	};
-	    
-	var basic_amount = parseInt(${productView.p_price});
-
-	function change_qty2(t){
-	  //var min_qty = '수량버튼'*1;
-	  var min_qty = 1;
-	  var this_qty = $("#ct_qty").val()*1;
-	  var max_qty = ${productView.p_limit_cnt}; // 현재 재고
-	  if(t=="m"){
-	    this_qty -= 1;
-	    if(this_qty<min_qty){
-	      //alert("최소구매수량 이상만 구매할 수 있습니다.");
-	      alert("수량은 1개 이상부터 가능합니다.");
-	      return;
-	      }
-	    }
-	    else if(t=="p"){
-	      this_qty += 1;
-	      if(this_qty>max_qty){
-	        alert("구매 가능 수량을 초과합니다.");
-	        return;
-	        }
-	    }
-
-	  var show_total_amount = basic_amount * this_qty;
-	  //$("#ct_qty_txt").text(this_qty); 
-	  $("#ct_qty").val(this_qty);
-	  $("#it_pay").val(show_total_amount);
-	  $("#total_amount").html(show_total_amount.format());
-	}
-</script>
 						</div>
 						</div>
 						<hr>
@@ -294,30 +416,37 @@ Number.prototype.format = function(){
 						</div>
 						<!-- 수량변경 버튼 끝 -->
 
+						
 						<div class="bottom-content">
 							<div class="row align-items-end">
 								<div class="col-lg-4 col-md-4 col-12">
+
 									<div class="button cart-button">
-										<button id="btn_cart" class="btn" style="width:100%;">장바구니</button>
+										<button id="btn_cart" class="btn" style="width:100%;">장바구니</button> 
 									</div>
 								</div>
+						
+						
 								<div class="col-lg-4 col-md-4 col-12">
 									<div class="order-button">
-										<button class="btn">구매하기</button>
+										<button type="button" class="btn">구매하기</button> <!-- button의 기본 타입은 submit이므로 submit 버튼이 아니라면 type="button"을 따로 지정해줘야함 -->
 									</div>
 								</div>
 								<div class="col-lg-4 col-md-4 col-12">
 									<div class="wish-button">
-										<button class="btn"><i class="lni lni-heart"></i></button>
+										<button type="button" class="btn"><i class="lni lni-heart"></i></button>
 									</div>
 								</div>
 							</div>
 						</div>
-						
+						</form>
 						</div>
 					</div>
 				</div>
 			</div>
+			
+			
+			
 		<!-- 상품상세정보란 -->
 		<div class="product-details-info">
 			<div class="single-block">
@@ -332,7 +461,6 @@ Number.prototype.format = function(){
 						
 					<!-- 성분표시/환불 팝오버 -->
 					<div class="accordion accordion-flush" id="accordionFlushExample">
-		
 						<table style="width: 100%">
 							<tr>
 							<td width="50%">
@@ -367,8 +495,7 @@ Number.prototype.format = function(){
 					</div>
 				</div>
 			</div>
-				
-			</div>
+		</div>
 			<!-- 리뷰 -->
 			<div class="product-details-info">
 			<div class="single-block">
@@ -395,7 +522,7 @@ Number.prototype.format = function(){
 						</td>
 						<td align="right">
 						<div class="review-button">
-								<button class="btn" style="width: 100px; height:40px">리뷰작성</button>
+								<a href="reviewWrite.do?p_idx=${productView.p_idx}"><button class="btn" id="reviewWritebtn" style="width: 100px; height:40px">리뷰작성</button></a>
 						</div>
 						</td>
 						</tr>
@@ -454,6 +581,7 @@ Number.prototype.format = function(){
 			</div>
 	</div>
 </section>
+</div>
 				<!-- 리뷰끝 -->
 				
 				<!-- 판매자의 다른 상품 -->
@@ -466,10 +594,10 @@ Number.prototype.format = function(){
 <!-- 수량버튼 스크립트 -->
 
     <!-- ========================= JS here ========================= -->
-    <script src="resources/assets/js/bootstrap.min.js"></script>
-    <script src="resources/assets/js/tiny-slider.js"></script>
-    <script src="resources/assets/js/glightbox.min.js"></script>
-    <script src="resources/assets/js/main.js"></script>
+    <script src="assets/js/bootstrap.min.js"></script>
+    <script src="assets/js/tiny-slider.js"></script>
+    <script src="assets/js/glightbox.min.js"></script>
+    <script src="assets/js/main.js"></script>
     <script type="text/javascript">
         const current = document.getElementById("current");
         const opacity = 0.6;
