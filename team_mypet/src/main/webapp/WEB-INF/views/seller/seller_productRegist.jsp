@@ -175,17 +175,34 @@
 	        cnt++;
 	    }
 	</script>
+	<style>
+	html, body{
+			height: 100%
+		}
+		
+		#wrap {
+			min-height: 100%;
+			position: relative;
+			padding-bottom: 60px;
+		}
+		
+		footer {
+			position: relative;
+			transform:translatY(-100%);
+		}
+	
+	</style>
 	<!-- 파일 업로드 추가 끝-->
 </head>
 
 <body>
-<div id="wrap">
+
 
 	<!-- 헤더와 네비************************************************ -->
     <jsp:include page="../../include/header.jsp" />  
 	<!-- ************************************************ -->
 	
-	
+	<div id="wrap">
 	
 	
 	<section class="product-grids section">

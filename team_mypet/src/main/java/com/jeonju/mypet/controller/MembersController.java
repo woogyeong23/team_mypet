@@ -14,6 +14,7 @@ import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 
 import com.jeonju.mypet.service.MembersService;
+import com.jeonju.mypet.vo.CartVo;
 import com.jeonju.mypet.vo.MembersVo;
 import com.jeonju.mypet.vo.PetVo;
 
@@ -69,7 +70,7 @@ public class MembersController {
 	public String loginProcess(@RequestParam("m_id") String m_id,
 			@RequestParam("m_pwd") String m_pwd,
 			HttpServletRequest request) {
-
+			
 			HashMap<String, String> loginInfo = new HashMap<String, String>(); 
 			
 			loginInfo.put("m_id",m_id);
@@ -211,6 +212,7 @@ public class MembersController {
 			}
 			return viewPage;	
 		}
+
 		
 		@GetMapping("/memberorder.do")
 		public String memberorder() {
@@ -222,11 +224,7 @@ public class MembersController {
 			
 			return "member/memberorderList";	
 		}
-		@GetMapping("/membercart.do")
-		public String membercart() {
-			
-			return "member/membercart";	
-		}
+		
 		@GetMapping("/memberrefund.do")
 		public String memberrefund() {
 			
