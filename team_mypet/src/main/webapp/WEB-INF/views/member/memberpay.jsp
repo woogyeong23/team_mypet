@@ -15,13 +15,32 @@
     
     <!-- Custom styles for this template -->
     <link href="resources/assets/css/sidebar.css" rel="stylesheet">
-   
+   <style>
+html, body{
+height: 100%
+}
+
+#wrap {
+min-height: 100%;
+position: relative;
+padding-bottom: 60px;
+}
+
+footer {
+position: relative;
+transform:translatY(-100%);
+}
+
+
+</style>
   </head>
   <body>
 
     <!-- 헤더와 js************************************************ -->
     <jsp:include page="../../include/header.jsp" />  
 	<!-- ************************************************ -->
+	
+	<div id="wrap">
 <main style="padding-bottom : 0px;">
 <aside class="container">
 	<form class="form-payment">
@@ -176,7 +195,7 @@
 </aside>
 </main>
 
-
+</div>
 
 <!-- 푸터와 js************************************************ -->
     <jsp:include page="../../include/footer.jsp" />  

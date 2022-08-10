@@ -15,62 +15,59 @@
 		
 	
 	
-		$(function(){
 			
-			$("#member_id").blur(function(){
+			$("#m_nick").blur(function(){
 				
-				let member_id = $("#member_id").val();
+				let m_nick = $("#m_nick").val();
 				
-				if(member_id == "" || member_id.length < 2){
-					$(".successIdChk").text("이름은 2자 이상 12자 이하로 설정해주세요 :)");
-						$(".successIdChk").css("color","red");
-						$(".IdChk").val(false);
+				if(m_nick == "" || m_nick.length < 2 || m_nick.length > 9){
+					$(".successNickChk").text("이름은 2자 이상 8자 이하로 설정해주세요 :)");
+						$(".successNickChk").css("color","red");
+						$(".nickChk").val(false);
 						return;
 
 				}else{
-				
 				$.ajax({
 					type:'post',
-					url:"${pageContext.request.contextPath}/checkId.do",
-					data: {"member_id":member_id},
+					url:"${pageContext.request.contextPath}/checknick.do",
+					data: {"m_nick":m_nick},
 					success: function(data){
-						if(data == "N"){
-							result = "사용 가능한 아이디입니다.";
-							$(".successIdChk").text(result).css("color", "green");
-							$(".idChk").val(true);
-							$("#member_phone").trigger("focus");
+						if(data == "Y"){
+							result = "사용 가능한 닉네임입니다.";
+							$(".successNickChk").text(result).css("color", "green");
+							$(".nickChk").val(true);
+							$("#m_phone").trigger("focus");
 						}else{
-							result = "이미 사용중인 아이디입니다.";
-							$(".successIdChk").html(result).css("color", "red");
-							$(".idChk").val(false);
-							$("#member_id").val("").trigger("focus");
+							result = "이미 사용중인 닉네임입니다.";
+							$(".successNickChk").html(result).css("color", "red");
+							$(".nickChk").val(false);
+							$("#m_nick").val("").trigger("focus");
 						}
 					},
 					error: function(error){alert(error);}
 				});
 				}
-			});
+			}	);
 			
-		});
 		
 		//비밀번호 확인
 		$(document).ready(function(){
-			$('#member_pw').blur(function(){
+			$('#m_pwd').blur(function(){
 				$('#successPwChk2').text('');
 				
 			}); 
 			
-			$('#member_pw2').blur(function(){ //keyup은 중복이 안되는 듯함;
-				if($('#member_pw').val()!= $('#member_pw2').val()){
+			$('#m_pwd2').blur(function(){ //keyup은 중복이 안되는 듯함;
+				if($('#m_pwd').val()!= $('#m_pwd2').val()){
 					result = "비밀번호가 일치하지 않습니다.";
 			  		$(".successPwChk2").html(result).css("color","red");
-			  		$("#member_pw").val("").trigger("focus");
+			  		$("#m_pwd").val("").trigger("focus");
 			  		$(".pwChk").val(false);
 
 			 	}else{
 					result = "비밀번호가 일치 합니다.";
 				  	$('.successPwChk2').html(result).css("color","green");
-			  		$("#member_id").val("").trigger("focus");
+			  		$("#m_id").val("").trigger("focus");
 			  		$(".pwChk").val(true);
 			 	}return;
 			});
@@ -78,8 +75,8 @@
 		
 	
 		$(document).ready(function(){
-			$('#member_pw').blur(function(){ 
-				let password = $("#member_pw").val();
+			$('#m_pwd').blur(function(){ 
+				let password = $("#m_pwd").val();
 				let gd2 = /^(?=.*\d)(?=.*[a-zA-Z])(?=.*[!@#$%^&*()_+~])[a-zA-Z\d!@#$%^&*()_+~]{8,}$/;
 
 				if(password.match(gd2) != null ){
@@ -97,8 +94,8 @@
 
 
 		$(document).ready(function(){
-			$('#member_email').blur(function(){ 
-				let emailval = $("#member_email").val();
+			$('#m_id').blur(function(){ 
+				let emailval = $("#m_id").val();
 				let gd = /^[0-9a-zA-Z]([-_.]?[0-9a-zA-Z])*@[0-9a-zA-Z]([-_.]?[0-9a-zA-Z])*.[a-zA-Z]{2,3}$/i;
 
 				
@@ -128,23 +125,23 @@
 		let code = '';
 		$("#emailChk").click(function(){
 			
-			let member_email = $("#member_email").val();
+			let member_id = $("#m_id").val();
 			
 			$.ajax({
 				type:'POST',
 				url:"${pageContext.request.contextPath}/checkemail.do",
-				data : {"member_email":member_email},
+				data : {"member_id":member_id},
 				success: function(data){
 					if(data == true){
 						alert("삐-삐-");
-						$("#member_email").attr("autofocus",true);
+						$("#m_email").attr("autofocus",true);
 						result = "이메일 주소가 올바르지 않습니다. 유효한 이메일 주소를 입력해 주세요";
 						$(".successEmChk").text(result).css("color", "red");
 					}else{
 						alert("뿌-뿌-");
 						result = "인증번호 발송이 완료되었습니다. \n 입력한 이메일에서 인증번호 확인을 해주세요"+member_email;
 						$(".successEmChk").text(result).css("color", "green");
-						$("#member_email2").attr("disabled",false);
+						$("#m_email2").attr("disabled",false);
 						$("#emailChk2").css("display","inline-block");
 						code = data;
 					}
@@ -155,7 +152,7 @@
 
 		 $("#button").click(function(){
 			if($(".idChk").val() == "true" || $(".pwChk").val() == "true"){
-				alert($("#member_name").val() +"님 환영합니다. 선택해주셔서 감사합니다 :)");
+				alert($("#m_name").val() +"님 환영합니다. 선택해주셔서 감사합니다 :)");
 			 }else{
 				alert("회원가입을 완료할 수 없습니다. 다시 한번 확인해 주십시오");
 				if($(".idChk").val() != "true"){
@@ -193,36 +190,51 @@
     <h1 class="h3 mb-3 fw-normal" style="text-align:center">회원가입</h1>
 <div>
     <div class="form-floating">
-      <input type="email" name="m_id" value="" maxlength="80" class="form-control" id="floatingInput">
-      <label for="floatingInput">Email address</label>
+      <input type="email" name="m_id" value="" maxlength="80" class="form-control" id="m_id">
+      <label for="m_id">Email address</label>
+      
+      <span id="emailChk" class="doubleChk">인증번호 보내기</span><p/>
+	  	<span class="point successEmChk"></span><p/>
+	  	<input type="hidden" class="emChk2" /> <p/>
+	  	<input type="text" name="member_email2" id="member_email2" value="" maxlength="20" placeholder="인증번호 입력" disabled/>
+	  	<span id="emailChk2" class="doubleChk2" >확인</span> <p/>
+	  	<input type="hidden" class="emChk" /> <p/>
+	    <p class="tip">
+			*아이디,비밀번호 분실 시 필요한 정보이므로, 정확하게 기입해 주세요 	    
+	    </p>
     </div>
     <div class="form-floating">
-      <input type="password"  name="m_pwd"  value="" maxlength="20" class="form-control" id="floatingPwd">
-      <label for="floatingPassword">Password</label>
+      <input type="password"  name="m_pwd"  value="" maxlength="20" class="form-control" id="m_pwd">
+      <label for="m_pwd">Password</label>
+      <span class="point successPwChk"></span> <p/>
     </div>
     <div class="form-floating">
-      <input type="password"  name="m_pwd2"  value="" maxlength="20" class="form-control" id="floatingPwd2">
-      <label for="floatingPassword2">Password check</label>
+      <input type="password"  name="m_pwd2"  value="" maxlength="20" class="form-control" id="m_pwd2">
+      <label for="m_pwd2">Password check</label>
+      <span class="point successPwChk2"></span>
+		<input type="hidden" class="pwChk"/><p/>
     </div>
     <div class="form-floating">
-      <input type="text" name="m_name" value="" maxlength="80" class="form-control" id="floatingName">
-      <label for="floatingName">name</label>
+      <input type="text" name="m_name" value="" maxlength="80" class="form-control" id="m_name">
+      <label for="m_name">name</label>
     </div>
     <div class="form-floating">
-      <input type="text"  name="m_nick"  value="" maxlength="20" class="form-control" id="floatingNick">
-      <label for="floatingNick">nickname</label>
+      <input type="text"  name="m_nick"  value="" maxlength="20" class="form-control" id="m_nick">
+      	<label for="m_nick">m_nick</label>
+       <span class="point successNickChk">닉네임은 2자 이상 8자로 해주시길 바랍니다.</span>
+		<input type="hidden" class="nickChk" /> <p/>
     </div>
     <div class="form-floating">
-      <input type="text" name="m_birth" value="" maxlength="6" class="form-control" id="floatingBirth">
-      <label for="floatingInput">birth</label>
+      <input type="text" name="m_birth" value="" maxlength="6" class="form-control" id="m_birth">
+      <label for="m_birth">birth</label>
     </div>
     <div class="form-floating">
-      <input type="text"  name="m_addr"  value="" maxlength="20" class="form-control" id="floatingArrd">
-      <label for="floatingtext">addr</label>
+      <input type="text"  name="m_addr"  value="" maxlength="20" class="form-control" id="m_addr">
+      <label for="m_addr">addr</label>
     </div>
     <div class="form-floating">
-      <input type="text"  name="m_phone"  value="" maxlength="20" class="form-control" id="floatingPhone">
-      <label for="floatingtext">phone</label>
+      <input type="text"  name="m_phone"  value="" maxlength="20" class="form-control" id="m_phone">
+      <label for="m_phone">phone</label>
     </div>
 </div>
     <button class="w-100 btn btn-lg btn-primary" id="login_member"type="submit">회원가입</button>
