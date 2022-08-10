@@ -15,14 +15,31 @@
     <!-- css************************************************ -->
     <jsp:include page="../../include/membermodi.jsp" />  
 <!-- ************************************************ -->
-   
+<style>
+html, body{
+height: 100%
+}
+
+#wrap {
+min-height: 100%;
+position: relative;
+padding-bottom: 60px;
+}
+
+footer {
+position: relative;
+transform:translatY(-100%);
+}
+
+
+</style>   
   </head>
   <body>
 
     <!-- 헤더와 js************************************************ -->
     <jsp:include page="../../include/header.jsp" />  
 	<!-- ************************************************ -->
-
+<div id="wrap">
 <main class="container">
 <aside>
 	<!-- 사이더와 js************************************************ -->
@@ -105,7 +122,7 @@
 </form>
 </article>
 </main>
-
+</div>
 
 
 <!-- 푸터와 js************************************************ -->

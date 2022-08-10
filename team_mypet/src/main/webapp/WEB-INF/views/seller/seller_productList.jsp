@@ -40,13 +40,13 @@
 </head>
 
 <body>
-<div id="wrap">
+
 
 	<!-- 헤더와 네비************************************************ -->
     <jsp:include page="../../include/header.jsp" />  
 	<!-- ************************************************ -->
 	
-	
+	<div id="wrap">
 	
 	
 	<section class="product-grids section">
