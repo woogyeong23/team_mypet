@@ -4,8 +4,71 @@
 
 <mapper namespace = "com.jeonju.mypet.seller">
 
-	<select id="getSellerProductList" parameterType="string" resultType="Hashmap">
-		select a.p_name, p_content, p_category_small from product a join p_category b on a.p_category_idx=b.p_category_idx  where seller_idx = (select b.seller_idx from members a join sellerstory b on a.midx = b.midx where a.midx = #{member_id}) 		
+	<select id="getSellerProductList" resultType="Hashmap">
+		select p.*, sum(detail_cnt) as sales, e.p_ori_filename, e.p_sys_filename
+					from
+						(select a.p_idx, a.p_name, p_price, p_discount, p_disprice, p_wday, p_modifyday, p_size, p_status, b.p_category_idx, p_category_large, p_category_small,
+						ifnull(avg(review_stars),0) as avg_reviews_stars, count(review_stars) as cnt_reviews
+						from product a  join p_category b on a.p_category_idx = b.p_category_idx left join review c on a.p_idx = c.p_idx
+						where a.p_idx in (select p_idx from product where seller_idx=(select seller_idx from sellerstory where midx=#{member_id}))
+						group by a.p_idx)
+					as p left join detail d on p.p_idx = d.p_idx  join product_img e on p.p_idx=e.p_idx
+					where p.p_idx in (select p_idx from product where seller_idx=(select seller_idx from sellerstory where midx=#{member_id}))
+			<if  test="searching == 'searchTotal'">
+					and (p.p_idx like CONCAT('%',#{keyword},'%') or p_name like CONCAT('%',#{keyword},'%'))
+			</if>
+			<if  test="searching == 'searchName' ">
+					and p_name like  CONCAT('%',#{keyword},'%')
+			</if>
+			<if  test="searching == 'searchNum' ">
+					and p.p_idx like CONCAT('%',#{keyword},'%')
+			</if>
+
+			
+			<choose>
+				<when test="status=='00'">
+				</when>
+				<otherwise>
+					and p.p_status=#{status}
+				</otherwise>
+			</choose>
+			
+			<choose>
+				<when test="category=='00'">
+					and (p_category_large=1 or p_category_large=2)
+				</when>
+				<when test="category=='01'">
+					and p_category_large=1
+				</when>
+				<when test="category=='02'">
+					and p_category_large=2
+				</when>
+				<otherwise>
+					and p_category_idx=#{category}
+				</otherwise>
+			</choose>
+					group by p.p_idx
+					
+			<choose>
+				<when test="sorting=='newest'">
+					order by p.p_wday desc
+				</when>
+				<when test="sorting=='sales'">
+					order by sales desc
+				</when>
+				<when test="sorting=='highPrice'">
+					order by p.p_disprice desc
+				</when>
+				<when test="sorting=='lowPrice'">
+					order by p.p_disprice asc
+				</when>
+				<when test="sorting=='reviews'">
+					order by p.cnt_reviews desc
+				</when>
+				<when test="sorting=='stars'">
+					order by p.avg_reviews_stars desc
+				</when>
+			</choose>
 	</select>
 	<select id="getSellerProductDetail" parameterType="string" resultType="productVo">
 		select * from product where p_idx=#{p_idx}
@@ -13,6 +76,41 @@
 	<select id="getSellerProductImgs" parameterType="string" resultType="product_imgVo">
 		select * from product_img where p_idx=#{p_idx}
 	</select>
+	<select id="checkPName" parameterType="string" resultType="int">
+		select count(*) from product where p_name = #{p_name}
+	</select>
+	<select id="checkId" parameterType="string" resultType="int">
+		select count(*) from spring_member where member_id=#{member_id}
+	</select>
+	<!-- 동적 SQL문으로 처리: choose-when-otherwise 구문 -->
+	<insert id="addProduct" parameterType="map">
+		
+		INSERT INTO product(seller_idx,p_category_idx,p_name,p_content,p_price,p_discount,p_disprice,p_cancle_info,p_ingerdient,p_dvprice,p_dvcompany,p_limit_cnt,p_point,p_add_dvprice,p_free_dvprice,p_size,p_status,p_stock)
+		 VALUES( #{seller_idx}, #{p_category_idx},#{p_name},#{p_content},#{p_price},#{p_discount},#{p_disprice},#{p_cancle_info},#{p_ingerdient},#{p_dvprice},#{p_dvcompany},#{p_limit_cnt},#{p_point},#{p_add_dvprice},#{p_free_dvprice},#{p_size},#{p_status},#{p_stock})
+
+			
+	</insert>
+	
+	<select id="getPIdx" resultType="int">
+		select max(p_idx) as p_idx from product
+	</select>
+	<select id="getSellerIdx" resultType="String">
+		select seller_idx
+		from members a join sellerstory b on a.midx=b.midx
+		where a.midx=#{member_id}
+	</select>
+	<insert id="addProductImg" parameterType="map">
+		
+		INSERT INTO product_img(p_idx,p_ori_filename,p_sys_filename)
+ 		 VALUES(#{p_idx},#{p_ori_fileName},#{p_sys_fileName})
+		
+			
+	</insert>
+	
+	
+	
+	
+	
 	
 	
 	

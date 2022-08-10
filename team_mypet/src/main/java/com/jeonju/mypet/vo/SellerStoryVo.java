@@ -16,6 +16,11 @@ public class SellerStoryVo {
 	private int seller_wishcnt;
 	private int seller_ordercnt;
 	private int seller_followcnt;
+	
+	// test
+	private String m_nick;
+	//
+	
 	public int getSeller_idx() {
 		return seller_idx;
 	}
@@ -88,5 +93,13 @@ public class SellerStoryVo {
 	public void setSeller_followcnt(int seller_followcnt) {
 		this.seller_followcnt = seller_followcnt;
 	}
+	public String getM_nick() {
+		return m_nick;
+	}
+	public void setM_nick(String m_nick) {
+		this.m_nick = m_nick;
+	}
+	
+	
 	
 }

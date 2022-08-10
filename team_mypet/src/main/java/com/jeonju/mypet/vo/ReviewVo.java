@@ -6,7 +6,7 @@ public class ReviewVo {
 
 	private int review_idx;
 	private int midx;
-	private int product_idx;
+	private int p_idx;
 	private int orders_idx;
 	private String review_content;
 	private int review_stars;
@@ -15,6 +15,12 @@ public class ReviewVo {
 	private int review_reply_cnt;
 	private String delyn;
 	private Date review_delday;
+	
+    //  test 22.7.29
+	private String p_ori_filename;
+	private String p_name;
+	//
+	
 	public int getReview_idx() {
 		return review_idx;
 	}
@@ -26,12 +32,6 @@ public class ReviewVo {
 	}
 	public void setMidx(int midx) {
 		this.midx = midx;
-	}
-	public int getProduct_idx() {
-		return product_idx;
-	}
-	public void setProduct_idx(int product_idx) {
-		this.product_idx = product_idx;
 	}
 	public int getOrders_idx() {
 		return orders_idx;
@@ -81,6 +81,32 @@ public class ReviewVo {
 	public void setReview_delday(Date review_delday) {
 		this.review_delday = review_delday;
 	}
+	public int getP_idx() {
+		return p_idx;
+	}
+	public void setP_idx(int p_idx) {
+		this.p_idx = p_idx;
+	}
+	
+	//   test 22.7.29
+	
+	public String getP_name() {
+		return p_name;
+	}
+	public void setP_name(String p_name) {
+		this.p_name = p_name;
+	}
+	
+	public String getP_ori_filename() {
+		return p_ori_filename;
+	}
+	public void setP_ori_filename(String p_ori_filename) {
+		this.p_ori_filename = p_ori_filename;
+	}
+	//
+	
+	
+	
 	
 	
 }

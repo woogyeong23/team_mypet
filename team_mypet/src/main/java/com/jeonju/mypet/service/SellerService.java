@@ -3,6 +3,7 @@ package com.jeonju.mypet.service;
 
 import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -21,9 +22,9 @@ public class SellerService {
 		this.sellerDao = sellerDao;
 	}
 	
-	public List<HashMap<String, Object>> seller_productList(String member_id) {
+	public List<HashMap<String, Object>> seller_productList(HashMap<String, String> searchInfo) {
 		// TODO Auto-generated method stub
-		return sellerDao.getSellerProductList(member_id);
+		return sellerDao.getSellerProductList(searchInfo);
 	}
 
 	public ProductVo seller_productDetail(String p_idx) {
@@ -35,7 +36,38 @@ public class SellerService {
 		// TODO Auto-generated method stub
 		return sellerDao.getSellerProductImgs(p_idx);
 	}
+
+	public  int checkPName(String p_name) {
+		// TODO Auto-generated method stub
+		int result=0;
+		result=sellerDao.checkPName(p_name);
+		return result;
+	}
 	
-	
+	public int checkId(String id) {
+		int result=0;
+		result = sellerDao.checkId(id);
+		return result;
+	}
+
+	public int addProduct(Map<String, String> param) {
+		// TODO Auto-generated method stub
+		return sellerDao.addProduct(param);
+	}
+
+	public int getPIdx() {
+		// TODO Auto-generated method stub
+		return sellerDao.getPIdx();
+	}
+
+	public void addProductImg(HashMap<String,String> imgFileName) {
+		// TODO Auto-generated method stub
+		sellerDao.addProductImg(imgFileName);
+	}
+
+	public String getSellerIdx(String member_id) {
+		// TODO Auto-generated method stub
+		return sellerDao.getSellerIdx(member_id);
+	}
 	
 }

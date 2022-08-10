@@ -11,7 +11,7 @@ public class Commu_CommentVo {
 	private String cc_delyn;
 	private int cc_like;
 	private int cm_idx;
-	private int cc_origin;
+	private int  cc_origin;
 	private int cc_depth;
 	private int cc_level;
 
