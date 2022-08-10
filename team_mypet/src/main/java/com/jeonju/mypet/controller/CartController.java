@@ -52,20 +52,7 @@ public class CartController {
 	}
 	
 	//헤더부분 카트리스트
-	@GetMapping("/cartHeaderView")
-	public List<ProductVo> cartHeaderView(CartVo cartVo,Model model,HttpServletRequest request)throws Exception {
-		
-		HttpSession Session = request.getSession();
-		int midx = (int) Session.getAttribute("midx");
-		
-		 List<ProductVo> list = new ArrayList<>();
-		
-			cartVo.setMidx(midx);
-			list = cartService.cartList(cartVo);
-			
-			
-		return list;	
-	}
+	
 	
 //	//장바구니 추가 부분
 //	@PostMapping("/cartMemInto.do")
@@ -89,25 +76,7 @@ public class CartController {
 //	}
 //	
 						
-	@PostMapping("/updatecnt.do")
-	public String updatecnt(CartVo cartVo) throws Exception {
-		
-		String result; 
-				
-		int cnt = cartService.modifycartcnt(cartVo);
-		
-		System.out.println("카운트:"+cartVo);
-		
-		if(cnt == 1) {
-			result = "Y";
-		}else {
-			result = "N";
-		}
-		
-		
-		return result;
-		
-	}
+	
 	
 		//장바구니 상품 추가
 		@GetMapping("/insertCart.do") 
@@ -133,18 +102,6 @@ public class CartController {
 	
 		}
 	
-		
-		@PostMapping("/deletecart.do")
-		public String deletecart(CartVo cartVo, HttpSession session) {
-			
-			int midx = (int) session.getAttribute("midx");
-			cartVo.setMidx(midx);
-			String result = "N";
-			int delete = cartService.deleteCart(cartVo);
-			if(delete == 1) {
-				 result = "Y";
-			}System.out.println("삭제:"+cartVo);
-			return result;
-		}
+	
 	
 }

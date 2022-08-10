@@ -1,6 +1,10 @@
 package com.jeonju.mypet.controller;
 
+import java.util.ArrayList;
 import java.util.List;
+
+import javax.servlet.http.HttpServletRequest;
+import javax.servlet.http.HttpSession;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.ui.Model;
@@ -9,7 +13,9 @@ import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
 
 import com.jeonju.mypet.service.AjaxService;
+import com.jeonju.mypet.vo.CartVo;
 import com.jeonju.mypet.vo.MembersVo;
+import com.jeonju.mypet.vo.ProductVo;
 
 //Ajax통신 지원을 위해 pom.xml에 의존모듈(jackson)을 추가해 줌
 
@@ -25,6 +31,23 @@ public class AjaxController {
 	}
 	
 	
+	@PostMapping("/checknick.do")
+	public String checknick(@RequestParam("m_nick") String m_nick) {
+		
+		System.out.println("m_nick: "+m_nick);
+
+		String result="N";//중복된 아이디 없음
+		
+		int flag = ajaxService.checkNick(m_nick);
+		System.out.println("result: "+flag);
+
+		if(flag == 1) {
+			result = "Y";//중복된 아이디 있음(실패)
+		}
+		
+		return result;
+	}	
+	
 	@PostMapping("/idfindProcess.do")
 	//@ResponseBody //Ajax통신의 응답내용을 보내는 것을 표시 <-- @RestController 로 대체 가능
 	public String idFindProcess(@RequestParam("m_name") String m_name,Model model) {
@@ -32,7 +55,7 @@ public class AjaxController {
 		
 		
 		String result  = ajaxService.idfind(m_name);
-		
+		System.out.println(result);
 		return result;
 	}	
 	
@@ -66,10 +89,53 @@ public class AjaxController {
 	}
 	
 	
+	@PostMapping("/cartHeaderView.do")
+	public List<ProductVo> cartHeaderView(CartVo cartVo,Model model,HttpServletRequest request)throws Exception {
+		
+		HttpSession Session = request.getSession();
+		int midx = (int) Session.getAttribute("midx");
+		
+		 List<ProductVo> list = new ArrayList<>();
+		
+			cartVo.setMidx(midx);
+			list = ajaxService.cartList(cartVo);
+			
+			
+		return list;	
+	}
 	
+	@PostMapping("/updatecnt.do")
+	public String updatecnt(CartVo cartVo) throws Exception {
+		
+		String result; 
+				
+		int cnt = ajaxService.modifycartcnt(cartVo);
+		
+		System.out.println("카운트:"+cartVo);
+		
+		if(cnt == 1) {
+			result = "Y";
+		}else {
+			result = "N";
+		}
+		
+		System.out.println("업데뚜:"+result);
+
+		return result;
+		
+	}
 	
-	
-	
+	@PostMapping("/deletecart.do")
+	public String deletecart(CartVo cartVo, HttpSession session) {
+		
+		int midx = (int) session.getAttribute("midx");
+		cartVo.setMidx(midx);
+		String result = "N";
+		int delete = ajaxService.deleteCart(cartVo);
+		if(delete == 1) result = "Y";
+		System.out.println("삭제:"+result);
+		return result;
+	}
 	
 	
 	

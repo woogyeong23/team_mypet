@@ -18,6 +18,9 @@
     	$("#id_find").click(function(){
     		let m_name = $("#m_name").val();
     		
+    		$.ajax({
+    			
+    		});
     	});  	 
      });
     </script>
@@ -43,7 +46,7 @@
       <label for="floatingInput">name</label>
     </div>
     
-    <button class="w-100 btn btn-lg btn-primary" id="id_find">아이디 찾기</button>
+    <button class="w-100 btn btn-lg btn-primary" id="id_find" tpye="">아이디 찾기</button>
     <div style="height:20px" ><span id="id_finded" style="font-size:12px;">gdgd</span></div>
     </form>
 </main>         

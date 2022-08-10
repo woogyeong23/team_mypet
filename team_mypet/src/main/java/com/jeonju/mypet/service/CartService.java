@@ -46,21 +46,14 @@ public class CartService {
 		return cartDao.countMemberCart(cartVo);
 	}
 
-	public int modifycartcnt(CartVo cartVo) {
-		return cartDao.modifycartcnt(cartVo);
-	}
 
 	public int insertCart(CartVo cartVo) {
 		return cartDao.insertCart(cartVo);
 	}
-
 	public int updateCart(CartVo cartVo) {
 		return cartDao.updateCart(cartVo);
 	}
-	
-	public int deleteCart(CartVo cartVo) {
-		return cartDao.deleteCart(cartVo);
-	}
+
 
 
 

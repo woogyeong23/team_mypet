@@ -60,7 +60,11 @@ $(document).ready(function(){
 					"midx":midx,"p_idx":p_idx},
 			success:function(data){
 				if(data =="Y"){
+					console.log("minus");
+
 				}else{
+					console.log("minus x");
+
 				}
 			}
 		});
@@ -80,86 +84,102 @@ $(document).ready(function(){
 			data:{"cart_cnt": cart_cnt,"cart_idx":cart_idx,
 					"midx":midx,"p_idx":p_idx},
 			success:function(data){
-				if(data =="Y"){
+				if(data == "Y"){
+					console.log("plus");
 				}else{
+					console.log("plus x");
+
 				}
 			}
 		});
 	});
-	
+
 	
 	//삭제
-	$(".CartOptionEditingButtonGroup__button").on("click", function(){
+	$(".CartOptionEditingButtonGroup__button").click(function(){
 		
 		let cart_idx = $(this).attr("name");
 		let midx = $("#midx_input").val();
+		let CAI = "#CartArtistItem"+cart_idx;
+		
 		
 		$.ajax({
-			type:"post",
+			type:"POST",
 			url:"${pageContext.request.contextPath}/deletecart.do",
-			data:{"cart_idx":cart_idx,"midx":midx},
+			data:{"cart_idx":cart_idx,"midx":midx
+			},
 			success:function(data){
-				if(data =="Y"){
-					$("table:has(input:checked)").remove();
+				if(data == "N"){
+					console.log(result);
+					alert("삭제놉");
 				}else{
+					$(CAI).remove();
 				}
 			}
 		});
 	});
 	
+	let cart_idx = $("#cart_idx_input").val();
+	let cart_arr = new Array(cart_idx);
 	
-	
+	let atichk = "#artist_checkedbox"+cart_idx;
+	console.log(cart_arr);
+
 	setTotalInfo();
-
-	$("#artist_checkedbox").on("change", function(){
-
+	$(atichk).on("change", function(){
+		console.log(atichk);
 		setTotalInfo("#CartArtistItem");
-
+	
 	});
-	
-	
 	//모든 체크 박스 선택
 	$("#cart-product-all-check").on("click", function(){
-		let p_idx = $("#p_idx_input").value;
-		let artistchk = "#artist_checkedbox" + p_idx;
-		let artistbx = artistchk.value;
+		
 		if($("#cart-product-all-check").prop("checked")){
-			$("#item_checkedbox").attr("checked",false);
-			artistbx.is("checked",true);
+			$("input[type='checkbox']").prop("checked",true);			
 		}else{
-			$("#item_checkedbox").attr("checked",false);
-			artistbx.is("checked",false);
+			$("input[type='checkbox']").prop("checked",false);
 		}
 	});
-	
-	
+	//모든 체크박스가 선택되면 바뀌기..
+	$("input[type='checkbox']").on("click",function(){
+		
+		if($("input[type='checkbox']").prop("checked")){
+			$("#cart-product-all-check").prop("checked",true);			
+		}else{
+			$("#cart-product-all-check").prop("checked",false);
+		}
+	});
+	let chk_arr = new Array();
+	$("input[tpye='chekcbox']:checked").each(function(){
+		let chk = $(this).val();
+		chk_arr.push(chk);
+		alert(chk_arr);
+	});
 	
 	
 	function setTotalInfo(){
+		 
+		let cart_idx = $("#cart_idx_input").val();
+		let atichk = "#artist_checkedbox"+cart_idx;
 		
-		let Price = $("#p_price_input").val();	// 총 가격
-		let Price_cnt = Price.length;
-		let totalPrice = 0;				// 총 가격
-		let totalPoint = 0;				// 총 마일리지
+		let price = $("#p_price_input").val()*1;	// 총 가격
+		let cart_idx_cnt = cart_idx.length;
+		let cnt = $("#cart_cnt").val();
+		let Price = "#price_span"+cart_idx;
+		let totalPrice = "#totalPrice_span"+cart_idx;				// 총 가격
+		let totalPoint = "#totalPoint_span"+cart_idx;				// 총 마일리지
 		let deliveryPrice = 0;			// 배송비
 		let finalTotalPrice = 0; 		// 최종 가격(총 가격 + 배송비)
 		
-		$("#CartArtistItem").each(function(index, item){
+		
+		$(".CartArtistItem").each(function(index, element){
 			
-			if($(item).find(".artist_checkedbox").is(":checked") === true ){	//체크여부
-				
-				for (var i = 0; i < Price_cnt; i++){
 					// 총 가격
-					totalPrice += parseInt($(item).Price[i]) * parseInt($(item).Cnt[i]);
+					totalPrice += parseInt($(element).Price) * parseInt($(element).cnt);
 					// 총 마일리지
-					totalPoint += parseInt($(item).Price[i]) * 0.05;	
-				}
-					
-			}
-
+					totalPoint += parseInt($(element).Price) * 0.05;	
+		
 		});
-		
-		
 		/* 배송비 결정 */
 		if(totalPrice >= 30000){
 			deliveryPrice = 0;
@@ -174,14 +194,14 @@ $(document).ready(function(){
 		/* ※ 세자리 컴마 Javscript Number 객체의 toLocaleString() */
 		
 		// 총 가격
-		$("#totalPrice_span").text(Price);
-		$("#totalPrice_span").text(totalPrice);
+		$(Price).text(Price);
+		$("#totalPrice").text(totalPrice);
 		// 총 마일리지
-		$("#totalPoint_span").text(totalPoint);
+		$("#totalPoint").text(totalPoint);
 		// 배송비
-		$("#delivery_price").text(deliveryPrice);	
+		$("#deliveryPrice").text(deliveryPrice);	
 		// 최종 가격(총 가격 + 배송비)
-		$("#finalTotalPrice_span").text(finalTotalPrice);		
+		$("#finalTotalPrice").text(finalTotalPrice);		
 	}
 
 
@@ -200,6 +220,7 @@ $(document).ready(function(){
     <c:set var="Price" value="0" />
     <c:set var="totaldelPrice" value="0" />
     <c:set var="totalPrice" value="0" />
+    
     <style>
     .NumberCounter__minus {
     display: inline-block;
@@ -243,13 +264,13 @@ $(document).ready(function(){
     <jsp:include page="../../include/header.jsp" />  
 	<!-- ************************************************ -->
 
-<main>
+<main class="content">
 <input type="hidden" name="midx" value="${midx}">
 
 
 
 
-<aside class="content">
+<aside>
 		<div class="CartPage">
       		<div class="PageHeader"> 
    				<h2 class="PageHeader__title">
@@ -270,21 +291,25 @@ $(document).ready(function(){
    				<div class="CartArtistList" id="CartArtistList">
    					<div class="vue-sticky-placeholder" style="padding-top: 0px;"></div>
    					<div class="CartList__sticky vue-sticky-el" style="position: static; top: auto; bottom: auto; left: auto; width: auto; z-index: 201;"></div>
-   					
+<%--    					<c:if test="${countCart}" var="null" > --%>
+<%--    					</c:if> --%>
    					<c:forEach items="${cart}" var="cart" varStatus="status">
-   					<div class="CartArtistItem" id="CartArtistItem">
-   					<input type="hidden" name="p_price" id="p_price_input" value="${cart.p_price}">
-   					<input type="hidden" name="p_idx" id="p_idx_input" value="${cart.p_idx}">
-   					<input type="hidden" name="cart_idx" id="cart_idx_input" value="${cart.cart_idx}">   					
-   					<input type="hidden" name="midx" id="midx_input" value="${cart.midx}">
-   					<input type="hidden" name="p_name" id="p_name_input" value="${cart.p_name}">
-   					<input type="hidden" name="p_content" id="p_content_input" value="${cart.p_content}">
-   					<input type="hidden" name="cart_cnt" id="cart_cnt_input" value="${cart.cart_cnt}">
+   					<c:set var="idx" value="${cart.cart_idx}" />
+   					<div class="CartArtistItem" id="CartArtistItem${cart.cart_idx}" name="${cart.cart_idx}">
+   					<div>
+   					<input type="hidden" id="p_price_input" value="${cart.p_price}">
+   					<input type="hidden" id="p_idx_input" value="${cart.p_idx}">
+   					<input type="hidden" id="cart_idx_input" value="${cart.cart_idx}">   					
+   					<input type="hidden" id="midx_input" value="${cart.midx}">
+   					<input type="hidden" id="p_name_input" value="${cart.p_name}">
+   					<input type="hidden" id="p_content_input" value="${cart.p_content}">
+   					<input type="hidden" id="cart_cnt_input" value="${cart.cart_cnt}">
+   					</div>
    						<div class="CartArtistItem__header">
    						<label>
 							<div class="checkbox">   							
-   								<div class="input-checkbox">
-   									<input id="artist_checkedbox${cart.p_idx}" data-cartNum="${cart.cart_idx}" type="checkbox" autocomplete="off" class="bp" value="${m_nick}" checked="checked" >
+   								<div class="input-checkbox"  id="input-checkbox1">
+   									<input id="artist_checkedbox${cart.cart_idx}" name="${cart.cart_idx}" data-cart_idx="${cart.cart_idx}" type="checkbox" autocomplete="off" class="bp" value="${m_nick}" checked="checked" >
    								</div>
    							</div>
    							<span  class="CartArtistItem__title" >${m_nick}</span> <!-- 작가이름 -->
@@ -298,8 +323,8 @@ $(document).ready(function(){
 			   									<div class="CartProductListItem__checkboxGroup">
    													<div class="CartProductListItem__checkboxWrap" style="display:inline-block;" >			
    														<div class="checkbox">
-   															<div class="input-checkbox"  style="display: inline-block;"> 
-   																<input id="item_checkedbox" data-cartNum="${cart.cart_idx}" type="checkbox" autocomplete="off" class="bp" value="${pageContext.request.contextPath}/resources/product/${cart.p_sys_filename}" checked="checked" >   						
+   															<div class="input-checkbox" id="input-checkbox2"  style="display: inline-block;"> 
+   																<input id="item_checkedbox${cart.cart_idx}" name="${cart.cart_idx}" data-cart_idx="${cart.cart_idx}" type="checkbox" autocomplete="off" class="bp" value="${pageContext.request.contextPath}/resources/product/${cart.p_sys_filename}" checked="checked" >   						
    						 									</div>
    														</div>
    													</div>
@@ -326,11 +351,11 @@ $(document).ready(function(){
    															</div>
    														
    															<div class="CartOptionListItem__splitRight"  >
-   																<em class="CartOptionListItem__totalPrice" id="CartArtistItem__Price" >개당 금액:<fmt:formatNumber pattern="###,###,###" value="${cart.p_price}"/></em> <!-- 상품가격 -->
+   																<em class="CartOptionListItem__totalPrice" id="CartArtistItem__Price${cart.cart_idx}"name="${cart.cart_idx}" >개당 금액:<fmt:formatNumber pattern="###,###,###" value="${cart.p_price}"/></em> <!-- 상품가격 -->
    																
    																<div class="CartOptionListItem__btnGroup">
    																	<div class="CartOptionEditingButtonGroup">
-   																		<button id="delete__button${cart.cart_idx}" name="${cart.cart_idx}" class="CartOptionEditingButtonGroup__button CartOptionEditingButtonGroup__button--right">
+   																		<button type="button" id="delete__button${cart.cart_idx}" name="${cart.cart_idx}" class="CartOptionEditingButtonGroup__button CartOptionEditingButtonGroup__button--right" >
    																		 X
    																		</button>
    																	</div>
@@ -351,7 +376,7 @@ $(document).ready(function(){
    								<div class="CartArtistItem__label">
    								작품 가격
    								</div>
-   								<div class="CartArtistItem__price" id="totalPrice_span">
+   								<div class="CartArtistItem__price" id="totalPrice_span${cart.cart_idx}" name="${cart.cart_idx}">
 
    								 <!-- 작품 가격 -->
 	   							</div>
@@ -360,7 +385,7 @@ $(document).ready(function(){
    								<div class="CartArtistItem__label">
    								배송비
    								</div>
-   								<div class="CartArtistItem__price" id="delivery_price">
+   								<div class="CartArtistItem__price" id="delivery_price${cart.cart_idx}" name="${cart.cart_idx}">
 
    								<!-- 배송비 -->
 	   							</div>
@@ -376,7 +401,7 @@ $(document).ready(function(){
         	<div class="CartCheckboxControl">
         		<div class="checkbox" id="checkbox">
         			<div class="input-checkbox">
-        			<input type="checkbox" class="bp" autocomplete="off" id="cart-product-all-check" value="" checked="checked">
+        			<input type="checkbox" class="bp" autocomplete="off" id="cart-product-all-check" name="${cart_idx}" checked="checked">
         			</div>
         			<label for="cart-product-all-check">
         				<span class="CartCheckboxControl__label">
@@ -386,7 +411,6 @@ $(document).ready(function(){
             			</span>
         			</label>
         		</div>
-        			<button class="CommonButton CommonButton--middle CommonButton--white" id="cart-product-check-reset" >선택 해제</button>
         	</div>
         		<div class="CartCheckout">
         			<div class="CartCheckoutDesktop">
@@ -412,7 +436,7 @@ $(document).ready(function(){
         						<span id="finalTotalPrice_span"></span>
         						<span class="CartCheckoutDesktop__priceUnit">원</span>
         						<em class="CartOptionListItem__totalPrice">적립금 :
-   								<a id="totalPoint_span"></a>
+   								<a id="totalPoint_span" ></a>
    								</em>  	<!-- 예상적립금 -->	
         						
         					</div>

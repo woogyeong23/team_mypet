@@ -173,7 +173,6 @@
             controls: true,
             controlsText: ['<i class="lni lni-chevron-left"></i>', '<i class="lni lni-chevron-right"></i>'],
         });
-
         //======== Brand Slider
         tns({
             container: '.brands-logo-carousel',

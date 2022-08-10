@@ -24,10 +24,11 @@ $(document).ready(function(){
 				data:{"pet_idx_arr":pet_idx_arr},
 				success:function(data){
 					if(data =="Y"){
-						alert("삭제 실패!");
-					}else{
 						alert("삭제 성공!");
 						$("table:has(input:checked)").remove();
+					}else{
+						alert("삭제 실패!");
+
 					}
 				},
 				error: function(error){alert("삭제 중 에러 발생!");}
@@ -81,21 +82,25 @@ $(document).ready(function(){
 	<!-- ************************************************ -->
 
 <main class="content">
-<aside>
+
 	<!-- 사이더와 js************************************************ -->
     <jsp:include page="../../include/sidebar.jsp" />  
-</aside>
-<article>
+
+<section>
 
 <div class="title-style no-mt clf">
 <a href="#" class="txt fl">펫 정보 관리</a>
 </div>
-
 <br>
 <c:forEach var="petVo" items="${petVoList}">
-			<input type="checkbox" value="${petVo.pet_idx}">
 	<table class="table-style-head-left">
-			
+		<tbody>
+		<tr>
+			<td colspan="2">
+				<input type="checkbox" value="${petVo.pet_idx}">
+			</td>
+		</tr>
+		</tbody>
 		<tbody>
 			<tr>
 				<th>
@@ -147,9 +152,9 @@ $(document).ready(function(){
 		</tbody>
 		<tr>
 			<td>
-				<button class="btn btn-m btn-point" id="petUpdate">수정하기 </button>
 			</td>
 			<td>
+				<button class="btn btn-m btn-point" id="petUpdate">수정하기 </button>
 				<button class="btn btn-m btn-point" id="petDelete">삭제하기</button>
 			</td>
 		</tr>
@@ -159,7 +164,7 @@ $(document).ready(function(){
 	</c:forEach>
 
 
-</article>
+</section>
 
 </main>
 

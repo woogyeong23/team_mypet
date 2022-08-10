@@ -25,6 +25,10 @@
 	<select id="checkId" parameterType="int" resultType="int">
 		select count(*) from members where midx= #{midx}
 	</select>
+	<!-- 닉네임유효성 -->
+	<select id="getchecknick" parameterType="string" resultType="int">
+		select count(*) from members where m_nick= #{m_nick}
+	</select>
 	<!-- 내정보 -->	
 	<select id="getmembermodi" parameterType="int" resultType="membersVo">
 		select * from members where midx= #{midx}

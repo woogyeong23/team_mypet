@@ -40,7 +40,6 @@ transform:translatY(-100%);
 
   </head>
   <body>
-<div id="wrap">
     <!-- 헤더와 js************************************************ -->
     <jsp:include page="../../include/header.jsp" />  
 	<!-- ************************************************ -->
@@ -228,7 +227,6 @@ transform:translatY(-100%);
 </main>
 
 
-</div>
 
 <!-- 푸터와 js************************************************ -->
     <jsp:include page="../../include/footer.jsp" />  

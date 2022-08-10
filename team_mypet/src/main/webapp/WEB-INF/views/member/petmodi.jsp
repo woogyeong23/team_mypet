@@ -2,6 +2,7 @@
     pageEncoding="UTF-8"%>
     <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
     <!DOCTYPE html> 
+    <html>
   <head>
 
  <!-- css************************************************ -->
@@ -24,13 +25,13 @@
 	<!-- ************************************************ -->
 
 <main class="content">
-<aside>
+
 	<!-- 사이더와 js************************************************ -->
     <jsp:include page="../../include/sidebar.jsp" />  
-</aside>
-<article>
+
+<section>
 <div class="title-style no-mt clf">
-<a href="#" class="txt fl">펫 정보 관리</a>
+<a href="#" class="txt fl">펫 정보 입력</a>
 </div>
 <form name="petmodiForm" action="${pageContext.request.contextPath}/petmodiProcess.do" method="post">
 	<table class="table-style-head-left">
@@ -100,7 +101,7 @@
 	</div>
 	
 </form>
-</article>
+</section>
 </main>
 
 

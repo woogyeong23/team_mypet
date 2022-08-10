@@ -289,6 +289,22 @@ function cartAlert(result){
   height : 175px;
 }
 
+		html, body{
+			height: 100%
+		}
+		
+		#wrap {
+			min-height: 100%;
+			position: relative;
+			padding-bottom: 60px;
+		}
+		
+		footer {
+			position: relative;
+			transform:translatY(-100%);
+		}
+		
+	
 </style>
 
 <!-- css***************************************************** -->
@@ -297,11 +313,12 @@ function cartAlert(result){
 </head>
 
 <body>
+
 <!-- 헤더와 네비************************************************ -->
     <jsp:include page="../../include/header.jsp" />  
 <!-- ******************************************************** -->
 
-
+<div id="wrap">
 
 <section class="item-details section" style="padding-top: 10px;">
 	<div class="container">
@@ -564,6 +581,7 @@ function cartAlert(result){
 			</div>
 	</div>
 </section>
+</div>
 				<!-- 리뷰끝 -->
 				
 				<!-- 판매자의 다른 상품 -->

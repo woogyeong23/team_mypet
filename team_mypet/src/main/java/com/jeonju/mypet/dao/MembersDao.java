@@ -83,6 +83,10 @@ public class MembersDao {
 		return sqlSession.update(MAPPER+".getpetup",pet_idx);
 	}
 
+	public int checkNick(String m_nick) {
+		return sqlSession.selectOne(MAPPER+".getchecknick", m_nick);
+	}
+
 
 
 

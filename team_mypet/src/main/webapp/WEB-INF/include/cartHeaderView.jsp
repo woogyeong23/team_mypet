@@ -12,7 +12,7 @@ $(document).ready(function(){
   function memberCartHeader(){
 	  
 		$.ajax({
-			url : "/member/cartHeaderView",
+			url : "${pageContext.request.contextPath}/cartHeaderView.do",
 			type : "get",
 			dataType : "json",
 			success : function(list){
