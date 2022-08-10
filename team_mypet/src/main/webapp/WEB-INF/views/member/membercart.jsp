@@ -166,8 +166,8 @@ $(document).ready(function(){
 		let cart_idx_cnt = cart_idx.length;
 		let cnt = $("#cart_cnt").val();
 		let Price = "#price_span"+cart_idx;
-		let totalPrice = "#totalPrice_span"+cart_idx;				// 총 가격
-		let totalPoint = "#totalPoint_span"+cart_idx;				// 총 마일리지
+		let totalPrice = 0;				// 총 가격
+		let totalPoint = 0;				// 총 마일리지
 		let deliveryPrice = 0;			// 배송비
 		let finalTotalPrice = 0; 		// 최종 가격(총 가격 + 배송비)
 		

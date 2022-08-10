@@ -148,10 +148,8 @@
                                 </div>
                                 </c:when>
                                 <c:otherwise>
-                                
                                 </c:otherwise>
                                 </c:choose>
-                            
                                 <div class="wishlist">
                                     <a href="javascript:void(0)">
                                         <i class="lni lni-heart"></i>

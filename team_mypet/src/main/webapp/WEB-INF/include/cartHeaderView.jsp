@@ -5,15 +5,15 @@
 <script type="text/javascript">
 $(document).ready(function(){
 
-	memberCartHeader();
+	cartHeaderView();
 	
 })
 
-  function memberCartHeader(){
+  function cartHeaderView(){
 	  
 		$.ajax({
-			url : "${pageContext.request.contextPath}/cartHeaderView.do",
-			type : "get",
+			url : "${pageContext.request.contextPath}/cartHeaderView",
+			type : "post",
 			dataType : "json",
 			success : function(list){
 			var s ='';
@@ -23,18 +23,18 @@ $(document).ready(function(){
 			}
 			
 			$.each(list, function(key,value){
-				var p_price = parseInt(value.productVO.p_price);
+				var p_price = parseInt(value.cartVo.p_price);
 				var price = new Intl.NumberFormat('ko-KR', {
 					style : 'currency',
 					currency : 'KRW'
 				}).format(p_price);
 				
-				var cart_idx = parseInt(value.cart_idx);
+				var cart_idx = parseInt(value.cartVo.cart_idx);
                 
-                s +=	'<li><a onclick="cartHeaderDel('+cart_idx+');" class="remove" title="Remove this item"><i class="lni lni-close"></i></a>';
-                s +=	'<div class="cart-img-head"><a class="cart-img" href="${pageContext.request.contextPath}/product/productContent?p_idx='+value.productVO.p_idx+'">';
-                s +=    '<img src="resources/assets/images/products/'+value.product_imgVO.p_sys_filename+'" alt="#"></a></div>';
-                s +=	'<div class="content"><h4><a href="/product/productContent?p_idx='+value.productVO.p_idx+'">'+value.productVO.p_name+'</a></h4>';
+                s +=	'<li><a onclick="cartHeaderDel('+cartVo.cart_idx+');" class="remove" title="Remove this item"><i class="lni lni-close"></i></a>';
+                s +=	'<div class="cart-img-head"><a class="cart-img" href="${pageContext.request.contextPath}/product/productContent?p_idx='+value.cartVo.p_idx+'">';
+                s +=    '<img src="resources/assets/images/products/'+value.cartVo.p_sys_filename+'" alt="#"></a></div>';
+                s +=	'<div class="content"><h4><a href="/product/productContent?p_idx='+value.cartVo.p_idx+'">'+value.cartVo.p_name+'</a></h4>';
                 s +=	'<p class="quantity">1x - <span class="amount">'+price+'</span></p></div></li>';
                
                 
@@ -51,8 +51,8 @@ $(document).ready(function(){
 			
 			
 			$("#cartPrice").html(cartTotal);
-			$("#cartView").html(s);
-			
+			$("#cartView").html("23232323");
+			alert(s);
 			}
 		})
 	    
@@ -62,7 +62,7 @@ $(document).ready(function(){
 function cartHeaderDel(cart_idx){
 	 
 	$.ajax({
-		url : "/member/cartDelete",
+		url : "/cartDelete",
 		type : "post",
 		dataType : "json",
 		data : {"cart_idx" : cart_idx},
@@ -86,9 +86,12 @@ function cartHeaderDel(cart_idx){
 		<span>2 Items</span>
 			<a href="${pageContext.request.contextPath}/member/memberCartHeader">View Cart</a>
 	</div>
-	<ul class="shopping-list" id="cartView">
-		
-	</ul>
+	
+		<table class="shopping-list">
+        	<tbody id="cartView">
+
+            </tbody>
+        </table>
 	<div class="bottom">
 		<div class="total">
 			<span>Total</span>

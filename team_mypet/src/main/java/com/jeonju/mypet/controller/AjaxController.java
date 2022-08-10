@@ -89,7 +89,7 @@ public class AjaxController {
 	}
 	
 	
-	@PostMapping("/cartHeaderView.do")
+	@PostMapping("/cartHeaderView")
 	public List<ProductVo> cartHeaderView(CartVo cartVo,Model model,HttpServletRequest request)throws Exception {
 		
 		HttpSession Session = request.getSession();
@@ -100,7 +100,7 @@ public class AjaxController {
 			cartVo.setMidx(midx);
 			list = ajaxService.cartList(cartVo);
 			
-			
+			System.out.println("헤더부분"+list);
 		return list;	
 	}
 	
