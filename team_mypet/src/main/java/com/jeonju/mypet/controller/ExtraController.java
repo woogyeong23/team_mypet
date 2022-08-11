@@ -136,6 +136,15 @@ public class ExtraController {
 		   return "Extra/reviewList";
 		   
 	   }
+	 
+	 @GetMapping("/Error")
+	 public String Error() {
+		 
+		 return "Extra/error"; 
+	 }
+	 
+	 
+	
 	
 	
 	
