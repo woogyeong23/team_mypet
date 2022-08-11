@@ -6,6 +6,7 @@ import java.io.File;
 import java.io.IOException;
 
 import java.text.SimpleDateFormat;
+import java.util.ArrayList;
 import java.util.List;
 
 
@@ -154,6 +155,11 @@ public class CommunityController {
 			community_likeVo.setCm_idx(cm_idx);
 			
 			int CmLikeYn = commuService.getCmLikeYn(community_likeVo);
+			
+			List<String> list = new ArrayList<String>();
+			
+//			for(int i=0; i<ccmList.)
+			
 			
 			model.addAttribute("CmLikeYn", CmLikeYn);
 			model.addAttribute("communityVo", communityVo);

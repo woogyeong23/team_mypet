@@ -20,6 +20,7 @@ import org.springframework.web.multipart.MultipartFile;
 import com.google.gson.JsonObject;
 import com.jeonju.mypet.service.JoeAjaxService;
 import com.jeonju.mypet.vo.Commu_CommentVo;
+import com.jeonju.mypet.vo.Commu_Comment_LikeVo;
 import com.jeonju.mypet.vo.CommunityVo;
 import com.jeonju.mypet.vo.Community_likeVo;
 import com.jeonju.mypet.vo.FollowVo;
@@ -134,6 +135,29 @@ public class JoeAjaxController {
 			dd="Y";
 		
 		return dd;
+	}
+	
+	@PostMapping("/ccDelete")
+	public String CcDelete(Commu_CommentVo commu_commentVo) {
+		String dd = "";
+		
+		int flag = joeAjaxService.DeleteCc(commu_commentVo);
+		
+		if(flag ==1)
+			dd = "Y";
+		return dd;
+	}
+	
+	@PostMapping("/ccLike")
+	public String LikeCC(Commu_Comment_LikeVo commu_comment_likeVo) {
+		String ll = "";
+		
+		int flag = joeAjaxService.LikeCc(commu_comment_likeVo);
+		int plus = joeAjaxService.plusCcLike(commu_comment_likeVo);
+		
+		if(flag + plus == 2)
+			ll ="Y";
+		return ll;
 	}
 	
 	
