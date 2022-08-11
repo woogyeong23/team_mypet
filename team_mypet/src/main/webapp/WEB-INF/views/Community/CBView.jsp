@@ -193,7 +193,7 @@ var targetID;
 		 });
   });
   
-  ${"#likeCc"}.each(function(){
+  $("#likeCc").each(function(){
 		$(this).click(function(){
 			let midx = "${midx}";
 			let cc_idx = $(this).next().val();
@@ -216,18 +216,20 @@ var targetID;
 			});
 
 		});
-  });
-			
+	});
+  
+  
+
   
   
   
   
   
-  
-  
- 
 
 });
+
+
+
 </script>
 
 
@@ -610,15 +612,10 @@ button {
 <div class="CommentContent__wrap">
      <div class="CommentContent__header">
          <strong class="CommentContent__userName">${cl.cc_writer}</strong> 
-         <c:choose>
-         <c:when test="${midx == cl.midx}">
+         <c:if test="${midx == cl.midx}">
            <button id="ccDel" style="margin-left:90%; background-color:#dae1e6; width:19px; height:19px;"><i class="lni lni-close"></i></button>
            <input type="hidden" name="cc_idx" value="${cl.cc_idx}">
-         </c:when>
-         <c:otherwise>
-         
-         </c:otherwise>
-         </c:choose>
+       </c:if>
      </div>
      
 <p class="CommentContent__body">
@@ -629,8 +626,10 @@ button {
             <span class="CommentContent__createAt">${cl.cc_wday}</span>
   <c:choose>
        <c:when test="${midx != null}">
-     <button type="button" class="CommentContentActionButton" id="likeCc"><i class="lni lni-smile"></i> 공감하기</button>
-     <input type="hidden" name="cc_idx" value="${cl.cc_idx}">
+
+<!--       <button type="button" class="CommentContentActionButton" id="likeCc" style="color:rgb(237,73,86);"><i class="lni lni-smile"></i> 공감하기</button> -->
+<%--               <input type="hidden" value="${cl.cc_idx}"> --%>
+
      <a href="#pop_info_${cl.cc_idx}" class="btn_open">
      <button type="button" class="CommentContentActionButton"><i class="lni lni-bubble"></i> 답글하기</button>
      </a>

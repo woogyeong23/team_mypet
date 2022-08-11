@@ -25,6 +25,7 @@ import org.springframework.web.multipart.MultipartFile;
 
 import com.jeonju.mypet.service.CommunityService;
 import com.jeonju.mypet.vo.Commu_CommentVo;
+import com.jeonju.mypet.vo.Commu_Comment_LikeVo;
 import com.jeonju.mypet.vo.CommunityVo;
 import com.jeonju.mypet.vo.Community_likeVo;
 
@@ -156,9 +157,7 @@ public class CommunityController {
 			
 			int CmLikeYn = commuService.getCmLikeYn(community_likeVo);
 			
-			List<String> list = new ArrayList<String>();
-			
-//			for(int i=0; i<ccmList.)
+
 			
 			
 			model.addAttribute("CmLikeYn", CmLikeYn);

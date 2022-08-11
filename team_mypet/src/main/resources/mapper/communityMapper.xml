@@ -213,6 +213,12 @@ SELECT m_nick, s.seller_idx AS seller_idx, seller_img, seller_intro, seller_star
     WHERE cc_idx = #{cc_idx}
     </update>
     
+    <select id="getLikeCcYn" resultType="String">
+    SELECT DISTINCT COUNT(cc_like_idx)
+    FROM commu_comment_like WHERE cc_like_delyn = 'N' 
+    AND cc_idx = #{cc_idx} AND midx = #{midx}
+    </select>
+    
     
     
     

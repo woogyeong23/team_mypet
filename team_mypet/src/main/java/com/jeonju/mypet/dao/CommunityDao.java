@@ -154,6 +154,10 @@ public class CommunityDao {
 		return sqlSession.update(MAPPER+".plusCcLike",commu_comment_likeVo);
 	}
 
+	public String getLikeCcYn(Commu_Comment_LikeVo ccl) {
+		return sqlSession.selectOne(MAPPER+".getLikeCcYn", ccl);
+	}
+
 
 
 

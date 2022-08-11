@@ -150,9 +150,8 @@ font-size: 0;
       <div style="position:relative; top:50%; float:left; margin-left: 24px;"> --%>
      
      
-    <ul>
-    
-    
+ <ul>
+
     <li style="height:230px; position:relative;"> 
      <div class="BSL_flex" style="display:flax; height:230px;">
  
@@ -184,16 +183,18 @@ font-size: 0;
 	     <c:choose>
 	     <c:when test="${seller_idx ==bsv.seller_idx}">
 	      <li style="float:right;height:200px;width: 150px; position:relative; display: inline-block;"><a href="#">
+	      <div style="float:left;">
 	      <img src="${pageContext.request.contextPath}/resources/product/${bsv.p_sys_filename}" alt="해당사진">
+	      </div>
 	      </a>
 	      </li>
 	     </c:when>
 	     <c:otherwise>
-	     	</ul>
+</ul>
 	       	<c:set var="seller_idx" value="${bsv.seller_idx}"/>
 	       	<ul>
 	       	<li style="height:230px; position:relative;"> 
-     <div class="BSL_flex" style="display:flax; height:230px;">
+     <div class="BSL_flex" style="display:flex; height:230px; width:80%;">
  
       <div style="position:relative; top:50%; float:left; margin-left: 50px; width:96px; height: 96px; border-radius: 70%; overflow: hidden;">
       		<img class="profile" src="${pageContext.request.contextPath}/resources/Extra/img/${bsv.seller_img}" alt="${bsv.m_nick}">
@@ -204,7 +205,7 @@ font-size: 0;
 	       <ul class="bs_review">
 	         <c:forEach begin="1" end="${bsv.seller_starsavg}">
 	            <li><i class="lni lni-star-filled"></i></li>
-	         </c:forEach>                  
+	         </c:forEach>                 
 	         <c:forEach begin="1" end="${5-bsv.seller_starsavg}">
 	              <li><i class="lni lni-star"></i></li>
 	         </c:forEach>

@@ -8,6 +8,7 @@ import org.springframework.stereotype.Service;
 
 import com.jeonju.mypet.dao.CommunityDao;
 import com.jeonju.mypet.vo.Commu_CommentVo;
+import com.jeonju.mypet.vo.Commu_Comment_LikeVo;
 import com.jeonju.mypet.vo.CommunityVo;
 import com.jeonju.mypet.vo.Community_likeVo;
 
@@ -56,6 +57,10 @@ public class CommunityService {
 
 	public int UpdateCB(CommunityVo communityVo) {
 		return commuDao.UpdateCB(communityVo);
+	}
+
+	public String getLikeCcYn(Commu_Comment_LikeVo ccl) {
+		return commuDao.getLikeCcYn(ccl);
 	} 
 
 	
