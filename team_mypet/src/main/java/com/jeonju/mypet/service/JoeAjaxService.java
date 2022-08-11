@@ -10,7 +10,11 @@ import org.springframework.stereotype.Service;
 import com.jeonju.mypet.dao.CommunityDao;
 import com.jeonju.mypet.dao.HomeDao;
 import com.jeonju.mypet.vo.Commu_CommentVo;
+import com.jeonju.mypet.vo.CommunityVo;
+import com.jeonju.mypet.vo.Community_likeVo;
+import com.jeonju.mypet.vo.FollowVo;
 import com.jeonju.mypet.vo.ProductVo;
+import com.jeonju.mypet.vo.Product_ImgVo;
 import com.jeonju.mypet.vo.ReviewVo;
 import com.jeonju.mypet.vo.SellerStoryVo;
 
@@ -39,14 +43,7 @@ public class JoeAjaxService {
 		return result;
 	}
 
-    // bsview 작동
-	public List<SellerStoryVo> getBSList() {
-		return commuDao.getBSList();
-	}
-	
-	public List<ProductVo> getBSPList(int seller_idx) {
-		return commuDao.getBSPList(seller_idx);
-	}
+
 	
 
 	public SellerStoryVo getBSellerView(int seller_idx) {
@@ -55,6 +52,10 @@ public class JoeAjaxService {
 
 	public List<ProductVo> getSearchList(String keyword) {
 		return homeDao.getSearchList(keyword);
+	}
+	
+	public List<SellerStoryVo> getBsList2() {
+		return commuDao.getBsList2();
 	}
 
 	public int resultCount(String keyword) {
@@ -65,17 +66,90 @@ public class JoeAjaxService {
 		return homeDao.getReviewList();
 	}
 
-	public int CCInsert(Commu_CommentVo CCommentVo) {
-		return commuDao.CCInsert(CCommentVo);
+	public int CCInsert(Commu_CommentVo ccommentVo) {
+		return commuDao.CCInsert(ccommentVo);
 	}
 
-	public  int UpDepth(Commu_CommentVo CCommentVo) {
-	   return commuDao.UpDepth(CCommentVo);
+	public  int UpDepth(Commu_CommentVo ccommentVo) {
+	   return commuDao.UpDepth(ccommentVo);
+	}
+	
+    // bsview 작동
+	public List<SellerStoryVo> getBSList() {
+		return commuDao.getBSList();
+	}
+	
+	public List<ProductVo> getBSPList(int seller_idx) {
+		return commuDao.getBSPList(seller_idx);
 	}
 
 	public List<ReviewVo> getAList(int seller_idx) {
 		return commuDao.getAList(seller_idx);
 	}
+
+	public int getBSPCount(int seller_idx) {
+		return commuDao.getBSPCount(seller_idx);
+	}
+
+	public int getBSRCount(int seller_idx) {
+		return commuDao.getBSRCount(seller_idx);
+	}
+	
+	// 팔로우
+	public int getfollowCNT(FollowVo followVo) {
+		return commuDao.getfollowCNT(followVo);
+	}
+
+	public int getFollow(FollowVo followVo) {
+		return homeDao.getFollow(followVo);
+	}
+
+	public int getUnfollow(FollowVo followVo) {
+		return homeDao.getUnfollow(followVo);
+	}
+
+	public int plusFollowCNT(FollowVo followVo) {
+		return homeDao.plusFollowCNT(followVo);
+	}
+
+	public int minusFollowCNT(FollowVo followVo) {
+		return homeDao.minusFollowCNT(followVo);
+	}
+
+	// 커뮤니티 게시판 좋아요
+	public int getCmLike(Community_likeVo community_likeVo) {
+		return commuDao.getCmLike(community_likeVo);
+	}
+
+	public int getCmBad(Community_likeVo community_likeVo) {
+		return commuDao.getCmBad(community_likeVo);
+	}
+
+	public int plusCmLikeCnt(Community_likeVo community_likeVo) {
+		return commuDao.plusCmLikeCnt(community_likeVo);
+	}
+
+	public int minusCmLikeCnt(Community_likeVo community_likeVo) {
+		return commuDao.minusCmLikeCnt(community_likeVo);
+	}
+
+	public int plusCmCommentCnt(Commu_CommentVo ccommentVo) {
+		return commuDao.plusCmCommentCnt(ccommentVo);
+	}
+
+	public int DeleteCm(CommunityVo communityVo) {
+		return commuDao.DeleteCm(communityVo);
+	}
+	
+	public Product_ImgVo getPI(ProductVo po) {
+		return commuDao.getPI(po);
+	}
+
+
+
+
+
+	
 
 	
 	

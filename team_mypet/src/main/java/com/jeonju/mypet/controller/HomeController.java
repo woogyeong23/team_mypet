@@ -8,7 +8,7 @@ import java.io.IOException;
 import java.text.SimpleDateFormat;
 
 import javax.servlet.http.HttpServletRequest;
-
+import javax.servlet.http.HttpSession;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
@@ -22,6 +22,7 @@ import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.multipart.MultipartFile;
 
+import com.jeonju.mypet.vo.CartVo;
 import com.jeonju.mypet.vo.MembersVo;
 
 @Controller
@@ -36,18 +37,55 @@ public class HomeController {
 	}
 	
 	@GetMapping("/")
-	public String home1(Model model) {
+	public String home1(Model model, HttpServletRequest request) {
 		
 		List<ProductVo> hList = homeService.getHList();
-		model.addAttribute("HomeList",hList);
+		List<ProductVo> hList2 = homeService.getHList2();
+		List<ProductVo> hList3 = homeService.getHList3();
+		List<ProductVo> hList4 = homeService.getHList4();
+		List<ProductVo> hList5 = homeService.getHList5();
+		
+		
+		
+
+				model.addAttribute("HomeList",hList);
+				model.addAttribute("HomeList2",hList2);
+				model.addAttribute("HomeList3",hList3);
+				model.addAttribute("HomeList4",hList4);
+				model.addAttribute("HomeList5",hList5);	 
+	
+		 
+		
+	
+		
+		
+
+		
+		
+		
 		return "home";
 	}
 	
 	@GetMapping("/home.do")
-	public String home2(Model model) {
-		
+	public String home2(Model model,HttpServletRequest request) {
 		List<ProductVo> hList = homeService.getHList();
-		model.addAttribute("HomeList",hList);
+		List<ProductVo> hList2 = homeService.getHList2();
+		List<ProductVo> hList3 = homeService.getHList3();
+		List<ProductVo> hList4 = homeService.getHList4();
+		List<ProductVo> hList5 = homeService.getHList5();
+		
+		
+		
+		
+
+				model.addAttribute("HomeList",hList);
+				model.addAttribute("HomeList2",hList2);
+				model.addAttribute("HomeList3",hList3);
+				model.addAttribute("HomeList4",hList4);
+				model.addAttribute("HomeList5",hList5);	 
+
+		 
+		
 		return "home";
 	}
 	

@@ -27,6 +27,13 @@ public class ProductVo {
 	private int p_status;
 	private String p_delyn;
 	private String p_stock;
+	
+	//08.08 ver
+	
+	private int avg_reviews_stars;
+
+	
+	//
 
 	private List<Product_ImgVo> product_imgs; 
 	
@@ -226,4 +233,16 @@ public class ProductVo {
 	public void setP_stock(String p_stock) {
 		this.p_stock = p_stock;
 	}
+	
+	
+	public int getAvg_reviews_stars() {
+		return avg_reviews_stars;
+	}
+	public void setAvg_reviews_stars(int avg_reviews_stars) {
+		this.avg_reviews_stars = avg_reviews_stars;
+	}
+
+	
+	
+	
 }

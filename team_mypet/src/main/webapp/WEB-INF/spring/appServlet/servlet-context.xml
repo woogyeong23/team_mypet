@@ -62,6 +62,11 @@
 			<exclude-mapping path="/logout.do"/>
 			
 
+			<!-- 소현 -->
+			<exclude-mapping path="/productList.do"/>
+			<exclude-mapping path="/productNew.do"/>
+			<exclude-mapping path="/productBest.do"/>
+			<exclude-mapping path="/productView.do"/>
 			
 
 		
