@@ -31,6 +31,8 @@
 		<typeAlias alias="review_replyVo" type="com.jeonju.mypet.vo.Review_ReplyVo"/>
 		<typeAlias alias="sellerStoryVo" type="com.jeonju.mypet.vo.SellerStoryVo"/>
 		<typeAlias alias="wishVo" type="com.jeonju.mypet.vo.WishVo"/>
+		
+		<typeAlias alias="community_likeVo" type="com.jeonju.mypet.vo.Community_likeVo"/>
 
 	</typeAliases>  
 

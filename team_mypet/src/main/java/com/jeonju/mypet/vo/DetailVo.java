@@ -11,7 +11,21 @@ public class DetailVo {
 	private String detail_request;
 	private String detail_completeday;
 	private int fixprice;
+	private String p_name;
+	private String fixdvprice;
 	
+	public String getFixdvprice() {
+		return fixdvprice;
+	}
+	public void setFixdvprice(String fixdvprice) {
+		this.fixdvprice = fixdvprice;
+	}
+	public String getP_name() {
+		return p_name;
+	}
+	public void setP_name(String p_name) {
+		this.p_name = p_name;
+	}
 	private List<Detail_DayVo> detail_days; 
 	public List<Detail_DayVo> getDetail_days() {
 		return detail_days;

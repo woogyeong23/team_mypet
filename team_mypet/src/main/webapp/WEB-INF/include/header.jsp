@@ -174,45 +174,44 @@
                                 </c:otherwise>
                                 </c:choose>
                                 <!-- /판매자 전용 버튼 -->
-                                   
-                                <div class="cart-items">
+                                
+                                   <c:choose>
+                                   <c:when test="${midx != null}">
+                                         <div class="cart-items">
                                     <a href="javascript:void(0)" class="main-btn">
                                         <i class="lni lni-cart"></i>
-                                        <span class="total-items">2</span>
+                                       <c:choose>
+                                       <c:when test="${cartVVo.cart_cnt !=0}">
+                                       <span class="total-items">${cartVVo.cart_cnt}</span>
+                                       </c:when>
+                                       <c:otherwise>
+                                       
+                                       </c:otherwise>
+                                        </c:choose>
                                     </a>
                                     <!-- Shopping Item -->
                                     <div class="shopping-item">
                                         <div class="dropdown-cart-header">
-                                            <span>2 Items</span>
+                                            <span>${cartVVo.cart_cnt} Items</span>
                                             <a href="cart.html">View Cart</a>
                                         </div>
                                         <ul class="shopping-list">
+                                        <c:forEach begin="1" end="${cartVVo.cart_cnt}">
                                             <li>
                                                 <a href="javascript:void(0)" class="remove" title="Remove this item"><i
                                                         class="lni lni-close"></i></a>
                                                 <div class="cart-img-head">
                                                     <a class="cart-img" href="product-details.html"><img
-                                                            src="resources/assets/images/header/cart-items/item1.jpg" alt="#"></a>
+                                                            src="${pageContext.request.contextPath}/resources/product/${cartVVo.p_sys_filename}" alt="${cartVVo.p_name}"></a>
                                                 </div>
 
                                                 <div class="content">
                                                     <h4><a href="product-details.html">
-                                                            Apple Watch Series 6</a></h4>
-                                                    <p class="quantity">1x - <span class="amount">$99.00</span></p>
+                                                            ${cartVVo.p_price}</a></h4>
+                                                    <p class="quantity"><span class="amount">${cartVVo.p_price}</span></p>
                                                 </div>
                                             </li>
-                                            <li>
-                                                <a href="javascript:void(0)" class="remove" title="Remove this item"><i
-                                                        class="lni lni-close"></i></a>
-                                                <div class="cart-img-head">
-                                                    <a class="cart-img" href="product-details.html"><img
-                                                            src="resources/assets/images/header/cart-items/item2.jpg" alt="#"></a>
-                                                </div>
-                                                <div class="content">
-                                                    <h4><a href="product-details.html">Wi-Fi Smart Camera</a></h4>
-                                                    <p class="quantity">1x - <span class="amount">$35.00</span></p>
-                                                </div>
-                                            </li>
+                                          </c:forEach>
                                         </ul>
                                         <div class="bottom">
                                             <div class="total">
@@ -226,6 +225,17 @@
                                     </div>
                                     <!--/ End Shopping Item -->
                                 </div>
+                                   </c:when>
+                                   <c:otherwise>
+                                     <div class="cart-items">
+                                    <a href="javascript:void(0)" class="main-btn">
+                                        <i class="lni lni-cart"></i>
+                                  </a>
+                                    </div>
+                                   
+                                   </c:otherwise>
+                                   </c:choose>
+                          
                             </div>
                         </div>
                     </div>

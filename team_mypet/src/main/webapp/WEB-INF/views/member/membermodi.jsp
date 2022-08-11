@@ -1,8 +1,9 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
     <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
-    <!DOCTYPE html> 
-  <head>
+<!DOCTYPE html> 
+<html>
+<head>
 
  <!-- css************************************************ -->
     <jsp:include page="../../include/head.jsp" />  
@@ -15,7 +16,24 @@
     <!-- css************************************************ -->
     <jsp:include page="../../include/membermodi.jsp" />  
 <!-- ************************************************ -->
-   
+<style>
+html, body{
+height: 100%
+}
+
+#wrap {
+min-height: 100%;
+position: relative;
+padding-bottom: 60px;
+}
+
+footer {
+position: relative;
+transform:translatY(-100%);
+}
+
+
+</style>
    
    <script src="http://code.jquery.com/jquery-latest.min.js"></script>
 <script>
@@ -84,11 +102,10 @@
 
 </script>
    
-   
-   
-  </head>
-  <body>
+</head>
+<body>
   
+<div id="wrap">
 
     <!-- 헤더와 js************************************************ -->
     <jsp:include page="../../include/header.jsp" />  
@@ -99,15 +116,15 @@
 
 <main class="container">
 
-	<aside>
+	
 		<!-- 사이더************************************************ -->
 	    <jsp:include page="../../include/sidebar.jsp" />  
 	    <!-- 사이더************************************************ -->
 	    
-	</aside>
 	
 	
-	<article>
+	
+	<section>
 	<div class="title-style no-mt clf">
 	<a href="#" class="txt fl">회원 정보 관리</a>
 	</div>
@@ -205,11 +222,9 @@
 		    <button class="w-100 btn btn-lg btn-primary" id="memberupdate"type="submit" name="">회원 정보 수정하기</button>
 		</div>
 	</form>
-	</article>
+	</section>
 </main>
-
-
-
+</div>
 
 
 
