@@ -59,7 +59,7 @@
                                <a href="${pageContext.request.contextPath}/logout.do">로그아웃</a>
                             </li>
                             <li>
-                               <a href="${pageContext.request.contextPath}/rhror.do">고객센터</a>
+                               <a href="${pageContext.request.contextPath}/Error">고객센터</a>
                              
                             </li>
                             </ul>
@@ -74,7 +74,7 @@
                                     <a href="${pageContext.request.contextPath}/join.do">회원가입</a>
                                 </li>
                                  <li >
-                                    <a href="${pageContext.request.contextPath}/rhror.do">고객센터</a>
+                                    <a href="${pageContext.request.contextPath}/Error">고객센터</a>
                                 </li>
                             </ul>
                             </c:otherwise>
@@ -175,66 +175,69 @@
                                 </c:choose>
                                 <!-- /판매자 전용 버튼 -->
                                 
-                                   <c:choose>
-                                   <c:when test="${midx != null}">
-                                         <div class="cart-items">
+                                  <div class="cart-items">
                                     <a href="javascript:void(0)" class="main-btn">
                                         <i class="lni lni-cart"></i>
-                                       <c:choose>
-                                       <c:when test="${cartVVo.cart_cnt !=0}">
-                                       <span class="total-items">${cartVVo.cart_cnt}</span>
-                                       </c:when>
-                                       <c:otherwise>
+                                
+                                
+<%--                                    <c:choose> --%>
+<%--                                    <c:when test="${midx != null}"> --%>
                                        
-                                       </c:otherwise>
-                                        </c:choose>
+<%--                                        <c:choose> --%>
+<%--                                        <c:when test="${cartVVo.cart_cnt !=0}"> --%>
+<%--                                        <span class="total-items">${cartVVo.cart_cnt}</span> --%>
+<%--                                        </c:when> --%>
+<%--                                        <c:otherwise> --%>
+                                       
+<%--                                        </c:otherwise> --%>
+<%--                                         </c:choose> --%>
                                     </a>
                                     <!-- Shopping Item -->
-                                    <div class="shopping-item">
-                                        <div class="dropdown-cart-header">
-                                            <span>${cartVVo.cart_cnt} Items</span>
-                                            <a href="cart.html">View Cart</a>
-                                        </div>
-                                        <ul class="shopping-list">
-                                        <c:forEach begin="1" end="${cartVVo.cart_cnt}">
-                                            <li>
-                                                <a href="javascript:void(0)" class="remove" title="Remove this item"><i
-                                                        class="lni lni-close"></i></a>
-                                                <div class="cart-img-head">
-                                                    <a class="cart-img" href="product-details.html"><img
-                                                            src="${pageContext.request.contextPath}/resources/product/${cartVVo.p_sys_filename}" alt="${cartVVo.p_name}"></a>
-                                                </div>
+<!--                                     <div class="shopping-item"> -->
+<!--                                         <div class="dropdown-cart-header"> -->
+<%--                                             <span>${cartVVo.cart_cnt} Items</span> --%>
+<!--                                             <a href="cart.html">View Cart</a> -->
+<!--                                         </div> -->
+<!--                                         <ul class="shopping-list"> -->
+<%--                                         <c:forEach begin="1" end="${cartVVo.cart_cnt}"> --%>
+<!--                                             <li> -->
+<!--                                                 <a href="javascript:void(0)" class="remove" title="Remove this item"><i -->
+<!--                                                         class="lni lni-close"></i></a> -->
+<!--                                                 <div class="cart-img-head"> -->
+<!--                                                     <a class="cart-img" href="product-details.html"><img -->
+<%--                                                             src="${pageContext.request.contextPath}/resources/product/${cartVVo.p_sys_filename}" alt="${cartVVo.p_name}"></a> --%>
+<!--                                                 </div> -->
 
-                                                <div class="content">
-                                                    <h4><a href="product-details.html">
-                                                            ${cartVVo.p_price}</a></h4>
-                                                    <p class="quantity"><span class="amount">${cartVVo.p_price}</span></p>
-                                                </div>
-                                            </li>
-                                          </c:forEach>
-                                        </ul>
-                                        <div class="bottom">
-                                            <div class="total">
-                                                <span>Total</span>
-                                                <span class="total-amount">$134.00</span>
-                                            </div>
-                                            <div class="button">
-                                                <a href="checkout.html" class="btn animate">Checkout</a>
-                                            </div>
-                                        </div>
-                                    </div>
+<!--                                                 <div class="content"> -->
+<!--                                                     <h4><a href="product-details.html"> -->
+<%--                                                             ${cartVVo.p_price}</a></h4> --%>
+<%--                                                     <p class="quantity"><span class="amount">${cartVVo.p_price}</span></p> --%>
+<!--                                                 </div> -->
+<!--                                             </li> -->
+<%--                                           </c:forEach> --%>
+<!--                                         </ul> -->
+<!--                                         <div class="bottom"> -->
+<!--                                             <div class="total"> -->
+<!--                                                 <span>Total</span> -->
+<!--                                                 <span class="total-amount">$134.00</span> -->
+<!--                                             </div> -->
+<!--                                             <div class="button"> -->
+<!--                                                 <a href="checkout.html" class="btn animate">Checkout</a> -->
+<!--                                             </div> -->
+<!--                                         </div> -->
+<!--                                     </div> -->
                                     <!--/ End Shopping Item -->
                                 </div>
-                                   </c:when>
-                                   <c:otherwise>
-                                     <div class="cart-items">
-                                    <a href="javascript:void(0)" class="main-btn">
-                                        <i class="lni lni-cart"></i>
-                                  </a>
-                                    </div>
+<%--                                    </c:when> --%>
+<%--                                    <c:otherwise> --%>
+<!--                                      <div class="cart-items"> -->
+<!--                                     <a href="javascript:void(0)" class="main-btn"> -->
+<!--                                         <i class="lni lni-cart"></i> -->
+<!--                                   </a> -->
+<!--                                     </div> -->
                                    
-                                   </c:otherwise>
-                                   </c:choose>
+<%--                                    </c:otherwise> --%>
+<%--                                    </c:choose> --%>
                           
                             </div>
                         </div>
@@ -253,17 +256,17 @@
                         <div class="mega-category-menu">
                             <span class="cat-button"><i class="lni lni-menu"></i>전체 카테고리</span>
                             <ul class="sub-category">
-                                <li><a href="#">강아지</a></li>
-                                <li><a href="#">고양이</a></li>
-                                <li><a href="#">이벤트</a></li>
-                                <li><a href="#">커뮤니티</a></li>
-                                <li><a href="#">인기작가</a></li>
-                                 <li><a href="#">더보기<i class="lni lni-chevron-right"></i></a>
+                                <li><a href="productList.do?i=0&l=1">강아지</a></li>
+                                <li><a href="productList.do?i=0&l=2">고양이</a></li>
+                                <li><a href="${pageContext.request.contextPath}/Error">이벤트</a></li>
+                                <li><a href="${pageContext.request.contextPath}/CBList.do">커뮤니티</a></li>
+                                <li><a href="${pageContext.request.contextPath}/BSellerList.do">인기작가</a></li>
+                                 <li><a href="${pageContext.request.contextPath}/Error">더보기<i class="lni lni-chevron-right"></i></a>
                                     <ul class="inner-sub-category">
-                                        <li><a href="product-grids.html">공지사항</a></li>
-                                        <li><a href="product-grids.html">자주하는 질문</a></li>
-                                        <li><a href="product-grids.html">1:1문의</a></li>
-                                        <li><a href="product-grids.html">입점문의</a></li>
+                                        <li><a href="${pageContext.request.contextPath}/Error">공지사항</a></li>
+                                        <li><a href="${pageContext.request.contextPath}/Error">자주하는 질문</a></li>
+                                        <li><a href="${pageContext.request.contextPath}/Error">1:1문의</a></li>
+                                        <li><a href="${pageContext.request.contextPath}/Error">입점문의</a></li>
                                     </ul>
                                 </li>
                             </ul>
@@ -322,10 +325,10 @@
                                             data-bs-target="#submenu-1-4" aria-controls="navbarSupportedContent"
                                             aria-expanded="false" aria-label="Toggle navigation">EVENT</a>
                                         <ul class="sub-menu collapse" id="submenu-1-4">
-                                            <li class="nav-item"><a href="blog-grid-sidebar.html">진행중인 이벤트</a>
+                                            <li class="nav-item"><a href="${pageContext.request.contextPath}/Error">진행중인 이벤트</a>
                                             </li>
-                                            <li class="nav-item"><a href="blog-single.html">종료임박 이벤트</a></li>
-                                            <li class="nav-item"><a href="blog-single-sidebar.html">이벤트 종료</a></li>
+                                            <li class="nav-item"><a href="${pageContext.request.contextPath}/Error">종료임박 이벤트</a></li>
+                                            <li class="nav-item"><a href="${pageContext.request.contextPath}/Error">이벤트 종료</a></li>
                                         </ul>
                                     </li>
                                     <li class="nav-item">

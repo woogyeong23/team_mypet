@@ -18,6 +18,7 @@
 		<typeAlias alias="followVo" type="com.jeonju.mypet.vo.FollowVo"/>
 		<typeAlias alias="launchVo" type="com.jeonju.mypet.vo.LaunchVo"/>
 		
+		
 		<typeAlias alias="membersVo" type="com.jeonju.mypet.vo.MembersVo"/>
 		
 		<typeAlias alias="ordersVo" type="com.jeonju.mypet.vo.OrdersVo"/>
@@ -33,6 +34,7 @@
 		<typeAlias alias="wishVo" type="com.jeonju.mypet.vo.WishVo"/>
 		
 		<typeAlias alias="community_likeVo" type="com.jeonju.mypet.vo.Community_likeVo"/>
+		<typeAlias alias="commu_comment_likeVo" type="com.jeonju.mypet.vo.Commu_Comment_LikeVo"/>
 
 	</typeAliases>  
 

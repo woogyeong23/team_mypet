@@ -177,11 +177,11 @@ $(function() {
                 </div>
             </div>
             <div class="row">
-               <c:forEach var="hv" items="${HomeList}" varStatus="status" end="3">
+               <c:forEach var="hv" items="${HomeList5}" varStatus="status" end="3">
                 <div class="col-lg-3 col-md-6 col-12">
                     <!-- Start Single Product -->
                     <div class="single-product" style="border:none;">
-                    <a href="${pageContext.request.contextPath}/seller_productDetail.do?p_idx=${hv.p_idx}">
+                    <a href="${pageContext.request.contextPath}/productView.do?p_idx=${hv.p_idx}">
                         <div class="product-image" style="height: 320px; ">
                             <img style="height:100%" src="${pageContext.request.contextPath}/resources/product/${hv.p_sys_filename}" alt="${hv.p_name}">
                                 <c:if test="${hv.p_discount != 0}"><!-- member_grade: 0(일반회원), 1(관리자), 2(슈퍼관리자) -->
@@ -254,11 +254,11 @@ $(function() {
                 </div>
             </div>
             <div class="row">
-               <c:forEach var="hv" items="${HomeList2}" varStatus="status" end="3">
+                 <c:forEach var="hv" items="${HomeList}" varStatus="status" end="3">
                 <div class="col-lg-3 col-md-6 col-12">
                     <!-- Start Single Product -->
                     <div class="single-product" style="border:none;">
-                    <a href="${pageContext.request.contextPath}/seller_productDetail.do?p_idx=${hv.p_idx}">
+                    <a href="${pageContext.request.contextPath}/productView.do?p_idx=${hv.p_idx}">
                         <div class="product-image" style="height: 320px; ">
                             <img style="height:100%" src="${pageContext.request.contextPath}/resources/product/${hv.p_sys_filename}" alt="${hv.p_name}">
                                 <c:if test="${hv.p_discount != 0}"><!-- member_grade: 0(일반회원), 1(관리자), 2(슈퍼관리자) -->
@@ -286,13 +286,7 @@ $(function() {
 								</c:choose>
 							</span>
     
-                            <span class="category" style="margin-top:5px">
-                        		<c:choose>
-										<c:when test="${hv.p_status == 0}">판매중</c:when>
-										<c:when test="${hv.p_status == 1}">품절</c:when>
-										<c:when test="${hv.p_status == 2}">삭제</c:when>
-								</c:choose>
-                           </span>
+                            
                             <h4 class="title">
                                 <a href="${pageContext.request.contextPath}/seller_productDetail.do?p_idx=${hv.p_idx} ">
                                 ${hv.p_name}</a>
@@ -310,17 +304,13 @@ $(function() {
 								
 							</ul>
                             <div class="price">
-                                <a href="${pageContext.request.contextPath}/seller_productDetail.do?p_idx=${hv.p_idx} ">
 							  <span><fmt:formatNumber value="${hv.p_disprice}" pattern="#,###"/>원</span>
 								<c:if test="${hv.p_disprice != 0}">
 									<span class="discount-price"><fmt:formatNumber value="${hv.p_price}" pattern="#,###" />원</span>
-							   </c:if></a>
+							   </c:if>
 							</div>
                             
                             <br>
-							<span class="category">최초 등록일: 
-							<fmt:formatDate value="${hv.p_wday}" pattern="yyyy-MM-dd"/>												</span>
-							<span class="category">마지막 수정일: <fmt:formatDate value="${hv.p_modifyday}" pattern="yyyy-MM-dd"/></span>
                        </div>
                         
                     </div>
@@ -343,11 +333,11 @@ $(function() {
                 </div>
             </div>
             <div class="row">
-               <c:forEach var="hv" items="${HomeList3}" varStatus="status" end="3">
+                 <c:forEach var="hv" items="${HomeList3}" varStatus="status" end="3">
                 <div class="col-lg-3 col-md-6 col-12">
                     <!-- Start Single Product -->
                     <div class="single-product" style="border:none;">
-                    <a href="${pageContext.request.contextPath}/seller_productDetail.do?p_idx=${hv.p_idx}">
+                    <a href="${pageContext.request.contextPath}/productView.do?p_idx=${hv.p_idx}">
                         <div class="product-image" style="height: 320px; ">
                             <img style="height:100%" src="${pageContext.request.contextPath}/resources/product/${hv.p_sys_filename}" alt="${hv.p_name}">
                                 <c:if test="${hv.p_discount != 0}"><!-- member_grade: 0(일반회원), 1(관리자), 2(슈퍼관리자) -->
@@ -375,13 +365,7 @@ $(function() {
 								</c:choose>
 							</span>
     
-                            <span class="category" style="margin-top:5px">
-                        		<c:choose>
-										<c:when test="${hv.p_status == 0}">판매중</c:when>
-										<c:when test="${hv.p_status == 1}">품절</c:when>
-										<c:when test="${hv.p_status == 2}">삭제</c:when>
-								</c:choose>
-                           </span>
+                            
                             <h4 class="title">
                                 <a href="${pageContext.request.contextPath}/seller_productDetail.do?p_idx=${hv.p_idx} ">
                                 ${hv.p_name}</a>
@@ -399,17 +383,13 @@ $(function() {
 								
 							</ul>
                             <div class="price">
-                                  <a href="${pageContext.request.contextPath}/seller_productDetail.do?p_idx=${hv.p_idx} ">
 							  <span><fmt:formatNumber value="${hv.p_disprice}" pattern="#,###"/>원</span>
 								<c:if test="${hv.p_disprice != 0}">
 									<span class="discount-price"><fmt:formatNumber value="${hv.p_price}" pattern="#,###" />원</span>
-							   </c:if></a>
+							   </c:if>
 							</div>
                             
                             <br>
-							<span class="category">최초 등록일: 
-							<fmt:formatDate value="${hv.p_wday}" pattern="yyyy-MM-dd"/>												</span>
-							<span class="category">마지막 수정일: <fmt:formatDate value="${hv.p_modifyday}" pattern="yyyy-MM-dd"/></span>
                        </div>
                         
                     </div>
@@ -433,11 +413,11 @@ $(function() {
                 </div>
             </div>
             <div class="row">
-               <c:forEach var="hv" items="${HomeList4}" varStatus="status" end="3">
+                 <c:forEach var="hv" items="${HomeList4}" varStatus="status" end="3">
                 <div class="col-lg-3 col-md-6 col-12">
                     <!-- Start Single Product -->
                     <div class="single-product" style="border:none;">
-                    <a href="${pageContext.request.contextPath}/seller_productDetail.do?p_idx=${hv.p_idx}">
+                    <a href="${pageContext.request.contextPath}/productView.do?p_idx=${hv.p_idx}">
                         <div class="product-image" style="height: 320px; ">
                             <img style="height:100%" src="${pageContext.request.contextPath}/resources/product/${hv.p_sys_filename}" alt="${hv.p_name}">
                                 <c:if test="${hv.p_discount != 0}"><!-- member_grade: 0(일반회원), 1(관리자), 2(슈퍼관리자) -->
@@ -465,13 +445,7 @@ $(function() {
 								</c:choose>
 							</span>
     
-                            <span class="category" style="margin-top:5px">
-                        		<c:choose>
-										<c:when test="${hv.p_status == 0}">판매중</c:when>
-										<c:when test="${hv.p_status == 1}">품절</c:when>
-										<c:when test="${hv.p_status == 2}">삭제</c:when>
-								</c:choose>
-                           </span>
+                            
                             <h4 class="title">
                                 <a href="${pageContext.request.contextPath}/seller_productDetail.do?p_idx=${hv.p_idx} ">
                                 ${hv.p_name}</a>
@@ -489,17 +463,13 @@ $(function() {
 								
 							</ul>
                             <div class="price">
-                                  <a href="${pageContext.request.contextPath}/seller_productDetail.do?p_idx=${hv.p_idx} ">
 							  <span><fmt:formatNumber value="${hv.p_disprice}" pattern="#,###"/>원</span>
 								<c:if test="${hv.p_disprice != 0}">
 									<span class="discount-price"><fmt:formatNumber value="${hv.p_price}" pattern="#,###" />원</span>
-							   </c:if></a>
+							   </c:if>
 							</div>
                             
                             <br>
-							<span class="category">최초 등록일: 
-							<fmt:formatDate value="${hv.p_wday}" pattern="yyyy-MM-dd"/>												</span>
-							<span class="category">마지막 수정일: <fmt:formatDate value="${hv.p_modifyday}" pattern="yyyy-MM-dd"/></span>
                        </div>
                         
                     </div>
@@ -522,11 +492,11 @@ $(function() {
                 </div>
             </div>
             <div class="row">
-               <c:forEach var="hv" items="${HomeList5}" varStatus="status" end="3">
+                <c:forEach var="hv" items="${HomeList2}" varStatus="status" end="3">
                 <div class="col-lg-3 col-md-6 col-12">
                     <!-- Start Single Product -->
                     <div class="single-product" style="border:none;">
-                    <a href="${pageContext.request.contextPath}/seller_productDetail.do?p_idx=${hv.p_idx}">
+                    <a href="${pageContext.request.contextPath}/productView.do?p_idx=${hv.p_idx}">
                         <div class="product-image" style="height: 320px; ">
                             <img style="height:100%" src="${pageContext.request.contextPath}/resources/product/${hv.p_sys_filename}" alt="${hv.p_name}">
                                 <c:if test="${hv.p_discount != 0}"><!-- member_grade: 0(일반회원), 1(관리자), 2(슈퍼관리자) -->
@@ -554,13 +524,7 @@ $(function() {
 								</c:choose>
 							</span>
     
-                            <span class="category" style="margin-top:5px">
-                        		<c:choose>
-										<c:when test="${hv.p_status == 0}">판매중</c:when>
-										<c:when test="${hv.p_status == 1}">품절</c:when>
-										<c:when test="${hv.p_status == 2}">삭제</c:when>
-								</c:choose>
-                           </span>
+                            
                             <h4 class="title">
                                 <a href="${pageContext.request.contextPath}/seller_productDetail.do?p_idx=${hv.p_idx} ">
                                 ${hv.p_name}</a>
@@ -578,17 +542,13 @@ $(function() {
 								
 							</ul>
                             <div class="price">
-                                  <a href="${pageContext.request.contextPath}/seller_productDetail.do?p_idx=${hv.p_idx} ">
 							  <span><fmt:formatNumber value="${hv.p_disprice}" pattern="#,###"/>원</span>
 								<c:if test="${hv.p_disprice != 0}">
 									<span class="discount-price"><fmt:formatNumber value="${hv.p_price}" pattern="#,###" />원</span>
-							   </c:if></a>
+							   </c:if>
 							</div>
                             
                             <br>
-							<span class="category">최초 등록일: 
-							<fmt:formatDate value="${hv.p_wday}" pattern="yyyy-MM-dd"/>												</span>
-							<span class="category">마지막 수정일: <fmt:formatDate value="${hv.p_modifyday}" pattern="yyyy-MM-dd"/></span>
                        </div>
                         
                     </div>
