@@ -34,6 +34,10 @@ public class ReviewVo {
 	private String p_name;
 	//
 	
+	// test 22.08.05
+	private int p_category_idx;
+	//
+	
 	public int getReview_idx() {
 		return review_idx;
 	}
@@ -116,9 +120,15 @@ public class ReviewVo {
 	public void setP_ori_filename(String p_ori_filename) {
 		this.p_ori_filename = p_ori_filename;
 	}
+	// test 22.08.05
+	public int getP_category_idx() {
+		return p_category_idx;
+	}
+	public void setP_category_idx(int p_category_idx) {
+		this.p_category_idx = p_category_idx;
+	}
 	//
 	
 	
-	
-	
+
 }

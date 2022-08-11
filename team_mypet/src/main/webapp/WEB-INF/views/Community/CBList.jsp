@@ -81,6 +81,16 @@ button {
         </div>
     </div>
     <!-- End Breadcrumbs -->
+  
+    <div style="margin-top:70px; margin-left:17%; width:30%; background-color:#e8f5e9; font-size:">
+    <ul>
+    <li style="display: inline-block;"><a href=""><span>조회수순</span></a></li>
+    <li style="display: inline-block;"><a href=""><span>최신순</span></a></li>
+    <li style="display: inline-block;"><a href=""><span>좋아요순</span></a></li>
+    <li style="display: inline-block;"><a href=""><span>댓글순</span></a> </li>
+    </ul>
+    </div>
+    <div style="width:100%"><hr></div>
  
 
  <!-- Start Trending Product Area -->
@@ -105,7 +115,7 @@ button {
                   <div id="dd" >
                 <div>
                    <div class="box">
-    <img class="profile" src="${pageContext.request.contextPath}/resources/Community/upload/${cv.cm_img}">
+    <img class="profile" src="${pageContext.request.contextPath}/resources/Extra/img/${cv.m_profile}">
                    </div>
                      <div style="float:left">
                    <span class="category" style="color:black">${cv.cm_writer}</span>
@@ -113,21 +123,41 @@ button {
                    <span class="category">${cv.cm_wday}</span>       
                               </div>
                               </div>
-                              <div><input type="button" id="follow" value="+ 팔로우"></div>
+                                 <div style="margin-right:10px; margin-top:5px;">
+                                    View <span>${cv.cm_view_cnt}</span>
+                                 </div>
                               </div>
                               
-                   
-                        <div class="product-image">
-<%--                         <a style="background-image: url(${pageContext.request.contextPath}/resources/Community/upload/${cv.cm_img});"  --%>
-<%--                         target="_blank" href="${pageContext.request.contextPath}/CBView.do?cm_idx=${cv.cm_idx}"></a> --%>
-                        <img src="${pageContext.request.contextPath}/resources/Community/upload/${cv.cm_img}" alt="커뮤니티 이미지">
+                       
+                        <div class="product-image" style="height: 320px;">
+                        <img style="height:100%" src="${pageContext.request.contextPath}/resources/Community/upload/${cv.cm_img}" alt="커뮤니티 이미지">
                         </div>
+                        
                         <div class="product-info">
-                            
                             <h4 class="title" style="overflow: hidden;">
                                 <a href="${pageContext.request.contextPath}/CBView.do?cm_idx=${cv.cm_idx}">${cv.cm_subject}</a>
                             </h4>
                         </div>
+                        <div style="width:100%; position:relative">
+                             <hr>
+                        </div>
+                        
+                        <div style="display:flex; height: 30px;">
+                        
+                       
+                       
+                        <div style="margin-left:10px; position:relative; float:left">
+                        
+                        <i class="lni lni-heart"></i> 좋아요<span>${cv.community_like_cnt}</span>
+                        </div>
+                        
+                        <div style="margin-left:20px; position:relative">
+                        <i class="lni lni-bubble"></i> 댓글 <span>${cv.cm_comment_cnt}</span>
+                        </div>
+                        
+                        
+                      </div>
+                        
                     </div>
                     <!-- End Single Product -->
                 </div>
@@ -142,7 +172,7 @@ button {
 
   
  <c:if test="${m_id != null}">
- <div id="side_menu"><a href="${pageContext.request.contextPath}/CBInsert.do"><button type="button" class="btn btn-success" color="#aeddff">+</button></a></div>
+ <div id="side_menu"><a href="${pageContext.request.contextPath}/CBInsert.do"><button type="button" class="btn btn-success" color="#aeddff"><i class="lni lni-pencil"></i></button></a></div>
 </c:if>  
 
 <!-- 푸터와 js************************************************ -->
