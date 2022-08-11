@@ -189,12 +189,6 @@ SELECT m_nick, s.seller_idx AS seller_idx, seller_img, seller_intro, seller_star
     
  
     
-   
-    
-    
-    
-    
-    
     <select id="modi_CB" parameterType="int" resultType="communityVo">
     SELECT cm_subject, cm_content, cm_img, cm_idx, cm_writer,cm_origin_img FROM community WHERE cm_idx= #{cm_idx}
     </select>
@@ -204,6 +198,28 @@ SELECT m_nick, s.seller_idx AS seller_idx, seller_img, seller_intro, seller_star
     <update id="DeleteCm" parameterType="int">
     UPDATE community SET cm_delyn = 'Y' WHERE cm_delyn = 'N' AND cm_idx = #{cm_idx}
     </update>
+    
+    <update id="DeleteCc" parameterType="int">
+    UPDATE commu_comment SET cc_delyn = 'Y' WHERE cc_delyn = 'N' AND cc_idx = #{cc_idx}
+    </update>
+    
+    <insert id="LikeCc" parameterType="commu_comment_likeVo">
+    INSERT INTO commu_comment_like(cc_idx, midx)
+    VALUES (#{cc_idx}, #{midx})
+    </insert>
+    
+    <update id="plusCcLike" parameterType="commu_comment_likeVo">
+    UPDATE commu_comment SET cc_like = cc_like +1
+    WHERE cc_idx = #{cc_idx}
+    </update>
+    
+    <select id="getLikeCcYn" resultType="String">
+    SELECT DISTINCT COUNT(cc_like_idx)
+    FROM commu_comment_like WHERE cc_like_delyn = 'N' 
+    AND cc_idx = #{cc_idx} AND midx = #{midx}
+    </select>
+    
+    
     
     
 

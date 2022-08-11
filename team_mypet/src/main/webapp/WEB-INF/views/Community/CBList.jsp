@@ -82,15 +82,15 @@ button {
     </div>
     <!-- End Breadcrumbs -->
   
-    <div style="margin-top:70px; margin-left:17%; width:30%; background-color:#e8f5e9; font-size:">
-    <ul>
-    <li style="display: inline-block;"><a href=""><span>조회수순</span></a></li>
-    <li style="display: inline-block;"><a href=""><span>최신순</span></a></li>
-    <li style="display: inline-block;"><a href=""><span>좋아요순</span></a></li>
-    <li style="display: inline-block;"><a href=""><span>댓글순</span></a> </li>
-    </ul>
-    </div>
-    <div style="width:100%"><hr></div>
+<!--     <div style="margin-top:70px; margin-left:17%; width:30%; background-color:#e8f5e9; font-size:"> -->
+<!--     <ul> -->
+<!--     <li style="display: inline-block;"><a href=""><span>조회수순</span></a></li> -->
+<!--     <li style="display: inline-block;"><a href=""><span>최신순</span></a></li> -->
+<!--     <li style="display: inline-block;"><a href=""><span>좋아요순</span></a></li> -->
+<!--     <li style="display: inline-block;"><a href=""><span>댓글순</span></a> </li> -->
+<!--     </ul> -->
+<!--     </div> -->
+<!--     <div style="width:100%"><hr></div> -->
  
 
  <!-- Start Trending Product Area -->
