@@ -82,7 +82,7 @@
     <!--SellerStory  -->
     <select id="getBSList" resultType="sellerStoryVo">
 SELECT m_nick, s.seller_idx AS seller_idx, seller_img, seller_intro, seller_starsavg,
-   seller_followcnt,p.p_idx AS p_idx, p_sys_filename
+   seller_followcnt,p.p_idx AS p_idx, c.p_sys_filename
    FROM members m INNER JOIN sellerstory s ON m.midx = s.midx
    INNER JOIN product p ON s.seller_idx=p.seller_idx
    INNER JOIN product_img c ON p.p_idx = c.p_idx
