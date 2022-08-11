@@ -1,3 +1,4 @@
+
 <%@ page language="java" contentType="text/html; charset=UTF-8"  pageEncoding="UTF-8"%>
     <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
     
@@ -11,6 +12,66 @@
 <!-- css************************************************ -->
     <jsp:include page="../../include/head.jsp" />  
 <!-- ************************************************ -->
+<style type="text/css">
+.profile {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+}
+
+.bs_review li{
+display: inline-block;
+}
+
+.bs_review li i{
+  color: #fecb00;
+  font-size: 13px;
+}
+
+.bs_review li i span {
+  display: inline-block;
+  margin-left: 4px;
+  color: #888;
+  font-size: 13px;
+}
+
+#follow{
+    background-color: rgb(255, 255, 255);
+    min-width: 63px;
+    width: 63px;
+    height: 28px;
+    font-size: 12px;
+    color: #fae100;
+    border: 1px solid #fae100;
+    border-radius: 4px;
+    margin-top:10px;
+}
+.more{
+background-color: rgb(255, 255, 255);
+min-width: 80px;
+    width: 80px;
+     height: 28px;
+    font-size: 12px;
+    color: black;
+     border: 1px solid black;
+    border-radius: 4px;
+    margin-top:10px;
+}
+
+.p_img{
+font-size: 0;
+    width: 168.25px;
+    height: 168.25px;
+    display: block;
+    float: left;     background-size: cover;
+    background-repeat: no-repeat;
+    background-position: center;
+}
+
+
+
+
+</style>
 </head>
 <body>
 <!-- 헤더와 네비************************************************ -->
@@ -48,50 +109,135 @@
                 </div>
             </div>
             <div class="row">
-            
-            <c:forEach var="bsv" items="${BestSellerList}">
-                     
-                    <div class="col-lg-3 col-md-6 col-12">
-                    <!-- Start Single Product -->
-                    <div class="single-product">
-                        <div class="product-image">
-                        
-                            <img src="${pageContext.request.contextPath}/resources/Community/upload/image.jpg" alt="커뮤니티 이미지">
-                            <div class="button">
-                                <a href="${pageContext.request.contextPath}/BSellerView.do?seller_idx=${bsv.seller_idx}" class="btn"><i class="lni lni-cart"></i>작가 보러가기</a>
-                            </div>
-                        </div>
-                        <div class="product-info">
-                             <a href="${pageContext.request.contextPath}/BSellerView.do?seller_idx=${bsv.seller_idx}"><span class="category">${bsv.m_nick}</span></a>
-                            <h4 class="title">
-                                <a href="">${bsv.seller_intro}</a>
-                            </h4>
-                            <ul class="review">
-                             <c:forEach begin="1" end="${bsv.seller_starsavg}" >
-                              <li><i class="lni lni-star-filled"></i></li>
-                             </c:forEach>
-                             
-                             <c:forEach begin="1" end="${5-bsv.seller_starsavg}" >
-                              <li><i class="lni lni-star"></i></li>
-                             </c:forEach>
-                                <li><span>${bsv.seller_starsavg}Review(s)</span></li>
-                            </ul>
-<!--                             <div class="price"> -->
-<!--                                 <span>$199.00</span> -->
-<!--                             </div> -->
-                        </div>
-                    </div>
-                    <!-- End Single Product -->
-                </div>
-              </c:forEach>      
-         </div>
-        </div>
+ 
+
+     </div>
+     
+    <!--  <ul> -->
+     
+     <c:set var="seller_idx" value="${BestSEllerList[0].seller_idx}"/>
+     <!-- <div class="BSL_flex" style="display:flax; height:230px;"> 
+        -->
+    
+     <%-- <c:forEach var="bsv" items="${BestSellerList}" > --%>
+
+       <!--  <li style="height:230px; position:relative;"> -->
+      <%-- <div class="BSL_flex" style="display:flax; height:230px;">
+ 
+      <div style="position:relative; top:50%; float:left; margin-left: 50px; width:96px; height: 96px; border-radius: 70%; overflow: hidden;">
+      		<img class="profile" src="${pageContext.request.contextPath}/resources/Extra/img/${bsv.seller_img}" alt="${bsv.m_nick}">
+      </div>
+      <div style="position:relative; top:50%; float:left; margin-left: 25px; font:14px;">
+	      <a style="color:black" href="${pageContext.request.contextPath}/BSellerView.do?seller_idx=${bsv.seller_idx}"><span class="category">${bsv.m_nick}</span></a>
+	      <br>
+	       <ul class="bs_review">
+	         <c:forEach begin="1" end="${bsv.seller_starsavg}">
+	            <li><i class="lni lni-star-filled"></i></li>
+	         </c:forEach>                  
+	         <c:forEach begin="1" end="${5-bsv.seller_starsavg}">
+	              <li><i class="lni lni-star"></i></li>
+	         </c:forEach>
+	              <li><span>${bsv.seller_starsavg}</span></li>
+	       </ul>
+	       <br>
+	       <a style="color:black" href="${pageContext.request.contextPath}/BSellerView.do?seller_idx=${bsv.seller_idx}">${bsv.seller_intro}</a>
+	       <br>
+	       <input type="button" id="follow" value="+ 팔로우">
+	       <a style="color:black" href="${pageContext.request.contextPath}/BSellerView.do?seller_idx=${bsv.seller_idx}">
+	       <input type="button" class="more" value="작품 더보기"></a>
+      </div>
+   
+      <div style="position:relative; top:50%; float:left; margin-left: 24px;"> --%>
+     
+     
+    <ul>
+    
+    
+    <li style="height:230px; position:relative;"> 
+     <div class="BSL_flex" style="display:flax; height:230px;">
+ 
+      <div style="position:relative; top:50%; float:left; margin-left: 50px; width:96px; height: 96px; border-radius: 70%; overflow: hidden;">
+      		<img class="profile" src="${pageContext.request.contextPath}/resources/Extra/img/${bsv.seller_img}" alt="${bsv.m_nick}">
+      </div>
+      <div style="position:relative; top:50%; float:left; margin-left: 25px; font:14px;">
+	      <a style="color:black" href="${pageContext.request.contextPath}/BSellerView.do?seller_idx=${bsv.seller_idx}"><span class="category">${bsv.m_nick}</span></a>
+	      <br>
+	       <ul class="bs_review">
+	         <c:forEach begin="1" end="${bsv.seller_starsavg}">
+	            <li><i class="lni lni-star-filled"></i></li>
+	         </c:forEach>                  
+	         <c:forEach begin="1" end="${5-bsv.seller_starsavg}">
+	              <li><i class="lni lni-star"></i></li>
+	         </c:forEach>
+	              <li><span>${bsv.seller_starsavg}</span></li>
+	       </ul>
+	       <br>
+	       <a style="color:black" href="${pageContext.request.contextPath}/BSellerView.do?seller_idx=${bsv.seller_idx}">${bsv.seller_intro}</a>
+	       <br>
+	       <input type="button" id="follow" value="+ 팔로우">
+	       <a style="color:black" href="${pageContext.request.contextPath}/BSellerView.do?seller_idx=${bsv.seller_idx}">
+	       <input type="button" class="more" value="작품 더보기"></a>
+      </div>
+     
+    
+    <c:forEach var="bsv" items="${BestSellerList}">
+	     <c:choose>
+	     <c:when test="${seller_idx ==bsv.seller_idx}">
+	      <li style="float:right;height:200px;width: 150px; position:relative; display: inline-block;"><a href="#">
+	      <img src="${pageContext.request.contextPath}/resources/product/${bsv.p_sys_filename}" alt="해당사진">
+	      </a>
+	      </li>
+	     </c:when>
+	     <c:otherwise>
+	     	</ul>
+	       	<c:set var="seller_idx" value="${bsv.seller_idx}"/>
+	       	<ul>
+	       	<li style="height:230px; position:relative;"> 
+     <div class="BSL_flex" style="display:flax; height:230px;">
+ 
+      <div style="position:relative; top:50%; float:left; margin-left: 50px; width:96px; height: 96px; border-radius: 70%; overflow: hidden;">
+      		<img class="profile" src="${pageContext.request.contextPath}/resources/Extra/img/${bsv.seller_img}" alt="${bsv.m_nick}">
+      </div>
+      <div style="position:relative; top:50%; float:left; margin-left: 25px; font:14px;">
+	      <a style="color:black" href="${pageContext.request.contextPath}/BSellerView.do?seller_idx=${bsv.seller_idx}"><span class="category">${bsv.m_nick}</span></a>
+	      <br>
+	       <ul class="bs_review">
+	         <c:forEach begin="1" end="${bsv.seller_starsavg}">
+	            <li><i class="lni lni-star-filled"></i></li>
+	         </c:forEach>                  
+	         <c:forEach begin="1" end="${5-bsv.seller_starsavg}">
+	              <li><i class="lni lni-star"></i></li>
+	         </c:forEach>
+	              <li><span>${bsv.seller_starsavg}</span></li>
+	       </ul>
+	       <br>
+	       <a style="color:black" href="${pageContext.request.contextPath}/BSellerView.do?seller_idx=${bsv.seller_idx}">${bsv.seller_intro}</a>
+	       <br>
+	       <input type="button" id="follow" value="+ 팔로우">
+	       <a style="color:black" href="${pageContext.request.contextPath}/BSellerView.do?seller_idx=${bsv.seller_idx}">
+	       <input type="button" class="more" value="작품 더보기"></a>
+      </div>
+     </li>
+	       	
+	     </c:otherwise>
+	     </c:choose>
+     </c:forEach>
+     </ul>
+  <%--   
+    </div>
+   
+    <!-- </li> -->
+    </c:forEach>
+ 
+ <!-- </ul>   --> 
+    
+    
+           </div>
+        </div> --%>
     </section>
     
     
-<ul class="artist-list" data-ui="scroll-paging" data-param="2">
-
-</ul>
+ 
 
 
 

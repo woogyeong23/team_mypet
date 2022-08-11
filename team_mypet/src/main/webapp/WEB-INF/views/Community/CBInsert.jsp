@@ -1,5 +1,7 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
+    <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
+    
 <!DOCTYPE html>
 <html>
 <head>
@@ -19,6 +21,8 @@
 
  <script>
 $(document).ready(function() {
+	// alert 창이 먼저 나오는 오류 수정 필요
+
 	
 
 	var toolbar = [
@@ -96,6 +100,11 @@ function uploadSummernoteImageFile(file, el) {
 			<tr>
 				<td>제목</td>
 				<td><textarea rows="1" cols="50" name="cm_subject" id="cm_subject"></textarea></td>
+				<c:if test="${msg1!=null}">
+				  <script>
+				  alert("${msg1}");
+				  </script>
+				</c:if>
 			</tr>
 			<tr>
 			    <td>대표사진 설정</td>
@@ -104,6 +113,11 @@ function uploadSummernoteImageFile(file, el) {
 			<tr>
 			<td>내용</td>
 			<td><textarea id="summernote" name="cm_content"></textarea>
+			<c:if test="${msg2!=null}">
+			  <script>
+			alert("${msg2}");
+			 </script>
+			</c:if>
                 <input type="hidden" name="midx" id="midx" value="${midx}">
                 <input type="hidden" name="cm_writer" value="${m_nick}"></td>
 			</tr>

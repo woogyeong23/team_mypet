@@ -14,6 +14,7 @@ public class Commu_CommentVo {
 	private int  cc_origin;
 	private int cc_depth;
 	private int cc_level;
+	private int midx;
 
 	public int getCc_idx() {
 		return cc_idx;
@@ -75,5 +76,13 @@ public class Commu_CommentVo {
 	public void setCc_level(int cc_level) {
 		this.cc_level = cc_level;
 	}
+	public int getMidx() {
+		return midx;
+	}
+	public void setMidx(int midx) {
+		this.midx = midx;
+	}
+	
+	
 	
 }

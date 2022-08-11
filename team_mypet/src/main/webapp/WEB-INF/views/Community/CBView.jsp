@@ -10,6 +10,7 @@
 
 
 
+
 <script type="text/javascript">
 $(document).ready(function(){
 	
@@ -18,13 +19,15 @@ $("#commentBtn").click(function(){
 	let cc_content=$(".comment").val();
 	let cm_idx = "${communityVo.cm_idx}";
 	let cc_writer = "${m_nick}";
+	let midx = "${midx}";
 	
 	$.ajax({
 		type: 'post',
 		url: "${pageContext.request.contextPath}/InsertComment.do",
 		data: {"cc_content" : cc_content,
 			"cm_idx" : cm_idx,
-			"cc_writer" : cc_writer},
+			"cc_writer" : cc_writer,
+			"midx" : midx},
 		success: function(data){
 			if(data == "I") {
 				alert("댓글 작성하기 성공");
@@ -34,9 +37,7 @@ $("#commentBtn").click(function(){
 				alert("댓글 작성하기 실패!");
 			}
 		}, 
-		error: 
-			function(request,status,error){ alert("code:"+request.status+"\n"+"message:"+request.responseText+"\n"+"error:"+error);
-			}
+		error : function(error){ alert(error);}
 	});
 });
 
@@ -54,11 +55,7 @@ var targetID;
    });
  }
 
-//  for(var j = 0; j < target.length; j++){
-// 	    btnPopClose[j].addEventListener('click', function(){
-// 	      this.parentNode.parentNode.style.display = 'none';
-// 	    });
-//      }
+
  
  
  
@@ -69,6 +66,7 @@ var targetID;
 	    let cc_content= $(this).prev().val(); //댓글 내용
 	    let cc_writer = "${m_nick}";
 		let cm_idx = "${communityVo.cm_idx}";
+		let midx = "${midx}";
 		    
 	    let cc_idx =$(this).next().val(); 
 	    let cc_origin =$(this).next().next().val();
@@ -84,7 +82,8 @@ var targetID;
 	        	    "cc_idx":cc_idx, 
 	        	    "cc_origin":cc_origin, 
 	        	    "cc_depth":cc_depth, 
-	        	    "cc_level": cc_level }, //보낼 데이터
+	        	    "cc_level": cc_level,
+	        	    "midx": midx}, //보낼 데이터
 	        success: function(data){ //데이터를 보내는것이 성공했을시 출력되는 메시지
 		    	if(data == "H" ){
 		    	    alert("작성하신 댓글이 등록되었습니다!!");
@@ -94,20 +93,105 @@ var targetID;
 					alert("알수없는 오류로 인해 작성하신 댓글이 누락되었습니다.");
 				} 
 	        },
-			error : function(error){ //에러 발생시
-				alert(error);
-			}
+			error : function(error){ alert(error); }
 		});
 	    
 	}); 
-	});	
+	});
+ 
+  $("#good").click(function(){
+	 let midx = "${midx}";
+	 let cm_idx = "${communityVo.cm_idx}";
+	 
+	 $.ajax({
+		 type: 'post',
+		 url: "${pageContext.request.contextPath}/cmLike",
+		 data: {"midx" : midx, "cm_idx" : cm_idx},
+		 
+		 success: function(data){
+				if(data == "Y") {
+					location.reload();
+				}else{
+					alert("알수없는 오류로 인해 '좋아요'가 누락되었습니다.");
+				}
+			},
+			error : function(error){ alert(error); }
+	 });
+  });
+  
+  $("#bad").click(function(){
+		 let midx = "${midx}";
+		 let cm_idx = "${communityVo.cm_idx}";
+		 
+		 $.ajax({
+			 type: 'post',
+			 url: "${pageContext.request.contextPath}/cmBad",
+			 data: {"midx" : midx, "cm_idx" : cm_idx},
+			 
+			 success: function(data){
+					if(data == "Y") {
+						location.reload();
+					}else{
+						alert("알수없는 오류로 인해 '좋아요 취소'가 누락되었습니다.");
+					}
+				},
+				error : function(error){ alert(error); }
+		 });
+	  });
+  
+  $("#CBdelete").click(function(){
+		  var result = confirm("해당 게시물을 삭제하시겠습니까?");
+		  if(result){
+			  let cm_idx = "${communityVo.cm_idx}";
+				 
+				 $.ajax({
+					 type: 'post',
+					 url: "${pageContext.request.contextPath}/cmDelete",
+					 data: {"cm_idx" : cm_idx},
+					 
+					 success: function(data){
+							if(data == "Y") {
+								alert("해당 게시물이 삭제되었습니다.");
+								location.replace("${pageContext.request.contextPath}/CBList.do");
+							}else{
+								alert("알수없는 오류로 인해 '게시물 삭제'가 취소되었습니다.");
+							}
+						},
+						error : function(error){ alert(error); }
+				 });
+		  }else{
+		      alert("게시물 삭제를 취소하였습니다.");
+		  }
+	  
+  });
+  
+  $("#ccDel").each(function(){
+		$(this).click(function(){
+			 
+			var ccdee = confirm("해당 댓글을 삭제하시겠습니까?");
+		     if(ccdee){
+		    	  let cc_idx =$(this).next().val(); 
+		    	  
+		    	  $.ajax({
+		    		type:'post',  
+		    	  })
+			      alert("게시물 삭제를 취소하였습니다.");
+		     }else{
+			      alert("댓글 삭제를 취소하였습니다.");
+		     }
+			
+			
+			
+		 });
+  });
+			
+  
+  
  
 
 });
 </script>
 
-<!-- CSS only -->
-<link href="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-1BmE4kWBq78iYhFldvKuhfTAU6auU8tT94WrHftjDbrCEXSU1oBoqyl2QvZ6jIW3" crossorigin="anonymous">
 
 <!-- css************************************************ -->
     <jsp:include page="../../include/head.jsp" />  
@@ -149,6 +233,11 @@ var targetID;
     .cla{
     font-size: 18px;
     font-weight: 700;
+    position:relative;
+    margin-top: 15px;
+    display: flex;
+    height: 30px;
+    width:100%;
     }
     
     .ckr{
@@ -221,16 +310,7 @@ padding: 8px 16px;
     display: flex;
 }
 
-#follow{
-    background-color: rgb(255, 255, 255);
-    min-width: 63px;
-    width: 63px;
-    height: 28px;
-    font-size: 12px;
-    color: #fae100;
-    border: 1px solid #fae100;
-    border-radius: 4px;
-}
+
 
 .CommentContent{
 position: relative;
@@ -332,6 +412,58 @@ button {
 .ReplyListItem__action {
   padding-left: 72px;
 }
+
+.cmBTN_area {
+   display:flax; 
+   position:relative;
+   height:70px;
+ }
+
+.cmBTN_area .good_area{
+   position:relative;
+   top:50%;
+   left:50%;
+ }
+ 
+ .cmBTN_area .good_area .good{
+  height: 50px;
+  width: 50px;
+  line-height: 50px;
+  display: inline-block;
+  border-radius: 50%;
+  border: 1px solid #eee;
+  color: #555;
+  font-size: 22px;
+  text-align: center;
+  position: relative;
+  margin-right: 12px;
+ }
+ .cmBTN_area .good_area .good:hover {
+ color: #fff;
+ background-color:rgb(237,73,86);
+ border-color: transparent;
+ }
+ 
+ .cmBTN_area .good_area .liked{
+  height: 50px;
+  width: 50px;
+  line-height: 50px;
+  display: inline-block;
+  border-radius: 50%;
+  border: 1px solid #eee;
+  color: #fff;
+  background-color:rgb(237,73,86);
+  font-size: 22px;
+  text-align: center;
+  position: relative;
+  margin-right: 12px;
+ }
+ 
+  .cmBTN_area .good_area .liked:hover {
+ color: #fff;
+ background-color:#555;
+ border-color: transparent;
+ }
     
 
     
@@ -349,15 +481,22 @@ button {
         <div id="dd" >
                 <div>
                    <div class="box">
-        <img class="profile" src="${pageContext.request.contextPath}/resources/Community/upload/${communityVo.cm_img}">
+        <img class="profile" src="${pageContext.request.contextPath}/resources/Extra/img/${communityVo.m_profile}">
                    </div>
                     <div style="float:left">
-                   <span style="font-size:1.3em; color:black">${communityVo.cm_writer}</span>
-                   <br>
-                   <span style="">${communityVo.cm_wday}</span>       
+                   <span style="margin-left: 15px; font-size:1.3em; color:black; margin-top:10px; top:60%">${communityVo.cm_writer}</span>
                    </div>
+                   <div style="margin-left:900px; float:right; margin-top:20px; top:60%"><span style="">${communityVo.cm_wday}</span>
+                   <br>
+                   <c:if test="${midx == communityVo.midx}">
+<a href="${pageContext.request.contextPath}/modi_cm?cm_idx=${communityVo.cm_idx}"><button type="button" style="background-color:blue; color:#ffffff; border-radius:10%;">수정</button></a>
+<button type="button" id="CBdelete" style="background-color:red; color:#ffffff; border-radius:10%;">삭제</button>
+                   </c:if>
+                   </div>
+                   
+                  
                </div>
-                              <div><input type="button" id="follow" value="+ 팔로우"></div>
+                             
        </div>
 
                        
@@ -370,17 +509,31 @@ button {
                </div>
 
 
+<div class="cmBTN_area">
+   <div class="good_area">
+   <c:choose>
+   
+     <c:when test="${midx == null}">
+     <button type="button" class="good"><i class="lni lni-heart"></i></button>
+     </c:when>
+   
+     <c:when test="${CmLikeYn == 1}">
+     <button type="button" class="liked" id="bad"><i class="lni lni-heart"></i></button>
+     </c:when>
+   
+     <c:otherwise>
+     <button type="button" class="good" id="good"><i class="lni lni-heart"></i></button>
+     </c:otherwise>
+   
+   </c:choose>
+   <p> 좋아요 <span>${communityVo.community_like_cnt}</span>개</p>
+   </div>
+   </div>
 
-<c:choose>
-<c:when test="${midx == communityVo.midx}">
-<button type="button" class="btn btn-danger">삭제하기</button>
-<a href="${pageContext.request.contextPath}/modi_cm?cm_idx=${communityVo.cm_idx}"><button type="button" class="btn btn-info" id="">수정하기</button></a>
-</c:when>
-<c:otherwise></c:otherwise>
-</c:choose>
 
-      <div class="cla">댓글 <span>${replyCount}</span></div>
-      
+
+
+<div class="cla">댓글 <span>${replyCount}</span></div>
 <div class="row">
   <div class="col-lg-12 col-12">
        
@@ -418,7 +571,16 @@ button {
 
 <div class="CommentContent__wrap">
      <div class="CommentContent__header">
-         <strong class="CommentContent__userName">${cl.cc_writer}</strong>
+         <strong class="CommentContent__userName">${cl.cc_writer}</strong> 
+         <c:choose>
+         <c:when test="${midx == cl.midx}">
+           <button id="ccDel" style="margin-left:90%; background-color:#dae1e6; width:19px; height:19px;"><i class="lni lni-close"></i></button>
+           <input type="hidden" name="cc_idx" value="${cl.cc_idx}">
+         </c:when>
+         <c:otherwise>
+         
+         </c:otherwise>
+         </c:choose>
      </div>
      
 <p class="CommentContent__body">
@@ -502,7 +664,6 @@ button {
 <!-- 푸터와 js************************************************ -->
     <jsp:include page="../../include/footer.jsp" />  
     
-<!-- JavaScript Bundle with Popper -->
-<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/js/bootstrap.bundle.min.js" integrity="sha384-ka7Sk0Gln4gmtz2MlQnikT1wXgYsOg+OMhuP+IlRH9sENBO0LRn5q+8nbTov4+1p" crossorigin="anonymous"></script>
+
 </body>
 </html>

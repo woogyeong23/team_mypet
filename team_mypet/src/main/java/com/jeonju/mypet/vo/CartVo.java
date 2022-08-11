@@ -56,6 +56,7 @@ public class CartVo {
 	public void setP_disprice(int p_disprice) {
 		this.p_disprice = p_disprice;
 	}
+
 	
 	public int getCart_idx() {
 		return cart_idx;
@@ -93,6 +94,11 @@ public class CartVo {
 	public void setCart_request(String cart_request) {
 		this.cart_request = cart_request;
 	}
+
+	
+	
+	
+	
 	
 	
 
