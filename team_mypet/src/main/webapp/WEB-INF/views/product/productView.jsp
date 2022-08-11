@@ -283,27 +283,13 @@ function cartAlert(result){
 .reviewb {
  display: flex;
   justify-content: space-between;
+  padding-top: 90px;
 }
 .v-line {
   border-left : thin solid #d3d3d3;
   height : 175px;
 }
 
-		html, body{
-			height: 100%
-		}
-		
-		#wrap {
-			min-height: 100%;
-			position: relative;
-			padding-bottom: 60px;
-		}
-		
-		footer {
-			position: relative;
-			transform:translatY(-100%);
-		}
-		
 	
 </style>
 
@@ -317,8 +303,6 @@ function cartAlert(result){
 <!-- 헤더와 네비************************************************ -->
     <jsp:include page="../../include/header.jsp" />  
 <!-- ******************************************************** -->
-
-<div id="wrap">
 
 <section class="item-details section" style="padding-top: 10px;">
 	<div class="container">
@@ -496,7 +480,7 @@ function cartAlert(result){
 				</div>
 			</div>
 		</div>
-			<!-- 리뷰 -->
+				<!-- 리뷰 -->
 			<div class="product-details-info">
 			<div class="single-block">
 			<div class="row">
@@ -534,44 +518,55 @@ function cartAlert(result){
 
 							<div class="single-review">
 								
+                				<c:forEach var="ReviewVo" items="${reviewList}">
+                
 								<div class="reviewbox">
 								<!-- 이미지가 눌이 아니면 -->
+								
 								<div class="col-lg-10">
+								
+								
 								<table>
 								
 								<tr>
 								<td rowspan="2">
-								<img src="${pageContext.request.contextPath}/resources/assets/images/products/gum1.jpg" style="width: 200px; height: 150px" alt="#"> <!-- 리뷰이미지 -->		
+								<img src="${pageContext.request.contextPath}/resources/product/${ReviewVo.review_img}" style="width: 200px; height: 150px" alt="#"> <!-- 리뷰이미지 -->		
+								
 								</td>
 								<td style="height: 30px">
-								<span style="color: #99ccff; font-size: 20px">강강(작성자닉)</span> <!-- 해당판매상품이름/상세페이지로링크 -->
-								별점		
+								<span style="color: #99ccff; font-size: 20px">${ReviewVo.p_name}</span> <!-- 해당판매상품이름/상세페이지로링크 -->
+								<span style="font-size: 20px">별점${ReviewVo.review_stars}</span>
 								</td>
 								</tr>
 								
 								<tr>
 								<td>
-								존맛탱
+								<a href="reviewContent.do?review_idx=${ReviewVo.review_idx}">${ReviewVo.review_content} (후기내용)</a>
 								</td>
 								</tr>
 								
 								</table>
 								
-								<p class="reviewb">작성일 2022-06-07<span align="right" style="padding-right: 10px">댓글 수 0</span></p>
+								<p class="reviewb">작성일 ${ReviewVo.review_wday }<span align="right" style="padding-right: 10px">댓글 수 ${ReviewVo.review_reply_cnt}</span></p>
 								</div>
 								<div class='v-line'></div>
 								
 								<div class="col-lg-2" style="padding-left: 10px;">
 								<table style="height: 100%">
-								<tr><td><span style="color: #99ccff; font-size: 20px">강아지껌(상품명)</span></td></tr>
+								<tr><td><span style="color: #99ccff; font-size: 20px">작성자:${ReviewVo.review_nick}</span></td></tr>
 								<tr><td>반려동물정보</td></tr>
 								<tr><td>종:고양이</td></tr>
 								<tr><td>이름:강산</td></tr>
 								<tr><td>나이:4</td></tr>
 								</table>
+								
 								</div>
+								
 								</div>
+								
 								<hr>
+								</c:forEach>
+								
 								
 						<!-- 리스트 반복문끝 -->
 							</div>
@@ -579,18 +574,23 @@ function cartAlert(result){
 					</div>
 				</div>	
 			</div>
-	</div>
-</section>
-</div>
-				<!-- 리뷰끝 -->
+			
+			
+			<!-- 리뷰끝 -->
 				
 				<!-- 판매자의 다른 상품 -->
   				<!-- 판매자의 다른 상품끝 -->
 					
 				<!-- 비슷한 상품 -->
 				<!-- 비슷한 상품끝 -->
+			
+			
+			
+			
+	</div>
+</section>
+				
 
-						
 <!-- 수량버튼 스크립트 -->
 
     <!-- ========================= JS here ========================= -->

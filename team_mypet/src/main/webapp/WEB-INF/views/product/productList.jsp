@@ -286,13 +286,13 @@ list-style: none;
                     <div class="single-product">
                     	<div class="product-image" style="position: relative;">
                     	<a href="productView.do?p_idx=${productVo.p_idx}">
-                    			<img src="${pageContext.request.contextPath}/resources/assets/images/products/${productVo.p_sys_filename}" width="300px" height="300px">
+                    			<img src="${pageContext.request.contextPath}/resources/product/${productVo.p_sys_filename}" width="300px" height="300px">
 						</a>
-						<!--                             
+						                          
 						<div class="button">
-                        <a href="product-details.html" class="btn"><i class="lni lni-cart"></i> Add to Cart</a>
+                        <a href="product-details.html" class="btn"><i class="lni lni-cart"></i>찜하기</a>
                         </div> 
-                        -->
+                        
                         <div style="position: absolute; left: 4px; top: 4px;"> </div> <!-- 찜하기버튼 -->
                         </div>
                         
@@ -300,7 +300,7 @@ list-style: none;
                             <span class="seller">${productVo.m_nick}</span>
                             <h4 class="p_name">${productVo.p_name}</h4>
                             <div class="price">
-                                <span>${productVo.p_price}</span>
+                                <span>${productVo.p_price}원</span>
                             </div>
                             <ul class="review">
                                 <li><i class="lni lni-star-filled"></i></li>
