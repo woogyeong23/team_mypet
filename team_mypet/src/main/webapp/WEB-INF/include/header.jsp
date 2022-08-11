@@ -92,7 +92,7 @@
                     <div class="col-lg-3 col-md-3 col-7">
                         <!-- Start Header Logo -->
                         <a class="navbar-brand" href="${pageContext.request.contextPath}/home.do">
-                            <img src="resources/assets/images/logo/logo.svg" alt="Logo">
+                            <img src="resources/assets/images/logo/mypetLogo.png"  width="200" height="80"alt="Logo">
                         </a>
                         <!-- End Header Logo -->
                     </div>
