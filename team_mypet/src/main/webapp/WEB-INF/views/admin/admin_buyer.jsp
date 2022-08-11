@@ -30,7 +30,7 @@
 
 
 
-관리자
+ <li><a href="${pageContext.request.contextPath}/admin.do">관리자</a> </li>
 
   
 </div>
@@ -102,8 +102,101 @@
 <div class = "imgslide">
 
 
+<div class = "aa">
+
+                       
+           
+				
+				
+				
+		
+             
+<li><a href="${pageContext.request.contextPath}/memberList.do">구매자 리스트</a></li>
+<br>
+
+
+	
+를 볼 수 있는
+페이지입니다. <br>
+       </div>
+       
+  
+       
+       
+       <div class = "bb">
+
+ <li><a href="${pageContext.request.contextPath}/admin_buyer.do">커뮤니티 글</a></li>
+ 
+ <br>
+ 
+ 
+을 볼 수 있는
+페이지입니다. <br>
+
+
+
+     </div>
+     
+         <div class = "cc">
+<li><a href="${pageContext.request.contextPath}/admin_buyer.do">주문 내역</a>  </li>
+<br>
+
+
+
+
+을 볼 수 있는
+페이지입니다. <br>
 
 </div>
+
+
+
+
+<div class = "dd">
+
+<li><a href="${pageContext.request.contextPath}/admin_buyer.do">고객문의 내역</a>  </li>
+<br>
+
+
+
+
+을 볼 수 있는
+페이지입니다. <br>
+
+
+</div>
+
+
+
+<div class = "ee">
+             <li><a href="${pageContext.request.contextPath}/admin_buyer.do">후기</a> </li>
+             
+            
+    
+     <br>
+             
+를볼 수 있는
+페이지입니다. <br>
+             
+          </div>      
+                 
+             
+             <div class = "ff">
+<li><a href="${pageContext.request.contextPath}/admin_buyer.do">입점신청</a>  </li>
+<br>
+
+
+
+
+글을 볼 수 있는
+페이지입니다. <br>
+
+
+
+
+</div>
+
+
     <div class ="contents">
   
         
@@ -111,15 +204,15 @@
                 <li>
 
                     <div class ="notice">
-                        
+                       
                     </div>
-                  </li>
+                  
                   <li>
 
                     <div class ="gallery">
-                     
+                         
                     </div>
-                  </li>
+                  
 
     </ul>
 
@@ -132,8 +225,7 @@
 
                 <div class ="shortcut">
 
-                   
-
+     
             </div>
         </div>
 
@@ -161,9 +253,7 @@
 
 
 <div class ="copy">
-
-copyright 자리
-
+ 
 
 
 </div>
