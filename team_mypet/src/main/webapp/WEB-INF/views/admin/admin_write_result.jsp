@@ -103,7 +103,7 @@
 
 <body>
 
-<h3 style="text-align:center"> 커뮤니티 글 작성 확인 페이지</h3>
+<h3 style="text-align:center"> 글 작성 확인 페이지</h3>
 <div><img alt="이미지" src="${pageContext.request.contextPath}/resources/Community/upload/${img}"/></div>
 <div>작성자 : ${writer}</div>
 <div>제목 : ${subject}</div>
