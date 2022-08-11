@@ -303,12 +303,16 @@ list-style: none;
                                 <span>${productVo.p_price}원</span>
                             </div>
                             <ul class="review">
-                                <li><i class="lni lni-star-filled"></i></li>
-                                <li><i class="lni lni-star-filled"></i></li>
-                                <li><i class="lni lni-star-filled"></i></li>
-                                <li><i class="lni lni-star-filled"></i></li>
-                                <li><i class="lni lni-star"></i></li>
-                            </ul>
+                               <c:forEach begin="1" end="${productVo.avg_reviews_stars}" step="1">
+									<li><i class="lni lni-star-filled"></i></li>
+								</c:forEach>
+								<c:if test="${productVo.avg_reviews_stars%5 > 0}">
+								   <li><i class="lni lni-star-half"></i></li>
+								</c:if>
+							   <c:forEach begin="1" end="${5-productVo.avg_reviews_stars}" step="1">
+							      <li><i class="lni lni-star-empty"></i></li>
+							   </c:forEach>	
+							</ul>
                         </div>
                     </div> 
                 </div>

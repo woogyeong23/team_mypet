@@ -8,15 +8,15 @@
 
 	<!-- 상품목록 -->
 	<select id="getProductList1" resultType="productVo" parameterType="hashMap">
-	select a.*,b.*,c.*
-	from product a join p_category b on a.p_category_idx = b.p_category_idx join product_img c on a.p_idx=c.p_idx 
+	select a.*,b.*,c.*,IFNULL(avg(review_stars),0) AS avg_reviews_stars, COUNT(review_stars) AS cnt_reviews
+	from product a join p_category b on a.p_category_idx = b.p_category_idx join product_img c on a.p_idx=c.p_idx LEFT join review d on a.p_idx=d.p_idx
 	where a.p_category_idx=#{p_category_idx}
 	GROUP by a.p_idx;
 	</select>
 	
 	<select id="getProductList2" resultType="productVo">
-	select a.*,b.*,c.*
-	from product a join p_category b on a.p_category_idx = b.p_category_idx join product_img c on a.p_idx=c.p_idx 
+	select a.*,b.*,c.*,IFNULL(avg(review_stars),0) AS avg_reviews_stars, COUNT(review_stars) AS cnt_reviews
+	from product a join p_category b on a.p_category_idx = b.p_category_idx join product_img c on a.p_idx=c.p_idx LEFT join review d on a.p_idx=d.p_idx
 	where b.p_category_large=#{p_category_large}
 	GROUP by a.p_idx;
 	</select>
@@ -73,24 +73,24 @@
 	
 	<!-- 상품상세페이지 -->
 	<select id="getProductView" resultType="productVo">	
-	select a.*, b.*, MIN(p_front_img), c.p_sys_filename, c.p_idx
-	from product a join p_category b on a.p_category_idx = b.p_category_idx join product_img c on a.p_idx=c.p_idx 
+	select a.*, b.*, MIN(p_front_img), c.p_sys_filename, c.p_idx,IFNULL(avg(review_stars),0) AS avg_reviews_stars, COUNT(review_stars) AS cnt_reviews
+	from product a join p_category b on a.p_category_idx = b.p_category_idx join product_img c on a.p_idx=c.p_idx LEFT join review d on a.p_idx=d.p_idx
 	where a.p_idx=#{p_idx}
 	</select>
 	
 	
  	<!-- 상품최신순목록 -->
 	<select id="productNewList" resultType="productVo">
-		SELECT a.*,b.*
-		FROM product a join product_img b on a.p_idx=b.p_idx
+		SELECT a.*,b.*,IFNULL(avg(review_stars),0) AS avg_reviews_stars, COUNT(review_stars) AS cnt_reviews
+		FROM product a join product_img b on a.p_idx=b.p_idx LEFT join review d on a.p_idx=d.p_idx
 		group by a.p_idx
 		ORDER BY a.p_idx DESC;
 	</select>
 
 	<!-- 상품인기순목록 -->
 	<select id="productBestList" resultType="productVo">
-		SELECT a.*,b.*, COUNT(c.orders_idx) as '판매량'
-		FROM product a join product_img b on a.p_idx=b.p_idx join detail c on a.p_idx=c.p_idx
+		SELECT a.*,b.*, COUNT(c.orders_idx) as '판매량',IFNULL(avg(review_stars),0) AS avg_reviews_stars, COUNT(review_stars) AS cnt_reviews
+		FROM product a join product_img b on a.p_idx=b.p_idx LEFT join detail c on a.p_idx=c.p_idx LEFT join review d on a.p_idx=d.p_idx
 		GROUP BY a.p_idx
 		ORDER BY COUNT(c.orders_idx) DESC;
 	</select>

@@ -75,8 +75,10 @@ public class ProductController {
 		 model.addAttribute("product_imgs",product_imgs);
 		 
 		 List<ReviewVo> reviewList = productService.getReviewList(p_idx);
-		model.addAttribute("reviewList", reviewList);
-			
+		 model.addAttribute("reviewList", reviewList);
+		
+		 System.out.println(productView.getP_category_idx());
+		 
 		 return "product/productView"; 
 	}
 	
