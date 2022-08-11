@@ -171,6 +171,10 @@ var targetID;
 			var ccdee = confirm("해당 댓글을 삭제하시겠습니까?");
 		     if(ccdee){
 		    	  let cc_idx =$(this).next().val(); 
+		    	  
+		    	  $.ajax({
+		    		type:'post',  
+		    	  })
 			      alert("게시물 삭제를 취소하였습니다.");
 		     }else{
 			      alert("댓글 삭제를 취소하였습니다.");
