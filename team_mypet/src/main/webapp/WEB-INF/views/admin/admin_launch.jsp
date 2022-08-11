@@ -1,5 +1,6 @@
 <%@ page contentType="text/html; charset=UTF-8" %>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
+
 <html>
 <head>
 	<title>관리자페이지</title>
@@ -99,25 +100,68 @@
 </header>
 
 <div class = "bodywrap">
-<div class = "imgslide">
 
-
-
-</div>
-    <div class ="contents">
   
-        
+
+<table border="1">
+
+
+
+	<h2>입점신청</h2>
+	
+
+		<thead>
+			<tr>
+				<th>번호</th>
+				<th>제목</th>
+				<th>작성자</th>
+				<th>작성일</th>
+				<th>파일</th>
+				<th>답변상태</th>
+				<th>답변내용</th>
+			</tr>
+		</thead>
+		<tbody>
+			<c:if test="${LaunchList.size() == 0 }">
+				<tr>
+					<td colspan="4">등록 된 게시글이 없습니다.</td>
+				</tr>
+			</c:if>
+			<c:if test="${LaunchList.size() > 0}">
+				<c:forEach var="LaunchVo" items="${LaunchList}">
+					<tr>
+						<td>${LaunchVo.launch_idx}</td>
+						<td>${LaunchVo.launch_subject}</td>
+						<td>${LaunchVo.launch_writer}</td>
+						<td>${LaunchVo.launch_wday}</td>
+						<td>${LaunchVo.launch_filename}</td>
+						<td>${LaunchVo.launch_status}</td>
+						<td>${LaunchVo.launch_answer}</td>
+					</tr>
+				</c:forEach>
+			</c:if>
+		</tbody>
+	</table>
+
+
+
+
+
+
+    
+        <div class ="contents">
             <ul class ="tabmenu">
                 <li>
 
                     <div class ="notice">
-                        
+                       
                     </div>
                   </li>
                   <li>
 
                     <div class ="gallery">
-                     
+                        
+
                     </div>
                   </li>
 
@@ -126,13 +170,24 @@
 
         <div class ="otherwrap">
             <div class ="banner">
-
+<form method="get" action="admin_board.do">
+		<select name="searchType">
+			<option value="title" <c:if test="${!empty searchVO.searchType and searchVO.searchType eq 'title'}">selected</c:if>>제목</option>
+			<option value="contentWriter" <c:if test="${!empty searchVO.searchType and searchVO.searchType eq 'contentWriter'}">selected</c:if>>내용+작성자</option>
+		</select>
+		<input type="text" name="searchValue" <c:if test="${!empty searchVO.searchValue}">value="${searchVO.searchValue}"</c:if>>
+		<input type="submit" value="검색">
+	</form>
            
 </div>
 
                 <div class ="shortcut">
 
-                   
+                    
+                
+
+
+</div>
 
             </div>
         </div>
@@ -141,8 +196,7 @@
         
 
 </div>
-
-
+	
 
 <footer>
 

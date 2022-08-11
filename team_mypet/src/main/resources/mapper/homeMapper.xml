@@ -6,7 +6,7 @@
 
 <select id="getHList" resultType="productVo">
 SELECT product.p_idx AS p_idx, seller_idx, p_category_idx, p_name, p_content,
- p_price, p_discount,p_disprice, p_sys_filename,p_status, p_wday,p_modifyday,
+ p_price, p_discount,p_disprice, product_img.p_sys_filename,p_status, p_wday,p_modifyday,
  IFNULL(avg(review_stars),0) AS avg_reviews_stars, COUNT(review_stars) AS cnt_reviews
   FROM product LEFT JOIN product_img ON product.p_idx = product_img.p_idx 
   LEFT JOIN review ON product.p_idx = review.p_idx
@@ -16,7 +16,7 @@ SELECT product.p_idx AS p_idx, seller_idx, p_category_idx, p_name, p_content,
 
 <select id="getHList2" resultType="productVo">
 SELECT product.p_idx AS p_idx, seller_idx, p_category_idx, p_name, p_content,
- p_price, p_discount,p_disprice, p_sys_filename,p_status, p_wday,p_modifyday,
+ p_price, p_discount,p_disprice, product_img.p_sys_filename,p_status, p_wday,p_modifyday,
  IFNULL(avg(review_stars),0) AS avg_reviews_stars, COUNT(review_stars) AS cnt_reviews
   FROM product LEFT JOIN product_img ON product.p_idx = product_img.p_idx 
   LEFT JOIN review ON product.p_idx = review.p_idx LEFT JOIN detail ON product.p_idx = detail.p_idx
@@ -26,7 +26,7 @@ SELECT product.p_idx AS p_idx, seller_idx, p_category_idx, p_name, p_content,
 
 <select id="getHList3" resultType="productVo">
  SELECT product.p_idx AS p_idx, seller_idx, p_category_idx, p_name, p_content,
- p_price, p_discount,p_disprice, p_sys_filename,p_status, p_wday,p_modifyday,
+ p_price, p_discount,p_disprice, product_img.p_sys_filename,p_status, p_wday,p_modifyday,
  IFNULL(avg(review_stars),0) AS avg_reviews_stars, COUNT(review_stars) AS cnt_reviews
   FROM product LEFT JOIN product_img ON product.p_idx = product_img.p_idx
   LEFT JOIN review ON product.p_idx = review.p_idx LEFT JOIN detail ON product.p_idx = detail.p_idx
@@ -36,7 +36,7 @@ SELECT product.p_idx AS p_idx, seller_idx, p_category_idx, p_name, p_content,
 
 <select id="getHList4" resultType="productVo">
   SELECT product.p_idx AS p_idx, seller_idx, p_category_idx, p_name, p_content,
- p_price, p_discount,p_disprice, p_sys_filename,p_status, p_wday,p_modifyday,
+ p_price, p_discount,p_disprice, product_img.p_sys_filename,p_status, p_wday,p_modifyday,
  IFNULL(avg(review_stars),0) AS avg_reviews_stars, COUNT(review_stars) AS cnt_reviews
   FROM product LEFT JOIN product_img ON product.p_idx = product_img.p_idx
   LEFT JOIN review ON product.p_idx = review.p_idx LEFT JOIN detail ON product.p_idx = detail.p_idx
@@ -46,7 +46,7 @@ SELECT product.p_idx AS p_idx, seller_idx, p_category_idx, p_name, p_content,
 
 <select id="getHList5" resultType="productVo">
    SELECT product.p_idx AS p_idx, seller_idx, p_category_idx, p_name, p_content,
- p_price, p_discount,p_disprice, p_sys_filename,p_status, p_wday,p_modifyday,
+ p_price, p_discount,p_disprice, product_img.p_sys_filename,p_status, p_wday,p_modifyday,
  IFNULL(avg(review_stars),0) AS avg_reviews_stars, COUNT(review_stars) AS cnt_reviews,
  count(detail.detail_idx) as ccnntt
   FROM product LEFT JOIN product_img ON product.p_idx = product_img.p_idx

@@ -11,6 +11,7 @@ import org.springframework.stereotype.Repository;
 import com.jeonju.mypet.vo.Criteria;
 import com.jeonju.mypet.vo.ProductVo;
 import com.jeonju.mypet.vo.Product_ImgVo;
+import com.jeonju.mypet.vo.ReviewVo;
 
 
 @Repository
@@ -67,11 +68,39 @@ public class ProductDao {
 	public List<ProductVo> productNewList() {
 		return sqlSession.selectList(MAPPER + ".productNewList");
 	}
+	
+	//인기순
+	public List<ProductVo> productBestList() {
+		return sqlSession.selectList(MAPPER + ".productBestList");
+	}
+	
+	//상세페이지 상품이미지
 	public List<Product_ImgVo> getProductImgs(int p_idx) {
 		return sqlSession.selectList(MAPPER + ".getproductImgs",p_idx);
 	}
 	
-
+	//상세페이지 리뷰리스트
+	public List<ReviewVo> getReviewList(int p_idx) {
+		return sqlSession.selectList(MAPPER + ".getReviewList",p_idx);
+	}
+	
+	//후기작성
+	public ProductVo reviewWrite(int p_idx) {
+		return sqlSession.selectOne(MAPPER + ".reviewWrite",p_idx);
+	}
+	
+	//리뷰콘텐츠
+	public ReviewVo reviewContent(int review_idx) {
+		return sqlSession.selectOne(MAPPER + ".reviewContent",review_idx);
+	}
+	
+	public int insertReview(ReviewVo reviewVo) {
+		return sqlSession.insert(MAPPER + ".insertReview",reviewVo);
+	}
+	public ProductVo getReviewp(ProductVo product) {
+		return sqlSession.selectOne(MAPPER + ".getReviewp",product);
+	}
+	
 	
 	
 	//소현

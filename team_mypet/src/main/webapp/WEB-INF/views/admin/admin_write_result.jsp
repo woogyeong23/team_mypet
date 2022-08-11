@@ -38,7 +38,7 @@
     <nav class = "menu">
            <ul class ="navi">
             
-            <li><a href="${pageContext.request.contextPath}/admin_buyer.do">구매자 관리</a>
+            <li><a href="${pageContext.request.contextPath}/#">구매자 관리</a>
            
             
 
@@ -58,7 +58,7 @@
 </li>
 
 
-<li> <a href="${pageContext.request.contextPath}/admin_board.do">공지사항 관리</a>
+<li> <a href="${pageContext.request.contextPath}/admin_borad.do">공지사항 관리</a>
 
 
  
@@ -69,7 +69,7 @@
 
 
 
-<li> 	<a href="${pageContext.request.contextPath}/admin_board2.do">이벤트 관리</a>
+<li> 	<a href="${pageContext.request.contextPath}/admin_borad2.do">이벤트 관리</a>
 
 
     
@@ -80,7 +80,7 @@
 
 
 
-<li>	<a href="${pageContext.request.contextPath}/admin_mune.do">1:1문의 사항</a>
+<li>	<a href="${pageContext.request.contextPath}/#">1:1문의 사항</a>
 
 
  
@@ -96,28 +96,40 @@
     </div>
 
 
-</header>
 
-<div class = "bodywrap">
-<div class = "imgslide">
+
+    <div class ="contents">
+    <div class = "write">
+
+<body>
+
+<h3 style="text-align:center"> 글 작성 확인 페이지</h3>
+<div><img alt="이미지" src="${pageContext.request.contextPath}/resources/Community/upload/${img}"/></div>
+<div>작성자 : ${writer}</div>
+<div>제목 : ${subject}</div>
+<div>내용 : ${content}</div>
+<a href="${pageContext.request.contextPath}/admin_board.do">공지사항 리스트</a>
+
+
+
+
 
 
 
 </div>
-    <div class ="contents">
-  
+</div>
         
             <ul class ="tabmenu">
                 <li>
 
                     <div class ="notice">
-                        
+                   
                     </div>
                   </li>
                   <li>
 
                     <div class ="gallery">
-                     
+                   
                     </div>
                   </li>
 
@@ -132,7 +144,8 @@
 
                 <div class ="shortcut">
 
-                   
+                 
+                
 
             </div>
         </div>
@@ -142,7 +155,7 @@
 
 </div>
 
-
+</header>
 
 <footer>
 
