@@ -434,14 +434,17 @@ public class SellerController {
 	}
 	
 	@RequestMapping(value="/seller_accountModifProcess.do", method = {RequestMethod.GET, RequestMethod.POST})
-	public String seller_accountModifProcess( SellerStoryVo sellerStoryVo,
-			
+	public String seller_accountModifProcess( String seller_bank, String seller_account_number,
+			SellerStoryVo sellerStoryVo,
 			Model model, HttpServletRequest request
 			) throws IllegalStateException, IOException{
-		HttpSession session = request.getSession(); int midx = (int)
-				session.getAttribute("midx"); 
-				String member_id= Integer.toString(midx);
 				
+				HttpSession session = request.getSession(); int midx = (int)
+				session.getAttribute("midx"); 
+				sellerStoryVo.setSeller_bank(seller_bank);
+				sellerStoryVo.setSeller_account_number(seller_account_number);
+				sellerStoryVo.setMidx(midx);
+				System.out.println(sellerStoryVo.getSeller_bank());
 				String viewPage = null;
 				int flag = sellerService.updateSellerAccount(sellerStoryVo);
 				System.out.println(flag);

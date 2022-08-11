@@ -75,7 +75,8 @@
 								</div>
 							</div>
 							<img src="${pageContext.request.contextPath}/resources/seller/${sellerStoryVo.seller_img}">
-							<input type="submit" value="수정">
+							<p>
+							<input type="submit" class="btn btn-light" value="수정">
 						</form>
 						
 						

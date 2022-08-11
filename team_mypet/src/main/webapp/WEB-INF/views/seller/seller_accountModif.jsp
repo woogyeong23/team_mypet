@@ -55,7 +55,8 @@
 				<!-- content -->
 				<div class="col-md-9 col-12">
 					<div class="tab-content" id="nav-tabContent">
-						<h3 c    ="frm" action="${pageContext.request.contextPath}/seller_accountModifProcess.do" method="post">
+						<h3 class="pb-1 border-bottom" style="margin-bottom:10px">계좌수정</h3>
+						<form name="frm" action="${pageContext.request.contextPath}/seller_accountModifProcess.do" method="post">
 							<table class="table-style-head-left">
 								<tbody>
 									
@@ -64,7 +65,7 @@
 										</th>
 										<td>	
 										<div class="input-text size-m">
-											<select class="form-select" name="bank" id="bank"  style="height: 40px; width: 130px; margin-right: 5px; margin-top: 0">
+											<select class="form-select" name="seller_bank" id="seller_bank"  style="height: 40px; width: 130px; margin-right: 5px; margin-top: 0">
 													<option value="국민" <c:if test="${sellerStoryVo.seller_bank == '국민'}">selected</c:if>>국민</option>
 													<option value="하나" <c:if test="${sellerStoryVo.seller_bank == '하나'}">selected</c:if>>하나</option>
 													<option value="농협" <c:if test="${sellerStoryVo.seller_bank == '농협'}">selected</c:if>>농협</option>
@@ -82,7 +83,7 @@
 										</th>
 										<td>
 										<div class="input-text size-m">
-										<input type="text" name="account" value="${sellerStoryVo.seller_account_number}">
+										<input type="text" name="seller_account_number" value="${sellerStoryVo.seller_account_number}">
 										</div>
 										</td>
 									</tr>

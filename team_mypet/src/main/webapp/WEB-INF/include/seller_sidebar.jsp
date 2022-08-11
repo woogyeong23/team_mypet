@@ -16,7 +16,7 @@
   <img src="resources/assets/images/profile.jpg" class="img-thumbnail" alt="프로필">
 </div>  
   
-    <a href="${pageContext.request.contextPath}/memberInfo.do" class="d-flex align-items-center pb-3 mb-3 link-dark text-decoration-none border-bottom">
+    <a href="${pageContext.request.contextPath}/seller_productList.do" class="d-flex align-items-center pb-3 mb-3 link-dark text-decoration-none border-bottom">
       <svg class="bi me-2" width="30" height="24"><use xlink:href="#bootstrap"/></svg>
       <span class="fs-5 fw-semibold">
 			${m_nick}님
@@ -71,7 +71,7 @@
           <ul class="btn-toggle-nav list-unstyled fw-normal pb-1">
             <li><a
 	                    href="${pageContext.request.contextPath}/seller_account.do"
-	                    class="s8">계좌 등록/수정</a></li>
+	                    class="s8">계좌 수정</a></li>
           </ul>
         </div>
       </li>
