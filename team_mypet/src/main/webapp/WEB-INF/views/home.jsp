@@ -209,13 +209,7 @@ $(function() {
 								</c:choose>
 							</span>
     
-                            <span class="category" style="margin-top:5px">
-                        		<c:choose>
-										<c:when test="${hv.p_status == 0}">판매중</c:when>
-										<c:when test="${hv.p_status == 1}">품절</c:when>
-										<c:when test="${hv.p_status == 2}">삭제</c:when>
-								</c:choose>
-                           </span>
+                            
                             <h4 class="title">
                                 <a href="${pageContext.request.contextPath}/seller_productDetail.do?p_idx=${hv.p_idx} ">
                                 ${hv.p_name}</a>
@@ -240,9 +234,6 @@ $(function() {
 							</div>
                             
                             <br>
-							<span class="category">최초 등록일: 
-							<fmt:formatDate value="${hv.p_wday}" pattern="yyyy-MM-dd"/>												</span>
-							<span class="category">마지막 수정일: <fmt:formatDate value="${hv.p_modifyday}" pattern="yyyy-MM-dd"/></span>
                        </div>
                         
                     </div>

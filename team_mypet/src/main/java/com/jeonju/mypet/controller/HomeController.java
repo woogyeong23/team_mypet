@@ -47,33 +47,13 @@ public class HomeController {
 		
 		
 		
-		
-//		int midx = 0;
-		  long midx = 0;
-		 HttpSession session = request.getSession();
-		 if(session.getAttribute("midx")!=null) {
-//			   midx = (int)session.getAttribute("midx");
-			midx =  (long)session.getAttribute("midx");
-			
-			CartVo cartVo = new CartVo();
-			cartVo.setMidx((int) midx);
-			
-			 cartVo = homeService.getCCCart(cartVo);
-			
 
-			model.addAttribute("cartVVo",cartVo);
-			model.addAttribute("HomeList",hList);
-			model.addAttribute("HomeList2",hList2);
-			model.addAttribute("HomeList3",hList3);
-			model.addAttribute("HomeList4",hList4);
-			model.addAttribute("HomeList5",hList5);			
-		 } else {
 				model.addAttribute("HomeList",hList);
 				model.addAttribute("HomeList2",hList2);
 				model.addAttribute("HomeList3",hList3);
 				model.addAttribute("HomeList4",hList4);
 				model.addAttribute("HomeList5",hList5);	 
-		 }
+	
 		 
 		
 	
@@ -97,31 +77,13 @@ public class HomeController {
 		
 		
 		
-//		int midx = 0;
-		  long midx = 0;
-		 HttpSession session = request.getSession();
-		 if(session.getAttribute("midx")!=null) {
-//			   midx = (int)session.getAttribute("midx");
-			midx =  (long)session.getAttribute("midx");
-			
-			CartVo cartVo = new CartVo();
-			cartVo.setMidx((int) midx);
-			
-			cartVo = homeService.getCCCart(cartVo);
-			
-			model.addAttribute("cartVVo",cartVo);
-			model.addAttribute("HomeList",hList);
-			model.addAttribute("HomeList2",hList2);
-			model.addAttribute("HomeList3",hList3);
-			model.addAttribute("HomeList4",hList4);
-			model.addAttribute("HomeList5",hList5);			
-		 } else {
+
 				model.addAttribute("HomeList",hList);
 				model.addAttribute("HomeList2",hList2);
 				model.addAttribute("HomeList3",hList3);
 				model.addAttribute("HomeList4",hList4);
 				model.addAttribute("HomeList5",hList5);	 
-		 }
+
 		 
 		
 		return "home";

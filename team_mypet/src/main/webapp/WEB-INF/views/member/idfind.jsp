@@ -13,19 +13,21 @@
   
     <script src="http://code.jquery.com/jquery-latest.min.js"></script>
      <script>
-     $(function(){
+     $(document).ready(function(){
     	$("#id_find").click(function(){
     		let m_name = $("#m_name").val();
-    		$ajax({
+    		$.ajax({
     			type : "post",
     			url : "${pageContext.request.contextPath}/idfindProcess.do",
-    			data : {"m_name":m_name},
+    			data : {"m_name":m_name
+    				},
     			success : function(data){
     				if(data==null){
-    					$("#id_finded").text("등록되어 있지 않은 이름입니다.").css("color","red");
+    					$(".id_finded").html("등록되어 있지 않은 이름입니다.").css("color","red");
 
     				}else{
-    					$("#id_finded").text(data).css("color","green");
+    					$alert(data);
+    					$(".#id_finded").text(data).css("color","green");
 
     				}
     					
@@ -53,12 +55,15 @@
     <h1 class="h3 mb-3 fw-normal">아이디 찾기</h1>
 
     <div class="form-floating">
-      <input type="text" name="m_name" value="" maxlength="20" class="form-control" id="floatingInput">
-      <label for="floatingInput">name</label>
+      <input type="text" name="m_name" value="" maxlength="20" class="form-control" id="m_name">
+      <label for="m_name">name</label>
     </div>
     
-    <button class="w-100 btn btn-lg btn-primary" id="id_find">아이디 찾기</button>
-    <div style="height:20px" ><span id="id_finded" style="font-size:12px;">gdgd</span></div>
+    <span class="id_finded">gdgdgdg
+    </span>
+    
+    <button  type="button" class="w-100 btn btn-lg btn-primary" id="id_find">아이디 찾기</button>
+    
     </form>
 </main>         
 		

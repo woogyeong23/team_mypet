@@ -86,7 +86,7 @@
 	<insert id="addProduct" parameterType="map">
 		
 		INSERT INTO product(seller_idx,p_category_idx,p_name,p_content,p_price,p_discount,p_disprice,p_cancle_info,p_ingerdient,p_dvprice,p_dvcompany,p_limit_cnt,p_point,p_add_dvprice,p_free_dvprice,p_size,p_status,p_stock)
-		 VALUES( #{seller_idx}, #{p_category_idx},#{p_name},#{p_content},#{p_price},#{p_discount},#{p_disprice},#{p_cancle_info},#{p_ingerdient},#{p_dvprice},#{p_dvcompany},#{p_limit_cnt},#{p_point},#{p_add_dvprice},#{p_free_dvprice},#{p_size},#{p_status},#{p_stock})
+		 VALUES( #{seller_idx}, #{p_category_idx},#{p_name},#{p_content},#{p_price},#{p_discount},#{p_disprice},#{p_cancle_info},#{p_ingerdient},#{p_dvprice},#{p_dvcompany},#{p_limit_cnt},#{p_point},#{p_add_dvprice},#{p_free_dvprice},#{p_size},0,#{p_stock})
 
 			
 	</insert>
@@ -107,7 +107,177 @@
 			
 	</insert>
 	
+	<select id="getSellerProductVoList" parameterType="string" resultType="productVo">
+		select p_idx, p_name, p_dvprice
+		from product
+		where seller_idx = (select seller_idx from sellerstory where midx=#{member_id})
+	</select>
 	
+	<select id="getSellerOrdersList" resultType="ordersVo">
+		
+		select orders.*, m_name, m_id, members.midx
+						from orders  join members on orders.midx=members.midx
+						where orders_idx in (select DISTINCT c.orders_idx
+											from product a join detail b on a.p_idx=b.p_idx join orders c on b.orders_idx=c.orders_idx 
+													join members d on c.midx=d.midx join (select *
+													from (select *, RANK() OVER (PARTITION BY detail_idx ORDER BY detail_status desc) AS num
+													from detail_day ) a
+													where a.num=1) e on b.detail_idx=e.detail_idx
+											where a.seller_idx = (select midx from sellerstory where midx=#{member_id})
+											
+											<choose>
+												<when test="product=='00'">
+												</when>
+												<otherwise>
+													
+													<if test="status!='00'">
+														<if test="product!='00'">
+															and a.p_idx=#{product} and e.detail_status=#{status}
+														</if>
+													</if>
+													<if test="status=='00'">
+														<if test="product!='00'">
+															and a.p_idx=#{product}
+														</if>
+													</if>
+												</otherwise>
+											</choose>
+											)
+											
+											
+											
+											
+		<if  test="searching == 'searchTotal'">
+			and (m_name like CONCAT('%',#{keyword},'%') or m_id like CONCAT('%',#{keyword},'%'))
+		</if>
+		<if  test="searching == 'searchName' ">
+			and m_name like  CONCAT('%',#{keyword},'%')
+		</if>
+		<if  test="searching == 'searchEmail' ">
+			and m_id like CONCAT('%',#{keyword},'%')
+		</if>
+
+			
+		
+			<if test="status!='00'">
+				<if test="product=='00'">
+					and orders.orders_status=#{status}
+				</if>
+			</if>
+		 
+		
+	
+	<!-- 
+		select orderlist.*
+		from (select t.*,  RANK() OVER (PARTITION BY detail_idx ORDER BY detail_status desc) AS num
+				from (	select a.seller_idx, a.p_idx, p_name, b.detail_idx, detail_status, fixprice, orders_day,c.orders_idx, c.midx, d.m_name, d.m_id
+						from product a join detail b on a.p_idx=b.p_idx join orders c on b.orders_idx=c.orders_idx join members d on c.midx=d.midx join detail_day e on b.detail_idx=e.detail_idx
+						where a.seller_idx = (select midx from sellerstory where midx=#{member_id})
+						order by orders_day desc ) t ) orderlist
+		where num=1
+	
+			<if  test="searching == 'searchTotal'">
+					and (m_name like CONCAT('%',#{keyword},'%') or m_id like CONCAT('%',#{keyword},'%'))
+			</if>
+			<if  test="searching == 'searchName' ">
+					and m_name like  CONCAT('%',#{keyword},'%')
+			</if>
+			<if  test="searching == 'searchEmail' ">
+					and m_id like CONCAT('%',#{keyword},'%')
+			</if>
+
+			
+			<choose>
+				<when test="status=='00'">
+				</when>
+				<otherwise>
+					and detail_status=#{status}
+				</otherwise>
+			</choose>
+			
+			<choose>
+				<when test="product=='00'">
+				</when>
+				<otherwise>
+					and p_idx=#{product}
+				</otherwise>
+			</choose>
+	-->			
+	</select>
+	
+	<select id="getSellerDetailVoList" resultType="detailVo">
+		select *
+		from (select a.seller_idx, b.fixdvprice, a.p_idx, a.p_name, b.detail_idx, c.detail_status , RANK() OVER (PARTITION BY detail_idx ORDER BY detail_status desc) AS num
+			from product a join detail b on a.p_idx=b.p_idx join detail_day c on b.detail_idx=c.detail_idx
+			where b.orders_idx=#{orders_idx}) t
+		where t.num=1 and t.seller_idx = (select midx from sellerstory where midx=#{member_id})
+
+					
+	</select>
+	<select id="getSellerOrdersPrice" resultType="String">
+		select sum(b.fixprice) as bundleprice
+		from orders a join detail b on a.orders_idx=b.orders_idx join product c on b.p_idx=c.p_idx
+		where a.orders_idx=#{orders_idx} and c.seller_idx = (select midx from sellerstory where midx=#{member_id})
+					
+	</select>
+	
+	
+	<select id="getSellerDetailDayListVo" parameterType="string" resultType="detail_dayVo">
+		select *
+		from detail_day
+		where detail_idx=#{detail_idx}
+
+	</select>
+	
+	<select id="getSellerRefundDayListVo" parameterType="string" resultType="refund_dayVo">
+		select *
+		from refund_day
+		where detail_idx=#{detail_idx}
+
+	</select>
+	
+	<select id="getSellerCancleDayListVo" parameterType="string" resultType="cancle_dayVo">
+		select *
+		from cancle_day
+		where detail_idx=#{detail_idx}
+
+	</select>
+	
+	<select id="getSellerReviewVo" parameterType="string" resultType="reviewVo">
+		select *
+		from review
+		where detail_idx=#{detail_idx}
+
+	</select>
+	<select id="getSellerOrdersContent" resultType="Hashmap">
+		select a.*, b.*, c.*, d.m_name, d.m_id, f.p_sys_filename
+		from product a join detail b on a.p_idx=b.p_idx join orders c on b.orders_idx=c.orders_idx join members d on c.midx=d.midx join detail_day e on b.detail_idx=e.detail_idx join product_img f on a.p_idx=f.p_idx
+		where b.detail_idx=#{detail_idx}
+		order by detail_status desc limit 0,1
+
+					
+	</select>
+	
+	
+	<select id="seller_ordersMap" resultType="Hashmap">
+		select a.orders_idx, b.m_name, b.m_id, a.orders_status, a.orders_day
+		from orders  a join members b on a.midx=b.midx
+		where a.orders_idx=#{orders_idx} and a.midx=#{member_id}
+
+					
+	</select>
+	
+	<select id="getSeller_profile" resultType="sellerStoryVo">
+		select b.*
+		from members a join sellerstory b on a.midx=b.midx
+		where a.midx=#{member_id}
+					
+	</select>
+	
+	<update id="updateSellerAccount" parameterType="sellerStoryVo">
+	update sellerstory set seller_bank=#{seller_bank}, seller_account_number=#{seller_account_number}
+	 where midx=#{midx}
+	</update>
 	
 	
 	
