@@ -9,6 +9,7 @@ import com.jeonju.mypet.dao.ProductDao;
 import com.jeonju.mypet.vo.Criteria;
 import com.jeonju.mypet.vo.ProductVo;
 import com.jeonju.mypet.vo.Product_ImgVo;
+import com.jeonju.mypet.vo.ReviewVo;
 
 @Service
 public class ProductService {
@@ -53,16 +54,50 @@ public class ProductService {
 	public List<ProductVo> productNewList() {
 		return productDao.productNewList();
 	}
+	
+	//인기순
+	public List<ProductVo> productBestList() {
+		return productDao.productBestList();
+	}
 
-
+	//카테고리이름
 	public ProductVo getCodeName(int p_category_idx, int p_category_large) {
 		return productDao.getCodeName(p_category_idx, p_category_large);
 	}
 
-
+	//상세페이지 상품이미지
 	public List<Product_ImgVo> getProductImgs(int p_idx) {
 		return productDao.getProductImgs(p_idx);
 	}
+
+	//상세페이지 리뷰리스트
+	public List<ReviewVo> getReviewList(int p_idx) {
+		return productDao.getReviewList(p_idx);
+	}
+
+	//후기작성
+	public ProductVo reviewWrite(int p_idx) {
+		return productDao.reviewWrite(p_idx);
+	}
+
+
+	public ReviewVo reviewContent(int review_idx) {
+		return productDao.reviewContent(review_idx);
+	}
+
+
+	public int insertReview(ReviewVo reviewVo) {
+		return productDao.insertReview(reviewVo);
+	}
+
+
+	public ProductVo getReviewp(ProductVo product) {
+		return productDao.getReviewp(product);
+	}
+
+
+
+
 	
 	//소현
 }
