@@ -96,12 +96,13 @@ function uploadSummernoteImageFile(file, el) {
 			<tr>
 			<td>내용</td>
 			<td><textarea id="summernote" name="cm_content" >${commuVo.cm_content}</textarea>
-                <input type="text" name="cm_writer" value="${commuVo.cm_writer}"></td>
+                <input type="text" name="cm_writer" value="${commuVo.cm_writer}">
+                <input type="hidden" name="cm_idx" value="${commuVo.cm_idx}"></td>
 			</tr>
 			<tr>
 				<td colspan="2" align="center">
 					<input type="button" value="메인페이지" onclick="document.location.href='${pageContext.request.contextPath}/home.do'"/>&nbsp;|&nbsp;
-					<input type="submit" value="등록하기 "/>
+					<input type="submit" value="저장하기 "/>
 				</td>
 			</tr>
 		</table>

@@ -12,6 +12,7 @@ import com.jeonju.mypet.vo.CommunityVo;
 import com.jeonju.mypet.vo.Community_likeVo;
 import com.jeonju.mypet.vo.FollowVo;
 import com.jeonju.mypet.vo.ProductVo;
+import com.jeonju.mypet.vo.Product_ImgVo;
 import com.jeonju.mypet.vo.ReviewVo;
 import com.jeonju.mypet.vo.SellerStoryVo;
 
@@ -76,6 +77,10 @@ public class CommunityDao {
 		return sqlSession.selectList(MAPPER+".getBSList");
 	}
 	
+	public List<SellerStoryVo> getBsList2() {
+		return sqlSession.selectList(MAPPER+".getBsList2");
+	}
+	
 	public List<ProductVo> getBSPList(int seller_idx) {
 		return sqlSession.selectList(MAPPER+".getBSPList", seller_idx);
 	}
@@ -123,6 +128,24 @@ public class CommunityDao {
 	public int plusCmView(int cm_idx) {
 		return sqlSession.update(MAPPER+".plusCmView", cm_idx);
 	}
+
+	public int DeleteCm(CommunityVo communityVo) {
+		return sqlSession.update(MAPPER+".DeleteCm", communityVo);
+	}
+
+	public int UpdateCB(CommunityVo communityVo) {
+		return sqlSession.update(MAPPER+".UpdateCB", communityVo);
+	}
+
+	public Product_ImgVo getPI(ProductVo po) {
+		return sqlSession.selectOne(MAPPER+".getPI",po);
+	}
+
+
+
+
+
+
 
 	
 

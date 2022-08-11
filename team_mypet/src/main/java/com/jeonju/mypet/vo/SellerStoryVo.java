@@ -20,6 +20,8 @@ public class SellerStoryVo {
 	// test
 	private String m_nick;
 	private String m_profile;
+	private int p_idx;
+	private String p_sys_filename;
 	//
 	
 	public int getSeller_idx() {
@@ -108,6 +110,20 @@ public class SellerStoryVo {
 	public void setM_profile(String m_profile) {
 		this.m_profile = m_profile;
 	}
+	public int getP_idx() {
+		return p_idx;
+	}
+	public void setP_idx(int p_idx) {
+		this.p_idx = p_idx;
+	}
+	public String getP_sys_filename() {
+		return p_sys_filename;
+	}
+	public void setP_sys_filename(String p_sys_filename) {
+		this.p_sys_filename = p_sys_filename;
+	}
+	
+	
 	
 	//test
 	

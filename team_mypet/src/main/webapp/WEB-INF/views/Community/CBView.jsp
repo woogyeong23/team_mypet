@@ -10,6 +10,7 @@
 
 
 
+
 <script type="text/javascript">
 $(document).ready(function(){
 	
@@ -18,13 +19,15 @@ $("#commentBtn").click(function(){
 	let cc_content=$(".comment").val();
 	let cm_idx = "${communityVo.cm_idx}";
 	let cc_writer = "${m_nick}";
+	let midx = "${midx}";
 	
 	$.ajax({
 		type: 'post',
 		url: "${pageContext.request.contextPath}/InsertComment.do",
 		data: {"cc_content" : cc_content,
 			"cm_idx" : cm_idx,
-			"cc_writer" : cc_writer},
+			"cc_writer" : cc_writer,
+			"midx" : midx},
 		success: function(data){
 			if(data == "I") {
 				alert("댓글 작성하기 성공");
@@ -52,11 +55,7 @@ var targetID;
    });
  }
 
-//  for(var j = 0; j < target.length; j++){
-// 	    btnPopClose[j].addEventListener('click', function(){
-// 	      this.parentNode.parentNode.style.display = 'none';
-// 	    });
-//      }
+
  
  
  
@@ -67,6 +66,7 @@ var targetID;
 	    let cc_content= $(this).prev().val(); //댓글 내용
 	    let cc_writer = "${m_nick}";
 		let cm_idx = "${communityVo.cm_idx}";
+		let midx = "${midx}";
 		    
 	    let cc_idx =$(this).next().val(); 
 	    let cc_origin =$(this).next().next().val();
@@ -82,7 +82,8 @@ var targetID;
 	        	    "cc_idx":cc_idx, 
 	        	    "cc_origin":cc_origin, 
 	        	    "cc_depth":cc_depth, 
-	        	    "cc_level": cc_level }, //보낼 데이터
+	        	    "cc_level": cc_level,
+	        	    "midx": midx}, //보낼 데이터
 	        success: function(data){ //데이터를 보내는것이 성공했을시 출력되는 메시지
 		    	if(data == "H" ){
 		    	    alert("작성하신 댓글이 등록되었습니다!!");
@@ -137,6 +138,49 @@ var targetID;
 				error : function(error){ alert(error); }
 		 });
 	  });
+  
+  $("#CBdelete").click(function(){
+		  var result = confirm("해당 게시물을 삭제하시겠습니까?");
+		  if(result){
+			  let cm_idx = "${communityVo.cm_idx}";
+				 
+				 $.ajax({
+					 type: 'post',
+					 url: "${pageContext.request.contextPath}/cmDelete",
+					 data: {"cm_idx" : cm_idx},
+					 
+					 success: function(data){
+							if(data == "Y") {
+								alert("해당 게시물이 삭제되었습니다.");
+								location.replace("${pageContext.request.contextPath}/CBList.do");
+							}else{
+								alert("알수없는 오류로 인해 '게시물 삭제'가 취소되었습니다.");
+							}
+						},
+						error : function(error){ alert(error); }
+				 });
+		  }else{
+		      alert("게시물 삭제를 취소하였습니다.");
+		  }
+	  
+  });
+  
+  $("#ccDel").each(function(){
+		$(this).click(function(){
+			 
+			var ccdee = confirm("해당 댓글을 삭제하시겠습니까?");
+		     if(ccdee){
+		    	  let cc_idx =$(this).next().val(); 
+			      alert("게시물 삭제를 취소하였습니다.");
+		     }else{
+			      alert("댓글 삭제를 취소하였습니다.");
+		     }
+			
+			
+			
+		 });
+  });
+			
   
   
  
@@ -436,10 +480,17 @@ button {
         <img class="profile" src="${pageContext.request.contextPath}/resources/Extra/img/${communityVo.m_profile}">
                    </div>
                     <div style="float:left">
-                   <span style="font-size:1.3em; color:black">${communityVo.cm_writer}</span>
-                   <br>
-                   <span style="">${communityVo.cm_wday}</span>       
+                   <span style="margin-left: 15px; font-size:1.3em; color:black; margin-top:10px; top:60%">${communityVo.cm_writer}</span>
                    </div>
+                   <div style="margin-left:900px; float:right; margin-top:20px; top:60%"><span style="">${communityVo.cm_wday}</span>
+                   <br>
+                   <c:if test="${midx == communityVo.midx}">
+<a href="${pageContext.request.contextPath}/modi_cm?cm_idx=${communityVo.cm_idx}"><button type="button" style="background-color:blue; color:#ffffff; border-radius:10%;">수정</button></a>
+<button type="button" id="CBdelete" style="background-color:red; color:#ffffff; border-radius:10%;">삭제</button>
+                   </c:if>
+                   </div>
+                   
+                  
                </div>
                              
        </div>
@@ -473,15 +524,11 @@ button {
    </c:choose>
    <p> 좋아요 <span>${communityVo.community_like_cnt}</span>개</p>
    </div>
+   </div>
 
-<c:choose>
-<c:when test="${midx == communityVo.midx}">
-<button type="button" class="btn btn-danger">삭제하기</button>
-<a href="${pageContext.request.contextPath}/modi_cm?cm_idx=${communityVo.cm_idx}"><button type="button" class="btn btn-info" id="">수정하기</button></a>
-</c:when>
-<c:otherwise></c:otherwise>
-</c:choose>
-</div>
+
+
+
 <div class="cla">댓글 <span>${replyCount}</span></div>
 <div class="row">
   <div class="col-lg-12 col-12">
@@ -520,7 +567,16 @@ button {
 
 <div class="CommentContent__wrap">
      <div class="CommentContent__header">
-         <strong class="CommentContent__userName">${cl.cc_writer}</strong>
+         <strong class="CommentContent__userName">${cl.cc_writer}</strong> 
+         <c:choose>
+         <c:when test="${midx == cl.midx}">
+           <button id="ccDel" style="margin-left:90%; background-color:#dae1e6; width:19px; height:19px;"><i class="lni lni-close"></i></button>
+           <input type="hidden" name="cc_idx" value="${cl.cc_idx}">
+         </c:when>
+         <c:otherwise>
+         
+         </c:otherwise>
+         </c:choose>
      </div>
      
 <p class="CommentContent__body">

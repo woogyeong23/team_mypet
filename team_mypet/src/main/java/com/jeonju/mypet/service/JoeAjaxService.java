@@ -10,9 +10,11 @@ import org.springframework.stereotype.Service;
 import com.jeonju.mypet.dao.CommunityDao;
 import com.jeonju.mypet.dao.HomeDao;
 import com.jeonju.mypet.vo.Commu_CommentVo;
+import com.jeonju.mypet.vo.CommunityVo;
 import com.jeonju.mypet.vo.Community_likeVo;
 import com.jeonju.mypet.vo.FollowVo;
 import com.jeonju.mypet.vo.ProductVo;
+import com.jeonju.mypet.vo.Product_ImgVo;
 import com.jeonju.mypet.vo.ReviewVo;
 import com.jeonju.mypet.vo.SellerStoryVo;
 
@@ -50,6 +52,10 @@ public class JoeAjaxService {
 
 	public List<ProductVo> getSearchList(String keyword) {
 		return homeDao.getSearchList(keyword);
+	}
+	
+	public List<SellerStoryVo> getBsList2() {
+		return commuDao.getBsList2();
 	}
 
 	public int resultCount(String keyword) {
@@ -130,6 +136,16 @@ public class JoeAjaxService {
 	public int plusCmCommentCnt(Commu_CommentVo ccommentVo) {
 		return commuDao.plusCmCommentCnt(ccommentVo);
 	}
+
+	public int DeleteCm(CommunityVo communityVo) {
+		return commuDao.DeleteCm(communityVo);
+	}
+	
+	public Product_ImgVo getPI(ProductVo po) {
+		return commuDao.getPI(po);
+	}
+
+
 
 
 

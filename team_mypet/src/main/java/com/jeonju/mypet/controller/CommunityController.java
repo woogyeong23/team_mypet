@@ -94,11 +94,11 @@ public class CommunityController {
 		}	
 				
 		 if(cm_subject.length()==0) {
-			request.setAttribute("msg", "제목을 입력해주세요.");
+			request.setAttribute("msg1", "제목을 입력해주세요.");
 			view = "Community/CBInsert";
 		  }
 		 else if(cm_content.length()==0){
-			 request.setAttribute("msg", "내용을 입력해주세요");
+			 request.setAttribute("msg2", "내용을 입력해주세요");
 			 view = "Community/CBInsert";
 		 }
 		 else {
@@ -179,6 +179,83 @@ public class CommunityController {
 		
 		return "Community/Modi_CB";
 	}
+	
+	@PostMapping("/Modi_CBProcess.do")
+    public String Modi_process(@RequestParam("cm_subject") String cm_subject,
+			@RequestParam("uploadImg") MultipartFile uploadImg,
+			@RequestParam("cm_content") String cm_content, 
+			@RequestParam("cm_idx") int cm_idx,
+             Model model, HttpServletRequest request) 
+					throws IllegalStateException, IOException{
+		
+		
+		
+		String cm_origin_img = uploadImg.getOriginalFilename().trim();
+		System.out.println("cm_origin_img :"+cm_origin_img);
+		String fileName1="";
+		String extension="";
+		String fileName2="";
+		String cm_img="";
+		String view="";
+		
+		if(cm_origin_img.length() == 0) cm_origin_img = null;
+		
+
+		if(cm_origin_img != null) { 
+		int dot_idx = cm_origin_img.lastIndexOf(".");
+		 fileName1 = cm_origin_img.substring(0, dot_idx);
+		 extension = cm_origin_img.substring(dot_idx+1);
+		fileName2 = fileName1 + new SimpleDateFormat("_yyyyMMdd_hhmmss").format(System.currentTimeMillis());
+		 cm_img = fileName2+"."+extension;
+
+		
+		//upload 디렉토리에 대한 실제 경로 확인을 위해 ServletContext객체를 이용
+		String upload_dir = "resources/Community/upload/";
+		
+		String realPath = request.getServletContext().getRealPath(upload_dir);
+		System.out.println("이클립스로 저장된 파일의 실제 경로: " + realPath);
+		
+		
+		//지정된 경로에 파일 저장
+				//realPath와 system_fileName을 합쳐서 전체경로를 얻어야 함
+				String fullPath = realPath+cm_img;
+				uploadImg.transferTo(new File(fullPath));
+		}	
+				
+		 if(cm_subject.length()==0) {
+			request.setAttribute("msg1", "제목을 입력해주세요.");
+			view = "Community/modi_cm";
+		  }
+		 else if(cm_content.length()==0){
+			 request.setAttribute("msg2", "내용을 입력해주세요");
+			 view = "Community/modi_cm";
+		 }
+		 else {
+		        
+		       
+				int result=0;//0:입력 실패
+				
+				CommunityVo communityVo = new CommunityVo();
+				communityVo.setCm_subject(cm_subject);
+			    communityVo.setCm_content(cm_content);
+				communityVo.setCm_img(cm_img);
+				communityVo.setCm_idx(cm_idx);
+				communityVo.setCm_origin_img(cm_origin_img);
+				
+				result = commuService.UpdateCB(communityVo);
+		
+				
+				 
+				
+				 if(result == 1) {
+					
+					view = "redirect:/home.do";	
+				}}
+		 
+		 return view;
+		
+	}
+	
 	
 	
 	

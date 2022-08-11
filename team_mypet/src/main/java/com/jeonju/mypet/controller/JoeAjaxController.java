@@ -20,6 +20,7 @@ import org.springframework.web.multipart.MultipartFile;
 import com.google.gson.JsonObject;
 import com.jeonju.mypet.service.JoeAjaxService;
 import com.jeonju.mypet.vo.Commu_CommentVo;
+import com.jeonju.mypet.vo.CommunityVo;
 import com.jeonju.mypet.vo.Community_likeVo;
 import com.jeonju.mypet.vo.FollowVo;
 
@@ -122,6 +123,19 @@ public class JoeAjaxController {
 			bb ="Y";
 	   return bb;
 	}
+	
+	@PostMapping("/cmDelete")
+	public String CmDelete(CommunityVo communityVo) {
+		String dd = "";
+		
+		int flag = joeAjaxService.DeleteCm(communityVo);
+		
+		if(flag == 1)
+			dd="Y";
+		
+		return dd;
+	}
+	
 	
 	
 	@RequestMapping(value="/uploadSummernoteImageFile", produces = "application/json; charset=utf8")

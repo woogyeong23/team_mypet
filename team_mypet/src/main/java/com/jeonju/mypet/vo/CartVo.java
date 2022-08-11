@@ -9,6 +9,12 @@ public class CartVo {
 	private String delyn;
 	private int cart_cnt;
 	private String cart_request;
+	
+	//test
+	private String p_name;
+	private int p_price;
+	private String p_sys_filename;
+	
 	public int getCart_idx() {
 		return cart_idx;
 	}
@@ -45,5 +51,31 @@ public class CartVo {
 	public void setCart_request(String cart_request) {
 		this.cart_request = cart_request;
 	}
+
+	
+	
+	//test
+	
+	public String getP_name() {
+		return p_name;
+	}
+	public void setP_name(String p_name) {
+		this.p_name = p_name;
+	}
+	public int getP_price() {
+		return p_price;
+	}
+	public void setP_price(int p_price) {
+		this.p_price = p_price;
+	}
+	public String getP_sys_filename() {
+		return p_sys_filename;
+	}
+	public void setP_sys_filename(String p_sys_filename) {
+		this.p_sys_filename = p_sys_filename;
+	}
+	
+	//
+	
 	
 }

@@ -52,6 +52,10 @@ public class CommunityService {
 
 	public int plusCmView(int cm_idx) {
 		return commuDao.plusCmView(cm_idx);
+	}
+
+	public int UpdateCB(CommunityVo communityVo) {
+		return commuDao.UpdateCB(communityVo);
 	} 
 
 	

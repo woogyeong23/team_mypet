@@ -7,6 +7,10 @@ public class Product_ImgVo {
 	private int p_idx;
 	private String p_ori_filename;
 	private String p_sys_filename;
+	
+	//te
+	private int seller_idx;
+	//
 
 	public int getP_front_img() {
 		return p_front_img;
@@ -32,5 +36,14 @@ public class Product_ImgVo {
 	public void setP_sys_filename(String p_sys_filename) {
 		this.p_sys_filename = p_sys_filename;
 	}
+	
+	public int getSeller_idx() {
+		return seller_idx;
+	}
+	public void setSeller_idx(int seller_idx) {
+		this.seller_idx = seller_idx;
+	}
+	
+	
 	
 }
