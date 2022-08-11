@@ -12,47 +12,55 @@
 
 $(document).ready(function(){
 	
+		itemTotal();
+	
 
-	//버튼
+
+
+		let salePrice = "${cartVo.p_price - (cartVo.p_price*cartVo.p_discount)}";
+		let point = salePrice*0.05;
+		point = Math.floor(point);
+		$("#totalPoint_span").text(point);
+		console.log("적립금:"+point);
+		
+	//-버튼
 	$(".NumberCounter__minus").on("click", function(){
 		
-		let p_idx = $(this).attr("name");
-		let cnt_minus = "#NumberCounter__minus"+p_idx;
+		let cart_idx = $(this).attr("name");
+		let cnt_minus = "#NumberCounter__minus"+cart_idx;
 		let minus = $(cnt_minus).val();
 
-		let cnt_input = "#NumberCounter__input"+p_idx;
+		let cnt_input = "#NumberCounter__input"+cart_idx;
 		let cntV = $(cnt_input).val();
 		
 		let cnt = $("#cart_cnt_input").val();
 		
 			if(cntV > 1){
 				$(cnt_input).val(--cntV);
-				console.log("minus");
 			}
 	});
-	//버튼
+	//+버튼
 	$(".NumberCounter__plus").on("click", function(){
 		
-		let p_idx = $(this).attr("name");
-		let cnt_plus = "#NumberCounter__plus"+p_idx;
+		let cart_idx = $(this).attr("name");
+		let cnt_plus = "#NumberCounter__plus"+cart_idx;
 		let plus = $(cnt_plus).val();
 
-		let cnt_input = "#NumberCounter__input"+p_idx;
+		let cnt_input = "#NumberCounter__input"+cart_idx;
 		let cnt = $("#cart_cnt_input").val();
 		let cntV = $(cnt_input).val();
 		
 				$(cnt_input).val(++cntV);
-				console.log("plus");
 		
 	});
 	//cnt -1
 	$(".NumberCounter__minus").on("click", function(){
 		
 		let cart_idx = $(this).data("cart_idx");
-		let midx = $("#midx_input").val();
-		let p_idx = $("#p_idx_input").val();
+		let midx = $("input[name='midx_input']").val();
+		let p_idx = $("input[name='p_idx_input']").val();
 		let cart_cnt = $(this).parent().find("input[name='cart_cnt']").val();
-
+		
 		$.ajax({
 			type:"post",
 			url:"${pageContext.request.contextPath}/updatecnt.do",
@@ -74,8 +82,8 @@ $(document).ready(function(){
 	$(".NumberCounter__plus").on("click", function(){
 		
 		let cart_idx = $(this).data("cart_idx");
-		let midx = $("#midx_input").val();
-		let p_idx = $("#p_idx_input").val();
+		let midx = $("input[name='midx_input']").val();
+		let p_idx = $("input[name='p_idx_input']").val();
 		let cart_cnt = $(this).parent().find("input[name='cart_cnt']").val();
 		
 		$.ajax({
@@ -93,7 +101,7 @@ $(document).ready(function(){
 			}
 		});
 	});
-
+	
 	
 	//삭제
 	$(".CartOptionEditingButtonGroup__button").click(function(){
@@ -119,21 +127,10 @@ $(document).ready(function(){
 		});
 	});
 	
-	let cart_idx = $("#cart_idx_input").val();
-	let cart_arr = new Array(cart_idx);
 	
-	let atichk = "#artist_checkedbox"+cart_idx;
-	console.log(cart_arr);
-
-	setTotalInfo();
-	$(atichk).on("change", function(){
-		console.log(atichk);
-		setTotalInfo("#CartArtistItem");
-	
-	});
 	//모든 체크 박스 선택
 	$("#cart-product-all-check").on("click", function(){
-		
+		let 
 		if($("#cart-product-all-check").prop("checked")){
 			$("input[type='checkbox']").prop("checked",true);			
 		}else{
@@ -153,33 +150,56 @@ $(document).ready(function(){
 	$("input[tpye='chekcbox']:checked").each(function(){
 		let chk = $(this).val();
 		chk_arr.push(chk);
-		alert(chk_arr);
 	});
 	
-	
-	function setTotalInfo(){
-		 
-		let cart_idx = $("#cart_idx_input").val();
-		let atichk = "#artist_checkedbox"+cart_idx;
+	//온체인지수량 
+	function itemTotal(ths){
+		 console.log("수량들어옴?");
+		let itemPrice = $('input[name="p_price_input"]');
+		let itemPV = $(itemPrice).val();
+		//수량
+		let cnt = $('input[name="cart_cnt_input"]');
+		//cart_idx
+		let cart_idx = $('input[name="cart_idx_input"]').val();
+		//개당가격란
+		let totalPrice_span = "#totalPrice_span"+cart_idx;
+		//길이
+		let length = itemPrice.length;
+		//가격
+		let CartArtistItem__Price = "#CartArtistItem__Price"+cart_idx;
+		//수량
+		let NumberCounter__input = "#NumberCounter__input"+cart_idx;
+		let NCIV = $(NumberCounter__input).val();
+		//아이템
+		let CAI = "#CartArtistItem"+cart_idx;
+		let delivery_price = "#delivery_price"+cart_idx;
+		//상품하나의 가격
+		let sum = 0;
+		let price = 0;
+		let sumd = 0;
+		let totalPrice = 0;
+		let totalPoint = 0;
+		let deliveryPrice = 0;
+		let finalTotalPrice = 0;
 		
-		let price = $("#p_price_input").val()*1;	// 총 가격
-		let cart_idx_cnt = cart_idx.length;
-		let cnt = $("#cart_cnt").val();
-		let Price = "#price_span"+cart_idx;
-		let totalPrice = 0;				// 총 가격
-		let totalPoint = 0;				// 총 마일리지
-		let deliveryPrice = 0;			// 배송비
-		let finalTotalPrice = 0; 		// 최종 가격(총 가격 + 배송비)
+// 		$(CAI).each(function(index, element){
+// 					// 총 가격
+//  			sum += parseInt($(element).find(itemPrice).val()) * parseInt($(element).find(NumberCounter__input).val());
+					
+// 					// 총 마일리지
+
+// 		});
 		
-		
-		$(".CartArtistItem").each(function(index, element){
+		for(let i=0;i<length;++i){
+ 			sum = itemPrice[i].value * cnt[i].value;
+			//총가격 i값을 다 돌려서
+			price = sum;
+			totalPrice += itemPrice[i].value * cnt[i].value;
+			console.log("판매자의 상품가격:"+sum);
+
 			
-					// 총 가격
-					totalPrice += parseInt($(element).Price) * parseInt($(element).cnt);
-					// 총 마일리지
-					totalPoint += parseInt($(element).Price) * 0.05;	
-		
-		});
+
+		}
 		/* 배송비 결정 */
 		if(totalPrice >= 30000){
 			deliveryPrice = 0;
@@ -188,23 +208,31 @@ $(document).ready(function(){
 		} else {
 			deliveryPrice = 3000;	
 		}
+		finalTotalPrice = totalPrice + deliveryPrice;
+		totalPoint += finalTotalPrice * 0.01;
+		let summ = new Intl.NumberFormat('ko-KR', { style: 'currency', currency: 'KRW' }).format(sum);
+		let sumtotalPrice = new Intl.NumberFormat('ko-KR', { style: 'currency', currency: 'KRW' }).format(totalPrice);
+		let sumdeliveryPrice = new Intl.NumberFormat('ko-KR', { style: 'currency', currency: 'KRW' }).format(deliveryPrice);
+		let sumfinalTotalPrice = new Intl.NumberFormat('ko-KR', { style: 'currency', currency: 'KRW' }).format(finalTotalPrice);
+
 		
-			finalTotalPrice = totalPrice + deliveryPrice;
-		
-		/* ※ 세자리 컴마 Javscript Number 객체의 toLocaleString() */
-		
+
 		// 총 가격
-		$(Price).text(Price);
-		$("#totalPrice").text(totalPrice);
+		console.log("배달비"+deliveryPrice);
+		console.log("총가격:"+totalPrice);
+		//개당
+		$(totalPrice_span).text(price);
+		//총 가격
+		$("#totalPrice").text(sumtotalPrice);
 		// 총 마일리지
-		$("#totalPoint").text(totalPoint);
+ 		$("#totalPoint_span").text(totalPoint);
 		// 배송비
-		$("#deliveryPrice").text(deliveryPrice);	
+		$("#delivery_Price").text(sumdeliveryPrice);	
 		// 최종 가격(총 가격 + 배송비)
-		$("#finalTotalPrice").text(finalTotalPrice);		
+		$("#finalTotalPrice_span").text(sumfinalTotalPrice);
+		
+				
 	}
-
-
 });
 
 </script>
@@ -217,9 +245,6 @@ $(document).ready(function(){
     
     <!-- Custom styles for this template -->
     <link href="resources/assets/css/cart.css" rel="stylesheet">
-    <c:set var="Price" value="0" />
-    <c:set var="totaldelPrice" value="0" />
-    <c:set var="totalPrice" value="0" />
     
     <style>
     .NumberCounter__minus {
@@ -297,13 +322,13 @@ $(document).ready(function(){
    					<c:set var="idx" value="${cart.cart_idx}" />
    					<div class="CartArtistItem" id="CartArtistItem${cart.cart_idx}" name="${cart.cart_idx}">
    					<div>
-   					<input type="hidden" id="p_price_input" value="${cart.p_price}">
-   					<input type="hidden" id="p_idx_input" value="${cart.p_idx}">
-   					<input type="hidden" id="cart_idx_input" value="${cart.cart_idx}">   					
-   					<input type="hidden" id="midx_input" value="${cart.midx}">
-   					<input type="hidden" id="p_name_input" value="${cart.p_name}">
-   					<input type="hidden" id="p_content_input" value="${cart.p_content}">
-   					<input type="hidden" id="cart_cnt_input" value="${cart.cart_cnt}">
+   					<input type="hidden" name="p_price_input" value="${cart.p_price}">
+   					<input type="hidden" name="p_idx_input" value="${cart.p_idx}">
+   					<input type="hidden" name="cart_idx_input" value="${cart.cart_idx}">   					
+   					<input type="hidden" name="midx_input" value="${cart.midx}">
+   					<input type="hidden" name="p_name_input" value="${cart.p_name}">
+   					<input type="hidden" name="p_content_input" value="${cart.p_content}">
+   					<input type="hidden" name="cart_cnt_input" value="${cart.cart_cnt}">
    					</div>
    						<div class="CartArtistItem__header">
    						<label>
@@ -343,9 +368,9 @@ $(document).ready(function(){
    																<em class="CartOptionListItem__optionText"></em>
    																	<div class="CartOptionListItem__counter">
    																		<label class="NumberCounter">											
-   																			<button type="button" id="NumberCounter__minus${cart.p_idx}" name="${cart.p_idx}" class="NumberCounter__minus"  data-cart_idx="${cart.cart_idx}" >-</button>
-   																			<input  type="text" name="cart_cnt" id="NumberCounter__input${cart.p_idx}" class="NumberCounter__input" value="${cart.cart_cnt}" readonly="readonly">
-   																			<button type="button" id="NumberCounter__plus${cart.p_idx}" name="${cart.p_idx}" class="NumberCounter__plus"  data-cart_idx="${cart.cart_idx}">+</button>   						
+   																			<button type="button" id="NumberCounter__minus${cart.cart_idx}" name="${cart.cart_idx}" class="NumberCounter__minus"  data-cart_idx="${cart.cart_idx}" >-</button>
+   																			<input  type="text" name="cart_cnt" id="NumberCounter__input${cart.cart_idx}" class="NumberCounter__input" value="${cart.cart_cnt}" readonly="readonly" onchange="itemTotal(this)">
+   																			<button type="button" id="NumberCounter__plus${cart.cart_idx}" name="${cart.cart_idx}" class="NumberCounter__plus"  data-cart_idx="${cart.cart_idx}" >+</button>   						
    																		</label>
    																	</div>
    															</div>
@@ -355,7 +380,7 @@ $(document).ready(function(){
    																
    																<div class="CartOptionListItem__btnGroup">
    																	<div class="CartOptionEditingButtonGroup">
-   																		<button type="button" id="delete__button${cart.cart_idx}" name="${cart.cart_idx}" class="CartOptionEditingButtonGroup__button CartOptionEditingButtonGroup__button--right" >
+   																		<button  id="delete__button${cart.cart_idx}" name="${cart.cart_idx}" class="CartOptionEditingButtonGroup__button CartOptionEditingButtonGroup__button--right" >
    																		 X
    																		</button>
    																	</div>
@@ -376,8 +401,8 @@ $(document).ready(function(){
    								<div class="CartArtistItem__label">
    								작품 가격
    								</div>
-   								<div class="CartArtistItem__price" id="totalPrice_span${cart.cart_idx}" name="${cart.cart_idx}">
-
+   								<div class="CartArtistItem__price" id="totalPrice_span${cart.cart_idx}" >
+									<fmt:formatNumber pattern="###,###,### 원" value="" />
    								 <!-- 작품 가격 -->
 	   							</div>
    							</section>
@@ -417,7 +442,7 @@ $(document).ready(function(){
         				<div class="CartCheckoutDesktop__item">
         					<div class="CartCheckoutDesktop__label">작품금액</div>
         					<div class="CartCheckoutDesktop__value">
-        						<span id="totalPrice"></span>
+        						<span id="totalPrice" name="totalPrice"></span>
         						<span class="CartCheckoutDesktop__priceUnit">원</span>
         					</div>
         				</div>
@@ -425,7 +450,7 @@ $(document).ready(function(){
         				<div class="CartCheckoutDesktop__item">
         					<div class="CartCheckoutDesktop__label">배송비</div>
         					<div class="CartCheckoutDesktop__value">
-        						<span id="delivery_price"></span>
+        						<span id="delivery_Price" name="delivery_Price"></span>
         						<span class="CartCheckoutDesktop__priceUnit">원</span>
         					</div>
         				</div>
@@ -433,10 +458,11 @@ $(document).ready(function(){
         				<div class="CartCheckoutDesktop__item">
         					<div class="CartCheckoutDesktop__label">결제 예정금액</div>
         					<div class="CartCheckoutDesktop__value--highlight" >
-        						<span id="finalTotalPrice_span"></span>
+        						<span id="finalTotalPrice_span"  name="finalTotalPrice">
+        						</span>
         						<span class="CartCheckoutDesktop__priceUnit">원</span>
         						<em class="CartOptionListItem__totalPrice">적립금 :
-   								<a id="totalPoint_span" ></a>
+   								<a id="totalPoint_span" name="totalPoint"></a>
    								</em>  	<!-- 예상적립금 -->	
         						
         					</div>

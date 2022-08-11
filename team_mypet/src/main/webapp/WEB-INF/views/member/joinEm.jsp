@@ -29,10 +29,10 @@
 				}else{
 				$.ajax({
 					type:'post',
-					url:"${pageContext.request.contextPath}/checknick.do",
+					url:"${pageContext.request.contextPath}/checkNick.do",
 					data: {"m_nick":m_nick},
 					success: function(data){
-						if(data == "Y"){
+						if(data == "N"){
 							result = "사용 가능한 닉네임입니다.";
 							$(".successNickChk").text(result).css("color", "green");
 							$(".nickChk").val(true);
@@ -47,7 +47,7 @@
 					error: function(error){alert(error);}
 				});
 				}
-			}	);
+			});
 			
 		
 		//비밀번호 확인
@@ -98,7 +98,6 @@
 				let emailval = $("#m_id").val();
 				let gd = /^[0-9a-zA-Z]([-_.]?[0-9a-zA-Z])*@[0-9a-zA-Z]([-_.]?[0-9a-zA-Z])*.[a-zA-Z]{2,3}$/i;
 
-				
 				$('.successEmChk').text('');
 
 				if(emailval.match(gd) != null){
@@ -109,7 +108,6 @@
 					result = "유효성 미확인.";
 					$(".successEmChk").text(result).css("color","red");
 			  		$(".emChk2").val(false);
-
 			 	}
 			});
 		 }); 
@@ -117,6 +115,7 @@
 		
 		if($(".emChk2") == true){
 			$(".doubleChk").attr("disabled",false);
+			
 		}else{
 			result = "이메일 주소를 입력해 주세요";
 			$(".successEmChk").text(result).css("color", "red");
