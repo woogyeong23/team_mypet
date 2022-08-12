@@ -37,27 +37,6 @@ public class ExtraController {
 	public String BSellerList(Model model, HttpServletRequest request) {
 
 		List<SellerStoryVo> BestSellerList = joeAjaxService.getBSList();
-//		List<SellerStoryVo> BestSellerList2 = joeAjaxService.getBsList2();
-//		
-//		
-//		int seller_idx = 0;
-//		int p_idx = 0;
-//		List<Product_ImgVo> PiList = new ArrayList<Product_ImgVo>();
-//		
-//		for(int i=0; i < BestSellerList.size(); i++) {
-//		seller_idx = BestSellerList.get(i).getSeller_idx();
-//		ProductVo po = new ProductVo();
-//		po.setSeller_idx(seller_idx);
-//		  for(int j=0; j < BestSellerList2.size(); j++) {
-//	      p_idx = BestSellerList2.get(j).getP_idx();
-//	      po.setP_idx(p_idx);
-//	      Product_ImgVo pi = joeAjaxService.getPI(po);
-//		  PiList.add(pi);
-//		  
-//		  model.addAttribute("p_img",PiList);
-//		     }
-//	
-//		}
 		
 		System.out.println("BestSellerList :"+BestSellerList);
 			
@@ -79,17 +58,17 @@ public class ExtraController {
 		   List<ReviewVo> aList = joeAjaxService.getAList(seller_idx);
 		   int BSRCount = joeAjaxService.getBSRCount(seller_idx);
 		   
-		   //long midx = 0;
 		   
 		   HttpSession session = request.getSession();
 		   
 		  
 			   if(session.getAttribute("midx") != null) {
-//				   midx = (int)session.getAttribute("midx");
-				  // midx =  (long) session.getAttribute("midx");
-				   int midx=(int) session.getAttribute("midx"); 
+
+				  long midx =  (long) session.getAttribute("midx");
+//				    int midx=(int) session.getAttribute("midx"); 
 				   FollowVo followVo = new FollowVo();
-				   followVo.setMidx(midx);
+				   followVo.setMidx((int) midx);
+//				   followVo.setMidx(midx);
 				   followVo.setSeller_idx(seller_idx);
 				   
 				   int followCNT = joeAjaxService.getfollowCNT(followVo);

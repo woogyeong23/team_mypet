@@ -193,30 +193,30 @@ var targetID;
 		 });
   });
   
-//   $("#likeCc").each(function(){
-// 		$(this).click(function(){
-// 			let midx = "${midx}";
-// 			let cc_idx = $(this).next().val();
+  $("#likeCc").each(function(){
+		$(this).click(function(){
+			let midx = "${midx}";
+			let cc_idx = $(this).next().val();
 			
-// 			$.ajax({
-// 				type:'post',
-// 				url:"${pageContext.request.contextPath}/ccLike",
-// 				data: {"midx" : midx,
-// 					"cc_idx" : cc_idx},
+			$.ajax({
+				type:'post',
+				url:"${pageContext.request.contextPath}/ccLike",
+				data: {"midx" : midx,
+					"cc_idx" : cc_idx},
 					
-// 					success: function(data){
-// 						if(data == "Y") {
-// 							alert("해당 댓글에 '좋아요'를 표시하였습니다.");
-// 							location.reload();
-// 						}else{
-// 							alert("알수없는 오류로 인해 '좋아요'가 누락되었습니다.");
-// 						}
-// 					},
-// 					error : function(error){ alert(error); }	
-// 			});
+					success: function(data){
+						if(data == "Y") {
+							alert("해당 댓글에 '좋아요'를 표시하였습니다.");
+							location.reload();
+						}else{
+							alert("알수없는 오류로 인해 '좋아요'가 누락되었습니다.");
+						}
+					},
+					error : function(error){ alert(error); }	
+			});
 
-// 		});
-// 	});
+		});
+	});
   
   
 
@@ -541,7 +541,10 @@ button {
 
                        
                             <div>
-                            <img class="ckr" alt="${communityVo.cm_img}" src="${pageContext.request.contextPath}/resources/Community/upload/${communityVo.cm_img}">
+                        <c:if test="${communityVo.cm_img != ''}">
+                         <img class="ckr" alt="${communityVo.cm_img}" src="${pageContext.request.contextPath}/resources/Community/upload/${communityVo.cm_img}">
+                        </c:if>
+
                             </div>
                <div style="padding-top:20px; padding-bottom:30px;">
                         <div style="text-align:center; color:black; font-size:1.3em">${communityVo.cm_subject}</div>
@@ -627,8 +630,8 @@ button {
   <c:choose>
        <c:when test="${midx != null}">
 
-<!--       <button type="button" class="CommentContentActionButton" id="likeCc" style="color:rgb(237,73,86);"><i class="lni lni-smile"></i> 공감하기</button> -->
-<%--               <input type="hidden" value="${cl.cc_idx}"> --%>
+      <button type="button" class="CommentContentActionButton" id="likeCc" style="color:rgb(237,73,86);"><i class="lni lni-smile"></i> 공감하기</button>
+              <input type="hidden" value="${cl.cc_idx}">
 
      <a href="#pop_info_${cl.cc_idx}" class="btn_open">
      <button type="button" class="CommentContentActionButton"><i class="lni lni-bubble"></i> 답글하기</button>

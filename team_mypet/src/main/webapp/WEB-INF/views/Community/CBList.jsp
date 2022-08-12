@@ -130,6 +130,10 @@ button {
                               
                        
                         <div class="product-image" style="height: 320px;">
+                        <c:if test="${cv.cm_img ==''}">
+                            ${cv.setCm_img("image.jpg")}
+                        </c:if>
+
                         <img style="height:100%" src="${pageContext.request.contextPath}/resources/Community/upload/${cv.cm_img}" alt="커뮤니티 이미지">
                         </div>
                         

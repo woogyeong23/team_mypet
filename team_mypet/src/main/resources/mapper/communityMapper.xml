@@ -81,31 +81,16 @@
     
     <!--SellerStory  -->
     <select id="getBSList" resultType="sellerStoryVo">
-SELECT m_nick, s.seller_idx AS seller_idx, seller_img, seller_intro, seller_starsavg,
-   seller_followcnt,p.p_idx AS p_idx, c.p_sys_filename
+   SELECT m_nick, s.seller_idx AS seller_idx, seller_img, seller_intro, seller_starsavg,
+   seller_followcnt,p.p_idx AS p_idx,p_sys_filename,
+   p_name
    FROM members m INNER JOIN sellerstory s ON m.midx = s.midx
-   INNER JOIN product p ON s.seller_idx=p.seller_idx
-   INNER JOIN product_img c ON p.p_idx = c.p_idx
-   GROUP BY p_idx
+   LEFT JOIN product p ON s.seller_idx=p.seller_idx
+   left JOIN product_img c ON p.p_idx = c.p_idx
+   GROUP BY seller_idx
    ORDER BY seller_followcnt DESC
     </select>
     
-    <select id="getBsList2" resultType="sellerStoryVo">
-   SELECT seller_followcnt,p.p_idx AS p_idx
-   FROM members m INNER JOIN sellerstory s ON m.midx = s.midx
-   INNER JOIN product p ON s.seller_idx=p.seller_idx
-   INNER JOIN product_img c ON p.p_idx = c.p_idx
-   GROUP BY p_idx
-   ORDER BY seller_followcnt DESC
-   </select>
-    
-    <select id="getPI" parameterType="productVo" resultType="product_imgVo">
-    SELECT p_sys_filename
-   FROM product a JOIN product_img b ON a.p_idx=b.p_idx
-   WHERE seller_idx=#{seller_idx} AND a.p_idx = #{p_idx}
-   GROUP BY a.p_idx
-    </select>
-
     <select id="getBSellerView" resultType="sellerStoryVo">
     SELECT seller_idx, seller_img, seller_intro, seller_openday, 
     seller_starsavg, seller_total, seller_wishcnt, seller_ordercnt, seller_followcnt,

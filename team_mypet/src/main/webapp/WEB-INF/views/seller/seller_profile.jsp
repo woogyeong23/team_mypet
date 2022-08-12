@@ -78,7 +78,7 @@
 							<p>
 							<input type="submit" class="btn btn-light" value="수정">
 						</form>
-						
+						${pageContext.request.contextPath}/BSellerView.do?seller_idx=${bs.seller_idx}
 						
 						
 						

@@ -50,10 +50,11 @@ public class SellerController {
 			Model model, HttpServletRequest request) {
 		
 		HttpSession session = request.getSession();
-		int midx = (int) session.getAttribute("midx");
-//		long midx = (long) session.getAttribute("midx");
-//		String member_id= Integer.toString((int) midx);
-		String member_id= Integer.toString(midx);
+//		int midx = (int) session.getAttribute("midx");
+		long midx = (long) session.getAttribute("midx");
+		
+		String member_id= Integer.toString((int) midx);
+//		String member_id= Integer.toString(midx);
 		
 		if(searching == null)
 			searching="searchTotal";
@@ -151,8 +152,8 @@ public class SellerController {
 			) throws IllegalStateException, IOException{
 		
 		HttpSession session = request.getSession();
-		int midx = (int) session.getAttribute("midx");
-//		long midx = (long) session.getAttribute("midx");
+//		int midx = (int) session.getAttribute("midx");
+		long midx = (long) session.getAttribute("midx");
 		String member_id= Integer.toString((int) midx);
 		
 		String p_category_idx = "";

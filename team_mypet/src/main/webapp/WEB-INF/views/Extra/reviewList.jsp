@@ -42,7 +42,7 @@
                 <div class="col-12">
                     <div class="section-title">
                         <h2>실시간 후기</h2>
-                        <p>12121212121212121212121212121212121212</p>
+                        <p>실시간으로 올라오는 후기로 상품에 대한 반응을 살펴보세요.</p>
                     </div>
                 </div>
             </div>
@@ -55,7 +55,7 @@
                     <div class="single-product">
                         <div class="product-image">
                         
-                            <img src="${pageContext.request.contextPath}/resources/image/${rv.p_ori_filename}" alt="상품 이미지">
+                            <img style="height:100%" src="${pageContext.request.contextPath}/resources/product/${hv.p_sys_filename} alt="상품 이미지">
                             <div class="button">
 <!--                                 <a href="#" class="btn"><i class="lni lni-cart"></i> Add to Cart</a> -->
                             </div>
@@ -65,7 +65,7 @@
                             <h4 class="title">
                                 <a href="${pageContext.request.contextPath}/productView.do?p_idx=${rv.p_idx}">${rv.p_name}</a>
                             </h4>
-                            <p></p>
+                            <p>${rv.review_content}</p>
                             <ul class="review">
                             <c:forEach begin="1" end="${rv.review_stars}">
                               <li><i class="lni lni-star-filled"></i></li>

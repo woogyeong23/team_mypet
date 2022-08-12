@@ -113,7 +113,7 @@ $(function() {
                             <!-- Start Single Slider -->
                             <a href="#">
 
-                            <div class="single-slider" style="background-image: url(resources/assets/images/hero/event4.jpg);">
+                            <div class=" single-slider" style="background-image: url(resources/assets/images/hero/event4.jpg);">
 
                                 
 <!--                                 <div class="content"> -->
@@ -134,11 +134,7 @@ $(function() {
                             <!-- End Single Slider -->
                             <!-- Start Single Slider -->
                             <a href="#">
-                            <div class="single-slider"
-
-
-
-                                style="background-image: url(resources/assets/images/hero/event2.jpg);">
+                            <div class="single-slider" style="background-image: url(resources/assets/images/hero/event2.jpg);">
 
 <!--                                 <div class="content"> -->
 <!--                                     <h2><span>ㄱㅇㅈㄱㅇㅈㅇㅈㅇㅈㅈㅇㅈㅈㅇㅈㅈㅇㅈㅈㅇㅇㅈㅇㅈㅇㅇㅈㅈㅇㅈㅈㅇ</span> -->
@@ -395,7 +391,7 @@ $(function() {
                             <div class="price">
 							  <span><fmt:formatNumber value="${hv.p_disprice}" pattern="#,###"/>원</span>
 								<c:if test="${hv.p_disprice != 0}">
-									<span class="discount-price"><fmt:formatNumber value="${hv.p_price}" pattern="#,###" />원</span>
+							     <span class="discount-price"><fmt:formatNumber value="${hv.p_price}" pattern="#,###" />원</span>
 							   </c:if>
 							</div>
                             
@@ -557,13 +553,12 @@ $(function() {
                             <div class="price">
 							  <span><fmt:formatNumber value="${hv.p_disprice}" pattern="#,###"/>원</span>
 								<c:if test="${hv.p_disprice != 0}">
-									<span class="discount-price"><fmt:formatNumber value="${hv.p_price}" pattern="#,###" />원</span>
+						      <span class="discount-price"><fmt:formatNumber value="${hv.p_price}" pattern="#,###" />원</span>
 							   </c:if>
 							</div>
                             
                             <br>
                        </div>
-                        
                     </div>
                     <!-- End Single Product -->
                 </div>

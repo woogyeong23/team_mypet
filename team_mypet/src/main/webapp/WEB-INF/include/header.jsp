@@ -283,7 +283,7 @@
                                         <a href="${pageContext.request.contextPath}/BSellerList.do" aria-label="Toggle navigation">인기 작가</a>
                                     </li>
                                      <li class="nav-item">
-                                        <a href="${pageContext.request.contextPath}/Error" aria-label="Toggle navigation">실시간 후기</a>
+                                        <a href="${pageContext.request.contextPath}/realTime-review" aria-label="Toggle navigation">실시간 후기</a>
                                     </li>
                                 </ul>
                             </div> <!-- navbar collapse -->

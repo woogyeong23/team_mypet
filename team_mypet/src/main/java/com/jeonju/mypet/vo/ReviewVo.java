@@ -15,6 +15,7 @@ public class ReviewVo {
 	private int review_reply_cnt;
 	private String delyn;
 	private Date review_delday;
+	private int p_disprice;
 	
 	
 	//소현
@@ -30,7 +31,7 @@ public class ReviewVo {
 	//소현
 	
     //  test 22.7.29
-	private String p_ori_filename;
+	private String p_sys_filename;
 	private String p_name;
 	//
 	
@@ -115,10 +116,10 @@ public class ReviewVo {
 	}
 	
 	public String getP_ori_filename() {
-		return p_ori_filename;
+		return p_sys_filename;
 	}
-	public void setP_ori_filename(String p_ori_filename) {
-		this.p_ori_filename = p_ori_filename;
+	public void setP_sys_filename(String p_sys_filename) {
+		this.p_sys_filename = p_sys_filename;
 	}
 	// test 22.08.05
 	public int getP_category_idx() {
@@ -128,6 +129,12 @@ public class ReviewVo {
 		this.p_category_idx = p_category_idx;
 	}
 	//
+	public int getP_disprice() {
+		return p_disprice;
+	}
+	public void setP_disprice(int p_disprice) {
+		this.p_disprice = p_disprice;
+	}
 	
 	
 
