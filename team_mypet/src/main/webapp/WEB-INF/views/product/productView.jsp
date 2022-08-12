@@ -8,29 +8,29 @@
 <script src="http://code.jquery.com/jquery-latest.min.js"></script>
 <script type="text/javascript">
 
-	$(document).ready(function() {
-		let p_idx = ${productVo.p_idx}
-		$("#add_cart").click(function(){
+// 	$(document).ready(function() {
+// 		let p_idx = ${productVo.p_idx}
+// 		$("#add_cart").click(function(){
 			
-			alert("asd");
+// 			alert("asd");
 			
-			$.ajax({
-				type : "POST",
-				url : "${pageContext.request.contextPath}/cartMemInto.do",
-				async : false,
-				data : {'p_idx' : p_idx},
-				success : function(data) {
-					if (data == 'add_success') {
-						toastr.options.preventDuplicates = true;
-						toastr.success("장바구니 추가완료");
-					} else if (data == 'already_existed') {
-						toastr.options.preventDuplicates = true;
-						toastr.warning("이미 추가 된 상품입니다");
-					}
-				}
-			});
-		});
-	});
+// 			$.ajax({
+// 				type : "POST",
+// 				url : "${pageContext.request.contextPath}/cartMemInto.do",
+// 				async : false,
+// 				data : {'p_idx' : p_idx},
+// 				success : function(data) {
+// 					if (data == 'add_success') {
+// 						toastr.options.preventDuplicates = true;
+// 						toastr.success("장바구니 추가완료");
+// 					} else if (data == 'already_existed') {
+// 						toastr.options.preventDuplicates = true;
+// 						toastr.warning("이미 추가 된 상품입니다");
+// 					}
+// 				}
+// 			});
+// 		});
+// 	});
 	
 	function change_qty2(t){
 		  //var min_qty = '수량버튼'*1;

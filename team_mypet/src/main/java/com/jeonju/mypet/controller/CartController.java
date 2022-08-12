@@ -41,7 +41,7 @@ public class CartController {
 		membersVo.getM_nick();
 		
 		cartVo.setMidx(midx);
-		 List<ProductVo> list = cartService.cartList(cartVo);
+		 List<CartVo> list = cartService.cartList(cartVo);
 		model.addAttribute("cart", list );
 		model.addAttribute("countCart",cartService.countMemberCart(cartVo));
 		

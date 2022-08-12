@@ -16,6 +16,10 @@
 	
 	
 			
+<<<<<<< HEAD
+		
+=======
+>>>>>>> branch 'master' of https://github.com/woogyeong23/team_mypet.git
 		
 		//비밀번호 확인
 		$(document).ready(function(){
@@ -64,7 +68,6 @@
 				let emailval = $("#m_id").val();
 				let gd = /^[0-9a-zA-Z]([-_.]?[0-9a-zA-Z])*@[0-9a-zA-Z]([-_.]?[0-9a-zA-Z])*.[a-zA-Z]{2,3}$/i;
 
-				
 				$('.successEmChk').text('');
 
 				if(emailval.match(gd) != null){
@@ -75,7 +78,6 @@
 					result = "유효성 미확인.";
 					$(".successEmChk").text(result).css("color","red");
 			  		$(".emChk2").val(false);
-
 			 	}
 			});
 		 }); 
@@ -83,6 +85,7 @@
 		
 		if($(".emChk2") == true){
 			$(".doubleChk").attr("disabled",false);
+			
 		}else{
 			result = "이메일 주소를 입력해 주세요";
 			$(".successEmChk").text(result).css("color", "red");
