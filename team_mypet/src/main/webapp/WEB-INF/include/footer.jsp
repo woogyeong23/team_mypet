@@ -99,7 +99,7 @@
                             <div class="single-footer f-contact">
                                 <h3>회사정보</h3>
                                 <ul>
-                                    <li>상호 : 레드홀릭</li>
+                                    <li>상호 : 마이펫   </li>
                                     <li>대표 : 홍길동</li>
                                     <li>주소 : 서울시 용산구 독서당로 111 (우)04419</li>
                                     <li>개인정보관리 책임자 : 홍길동 (abc123@naver.com)</li>

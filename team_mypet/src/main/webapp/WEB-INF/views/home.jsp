@@ -113,7 +113,7 @@ $(function() {
                             <!-- Start Single Slider -->
                             <a href="#">
 
-                            <div class="single-slider" style="background-image: url(resources/assets/images/hero/event4.jpg);">
+                            <div class="single-slider" style="background-image: url(resources/assets/images/hero/event5.jpg);">
 
                                 
 <!--                                 <div class="content"> -->
