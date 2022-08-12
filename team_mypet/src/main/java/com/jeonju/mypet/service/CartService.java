@@ -31,7 +31,7 @@ public class CartService {
 //	}
 
 
-	public List<ProductVo> cartList(CartVo cartVo) {
+	public List<CartVo> cartList(CartVo cartVo) {
 		
 		return cartDao.cartList(cartVo);
 	}
@@ -54,9 +54,7 @@ public class CartService {
 		return cartDao.updateCart(cartVo);
 	}
 
-
-
-
+	
 
 
 

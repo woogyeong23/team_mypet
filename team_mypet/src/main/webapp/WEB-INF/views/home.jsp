@@ -113,40 +113,12 @@ $(function() {
                             <!-- Start Single Slider -->
                             <a href="#">
 
-                            <div class=" single-slider" style="background-image: url(resources/assets/images/hero/event4.jpg);">
-
-                                
-<!--                                 <div class="content"> -->
-                                  
-<!--                                     <h2><span>ㄱㅇㅈㄱㅇㅈㅇㅈㅇㅈㅈㅇㅈㅈㅇㅈㅈㅇㅈㅈㅇㅇㅈㅇㅈㅇㅇㅈㅈㅇㅈㅈㅇ</span> -->
-<!--                                        ㄱㅇㅈㄱㅇㅈㅇㅈㅇㅈㅈㅇㅈㅈㅇㅈㅈㅇㅈㅈㅇㅇㅈㅇㅈㅇㅇㅈㅈㅇㅈㅈㅇ -->
-<!--                                     </h2> -->
-<!--                                     <p>ㄱㅇㅈㄱㅇㅈㅇㅈㅇㅈㅈㅇㅈㅈㅇㅈㅈㅇㅈㅈㅇㅇㅈㅇㅈㅇㅇㅈㅈㅇㅈㅈㅇ -->
-<!--                                         ㄱㅇㅈㄱㅇㅈㅇㅈㅇㅈㅈㅇㅈㅈㅇㅈㅈㅇㅈㅈㅇㅇㅈㅇㅈㅇㅇㅈㅈㅇㅈㅈㅇ</p> -->
-<!--                         
-
-             <div class="button"> -->
-<!--                                         <a href="product-grids.html" class="btn">Shop Now</a> -->
-<!--                                     </div> -->
-<!--                                 </div> -->
-
+                            <div class="single-slider" style="background-image: url(resources/assets/images/hero/event5.jpg);">
                             </div>  </a>
                             <!-- End Single Slider -->
                             <!-- Start Single Slider -->
                             <a href="#">
                             <div class="single-slider" style="background-image: url(resources/assets/images/hero/event2.jpg);">
-
-<!--                                 <div class="content"> -->
-<!--                                     <h2><span>ㄱㅇㅈㄱㅇㅈㅇㅈㅇㅈㅈㅇㅈㅈㅇㅈㅈㅇㅈㅈㅇㅇㅈㅇㅈㅇㅇㅈㅈㅇㅈㅈㅇ</span> -->
-<!--                                        ㄱㄴㄷㄷㄹㅇㅇㅇㅇㅇㅇㅇㅇ -->
-<!--                                     </h2> -->
-<!--                                     <p>ㄱㅇㅈㄱㅇㅈㅇㅈㅇㅈㅈㅇㅈㅈㅇㅈㅈㅇㅈㅈㅇㅇㅈㅇㅈㅇㅇㅈㅈㅇㅈㅈㅇ -->
-<!--                                         ㄱㅇㅈㄱㅇㅈㅇㅈㅇㅈㅈㅇㅈㅈㅇㅈㅈㅇㅈㅈㅇㅇㅈㅇㅈㅇㅇㅈㅈㅇㅈㅈㅇ</p> -->
-<!--                                     <h3><span>ㄱㅇㅈㄱㅇㅈㅇㅈㅇㅈㅈㅇㅈㅈㅇㅈㅈㅇㅈㅈㅇㅇㅈㅇㅈㅇㅇㅈㅈㅇㅈㅈㅇ</span> 1,000,000 원</h3> -->
-<!--                                     <div class="button"> -->
-<!--                                         <a href="product-grids.html" class="btn">클릭</a> -->
-<!--                                     </div> -->
-<!--                                 </div> -->
                             </div>
                             </a>
                             <!-- End Single Slider -->
@@ -154,11 +126,6 @@ $(function() {
                         <!-- End Hero Slider -->
                     </div>
                 </div>
-<!--                 <div class="col-lg-4 col-12"> -->
-<!--                     <div class="row"> -->
-<!--                         <div class="col-lg-12 col-md-6 col-12 md-custom-padding"> -->
-<!--                             Start Small Banner -->
-<!--                             Start Small Banner -->
 <!--                         </div> -->
 <!--                     </div> -->
 <!--                 </div> -->

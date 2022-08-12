@@ -7,6 +7,17 @@
     padding-top: 40px;
     vertical-align: middle;
 }
+form {
+    display: block;
+    margin-top: 0em;
+}
+
+div {
+    display: block;
+}
+.inner-w800 {
+    width: 800px;
+}
 .segment,
  .segment--nospacing {
     background: #fff;
@@ -19,6 +30,42 @@
     -moz-box-shadow: 3px 3px 4px 0 #eaeaea80;
     box-shadow: 3px 3px 4px 0 #eaeaea80;
     border: solid 1px #ebebeb;
+}
+.title-style:after, .title-style.bar:after {
+    content: '';
+    display: block;
+    clear: both;
+}
+.layout-split:after {
+    content: '';
+    display: block;
+    clear: both;
+}
+article, aside, details, figcaption, figure, footer, header, hgroup, menu, nav, section {
+    display: block;
+}
+[data-page=payment] .final-cost {
+    margin-bottom: 30px;
+}
+.final-cost {
+    border: 2px solid #333;
+    -webkit-border-radius: 2px;
+    -moz-border-radius: 2px;
+    border-radius: 2px;
+    background: #fff;
+}
+.ui_sticky {
+    position: relative;
+}
+.final-cost .segment, .final-cost .segment--nospacing {
+    margin-top: 0;
+}
+@media (min-width: 720px)
+.final-cost .segment, .final-cost .segment--nospacing {
+    -webkit-box-shadow: none;
+    -moz-box-shadow: none;
+    box-shadow: none;
+    border: 0 none;
 }
 .user-info-header-right-text {
     color: #333 !important;
@@ -129,22 +176,18 @@ ol, ul {
     margin: 0 auto;
     position: relative;
 }
+.title-style>*, .title-style.bar>* {
+    display: inline-block;
+}
 .segment:first-child,
  .segment--nospacing:first-child {
     margin-top: 0;
 }
- .segment--nospacing .ui_title--sub {
-    padding: 20px 18px;
-}
+
 .tab[data-ui-id] {
     cursor: pointer;
 }
- .ui_title--sub {
-    padding: 20px 0;
-    border-bottom: 0;
-    margin-bottom: 0;
-    font-size: 16px;
-}
+
  .ui_title--sub>*:first-child {
     width: 25%;
 }
@@ -436,6 +479,21 @@ element.style {
     -moz-box-shadow: none;
     box-shadow: none;
 }
+
+@media (min-width: 720px)
+.final-cost .segment-group .segment--nospacing:first-child {
+    border-top: 0 none;
+}
+@media (min-width: 720px)
+.final-cost .segment-group .segment--nospacing {
+    margin-top: 0;
+    padding: 0;
+    border: 0 none;
+    border-top: 1px solid #d9d9d9;
+}
+.final-cost .ui_title--sub:first-child {
+    border-top: 0 none;
+}
 .final-cost .segment table:first-child, .final-cost .segment--nospacing table:first-child {
     margin-top: 12px;
     margin-bottom: 12px;
@@ -547,4 +605,63 @@ table>* {
 [data-page=payment] .inner-w, [data-page=payment] .inner-w400, [data-page=payment] .inner-w800 {
     padding: 0;
     background: #eee;
+}
+
+[data-ui=tabpanel] .tab[data-ui-id="info_personal1"], [data-ui=toggle-tab] .tab[data-ui-id="info_personal1"] {
+    padding: 16px 0 !important;
+    color: #333;
+}
+[data-page=shoppingBag] .ui_title--sub, [data-page=payment] .ui_title--sub {
+    padding: 20px 0;
+    border-bottom: 0;
+    margin-bottom: 0;
+    font-size: 16px;
+}
+@media (min-width: 720px)
+.final-cost .segment-group .segment--nospacing:last-child {
+    border-top: 0;
+}
+
+.final-cost .ui_title--sub>*:first-child {
+    font-size: 14px;
+    width: 75%;
+}
+.checkout-toggle-btn {
+    color: #666 !important;
+    font-size: 12px !important;
+    font-weight: normal !important;
+    text-align: right !important;
+}
+
+
+@media (min-width: 720px)
+.final-cost .segment-group {
+    padding: 0 22px 24px;
+}
+
+@media (min-width: 720px)
+.final-cost .segment-group .segment--nospacing {
+    margin-top: 0;
+    padding: 0;
+    border: 0 none;
+    border-top: 1px solid #d9d9d9;
+}
+.final-cost .ui_btn--red--large {
+    margin-top: 16px;
+    width: 100%;
+    -webkit-border-radius: 4px;
+    -moz-border-radius: 4px;
+    border-radius: 4px;
+    line-height: normal;
+    padding: 10px 0;
+    height: 62px;
+    background: #f1df3f;
+}
+.ui_btn--red--large {
+    font-size: 16px;
+    padding: 0 24px;
+    line-height: 46px;
+    border-color: transparent;
+    background: #f1df3f;
+    color: #fff;
 }

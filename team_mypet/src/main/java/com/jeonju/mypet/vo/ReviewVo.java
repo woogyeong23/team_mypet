@@ -20,18 +20,44 @@ public class ReviewVo {
 	
 	//소현
 	private String review_nick;
-
+	private String p_sys_filename;
+	private String m_nick;
+	
 	public String getReview_nick() {
 		return review_nick;
 	}
 	public void setReview_nick(String review_nick) {
 		this.review_nick = review_nick;
 	}
+
+	private int avg_reviews_stars;
+	
+	public int getAvg_reviews_stars() {
+		return avg_reviews_stars;
+	}
+	public void setAvg_reviews_stars(int avg_reviews_stars) {
+		this.avg_reviews_stars = avg_reviews_stars;
+	}
+	
+
+	public String getP_sys_filename() {
+		return p_sys_filename;
+	}
+	public void setP_sys_filename(String p_sys_filename) {
+		this.p_sys_filename = p_sys_filename;
+	}
+
+	public String getM_nick() {
+		return m_nick;
+	}
+	public void setM_nick(String m_nick) {
+		this.m_nick = m_nick;
+	}
 	
 	//소현
 	
     //  test 22.7.29
-	private String p_sys_filename;
+
 	private String p_name;
 	//
 	
@@ -113,13 +139,6 @@ public class ReviewVo {
 	}
 	public void setP_name(String p_name) {
 		this.p_name = p_name;
-	}
-	
-	public String getP_ori_filename() {
-		return p_sys_filename;
-	}
-	public void setP_sys_filename(String p_sys_filename) {
-		this.p_sys_filename = p_sys_filename;
 	}
 	// test 22.08.05
 	public int getP_category_idx() {

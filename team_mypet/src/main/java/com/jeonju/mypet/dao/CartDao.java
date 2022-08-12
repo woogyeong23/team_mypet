@@ -34,7 +34,7 @@ public class CartDao {
 	}
 
 	//리스트뿌리기
-	public List<ProductVo> cartList(CartVo cartVo) {
+	public List<CartVo> cartList(CartVo cartVo) {
 		return sqlSession.selectList(MAPPER+".getcartList",cartVo);
 	}
 	

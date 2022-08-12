@@ -16,6 +16,10 @@
 	
 	
 			
+<<<<<<< HEAD
+		
+=======
+>>>>>>> branch 'master' of https://github.com/woogyeong23/team_mypet.git
 		
 		//비밀번호 확인
 		$(document).ready(function(){
@@ -64,7 +68,6 @@
 				let emailval = $("#m_id").val();
 				let gd = /^[0-9a-zA-Z]([-_.]?[0-9a-zA-Z])*@[0-9a-zA-Z]([-_.]?[0-9a-zA-Z])*.[a-zA-Z]{2,3}$/i;
 
-				
 				$('.successEmChk').text('');
 
 				if(emailval.match(gd) != null){
@@ -75,7 +78,6 @@
 					result = "유효성 미확인.";
 					$(".successEmChk").text(result).css("color","red");
 			  		$(".emChk2").val(false);
-
 			 	}
 			});
 		 }); 
@@ -83,6 +85,7 @@
 		
 		if($(".emChk2") == true){
 			$(".doubleChk").attr("disabled",false);
+			
 		}else{
 			result = "이메일 주소를 입력해 주세요";
 			$(".successEmChk").text(result).css("color", "red");
@@ -151,7 +154,7 @@
 <main class="form-signin">
 <form name="joinForm" action="${pageContext.request.contextPath}/joinProcess.do" method="post">
   	<a href="${pageContext.request.contextPath}/home.do">
-    <img class="mb-4" src="resources/assets/images/DC.png" alt="" width="300" height="200" >
+    <img class="mb-4" src="resources/assets/images/logo/mypetLogo.png" alt="" width="300" height="200" >
     </a>
     <h1 class="h3 mb-3 fw-normal" style="text-align:center">회원가입</h1>
 <div>
