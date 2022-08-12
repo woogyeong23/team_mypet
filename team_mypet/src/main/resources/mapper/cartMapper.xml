@@ -33,7 +33,8 @@
 
 	<!-- 카트 리스트 -->
 	<select id="getcartList" parameterType="list" resultType="cartVo">
-		select a.cart_idx,a.cart_cnt,a.midx,b.p_idx,b.p_content,b.p_name,b.p_discount,b.p_disprice,b.p_price,c.p_front_img,c.p_ori_filename,c.p_sys_filename  from cart a left outer join product b on a.p_idx = b.p_idx left outer join product_img c on b.p_idx = c.p_idx where midx=#{midx};
+		select a.cart_idx,a.cart_cnt,a.midx,b.p_idx,b.p_content,b.p_name,b.p_discount,b.p_disprice,b.p_price,c.p_front_img,c.p_ori_filename,c.p_sys_filename  from cart a left outer join product b on a.p_idx = b.p_idx left outer join product_img c on b.p_idx = c.p_idx where midx=#{midx} group by b.p_idx;
+		
 	</select>
 	<!-- 카트에 상품 들어있는지 -->
 	<select id="getcountCart" resultType="int">

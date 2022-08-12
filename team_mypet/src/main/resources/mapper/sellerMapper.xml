@@ -123,7 +123,7 @@
 													from (select *, RANK() OVER (PARTITION BY detail_idx ORDER BY detail_status desc) AS num
 													from detail_day ) a
 													where a.num=1) e on b.detail_idx=e.detail_idx
-											where a.seller_idx = (select midx from sellerstory where midx=#{member_id})
+											where a.seller_idx = (select seller_idx from sellerstory where midx=#{member_id})
 											
 											<choose>
 												<when test="product=='00'">
@@ -210,14 +210,14 @@
 		from (select a.seller_idx, b.fixdvprice, a.p_idx, a.p_name, b.detail_idx, c.detail_status , RANK() OVER (PARTITION BY detail_idx ORDER BY detail_status desc) AS num
 			from product a join detail b on a.p_idx=b.p_idx join detail_day c on b.detail_idx=c.detail_idx
 			where b.orders_idx=#{orders_idx}) t
-		where t.num=1 and t.seller_idx = (select midx from sellerstory where midx=#{member_id})
+		where t.num=1 and t.seller_idx = (select seller_idx from sellerstory where midx=#{member_id})
 
 					
 	</select>
 	<select id="getSellerOrdersPrice" resultType="String">
 		select sum(b.fixprice) as bundleprice
 		from orders a join detail b on a.orders_idx=b.orders_idx join product c on b.p_idx=c.p_idx
-		where a.orders_idx=#{orders_idx} and c.seller_idx = (select midx from sellerstory where midx=#{member_id})
+		where a.orders_idx=#{orders_idx} and c.seller_idx = (select seller_idx from sellerstory where midx=#{member_id})
 					
 	</select>
 	

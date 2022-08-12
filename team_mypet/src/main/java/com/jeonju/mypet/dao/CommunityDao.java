@@ -8,6 +8,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Repository;
 
 import com.jeonju.mypet.vo.Commu_CommentVo;
+import com.jeonju.mypet.vo.Commu_Comment_LikeVo;
 import com.jeonju.mypet.vo.CommunityVo;
 import com.jeonju.mypet.vo.Community_likeVo;
 import com.jeonju.mypet.vo.FollowVo;
@@ -139,6 +140,22 @@ public class CommunityDao {
 
 	public Product_ImgVo getPI(ProductVo po) {
 		return sqlSession.selectOne(MAPPER+".getPI",po);
+	}
+
+	public int DeleteCc(Commu_CommentVo commu_commentVo) {
+		return sqlSession.update(MAPPER+".DeleteCc",commu_commentVo);
+	}
+
+	public int LikeCc(Commu_Comment_LikeVo commu_comment_likeVo) {
+		return sqlSession.insert(MAPPER+".LikeCc",commu_comment_likeVo);
+	}
+
+	public int plusCcLike(Commu_Comment_LikeVo commu_comment_likeVo) {
+		return sqlSession.update(MAPPER+".plusCcLike",commu_comment_likeVo);
+	}
+
+	public String getLikeCcYn(Commu_Comment_LikeVo ccl) {
+		return sqlSession.selectOne(MAPPER+".getLikeCcYn", ccl);
 	}
 
 

@@ -81,6 +81,7 @@ public class ExtraController {
 		   
 		   int midx = 0;
 
+
 		   HttpSession session = request.getSession();
 		   
 		  
@@ -88,8 +89,9 @@ public class ExtraController {
 				   midx = (int)session.getAttribute("midx");
 //				   midx =  (long) session.getAttribute("midx");
 				   
+
 				   FollowVo followVo = new FollowVo();
-				   followVo.setMidx((int) midx);
+				   followVo.setMidx(midx);
 				   followVo.setSeller_idx(seller_idx);
 				   
 				   int followCNT = joeAjaxService.getfollowCNT(followVo);
@@ -136,6 +138,15 @@ public class ExtraController {
 		   return "Extra/reviewList";
 		   
 	   }
+	 
+	 @GetMapping("/Error")
+	 public String Error() {
+		 
+		 return "Extra/error"; 
+	 }
+	 
+	 
+	
 	
 	
 	

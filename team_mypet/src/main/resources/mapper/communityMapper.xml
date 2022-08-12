@@ -82,7 +82,7 @@
     <!--SellerStory  -->
     <select id="getBSList" resultType="sellerStoryVo">
 SELECT m_nick, s.seller_idx AS seller_idx, seller_img, seller_intro, seller_starsavg,
-   seller_followcnt,p.p_idx AS p_idx, p_sys_filename
+   seller_followcnt,p.p_idx AS p_idx, c.p_sys_filename
    FROM members m INNER JOIN sellerstory s ON m.midx = s.midx
    INNER JOIN product p ON s.seller_idx=p.seller_idx
    INNER JOIN product_img c ON p.p_idx = c.p_idx
@@ -109,7 +109,7 @@ SELECT m_nick, s.seller_idx AS seller_idx, seller_img, seller_intro, seller_star
     <select id="getBSellerView" resultType="sellerStoryVo">
     SELECT seller_idx, seller_img, seller_intro, seller_openday, 
     seller_starsavg, seller_total, seller_wishcnt, seller_ordercnt, seller_followcnt,
-    m_profile,m_nick 
+    m_profile,m_nick , seller_img
     FROM sellerstory INNER JOIN members ON members.midx = sellerstory.midx 
     WHERE seller_idx = #{seller_idx}
     </select>
@@ -189,12 +189,6 @@ SELECT m_nick, s.seller_idx AS seller_idx, seller_img, seller_intro, seller_star
     
  
     
-   
-    
-    
-    
-    
-    
     <select id="modi_CB" parameterType="int" resultType="communityVo">
     SELECT cm_subject, cm_content, cm_img, cm_idx, cm_writer,cm_origin_img FROM community WHERE cm_idx= #{cm_idx}
     </select>
@@ -204,6 +198,28 @@ SELECT m_nick, s.seller_idx AS seller_idx, seller_img, seller_intro, seller_star
     <update id="DeleteCm" parameterType="int">
     UPDATE community SET cm_delyn = 'Y' WHERE cm_delyn = 'N' AND cm_idx = #{cm_idx}
     </update>
+    
+    <update id="DeleteCc" parameterType="int">
+    UPDATE commu_comment SET cc_delyn = 'Y' WHERE cc_delyn = 'N' AND cc_idx = #{cc_idx}
+    </update>
+    
+    <insert id="LikeCc" parameterType="commu_comment_likeVo">
+    INSERT INTO commu_comment_like(cc_idx, midx)
+    VALUES (#{cc_idx}, #{midx})
+    </insert>
+    
+    <update id="plusCcLike" parameterType="commu_comment_likeVo">
+    UPDATE commu_comment SET cc_like = cc_like +1
+    WHERE cc_idx = #{cc_idx}
+    </update>
+    
+    <select id="getLikeCcYn" resultType="String">
+    SELECT DISTINCT COUNT(cc_like_idx)
+    FROM commu_comment_like WHERE cc_like_delyn = 'N' 
+    AND cc_idx = #{cc_idx} AND midx = #{midx}
+    </select>
+    
+    
     
     
 

@@ -6,6 +6,7 @@ import java.io.File;
 import java.io.IOException;
 
 import java.text.SimpleDateFormat;
+import java.util.ArrayList;
 import java.util.List;
 
 
@@ -24,6 +25,7 @@ import org.springframework.web.multipart.MultipartFile;
 
 import com.jeonju.mypet.service.CommunityService;
 import com.jeonju.mypet.vo.Commu_CommentVo;
+import com.jeonju.mypet.vo.Commu_Comment_LikeVo;
 import com.jeonju.mypet.vo.CommunityVo;
 import com.jeonju.mypet.vo.Community_likeVo;
 
@@ -147,13 +149,16 @@ public class CommunityController {
 		
 		if(session.getAttribute("midx") != null ) {
 			midx = (int)session.getAttribute("midx");
-			
+
 			
 			Community_likeVo community_likeVo = new Community_likeVo();
 			community_likeVo.setMidx((int) midx);
 			community_likeVo.setCm_idx(cm_idx);
 			
 			int CmLikeYn = commuService.getCmLikeYn(community_likeVo);
+			
+
+			
 			
 			model.addAttribute("CmLikeYn", CmLikeYn);
 			model.addAttribute("communityVo", communityVo);

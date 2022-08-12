@@ -88,27 +88,41 @@ input[type="file"] {
     
     <center><h2>구매후기</h2></center>
     <br>
+    
     <div class="col-lg-12">
+    <div class="single-product" style="border: none;">
+    <div class="product-info">
+    
     <form class="mb-3" name="myform" id="myform" method="post">
     <table style="width: 100%;">
     <tr>
-    <td style="text-align: left; width: 10%"><img src="${pageContext.request.contextPath}/resources/product/${product.p_sys_filename}" alt="상품 이미지" width="100" height="100">
-    <td style="font-size: 30px; color: black; font-weight: bold; width: 50%">${product.p_name}<br>
-    <span style="font-size: 20px; color: #99ccff; font-weight:600; width: 50%">${product.m_nick}</span>
+    <td style="text-align: left; width: 10%"><img src="${pageContext.request.contextPath}/resources/product/${reviewContent.p_sys_filename}" alt="상품 이미지" width="100" height="100">
+    <td style="font-size: 30px; color: black; font-weight: bold; width: 50%">${reviewContent.p_name}<br>
+    <span style="font-size: 20px; color: #99ccff; font-weight:600; width: 50%">${reviewContent.m_nick}</span>
     <td style="text-align: right; ">
-    <fieldset>
-    <input type="radio" name="reviewStar" value="5" id="rate1"><label for="rate1">★</label>
-	<input type="radio" name="reviewStar" value="4" id="rate2"><label for="rate2">★</label>
-	<input type="radio" name="reviewStar" value="3" id="rate3"><label for="rate3">★</label>
-	<input type="radio" name="reviewStar" value="2" id="rate4"><label for="rate4">★</label>
-	<input type="radio" name="reviewStar" value="1" id="rate5"><label for="rate5">★</label>
-	</fieldset>
+                           			
+    
+    <ul class="review">
+                               <c:forEach begin="1" end="${reviewContent.avg_reviews_stars}" step="1">
+									<li><i class="lni lni-star-filled"></i></li>
+								</c:forEach>
+								<c:if test="${reviewContent.avg_reviews_stars%5 > 0}">
+								   <li><i class="lni lni-star-half"></i></li>
+								</c:if>
+							   <c:forEach begin="1" end="${5-reviewContent.avg_reviews_stars}" step="1">
+							      <li><i class="lni lni-star-empty"></i></li>
+							   </c:forEach>	
+							</ul>
 	</td>
     </tr>
     </table>
     </form>
+    
     </div>
-<div style="padding-bottom: 10px">				
+    </div>
+    
+    </div>
+<div style="padding-bottom: 10px">		
 ${reviewContent.review_content}
 </div>
 ${reviewContent.review_nick}

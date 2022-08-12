@@ -223,7 +223,7 @@ $(document).ready(function(){
 <div style="display: flex; width:100%; padding: 55px 0px 36px; height: 400px;">
    <div style="position:relative; top:50%; left:30%">
      <div style="position:relative; float:left; width:150px; height: 150px; border-radius: 70%; overflow: hidden;">
-   <img class="profile" src="${pageContext.request.contextPath}/resources/Extra/img/${SSV.m_profile}">
+   <img class="profile" src="${pageContext.request.contextPath}/resources/seller/${SSV.seller_img}">
      </div>
    
      <div class="review-area"style="position:relative; float:left; margin-left:30px;">

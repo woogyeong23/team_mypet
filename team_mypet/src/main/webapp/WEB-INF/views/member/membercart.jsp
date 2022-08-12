@@ -302,8 +302,8 @@ $(document).ready(function(){
    					<input type="hidden" id="cart_idx_input" value="${cart.cart_idx}">   					
    					<input type="hidden" id="midx_input" value="${cart.midx}">
    					<input type="hidden" id="p_name_input" value="${cart.p_name}">
-   					<input type="hidden" id="p_content_input" value="${cart.p_content}">
-   					<input type="hidden" id="cart_cnt_input" value="${cart.cart_cnt}">
+<%--    					<input type="hidden" id="p_content_input" value="${cart.p_content}">
+ --%>   					<input type="hidden" id="cart_cnt_input" value="${cart.cart_cnt}">
    					</div>
    						<div class="CartArtistItem__header">
    						<label>

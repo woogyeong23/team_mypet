@@ -173,23 +173,63 @@ var targetID;
 		    	  let cc_idx =$(this).next().val(); 
 		    	  
 		    	  $.ajax({
-		    		type:'post',  
-		    	  })
-			      alert("게시물 삭제를 취소하였습니다.");
+		    		type:'post',
+		    		url: "${pageContext.request.contextPath}/ccDelete",
+		    		data:{"cc_idx" : cc_idx},
+		    		
+		    		success: function(data){
+		    			if(data == "Y") {
+		    				alert("댓글을 삭제하였습니다.");
+		    				location.reload();
+		    			}else{
+		    				alert("알수없는 오류로 인해 '댓글 삭제'가 취소되었습니다.");
+		    			}
+		    		},	
+					error : function(error){ alert(error); }
+		    	  });
 		     }else{
 			      alert("댓글 삭제를 취소하였습니다.");
 		     }
-			
-			
-			
 		 });
   });
+  
+//   $("#likeCc").each(function(){
+// 		$(this).click(function(){
+// 			let midx = "${midx}";
+// 			let cc_idx = $(this).next().val();
 			
+// 			$.ajax({
+// 				type:'post',
+// 				url:"${pageContext.request.contextPath}/ccLike",
+// 				data: {"midx" : midx,
+// 					"cc_idx" : cc_idx},
+					
+// 					success: function(data){
+// 						if(data == "Y") {
+// 							alert("해당 댓글에 '좋아요'를 표시하였습니다.");
+// 							location.reload();
+// 						}else{
+// 							alert("알수없는 오류로 인해 '좋아요'가 누락되었습니다.");
+// 						}
+// 					},
+// 					error : function(error){ alert(error); }	
+// 			});
+
+// 		});
+// 	});
   
   
- 
+
+  
+  
+  
+  
+  
 
 });
+
+
+
 </script>
 
 
@@ -572,15 +612,10 @@ button {
 <div class="CommentContent__wrap">
      <div class="CommentContent__header">
          <strong class="CommentContent__userName">${cl.cc_writer}</strong> 
-         <c:choose>
-         <c:when test="${midx == cl.midx}">
-           <button id="ccDel" style="margin-left:90%; background-color:#dae1e6; width:19px; height:19px;"><i class="lni lni-close"></i></button>
-           <input type="hidden" name="cc_idx" value="${cl.cc_idx}">
-         </c:when>
-         <c:otherwise>
-         
-         </c:otherwise>
-         </c:choose>
+<%--          <c:if test="${midx == cl.midx}"> --%>
+<!--            <button id="ccDel" style="margin-left:90%; background-color:#dae1e6; width:19px; height:19px;"><i class="lni lni-close"></i></button> -->
+<%--            <input type="hidden" name="cc_idx" value="${cl.cc_idx}"> --%>
+<%--        </c:if> --%>
      </div>
      
 <p class="CommentContent__body">
@@ -591,7 +626,13 @@ button {
             <span class="CommentContent__createAt">${cl.cc_wday}</span>
   <c:choose>
        <c:when test="${midx != null}">
-<a href="#pop_info_${cl.cc_idx}" class="btn_open"><button type="button" class="CommentContentActionButton">답글하기</button></a>
+
+<!--       <button type="button" class="CommentContentActionButton" id="likeCc" style="color:rgb(237,73,86);"><i class="lni lni-smile"></i> 공감하기</button> -->
+<%--               <input type="hidden" value="${cl.cc_idx}"> --%>
+
+     <a href="#pop_info_${cl.cc_idx}" class="btn_open">
+     <button type="button" class="CommentContentActionButton"><i class="lni lni-bubble"></i> 답글하기</button>
+     </a>
         </c:when>
         <c:otherwise></c:otherwise> 
   </c:choose>
@@ -609,6 +650,15 @@ button {
          <div class="CommentContent__wrap">
            <div class="CommentContent__header">
                     <strong class="CommentContent__userName">${cl.cc_writer}</strong>
+<%--             <c:choose> --%>
+<%--          <c:when test="${midx == cl.midx}"> --%>
+<!--            <button id="ccDel" style="margin-left:90%; background-color:#dae1e6; width:19px; height:19px;"><i class="lni lni-close"></i></button> -->
+<%--            <input type="hidden" name="cc_idx" value="${cl.cc_idx}"> --%>
+<%--          </c:when> --%>
+<%--          <c:otherwise> --%>
+         
+<%--          </c:otherwise> --%>
+<%--          </c:choose> --%>
            </div>
                     <p class="CommentContent__body">
                     <span class="CommentContent__commentText">${cl.cc_content}</span>

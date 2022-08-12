@@ -6,7 +6,7 @@
     <title>MyPet Project</title>
     <meta name="description" content="" />
     <meta name="viewport" content="width=device-width, initial-scale=1" />
-    <link rel="shortcut icon" type="image/x-icon" href="resources/assets/images/favicon.svg" />
+    <link rel="shortcut icon" type="image/x-icon" href="resources/assets/images/logo/mypetLogo.png" />
 
 
     <!-- ========================= CSS here ========================= -->
