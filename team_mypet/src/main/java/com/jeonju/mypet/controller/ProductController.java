@@ -124,25 +124,25 @@ public class ProductController {
 			 ReviewVo reviewContent = productService.reviewContent(review_idx);
 			 model.addAttribute("reviewContent", reviewContent);
 			 
-			 product = productService.getReviewp(product);
-			 model.addAttribute("product", product);
-			 
-			 System.out.println("리뷰콘텐츠"+reviewContent.getReview_idx()+reviewContent.getReview_content());
+			 System.out.println("리뷰닉"+reviewContent.getReview_nick());
 			 
 			 return "product/reviewContent"; 
 		}
 	
 	
 	@RequestMapping("/insertReview.do")
-	public String insertReview(@ModelAttribute ReviewVo reviewVo, HttpSession session) throws Exception{
+	public String insertReview(@ModelAttribute ReviewVo reviewVo,@RequestParam("p_idx") int p_idx, HttpSession session,Model model) throws Exception{
 
 		int midx=(Integer)session.getAttribute("midx");
         reviewVo.setMidx(midx); 
         
 		productService.insertReview(reviewVo);
 		
+		ProductVo ReviewWP = productService.reviewWrite(p_idx);
+		model.addAttribute("ReviewWP",ReviewWP);
 		
-		System.out.println("Reviewidx"+reviewVo.getReview_idx());
+		
+		System.out.println("Reviewidx"+reviewVo.getReview_content());
 		
 		 return "redirect:/productView.do";
 	

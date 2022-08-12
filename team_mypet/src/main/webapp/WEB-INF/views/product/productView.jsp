@@ -283,7 +283,6 @@ function cartAlert(result){
 .reviewb {
  display: flex;
   justify-content: space-between;
-  padding-top: 90px;
 }
 .v-line {
   border-left : thin solid #d3d3d3;
@@ -373,7 +372,7 @@ padding-bottom: 20px;
                        					<div class="product-info" style="padding: 0px">
                             				<ul class="review">
                                <c:forEach begin="1" end="${productView.avg_reviews_stars}" step="1">
-									<li><i class="lni lni-star-filled"></i></li>
+									<li><i class="lni lni-star-filled" style="font-size: 20px"></i></li>
 								</c:forEach>
 								<c:if test="${productView.avg_reviews_stars%5 > 0}">
 								   <li><i class="lni lni-star-half"></i></li>
@@ -463,7 +462,7 @@ padding-bottom: 20px;
 					<div class="col-lg-12 col-12">
 						<div class="info-body custom-responsive-margin">
 							<h4>상품상세정보</h4>
-							<p>${productView.p_content}</p>
+							<p align="center">${productView.p_content}</p>
 						</div>
 			
 
@@ -559,8 +558,20 @@ padding-bottom: 20px;
 								
 								</td>
 								<td style="height: 30px">
-								<span style="color: #99ccff; font-size: 20px">${ReviewVo.p_name}</span> <!-- 해당판매상품이름/상세페이지로링크 -->
-								<span style="font-size: 20px">별점${ReviewVo.review_stars}</span>
+								<span style="color: #99ccff; font-size: 25px; padding-right: 10px; padding-left: 10px">${ReviewVo.p_name}</span> <!-- 해당판매상품이름/상세페이지로링크 -->
+					
+								<ul class="review" style="float:right;">
+                               <c:forEach begin="1" end="${ReviewVo.avg_reviews_stars}" step="1">
+									<li style="display: inline-block;"><i class="lni lni-star-filled" style="color: #fecb00; font-size: 15px"></i></li>
+								</c:forEach>
+								<c:if test="${ReviewVo.avg_reviews_stars%5 > 0}">
+								   <li style="display: inline-block;"><i class="lni lni-star-half" style="color: #fecb00; font-size: 15px"></i></li>
+								</c:if>
+							   <c:forEach begin="1" end="${5-ReviewVo.avg_reviews_stars}" step="1">
+							      <li style="display: inline-block;"><i class="lni lni-star-empty" style="color: #fecb00; font-size: 15px"></i></li>
+							   </c:forEach>	
+								</ul>
+								
 								</td>
 								</tr>
 								
