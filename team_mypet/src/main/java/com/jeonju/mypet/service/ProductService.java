@@ -96,6 +96,18 @@ public class ProductService {
 	}
 
 
+	
+	//상세뷰 하단 판매자의 다른 상품
+	public List<ProductVo> getspList(int seller_idx) {
+		return productDao.getspList(seller_idx);
+	}
+
+
+	public int getspCount(int seller_idx) {
+		return productDao.getspCount(seller_idx);
+	}
+
+
 
 
 	

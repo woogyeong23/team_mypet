@@ -542,7 +542,7 @@ padding-bottom: 20px;
 
 							<div class="single-review">
 								
-                				<c:forEach var="ReviewVo" items="${reviewList}">
+                				<c:forEach var="reviewVo" items="${reviewList}">
                 
 								<div class="reviewbox">
 								<!-- 이미지가 눌이 아니면 -->
@@ -554,20 +554,20 @@ padding-bottom: 20px;
 								
 								<tr>
 								<td rowspan="2">
-								<img src="${pageContext.request.contextPath}/resources/product/${ReviewVo.review_img}" style="width: 200px; height: 150px" alt="#"> <!-- 리뷰이미지 -->		
+								<img src="${pageContext.request.contextPath}/resources/product/${reviewVo.review_img}" style="width: 200px; height: 150px" alt="#"> <!-- 리뷰이미지 -->		
 								
 								</td>
 								<td style="height: 30px">
-								<span style="color: #99ccff; font-size: 25px; padding-right: 10px; padding-left: 10px">${ReviewVo.p_name}</span> <!-- 해당판매상품이름/상세페이지로링크 -->
+								<span style="color: #99ccff; font-size: 25px; padding-right: 10px; padding-left: 10px">${reviewVo.p_name}</span> <!-- 해당판매상품이름/상세페이지로링크 -->
 					
 								<ul class="review" style="float:right;">
-                               <c:forEach begin="1" end="${ReviewVo.avg_reviews_stars}" step="1">
+                               <c:forEach begin="1" end="${reviewVo.avg_reviews_stars}" step="1">
 									<li style="display: inline-block;"><i class="lni lni-star-filled" style="color: #fecb00; font-size: 15px"></i></li>
 								</c:forEach>
-								<c:if test="${ReviewVo.avg_reviews_stars%5 > 0}">
+								<c:if test="${reviewVo.avg_reviews_stars%5 > 0}">
 								   <li style="display: inline-block;"><i class="lni lni-star-half" style="color: #fecb00; font-size: 15px"></i></li>
 								</c:if>
-							   <c:forEach begin="1" end="${5-ReviewVo.avg_reviews_stars}" step="1">
+							   <c:forEach begin="1" end="${5-reviewVo.avg_reviews_stars}" step="1">
 							      <li style="display: inline-block;"><i class="lni lni-star-empty" style="color: #fecb00; font-size: 15px"></i></li>
 							   </c:forEach>	
 								</ul>
@@ -577,19 +577,19 @@ padding-bottom: 20px;
 								
 								<tr>
 								<td>
-								<a href="reviewContent.do?review_idx=${ReviewVo.review_idx}">${ReviewVo.review_content} (후기내용)</a>
+								<a href="reviewContent.do?review_idx=${reviewVo.review_idx}">${reviewVo.review_content} (후기내용)</a>
 								</td>
 								</tr>
 								
 								</table>
 								
-								<p class="reviewb">작성일 ${ReviewVo.review_wday }<span align="right" style="padding-right: 10px">댓글 수 ${ReviewVo.review_reply_cnt}</span></p>
+								<p class="reviewb">작성일 ${reviewVo.review_wday }<span align="right" style="padding-right: 10px">댓글 수 ${reviewVo.review_reply_cnt}</span></p>
 								</div>
 								<div class='v-line'></div>
 								
 								<div class="col-lg-2" style="padding-left: 10px;">
 								<table style="height: 100%">
-								<tr><td><span style="color: #99ccff; font-size: 20px">작성자:${ReviewVo.review_nick}</span></td></tr>
+								<tr><td><span style="color: #99ccff; font-size: 20px">작성자:${reviewVo.review_nick}</span></td></tr>
 								<tr><td>반려동물정보</td></tr>
 								<tr><td>종:고양이</td></tr>
 								<tr><td>이름:강산</td></tr>
@@ -615,6 +615,69 @@ padding-bottom: 20px;
 			<!-- 리뷰끝 -->
 				
 				<!-- 판매자의 다른 상품 -->
+				<section class="trending-product section" style="margin-top: 12px;">
+        <div class="container">
+            <div class="row">
+                <div class="col-12">
+                    <div class="section-title" style="background-color:#FFFFFF ">
+                        <h2>판매중인 상품</h2>
+                    </div>
+                </div>
+            </div>
+            <div class="row">
+            <c:choose>
+            <c:when test="${spCount == 0 }">
+             <div class="result">
+                    <div class="result_in">
+                    <h1 style="color:rgb(181, 181, 181); text-align:center"><i class="lni lni-empty-file"></i></h1>
+                               <br>
+                   <h5 style="color: rgb(181, 181, 181);">작가(판매자)님이 판매중인 상품이 없습니다.</h5>
+                   </div>
+                    </div>
+            </c:when>
+       <c:otherwise>
+          <p>총 <span class="result_span">${spCount}</span>개의 상품을 판매하고 있어요</p>
+             <c:forEach var="productVo" items="${spList}" end="4">
+             
+                <div class="col-lg-3 col-md-6 col-12">
+                    <!-- Start Single Product -->
+                    <div class="single-product">
+                        <div class="product-image">
+                            <img src="${pageContext.request.contextPath}/resources/product/${productVo.p_sys_filename}" alt="#">
+                            <div class="button">
+                                <a href="product-details.html" class="btn"><i class="lni lni-cart"></i> 찜하기</a>
+                            </div>
+                        </div>
+                        <div class="product-info">
+                            <span class="category">${productVo.p_category_idx}</span>
+                            <h4 class="title">
+                                <a href="#">${productVo.p_name}</a>
+                            </h4>
+                            <ul class="review" style="float:right;">
+                               <c:forEach begin="1" end="${productVo.avg_reviews_stars}" step="1">
+									<li style="display: inline-block;"><i class="lni lni-star-filled" style="color: #fecb00; font-size: 15px"></i></li>
+								</c:forEach>
+								<c:if test="${productVo.avg_reviews_stars%5 > 0}">
+								   <li style="display: inline-block;"><i class="lni lni-star-half" style="color: #fecb00; font-size: 15px"></i></li>
+								</c:if>
+							   <c:forEach begin="1" end="${5-productVo.avg_reviews_stars}" step="1">
+							      <li style="display: inline-block;"><i class="lni lni-star-empty" style="color: #fecb00; font-size: 15px"></i></li>
+							   </c:forEach>	
+								</ul>
+                            <div class="price">
+                                <span>${productVo.p_price}</span>
+                            </div>
+                        </div>
+                    </div>
+                    <!-- End Single Product -->
+                </div>
+                </c:forEach>
+            </c:otherwise>
+                </c:choose>
+            </div>
+        </div>
+    </section>
+    
   				<!-- 판매자의 다른 상품끝 -->
 					
 				<!-- 비슷한 상품 -->

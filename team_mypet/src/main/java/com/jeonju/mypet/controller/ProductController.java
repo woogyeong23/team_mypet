@@ -65,7 +65,7 @@ public class ProductController {
 	
 	//상품상세페이지
 	@GetMapping("/productView.do")
-	public String getproductView(@RequestParam("p_idx") int p_idx, Model model) {
+	public String getproductView(@RequestParam("p_idx") int p_idx,@RequestParam("seller_idx") int seller_idx ,Model model) {
 		 System.out.println("상품번호 : " + p_idx);
 		 
 		 ProductVo productView = productService.getProductView(p_idx);
@@ -77,6 +77,12 @@ public class ProductController {
 		 List<ReviewVo> reviewList = productService.getReviewList(p_idx);
 		 model.addAttribute("reviewList", reviewList);
 		
+		 List<ProductVo> spList = productService.getspList(seller_idx);
+		 model.addAttribute("spList",spList);
+		 
+		 int spCount = productService.getspCount(seller_idx); 
+		 model.addAttribute("spCount",spCount);
+		 
 		 System.out.println(productView.getP_category_idx());
 		 
 		 return "product/productView"; 

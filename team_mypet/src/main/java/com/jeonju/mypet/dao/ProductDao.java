@@ -101,6 +101,14 @@ public class ProductDao {
 		return sqlSession.selectOne(MAPPER + ".getReviewp",product);
 	}
 	
+	public List<ProductVo> getspList(int seller_idx) {
+		return sqlSession.selectList(MAPPER + ".getspList",seller_idx);
+	}
+	
+	public int getspCount(int seller_idx) {
+		return sqlSession.selectOne(MAPPER + ".getspCount",seller_idx);
+	}
+	
 	
 	
 	//소현
