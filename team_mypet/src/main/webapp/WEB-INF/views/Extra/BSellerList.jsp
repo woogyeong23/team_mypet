@@ -1,4 +1,3 @@
-
 <%@ page language="java" contentType="text/html; charset=UTF-8"  pageEncoding="UTF-8"%>
     <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
     
@@ -18,23 +17,19 @@
     height: 100%;
     object-fit: cover;
 }
-
 .bs_review li{
 display: inline-block;
 }
-
 .bs_review li i{
   color: #fecb00;
   font-size: 13px;
 }
-
 .bs_review li i span {
   display: inline-block;
   margin-left: 4px;
   color: #888;
   font-size: 13px;
 }
-
 #follow{
     background-color: rgb(255, 255, 255);
     min-width: 63px;
@@ -57,7 +52,6 @@ min-width: 80px;
     border-radius: 4px;
     margin-top:10px;
 }
-
 .p_img{
 font-size: 0;
     width: 168.25px;
@@ -67,10 +61,6 @@ font-size: 0;
     background-repeat: no-repeat;
     background-position: center;
 }
-
-
-
-
 </style>
 </head>
 <body>
@@ -214,7 +204,7 @@ font-size: 0;
 	       <br>
 	       <a style="color:black" href="${pageContext.request.contextPath}/BSellerView.do?seller_idx=${bsv.seller_idx}">${bsv.seller_intro}</a>
 	       <br>
-	       <input type="button" id="follow" value="+ 팔로우">
+	       <a href="${pageContext.request.contextPath}/Error"><input type="button" id="follow" value="+ 팔로우"></a>
 	       <a style="color:black" href="${pageContext.request.contextPath}/BSellerView.do?seller_idx=${bsv.seller_idx}">
 	       <input type="button" class="more" value="작품 더보기"></a>
       </div>
