@@ -29,7 +29,7 @@
 <main class="form-signin">
   <form name="loginForm" action="${pageContext.request.contextPath}/loginProcess.do" method="post">
   	<a href="${pageContext.request.contextPath}/home.do">
-    <img class="mb-4" src="resources/assets/images/DC.png" alt="" width="250" height="200" >
+    <img class="mb-4" src="resources/assets/images/logo/mypetLogo.png" alt="" width="250" height="200" >
     </a>
     <h1 class="h3 mb-3 fw-normal">로그인</h1>
 

@@ -293,7 +293,7 @@
 								 	<tr>
 								 		<th>할인 적용 가격</th>
 								 		<td>
-								 			<input type="text" name="p_disprice" id="p_disprice" maxlength="100" value="" placeholder="적용버튼을 누르세요" disabled>
+								 			<input type="text" name="p_disprice" id="p_disprice" maxlength="100" value="" placeholder="적용버튼을 누르세요" >
 								 			<input type="button" value="적용"  onClick="calPrice2()" />
 								 		</td>
 								 	</tr>
@@ -322,7 +322,7 @@
 									
 							</table>
 							
-							<input type="submit" value="등록">
+							<input type="submit" class="btn btn-light" value="등록">
 						</form>
 						
 						
