@@ -57,14 +57,15 @@
                         
                             <img src="${pageContext.request.contextPath}/resources/image/${rv.p_ori_filename}" alt="상품 이미지">
                             <div class="button">
-                                <a href="#" class="btn"><i class="lni lni-cart"></i> Add to Cart</a>
+<!--                                 <a href="#" class="btn"><i class="lni lni-cart"></i> Add to Cart</a> -->
                             </div>
                         </div>
                         <div class="product-info">
                             <span class="category">${rv.p_name}</span>
                             <h4 class="title">
-                                <a href="">${rv.p_name}</a>
+                                <a href="${pageContext.request.contextPath}/productView.do?p_idx=${rv.p_idx}">${rv.p_name}</a>
                             </h4>
+                            <p></p>
                             <ul class="review">
                             <c:forEach begin="1" end="${rv.review_stars}">
                               <li><i class="lni lni-star-filled"></i></li>
@@ -75,9 +76,12 @@
                              </c:forEach>
                                 <li><span>${rv.review_stars} 점</span></li>
                             </ul>
-                            <div class="price">
-                                <span>1,000,000 원</span>
-                            </div>
+                           <div class="price">
+							  <span><fmt:formatNumber value="${rv.p_disprice}" pattern="#,###"/>원</span>
+								<c:if test="${rv.p_disprice != 0}">
+									<span class="discount-price"><fmt:formatNumber value="${rv.p_price}" pattern="#,###" />원</span>
+							   </c:if>
+							</div>
                         </div>
                     </div>
                     <!-- End Single Product -->

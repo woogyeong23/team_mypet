@@ -92,7 +92,7 @@
                     <div class="col-lg-3 col-md-3 col-7">
                         <!-- Start Header Logo -->
                         <a class="navbar-brand" href="${pageContext.request.contextPath}/home.do">
-                            <img src="resources/assets/images/logo/mypetLogo.png"  width="200" height="80"alt="Logo">
+                            <img src="resources/assets/images/logo/mypetLogo.png"  style="width:100px; height:100px; margin-left:130px;" alt="Logo">
                         </a>
                         <!-- End Header Logo -->
                     </div>
@@ -153,9 +153,9 @@
                                 </c:choose>
                             
                                 <div class="wishlist">
-                                    <a href="javascript:void(0)">
+                                    <a href="${pageContext.request.contextPath}/Error">
                                         <i class="lni lni-heart"></i>
-                                        <span class="total-items">0</span>
+<!--                                         <span class="total-items">0</span> -->
                                     </a>
                                 </div>
                                 
@@ -165,7 +165,7 @@
                                  <div class="wishlist">
                                     <a href="${pageContext.request.contextPath}/seller_productList.do">
                                         <i class="lni lni-investment"></i>
-                                        <span class="total-items">0</span>
+<!--                                         <span class="total-items">0</span> -->
                                     </a>
                                 </div>
                                 </c:when>
@@ -175,69 +175,14 @@
                                 </c:choose>
                                 <!-- /판매자 전용 버튼 -->
                                 
+                                <!-- 장바구니 login X시 인터셉터에 막힘 -->
                                   <div class="cart-items">
-                                    <a href="javascript:void(0)" class="main-btn">
+                                    <a href="${pageContext.request.contextPath}/membercart.do" class="main-btn">
                                         <i class="lni lni-cart"></i>
                                 
-                                
-<%--                                    <c:choose> --%>
-<%--                                    <c:when test="${midx != null}"> --%>
-                                       
-<%--                                        <c:choose> --%>
-<%--                                        <c:when test="${cartVVo.cart_cnt !=0}"> --%>
-<%--                                        <span class="total-items">${cartVVo.cart_cnt}</span> --%>
-<%--                                        </c:when> --%>
-<%--                                        <c:otherwise> --%>
-                                       
-<%--                                        </c:otherwise> --%>
-<%--                                         </c:choose> --%>
                                     </a>
-                                    <!-- Shopping Item -->
-<!--                                     <div class="shopping-item"> -->
-<!--                                         <div class="dropdown-cart-header"> -->
-<%--                                             <span>${cartVVo.cart_cnt} Items</span> --%>
-<!--                                             <a href="cart.html">View Cart</a> -->
-<!--                                         </div> -->
-<!--                                         <ul class="shopping-list"> -->
-<%--                                         <c:forEach begin="1" end="${cartVVo.cart_cnt}"> --%>
-<!--                                             <li> -->
-<!--                                                 <a href="javascript:void(0)" class="remove" title="Remove this item"><i -->
-<!--                                                         class="lni lni-close"></i></a> -->
-<!--                                                 <div class="cart-img-head"> -->
-<!--                                                     <a class="cart-img" href="product-details.html"><img -->
-<%--                                                             src="${pageContext.request.contextPath}/resources/product/${cartVVo.p_sys_filename}" alt="${cartVVo.p_name}"></a> --%>
-<!--                                                 </div> -->
-
-<!--                                                 <div class="content"> -->
-<!--                                                     <h4><a href="product-details.html"> -->
-<%--                                                             ${cartVVo.p_price}</a></h4> --%>
-<%--                                                     <p class="quantity"><span class="amount">${cartVVo.p_price}</span></p> --%>
-<!--                                                 </div> -->
-<!--                                             </li> -->
-<%--                                           </c:forEach> --%>
-<!--                                         </ul> -->
-<!--                                         <div class="bottom"> -->
-<!--                                             <div class="total"> -->
-<!--                                                 <span>Total</span> -->
-<!--                                                 <span class="total-amount">$134.00</span> -->
-<!--                                             </div> -->
-<!--                                             <div class="button"> -->
-<!--                                                 <a href="checkout.html" class="btn animate">Checkout</a> -->
-<!--                                             </div> -->
-<!--                                         </div> -->
-<!--                                     </div> -->
-                                    <!--/ End Shopping Item -->
                                 </div>
-<%--                                    </c:when> --%>
-<%--                                    <c:otherwise> --%>
-<!--                                      <div class="cart-items"> -->
-<!--                                     <a href="javascript:void(0)" class="main-btn"> -->
-<!--                                         <i class="lni lni-cart"></i> -->
-<!--                                   </a> -->
-<!--                                     </div> -->
-                                   
-<%--                                    </c:otherwise> --%>
-<%--                                    </c:choose> --%>
+
                           
                             </div>
                         </div>
@@ -338,7 +283,7 @@
                                         <a href="${pageContext.request.contextPath}/BSellerList.do" aria-label="Toggle navigation">인기 작가</a>
                                     </li>
                                      <li class="nav-item">
-                                        <a href="${pageContext.request.contextPath}/realTime-review" aria-label="Toggle navigation">실시간 후기</a>
+                                        <a href="${pageContext.request.contextPath}/Error" aria-label="Toggle navigation">실시간 후기</a>
                                     </li>
                                 </ul>
                             </div> <!-- navbar collapse -->

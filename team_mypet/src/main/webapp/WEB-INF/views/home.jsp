@@ -95,7 +95,7 @@ $(function() {
 </head>
 <body>
      <div class="popup" >
-     <div class="popup_in"><a id="popup_link" href="">지금 바로 가입하고 상품을 구입시 
+     <div class="popup_in"><a id="popup_link" href="${pageContext.request.contextPath}/Error">지금 바로 가입하고 상품을 구입시 
   <span>아이패드</span> Get!</a></div><button id="popup_close"><i class="lni lni-close"></i></button>
   
      </div>
@@ -112,7 +112,9 @@ $(function() {
                         <div class="hero-slider">
                             <!-- Start Single Slider -->
                             <a href="#">
-                            <div class="single-slider" style="background-image: url(resources/assets/images/hero/rkstlrEVENT01.jpg);">
+
+                            <div class="single-slider" style="background-image: url(resources/assets/images/hero/event5.jpg);">
+
                                 
 <!--                                 <div class="content"> -->
                                   
@@ -133,7 +135,11 @@ $(function() {
                             <!-- Start Single Slider -->
                             <a href="#">
                             <div class="single-slider"
-                                style="background-image: url(resources/assets/images/hero/EventDetail_02.jpg);">
+
+
+
+                                style="background-image: url(resources/assets/images/hero/event2.jpg);">
+
 <!--                                 <div class="content"> -->
 <!--                                     <h2><span>ㄱㅇㅈㄱㅇㅈㅇㅈㅇㅈㅈㅇㅈㅈㅇㅈㅈㅇㅈㅈㅇㅇㅈㅇㅈㅇㅇㅈㅈㅇㅈㅈㅇ</span> -->
 <!--                                        ㄱㄴㄷㄷㄹㅇㅇㅇㅇㅇㅇㅇㅇ -->
@@ -164,6 +170,7 @@ $(function() {
 <!--         </div> -->
     </section>
     <!-- End Hero Area -->
+    
 <!-- 최신순 -->
     <!-- Start Trending Product Area -->
     <section class="trending-product section" style="margin-top: 12px;">
@@ -171,14 +178,15 @@ $(function() {
             <div class="row">
                 <div class="col-12">
                     <div class="section-title">
-                      <h2><a href="#">지금 가장 핫한 간식&nbsp; <i class="lni lni-chevron-right" ></i></a></h2>
-                      <p>adfsafasfsdfsdfasdf</p>
+
+                      <h2><a href="productNew.do">이제 막 나온 신상품  <i class="lni lni-chevron-right" ></i></a></h2>
+                      <p>방금 출시되었어요!</p>
                     </div>
                 </div>
             </div>
             <div class="row">
-               <c:forEach var="hv" items="${HomeList5}" varStatus="status" end="3">
-                <div class="col-lg-3 col-md-6 col-12">
+               <c:forEach var="hv" items="${HomeList}" varStatus="status" end="3">
+             <div class="col-lg-3 col-md-6 col-12">
                     <!-- Start Single Product -->
                     <div class="single-product" style="border:none;">
                     <a href="${pageContext.request.contextPath}/productView.do?p_idx=${hv.p_idx}">
@@ -211,7 +219,7 @@ $(function() {
     
                             
                             <h4 class="title">
-                                <a href="${pageContext.request.contextPath}/seller_productDetail.do?p_idx=${hv.p_idx} ">
+                                <a href="${pageContext.request.contextPath}/productView.do?p_idx=${hv.p_idx} ">
                                 ${hv.p_name}</a>
                             </h4>
                             <ul class="review">
@@ -243,19 +251,19 @@ $(function() {
                 </div>
                 </div>
                 </section>
-  <!-- 할인율 순 -->
+  <!-- 인기순 -->
       <section class="trending-product section" style="margin-top: 12px;">
         <div class="container">
             <div class="row">
                 <div class="col-12">
                     <div class="section-title">
-                       <h2><a href="#">마감 임박!</a></h2>
+                       <h2><a href="productBest.do">지금 가장 핫한 간식</a></h2>
                     </div>
                 </div>
             </div>
             <div class="row">
-                 <c:forEach var="hv" items="${HomeList}" varStatus="status" end="3">
-                <div class="col-lg-3 col-md-6 col-12">
+                 <c:forEach var="hv" items="${HomeList5}" varStatus="status" end="3">
+  <div class="col-lg-3 col-md-6 col-12">
                     <!-- Start Single Product -->
                     <div class="single-product" style="border:none;">
                     <a href="${pageContext.request.contextPath}/productView.do?p_idx=${hv.p_idx}">
@@ -288,7 +296,7 @@ $(function() {
     
                             
                             <h4 class="title">
-                                <a href="${pageContext.request.contextPath}/seller_productDetail.do?p_idx=${hv.p_idx} ">
+                                <a href="${pageContext.request.contextPath}/productView.do?p_idx=${hv.p_idx} ">
                                 ${hv.p_name}</a>
                             </h4>
                             <ul class="review">
@@ -322,19 +330,19 @@ $(function() {
     </section>
     
     
-    <!-- 별점순 -->
+    <!-- 할인율 -->
       <section class="trending-product section" style="margin-top: 12px;">
         <div class="container">
             <div class="row">
                 <div class="col-12">
                     <div class="section-title">
-                        <h2><a href="#">신상품입니다.</a></h2>
+                        <h2><a href="productBest.do">마감 세일   <i class="lni lni-chevron-right" ></i></a></h2>
                     </div>
                 </div>
             </div>
             <div class="row">
-                 <c:forEach var="hv" items="${HomeList3}" varStatus="status" end="3">
-                <div class="col-lg-3 col-md-6 col-12">
+                 <c:forEach var="hv" items="${HomeList2}" varStatus="status" end="3">
+                  <div class="col-lg-3 col-md-6 col-12">
                     <!-- Start Single Product -->
                     <div class="single-product" style="border:none;">
                     <a href="${pageContext.request.contextPath}/productView.do?p_idx=${hv.p_idx}">
@@ -367,7 +375,9 @@ $(function() {
     
                             
                             <h4 class="title">
-                                <a href="${pageContext.request.contextPath}/seller_productDetail.do?p_idx=${hv.p_idx} ">
+
+                                <a href="${pageContext.request.contextPath}/productView.do?p_idx=${hv.p_idx} ">
+
                                 ${hv.p_name}</a>
                             </h4>
                             <ul class="review">
@@ -407,8 +417,10 @@ $(function() {
             <div class="row">
                 <div class="col-12">
                     <div class="section-title">
-                        <h2><a href="#">간식도둑 상품!</a></h2>
-                        <p>강의실 컴퓨터는 수시로 포맷을 진행하고 있습니다. 개인자료는 꼭 USB 또는 e-mail로 백업 해주세요.</p>
+
+                        <h2><a href="productBest.do">후기가 가장 많은 상품</a></h2>
+                        <p>최근 리뷰를 가장 많이 남겨주셨어요.</p>
+
                     </div>
                 </div>
             </div>
@@ -447,7 +459,7 @@ $(function() {
     
                             
                             <h4 class="title">
-                                <a href="${pageContext.request.contextPath}/seller_productDetail.do?p_idx=${hv.p_idx} ">
+                                <a href="${pageContext.request.contextPath}/productView.do?p_idx=${hv.p_idx} ">
                                 ${hv.p_name}</a>
                             </h4>
                             <ul class="review">
@@ -480,19 +492,21 @@ $(function() {
         </div>
     </section>
     
-    
+    <!-- 리뷰 갯수 -->
   <section class="trending-product section" style="margin-top: 12px;">
         <div class="container">
             <div class="row">
                 <div class="col-12">
                     <div class="section-title">
-                        <h2><a href="#">간식도둑 상품!</a></h2>
-                        <p>강의실 컴퓨터는 수시로 포맷을 진행하고 있습니다. 개인자료는 꼭 USB 또는 e-mail로 백업 해주세요.</p>
+
+                        <h2><a href="productBest.do">믿고 먹일 수 있는 간식</a></h2>
+                        <p>믿고 먹일 수 있어요!!</p>
+
                     </div>
                 </div>
             </div>
             <div class="row">
-                <c:forEach var="hv" items="${HomeList2}" varStatus="status" end="3">
+                <c:forEach var="hv" items="${HomeList3}" varStatus="status" end="3">
                 <div class="col-lg-3 col-md-6 col-12">
                     <!-- Start Single Product -->
                     <div class="single-product" style="border:none;">
@@ -524,9 +538,8 @@ $(function() {
 								</c:choose>
 							</span>
     
-                            
                             <h4 class="title">
-                                <a href="${pageContext.request.contextPath}/seller_productDetail.do?p_idx=${hv.p_idx} ">
+                                <a href="${pageContext.request.contextPath}/productView.do?p_idx=${hv.p_idx} ">
                                 ${hv.p_name}</a>
                             </h4>
                             <ul class="review">
@@ -557,7 +570,7 @@ $(function() {
                 </c:forEach>
             </div>
         </div>
-    </section>
+    </section style="margin-bottom:150px;">
 
 
 <!-- 푸터와 js************************************************ -->

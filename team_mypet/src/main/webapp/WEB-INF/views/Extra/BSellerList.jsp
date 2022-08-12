@@ -1,4 +1,3 @@
-
 <%@ page language="java" contentType="text/html; charset=UTF-8"  pageEncoding="UTF-8"%>
     <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
     
@@ -18,23 +17,19 @@
     height: 100%;
     object-fit: cover;
 }
-
 .bs_review li{
 display: inline-block;
 }
-
 .bs_review li i{
   color: #fecb00;
   font-size: 13px;
 }
-
 .bs_review li i span {
   display: inline-block;
   margin-left: 4px;
   color: #888;
   font-size: 13px;
 }
-
 #follow{
     background-color: rgb(255, 255, 255);
     min-width: 63px;
@@ -57,7 +52,6 @@ min-width: 80px;
     border-radius: 4px;
     margin-top:10px;
 }
-
 .p_img{
 font-size: 0;
     width: 168.25px;
@@ -67,10 +61,6 @@ font-size: 0;
     background-repeat: no-repeat;
     background-position: center;
 }
-
-
-
-
 </style>
 </head>
 <body>
@@ -104,7 +94,7 @@ font-size: 0;
                 <div class="col-12">
                     <div class="section-title">
                         <h2>인기작가</h2>
-                        <p>강의실 컴퓨터는 수시로 포맷을 진행하고 있습니다. 개인자료는 꼭 USB 또는 e-mail로 백업 해주세요.</p>
+                        <p></p>
                     </div>
                 </div>
             </div>
@@ -152,40 +142,17 @@ font-size: 0;
      
  <ul>
 
-    <li style="height:230px; position:relative;"> 
-     <div class="BSL_flex" style="display:flax; height:230px;">
- 
-      <div style="position:relative; top:50%; float:left; margin-left: 50px; width:96px; height: 96px; border-radius: 70%; overflow: hidden;">
-      		<img class="profile" src="${pageContext.request.contextPath}/resources/Extra/img/${bsv.seller_img}" alt="${bsv.m_nick}">
-      </div>
-      <div style="position:relative; top:50%; float:left; margin-left: 25px; font:14px;">
-	      <a style="color:black" href="${pageContext.request.contextPath}/BSellerView.do?seller_idx=${bsv.seller_idx}"><span class="category">${bsv.m_nick}</span></a>
-	      <br>
-	       <ul class="bs_review">
-	         <c:forEach begin="1" end="${bsv.seller_starsavg}">
-	            <li><i class="lni lni-star-filled"></i></li>
-	         </c:forEach>                  
-	         <c:forEach begin="1" end="${5-bsv.seller_starsavg}">
-	              <li><i class="lni lni-star"></i></li>
-	         </c:forEach>
-	              <li><span>${bsv.seller_starsavg}</span></li>
-	       </ul>
-	       <br>
-	       <a style="color:black" href="${pageContext.request.contextPath}/BSellerView.do?seller_idx=${bsv.seller_idx}">${bsv.seller_intro}</a>
-	       <br>
-	       <input type="button" id="follow" value="+ 팔로우">
-	       <a style="color:black" href="${pageContext.request.contextPath}/BSellerView.do?seller_idx=${bsv.seller_idx}">
-	       <input type="button" class="more" value="작품 더보기"></a>
-      </div>
+   
+     
      
     
     <c:forEach var="bsv" items="${BestSellerList}">
 	     <c:choose>
 	     <c:when test="${seller_idx ==bsv.seller_idx}">
 	      <li style="float:right;height:200px;width: 150px; position:relative; display: inline-block;"><a href="#">
-	      <div style="float:left;">
-	      <img src="${pageContext.request.contextPath}/resources/product/${bsv.p_sys_filename}" alt="해당사진">
-	      </div>
+		      <div style="float:left;">
+		      	<img src="${pageContext.request.contextPath}/resources/product/${bsv.p_sys_filename}" alt="해당사진">
+		      </div>
 	      </a>
 	      </li>
 	     </c:when>
@@ -197,7 +164,7 @@ font-size: 0;
      <div class="BSL_flex" style="display:flex; height:230px; width:80%;">
  
       <div style="position:relative; top:50%; float:left; margin-left: 50px; width:96px; height: 96px; border-radius: 70%; overflow: hidden;">
-      		<img class="profile" src="${pageContext.request.contextPath}/resources/Extra/img/${bsv.seller_img}" alt="${bsv.m_nick}">
+      		<img class="profile" src="${pageContext.request.contextPath}/resources/seller/${bsv.seller_img}" alt="${bsv.m_nick}">
       </div>
       <div style="position:relative; top:50%; float:left; margin-left: 25px; font:14px;">
 	      <a style="color:black" href="${pageContext.request.contextPath}/BSellerView.do?seller_idx=${bsv.seller_idx}"><span class="category">${bsv.m_nick}</span></a>
@@ -224,17 +191,7 @@ font-size: 0;
 	     </c:choose>
      </c:forEach>
      </ul>
-  <%--   
-    </div>
-   
-    <!-- </li> -->
-    </c:forEach>
- 
- <!-- </ul>   --> 
-    
-    
-           </div>
-        </div> --%>
+
     </section>
     
     
