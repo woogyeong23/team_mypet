@@ -112,7 +112,9 @@ $(function() {
                         <div class="hero-slider">
                             <!-- Start Single Slider -->
                             <a href="#">
-                            <div class="single-slider" style="height:370px;background-image: url(resources/assets/images/hero/rkstlrEVENT01.jpg);">
+
+                            <div class="single-slider" style="background-image: url(resources/assets/images/hero/event4.jpg);">
+
                                 
 <!--                                 <div class="content"> -->
                                   
@@ -133,7 +135,11 @@ $(function() {
                             <!-- Start Single Slider -->
                             <a href="#">
                             <div class="single-slider"
-                                style=" height:370px; background-image: url(resources/assets/images/hero/EventDetail_02.jpg);">
+
+
+
+                                style="background-image: url(resources/assets/images/hero/event2.jpg);">
+
 <!--                                 <div class="content"> -->
 <!--                                     <h2><span>ㄱㅇㅈㄱㅇㅈㅇㅈㅇㅈㅈㅇㅈㅈㅇㅈㅈㅇㅈㅈㅇㅇㅈㅇㅈㅇㅇㅈㅈㅇㅈㅈㅇ</span> -->
 <!--                                        ㄱㄴㄷㄷㄹㅇㅇㅇㅇㅇㅇㅇㅇ -->
@@ -172,6 +178,7 @@ $(function() {
             <div class="row">
                 <div class="col-12">
                     <div class="section-title">
+
                       <h2><a href="productNew.do">이제 막 나온 신상품  <i class="lni lni-chevron-right" ></i></a></h2>
                       <p>방금 출시되었어요!</p>
                     </div>
@@ -368,7 +375,9 @@ $(function() {
     
                             
                             <h4 class="title">
+
                                 <a href="${pageContext.request.contextPath}/productView.do?p_idx=${hv.p_idx} ">
+
                                 ${hv.p_name}</a>
                             </h4>
                             <ul class="review">
@@ -408,8 +417,10 @@ $(function() {
             <div class="row">
                 <div class="col-12">
                     <div class="section-title">
+
                         <h2><a href="productBest.do">후기가 가장 많은 상품</a></h2>
                         <p>최근 리뷰를 가장 많이 남겨주셨어요.</p>
+
                     </div>
                 </div>
             </div>
@@ -487,8 +498,10 @@ $(function() {
             <div class="row">
                 <div class="col-12">
                     <div class="section-title">
+
                         <h2><a href="productBest.do">믿고 먹일 수 있는 간식</a></h2>
                         <p>믿고 먹일 수 있어요!!</p>
+
                     </div>
                 </div>
             </div>
@@ -525,7 +538,6 @@ $(function() {
 								</c:choose>
 							</span>
     
-                            
                             <h4 class="title">
                                 <a href="${pageContext.request.contextPath}/productView.do?p_idx=${hv.p_idx} ">
                                 ${hv.p_name}</a>

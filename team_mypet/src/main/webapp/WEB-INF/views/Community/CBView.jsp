@@ -193,30 +193,30 @@ var targetID;
 		 });
   });
   
-  $("#likeCc").each(function(){
-		$(this).click(function(){
-			let midx = "${midx}";
-			let cc_idx = $(this).next().val();
+//   $("#likeCc").each(function(){
+// 		$(this).click(function(){
+// 			let midx = "${midx}";
+// 			let cc_idx = $(this).next().val();
 			
-			$.ajax({
-				type:'post',
-				url:"${pageContext.request.contextPath}/ccLike",
-				data: {"midx" : midx,
-					"cc_idx" : cc_idx},
+// 			$.ajax({
+// 				type:'post',
+// 				url:"${pageContext.request.contextPath}/ccLike",
+// 				data: {"midx" : midx,
+// 					"cc_idx" : cc_idx},
 					
-					success: function(data){
-						if(data == "Y") {
-							alert("해당 댓글에 '좋아요'를 표시하였습니다.");
-							location.reload();
-						}else{
-							alert("알수없는 오류로 인해 '좋아요'가 누락되었습니다.");
-						}
-					},
-					error : function(error){ alert(error); }	
-			});
+// 					success: function(data){
+// 						if(data == "Y") {
+// 							alert("해당 댓글에 '좋아요'를 표시하였습니다.");
+// 							location.reload();
+// 						}else{
+// 							alert("알수없는 오류로 인해 '좋아요'가 누락되었습니다.");
+// 						}
+// 					},
+// 					error : function(error){ alert(error); }	
+// 			});
 
-		});
-	});
+// 		});
+// 	});
   
   
 
@@ -612,10 +612,10 @@ button {
 <div class="CommentContent__wrap">
      <div class="CommentContent__header">
          <strong class="CommentContent__userName">${cl.cc_writer}</strong> 
-         <c:if test="${midx == cl.midx}">
-           <button id="ccDel" style="margin-left:90%; background-color:#dae1e6; width:19px; height:19px;"><i class="lni lni-close"></i></button>
-           <input type="hidden" name="cc_idx" value="${cl.cc_idx}">
-       </c:if>
+<%--          <c:if test="${midx == cl.midx}"> --%>
+<!--            <button id="ccDel" style="margin-left:90%; background-color:#dae1e6; width:19px; height:19px;"><i class="lni lni-close"></i></button> -->
+<%--            <input type="hidden" name="cc_idx" value="${cl.cc_idx}"> --%>
+<%--        </c:if> --%>
      </div>
      
 <p class="CommentContent__body">
@@ -650,15 +650,15 @@ button {
          <div class="CommentContent__wrap">
            <div class="CommentContent__header">
                     <strong class="CommentContent__userName">${cl.cc_writer}</strong>
-            <c:choose>
-         <c:when test="${midx == cl.midx}">
-           <button id="ccDel" style="margin-left:90%; background-color:#dae1e6; width:19px; height:19px;"><i class="lni lni-close"></i></button>
-           <input type="hidden" name="cc_idx" value="${cl.cc_idx}">
-         </c:when>
-         <c:otherwise>
+<%--             <c:choose> --%>
+<%--          <c:when test="${midx == cl.midx}"> --%>
+<!--            <button id="ccDel" style="margin-left:90%; background-color:#dae1e6; width:19px; height:19px;"><i class="lni lni-close"></i></button> -->
+<%--            <input type="hidden" name="cc_idx" value="${cl.cc_idx}"> --%>
+<%--          </c:when> --%>
+<%--          <c:otherwise> --%>
          
-         </c:otherwise>
-         </c:choose>
+<%--          </c:otherwise> --%>
+<%--          </c:choose> --%>
            </div>
                     <p class="CommentContent__body">
                     <span class="CommentContent__commentText">${cl.cc_content}</span>

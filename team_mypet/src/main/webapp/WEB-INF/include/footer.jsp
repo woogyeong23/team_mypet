@@ -11,8 +11,8 @@
                     <div class="row">
                         <div class="col-lg-3 col-md-4 col-12">
                             <div class="footer-logo">
-                                <a href="index.html">
-                                    <img src="resources/assets/images/logo/white-logo.svg" alt="#">
+                                <a href="${pageContext.request.contextPath}/admin.do">
+                                    <img src="resources/assets/images/logo/mypetLogo.png" alt="#">
                                 </a>
                             </div>
                         </div>
@@ -116,10 +116,6 @@
                                 <h3>마이펫 무통장 입금 계좌번호</h3>
                                 <ul>
                                     <li>국민은행 : 464801 - 01 - 061719</li>
-                                    <li>우리은행 : 1002 - 032 - 538269</li>
-                                    <li>하나은행 : 231 - 910094 - 22507</li>
-                                    <li>농협 : 084 - 12 - 135951</li>
-                                    <li>전북은행 :084 - 12 - 135951</li>
                                 </ul>
                             </div>
                             <!-- End Single Widget -->
