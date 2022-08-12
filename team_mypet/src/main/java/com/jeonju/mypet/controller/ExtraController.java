@@ -79,14 +79,14 @@ public class ExtraController {
 		   List<ReviewVo> aList = joeAjaxService.getAList(seller_idx);
 		   int BSRCount = joeAjaxService.getBSRCount(seller_idx);
 		   
-		   long midx = 0;
+		   int midx = 0;
 
 		   HttpSession session = request.getSession();
 		   
 		  
 			   if(session.getAttribute("midx") != null) {
-//				   midx = (int)session.getAttribute("midx");
-				   midx =  (long) session.getAttribute("midx");
+				   midx = (int)session.getAttribute("midx");
+//				   midx =  (long) session.getAttribute("midx");
 				   
 				   FollowVo followVo = new FollowVo();
 				   followVo.setMidx((int) midx);

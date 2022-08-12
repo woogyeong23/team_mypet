@@ -11,7 +11,7 @@
                     <div class="row">
                         <div class="col-lg-3 col-md-4 col-12">
                             <div class="footer-logo">
-                                <a href="index.html">
+                                <a href="${pageContext.request.contextPath}/admin.do">
                                     <img src="resources/assets/images/logo/white-logo.svg" alt="#">
                                 </a>
                             </div>
