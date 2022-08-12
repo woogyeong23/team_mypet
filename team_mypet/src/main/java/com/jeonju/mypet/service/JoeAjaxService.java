@@ -10,6 +10,7 @@ import org.springframework.stereotype.Service;
 import com.jeonju.mypet.dao.CommunityDao;
 import com.jeonju.mypet.dao.HomeDao;
 import com.jeonju.mypet.vo.Commu_CommentVo;
+import com.jeonju.mypet.vo.Commu_Comment_LikeVo;
 import com.jeonju.mypet.vo.CommunityVo;
 import com.jeonju.mypet.vo.Community_likeVo;
 import com.jeonju.mypet.vo.FollowVo;
@@ -143,6 +144,18 @@ public class JoeAjaxService {
 	
 	public Product_ImgVo getPI(ProductVo po) {
 		return commuDao.getPI(po);
+	}
+
+	public int DeleteCc(Commu_CommentVo commu_commentVo) {
+		return commuDao.DeleteCc(commu_commentVo);
+	}
+
+	public int LikeCc(Commu_Comment_LikeVo commu_comment_likeVo) {
+		return commuDao.LikeCc(commu_comment_likeVo);
+	}
+
+	public int plusCcLike(Commu_Comment_LikeVo commu_comment_likeVo) {
+		return commuDao.plusCcLike(commu_comment_likeVo);
 	}
 
 

@@ -320,6 +320,7 @@ $(document).ready(function(){
    					<c:set var="idx" value="${cart.cart_idx}" />
    					<div class="CartArtistItem" id="CartArtistItem${cart.cart_idx}" name="${cart.cart_idx}">
    					<div>
+<<<<<<< HEAD
    					<input type="hidden" name="p_price_input" id="" value="${cart.p_price}">
    					<input type="hidden" name="p_idx_input" value="${cart.p_idx}">
    					<input type="hidden" name="cart_idx_input" value="${cart.cart_idx}">   					
@@ -328,6 +329,15 @@ $(document).ready(function(){
    					<input type="hidden" name="p_content_input" value="${cart.p_content}">
    					<input type="hidden" name="cart_cnt_input" value="${cart.cart_cnt}">
    					<input type="hidden" name="total_price_input" value="${cart.p_price * cart.cart_cnt}">
+=======
+   					<input type="hidden" id="p_price_input" value="${cart.p_price}">
+   					<input type="hidden" id="p_idx_input" value="${cart.p_idx}">
+   					<input type="hidden" id="cart_idx_input" value="${cart.cart_idx}">   					
+   					<input type="hidden" id="midx_input" value="${cart.midx}">
+   					<input type="hidden" id="p_name_input" value="${cart.p_name}">
+<%--    					<input type="hidden" id="p_content_input" value="${cart.p_content}">
+ --%>   					<input type="hidden" id="cart_cnt_input" value="${cart.cart_cnt}">
+>>>>>>> branch 'master' of https://github.com/woogyeong23/team_mypet.git
    					</div>
    						<div class="CartArtistItem__header">
    						<label>

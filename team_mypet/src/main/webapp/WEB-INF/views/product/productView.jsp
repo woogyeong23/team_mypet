@@ -283,13 +283,15 @@ function cartAlert(result){
 .reviewb {
  display: flex;
   justify-content: space-between;
-  padding-top: 90px;
 }
 .v-line {
   border-left : thin solid #d3d3d3;
   height : 175px;
 }
 
+#cate {
+padding-bottom: 20px;
+}
 	
 </style>
 
@@ -307,6 +309,24 @@ function cartAlert(result){
 <section class="item-details section" style="padding-top: 10px;">
 	<div class="container">
 		<div class="top-area">
+			<span id="cate">
+				<c:choose>
+					<c:when test="${productView.p_category_idx == 1}">강아지 > 개껌</c:when>
+					<c:when test="${productView.p_category_idx == 2}">강아지 > 스낵</c:when>
+					<c:when test="${productView.p_category_idx == 3}">강아지 > 뼈/육포</c:when>
+					<c:when test="${productView.p_category_idx == 4}">강아지 > 스틱</c:when>
+					<c:when test="${productView.p_category_idx == 5}">강아지 > 프리미엄</c:when>
+					<c:when test="${productView.p_category_idx == 6}">강아지 > 통살</c:when>
+							       
+					<c:when test="${productView.p_category_idx == 7}">고양이 > 츄르</c:when>
+					<c:when test="${productView.p_category_idx == 8}">고양이 > 스낵</c:when>
+					<c:when test="${productView.p_category_idx == 9}">고양이 > 캣잎</c:when>
+					<c:when test="${productView.p_category_idx == 10}">고양이 > 통살</c:when>
+					<c:when test="${productView.p_category_idx == 11}">고양이 > 프리미엄</c:when>
+					<c:when test="${productView.p_category_idx == 12}">고양이 > 스틱</c:when>
+				</c:choose>
+			</span>
+					
 			<div class="row align-items-center">
 				<!-- 상품이미지 -->
 				<div class="col-lg-6 col-md-12 col-12">
@@ -350,13 +370,17 @@ function cartAlert(result){
               					<div class="col-lg-12">
                     				<div class="single-product" style="border: none; box-shadow: 0px 0px 0px; margin:0px 0px 0px; padding: 0px">
                        					<div class="product-info" style="padding: 0px">
-                            				<ul class="review" style="margin: 0px 0px 0px;">
-                                				<li><i class="lni lni-star-filled"></i></li>
-                                				<li><i class="lni lni-star-filled"></i></li>
-                                				<li><i class="lni lni-star-filled"></i></li>
-                               					<li><i class="lni lni-star-filled"></i></li>
-                                				<li><i class="lni lni-star"></i></li>
-                            				</ul>
+                            				<ul class="review">
+                               <c:forEach begin="1" end="${productView.avg_reviews_stars}" step="1">
+									<li><i class="lni lni-star-filled" style="font-size: 20px"></i></li>
+								</c:forEach>
+								<c:if test="${productView.avg_reviews_stars%5 > 0}">
+								   <li><i class="lni lni-star-half"></i></li>
+								</c:if>
+							   <c:forEach begin="1" end="${5-productView.avg_reviews_stars}" step="1">
+							      <li><i class="lni lni-star-empty"></i></li>
+							   </c:forEach>	
+							</ul>
                         				</div>
                     				</div> 
                 				</div>
@@ -438,7 +462,7 @@ function cartAlert(result){
 					<div class="col-lg-12 col-12">
 						<div class="info-body custom-responsive-margin">
 							<h4>상품상세정보</h4>
-							<p>${productView.p_content}</p>
+							<p align="center">${productView.p_content}</p>
 						</div>
 			
 
@@ -534,8 +558,20 @@ function cartAlert(result){
 								
 								</td>
 								<td style="height: 30px">
-								<span style="color: #99ccff; font-size: 20px">${ReviewVo.p_name}</span> <!-- 해당판매상품이름/상세페이지로링크 -->
-								<span style="font-size: 20px">별점${ReviewVo.review_stars}</span>
+								<span style="color: #99ccff; font-size: 25px; padding-right: 10px; padding-left: 10px">${ReviewVo.p_name}</span> <!-- 해당판매상품이름/상세페이지로링크 -->
+					
+								<ul class="review" style="float:right;">
+                               <c:forEach begin="1" end="${ReviewVo.avg_reviews_stars}" step="1">
+									<li style="display: inline-block;"><i class="lni lni-star-filled" style="color: #fecb00; font-size: 15px"></i></li>
+								</c:forEach>
+								<c:if test="${ReviewVo.avg_reviews_stars%5 > 0}">
+								   <li style="display: inline-block;"><i class="lni lni-star-half" style="color: #fecb00; font-size: 15px"></i></li>
+								</c:if>
+							   <c:forEach begin="1" end="${5-ReviewVo.avg_reviews_stars}" step="1">
+							      <li style="display: inline-block;"><i class="lni lni-star-empty" style="color: #fecb00; font-size: 15px"></i></li>
+							   </c:forEach>	
+								</ul>
+								
 								</td>
 								</tr>
 								

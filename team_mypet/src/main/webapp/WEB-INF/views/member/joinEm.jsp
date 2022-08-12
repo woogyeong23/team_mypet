@@ -16,7 +16,10 @@
 	
 	
 			
+<<<<<<< HEAD
 		
+=======
+>>>>>>> branch 'master' of https://github.com/woogyeong23/team_mypet.git
 		
 		//비밀번호 확인
 		$(document).ready(function(){
@@ -151,7 +154,7 @@
 <main class="form-signin">
 <form name="joinForm" action="${pageContext.request.contextPath}/joinProcess.do" method="post">
   	<a href="${pageContext.request.contextPath}/home.do">
-    <img class="mb-4" src="resources/assets/images/DC.png" alt="" width="300" height="200" >
+    <img class="mb-4" src="resources/assets/images/logo/mypetLogo.png" alt="" width="300" height="200" >
     </a>
     <h1 class="h3 mb-3 fw-normal" style="text-align:center">회원가입</h1>
 <div>

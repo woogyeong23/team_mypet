@@ -15,18 +15,36 @@
 <!-- 헤더와 네비************************************************ -->
     <jsp:include page="../../include/header.jsp" />  
 <!-- ******************************************************** -->
+    <div class="breadcrumbs">
+        <div class="container">
+            <div class="row align-items-center">
+                <div class="col-lg-6 col-md-6 col-12">
+                    <div class="breadcrumbs-content">
+                        <h1 class="page-title">인기상품</h1>
+                    </div>
+                </div>
+                <div class="col-lg-6 col-md-6 col-12">
+                    <ul class="breadcrumb-nav">
+                        <li><a href="${pageContext.request.contextPath}/home.do"><i class="lni lni-home"></i> Home</a></li>
+                        <li><a href="#">인기상품</a></li>
+<!--                         <li>Single Product</li> -->
+                    </ul>
+                </div>
+            </div>
+        </div>
+    </div>
 
 <section class="trending-product section" style="margin-top: 12px;">
     <div class="container">
     
     <!-- 홈 > 최신순 링크  -->
-    		<nav style="--bs-breadcrumb-divider: url(&#34;data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='8' height='8'%3E%3Cpath d='M2.5 0L1 1.5 3.5 4 1 6.5 2.5 8l4-4-4-4z' fill='currentColor'/%3E%3C/svg%3E&#34;);" aria-label="breadcrumb">
-  				<ol class="breadcrumb" style="font-size: 15px">
-  					 <li class="breadcrumb-item"><a href="${pageContext.request.contextPath}/home.do">홈</a></li>
-   					 <li class="breadcrumb-item active" aria-current="page"><a href="${pageContext.request.contextPath}/productBest.do">인기상품</a></li>	 
+<!--     		<nav style="--bs-breadcrumb-divider: url(&#34;data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='8' height='8'%3E%3Cpath d='M2.5 0L1 1.5 3.5 4 1 6.5 2.5 8l4-4-4-4z' fill='currentColor'/%3E%3C/svg%3E&#34;);" aria-label="breadcrumb"> -->
+<!--   				<ol class="breadcrumb" style="font-size: 15px"> -->
+<%--   					 <li class="breadcrumb-item"><a href="${pageContext.request.contextPath}/home.do">홈</a></li> --%>
+<%--    					 <li class="breadcrumb-item active" aria-current="page"><a href="${pageContext.request.contextPath}/productBest.do">인기상품</a></li>	  --%>
   					 
-   				</ol>
-			</nav>
+<!--    				</ol> -->
+<!-- 			</nav> -->
 		<!-- 홈 > 최신순 링크 끝 -->
     
 	<div class="row">
@@ -47,12 +65,16 @@
                                 <span>${productVo.p_price}원</span>
                             </div>
                             <ul class="review">
-                                <li><i class="lni lni-star-filled"></i></li>
-                                <li><i class="lni lni-star-filled"></i></li>
-                                <li><i class="lni lni-star-filled"></i></li>
-                                <li><i class="lni lni-star-filled"></i></li>
-                                <li><i class="lni lni-star"></i></li>
-                            </ul>
+                               <c:forEach begin="1" end="${productVo.avg_reviews_stars}" step="1">
+									<li><i class="lni lni-star-filled"></i></li>
+								</c:forEach>
+								<c:if test="${productVo.avg_reviews_stars%5 > 0}">
+								   <li><i class="lni lni-star-half"></i></li>
+								</c:if>
+							   <c:forEach begin="1" end="${5-productVo.avg_reviews_stars}" step="1">
+							      <li><i class="lni lni-star-empty"></i></li>
+							   </c:forEach>	
+							</ul>
                         </div>
                     </div> 
                 </div>
