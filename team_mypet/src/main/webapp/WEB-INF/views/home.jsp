@@ -112,7 +112,7 @@ $(function() {
                         <div class="hero-slider">
                             <!-- Start Single Slider -->
                             <a href="#">
-                            <div class="single-slider" style="background-image: url(resources/assets/images/hero/rkstlrEVENT01.jpg);">
+                            <div class="single-slider" style="background-image: url(resources/assets/images/hero/event4.jpg);">
                                 
 <!--                                 <div class="content"> -->
                                   
@@ -133,7 +133,7 @@ $(function() {
                             <!-- Start Single Slider -->
                             <a href="#">
                             <div class="single-slider"
-                                style="background-image: url(resources/assets/images/hero/EventDetail_02.jpg);">
+                                style="background-image: url(resources/assets/images/hero/event2.jpg);">
 <!--                                 <div class="content"> -->
 <!--                                     <h2><span>ㄱㅇㅈㄱㅇㅈㅇㅈㅇㅈㅈㅇㅈㅈㅇㅈㅈㅇㅈㅈㅇㅇㅈㅇㅈㅇㅇㅈㅈㅇㅈㅈㅇ</span> -->
 <!--                                        ㄱㄴㄷㄷㄹㅇㅇㅇㅇㅇㅇㅇㅇ -->
@@ -172,7 +172,7 @@ $(function() {
                 <div class="col-12">
                     <div class="section-title">
                       <h2><a href="#">지금 가장 핫한 간식&nbsp; <i class="lni lni-chevron-right" ></i></a></h2>
-                      <p>adfsafasfsdfsdfasdf</p>
+                      <p></p>
                     </div>
                 </div>
             </div>
@@ -211,7 +211,7 @@ $(function() {
     
                             
                             <h4 class="title">
-                                <a href="${pageContext.request.contextPath}/seller_productDetail.do?p_idx=${hv.p_idx} ">
+                                <a href="${pageContext.request.contextPath}/productView.do?p_idx=${hv.p_idx} ">
                                 ${hv.p_name}</a>
                             </h4>
                             <ul class="review">
@@ -288,7 +288,7 @@ $(function() {
     
                             
                             <h4 class="title">
-                                <a href="${pageContext.request.contextPath}/seller_productDetail.do?p_idx=${hv.p_idx} ">
+                                <a href="${pageContext.request.contextPath}/productView.do?p_idx=${hv.p_idx} ">
                                 ${hv.p_name}</a>
                             </h4>
                             <ul class="review">
@@ -367,7 +367,7 @@ $(function() {
     
                             
                             <h4 class="title">
-                                <a href="${pageContext.request.contextPath}/seller_productDetail.do?p_idx=${hv.p_idx} ">
+                                <a href="${pageContext.request.contextPath}/productView?p_idx=${hv.p_idx} ">
                                 ${hv.p_name}</a>
                             </h4>
                             <ul class="review">
@@ -408,7 +408,7 @@ $(function() {
                 <div class="col-12">
                     <div class="section-title">
                         <h2><a href="#">간식도둑 상품!</a></h2>
-                        <p>강의실 컴퓨터는 수시로 포맷을 진행하고 있습니다. 개인자료는 꼭 USB 또는 e-mail로 백업 해주세요.</p>
+                        <p></p>
                     </div>
                 </div>
             </div>
@@ -447,7 +447,7 @@ $(function() {
     
                             
                             <h4 class="title">
-                                <a href="${pageContext.request.contextPath}/seller_productDetail.do?p_idx=${hv.p_idx} ">
+                                <a href="${pageContext.request.contextPath}/productView.do?p_idx=${hv.p_idx} ">
                                 ${hv.p_name}</a>
                             </h4>
                             <ul class="review">
@@ -487,7 +487,7 @@ $(function() {
                 <div class="col-12">
                     <div class="section-title">
                         <h2><a href="#">간식도둑 상품!</a></h2>
-                        <p>강의실 컴퓨터는 수시로 포맷을 진행하고 있습니다. 개인자료는 꼭 USB 또는 e-mail로 백업 해주세요.</p>
+                        <p></p>
                     </div>
                 </div>
             </div>
@@ -524,9 +524,8 @@ $(function() {
 								</c:choose>
 							</span>
     
-                            
                             <h4 class="title">
-                                <a href="${pageContext.request.contextPath}/seller_productDetail.do?p_idx=${hv.p_idx} ">
+                                <a href="${pageContext.request.contextPath}/productView.do?p_idx=${hv.p_idx} ">
                                 ${hv.p_name}</a>
                             </h4>
                             <ul class="review">

@@ -176,7 +176,7 @@
                                 <!-- /판매자 전용 버튼 -->
                                 
                                   <div class="cart-items">
-                                    <a href="javascript:void(0)" class="main-btn">
+                                    <a href="${pageContext.request.contextPath}/membercart.do" class="main-btn">
                                         <i class="lni lni-cart"></i>
                                 
                                 

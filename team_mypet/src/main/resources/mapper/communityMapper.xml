@@ -109,7 +109,7 @@ SELECT m_nick, s.seller_idx AS seller_idx, seller_img, seller_intro, seller_star
     <select id="getBSellerView" resultType="sellerStoryVo">
     SELECT seller_idx, seller_img, seller_intro, seller_openday, 
     seller_starsavg, seller_total, seller_wishcnt, seller_ordercnt, seller_followcnt,
-    m_profile,m_nick 
+    m_profile,m_nick , seller_img
     FROM sellerstory INNER JOIN members ON members.midx = sellerstory.midx 
     WHERE seller_idx = #{seller_idx}
     </select>

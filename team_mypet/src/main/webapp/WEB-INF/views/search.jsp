@@ -105,7 +105,7 @@ transform: translate(-50%,-50%);
 
                     
                     <h4 class="title">
-                        <a href="${pageContext.request.contextPath}/seller_productDetail.do?p_idx=${sv.p_idx} ">
+                        <a href="${pageContext.request.contextPath}/productView.do?p_idx=${sv.p_idx} ">
                         ${sv.p_name}</a>
                     </h4>
                     <ul class="review">

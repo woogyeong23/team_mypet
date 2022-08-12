@@ -16,39 +16,6 @@
 	
 	
 			
-			$("#m_nick").blur(function(){
-				
-				let m_nick = $("#m_nick").val();
-				
-				if(m_nick == "" || m_nick.length < 2 || m_nick.length > 9){
-					$(".successNickChk").text("이름은 2자 이상 8자 이하로 설정해주세요 :)");
-						$(".successNickChk").css("color","red");
-						$(".nickChk").val(false);
-						return;
-
-				}else{
-				$.ajax({
-					type:'post',
-					url:"${pageContext.request.contextPath}/checknick.do",
-					data: {"m_nick":m_nick},
-					success: function(data){
-						if(data == "Y"){
-							result = "사용 가능한 닉네임입니다.";
-							$(".successNickChk").text(result).css("color", "green");
-							$(".nickChk").val(true);
-							$("#m_phone").trigger("focus");
-						}else{
-							result = "이미 사용중인 닉네임입니다.";
-							$(".successNickChk").html(result).css("color", "red");
-							$(".nickChk").val(false);
-							$("#m_nick").val("").trigger("focus");
-						}
-					},
-					error: function(error){alert(error);}
-				});
-				}
-			}	);
-			
 		
 		//비밀번호 확인
 		$(document).ready(function(){
@@ -67,7 +34,6 @@
 			 	}else{
 					result = "비밀번호가 일치 합니다.";
 				  	$('.successPwChk2').html(result).css("color","green");
-			  		$("#m_id").val("").trigger("focus");
 			  		$(".pwChk").val(true);
 			 	}return;
 			});
