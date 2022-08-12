@@ -11,11 +11,90 @@
 <script type="text/javascript">
 
 $(document).ready(function(){
-	
+
 		itemTotal();
-	
+		$(".NumberCounter__input").on("change", function(){
+			let cart_idx = $(this).attr("name");
+			
+			
+		});
 
+		//온체인지수량 
 
+		function itemTotal(ths){
+			 console.log("수량들어옴?");
+			let itemPrice = $('input[name="p_price_input"]');
+			let itemPV = $(itemPrice).val();
+			//수량
+			let cnt = $('input[name="cart_cnt_input"]');
+			//cart_idx
+			let cart_idx = $('input[name="cart_idx_input"]').val();
+			//개당가격란
+			let totalPrice_span = "#totalPrice_span"+cart_idx;
+			//길이
+			let length = itemPrice.length;
+			//가격
+			let CartArtistItem__Price = "#CartArtistItem__Price"+cart_idx;
+			
+			//수량
+			let NumberCounter__input = "#NumberCounter__input"+cart_idx;
+			let NCIV = $(NumberCounter__input).val();
+			//아이템
+			let CAI = "#CartArtistItem"+cart_idx;
+			let delivery_price = "#delivery_price"+cart_idx;
+			//상품하나의 가격
+			let tpi = $('input[name="total_price_input"]');
+			let price = 0;
+			let sumd = 0;
+			let totalPrice = 0;
+			let totalPoint = 0;
+			let deliveryPrice = 0;
+			let finalTotalPrice = 0;
+			
+	 		$(CAI).each(function(index, element){
+	 			
+	 					// 총 가격
+	  			totalPrice += parseInt($(element).find(itemPrice).val()) * parseInt($(element).find(NumberCounter__input).val());
+// 	 			totalPrice += parseInt($(element).find(tpi).val());
+	 			console.log("상품가격:"+totalPrice);
+	 					// 총 마일리지
+				totalPoint += totalPrice * 0.05;
+	 			
+	 		});
+			
+			
+			/* 배송비 결정 */
+			if(totalPrice >= 30000){
+				deliveryPrice = 0;
+			} else if(totalPrice == 0){
+				deliveryPrice = 0;
+			} else {
+				deliveryPrice = 3000;	
+			}
+			finalTotalPrice = totalPrice + deliveryPrice;
+			totalPoint += finalTotalPrice * 0.01;
+			let sumtotalPrice = new Intl.NumberFormat('ko-KR', { style: 'currency', currency: 'KRW' }).format(totalPrice);
+			let sumdeliveryPrice = new Intl.NumberFormat('ko-KR', { style: 'currency', currency: 'KRW' }).format(deliveryPrice);
+			let sumfinalTotalPrice = new Intl.NumberFormat('ko-KR', { style: 'currency', currency: 'KRW' }).format(finalTotalPrice);
+
+			
+// 			$(totalPrice_span).text(price);
+
+			// 총 가격
+			console.log("배달비"+deliveryPrice);
+			console.log("총가격:"+totalPrice);
+			//개당
+ 			//총 가격
+			$("#totalPrice").text(totalPrice);
+ 			// 총 마일리지
+	 		$("#totalPoint_span").text(totalPoint);
+			// 배송비
+			$("#delivery_Price").text(sumdeliveryPrice);	
+ 			// 최종 가격(총 가격 + 배송비)
+			$("#finalTotalPrice_span").text(sumfinalTotalPrice);
+			
+			
+		}
 
 		let salePrice = "${cartVo.p_price - (cartVo.p_price*cartVo.p_discount)}";
 		let point = salePrice*0.05;
@@ -69,6 +148,7 @@ $(document).ready(function(){
 			success:function(data){
 				if(data =="Y"){
 					console.log("minus");
+					itemTotal();
 
 				}else{
 					console.log("minus x");
@@ -94,6 +174,8 @@ $(document).ready(function(){
 			success:function(data){
 				if(data == "Y"){
 					console.log("plus");
+					itemTotal();
+
 				}else{
 					console.log("plus x");
 
@@ -152,87 +234,6 @@ $(document).ready(function(){
 		chk_arr.push(chk);
 	});
 	
-	//온체인지수량 
-	function itemTotal(ths){
-		 console.log("수량들어옴?");
-		let itemPrice = $('input[name="p_price_input"]');
-		let itemPV = $(itemPrice).val();
-		//수량
-		let cnt = $('input[name="cart_cnt_input"]');
-		//cart_idx
-		let cart_idx = $('input[name="cart_idx_input"]').val();
-		//개당가격란
-		let totalPrice_span = "#totalPrice_span"+cart_idx;
-		//길이
-		let length = itemPrice.length;
-		//가격
-		let CartArtistItem__Price = "#CartArtistItem__Price"+cart_idx;
-		//수량
-		let NumberCounter__input = "#NumberCounter__input"+cart_idx;
-		let NCIV = $(NumberCounter__input).val();
-		//아이템
-		let CAI = "#CartArtistItem"+cart_idx;
-		let delivery_price = "#delivery_price"+cart_idx;
-		//상품하나의 가격
-		let sum = 0;
-		let price = 0;
-		let sumd = 0;
-		let totalPrice = 0;
-		let totalPoint = 0;
-		let deliveryPrice = 0;
-		let finalTotalPrice = 0;
-		
-// 		$(CAI).each(function(index, element){
-// 					// 총 가격
-//  			sum += parseInt($(element).find(itemPrice).val()) * parseInt($(element).find(NumberCounter__input).val());
-					
-// 					// 총 마일리지
-
-// 		});
-		
-		for(let i=0;i<length;++i){
- 			sum = itemPrice[i].value * cnt[i].value;
-			//총가격 i값을 다 돌려서
-			price = sum;
-			totalPrice += itemPrice[i].value * cnt[i].value;
-			console.log("판매자의 상품가격:"+sum);
-
-			
-
-		}
-		/* 배송비 결정 */
-		if(totalPrice >= 30000){
-			deliveryPrice = 0;
-		} else if(totalPrice == 0){
-			deliveryPrice = 0;
-		} else {
-			deliveryPrice = 3000;	
-		}
-		finalTotalPrice = totalPrice + deliveryPrice;
-		totalPoint += finalTotalPrice * 0.01;
-		let summ = new Intl.NumberFormat('ko-KR', { style: 'currency', currency: 'KRW' }).format(sum);
-		let sumtotalPrice = new Intl.NumberFormat('ko-KR', { style: 'currency', currency: 'KRW' }).format(totalPrice);
-		let sumdeliveryPrice = new Intl.NumberFormat('ko-KR', { style: 'currency', currency: 'KRW' }).format(deliveryPrice);
-		let sumfinalTotalPrice = new Intl.NumberFormat('ko-KR', { style: 'currency', currency: 'KRW' }).format(finalTotalPrice);
-
-		
-
-		// 총 가격
-		console.log("배달비"+deliveryPrice);
-		console.log("총가격:"+totalPrice);
-		//개당
-		$(totalPrice_span).text(price);
-		//총 가격
-		$("#totalPrice").text(sumtotalPrice);
-		// 총 마일리지
- 		$("#totalPoint_span").text(totalPoint);
-		// 배송비
-		$("#delivery_Price").text(sumdeliveryPrice);	
-		// 최종 가격(총 가격 + 배송비)
-		$("#finalTotalPrice_span").text(sumfinalTotalPrice);
-		
-				
-	}
 });
 
 </script>
@@ -292,9 +293,6 @@ $(document).ready(function(){
 <main class="content">
 <input type="hidden" name="midx" value="${midx}">
 
-
-
-
 <aside>
 		<div class="CartPage">
       		<div class="PageHeader"> 
@@ -322,13 +320,14 @@ $(document).ready(function(){
    					<c:set var="idx" value="${cart.cart_idx}" />
    					<div class="CartArtistItem" id="CartArtistItem${cart.cart_idx}" name="${cart.cart_idx}">
    					<div>
-   					<input type="hidden" name="p_price_input" value="${cart.p_price}">
+   					<input type="hidden" name="p_price_input" id="" value="${cart.p_price}">
    					<input type="hidden" name="p_idx_input" value="${cart.p_idx}">
    					<input type="hidden" name="cart_idx_input" value="${cart.cart_idx}">   					
    					<input type="hidden" name="midx_input" value="${cart.midx}">
    					<input type="hidden" name="p_name_input" value="${cart.p_name}">
    					<input type="hidden" name="p_content_input" value="${cart.p_content}">
    					<input type="hidden" name="cart_cnt_input" value="${cart.cart_cnt}">
+   					<input type="hidden" name="total_price_input" value="${cart.p_price * cart.cart_cnt}">
    					</div>
    						<div class="CartArtistItem__header">
    						<label>
@@ -368,15 +367,15 @@ $(document).ready(function(){
    																<em class="CartOptionListItem__optionText"></em>
    																	<div class="CartOptionListItem__counter">
    																		<label class="NumberCounter">											
-   																			<button type="button" id="NumberCounter__minus${cart.cart_idx}" name="${cart.cart_idx}" class="NumberCounter__minus"  data-cart_idx="${cart.cart_idx}" >-</button>
+   																			<button type="button" id="NumberCounter__minus${cart.cart_idx}" name="${cart.cart_idx}" class="NumberCounter__minus" value="m" data-cart_idx="${cart.cart_idx}" >-</button>
    																			<input  type="text" name="cart_cnt" id="NumberCounter__input${cart.cart_idx}" class="NumberCounter__input" value="${cart.cart_cnt}" readonly="readonly" onchange="itemTotal(this)">
-   																			<button type="button" id="NumberCounter__plus${cart.cart_idx}" name="${cart.cart_idx}" class="NumberCounter__plus"  data-cart_idx="${cart.cart_idx}" >+</button>   						
+   																			<button type="button" id="NumberCounter__plus${cart.cart_idx}" name="${cart.cart_idx}" class="NumberCounter__plus" value="p" data-cart_idx="${cart.cart_idx}" >+</button>   						
    																		</label>
    																	</div>
    															</div>
    														
    															<div class="CartOptionListItem__splitRight"  >
-   																<em class="CartOptionListItem__totalPrice" id="CartArtistItem__Price${cart.cart_idx}"name="${cart.cart_idx}" >개당 금액:<fmt:formatNumber pattern="###,###,###" value="${cart.p_price}"/></em> <!-- 상품가격 -->
+   																<em class="CartOptionListItem__totalPrice" id="CartArtistItem__Price${cart.cart_idx}" name="${cart.p_price}">개당 금액:<fmt:formatNumber pattern="###,###,###" value="${cart.p_price}"/></em> <!-- 상품가격 -->
    																
    																<div class="CartOptionListItem__btnGroup">
    																	<div class="CartOptionEditingButtonGroup">
@@ -401,8 +400,9 @@ $(document).ready(function(){
    								<div class="CartArtistItem__label">
    								작품 가격
    								</div>
-   								<div class="CartArtistItem__price" id="totalPrice_span${cart.cart_idx}" >
-									<fmt:formatNumber pattern="###,###,### 원" value="" />
+   								<div class="CartArtistItem__price" id="totalPrice_span${cart.cart_idx}">
+									<fmt:formatNumber pattern="###,###,### 원" value="${cart.p_price * cart.cart_cnt}" />  
+									
    								 <!-- 작품 가격 -->
 	   							</div>
    							</section>
@@ -410,7 +410,7 @@ $(document).ready(function(){
    								<div class="CartArtistItem__label">
    								배송비
    								</div>
-   								<div class="CartArtistItem__price" id="delivery_price${cart.cart_idx}" name="${cart.cart_idx}">
+   								<div class="CartArtistItem__price" id="delivery_price${cart.cart_idx}">
 
    								<!-- 배송비 -->
 	   							</div>

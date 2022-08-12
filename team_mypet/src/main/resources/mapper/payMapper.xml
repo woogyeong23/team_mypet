@@ -3,6 +3,9 @@
   "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 
 <mapper namespace = "com.jeonju.mypet.admin">
+<select id="">
+select * from orders a left outer join detail b on a.orders_idx = b.orders_idx left outer join product c on b.p_idx = c.p_idx left outer join cart d on c.p_idx = d.p_idx where a.midx=#{midx} ;
 
+</select>
 
 </mapper>

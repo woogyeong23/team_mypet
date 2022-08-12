@@ -142,7 +142,6 @@ public class CartVo {
 	public int getPoint() {
 		return Point;
 	}
-	
 	public int getSalePrice() {
 		return salePrice;
 	}
@@ -162,7 +161,7 @@ public class CartVo {
 				"totalPrice="+totalPrice+"]";
 	}
 	
-	
+	 
 	
 	
 	

@@ -13,6 +13,9 @@ public class DetailVo {
 	private int fixprice;
 	private String p_name;
 	private String fixdvprice;
+	private List<OrdersVo> orders;
+	
+	
 	
 	public String getFixdvprice() {
 		return fixdvprice;
@@ -90,5 +93,23 @@ public class DetailVo {
 	public void setFixprice(int fixprice) {
 		this.fixprice = fixprice;
 	}
+	
+	public List<OrdersVo> getOrders() {
+		return orders;
+	}
+
+	public void setOrders(List<OrdersVo> orders) {
+		this.orders = orders;
+	}
+
+	@Override
+	public String toString() {
+		return "OrderPageDTO [orders=" + orders + "]";
+	}
+	
+	
+	
+	
+	
 	
 }

@@ -2,22 +2,18 @@
     pageEncoding="UTF-8"%>
     <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
     <!DOCTYPE html> 
+    <html>
   <head>
 
  <!-- css************************************************ -->
     <jsp:include page="../../include/head.jsp" />  
 <!-- ************************************************ -->
-<!-- css************************************************ -->
-    <jsp:include page="../../include/pay.jsp" />  
-<!-- ************************************************ -->
-
-    <!-- Bootstrap core CSS -->
-    
-    <!-- Custom styles for this template -->
-    <link href="resources/assets/css/sidebar.css" rel="stylesheet">
-   <style>
+<style>
 html, body{
-height: 100%
+    height: 100%;
+    min-height: 100%;
+    width: 100%;
+
 }
 
 #wrap {
@@ -33,16 +29,19 @@ transform:translatY(-100%);
 
 
 </style>
-  </head>
-  <body>
 
+    <!-- Bootstrap core CSS -->
+    
+    <link href="resources/assets/css/pay.css" rel="stylesheet">
+
+  </head>
+<body>
+<div id="wrap">
     <!-- 헤더와 js************************************************ -->
     <jsp:include page="../../include/header.jsp" />  
 	<!-- ************************************************ -->
-	
-	<div id="wrap">
-<main style="padding-bottom : 0px;">
-<aside class="container">
+
+<div class="content">
 	<form class="form-payment">
 		<div class="inner-w800" style="width:800px;">
 		<div class="title-style clf">
@@ -66,7 +65,7 @@ transform:translatY(-100%);
    				<div class="segment--nospacing">
    					<div class="ui_title--sub tab">
    						<span class="ui_title__txt">주문 고객</span>
-			   			<span class="ui_title__txtright--blue user-info-header-right-text">id _ phone</span>
+			   			<span class="ui_title__txtright--blue user-info-header-right-text">${m_name}</span>
    					</div>
    				</div>
    				<div class="segment--nospacing">
@@ -85,7 +84,7 @@ transform:translatY(-100%);
 				   				</div>
    								<div class="address-info body">
    									<div class="input-text">
-   										<input type="text">
+   										<input type="text" name="orders_name" value="">
    									</div>
    								</div>
    							</div>
@@ -96,7 +95,7 @@ transform:translatY(-100%);
    								</div>
    								<div class="address-info body">
    									<div class="input-text">
-   										<input type="text">
+   										<input type="text" name="orders_phone" value="" >
    									</div>
    								</div>
    							</div>
@@ -118,12 +117,12 @@ transform:translatY(-100%);
    									</div>
    									<div class="address-ui row">
                  			   			<div class="input-text address-address1">
-                        					<input data-address="delivery_address1" type="text" value="" placeholder="기본 주소" required="" autocomplete="off" readonly="">
+                        					<input data-address="delivery_address1" type="text" name="orders_addr" value="" placeholder="기본 주소" required="" autocomplete="off" readonly="">
                     					</div>
                 					</div>
    									<div class="address-ui row">
                    						<div class="input-text address-address2">
-                       						<input data-address="delivery_address2" type="text" name="delivery_address2" value="" autocomplete="off" placeholder="나머지 주소">
+                       						<input data-address="delivery_address2" type="text" name="orders_detailaddr" value="" autocomplete="off" placeholder="나머지 주소">
                     					</div>
                 					</div>
    								</div>		
@@ -137,18 +136,24 @@ transform:translatY(-100%);
    				
    			</section>
    			<section>
-   			<div class="final-cost ui_sticky absolute" style="top: auto;" data-state="active">
+   			<div class="final-cost ui_sticky" style="top: auto;" data-ui="sticky">
    				<h3 class="table-header">결제 정보</h3>
    				<div class="segment">
    					<table>
    						<tbody>
    							<tr>
    								<th>제품 금액</th>
-   								<td></td>
+   								<td>
+   								<span id="total_Price"></span>
+   								<em>원</em>   								
+   								</td>
    							</tr>
    							<tr>
    								<th>배송비</th>
-   								<td></td>
+   								<td>
+   								<span id="total_Point"></span>
+   								<em>원</em>
+   								</td>
    							</tr>
    						</tbody>
    					</table>
@@ -157,7 +162,7 @@ transform:translatY(-100%);
    							<tr class="total">
    								<th>최종 결제 금액</th>
    								<td class="hilight">
-   								<span></span>
+   								<span id="final_Price"></span>
    								<em>원</em>
    								</td>
    							</tr>
@@ -174,11 +179,12 @@ transform:translatY(-100%);
    						<div class="segment--nospacing scroll-detector" style="top: 500px; bottom: 69px;">
    							<div class="mfixed">
    								<button class="ui_btn--red--large">
-   									<span>2,123,123</span>
+   									<span id="final_Price"></span>
+   									<em>원</em>
    									<span>결제하기</span>
    									<p class="point" style="display: block;">예상적립금
-   									<em>212</em>
-   									p
+   									<span id="total_Point"></span>
+   									<em>P</em>
    									</p>
    								</button>
    							</div>
@@ -191,11 +197,9 @@ transform:translatY(-100%);
    			</div>
    		</div>
 	</form>
-
-</aside>
-</main>
-
 </div>
+</div>
+
 
 <!-- 푸터와 js************************************************ -->
     <jsp:include page="../../include/footer.jsp" />  

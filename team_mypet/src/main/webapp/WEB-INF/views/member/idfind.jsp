@@ -26,8 +26,8 @@
     					$(".id_finded").html("등록되어 있지 않은 이름입니다.").css("color","red");
 
     				}else{
-    					$alert(data);
-    					$(".#id_finded").text(data).css("color","green");
+    					result="아이디는 :"+data+"입니다.";
+    					$(".id_finded").text(result).css("color","green");
 
     				}
     					
