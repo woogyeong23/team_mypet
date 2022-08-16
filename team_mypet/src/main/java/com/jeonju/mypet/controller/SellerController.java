@@ -43,8 +43,8 @@ public class SellerController {
 		this.sellerService = sellerService;
 	}
 	
-	
-	@GetMapping("/seller_productList.do")
+	@RequestMapping(value="/seller_productList.do", method = {RequestMethod.GET, RequestMethod.POST})
+
 	public String seller_productList(String searching, 
 			String keyword, String sorting, String status, String category,
 			Model model, HttpServletRequest request) {
@@ -82,8 +82,7 @@ public class SellerController {
 		
 		return "seller/seller_productList";
 	}
-	
-	@GetMapping("/seller_productDetail.do")
+	@RequestMapping(value="/seller_productDetail.do", method = {RequestMethod.GET, RequestMethod.POST})
 	public String seller_productDetail( @RequestParam("p_idx") String p_idx, Model model, HttpServletRequest request) {
 		//@RequestParam("p_idx") String p_idx,
 		
@@ -103,6 +102,34 @@ public class SellerController {
 		
 		return "seller/seller_productDetail";
 	}
+	
+	@RequestMapping(value="/seller_productModif.do", method = {RequestMethod.GET, RequestMethod.POST})
+	public String seller_productModif(MultipartHttpServletRequest mRequest,
+			 @RequestParam("p_idx") String p_idx,
+			Model model, HttpServletRequest request
+			) throws IllegalStateException, IOException{
+				
+
+		System.out.println("여기는 상품수정");
+		ProductVo productVo = sellerService.seller_productDetail(p_idx);
+		
+		List<Product_ImgVo> productImgList = sellerService.seller_productImgs(p_idx);
+		productVo.setProduct_imgs(productImgList);
+		
+		 for (Product_ImgVo a : productImgList) {
+	            String p_sys_fileName = a.getP_sys_filename();
+	            System.out.println(p_sys_fileName+"~~");
+		 }
+		model.addAttribute("productImgList", productImgList);
+		model.addAttribute("productVo", productVo);
+					  
+				
+				
+		return "seller/seller_productModif";
+	}
+	
+	
+	
 	
 	@GetMapping("/seller_productRegist.do")
 	public String loginProcess(Model model, HttpServletRequest request) {
@@ -125,24 +152,6 @@ public class SellerController {
 		return result;
 	}
 
-	/*
-	 * //test
-	 * 
-	 * @PostMapping("/checkId.do")
-	 * 
-	 * @ResponseBody //Ajax통신의 응답내용을 보내는 것을 표시 public String
-	 * checkId(@RequestParam("member_id") String id) {
-	 * 
-	 * System.out.println("id: "+id);
-	 * 
-	 * String result="N";//중복된 아이디 없음
-	 * 
-	 * int flag = sellerService.checkId(id);
-	 * 
-	 * if(flag == 1) result = "Y";//중복된 아이디 있음
-	 * 
-	 * return result; }
-	 */
 	
 	@RequestMapping(value="/registProcess.do", method = {RequestMethod.GET, RequestMethod.POST})
 	public String registProcess(MultipartHttpServletRequest mRequest,
@@ -171,9 +180,9 @@ public class SellerController {
 	    	if(param.get("p_category_small").equals("츄르")) p_category_idx ="7";
 	    	else if(param.get("p_category_small").equals("스낵")) p_category_idx ="8";
 	    	else if(param.get("p_category_small").equals("캣잎")) p_category_idx ="9";
-	    	else if(param.get("p_category_small").equals("통살")) p_category_idx ="10";
+	    	else if(param.get("p_category_small").equals("스틱")) p_category_idx ="10";
 	    	else if(param.get("p_category_small").equals("프리미엄")) p_category_idx ="11";
-	    	else if(param.get("p_category_small").equals("스틱")) p_category_idx ="12";
+	    	else if(param.get("p_category_small").equals("통살")) p_category_idx ="12";
 	    }
 	    
 		//String p_category_idx = param.get("p_category_large");
@@ -373,27 +382,34 @@ public class SellerController {
 	}
 
 	@RequestMapping(value="/seller_profileModif.do", method = {RequestMethod.GET, RequestMethod.POST})
-	public String seller_profileModif( @RequestParam("introduce") String introduce,
-			@RequestParam("file") String file,
+	public String seller_profileModif( 
 			Model model, HttpServletRequest request
 			) throws IllegalStateException, IOException{
-		
-		System.out.println("************************************"+introduce+file);
 
+		  HttpSession session = request.getSession(); int midx = (int)
+		  session.getAttribute("midx"); 
+		  String member_id= Integer.toString(midx);
+		  
+		  SellerStoryVo sellerStoryVo = sellerService.seller_profile(member_id);
+		  model.addAttribute("sellerStoryVo",sellerStoryVo);
+		  
 		//System.out.println(detail_idx);
 		
 		
-		return "seller/seller_profile";
+		return "seller/seller_profileModif";
 	}
 	@RequestMapping(value="/seller_profileModifProcess.do", method = {RequestMethod.GET, RequestMethod.POST})
-	public String seller_profileModifProcess( @RequestParam("introduce") String introduce,
-			@RequestParam("file") String file,
+	public String seller_profileModifProcess( 
 			Model model, HttpServletRequest request
 			) throws IllegalStateException, IOException{
 		
-		System.out.println("************************************"+introduce+file);
-
-		//System.out.println(detail_idx);
+					HttpSession session = request.getSession(); int midx = (int)
+				  session.getAttribute("midx"); 
+				  String member_id= Integer.toString(midx);
+				  
+				  SellerStoryVo sellerStoryVo = sellerService.seller_profile(member_id);
+				  model.addAttribute("sellerStoryVo",sellerStoryVo);
+				  
 		
 		
 		return "seller/seller_profile";
