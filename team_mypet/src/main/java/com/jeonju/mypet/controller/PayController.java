@@ -2,6 +2,7 @@ package com.jeonju.mypet.controller;
 
 
 import java.util.ArrayList;
+
 import java.util.List;
 
 import javax.servlet.http.HttpServletRequest;
@@ -29,11 +30,16 @@ private PayService payService;
 	
 	
 	@GetMapping("/memberpay.do")
-	public String memberpay(DetailVo detailVo,OrdersVo ordersVo,Model model,HttpServletRequest request) {
+	public String memberpay(OrdersVo ordersVo,Model model,HttpServletRequest request) {
 
-		 List<OrdersVo> orderlist = new ArrayList<>();
-		 
-		 
+		 List<OrdersVo> orderslist = new ArrayList<>();
+//		 for(int i=0; i < (ordersVo.getP_idx()).length; i++) {
+//			 
+//			 OrdersVo oV = new OrdersVo();
+//			 
+//			 oV.setOrders();
+//		 }
+		 model.addAttribute("order", orderslist);
 		 
 		HttpSession Session = request.getSession();
 		int midx = (int) Session.getAttribute("midx");

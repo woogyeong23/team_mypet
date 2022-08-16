@@ -36,7 +36,7 @@ div {
     display: block;
     clear: both;
 }
-.layout-split:after {
+.layout-split {
     content: '';
     display: block;
     clear: both;

@@ -179,7 +179,7 @@ transform:translatY(-100%);
    						<div class="segment--nospacing scroll-detector" style="top: 500px; bottom: 69px;">
    							<div class="mfixed">
    								<button class="ui_btn--red--large">
-   									<span id="final_Price"></span>
+   									<span id="final_Price">${orders_totalprice}</span>
    									<em>원</em>
    									<span>결제하기</span>
    									<p class="point" style="display: block;">예상적립금
@@ -190,7 +190,6 @@ transform:translatY(-100%);
    							</div>
    						 </div>
    					</div>
-   				
    			</div>
    			
    			</section>
