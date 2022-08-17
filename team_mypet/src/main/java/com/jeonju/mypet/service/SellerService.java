@@ -67,9 +67,9 @@ public class SellerService {
 		return sellerDao.getPIdx();
 	}
 
-	public void addProductImg(HashMap<String,String> imgFileName) {
+	public int addProductImg(HashMap<String,String> imgFileName) {
 		// TODO Auto-generated method stub
-		sellerDao.addProductImg(imgFileName);
+		return sellerDao.addProductImg(imgFileName);
 	}
 
 	public String getSellerIdx(String member_id) {

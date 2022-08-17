@@ -62,9 +62,9 @@ public class SellerDao {
 		return sqlSession.selectOne(MAPPER+".getPIdx");
 	}
 
-	public void addProductImg(HashMap<String,String> imgFileName) {
+	public int addProductImg(HashMap<String,String> imgFileName) {
 		// TODO Auto-generated method stub
-		sqlSession.insert(MAPPER+".addProductImg", imgFileName);
+		return sqlSession.insert(MAPPER+".addProductImg", imgFileName);
 	}
 
 	public String getSellerIdx(String member_id) {

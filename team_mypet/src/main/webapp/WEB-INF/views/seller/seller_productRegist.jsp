@@ -94,6 +94,27 @@
 	//유효성검사
 	function check(){
 
+		var len=document.getElementsByClassName('file').length;
+		//alert(len);
+		var fileCheck=0;
+		for(var i=0 ; i<len;i++)
+			{
+			//alert(i);
+				var f=document.getElementsByClassName("file")[i].value;
+			//alert(f);
+				if(!f ){
+			       fileCheck++;
+			    }
+			
+			}
+		//alert(fileCheck);
+		/* var fileCheck = document.getElementById("file").value;
+	    if(!fileCheck){
+	        alert("파일을 첨부해 주세요");
+	        return;
+	    } */
+		
+		
 		var fm = document.frm;   
 		  if (fm.p_name.value==""){
 		  		alert("상품이름을 입력해주세요");
@@ -111,7 +132,7 @@
 		  		alert("작은 카테고리를 입력해주세요");
 		  		fm.p_category_small.focus();
 		  		return;
-		  }else if (fm.file.value==""){
+		  }else if (fileCheck!=0){
 				alert("파일을 첨부해주세요");
 				fm.file.focus();
 				return;
@@ -184,7 +205,7 @@
 	
 	//파일 추가
 	 function addFile() {
-		        var str = "<div class='form-group' id='file-list'><div class='file-group'><input type='file' name='file' accept='.jpg, .png'><a href='#this' name='file-delete'>삭제</a></div></div>";
+		        var str = "<div class='form-group' id='file-list'><div class='file-group'><input type='file' name='file' id='file' class='file' accept='.jpg, .png'><a href='#this' name='file-delete'>삭제</a></div></div>";
 		        $("#file-list").append(str);
 		        $("a[name='file-delete']").on("click", function(e) {
 			            e.preventDefault();
@@ -245,7 +266,7 @@
 			$("#checkPName").click(function(){
 				
 				let p_name = $("#p_name").val();
-				alert(p_name);
+				//alert(p_name);
 				$.ajax({
 					type:'post',
 					url:"${pageContext.request.contextPath}/checkPName.do",
@@ -373,7 +394,7 @@
 								         	    <div class="form-group" id="file-list">
 								         	    	<a href="#this" onclick ="addFile()">파일추가</a>
 								         	    	<div class="file-group">
-								         	    		<input type="file" name="file" accept=".jpg, .png">
+								         	    		<input type="file" name="file"  id='file' class='file' accept=".jpg, .png">
 								         	    	</div>
 								         	    </div>
 								         	    

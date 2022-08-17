@@ -89,7 +89,7 @@
 	<!-- 서머노트를 위해 추가해야할 부분 여기까지 -->
 	<script>
 	 function addFile() {
-		        var str = "<div class='form-group' id='file-list'><div class='file-group'><input type='file' name='file' required ><a href='#this' name='file-delete'>삭제</a></div></div>";
+		        var str = "<div class='form-group' id='file-list'><div class='file-group'><input type='file' name='file'   id='file' class='file' required ><a href='#this' name='file-delete'>삭제</a></div></div>";
 		        $("#file-list").append(str);
 		        $("a[name='file-delete']").on("click", function(e) {
 			            e.preventDefault();
@@ -106,12 +106,38 @@
 	//유효성검사
 	function check(){
 
+		
+
+		var len=document.getElementsByClassName('file').length;
+		//alert(len);
+		var fileCheck=0;
+		for(var i=0 ; i<len;i++)
+			{
+			//alert(i);
+				var f=document.getElementsByClassName("file")[i].value;
+			//alert(f);
+				if(!f ){
+			       fileCheck++;
+			       
+			    }
+			
+			}
+		//alert(fileCheck);
+		
 		var fm = document.frm;   
 		  if (fm.p_name.value==""){
 		  		alert("상품이름을 입력해주세요");
 		  		fm.p_name.focus();
 		  		return;
-		  }else if (fm.p_category_large.value=="yet"){
+		  }
+		  else if(fm.origin_p_name.value != fm.p_name.value && fm.result_p_name.value!=fm.p_name.value){
+			  alert("유효성검사를 해주세요");
+			  alert(fm.origin_p_name.value);
+			  alert(fm.p_name.value);alert(fm.result_p_name.value);
+			  fm.p_name.focus();
+				return;
+		  }
+		  else if (fm.p_category_large.value=="yet"){
 		  		alert("큰 카테고리를 입력해주세요");
 		  		fm.p_category_large.focus();
 		  		return;
@@ -119,6 +145,10 @@
 		  		alert("작은 카테고리를 입력해주세요");
 		  		fm.p_category_small.focus();
 		  		return;
+		  }else if (fileCheck!=0 || len==0){
+				alert("파일을 첨부해주세요");
+				fm.file.focus();
+				return;
 		  }else if (fm.p_size.value ==""){
 		  		alert("사이즈를 입력해주세요");
 		  		fm.p_size.focus();
@@ -226,7 +256,7 @@
 			$("#checkPName").click(function(){
 				
 				let p_name = $("#p_name").val();
-				alert(p_name);
+				//alert(p_name);
 				$.ajax({
 					type:'post',
 					url:"${pageContext.request.contextPath}/checkPName.do",
@@ -236,10 +266,12 @@
 							result = "사용 가능한 상품명입니다.";
 							$("#result_checkPName").html(result).css("color", "green");
 							$("#p_category_large").trigger("focus");
+							$("#result_p_name").val($("#p_name").val());
 						}else{
 							result = "이미 사용중인 상품명입니다.";
 							$("#result_checkPName").html(result).css("color", "red");
 							$("#p_name").val("").trigger("focus");
+							$("#result_p_name").val($("#p_name").val());
 						}
 					},
 					error: function(error){alert(error);}
@@ -251,7 +283,7 @@
 	//-----------
 	//파일 추가
 	 function addFile() {
-		        var str = "<div class='form-group' id='file-list'><div class='file-group'><input type='file' name='file' accept='.jpg, .png'><a href='#this' name='file-delete'>삭제</a></div></div>";
+		        var str = "<div class='form-group' id='file-list'><div class='file-group'><input type='file' name='file'  id='file' class='file'  accept='.jpg, .png'><a href='#this' name='file-delete'>삭제</a></div></div>";
 		        $("#file-list").append(str);
 		        $("a[name='file-delete']").on("click", function(e) {
 			            e.preventDefault();
@@ -326,6 +358,7 @@
 									<tr>
 								 		<th style="width:120px">상품명</th>
 										<td>
+											<input type="hidden" name="origin_p_name" value="${productVo.p_name }">
 								 			<input type="text" name="p_name" id="p_name" maxlength="40" value="${productVo.p_name }" placeholder="입력하세요">
 								 			<input type="button" id="checkPName" value="중복검사"/><br/>
 											<div style="height:20px"><span id="result_checkPName" style="font-size:12px;"></span><input type="hidden" id="result_p_name" value=""></div>
@@ -376,7 +409,7 @@
 										         	    	<div class="file-group">
 										         	    		<span class="glyphicon glyphicon-camera" aria-hidden="true"></span>
 										         	    		${Product_ImgVo.p_sys_filename}
-										         	    		<input type="hidden" name="file_${Product_ImgVo.p_front_img}"  value="${Product_ImgVo.p_front_img}">
+										         	    		<input type="hidden" name="file_${Product_ImgVo.p_front_img}"   id='file' class='file'  value="${Product_ImgVo.p_front_img}">
 										         	    		<a href='#this' name="file-delete">삭제</a>
 										         	    	</div>
 										         	    	

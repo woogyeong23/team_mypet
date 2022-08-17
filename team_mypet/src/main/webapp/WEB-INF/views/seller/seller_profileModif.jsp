@@ -119,7 +119,7 @@
 												<div class="file-group">
 																
 										         	    		<span class="glyphicon glyphicon-camera" aria-hidden="true"></span>
-										         	    		<input style="display: block;" type="file" name="file"  id="inputImage" required >
+										         	    		<input style="display: block;" type="file" name="file" accept='.jpg, .png' id="inputImage" required >
 										         	    		<a href='#this' name="file-delete">이미지 수정 안함</a>
 										       </div>
 												

@@ -377,7 +377,8 @@ public class SellerController {
             
             try {
                 mf.transferTo(new File(fullPath));
-                sellerService.addProductImg(imgFileName);
+                int img_result = sellerService.addProductImg(imgFileName);
+                
             } catch (IllegalStateException e) {
                 e.printStackTrace();
             } catch (IOException e) {
