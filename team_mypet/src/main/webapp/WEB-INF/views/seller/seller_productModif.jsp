@@ -89,7 +89,7 @@
 	<!-- 서머노트를 위해 추가해야할 부분 여기까지 -->
 	<script>
 	 function addFile() {
-		        var str = "<div class='form-group' id='file-list'><div class='file-group'><input type='file' name='file'><a href='#this' name='file-delete'>삭제</a></div></div>";
+		        var str = "<div class='form-group' id='file-list'><div class='file-group'><input type='file' name='file' required ><a href='#this' name='file-delete'>삭제</a></div></div>";
 		        $("#file-list").append(str);
 		        $("a[name='file-delete']").on("click", function(e) {
 			            e.preventDefault();
@@ -177,7 +177,7 @@
 		  		//fm.action = "./memberJoinOk.jsp";
 		  		//가상경로 사용 ${pageContext.request.contextPath}/registProcess.do
 		  		fm.enctype="multipart/form-data"
-		  		fm.action = "<%=request.getContextPath()%>/seller_productList.do";
+		  		fm.action = "<%=request.getContextPath()%>/seller_productModifProcess.do";
 		  		fm.method = "post";
 		  		fm.submit();  
 		  
@@ -320,7 +320,7 @@
 					<div class="tab-content" id="nav-tabContent">
 						<h3 class="pb-1 border-bottom" style="margin-bottom:10px">판매상품 수정하기</h3>
 						<form name="frm">
-							
+							<input type="hidden" name="p_idx" value="${productVo.p_idx }">
 							<table class="table-style-head-left" style="margin-left:0;">
 								<tbody>
 									<tr>
@@ -330,6 +330,15 @@
 								 			<input type="button" id="checkPName" value="중복검사"/><br/>
 											<div style="height:20px"><span id="result_checkPName" style="font-size:12px;"></span><input type="hidden" id="result_p_name" value=""></div>
 								 		</td>
+								 	</tr>
+								 	<tr>
+								 		<th style="width:120px">상태</th>
+								 			<td>
+									 			<input type="radio" name="p_status" value="0" <c:if test="${productVo.p_status  == 0}">checked</c:if>> 판매중
+									 			<input type="radio" name="p_status" value="1" <c:if test="${productVo.p_status  == 1}">checked</c:if>> 품절
+									 			<input type="radio" name="p_status" value="2" <c:if test="${productVo.p_status  == 2}">checked</c:if>> 삭제
+									 		
+								 			</td>
 								 	</tr>
 								 	<tr>
 								 		<th>분류</th>
@@ -362,19 +371,21 @@
 								            
 								         	    </div> -->
 								         	    <div class="form-group file-group" id="file-list">
-								         	    	<div class="file-add">
-								         	    		<a href="#this" onclick="addFile()"><span class="glyphicon glyphicon-plus" aria-hidden="true"></span>파일추가</a>
-								         	    	</div>
-								         	    	<div class='form-group' id='file-list'><div class='file-group'><input type='file' name='file' accept='.jpg, .png'><a href='#this' name='file-delete'>삭제</a></div></div>
 								         	    	<div class="form-group" id="file-list">
 								         	    		<c:forEach var="Product_ImgVo" items="${productImgList}">
 										         	    	<div class="file-group">
 										         	    		<span class="glyphicon glyphicon-camera" aria-hidden="true"></span>
 										         	    		${Product_ImgVo.p_sys_filename}
+										         	    		<input type="hidden" name="file_${Product_ImgVo.p_front_img}"  value="${Product_ImgVo.p_front_img}">
 										         	    		<a href='#this' name="file-delete">삭제</a>
 										         	    	</div>
+										         	    	
 								         	    		</c:forEach>
 								         	    	</div>
+								         	    	<div class="file-add">
+								         	    		<a href="#this" onclick="addFile()"><span class="glyphicon glyphicon-plus" aria-hidden="true"></span>파일추가</a>
+								         	    	</div>
+								         	    	
 								         	    	
 								         	    </div>
 								         	   
@@ -397,7 +408,7 @@
 								 	<tr>
 								 		<th>제품상세정보</th>
 								 		<td>
-								 			<textarea id="summernote" name="p_content" value="${productVo.p_content}">${productVo.p_content}</textarea>
+								 			<textarea id="summernote" name="p_content" value="">${productVo.p_content}</textarea>
 								 			<!-- <input type="text" name="p_content" maxlength="40" value="" placeholder="입력하세요"> -->
 								 		</td>
 								 	</tr>

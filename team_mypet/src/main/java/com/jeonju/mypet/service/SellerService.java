@@ -137,5 +137,30 @@ public class SellerService {
 		// TODO Auto-generated method stub
 		return sellerDao.updateSellerAccount(sellerStoryVo);
 	}
+
+	public int delete_img(int p_front_img) {
+		// TODO Auto-generated method stub
+		return sellerDao.delete_img(p_front_img);
+	}
+
+	public int updateProduct(Map<String, String> param) {
+		// TODO Auto-generated method stub
+		return sellerDao.updateProduct(param);
+	}
+
+	public int DelYNProduct(Map<String, String> param) {
+		// TODO Auto-generated method stub
+		return sellerDao.DelYNProduct(param);
+	}
+
+	public void updateSellerImg(HashMap<String, String> imgFileName) {
+		// TODO Auto-generated method stub
+		sellerDao.updateSellerImg(imgFileName);
+	}
+
+	public void updateSellerIntro(HashMap<String, String> intro) {
+		// TODO Auto-generated method stub
+		sellerDao.updateSellerIntro(intro);
+	}
 	
 }

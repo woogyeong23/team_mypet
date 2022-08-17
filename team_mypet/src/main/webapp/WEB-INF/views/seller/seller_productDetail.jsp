@@ -110,13 +110,17 @@
 								 		</td>
 								 	</tr>
 								 	
-								 	<c:forEach var="product_imgVo" items="${productVo.product_imgs}">
+								 	
 							
 									 <tr>
 								 		<th>상품 이미지들</th>
-								 		<td><img src="${pageContext.request.contextPath}/resources/product/${product_imgVo.p_sys_filename }"/></td>
+								 		<td>
+											<c:forEach var="product_imgVo" items="${productVo.product_imgs}">		 		
+								 				<img src="${pageContext.request.contextPath}/resources/product/${product_imgVo.p_sys_filename }" style="width:100px; height:100px;"/>
+								 			</c:forEach>
+								 		</td>
 								 	</tr>
-									</c:forEach>
+									
 							
 								 	<tr>
 								 		<th>크기</th>

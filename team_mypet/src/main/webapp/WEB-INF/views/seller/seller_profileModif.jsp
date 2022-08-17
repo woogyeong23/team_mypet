@@ -21,21 +21,50 @@
     <jsp:include page="../../include/membermodi.jsp" />  
        
 	<script>
-	
+	//파일 삭제
+	 $(document).ready(function() {        $("a[name='file-delete']").on("click", function(e) {            e.preventDefault();            deleteFile($(this));        });    })
+	function deleteFile(obj) {
+		      obj.parent().remove();
+	}
+	//파일 삭제 끝
 	
 	
 	</script>
-	<!-- 파일 업로드 추가 시작-->
-	<script>
-	    var cnt = 1;
-	    function fn_addFile(){
-	 		
-	
-	        $("#d_file").append("<br>" + "<input multiple='multiple'  type='file' name='file' required='required'>");
-	        cnt++;
-	    }
-	</script>
-	<!-- 파일 업로드 추가 끝-->
+	<style>
+		.filebox label {
+		  display: inline-block;
+		  padding: .5em .75em;
+		  color: #fff;
+		  font-size: inherit;
+		  line-height: normal;
+		  vertical-align: middle;
+		  background-color: #5cb85c;
+		  cursor: pointer;
+		  border: 1px solid #4cae4c;
+		  border-radius: .25em;
+		  -webkit-transition: background-color 0.2s;
+		  transition: background-color 0.2s;
+		}
+		
+		.filebox label:hover {
+		  background-color: #6ed36e;
+		}
+		
+		.filebox label:active {
+		  background-color: #367c36;
+		}
+		
+		.filebox input[type="file"] {
+		  position: absolute;
+		  width: 1px;
+		  height: 1px;
+		  padding: 0;
+		  margin: -1px;
+		  overflow: hidden;
+		  clip: rect(0, 0, 0, 0);
+		  border: 0;
+		}
+	</style>
 </head>
 
 <body>
@@ -67,16 +96,69 @@
 					<div class="tab-content" id="nav-tabContent">
 						<h3 class="pb-1 border-bottom" style="margin-bottom:10px">프로필 수정</h3>
 						<form name="frm" action="${pageContext.request.contextPath}/seller_profileModifProcess.do" method="post"  enctype="multipart/form-data">
+							
+							
 							<div class="row">
-								<div class="col-12">
-								<div style="border : 1px solid #d9d9d9;">
-								${sellerStoryVo.seller_intro}
-								</div>
-								</div>
+							
+							
+							
+							
+							
+							
+							
+								<table class="table-style-head-left" style="margin-left:0;">
+									<tbody>
+										<tr>
+											<th>프로필 사진</th>
+											<td>
+												
+												<div style="position:relative; float:left; width:150px; height: 150px; border-radius: 70%; overflow: hidden;">
+													<img id="previewImage" src="${pageContext.request.contextPath}/resources/seller/${sellerStoryVo.seller_img}">
+												</div>
+												
+												<div class="file-group">
+																
+										         	    		<span class="glyphicon glyphicon-camera" aria-hidden="true"></span>
+										         	    		<input style="display: block;" type="file" name="file"  id="inputImage" required >
+										         	    		<a href='#this' name="file-delete">이미지 수정 안함</a>
+										       </div>
+												
+												
+												<script type="text/javascript">
+												/**
+												 * 단일파일 업로드
+												 */
+												function readImage(input) {
+												    if (input.files && input.files[0]) {
+												        const reader = new FileReader();
+												        
+												        reader.onload = (e) => {
+												            const previewImage = document.getElementById('previewImage');
+												            previewImage.src = e.target.result;
+												        }
+												        reader.readAsDataURL(input.files[0]);
+												    }
+												}
+												// 이벤트 리스너
+												document.getElementById('inputImage').addEventListener('change', (e) => {
+												    readImage(e.target);
+												})
+												</script>
+												
+											</td>
+										</tr>
+										<tr>
+											<th>소개말</th>
+											<td><textarea name="seller_intro" cols="30" rows="5" value="">${sellerStoryVo.seller_intro}</textarea></td>
+										</tr>
+									</tbody>
+								</table>
+									
 							</div>
-							<img src="${pageContext.request.contextPath}/resources/seller/${sellerStoryVo.seller_img}">
-							<p>
-							<input type="submit" class="btn btn-light" value="수정">
+							
+							<br><br>
+							<input type="button"  class="btn btn-light" onclick="history.back(-1)" value="취소">
+							<input type="submit" class="btn btn-light" value="수정완료">
 						</form>
 						
 						
