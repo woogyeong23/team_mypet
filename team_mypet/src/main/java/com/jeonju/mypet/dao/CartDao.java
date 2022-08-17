@@ -66,6 +66,10 @@ public class CartDao {
 	public int deleteCart(CartVo cartVo) {
 		return sqlSession.delete(MAPPER+".deleteCart",cartVo);
 	}
+
+	public int cartReset(int midx) {
+		return sqlSession.delete(MAPPER+".resetCart",midx);
+	}
 	
 
 

@@ -16,6 +16,7 @@ import org.springframework.web.bind.annotation.RequestParam;
 import com.jeonju.mypet.service.MembersService;
 import com.jeonju.mypet.vo.CartVo;
 import com.jeonju.mypet.vo.MembersVo;
+import com.jeonju.mypet.vo.OrdersVo;
 import com.jeonju.mypet.vo.PetVo;
 
 @Controller
@@ -219,10 +220,18 @@ public class MembersController {
 			
 			return "member/memberorder";	
 		}
-		@GetMapping("/memberorderList.do")
-		public String memberorderList() {
+		@GetMapping("/memberorders.do")
+		public String memberorderList(HttpServletRequest request, OrdersVo ordersVo,Model model) {
+			HttpSession Session = request.getSession();
+			int midx = (int) Session.getAttribute("midx");
 			
-			return "member/memberorderList";	
+			ordersVo.setMidx(midx);
+			
+			List<OrdersVo> ordersList = membersService.orderList(ordersVo);
+			
+			model.addAttribute(ordersList);
+			
+			return "member/memberordes";	
 		}
 		
 		@GetMapping("/memberrefund.do")

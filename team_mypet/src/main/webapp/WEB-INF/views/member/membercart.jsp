@@ -13,32 +13,48 @@
 $(document).ready(function(){
 
 		itemTotal();
-		$(".NumberCounter__input").on("change", function(){
+		let cart_idx = $("#cart_idx_input").val();
+		let nci = "#NumberCounter__input"+cart_idx;
+		
+		$(nci).on("change", function(){
 			let cart_idx = $(this).attr("name");
 			
+			itemTotal();
+
+		});
+		$(nci).on("change", function(){
+			let cart_idx = $(this).attr("name");
 			
+			itemTotal();
+
 		});
 
 		//온체인지수량 
 
 		function itemTotal(ths){
 			 console.log("수량들어옴?");
-			let itemPrice = $('input[id="p_price_input"]');
-			let count = $(itemPrice).length;
-			let itemPV = $(itemPrice).val();
+
 			//수량
 			let cnt = $('input[id="cart_cnt_input"]');
 			//cart_idx
 			let cart_idx = $("#cart_idx_input").val();
+			let CAI = "#CartArtistItem"+cart_idx;
+			let Cart_idx = $(".CartArtistItem").data("cart_idx");
+
+			let itemPrice = $('input[id="p_price_input"]');
+			
+			let count = $(itemPrice).length;
+			let itemPV = $(itemPrice).val();
 			//개당가격란
 			let totalPrice_span = "#totalPrice_span"+cart_idx;
 			
 			//가격
 			let CartArtistItem__Price = "#CartArtistItem__Price"+cart_idx;
+			let CAIP = $(CartArtistItem__Price).find("fmt").val;
 			//수량
 			let NumberCounter__input = "#NumberCounter__input"+cart_idx;
 			//아이템
-			let CAI = "#CartArtistItem"+cart_idx;
+			
 			let delivery_price = "#delivery_price"+cart_idx;
 			
 			//상품하나의 가격
@@ -48,44 +64,45 @@ $(document).ready(function(){
 			let totalPrice = 0;
 			let totalPoint = 0;
 			let dvPrice = 0;
-			let totaldvPrice
+			let totaldvPrice = 0;
 			let finalTotalPrice = 0;
-			
 	 		$(CAI).each(function(index, element){
 	 			
 	 					// 총 가격
-// 	  			totalPrice += parseInt($(element).find(itemPrice).val()) * parseInt($(element).find(NumberCounter__input).val());
-	 			totalPrice = parseInt($(element).find(tpi).val());
-	 			console.log("상품가격:"+totalPrice);
+	  			totalPrice += parseInt($(element).find(itemPrice).val()) * parseInt($(element).find(NumberCounter__input).val());
+	 			sum = sum+totalPrice;
+	 			console.log("개당가격:"+totalPrice);
 	 					// 총 마일리지
 				totalPoint += totalPrice * 0.05;
 	 			
 	 		});
 	 		for (var i = 0; i < count; i++){
 	 			
-	 			sum += parseInt(itemPrice[i].value) * parseInt(cnt[i].value);
+// 	 			sum += parseInt(itemPrice[i].value) * parseInt(NumberCounter__input[i].value);
 	 			console.log("상품가격2:"+sum);
-
+	 			console.log("몇개야:"+[i]);
 	 		}
 			
-			/* 배송비 결정 */
-			if(totalPrice >= 30000){
+			/* 개당배송비 결정 */
+	 		if(totalPrice >= 30000){
 				dvPrice = 0;
 			} else if(totalPrice == 0){
 				dvPrice = 0;
 			} else {
 				dvPrice = 3000;	
-			}
-			finalTotalPrice = totalPrice + dvPrice;
+			}/* 총배송비 결정 */
+			
+			totaldvPrice += dvPrice;
+			finalTotalPrice = totalPrice + totaldvPrice;
 			totalPoint += finalTotalPrice * 0.01;
 			let stotalPrice = new Intl.NumberFormat('ko-KR', { style: 'currency', currency: 'KRW' }).format(totalPrice);
-			let sdvPrice = new Intl.NumberFormat('ko-KR', { style: 'currency', currency: 'KRW' }).format(dvPrice);
+			let stotaldvPrice = new Intl.NumberFormat('ko-KR', { style: 'currency', currency: 'KRW' }).format(totaldvPrice);
 			let sfinalTotalPrice = new Intl.NumberFormat('ko-KR', { style: 'currency', currency: 'KRW' }).format(finalTotalPrice);
 
 			
  			$(totalPrice_span).text(totalPrice);
  			
- 			$(delivery_price).text();
+ 			$(delivery_price).text(dvPrice);
 
 			// 총 가격
 			console.log("배달비"+dvPrice);
@@ -96,7 +113,7 @@ $(document).ready(function(){
  			// 총 마일리지
 	 		$("#totalPoint_span").text(totalPoint);
 			// 배송비
-			$("#delivery_Price").text(sdvPrice);	
+			$("#delivery_Price").text(stotaldvPrice);	
  			// 최종 가격(총 가격 + 배송비)
 			$("#finalTotalPrice_span").text(sfinalTotalPrice);
 			
@@ -302,7 +319,7 @@ $(document).ready(function(){
     <!-- 헤더와 js************************************************ -->
     <jsp:include page="../../include/header.jsp" />  
 	<!-- ************************************************ -->
-
+<div id="wrap">
 <main class="content">
 <input type="hidden" name="midx" value="${midx}">
 
@@ -433,7 +450,7 @@ $(document).ready(function(){
    					
    					
    			<div class="vue-sticky-placeholder" style="padding-top: 0px;"></div>		
-        	<div  sticky-side="bottom" on-stick="handleChangeStickBottom"class="CartList__sticky vue-sticky-el"  style="position: static; top: auto; bottom: auto; left: auto; width: auto; z-index: 10;">   	
+        	<div  sticky-side="bottom" on-stick="handleChangeStickBottom"class="CartList__sticky vue-sticky-el"  style="position: sticky; top: auto; bottom: 0px; left: auto; width: auto; z-index: 10;">   	
         	<div class="CartCheckboxControl">
         		<div class="checkbox" id="checkbox">
         			<div class="input-checkbox">

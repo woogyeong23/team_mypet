@@ -1,9 +1,9 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
     <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
-    <!DOCTYPE html> 
-    <html>
-  <head>
+<!DOCTYPE html> 
+<html>
+<head>
 
  <!-- css************************************************ -->
     <jsp:include page="../../include/head.jsp" />  
@@ -14,7 +14,7 @@
     
     <!-- Custom styles for this template -->
     <link href="resources/assets/css/sidebar.css" rel="stylesheet">
-  <style>
+<style>
 html, body{
 height: 100%
 }
@@ -31,14 +31,14 @@ transform:translatY(-100%);
 }
 
 
-</style> 
-  </head>
-  <body>
+</style>
+</head>
+<body>
+
     <!-- 헤더와 js************************************************ -->
     <jsp:include page="../../include/header.jsp" />  
 	<!-- ************************************************ -->
 <div id="wrap">
-
 <main class="container">
 
 	<!-- 사이더와 js************************************************ -->
@@ -219,16 +219,19 @@ transform:translatY(-100%);
                <!-- End Single Product -->
                 
                 
-            </div>     
-	</div>
-</section>
-</main>
+            </div>        
+        
+        
 </div>
+ 
+    </section>
+</main>
 
+</div>
 
 <!-- 푸터와 js************************************************ -->
     <jsp:include page="../../include/footer.jsp" />  
 <!-- ************************************************ -->
-     
+      
   </body>
 </html>

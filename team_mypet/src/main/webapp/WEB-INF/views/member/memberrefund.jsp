@@ -34,10 +34,10 @@ transform:translatY(-100%);
 </style>   
   </head>
   <body>
-<div id="wrap">
     <!-- 헤더와 js************************************************ -->
     <jsp:include page="../../include/header.jsp" />  
 	<!-- ************************************************ -->
+<div id="wrap">
 
 <main class="container">
 

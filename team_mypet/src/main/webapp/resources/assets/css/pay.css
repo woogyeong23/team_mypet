@@ -7,6 +7,16 @@
     padding-top: 40px;
     vertical-align: middle;
 }
+.content{
+    width: 100%;
+    position: absolute ;
+    padding-top: 0px;
+    padding-right: var(--bs-gutter-x, .75rem);
+    padding-left: var(--bs-gutter-x, .75rem);
+    padding-bottom: 1px;
+    margin-right: auto;
+    margin-left: auto;
+}
 form {
     display: block;
     margin-top: 0em;
@@ -145,10 +155,7 @@ article, aside, details, figcaption, figure, footer, header, hgroup, menu, nav, 
     margin-left: 0;
     width: 696px;
 }
-.layout-split>*:first-child {
-    margin-left: 0;
-    width: 696px;
-}
+
 .layout-split[data-layout-split=payment]>* {
     margin-left: 23px;
     width: 337px;
@@ -434,22 +441,24 @@ element.style {
     position: absolute;
     margin-bottom: 0;
 }
+.layout-split:after {
+    content: '';
+    display: block;
+    clear: both;
+}
 [data-page=payment] .ui_sticky[data-state=active] {
-    top: 69px;
+    top:  auto;
     width: 337px;
 }
-@media (max-width: 719px)
 [data-page=payment] .final-cost {
     margin-bottom: 0;
 }
-@media (max-width: 719px)
 .final-cost {
     border: 0 none;
     background: #eee;
     padding-top: 10px;
     padding-bottom: 0;
 }
-@media (max-width: 719px)
 .final-cost .table-header {
     width: 100%;
     text-align: left;
@@ -467,12 +476,10 @@ element.style {
     width: 288px;
     margin: 0 auto;
 }
-@media (max-width: 719px)
 .final-cost .table-header+.segment, .final-cost .table-header+.segment--nospacing {
     padding-bottom: 16px;
     margin-top: 0;
 }
-@media (max-width: 719px)
 .final-cost .segment, .final-cost .segment--nospacing {
     border-color: #fff;
     -webkit-box-shadow: none;
@@ -480,11 +487,9 @@ element.style {
     box-shadow: none;
 }
 
-@media (min-width: 720px)
 .final-cost .segment-group .segment--nospacing:first-child {
     border-top: 0 none;
 }
-@media (min-width: 720px)
 .final-cost .segment-group .segment--nospacing {
     margin-top: 0;
     padding: 0;
@@ -498,7 +503,6 @@ element.style {
     margin-top: 12px;
     margin-bottom: 12px;
 }
-@media (max-width: 719px)
 .final-cost table {
     width: 100%;
 }
@@ -511,7 +515,6 @@ table>* {
     color: inherit;
     font-size: inherit;
 }
-@media (max-width: 719px)
 .final-cost table tr:first-child td, .final-cost table tr:first-child th {
     padding-top: 0;
 }
@@ -543,7 +546,6 @@ table>* {
     font-size: 16px;
     color: #333;
 }
-@media (max-width: 719px)
 .final-cost table .total th, .final-cost table .total td {
     padding: 16px 0 !important;
 }
@@ -554,7 +556,6 @@ table>* {
     font-weight: bold;
     padding: 10px 0;
 }
-@media (max-width: 719px)
 .final-cost table.spacing th {
     width: 30%;
 }
@@ -597,11 +598,9 @@ table>* {
 .hide, .hidden {
     display: none !important;
 }
-@media (max-width: 719px)
 .final-cost .segment-group {
     margin-top: 10px;
 }
-@media (max-width: 719px)
 [data-page=payment] .inner-w, [data-page=payment] .inner-w400, [data-page=payment] .inner-w800 {
     padding: 0;
     background: #eee;
@@ -617,7 +616,6 @@ table>* {
     margin-bottom: 0;
     font-size: 16px;
 }
-@media (min-width: 720px)
 .final-cost .segment-group .segment--nospacing:last-child {
     border-top: 0;
 }
@@ -634,12 +632,10 @@ table>* {
 }
 
 
-@media (min-width: 720px)
 .final-cost .segment-group {
     padding: 0 22px 24px;
 }
 
-@media (min-width: 720px)
 .final-cost .segment-group .segment--nospacing {
     margin-top: 0;
     padding: 0;
@@ -664,4 +660,74 @@ table>* {
     border-color: transparent;
     background: #f1df3f;
     color: #fff;
+}
+
+.ProductPaymentMethodSelector {
+    padding: 0 18px;
+    background: #ffffff;
+    margin-top: 10px;
+    box-shadow: 3px 3px 4px 0 #eaeaea80;
+    border: solid 1px #ebebeb;
+}
+.ProductPaymentMethodSelector__title{
+    padding-top: 20px;
+    font-size: 16px;
+    font-weight: bold;
+    color: #333;
+}
+
+.radiogroup>.radio-item {
+    margin: 0;
+    display: block;
+    width: 100%;
+    margin-left: 0;
+    padding: 22px 0;
+    border-bottom: 1px solid #d9d9d9;
+    font-size: 13px;
+    color: #333;
+}
+.PaymentMethodSelector .payment-bill {
+    position: relative;
+}
+label {
+    cursor: pointer;
+}
+.payment-radio-item-wrapper {
+    display: -webkit-box;
+    display: -webkit-flex;
+    display: -moz-box;
+    display: -ms-flexbox;
+    display: flex;
+    -webkit-box-align: center;
+    -webkit-align-items: center;
+    -moz-box-align: center;
+    -ms-flex-align: center;
+    align-items: center;
+}
+.idus-icon-radio[type=radio] {
+    position: relative;
+    font-size: 16px;
+    width: 13px;
+    height: 10px;
+    margin: 0;
+    background: #fff;
+    vertical-align: middle;
+}
+.payment-radio-item-wrapper>input {
+    margin-right: 7px !important;
+}
+[class^="idus-icon-"], [class*=" idus-icon-"] {
+    font-family: 'idus-icon' !important;
+    font-size: 16px;
+    font-style: normal;
+    -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale;
+}
+.PaymentMethodSelector__textGroup[data-v-436103b2] {
+    display: inline-block;
+    vertical-align: middle;
+}
+.PaymentMethodSelector .idus-icon-radio[type='radio']:checked + .PaymentMethodSelector__textGroup .payment-method[data-v-436103b2] {
+    color: #333333;
+    font-weight: bold;
 }

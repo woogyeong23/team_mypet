@@ -50,4 +50,7 @@
 	<delete id="deleteCart" parameterType="cartVo">
 	delete from cart where cart_idx=#{cart_idx} and midx=#{midx}
 	</delete>
+	<delete id="resetCart">
+	delete from cart where midx=#{midx}
+	</delete>
 </mapper>
