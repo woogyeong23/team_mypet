@@ -2,10 +2,19 @@
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
   "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 
-<mapper namespace = "com.jeonju.mypet.admin">
+<mapper namespace = "com.jeonju.mypet.pay">
 <select id="">
 select * from orders a left outer join detail b on a.orders_idx = b.orders_idx left outer join product c on b.p_idx = c.p_idx left outer join cart d on c.p_idx = d.p_idx where a.midx=#{midx} ;
 
 </select>
+
+<insert id="orderInsert">
+ insert into orders (orders_totalprice, orders_name, orders_phone, orders_addr, orders_detailaddr, orders_payment, orders_dvprice, orders_point,midx)
+ values(#{orders_totalprice}, #{orders_name}, #{orders_phone}, #{orders_addr}, #{orders_detailaddr}, #{orders_payment}, #{orders_dvprice}, #{orders_point}, #{midx})
+</insert>
+<insert id="detailInsert">
+ insert into detail (orders_idx,p_idx, detail_status, detail_cnt, fixprice, detail_completeday)
+ values(#{orders_idx},#{p_idx},#{detail_status},#{detail_cnt},#{fixprice},#{detail_completeday})
+</insert>
 
 </mapper>

@@ -69,4 +69,7 @@
 	pet_age=#{pet_age},pet_type=#{pet_type},pet_breed=#{pet_breed}
 	 where pet_idx=#{pet_idx}
 	</update>
+	<select id="getordersList" parameterType="list" resultType="ordersVo">
+	select * from members a left outer join orders b on a.midx = b.midx left outer join detail c on b.orders_idx = c.orders_idx where a.midx = #{midx};
+	</select>
 </mapper>
