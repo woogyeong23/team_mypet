@@ -21,14 +21,49 @@
     <jsp:include page="../../include/membermodi.jsp" />  
        
 	<script>
+	
 	//파일 삭제
 	 $(document).ready(function() {        $("a[name='file-delete']").on("click", function(e) {            e.preventDefault();            deleteFile($(this));        });    })
 	function deleteFile(obj) {
-		      obj.parent().remove();
+		
+		obj.parent().remove();
+		document.getElementById("previewImage").src = "${pageContext.request.contextPath}/resources/seller/${sellerStoryVo.seller_img}";
+		var str="<a href='#this' id='file-add'  onclick ='addFile()'>이미지 수정하기</a>";
+		 $("#file-list").append(str);
 	}
 	//파일 삭제 끝
+	//파일 추가
+	 function addFile() {
+				var str = "<div class='file-group'><span class='glyphicon glyphicon-camera' aria-hidden='true'></span><input style='display: block;' type='file' name='file' accept='.jpg, .png' id='inputImage' onchange='readImage(this);'  required > <a href='#this' name='file-delete'>이미지 수정 안함</a></div>";
+		        $("#file-list").append(str);
+		        $("a[name='file-delete']").on("click", function(e) {
+			            e.preventDefault();
+			            deleteFile($(this));
+			        });
+				$("#file-add").remove();
+		    }
+	//파일 추가 끝
 	
-	
+	</script>
+	<script>
+																	/**
+																	 * 단일파일 업로드
+																	 */
+																	function readImage(input) {
+																	    if (input.files && input.files[0]) {
+																	        const reader = new FileReader();
+																	        
+																	        reader.onload = (e) => {
+																	            const previewImage = document.getElementById('previewImage');
+																	            previewImage.src = e.target.result;
+																	        }
+																	        reader.readAsDataURL(input.files[0]);
+																	    }
+																	}
+																	// 이벤트 리스너
+																	document.getElementById('inputImage').addEventListener('change', (e) => {
+																	    readImage(e.target);
+																	})
 	</script>
 	<style>
 		.filebox label {
@@ -115,35 +150,18 @@
 												<div style="position:relative; float:left; width:150px; height: 150px; border-radius: 70%; overflow: hidden;">
 													<img id="previewImage" src="${pageContext.request.contextPath}/resources/seller/${sellerStoryVo.seller_img}">
 												</div>
+												<div id="file-list">
+													<div class="file-group">
+																	
+											         	    		<span class="glyphicon glyphicon-camera" aria-hidden="true"></span>
+											         	    		<input style="display: block;" type="file" name="file" accept='.jpg, .png' id="inputImage" onchange="readImage(this);" required >
+											         	    		<a href='#this' name="file-delete">이미지 수정 안함</a>
+											        				
+											        </div>
+											        				
+												</div>
 												
-												<div class="file-group">
-																
-										         	    		<span class="glyphicon glyphicon-camera" aria-hidden="true"></span>
-										         	    		<input style="display: block;" type="file" name="file" accept='.jpg, .png' id="inputImage" required >
-										         	    		<a href='#this' name="file-delete">이미지 수정 안함</a>
-										       </div>
 												
-												
-												<script type="text/javascript">
-												/**
-												 * 단일파일 업로드
-												 */
-												function readImage(input) {
-												    if (input.files && input.files[0]) {
-												        const reader = new FileReader();
-												        
-												        reader.onload = (e) => {
-												            const previewImage = document.getElementById('previewImage');
-												            previewImage.src = e.target.result;
-												        }
-												        reader.readAsDataURL(input.files[0]);
-												    }
-												}
-												// 이벤트 리스너
-												document.getElementById('inputImage').addEventListener('change', (e) => {
-												    readImage(e.target);
-												})
-												</script>
 												
 											</td>
 										</tr>
