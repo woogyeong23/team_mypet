@@ -9,6 +9,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Repository;
 
 import com.jeonju.mypet.vo.Criteria;
+import com.jeonju.mypet.vo.PetVo;
 import com.jeonju.mypet.vo.ProductVo;
 import com.jeonju.mypet.vo.Product_ImgVo;
 import com.jeonju.mypet.vo.ReviewVo;
@@ -94,11 +95,29 @@ public class ProductDao {
 		return sqlSession.selectOne(MAPPER + ".reviewContent",review_idx);
 	}
 	
-	public int insertReview(ReviewVo reviewVo) {
+	public int rvInsertProcess(ReviewVo reviewVo) {
 		return sqlSession.insert(MAPPER + ".insertReview",reviewVo);
 	}
 	public ProductVo getReviewp(ProductVo product) {
 		return sqlSession.selectOne(MAPPER + ".getReviewp",product);
+	}
+	
+	public List<ProductVo> getspList(int seller_idx) {
+		return sqlSession.selectList(MAPPER + ".getspList",seller_idx);
+	}
+	
+	public int getspCount(int seller_idx) {
+		return sqlSession.selectOne(MAPPER + ".getspCount",seller_idx);
+	}
+	public List<ProductVo> getcpList(int p_idx) {
+		return sqlSession.selectList(MAPPER + ".getcpList",p_idx);
+	}
+	public int reviewWriteck(int p_idx,int midx) {
+		HashMap<String, Object> map = new HashMap<String, Object>();
+		map.put("p_idx", p_idx);
+		map.put("midx", midx);
+		
+		return sqlSession.selectOne(MAPPER + ".reviewWriteck",map);
 	}
 	
 	

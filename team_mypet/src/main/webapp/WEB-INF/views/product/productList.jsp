@@ -246,7 +246,8 @@ list-style: none;
 .pagination li {
 	float: left;
 	margin-left : 5px;
-		}
+}
+		
 </style>
 </head>
 
@@ -254,54 +255,99 @@ list-style: none;
 <!-- 헤더와 네비************************************************ -->
     <jsp:include page="../../include/header.jsp" />  
 <!-- ******************************************************** -->
+    <div class="breadcrumbs">
+        <div class="container">
+            <div class="row align-items-center">
+                <div class="col-lg-6 col-md-6 col-12">
+                    <div class="breadcrumbs-content">
+                    	<c:if test="${CodeName.categoryLargeName !=null}">
+                        <h1 class="page-title">${CodeName.categoryLargeName}</h1>
+                    	</c:if>
+                    	<c:if test="${CodeName.categoryLargeName ==null}">
+                    		<c:if test="${productList.get(0).getP_category_idx() < 7}">
+ 	                        <h1 class="page-title">강아지</h1>
+                    		</c:if>
+                    		<c:if test="${productList.get(0).getP_category_idx() > 6}">
+                    		<h1 class="page-title">고양이</h1>	
+                    		</c:if>
+	                     </c:if>            	
+                    </div>
+                </div>
+                <div class="col-lg-6 col-md-6 col-12">
+                    <ul class="breadcrumb-nav">
+                       <%--  <li><a href="${pageContext.request.contextPath}/home.do"><i class="lni lni-home"></i> Home</a></li>
+                        <li><a href="#">인기상품</a></li>
+<!--                         <li>Single Product</li> --> --%>
+							<li><a href="${pageContext.request.contextPath}/home.do"><i class="lni lni-home"></i> Home</a></li>
+  							<c:if test="${CodeName.categoryLargeName ==null}">
+  							<c:if test="${productList.get(0).getP_category_idx() < 7}">
+ 	                        <li>강아지</li>
+                    		</c:if>
+                    		<c:if test="${productList.get(0).getP_category_idx() > 6}">
+                    		<li>고양이</li>	
+                    		</c:if>
+                    		</c:if>
+  							<c:choose>
+  					 		<c:when test="${CodeName.categoryName eq null}">
+   					 		<li>전체</li>	 	 
+  					 		</c:when>
+  					 		<c:otherwise>
+  					 		<li>${CodeName.categoryLargeName}</li>
+   					 		<li>${CodeName.categoryName}</li>	 
+  					 		</c:otherwise>
+  					 		</c:choose>	
+                    </ul>
+                </div>
+            </div>
+        </div>
+    </div>
+	
 	
 	<!-- 소현 -->
 	<section class="trending-product section" style="margin-top: 12px;">
     <div class="container">
-    <!-- 홈 > 강아지 링크  -->
-    		<nav style="--bs-breadcrumb-divider: url(&#34;data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='8' height='8'%3E%3Cpath d='M2.5 0L1 1.5 3.5 4 1 6.5 2.5 8l4-4-4-4z' fill='currentColor'/%3E%3C/svg%3E&#34;);" aria-label="breadcrumb">
-  				<ol class="breadcrumb" style="font-size: 15px">
-  					 <li class="breadcrumb-item"><a href="${pageContext.request.contextPath}/home.do">홈</a></li>
-  					 <c:choose>
-  					 <c:when test="${CodeName.categoryName eq null}">
-   					 <li class="breadcrumb-item active" aria-current="page">전체</li>	 	 
-  					 </c:when>
-  					 <c:otherwise>
-  					 <li class="breadcrumb-item active" aria-current="page">${CodeName.categoryLargeName}</li>
-   					 <li class="breadcrumb-item active" aria-current="page">${CodeName.categoryName}</li>	 
-  					 </c:otherwise>
-  					 </c:choose>
-   				</ol>
-			</nav>
-	<!-- 홈 > 강아지 링크 끝 -->
-	
 	<!-- 배송비/가격/크기 검색 -->
 	<!-- 배송비/가격/크기 검색 끝 -->
 	
 	
 	<div class="row">
-                <c:forEach var="productVo" items="${productList}">
-				<!-- Start Single Product -->
-                <div class="col-lg-3">
-                    <div class="single-product">
-                    	<div class="product-image" style="position: relative;">
-                    	<a href="productView.do?p_idx=${productVo.p_idx}">
-                    			<img src="${pageContext.request.contextPath}/resources/product/${productVo.p_sys_filename}" width="300px" height="300px">
-						</a>
-						                          
-						<div class="button">
-                        <a href="product-details.html" class="btn"><i class="lni lni-cart"></i>찜하기</a>
-                        </div> 
-                        
-                        <div style="position: absolute; left: 4px; top: 4px;"> </div> <!-- 찜하기버튼 -->
-                        </div>
+               <c:forEach var="productVo" items="${productList}">
+             <div class="col-lg-3 col-md-6 col-12">
+                    <!-- Start Single Product -->
+                    <div class="single-product" style="border:none;">
+                    <a href="${pageContext.request.contextPath}/productView.do?p_idx=${productVo.p_idx}&seller_idx=${productVo.seller_idx}">
+                    <div class="product-image" style="height: 320px;">
+                            <img style="height:100%" src="${pageContext.request.contextPath}/resources/product/${productVo.p_sys_filename}" alt="${productVo.p_name}">
+                                <c:if test="${productVo.p_discount != 0}"><!-- member_grade: 0(일반회원), 1(관리자), 2(슈퍼관리자) -->
+									<span class="sale-tag">-${productVo.p_discount}%</span>
+								</c:if>
+                    </div>
+                    </a>
                         
                         <div class="product-info">
-                            <span class="seller">${productVo.m_nick}</span>
-                            <h4 class="p_name">${productVo.p_name}</h4>
-                            <div class="price">
-                                <span>${productVo.p_price}원</span>
-                            </div>
+                          <span>
+								<c:choose>
+								   <c:when test="${productVo.p_category_idx == 1}">강아지 > 개껌</c:when>
+								   <c:when test="${productVo.p_category_idx == 2}">강아지 > 스낵</c:when>
+								   <c:when test="${productVo.p_category_idx == 3}">강아지 > 뼈/육포</c:when>
+								   <c:when test="${productVo.p_category_idx == 4}">강아지 > 스틱</c:when>
+								   <c:when test="${productVo.p_category_idx == 5}">강아지 > 프리미엄</c:when>
+								   <c:when test="${productVo.p_category_idx == 6}">강아지 > 통살</c:when>
+							       
+							       <c:when test="${productVo.p_category_idx == 7}">고양이 > 츄르</c:when>
+								   <c:when test="${productVo.p_category_idx == 8}">고양이 > 스낵</c:when>
+								   <c:when test="${productVo.p_category_idx == 9}">고양이 > 캣잎</c:when>
+								   <c:when test="${productVo.p_category_idx == 10}">고양이 > 통살</c:when>
+								   <c:when test="${productVo.p_category_idx == 11}">고양이 > 프리미엄</c:when>
+								   <c:when test="${productVo.p_category_idx == 12}">고양이 > 스틱</c:when>
+								</c:choose>
+							</span>
+    
+                            
+                            <h4 class="title">
+                                <a href="${pageContext.request.contextPath}/productView.do?p_idx=${productVo.p_idx}&seller_idx=${productVo.seller_idx}">
+                                ${productVo.p_name}</a>
+                            </h4>
                             <ul class="review">
                                <c:forEach begin="1" end="${productVo.avg_reviews_stars}" step="1">
 									<li><i class="lni lni-star-filled"></i></li>
@@ -312,16 +358,27 @@ list-style: none;
 							   <c:forEach begin="1" end="${5-productVo.avg_reviews_stars}" step="1">
 							      <li><i class="lni lni-star-empty"></i></li>
 							   </c:forEach>	
+								
 							</ul>
-                        </div>
-                    </div> 
+                           <div class="price">
+							  <span><fmt:formatNumber value="${productVo.p_disprice}" pattern="#,###"/>원</span>
+								<c:if test="${productVo.p_discount != 0}">
+									<span class="discount-price"><fmt:formatNumber value="${productVo.p_price}" pattern="#,###" />원</span>
+							   </c:if>
+							</div>
+                            
+                            <br>
+                       </div>
+                        
+                    </div>
                 </div>
-				</c:forEach>
-    </div>
+                </c:forEach>              
+       </div>
+    
     
     
     <!-- 페이징 -->
-<div>
+<%-- <div>
 			<ul class="pagination">
 				<c:if test="${pageMaker.prev }">
 					<li class="pagination_button">
@@ -342,7 +399,7 @@ list-style: none;
 				</c:if>
 			</ul>
 		</div>
-    
+     --%>
     
 	</div>
 	</section>
