@@ -356,7 +356,7 @@ border-radius: 4px;">
                         <div class="product-info">
                             <span class="category">${bp.p_category_idx}</span>
                             <h4 class="title">
-                                <a href="#">${bp.p_name}</a>
+                                <a href="${pageContext.request.contextPath}/productView.do?p_idx=${bp.p_idx}&seller_idx=${bp.seller_idx}">${bp.p_name}</a> <!-- 소현수정 링크연결 -->
                             </h4>
                             <ul class="review">
                                 <li><i class="lni lni-star-filled"></i></li>

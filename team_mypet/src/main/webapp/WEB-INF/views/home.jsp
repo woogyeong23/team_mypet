@@ -219,7 +219,7 @@ $(function() {
     
                             
                             <h4 class="title">
-                                <a href="${pageContext.request.contextPath}/productView.do?p_idx=${hv.p_idx} ">
+                                <a href="${pageContext.request.contextPath}/productView.do?p_idx=${hv.p_idx}&seller_idx=${hv.seller_idx}">
                                 ${hv.p_name}</a>
                             </h4>
                             <ul class="review">
@@ -266,7 +266,7 @@ $(function() {
   <div class="col-lg-3 col-md-6 col-12">
                     <!-- Start Single Product -->
                     <div class="single-product" style="border:none;">
-                    <a href="${pageContext.request.contextPath}/productView.do?p_idx=${hv.p_idx}">
+                    <a href="${pageContext.request.contextPath}/productView.do?p_idx=${hv.p_idx}&seller_idx=${hv.seller_idx}">
                         <div class="product-image" style="height: 320px; ">
                             <img style="height:100%" src="${pageContext.request.contextPath}/resources/product/${hv.p_sys_filename}" alt="${hv.p_name}">
                                 <c:if test="${hv.p_discount != 0}"><!-- member_grade: 0(일반회원), 1(관리자), 2(슈퍼관리자) -->
@@ -296,7 +296,7 @@ $(function() {
     
                             
                             <h4 class="title">
-                                <a href="${pageContext.request.contextPath}/productView.do?p_idx=${hv.p_idx} ">
+                                <a href="${pageContext.request.contextPath}/productView.do?p_idx=${hv.p_idx}&seller_idx=${hv.seller_idx} ">
                                 ${hv.p_name}</a>
                             </h4>
                             <ul class="review">
@@ -345,7 +345,7 @@ $(function() {
                   <div class="col-lg-3 col-md-6 col-12">
                     <!-- Start Single Product -->
                     <div class="single-product" style="border:none;">
-                    <a href="${pageContext.request.contextPath}/productView.do?p_idx=${hv.p_idx}">
+                    <a href="${pageContext.request.contextPath}/productView.do?p_idx=${hv.p_idx}&seller_idx=${hv.seller_idx}">
                         <div class="product-image" style="height: 320px; ">
                             <img style="height:100%" src="${pageContext.request.contextPath}/resources/product/${hv.p_sys_filename}" alt="${hv.p_name}">
                                 <c:if test="${hv.p_discount != 0}"><!-- member_grade: 0(일반회원), 1(관리자), 2(슈퍼관리자) -->
@@ -376,7 +376,7 @@ $(function() {
                             
                             <h4 class="title">
 
-                                <a href="${pageContext.request.contextPath}/productView.do?p_idx=${hv.p_idx} ">
+                                <a href="${pageContext.request.contextPath}/productView.do?p_idx=${hv.p_idx}&seller_idx=${hv.seller_idx} ">
 
                                 ${hv.p_name}</a>
                             </h4>
@@ -429,7 +429,7 @@ $(function() {
                 <div class="col-lg-3 col-md-6 col-12">
                     <!-- Start Single Product -->
                     <div class="single-product" style="border:none;">
-                    <a href="${pageContext.request.contextPath}/productView.do?p_idx=${hv.p_idx}">
+                    <a href="${pageContext.request.contextPath}/productView.do?p_idx=${hv.p_idx}&seller_idx=${hv.seller_idx}">
                         <div class="product-image" style="height: 320px; ">
                             <img style="height:100%" src="${pageContext.request.contextPath}/resources/product/${hv.p_sys_filename}" alt="${hv.p_name}">
                                 <c:if test="${hv.p_discount != 0}"><!-- member_grade: 0(일반회원), 1(관리자), 2(슈퍼관리자) -->
@@ -459,7 +459,7 @@ $(function() {
     
                             
                             <h4 class="title">
-                                <a href="${pageContext.request.contextPath}/productView.do?p_idx=${hv.p_idx} ">
+                                <a href="${pageContext.request.contextPath}/productView.do?p_idx=${hv.p_idx}&seller_idx=${hv.seller_idx}">
                                 ${hv.p_name}</a>
                             </h4>
                             <ul class="review">
@@ -510,7 +510,7 @@ $(function() {
                 <div class="col-lg-3 col-md-6 col-12">
                     <!-- Start Single Product -->
                     <div class="single-product" style="border:none;">
-                    <a href="${pageContext.request.contextPath}/productView.do?p_idx=${hv.p_idx}">
+                    <a href="${pageContext.request.contextPath}/productView.do?p_idx=${hv.p_idx}&seller_idx=${hv.seller_idx}">
                         <div class="product-image" style="height: 320px; ">
                             <img style="height:100%" src="${pageContext.request.contextPath}/resources/product/${hv.p_sys_filename}" alt="${hv.p_name}">
                                 <c:if test="${hv.p_discount != 0}"><!-- member_grade: 0(일반회원), 1(관리자), 2(슈퍼관리자) -->
@@ -539,7 +539,7 @@ $(function() {
 							</span>
     
                             <h4 class="title">
-                                <a href="${pageContext.request.contextPath}/productView.do?p_idx=${hv.p_idx} ">
+                                <a href="${pageContext.request.contextPath}/productView.do?p_idx=${hv.p_idx}&seller_idx=${hv.seller_idx} ">
                                 ${hv.p_name}</a>
                             </h4>
                             <ul class="review">

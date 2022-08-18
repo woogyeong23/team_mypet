@@ -73,9 +73,12 @@
 	
 	<!-- 상품상세페이지 -->
 	<select id="getProductView" resultType="productVo">	
-	select a.*, b.*, MIN(p_front_img), c.p_sys_filename, c.p_idx,IFNULL(avg(review_stars),0) AS avg_reviews_stars, COUNT(review_stars) AS cnt_reviews
+	select a.*, b.*, (select a.m_nick from members a join sellerstory b on a.midx=b.midx where b.seller_idx=(select seller_idx from product where p_idx=#{p_idx})) as m_nick,MIN(p_front_img), c.p_sys_filename, c.p_idx,IFNULL(avg(review_stars),0) AS avg_reviews_stars, COUNT(review_stars) AS cnt_reviews
 	from product a join p_category b on a.p_category_idx = b.p_category_idx join product_img c on a.p_idx=c.p_idx LEFT join review d on a.p_idx=d.p_idx
-	where a.p_idx=#{p_idx}
+	where a.p_delyn = 'N' AND a.p_idx=#{p_idx};
+	<!-- select a.*, b.*, MIN(p_front_img), c.p_sys_filename, c.p_idx,IFNULL(avg(review_stars),0) AS avg_reviews_stars, COUNT(review_stars) AS cnt_reviews
+	from product a join p_category b on a.p_category_idx = b.p_category_idx join product_img c on a.p_idx=c.p_idx LEFT join review d on a.p_idx=d.p_idx
+	where a.p_delyn = 'N' AND a.p_idx=#{p_idx} -->
 	</select>
 	
 	
@@ -92,29 +95,34 @@
 		SELECT a.*,b.*, COUNT(c.orders_idx) as '판매량',IFNULL(avg(review_stars),0) AS avg_reviews_stars, COUNT(review_stars) AS cnt_reviews
 		FROM product a join product_img b on a.p_idx=b.p_idx LEFT join detail c on a.p_idx=c.p_idx LEFT join review d on a.p_idx=d.p_idx
 		GROUP BY a.p_idx
-		ORDER BY COUNT(c.orders_idx) DESC;
+		ORDER BY COUNT(c.orders_idx) DESC
 	</select>
 	
 
 	<!-- 리뷰작성화면 -->
 	<select id="reviewWrite" resultType="productVo">
-	select a.p_name, a.p_idx, a.m_nick, MIN(p_front_img), c.p_sys_filename
+	select a.p_name, a.p_idx, MIN(p_front_img), c.p_sys_filename
 	from product a join product_img c on a.p_idx=c.p_idx join sellerStory b on a.seller_idx=b.seller_idx
 	where a.p_idx=#{p_idx}
 	</select>
 	
 	<!-- 상세페이지 리뷰리스트 -->
 	<select id="getReviewList" resultType="reviewVo">
-	select a.*, b.p_name,IFNULL(avg(review_stars),0) AS avg_reviews_stars, COUNT(review_stars) AS cnt_reviews
+	select a.*, b.p_name,IFNULL(avg(review_stars),0) AS avg_reviews_stars, COUNT(review_stars) AS cnt_reviews,d.*
+	from review a join product b on a.p_idx=b.p_idx join orders c on a.orders_idx=c.orders_idx LEFT join pet d on a.midx=d.midx
+	where b.p_idx=#{p_idx}
+	GROUP BY a.review_idx;
+	<!-- select a.*, b.p_name,IFNULL(avg(review_stars),0) AS avg_reviews_stars, COUNT(review_stars) AS cnt_reviews
 	from review a join product b on a.p_idx=b.p_idx join orders c on a.orders_idx=c.orders_idx
 	where b.p_idx=#{p_idx}
+	GROUP BY a.review_idx -->
 	</select>
 	
 	<!-- 후기콘텐츠 -->
 	<select id="reviewContent" resultType="reviewVo">	
-	select a.*, b.*, MIN(p_front_img), c.p_sys_filename, c.p_idx,IFNULL(avg(review_stars),0) AS avg_reviews_stars, COUNT(review_stars) AS cnt_reviews
+	select a.p_idx,a.p_name, b.*, MIN(p_front_img), c.p_sys_filename,IFNULL(avg(review_stars),0) AS avg_reviews_stars, COUNT(review_stars) AS cnt_reviews
 	from product a left join product_img c on a.p_idx=c.p_idx join review b on a.p_idx=b.p_idx
-	where a.p_idx=#{p_idx}
+	where b.review_idx=#{review_idx};
 	</select>
 	
 	<!-- 후기작성 -->
@@ -123,6 +131,16 @@
 	values(#{midx},#{detail_idx},#{p_idx},#{orders_idx},#{review_content},#{review_stars},#{review_img},#{review_nick});
 	</select>
 	
+	<!-- 후기작성 상품구매했는지 -->
+	<select id="reviewWriteck" resultType="int">
+	SELECT COUNT(*) as count
+	from members a LEFT join orders b on a.midx=b.midx join detail c on b.orders_idx=c.orders_idx join product d on c.p_idx=d.p_idx
+	where a.midx=#{midx}
+	and d.p_idx=#{p_idx}
+	and b.orders_status=0<!-- 4가 배송완료 -->
+	</select>
+	
+	
 	<!-- 후기컨텐츠 상품정보 -->
 	<select id="getReviewp" resultType="productVo">
 	select *
@@ -130,16 +148,27 @@
 	where p_idx=#{p_idx}
 	</select>
 	
+	<!-- 상세페이지 셀러의 상품개수 -->
 	<select id="getspCount" resultType="int">
-    SELECT DISTINCT COUNT(p_idx) FROM product WHERE p_delyn = 'N' AND seller_idx = #{seller_idx}
+    SELECT DISTINCT COUNT(p_idx) FROM product WHERE p_delyn = 'N' AND seller_idx =#{seller_idx}
     </select>
 	
+	<!-- 상세페이지 셀러 다른 상품 -->
 	<select id="getspList" resultType="productVo">
-    SELECT a.p_idx as p_idx, seller_idx, p_category_idx, p_name, p_content,
-    p_price, p_discount, b.p_ori_filename , b.p_sys_filename, MIN(p_front_img),IFNULL(avg(review_stars),0) AS avg_reviews_stars, COUNT(review_stars) AS cnt_reviews
-    FROM product a LEFT OUTER JOIN product_img b ON a.p_idx = b.p_idx LEFT join review c on a.p_idx=c.p_idx
-    WHERE seller_idx=#{seller_idx}
-    ORDER BY p_idx DESC;
+    SELECT a.*, b.*,IFNULL(avg(review_stars),0) AS avg_reviews_stars, COUNT(review_stars) AS cnt_reviews
+    FROM product a JOIN product_img b ON a.p_idx = b.p_idx LEFT join review c on a.p_idx=c.p_idx
+    WHERE a.seller_idx=#{seller_idx}
+	GROUP BY a.p_idx
+	ORDER BY a.p_idx DESC;
+    </select>
+    
+    <!-- 상세페이지 비슷한상품 -->
+    <select id="getcpList" resultType="productVo">
+    select a.*,b.*,IFNULL(avg(review_stars),0) AS avg_reviews_stars, COUNT(review_stars) AS cnt_reviews
+	from product a join product_img b on a.p_idx=b.p_idx JOIN product_img c on a.p_idx=c.p_idx LEFT JOIN review d on a.p_idx=d.p_idx
+	WHERE a.p_category_idx=#{p_category_idx}
+	GROUP BY a.p_idx
+	ORDER BY a.p_idx DESC;
     </select>
 	
 <!-- 소현 -->

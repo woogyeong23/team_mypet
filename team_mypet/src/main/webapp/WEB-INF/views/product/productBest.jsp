@@ -1,6 +1,7 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %> 
+<%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt"%>
 <!DOCTYPE html>
 <html>
 <head>
@@ -26,7 +27,7 @@
                 <div class="col-lg-6 col-md-6 col-12">
                     <ul class="breadcrumb-nav">
                         <li><a href="${pageContext.request.contextPath}/home.do"><i class="lni lni-home"></i> Home</a></li>
-                        <li><a href="#">인기상품</a></li>
+                        <li><a href="${pageContext.request.contextPath}/productBest.do">인기상품</a></li>
 <!--                         <li>Single Product</li> -->
                     </ul>
                 </div>
@@ -34,18 +35,10 @@
         </div>
     </div>
 
-<section class="trending-product section" style="margin-top: 12px;">
+	<section class="trending-product section" style="margin-top: 12px;">
     <div class="container">
     
-    <!-- 홈 > 최신순 링크  -->
-<!--     		<nav style="--bs-breadcrumb-divider: url(&#34;data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='8' height='8'%3E%3Cpath d='M2.5 0L1 1.5 3.5 4 1 6.5 2.5 8l4-4-4-4z' fill='currentColor'/%3E%3C/svg%3E&#34;);" aria-label="breadcrumb"> -->
-<!--   				<ol class="breadcrumb" style="font-size: 15px"> -->
-<%--   					 <li class="breadcrumb-item"><a href="${pageContext.request.contextPath}/home.do">홈</a></li> --%>
-<%--    					 <li class="breadcrumb-item active" aria-current="page"><a href="${pageContext.request.contextPath}/productBest.do">인기상품</a></li>	  --%>
-  					 
-<!--    				</ol> -->
-<!-- 			</nav> -->
-		<!-- 홈 > 최신순 링크 끝 -->
+   			
    			
 	<div class="row">
       <c:forEach var="productVo" items="${productList}">
@@ -96,11 +89,21 @@
 							   <c:forEach begin="1" end="${5-productVo.avg_reviews_stars}" step="1">
 							      <li><i class="lni lni-star-empty"></i></li>
 							   </c:forEach>	
-								
 							</ul>
+							
+                           <%-- <div class="price">
+                            <c:if test="${productVo.p_disprice != 0}">
+							  <span><fmt:formatNumber value="${productVo.p_disprice}" pattern="#,###"/>원</span>
+									<span class="discount-price"><fmt:formatNumber value="${productVo.p_price}" pattern="#,###" />원</span>
+							   </c:if>
+							   <c:if test="${productVo.p_disprice == 0}">
+								   <span><fmt:formatNumber value="${productVo.p_price}" pattern="#,###"/>원</span>
+							   </c:if>
+							</div> --%>
+                            
                             <div class="price">
 							  <span><fmt:formatNumber value="${productVo.p_disprice}" pattern="#,###"/>원</span>
-								<c:if test="${productVo.p_disprice != 0}">
+								<c:if test="${productVo.p_discount != 0}">
 									<span class="discount-price"><fmt:formatNumber value="${productVo.p_price}" pattern="#,###" />원</span>
 							   </c:if>
 							</div>

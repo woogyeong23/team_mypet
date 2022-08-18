@@ -1,11 +1,6 @@
 package com.jeonju.mypet.controller;
 
-import java.io.File;
-import java.io.IOException;
-import java.text.SimpleDateFormat;
-import java.util.HashMap;
 import java.util.List;
-import java.util.Map;
 
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpSession;
@@ -16,14 +11,11 @@ import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
-import org.springframework.web.multipart.MultipartFile;
-import org.springframework.web.multipart.MultipartHttpServletRequest;
+import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
 import com.jeonju.mypet.service.ProductService;
 import com.jeonju.mypet.vo.Criteria;
-import com.jeonju.mypet.vo.MembersVo;
 import com.jeonju.mypet.vo.PageMaker;
 import com.jeonju.mypet.vo.ProductVo;
 import com.jeonju.mypet.vo.Product_ImgVo;
@@ -59,14 +51,20 @@ public class ProductController {
 		model.addAttribute("ListPaging",ListPaging); //페이징
         model.addAttribute("pageMaker", pageMake); //상품게시물 총개수
         
+        System.out.println("카테고리번호"+productList.get(0).getP_category_idx());
+        
 		return "product/productList";
 	}
 	
 	
 	//상품상세페이지
 	@GetMapping("/productView.do")
-	public String getproductView(@RequestParam("p_idx") int p_idx,@RequestParam("seller_idx") int seller_idx ,Model model) {
+	public String getproductView(@RequestParam("p_idx") int p_idx,@RequestParam("seller_idx") int seller_idx ,Model model,HttpServletRequest request) throws Exception {
 		 System.out.println("상품번호 : " + p_idx);
+		 
+//		 HttpSession session = request.getSession();
+//		 int midx = (Integer)session.getAttribute("midx");
+//		 session.setAttribute("midx", midx);
 		 
 		 ProductVo productView = productService.getProductView(p_idx);
 		 model.addAttribute("productView", productView);
@@ -83,7 +81,10 @@ public class ProductController {
 		 int spCount = productService.getspCount(seller_idx); 
 		 model.addAttribute("spCount",spCount);
 		 
-		 System.out.println(productView.getP_category_idx());
+		 List<ProductVo> cpList = productService.getcpList(p_idx);
+		 model.addAttribute("cpList",cpList);
+		 
+		 System.out.println("카테고리번호"+productView.getP_category_idx());
 		 
 		 return "product/productView"; 
 	}
@@ -107,20 +108,43 @@ public class ProductController {
 	
 	//후기작성
 	@GetMapping("/reviewWrite.do")
-	public String reviewWrite(int p_idx,Model model) {
+	public String reviewWrite(@RequestParam("p_idx") int p_idx,ReviewVo reviewVo,Model model, HttpServletRequest request) {
 		
-
+        HttpSession session = request.getSession();
+		int midx = (int) session.getAttribute("midx");
+        
 		ProductVo ReviewWP = productService.reviewWrite(p_idx);
-		
 		
 		model.addAttribute("ReviewWP",ReviewWP);
 		
 		System.out.println("리뷰상품번호"+ p_idx);
-		System.out.println("작가닉"+ ReviewWP.getM_nick());
 		
 			 return "product/reviewWrite"; 
 	}
 	
+	@GetMapping("/reviewWriteck.do")
+	public String reviewWriteck(@RequestParam("p_idx") int p_idx,HttpServletRequest request) {
+		
+		HttpSession session = request.getSession();
+		int midx = (int) session.getAttribute("midx");
+		/* HashMap <String, Object> info = new HashMap(); */
+		int count = productService.reviewWriteck(p_idx, midx);
+		String pageView = null;
+		
+		System.out.println("midx"+midx);
+		System.out.println("p_idx"+p_idx);
+		System.out.println("count"+count);
+		
+		String referer = request.getHeader("Referer");
+	    
+		if (count == 0) {
+			pageView="redirect:"+ referer;
+		}else {
+			pageView="product/reviewWrite";
+		}
+		
+		return pageView;
+	}
 	
 	//리뷰콘텐츠
 	//상품상세페이지
@@ -130,19 +154,17 @@ public class ProductController {
 			 ReviewVo reviewContent = productService.reviewContent(review_idx);
 			 model.addAttribute("reviewContent", reviewContent);
 			 
-			 System.out.println("리뷰닉"+reviewContent.getReview_nick());
-			 
 			 return "product/reviewContent"; 
 		}
 	
 	
-	@RequestMapping("/insertReview.do")
-	public String insertReview(@ModelAttribute ReviewVo reviewVo,@RequestParam("p_idx") int p_idx, HttpSession session,Model model) throws Exception{
+	@RequestMapping("/rvInsertProcess.do")
+	public String rvInsertProcess(@ModelAttribute ReviewVo reviewVo,@RequestParam("p_idx") int p_idx,@RequestParam("review_stars") int review_stars ,HttpSession session,Model model) throws Exception{
 
 		int midx=(Integer)session.getAttribute("midx");
         reviewVo.setMidx(midx); 
         
-		productService.insertReview(reviewVo);
+		productService.rvInsertProcess(reviewVo);
 		
 		ProductVo ReviewWP = productService.reviewWrite(p_idx);
 		model.addAttribute("ReviewWP",ReviewWP);

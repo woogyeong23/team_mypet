@@ -21,9 +21,6 @@
 <script src="https://code.jquery.com/jquery-1.12.4.min.js"></script>
 
 
-<style>
-
-</style>
 
 <!-- css***************************************************** -->
     <jsp:include page="../../include/head.jsp" />  
@@ -76,6 +73,20 @@ input[type="file"] {
   color: white;
   cursor: pointer;
 }
+
+#nickbox {
+    display: inline-block;
+    text-transform: capitalize;
+    font-size: 17px;
+    font-weight: 600;
+    border: none;
+    border-radius: 3px;
+    padding-top:10px;
+    height: 40px;
+    width: 20%;
+    text-align: right;
+    float: right;
+    }
 </style>
 </head>
 
@@ -98,7 +109,6 @@ input[type="file"] {
     <tr>
     <td style="text-align: left; width: 10%"><img src="${pageContext.request.contextPath}/resources/product/${reviewContent.p_sys_filename}" alt="상품 이미지" width="100" height="100">
     <td style="font-size: 30px; color: black; font-weight: bold; width: 50%">${reviewContent.p_name}<br>
-    <span style="font-size: 20px; color: #99ccff; font-weight:600; width: 50%">${reviewContent.m_nick}</span>
     <td style="text-align: right; ">
                            			
     
@@ -122,12 +132,10 @@ input[type="file"] {
     </div>
     
     </div>
-<div style="padding-bottom: 10px">		
-${reviewContent.review_content}
-</div>
-${reviewContent.review_nick}
-${reviewContent.review_wday}
-	<input type="button" value="돌아가기" onclick="javascript:history.back()" style="background-color: grey; color: white; border: none; border-radius: 4px; width: 90px; height: 40px">
+<div style="padding-bottom: 10px; height: 200px; border: 1px solid gray; border-radius: 4px; padding-top: 10px;">${reviewContent.review_content}</div>
+<span id="nickbox">작성자 : ${reviewContent.review_nick}</span>
+<span style="padding-top: 10px; font-size: 17px; font-weight: 600; ">작성일 : <fmt:formatDate value="${reviewContent.review_wday}" pattern="yyyy-MM-dd" /></span><br>
+	<center><input type="button" value="돌아가기" onclick="javascript:history.back()" style="background-color: grey; color: white; padding-top:10px; border: none; border-radius: 4px; width: 90px; height: 40px"></center>
 
 	</div>
 	</section>
