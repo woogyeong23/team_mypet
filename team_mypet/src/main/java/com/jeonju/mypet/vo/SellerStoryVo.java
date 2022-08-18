@@ -22,6 +22,7 @@ public class SellerStoryVo {
 	private String m_profile;
 	private int p_idx;
 	private String p_sys_filename;
+	private String p_name;
 	//
 	
 	public int getSeller_idx() {
@@ -122,6 +123,15 @@ public class SellerStoryVo {
 	public void setP_sys_filename(String p_sys_filename) {
 		this.p_sys_filename = p_sys_filename;
 	}
+	
+	public String getP_name() {
+		return p_name;
+	}
+	public void setP_name(String p_name) {
+		this.p_name = p_name;
+	}
+	
+	
 	
 	
 	

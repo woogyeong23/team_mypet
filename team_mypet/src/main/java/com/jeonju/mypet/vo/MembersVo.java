@@ -9,7 +9,9 @@ public class MembersVo {
 	private String m_name;
 	private String m_nick;
 	private String m_pwd;
-	private String m_addr;
+	private String m_addr1;
+	private String m_addr2;
+	private String m_addr3;
 	private String m_birth;
 	private String m_phone;
 	private int m_point;
@@ -52,11 +54,24 @@ public class MembersVo {
 	public void setM_pwd(String m_pwd) {
 		this.m_pwd = m_pwd;
 	}
-	public String getM_addr() {
-		return m_addr;
+	
+	public String getM_addr1() {
+		return m_addr1;
 	}
-	public void setM_addr(String m_addr) {
-		this.m_addr = m_addr;
+	public void setM_addr1(String m_addr1) {
+		this.m_addr1 = m_addr1;
+	}
+	public String getM_addr2() {
+		return m_addr2;
+	}
+	public void setM_addr2(String m_addr2) {
+		this.m_addr2 = m_addr2;
+	}
+	public String getM_addr3() {
+		return m_addr3;
+	}
+	public void setM_addr3(String m_addr3) {
+		this.m_addr3 = m_addr3;
 	}
 	public String getM_birth() {
 		return m_birth;
