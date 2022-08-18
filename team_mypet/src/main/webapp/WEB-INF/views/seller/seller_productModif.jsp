@@ -7,7 +7,7 @@
 <html>
 <head>
 <meta charset="UTF-8">
-<title>판매하기</title>
+<title>판매상품수정</title>
 	<script src="http://code.jquery.com/jquery-latest.min.js"></script>
 	<!-- css************************************************ -->
 	    <jsp:include page="../../include/head.jsp" />  
@@ -19,7 +19,8 @@
     <link href="resources/assets/css/sidebar.css" rel="stylesheet">
     <!-- css************************************************ -->
     <jsp:include page="../../include/membermodi.jsp" />  
-      <!-- 서머노트를 위해 추가해야할 부분 여기부터 -->
+    
+    <!-- 서머노트를 위해 추가해야할 부분 여기부터 -->
 	  <script src="${pageContext.request.contextPath}/resources/summernote/summernote-lite.js"></script>
 	  <script src="${pageContext.request.contextPath}/resources/summernote/lang/summernote-ko-KR.js"></script>
 	  <link rel="stylesheet" href="${pageContext.request.contextPath}/resources/summernote/summernote-lite.css">
@@ -27,8 +28,6 @@
 	 	<script>
 			$(document).ready(function() {
 			
-				
-				
 				var toolbar = [
 					    // 글꼴 설정
 					    ['fontname', ['fontname']],
@@ -88,11 +87,26 @@
 					}
 			</script>
 	<!-- 서머노트를 위해 추가해야할 부분 여기까지 -->
-	
+	<script>
+	 function addFile() {
+		        var str = "<div class='form-group' id='file-list'><div class='file-group'><input type='file' name='file'   id='file' class='file' required ><a href='#this' name='file-delete'>삭제</a></div></div>";
+		        $("#file-list").append(str);
+		        $("a[name='file-delete']").on("click", function(e) {
+			            e.preventDefault();
+			            deleteFile($(this));
+			        });
+		    }
+	     function deleteFile(obj) {
+		        obj.parent().remove();
+		    }
+	function deleteFile(obj) {        obj.parent().remove();    }
+	</script>
 	
 	<script>
 	//유효성검사
 	function check(){
+
+		
 
 		var len=document.getElementsByClassName('file').length;
 		//alert(len);
@@ -104,27 +118,26 @@
 			//alert(f);
 				if(!f ){
 			       fileCheck++;
+			       
 			    }
 			
 			}
 		//alert(fileCheck);
-		/* var fileCheck = document.getElementById("file").value;
-	    if(!fileCheck){
-	        alert("파일을 첨부해 주세요");
-	        return;
-	    } */
-		
 		
 		var fm = document.frm;   
 		  if (fm.p_name.value==""){
 		  		alert("상품이름을 입력해주세요");
 		  		fm.p_name.focus();
 		  		return;
-		  }else if(fm.result_p_name.value!=fm.p_name.value){
+		  }
+		  else if(fm.origin_p_name.value != fm.p_name.value && fm.result_p_name.value!=fm.p_name.value){
 			  alert("유효성검사를 해주세요");
+			  alert(fm.origin_p_name.value);
+			  alert(fm.p_name.value);alert(fm.result_p_name.value);
 			  fm.p_name.focus();
 				return;
-		  }else if (fm.p_category_large.value=="yet"){
+		  }
+		  else if (fm.p_category_large.value=="yet"){
 		  		alert("큰 카테고리를 입력해주세요");
 		  		fm.p_category_large.focus();
 		  		return;
@@ -132,7 +145,7 @@
 		  		alert("작은 카테고리를 입력해주세요");
 		  		fm.p_category_small.focus();
 		  		return;
-		  }else if (fileCheck!=0){
+		  }else if (fileCheck!=0 || len==0){
 				alert("파일을 첨부해주세요");
 				fm.file.focus();
 				return;
@@ -194,7 +207,7 @@
 		  		//fm.action = "./memberJoinOk.jsp";
 		  		//가상경로 사용 ${pageContext.request.contextPath}/registProcess.do
 		  		fm.enctype="multipart/form-data"
-		  		fm.action = "<%=request.getContextPath()%>/registProcess.do";
+		  		fm.action = "<%=request.getContextPath()%>/seller_productModifProcess.do";
 		  		fm.method = "post";
 		  		fm.submit();  
 		  
@@ -203,31 +216,8 @@
 	
 	//유효성검사 끝
 	
-	//파일 추가
-	 function addFile() {
-		        var str = "<div class='form-group' id='file-list'><div class='file-group'><input type='file' name='file' id='file' class='file' accept='.jpg, .png'><a href='#this' name='file-delete'>삭제</a></div></div>";
-		        $("#file-list").append(str);
-		        $("a[name='file-delete']").on("click", function(e) {
-			            e.preventDefault();
-			            deleteFile($(this));
-			        });
-		    }
-	//파일 추가 끝
-	
-	//파일 삭제
-	 $(document).ready(function() {        $("a[name='file-delete']").on("click", function(e) {            e.preventDefault();            deleteFile($(this));        });    })
-	function deleteFile(obj) {
-		      obj.parent().remove();
-	}
-	//파일 삭제 끝
-	</script>
 	
 	
-	<script>
-		
-	
-	
-	// 할인가 계산
 		function calPrice2() {
 			
 			var p_price  = document.getElementById("p_price").value;
@@ -291,24 +281,29 @@
 			
 		});
 	//-----------
+	//파일 추가
+	 function addFile() {
+		        var str = "<div class='form-group' id='file-list'><div class='file-group'><input type='file' name='file'  id='file' class='file'  accept='.jpg, .png'><a href='#this' name='file-delete'>삭제</a></div></div>";
+		        $("#file-list").append(str);
+		        $("a[name='file-delete']").on("click", function(e) {
+			            e.preventDefault();
+			            deleteFile($(this));
+			        });
+		    }
+	//파일 추가 끝
 	
+	//파일 삭제
+		 $(document).ready(function() {        $("a[name='file-delete']").on("click", function(e) {            e.preventDefault();            deleteFile($(this));        });    })
+
+	function deleteFile(obj) {
+		      obj.parent().remove();
+	}
+	//파일 삭제 끝
 	
 	</script>
-	<!-- 파일 업로드 추가 시작-->
-	<!-- <script>
-	    var cnt = 1;
-	    function fn_addFile(){
-	 		
-	
-	        $("#d_file").append("<br>" + "<input multiple='multiple'  type='file' name='file' required='required'>");
-	        cnt++;
-	    }
-	</script> -->
-	<!-- 파일 업로드 추가 끝-->
-	
-	<!-- footer 가만히 있어 -->
+	    
 	<style>
-	html, body{
+		html, body{
 			height: 100%
 		}
 		
@@ -322,20 +317,20 @@
 			position: relative;
 			transform:translatY(-100%);
 		}
+		
 	
 	</style>
-	<!-- /footer 가만히 있어 -->
-	
+
 </head>
 
 <body>
-
+<div id="wrap">
 
 	<!-- 헤더와 네비************************************************ -->
     <jsp:include page="../../include/header.jsp" />  
 	<!-- ************************************************ -->
 	
-	<div id="wrap">
+	
 	
 	
 	<section class="product-grids section">
@@ -355,30 +350,47 @@
 				<!-- content -->
 				<div class="col-md-9 col-12">
 					<div class="tab-content" id="nav-tabContent">
-						<h3 class="pb-1 border-bottom" style="margin-bottom:10px">판매상품 등록하기</h3>
-						<form name="frm" >
-							
+						<h3 class="pb-1 border-bottom" style="margin-bottom:10px">판매상품 수정하기</h3>
+						<form name="frm">
+							<input type="hidden" name="p_idx" value="${productVo.p_idx }">
 							<table class="table-style-head-left" style="margin-left:0;">
 								<tbody>
 									<tr>
 								 		<th style="width:120px">상품명</th>
 										<td>
-								 			<input type="text" name="p_name" id="p_name" maxlength="40" value="" placeholder="입력하세요">
+											<input type="hidden" name="origin_p_name" value="${productVo.p_name }">
+								 			<input type="text" name="p_name" id="p_name" maxlength="40" value="${productVo.p_name }" placeholder="입력하세요">
 								 			<input type="button" id="checkPName" value="중복검사"/><br/>
 											<div style="height:20px"><span id="result_checkPName" style="font-size:12px;"></span><input type="hidden" id="result_p_name" value=""></div>
 								 		</td>
+								 	</tr>
+								 	<tr>
+								 		<th style="width:120px">상태</th>
+								 			<td>
+									 			<input type="radio" name="p_status" value="0" <c:if test="${productVo.p_status  == 0}">checked</c:if>> 판매중
+									 			<input type="radio" name="p_status" value="1" <c:if test="${productVo.p_status  == 1}">checked</c:if>> 품절
+									 			<input type="radio" name="p_status" value="2" <c:if test="${productVo.p_status  == 2}">checked</c:if>> 삭제
+									 		
+								 			</td>
 								 	</tr>
 								 	<tr>
 								 		<th>분류</th>
 								 		<td>
 								 			<select class="form-select" name = "p_category_large" id="p_category_large" onchange="categoryChange(this)" style="margin-bottom:10px;">
 												<option value="yet" >------</option>
-												<option value="1" >강아지</option>
-												<option value="2"  >고양이</option>
+												<option value="1" <c:if test="${productVo.p_category_idx /7 < 1}">selected</c:if> >강아지</option>
+												<option value="2" <c:if test="${productVo.p_category_idx /7 >= 1}">selected</c:if> >고양이</option>
 											</select>
 
-								 			<select class="form-select" name = "p_category_small" id="p_category_small" >
-												<option value="yet" >------</option>
+								 			<select class="form-select" name = "p_category_small" id="p_category_small" ">
+												
+												<option value="1" <c:if test="${productVo.p_category_idx %6 == 1}">selected</c:if> ><c:if test="${productVo.p_category_idx  /7 < 1}">개껌</c:if><c:if test="${productVo.p_category_idx  /7 >= 1}">츄르</c:if></option>
+												<option value="2" <c:if test="${productVo.p_category_idx %6 == 2}">selected</c:if> >스낵</option>
+												<option value="3" <c:if test="${productVo.p_category_idx %6 == 3}">selected</c:if> ><c:if test="${productVo.p_category_idx  /7 < 1}">뼈/육포</c:if><c:if test="${productVo.p_category_idx  /7 >= 1}">캣잎</c:if></option>
+												<option value="4" <c:if test="${productVo.p_category_idx %6 == 4}">selected</c:if> >스틱</option>
+												<option value="5" <c:if test="${productVo.p_category_idx %6 == 5}">selected</c:if> >프리미엄</option>
+												<option value="6" <c:if test="${productVo.p_category_idx %6 == 6}">selected</c:if> >통살</option>
+												
 											</select>
 												
 								 		</td>
@@ -391,13 +403,28 @@
 								          		<div id="d_file">
 								            
 								         	    </div> -->
-								         	    <div class="form-group" id="file-list">
-								         	    	<a href="#this" onclick ="addFile()">파일추가</a>
-								         	    	<div class="file-group">
-								         	    		<input type="file" name="file"  id='file' class='file' accept=".jpg, .png">
+								         	    <div class="form-group file-group" id="file-list">
+								         	    	<div class="form-group" id="file-list">
+								         	    		<c:forEach var="Product_ImgVo" items="${productImgList}">
+										         	    	<div class="file-group">
+										         	    		<span class="glyphicon glyphicon-camera" aria-hidden="true"></span>
+										         	    		${Product_ImgVo.p_sys_filename}
+										         	    		<input type="hidden" name="file_${Product_ImgVo.p_front_img}"   id='file' class='file'  value="${Product_ImgVo.p_front_img}">
+										         	    		<a href='#this' name="file-delete">삭제</a>
+										         	    	</div>
+										         	    	
+								         	    		</c:forEach>
 								         	    	</div>
+								         	    	<div class="file-add">
+								         	    		<a href="#this" onclick="addFile()"><span class="glyphicon glyphicon-plus" aria-hidden="true"></span>파일추가</a>
+								         	    	</div>
+								         	    	
+								         	    	
 								         	    </div>
-								         	    
+								         	   
+								         	   
+								         	   
+		
 								         	    
 									         
 								 		</td>
@@ -406,56 +433,56 @@
 								 		<th>크기</th>
 								 		<td>
 								 			<input type="radio" name="p_size" value="all" style="display:none;">
-								 			<input type="radio" name="p_size" value="0"> 소형
-								 			<input type="radio" name="p_size" value="1"> 중형
-								 			<input type="radio" name="p_size" value="2"> 대형
+								 			<input type="radio" name="p_size" value="0" <c:if test="${productVo.p_size  == 0}">checked</c:if>> 소형
+								 			<input type="radio" name="p_size" value="1" <c:if test="${productVo.p_size  == 1}">checked</c:if>> 중형
+								 			<input type="radio" name="p_size" value="2" <c:if test="${productVo.p_size  == 2}">checked</c:if>> 대형
 								 		</td>
 								 	</tr>
 								 	<tr>
 								 		<th>제품상세정보</th>
 								 		<td>
-								 			<textarea id="summernote" name="p_content"></textarea>
+								 			<textarea id="summernote" name="p_content" value="">${productVo.p_content}</textarea>
 								 			<!-- <input type="text" name="p_content" maxlength="40" value="" placeholder="입력하세요"> -->
 								 		</td>
-								 	</tr> 
-								 	<tr>
-								 		<th>재고-주문제작</th>
-								 		<td><input type="text" name="p_stock" maxlength="40" value="" placeholder="입력하세요"></td>
 								 	</tr>
 								 	<tr>
-								 		<th>재고-제한수량</th><td><input type="text" name="p_limit_cnt" maxlength="40" value="" placeholder="입력하세요"></td>
+								 		<th>재고-주문제작</th>
+								 		<td><input type="text" name="p_stock" maxlength="40" value="${productVo.p_stock}" placeholder="입력하세요"></td>
+								 	</tr>
+								 	<tr>
+								 		<th>재고-제한수량</th><td><input type="text" name="p_limit_cnt" maxlength="40" value="${productVo.p_limit_cnt}" placeholder="입력하세요"></td>
 								 	</tr>
 								 	
 								 	<tr>
-								 		<th>원가격</th><td><input type="text" name="p_price" id="p_price" maxlength="40" value="" placeholder="입력하세요"></td>
+								 		<th>원가격</th><td><input type="text" name="p_price" id="p_price" maxlength="40" value="${productVo.p_price}" placeholder="입력하세요"></td>
 								 	</tr>
 								 	<tr>
-								 		<th>할인률</th><td><input type="text" name="p_discount" id="p_discount" maxlength="40" value="" placeholder="입력하세요"></td>
+								 		<th>할인률</th><td><input type="text" name="p_discount" id="p_discount" maxlength="40" value="${productVo.p_discount}" placeholder="입력하세요"></td>
 								 	</tr>
 								 	<tr>
 								 		<th>할인 적용 가격</th>
 								 		<td>
-								 			<input type="text" name="p_disprice" id="p_disprice" maxlength="100" value="" placeholder="적용버튼을 누르세요" readonly>
+								 			<input type="text" name="p_disprice" id="p_disprice" maxlength="100" value="${productVo.p_disprice}" placeholder="적용버튼을 누르세요" >
 								 			<input type="button" value="적용"  onClick="calPrice2()" />
 								 		</td>
 								 	</tr>
 								 	<tr>
-								 		<th>일반 배송비</th><td><input type="text" name="p_dvprice" maxlength="40" value="" placeholder="입력하세요"></td>
+								 		<th>일반 배송비</th><td><input type="text" name="p_dvprice" maxlength="40" value="${productVo.p_dvprice}" placeholder="입력하세요"></td>
 								 	</tr>
 								 	<tr>
-								 		<th>추가배송비</th><td><input type="text" name="p_add_dvprice" maxlength="40" value="" placeholder="입력하세요"></td>
+								 		<th>추가배송비</th><td><input type="text" name="p_add_dvprice" maxlength="40" value="${productVo.p_add_dvprice}" placeholder="입력하세요"></td>
 								 	</tr>
 								 	<tr>
-								 		<th>무료배송</th><td><input type="text" name="p_free_dvprice" maxlength="40" value="" placeholder="입력하세요"></td>
+								 		<th>무료배송</th><td><input type="text" name="p_free_dvprice" maxlength="40" value="${productVo.p_free_dvprice}" placeholder="입력하세요"></td>
 								 	</tr>
 								 	<tr>
-								 		<th>택배사</th><td><input type="text" name="p_dvcompany" maxlength="40" value="" placeholder="입력하세요"></td>
+								 		<th>택배사</th><td><input type="text" name="p_dvcompany" maxlength="40" value="${productVo.p_dvcompany}" placeholder="입력하세요"></td>
 								 	</tr>
 								 	<tr>
-								 		<th>성분표시</th><td><input type="text" name="p_ingerdient" maxlength="40" value="" placeholder="입력하세요"></td>
+								 		<th>성분표시</th><td><textarea  name="p_ingerdient" maxlength="40" value="" >${productVo.p_ingerdient}</textarea></td>
 								 	</tr>
 								 	<tr>
-								 		<th>배송/환불정보</th><td><input type="text" name="p_cancle_info" maxlength="40" value="" placeholder="입력하세요"></td>
+								 		<th>배송/환불정보</th><td><textarea  name="p_cancle_info" maxlength="40" value="" >${productVo.p_cancle_info}</textarea></td>
 								 	</tr>
 								 	
 								
@@ -463,7 +490,7 @@
 								
 									
 							</table>
-							
+							<input type="button"  class="btn btn-light" onclick="history.back(-1)" value="취소">
 							<input type="button" class="btn btn-light" value="등록" onclick="check();"> 
 						</form>
 						
@@ -488,11 +515,6 @@
 	<!-- 푸터와 js************************************************ -->
     <jsp:include page="../../include/footer.jsp" />  
 	<!-- ************************************************ -->
-<script>
-$('.summernote').summernote({
-	  height: 150,
-	  lang: "ko-KR"
-	});
-</script>	
+	
 </body>
 </html>        

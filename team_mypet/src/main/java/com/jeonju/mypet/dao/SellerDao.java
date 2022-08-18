@@ -62,9 +62,9 @@ public class SellerDao {
 		return sqlSession.selectOne(MAPPER+".getPIdx");
 	}
 
-	public void addProductImg(HashMap<String,String> imgFileName) {
+	public int addProductImg(HashMap<String,String> imgFileName) {
 		// TODO Auto-generated method stub
-		sqlSession.insert(MAPPER+".addProductImg", imgFileName);
+		return sqlSession.insert(MAPPER+".addProductImg", imgFileName);
 	}
 
 	public String getSellerIdx(String member_id) {
@@ -132,6 +132,31 @@ public class SellerDao {
 	public int updateSellerAccount(SellerStoryVo sellerStoryVo) {
 		// TODO Auto-generated method stub
 		return sqlSession.update(MAPPER+".updateSellerAccount", sellerStoryVo);
+	}
+
+	public int delete_img(int p_front_img) {
+		// TODO Auto-generated method stub
+		return sqlSession.update(MAPPER+".delete_img", p_front_img);
+	}
+
+	public int updateProduct(Map<String, String> param) {
+		// TODO Auto-generated method stub
+		return sqlSession.update(MAPPER+".updateProduct", param);
+	}
+
+	public int DelYNProduct(Map<String, String> param) {
+		// TODO Auto-generated method stub
+		return sqlSession.update(MAPPER+".DelYNProduct", param);
+	}
+
+	public void updateSellerImg(HashMap<String, String> imgFileName) {
+		// TODO Auto-generated method stub
+		sqlSession.update(MAPPER+".updateSellerImg", imgFileName);
+	}
+
+	public void updateSellerIntro(HashMap<String, String> intro) {
+		// TODO Auto-generated method stub
+		sqlSession.update(MAPPER+".updateSellerIntro", intro);
 	}
 	
 	
