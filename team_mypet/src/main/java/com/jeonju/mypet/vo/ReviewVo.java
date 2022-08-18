@@ -20,18 +20,16 @@ public class ReviewVo {
 	
 	//소현
 	private String p_sys_filename;
-
-	//test
-	private String m_profile;
-	
-	private int avg_reviews_stars;
-	private String review_nick;
-	
 	private int pet_idx;
 	private String pet_name;
 	private String pet_type;
 	private String pet_breed;
 	private int pet_age;
+	private String m_nick;
+	private String review_ori_img;
+	
+	private int avg_reviews_stars;
+	private String review_nick;
 	
 	public int getAvg_reviews_stars() {
 		return avg_reviews_stars;
@@ -188,11 +186,25 @@ public class ReviewVo {
 		this.p_disprice = p_disprice;
 	}
 	//test 22.08.17
+	private String m_profile;
+	
 	public String getM_profile() {
 		return m_profile;
 	}
 	public void setM_profile(String m_profile) {
 		this.m_profile = m_profile;
+	}
+	public String getM_nick() {
+		return m_nick;
+	}
+	public void setM_nick(String m_nick) {
+		this.m_nick = m_nick;
+	}
+	public String getReview_ori_img() {
+		return review_ori_img;
+	}
+	public void setReview_ori_img(String review_ori_img) {
+		this.review_ori_img = review_ori_img;
 	}
 	
 

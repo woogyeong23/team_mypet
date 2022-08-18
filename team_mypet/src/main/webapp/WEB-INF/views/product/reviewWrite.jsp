@@ -181,15 +181,13 @@ input[type="file"] {
     </table>
     </div>
 		<div style="padding-bottom: 10px">				
-<textarea id="summernote" name="p_content"></textarea>
+<textarea id="summernote" name="review_content"></textarea>
 </div>
 	
-	<%-- <input type="hidden" name="detail_idx" value="${detail.detail_idx}" id="detail_idx">  
-	<input type="hidden" name="orders_idx" value="${detail.orders_idx}" id="orders_idx">  
- --%>
-
 	<input type="hidden" name="p_idx" value="${ReviewWP.p_idx}" id="p_idx"> 
-
+	<input type="hidden" name="midx" id="midx" value="${midx}">
+    <input type="hidden" name="review_nick" value="${m_nick}">
+			
 	<input type="button" value="돌아가기" onclick="javascript:history.back()" style="background-color: grey; color: white; border: none; border-radius: 4px; width: 90px; height: 40px">
 	<input type="submit" value="후기등록" style="background-color: #99ccff; color: white; border: none; width: 90px; height: 40px; border-radius: 4px;">
 	<!-- <label  class="filebtn" for="file">파일 업로드</label>

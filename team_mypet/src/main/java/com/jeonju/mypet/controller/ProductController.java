@@ -1,8 +1,13 @@
 package com.jeonju.mypet.controller;
 
+import java.io.File;
+import java.io.IOException;
+import java.io.PrintWriter;
+import java.text.SimpleDateFormat;
 import java.util.List;
 
 import javax.servlet.http.HttpServletRequest;
+import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -12,9 +17,11 @@ import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
+import org.springframework.web.multipart.MultipartFile;
 import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
 import com.jeonju.mypet.service.ProductService;
+import com.jeonju.mypet.vo.CommunityVo;
 import com.jeonju.mypet.vo.Criteria;
 import com.jeonju.mypet.vo.PageMaker;
 import com.jeonju.mypet.vo.ProductVo;
@@ -123,11 +130,10 @@ public class ProductController {
 	}
 	
 	@GetMapping("/reviewWriteck.do")
-	public String reviewWriteck(@RequestParam("p_idx") int p_idx,HttpServletRequest request) {
+	public String reviewWriteck(@RequestParam("p_idx") int p_idx,HttpServletRequest request,HttpServletResponse response) throws IOException {
 		
 		HttpSession session = request.getSession();
 		int midx = (int) session.getAttribute("midx");
-		/* HashMap <String, Object> info = new HashMap(); */
 		int count = productService.reviewWriteck(p_idx, midx);
 		String pageView = null;
 		
@@ -135,9 +141,8 @@ public class ProductController {
 		System.out.println("p_idx"+p_idx);
 		System.out.println("count"+count);
 		
-		String referer = request.getHeader("Referer");
-	    
 		if (count == 0) {
+			String referer = request.getHeader("Referer");
 			pageView="redirect:"+ referer;
 		}else {
 			pageView="product/reviewWrite";
@@ -159,8 +164,14 @@ public class ProductController {
 	
 	
 	@RequestMapping("/rvInsertProcess.do")
-	public String rvInsertProcess(@ModelAttribute ReviewVo reviewVo,@RequestParam("p_idx") int p_idx,@RequestParam("review_stars") int review_stars ,HttpSession session,Model model) throws Exception{
-
+	public String rvInsertProcess(@ModelAttribute ReviewVo reviewVo,
+			@RequestParam("p_idx") int p_idx,
+			@RequestParam("review_stars") int review_stars ,
+			@RequestParam("review_content") String review_content,
+			@RequestParam("review_nick") String review_nick,
+			@RequestParam("uploadImg") MultipartFile uploadImg,
+			HttpSession session,Model model,HttpServletRequest request) throws IllegalStateException, IOException{
+		
 		int midx=(Integer)session.getAttribute("midx");
         reviewVo.setMidx(midx); 
         
@@ -170,10 +181,76 @@ public class ProductController {
 		model.addAttribute("ReviewWP",ReviewWP);
 		
 		
-		System.out.println("Reviewidx"+reviewVo.getReview_content());
 		
+		System.out.println("Reviewidx"+reviewVo.getReview_content());
 		 return "redirect:/productView.do";
 	
+		 
+		 /*
+		  * 
+		String review_ori_img = uploadImg.getOriginalFilename().trim();
+		System.out.println("creview_ori_img :"+review_ori_img);
+		String fileName1="";
+		String extension="";
+		String fileName2="";
+		String review_img="";
+		String view="";
+		
+		if(review_ori_img.length() == 0) review_ori_img = null;
+		
+
+		if(review_ori_img != null) { 
+		int dot_idx = review_ori_img.lastIndexOf(".");
+		 fileName1 = review_ori_img.substring(0, dot_idx);
+		 extension = review_ori_img.substring(dot_idx+1);
+		fileName2 = fileName1 + new SimpleDateFormat("_yyyyMMdd_hhmmss").format(System.currentTimeMillis());
+		 review_img = fileName2+"."+extension;
+
+		
+		//upload 디렉토리에 대한 실제 경로 확인을 위해 ServletContext객체를 이용
+		String upload_dir = "resources/review/upload/";
+		
+		String realPath = request.getServletContext().getRealPath(upload_dir);
+		System.out.println("이클립스로 저장된 파일의 실제 경로: " + realPath);
+		
+		
+		//지정된 경로에 파일 저장
+				//realPath와 system_fileName을 합쳐서 전체경로를 얻어야 함
+				String fullPath = realPath+review_img;
+				uploadImg.transferTo(new File(fullPath));
+		}	
+				
+		 if(cm_content.length()==0){
+			 request.setAttribute("msg2", "내용을 입력해주세요");
+			 view = "product/reviewWrite";
+		 }
+		 else {
+				int result=0;//0:입력 실패
+				
+				reviewVo.setMidx(midx);
+				reviewVo.setreview_nick(review_nick);
+			    reviewVo.setreview_content(review_content);
+				reviewVo.setreview_img(review_img);
+				reviewVo.setreview_ori_img(review_ori_img);
+				
+				result = productService.reviewWrite(reviewVo);
+		
+				
+				 
+				
+				 if(result == 1) {
+					model.addAttribute("content", review_content);
+					model.addAttribute("review_nick", review_nick);
+					model.addAttribute("review_img", review_img);
+					
+					view = "product/reviewWrite";	
+				}}
+		 
+		 return view;
+		  * 
+		  * */
+		 
+		 
 	}
 	
 	
