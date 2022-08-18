@@ -111,88 +111,36 @@ $(".hover").mouseleave(
 <!-- Start Trending Product Area -->
     <section class="trending-product section" style="margin-top: 12px;">
         <div class="container">
-            <div class="row">
-                <div class="col-12">
-                    <div class="section-title">
-                        <h2>인기작가</h2>
-                        <p>많은 사람들의 인기를 받고 있는 작가님을 소개합니다.</p>
-                    </div>
-                </div>
-            </div>
-            <div class="row">    
-            <c:forEach var="bs" items="${BestSellerList}">
-                     
-                    <div class="col-lg-3 col-md-6 col-12">
-                    <!-- Start Single Product -->
-                    <div class="single-product">
-                  <div id="dd" >
-                <div>
-                   <div class="box">
-            <img class="profile" src="${pageContext.request.contextPath}/resources/seller/${bs.seller_img}">
-            
-                   </div>
-                     <div style="float:left">
-                   <span class="category" style="color:black">${bs.m_nick}</span>
-                   <br>
-                   <span class="category"></span>       
-                              </div>
-                              </div>
-                                 <div style="margin-right:10px; margin-top:5px;">
-                                    View <span></span>
-                                 </div>
-                              </div>
-                              
-                       
-                        <div class="product-image" style="height: 320px;">
-                        <c:if test="${bs.p_sys_filename == ''}">
-                            ${bs.setP_sys_filename("image.jpg")}
-                        </c:if>
 
-                        <img style="height:100%" src="${pageContext.request.contextPath}/resources/product/${bs.p_sys_filename}" alt="${bs.p_name}">
-                        </div>
-                        <div class="product-info">
-                            <h4 class="title" style="overflow: hidden;">
-                                <a href="${pageContext.request.contextPath}/BSellerView.do?seller_idx=${bs.seller_idx}">${bs.seller_intro}</a>
-                            </h4>
-                        </div>
-                        <div style="width:100%; position:relative">
-                             <hr>
-                        </div>
-                        
-                        <div style="display:flex; height: 30px;">
-                        
-                       
-                       
-                        <div style="margin-left:10px; position:relative; float:left">
-                        
-                      <ul class="bs_review">
-                         <c:forEach begin="1" end="${bs.seller_starsavg}">
-                            <li><i class="lni lni-star-filled"></i></li>
-                         </c:forEach>                  
-                              <c:forEach begin="1" end="${5-bs.seller_starsavg}">
-                                 <li><i class="lni lni-star"></i></li>
-                               </c:forEach>
-                            <li><span>${bs.seller_starsavg}</span></li> 
-                        </ul>
-                        </div>
-                        
-                        <div style="margin-left:20px; position:relative">
-                        <i class="lni lni-bubble"></i> 댓글 <span></span>
-                        </div>
-                        
-                        
-                      </div>
-                        
-                    </div>
-                    <!-- End Single Product -->
-                </div>
-              </c:forEach> 
-      <figure class="snip1425">
-  <img src="https://s3-us-west-2.amazonaws.com/s.cdpn.io/331810/sq-sample19.jpg" alt="작가 이미지" />
-  <figcaption><i class="ion-podium"></i>
-    <h4>작가 이름</h4>
-    <h2>작가 인트로</h2>
-  </figcaption>     
+            <div class="row">    
+
+              
+              
+   <c:forEach var="bs" items="${BestSellerList}">
+                       <div class="col-lg-3 col-md-6 col-12">
+      <figure class="snip1425" style="margin-bottom:50px; min-height:230px; max-height: 315px; border-radius:20px;">
+  <img src="${pageContext.request.contextPath}/resources/seller/${bs.seller_img}" alt="작가 이미지" />
+  <figcaption style="border-radius:20px;">
+    <i class="lni lni-user"></i>
+    <h5>${bs.m_nick} 작가님</h5>
+    <p>
+    팔로워 <span style="font-weight:600;">${bs.seller_followcnt}     </span>     
+    별점 <span style="font-weight:600;">${bs.seller_starsavg}</span></p>
+  </figcaption>
+  <a href="${pageContext.request.contextPath}/BSellerView.do?seller_idx=${bs.seller_idx}"></a>
+  </figure>
+  </div>
+  </c:forEach>
+ 
+  
+<!--   <figure class="snip1425"> -->
+<!--   <img src="https://s3-us-west-2.amazonaws.com/s.cdpn.io/331810/sq-sample19.jpg" alt="sq-sample19" /> -->
+<!--   <figcaption><i class="ion-podium"></i> -->
+<!--     <h4>Gunther</h4> -->
+<!--     <h2>Beard</h2> -->
+<!--   </figcaption> -->
+<!--   <a href="#"></a> -->
+<!-- </figure>      -->
          </div>
         </div>
     </section>

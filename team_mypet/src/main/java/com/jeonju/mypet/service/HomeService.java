@@ -11,6 +11,7 @@ import com.jeonju.mypet.dao.HomeDao;
 import com.jeonju.mypet.vo.CartVo;
 import com.jeonju.mypet.vo.MembersVo;
 import com.jeonju.mypet.vo.ProductVo;
+import com.jeonju.mypet.vo.ReviewVo;
 
 
 @Service
@@ -51,11 +52,18 @@ public class HomeService {
 	public List<ProductVo> getHList5() {
 		return homeDao.getHList5();
 	}
+	
+	public List<ReviewVo> getHList6() {
+		return homeDao.getHList6();
+	}
 
 
 	public CartVo getCCCart(CartVo cartVo) {
 		return homeDao.getCCCart(cartVo);
 	}
+
+
+
 
 
 	

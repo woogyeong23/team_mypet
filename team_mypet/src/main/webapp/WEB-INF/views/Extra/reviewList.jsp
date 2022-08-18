@@ -38,14 +38,14 @@
 <!-- Start Trending Product Area -->
     <section class="trending-product section" style="margin-top: 12px;">
         <div class="container">
-            <div class="row">
-                <div class="col-12">
-                    <div class="section-title">
-                        <h2>실시간 후기</h2>
-                        <p>실시간으로 올라오는 후기로 상품에 대한 반응을 살펴보세요.</p>
-                    </div>
-                </div>
-            </div>
+<!--             <div class="row"> -->
+<!--                 <div class="col-12"> -->
+<!--                     <div class="section-title"> -->
+<!--                         <h2>실시간 후기</h2> -->
+<!--                         <p>실시간으로 올라오는 후기로 상품에 대한 반응을 살펴보세요.</p> -->
+<!--                     </div> -->
+<!--                 </div> -->
+<!--             </div> -->
             <div class="row">
             
             <c:forEach var="rv" items="${reviewList}">
@@ -55,17 +55,16 @@
                     <div class="single-product">
                         <div class="product-image">
                         
-                            <img style="height:100%" src="${pageContext.request.contextPath}/resources/product/${hv.p_sys_filename} alt="상품 이미지">
+                            <img style="height:100%" src="${pageContext.request.contextPath}/resources/product/${rv.p_sys_filename}" alt="${rv.p_name}">
                             <div class="button">
 <!--                                 <a href="#" class="btn"><i class="lni lni-cart"></i> Add to Cart</a> -->
                             </div>
                         </div>
                         <div class="product-info">
-                            <span class="category">${rv.p_name}</span>
-                            <h4 class="title">
-                                <a href="${pageContext.request.contextPath}/productView.do?p_idx=${rv.p_idx}">${rv.p_name}</a>
-                            </h4>
-                            <p>${rv.review_content}</p>
+<%--                             <span class="category">${rv.p_name}</span> --%>
+                            <h4 class="title"><a href="${pageContext.request.contextPath}/productView.do?p_idx=${rv.p_idx}">${rv.p_name}</a></h4>
+                            </div>
+                        <div class="product-info" style="background:#f5f5f5; ">
                             <ul class="review">
                             <c:forEach begin="1" end="${rv.review_stars}">
                               <li><i class="lni lni-star-filled"></i></li>
@@ -74,14 +73,9 @@
                              <c:forEach begin="1" end="${5-rv.review_stars}">
                               <li><i class="lni lni-star"></i></li>
                              </c:forEach>
-                                <li><span>${rv.review_stars} 점</span></li>
+                                <li><span>|  ${rv.m_nick}</span></li>
                             </ul>
-                           <div class="price">
-							  <span><fmt:formatNumber value="${rv.p_disprice}" pattern="#,###"/>원</span>
-								<c:if test="${rv.p_disprice != 0}">
-									<span class="discount-price"><fmt:formatNumber value="${rv.p_price}" pattern="#,###" />원</span>
-							   </c:if>
-							</div>
+                               <p style="margin-top: 8px; max-height: 70px; overflow: hidden; color:#000000; font-size:12px;">${rv.review_content}</p>
                         </div>
                     </div>
                     <!-- End Single Product -->

@@ -1,12 +1,11 @@
 
 package com.jeonju.mypet.controller;
 
-import java.util.ArrayList;
 import java.util.List;
 
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpSession;
-import javax.websocket.Extension.Parameter;
+
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
@@ -18,7 +17,6 @@ import org.springframework.web.bind.annotation.RequestParam;
 import com.jeonju.mypet.service.JoeAjaxService;
 import com.jeonju.mypet.vo.FollowVo;
 import com.jeonju.mypet.vo.ProductVo;
-import com.jeonju.mypet.vo.Product_ImgVo;
 import com.jeonju.mypet.vo.ReviewVo;
 import com.jeonju.mypet.vo.SellerStoryVo;
 
@@ -120,6 +118,12 @@ public class ExtraController {
 	 public String Error() {
 		 
 		 return "Extra/error"; 
+	 }
+	 
+	 @GetMapping("/MostQuery")
+	 public String MostQuery() {
+		 
+		 return"Extra/MostQuery";
 	 }
 	 
 	 

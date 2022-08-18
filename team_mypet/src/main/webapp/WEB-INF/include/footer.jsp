@@ -150,8 +150,8 @@
                                 <li>
                                     <span>Follow Us On:</span>
                                 </li>
-                                <li><a href="${pageContext.request.contextPath}/Error"><i class="lni lni-facebook-filled"></i></a></li>
-                                <li><a href="${pageContext.request.contextPath}/Error"><i class="lni lni-twitter-original"></i></a></li>
+                                <li><a href="https://ko-kr.facebook.com/zuck"><i class="lni lni-facebook-filled"></i></a></li>
+                                <li><a href="https://twitter.com/elonmusk"><i class="lni lni-twitter-original"></i></a></li>
                                 <li><a href="${pageContext.request.contextPath}/Error"><i class="lni lni-instagram"></i></a></li>
                                 <li><a href="${pageContext.request.contextPath}/Error"><i class="lni lni-google"></i></a></li>
                             </ul>

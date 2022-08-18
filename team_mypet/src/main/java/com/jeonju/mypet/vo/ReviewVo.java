@@ -23,6 +23,9 @@ public class ReviewVo {
 	private String p_sys_filename;
 	private String m_nick;
 	
+	//test
+	private String m_profile;
+	
 	public String getReview_nick() {
 		return review_nick;
 	}
@@ -153,6 +156,13 @@ public class ReviewVo {
 	}
 	public void setP_disprice(int p_disprice) {
 		this.p_disprice = p_disprice;
+	}
+	//test 22.08.17
+	public String getM_profile() {
+		return m_profile;
+	}
+	public void setM_profile(String m_profile) {
+		this.m_profile = m_profile;
 	}
 	
 	

@@ -27,9 +27,10 @@
     .popup{
    width:100%; 
    height:40px;
-    margin: 0 auto; 
+   margin: 0 auto; 
    position: relative; 
-   background-color: #D9D7F1;
+   background-color: #fae100;
+   font-weight: 700;
     }
     
    .popup_in{
@@ -37,20 +38,34 @@
   top: 50%;
   left: 50%;
   transform: translate(-50%,-50%);
+  font-weight: 700;
     }
     
     
     #popup_close{
-    background-color: #D9D7F1;
+    background-color: #fae100;
     border: none;
     float: right;
     color: #FFFFFF;
     margin-right: 300px;
     margin-top:10px;
+    font-weight: 700;
     }
     
     #popup_link{
-    color: #FFFFFF;
+    color: rgb(255, 255, 255);
+    font-weight: 700;
+    
+    }
+    
+    .secEvent{
+  background-size: cover;
+  background-position: center;
+  background-repeat: no-repeat;
+  height: 250px;
+  width: 100%;
+  position: relative;
+  margin-top: 50px;
     }
  
     
@@ -152,14 +167,24 @@ $(function() {
              <div class="col-lg-3 col-md-6 col-12">
                     <!-- Start Single Product -->
                     <div class="single-product" style="border:none;">
-                    <a href="${pageContext.request.contextPath}/productView.do?p_idx=${hv.p_idx}">
+                    <c:choose>
+                    <c:when test="${hv.p_discount != 0}">
+                      <a href="${pageContext.request.contextPath}/productView.do?p_idx=${hv.p_idx}">
                         <div class="product-image" style="height: 320px; ">
                             <img style="height:100%" src="${pageContext.request.contextPath}/resources/product/${hv.p_sys_filename}" alt="${hv.p_name}">
-                                <c:if test="${hv.p_discount != 0}"><!-- member_grade: 0(일반회원), 1(관리자), 2(슈퍼관리자) -->
 									<span class="sale-tag">-${hv.p_discount}%</span>
-								</c:if>
                         </div>
                         </a>
+                    </c:when>
+                    <c:otherwise>
+                      <a href="${pageContext.request.contextPath}/productView.do?p_idx=${hv.p_idx}">
+                        <div class="product-image" style="height: 320px; width:245px; ">
+                            <img style="height:100%" src="${pageContext.request.contextPath}/resources/product/${hv.p_sys_filename}" alt="${hv.p_name}">
+                        </div>
+                        </a>
+                    </c:otherwise>
+                    </c:choose>
+                  
                         
                         <div class="product-info">
                           <span>
@@ -182,7 +207,7 @@ $(function() {
     
                             
                             <h4 class="title">
-                                <a href="${pageContext.request.contextPath}/productView.do?p_idx=${hv.p_idx} ">
+                                <a href="${pageContext.request.contextPath}/productView.do?p_idx=${hv.p_idx}">
                                 ${hv.p_name}</a>
                             </h4>
                             <ul class="review">
@@ -198,10 +223,12 @@ $(function() {
 								
 							</ul>
                             <div class="price">
-							  <span><fmt:formatNumber value="${hv.p_disprice}" pattern="#,###"/>원</span>
-								<c:if test="${hv.p_disprice != 0}">
+                                  <a href="${pageContext.request.contextPath}/productView.do?p_idx=${hv.p_idx}">
+							  <span style="color:rgb(51, 51, 51);"><fmt:formatNumber value="${hv.p_disprice}" pattern="#,###"/>원</span>
+								<c:if test="${hv.p_discount != 0}">
 									<span class="discount-price"><fmt:formatNumber value="${hv.p_price}" pattern="#,###" />원</span>
 							   </c:if>
+							   </a>
 							</div>
                             
                             <br>
@@ -210,13 +237,16 @@ $(function() {
                     </div>
                     <!-- End Single Product -->
                 </div>
-                </c:forEach>              
+                </c:forEach>
+                  <div class="secEvent" style="background-image: url(resources/Home/images/mypetEvent.png);"></div>       
                 </div>
                 </div>
                 </section>
   <!-- 인기순 -->
       <section class="trending-product section" style="margin-top: 12px;">
         <div class="container">
+        
+         
             <div class="row">
                 <div class="col-12">
                     <div class="section-title">
@@ -229,14 +259,24 @@ $(function() {
   <div class="col-lg-3 col-md-6 col-12">
                     <!-- Start Single Product -->
                     <div class="single-product" style="border:none;">
-                    <a href="${pageContext.request.contextPath}/productView.do?p_idx=${hv.p_idx}">
+                    <c:choose>
+                    <c:when test="${hv.p_discount != 0}">
+                      <a href="${pageContext.request.contextPath}/productView.do?p_idx=${hv.p_idx}">
                         <div class="product-image" style="height: 320px; ">
                             <img style="height:100%" src="${pageContext.request.contextPath}/resources/product/${hv.p_sys_filename}" alt="${hv.p_name}">
-                                <c:if test="${hv.p_discount != 0}"><!-- member_grade: 0(일반회원), 1(관리자), 2(슈퍼관리자) -->
 									<span class="sale-tag">-${hv.p_discount}%</span>
-								</c:if>
                         </div>
                         </a>
+                    </c:when>
+                    <c:otherwise>
+                      <a href="${pageContext.request.contextPath}/productView.do?p_idx=${hv.p_idx}">
+                        <div class="product-image" style="height: 320px; width:245px; ">
+                            <img style="height:100%" src="${pageContext.request.contextPath}/resources/product/${hv.p_sys_filename}" alt="${hv.p_name}">
+                        </div>
+                        </a>
+                    </c:otherwise>
+                    </c:choose>
+                  
                         
                         <div class="product-info">
                           <span>
@@ -259,7 +299,7 @@ $(function() {
     
                             
                             <h4 class="title">
-                                <a href="${pageContext.request.contextPath}/productView.do?p_idx=${hv.p_idx} ">
+                                <a href="${pageContext.request.contextPath}/productView.do?p_idx=${hv.p_idx}">
                                 ${hv.p_name}</a>
                             </h4>
                             <ul class="review">
@@ -275,10 +315,12 @@ $(function() {
 								
 							</ul>
                             <div class="price">
-							  <span><fmt:formatNumber value="${hv.p_disprice}" pattern="#,###"/>원</span>
-								<c:if test="${hv.p_disprice != 0}">
+                                  <a href="${pageContext.request.contextPath}/productView.do?p_idx=${hv.p_idx}">
+							  <span style="color:rgb(51, 51, 51);"><fmt:formatNumber value="${hv.p_disprice}" pattern="#,###"/>원</span>
+								<c:if test="${hv.p_discount != 0}">
 									<span class="discount-price"><fmt:formatNumber value="${hv.p_price}" pattern="#,###" />원</span>
 							   </c:if>
+							   </a>
 							</div>
                             
                             <br>
@@ -299,7 +341,7 @@ $(function() {
             <div class="row">
                 <div class="col-12">
                     <div class="section-title">
-                        <h2><a href="productBest.do">마감 세일   <i class="lni lni-chevron-right" ></i></a></h2>
+                        <h2>알뜰하게 장바구니 채우기</h2>
                     </div>
                 </div>
             </div>
@@ -308,14 +350,24 @@ $(function() {
                   <div class="col-lg-3 col-md-6 col-12">
                     <!-- Start Single Product -->
                     <div class="single-product" style="border:none;">
-                    <a href="${pageContext.request.contextPath}/productView.do?p_idx=${hv.p_idx}">
+                    <c:choose>
+                    <c:when test="${hv.p_discount != 0}">
+                      <a href="${pageContext.request.contextPath}/productView.do?p_idx=${hv.p_idx}">
                         <div class="product-image" style="height: 320px; ">
                             <img style="height:100%" src="${pageContext.request.contextPath}/resources/product/${hv.p_sys_filename}" alt="${hv.p_name}">
-                                <c:if test="${hv.p_discount != 0}"><!-- member_grade: 0(일반회원), 1(관리자), 2(슈퍼관리자) -->
 									<span class="sale-tag">-${hv.p_discount}%</span>
-								</c:if>
                         </div>
                         </a>
+                    </c:when>
+                    <c:otherwise>
+                      <a href="${pageContext.request.contextPath}/productView.do?p_idx=${hv.p_idx}">
+                        <div class="product-image" style="height: 320px; width:245px; ">
+                            <img style="height:100%" src="${pageContext.request.contextPath}/resources/product/${hv.p_sys_filename}" alt="${hv.p_name}">
+                        </div>
+                        </a>
+                    </c:otherwise>
+                    </c:choose>
+                  
                         
                         <div class="product-info">
                           <span>
@@ -338,9 +390,7 @@ $(function() {
     
                             
                             <h4 class="title">
-
-                                <a href="${pageContext.request.contextPath}/productView.do?p_idx=${hv.p_idx} ">
-
+                                <a href="${pageContext.request.contextPath}/productView.do?p_idx=${hv.p_idx}">
                                 ${hv.p_name}</a>
                             </h4>
                             <ul class="review">
@@ -356,10 +406,12 @@ $(function() {
 								
 							</ul>
                             <div class="price">
-							  <span><fmt:formatNumber value="${hv.p_disprice}" pattern="#,###"/>원</span>
-								<c:if test="${hv.p_disprice != 0}">
-							     <span class="discount-price"><fmt:formatNumber value="${hv.p_price}" pattern="#,###" />원</span>
+                                  <a href="${pageContext.request.contextPath}/productView.do?p_idx=${hv.p_idx}">
+							  <span style="color:rgb(51, 51, 51);"><fmt:formatNumber value="${hv.p_disprice}" pattern="#,###"/>원</span>
+								<c:if test="${hv.p_discount != 0}">
+									<span class="discount-price"><fmt:formatNumber value="${hv.p_price}" pattern="#,###" />원</span>
 							   </c:if>
+							   </a>
 							</div>
                             
                             <br>
@@ -369,6 +421,7 @@ $(function() {
                     <!-- End Single Product -->
                 </div>
                 </c:forEach>
+                  <div class="secEvent" style="background-image: url(resources/Home/images/mypetEvent2.jpg);"></div>  
             </div>
         </div>
     </section>
@@ -381,7 +434,7 @@ $(function() {
                 <div class="col-12">
                     <div class="section-title">
 
-                        <h2><a href="productBest.do">후기가 가장 많은 상품</a></h2>
+                        <h2>후기가 가장 많은 상품</h2>
                         <p>최근 리뷰를 가장 많이 남겨주셨어요.</p>
 
                     </div>
@@ -392,14 +445,24 @@ $(function() {
                 <div class="col-lg-3 col-md-6 col-12">
                     <!-- Start Single Product -->
                     <div class="single-product" style="border:none;">
-                    <a href="${pageContext.request.contextPath}/productView.do?p_idx=${hv.p_idx}">
+                    <c:choose>
+                    <c:when test="${hv.p_discount != 0}">
+                      <a href="${pageContext.request.contextPath}/productView.do?p_idx=${hv.p_idx}">
                         <div class="product-image" style="height: 320px; ">
                             <img style="height:100%" src="${pageContext.request.contextPath}/resources/product/${hv.p_sys_filename}" alt="${hv.p_name}">
-                                <c:if test="${hv.p_discount != 0}"><!-- member_grade: 0(일반회원), 1(관리자), 2(슈퍼관리자) -->
 									<span class="sale-tag">-${hv.p_discount}%</span>
-								</c:if>
                         </div>
                         </a>
+                    </c:when>
+                    <c:otherwise>
+                      <a href="${pageContext.request.contextPath}/productView.do?p_idx=${hv.p_idx}">
+                        <div class="product-image" style="height: 320px; width:245px; ">
+                            <img style="height:100%" src="${pageContext.request.contextPath}/resources/product/${hv.p_sys_filename}" alt="${hv.p_name}">
+                        </div>
+                        </a>
+                    </c:otherwise>
+                    </c:choose>
+                  
                         
                         <div class="product-info">
                           <span>
@@ -422,7 +485,7 @@ $(function() {
     
                             
                             <h4 class="title">
-                                <a href="${pageContext.request.contextPath}/productView.do?p_idx=${hv.p_idx} ">
+                                <a href="${pageContext.request.contextPath}/productView.do?p_idx=${hv.p_idx}">
                                 ${hv.p_name}</a>
                             </h4>
                             <ul class="review">
@@ -438,10 +501,12 @@ $(function() {
 								
 							</ul>
                             <div class="price">
-							  <span><fmt:formatNumber value="${hv.p_disprice}" pattern="#,###"/>원</span>
-								<c:if test="${hv.p_disprice != 0}">
+                                  <a href="${pageContext.request.contextPath}/productView.do?p_idx=${hv.p_idx}">
+							  <span style="color:rgb(51, 51, 51);"><fmt:formatNumber value="${hv.p_disprice}" pattern="#,###"/>원</span>
+								<c:if test="${hv.p_discount != 0}">
 									<span class="discount-price"><fmt:formatNumber value="${hv.p_price}" pattern="#,###" />원</span>
 							   </c:if>
+							   </a>
 							</div>
                             
                             <br>
@@ -462,7 +527,7 @@ $(function() {
                 <div class="col-12">
                     <div class="section-title">
 
-                        <h2><a href="productBest.do">믿고 먹일 수 있는 간식</a></h2>
+                        <h2>믿고 먹일 수 있는 간식</h2>
                         <p>믿고 먹일 수 있어요!!</p>
 
                     </div>
@@ -473,14 +538,24 @@ $(function() {
                 <div class="col-lg-3 col-md-6 col-12">
                     <!-- Start Single Product -->
                     <div class="single-product" style="border:none;">
-                    <a href="${pageContext.request.contextPath}/productView.do?p_idx=${hv.p_idx}">
+                    <c:choose>
+                    <c:when test="${hv.p_discount != 0}">
+                      <a href="${pageContext.request.contextPath}/productView.do?p_idx=${hv.p_idx}">
                         <div class="product-image" style="height: 320px; ">
                             <img style="height:100%" src="${pageContext.request.contextPath}/resources/product/${hv.p_sys_filename}" alt="${hv.p_name}">
-                                <c:if test="${hv.p_discount != 0}"><!-- member_grade: 0(일반회원), 1(관리자), 2(슈퍼관리자) -->
 									<span class="sale-tag">-${hv.p_discount}%</span>
-								</c:if>
                         </div>
                         </a>
+                    </c:when>
+                    <c:otherwise>
+                      <a href="${pageContext.request.contextPath}/productView.do?p_idx=${hv.p_idx}">
+                        <div class="product-image" style="height: 320px; width:245px; ">
+                            <img style="height:100%" src="${pageContext.request.contextPath}/resources/product/${hv.p_sys_filename}" alt="${hv.p_name}">
+                        </div>
+                        </a>
+                    </c:otherwise>
+                    </c:choose>
+                  
                         
                         <div class="product-info">
                           <span>
@@ -501,8 +576,9 @@ $(function() {
 								</c:choose>
 							</span>
     
+                            
                             <h4 class="title">
-                                <a href="${pageContext.request.contextPath}/productView.do?p_idx=${hv.p_idx} ">
+                                <a href="${pageContext.request.contextPath}/productView.do?p_idx=${hv.p_idx}">
                                 ${hv.p_name}</a>
                             </h4>
                             <ul class="review">
@@ -518,21 +594,66 @@ $(function() {
 								
 							</ul>
                             <div class="price">
-							  <span><fmt:formatNumber value="${hv.p_disprice}" pattern="#,###"/>원</span>
-								<c:if test="${hv.p_disprice != 0}">
-						      <span class="discount-price"><fmt:formatNumber value="${hv.p_price}" pattern="#,###" />원</span>
+                                  <a href="${pageContext.request.contextPath}/productView.do?p_idx=${hv.p_idx}">
+							  <span style="color:rgb(51, 51, 51);"><fmt:formatNumber value="${hv.p_disprice}" pattern="#,###"/>원</span>
+								<c:if test="${hv.p_discount != 0}">
+									<span class="discount-price"><fmt:formatNumber value="${hv.p_price}" pattern="#,###" />원</span>
 							   </c:if>
+							   </a>
 							</div>
                             
                             <br>
                        </div>
+                        
                     </div>
                     <!-- End Single Product -->
                 </div>
                 </c:forEach>
             </div>
         </div>
-    </section style="margin-bottom:150px;">
+    </section>
+    
+         <!-- 리뷰 -->
+        <section class="trending-product section" style="margin-top: 12px;">
+        <div class="container">
+           <div class="row">
+        <h4>마이펫 구매후기</h4>   
+         <c:forEach var="hv" items="${HomeList6}" end="2">
+                       
+                    <div class="col-lg-3 col-md-6 col-12">
+                    <!-- Start Single Product -->
+                    <div class="single-product" style="border:none;">
+
+                        <div class="product-info" style="background:#f5f5f5; border-radius: 20px;">
+<%--                         <h4 class="title"><a href="${pageContext.request.contextPath}/productView.do?p_idx=${hv.p_idx}"></a></h4> --%>
+                            <ul class="review">
+                            <c:forEach begin="1" end="${hv.review_stars}">
+                              <li><i class="lni lni-star-filled"></i></li>
+                             </c:forEach>
+                             
+                             <c:forEach begin="1" end="${5-hv.review_stars}">
+                              <li><i class="lni lni-star"></i></li>
+                             </c:forEach>
+                            </ul>
+                            <span style="font-size:16px; margin-top:10px; margin-bottom:10px; text-overflow: ellipsis; color:#000000; overflow:hidden; font-weight: 400;">
+                            <b>${hv.p_name}</b></span>
+                               <p>${hv.review_content}</p>
+                        </div>
+                        <div class="product-info" style="display:flex;">
+                        	<div style="width:44px; height:44px; overflow:hidden; border-radius:50%;">
+                        <img alt="" src="${pageContext.request.contextPath}/resources/Extra/img/${hv.m_profile}">
+                        	</div>
+                        		<div style="margin-left:15px; margin-top:10px;">${hv.m_nick}</div>
+                        		<div></div>
+                        		<div style="margin-left:90px; font-size:12px; color: #A1A1A1;"><fmt:formatDate value="${hv.review_wday}" pattern="yyyy-MM-dd"/></div>
+                        </div>
+                    </div>
+                    <!-- End Single Product -->
+                </div>
+           </c:forEach>
+           </div>
+        </div>
+        </section>
 
 
 <!-- 푸터와 js************************************************ -->
