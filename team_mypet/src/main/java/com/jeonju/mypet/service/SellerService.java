@@ -67,9 +67,9 @@ public class SellerService {
 		return sellerDao.getPIdx();
 	}
 
-	public void addProductImg(HashMap<String,String> imgFileName) {
+	public int addProductImg(HashMap<String,String> imgFileName) {
 		// TODO Auto-generated method stub
-		sellerDao.addProductImg(imgFileName);
+		return sellerDao.addProductImg(imgFileName);
 	}
 
 	public String getSellerIdx(String member_id) {
@@ -136,6 +136,31 @@ public class SellerService {
 	public int updateSellerAccount(SellerStoryVo sellerStoryVo) {
 		// TODO Auto-generated method stub
 		return sellerDao.updateSellerAccount(sellerStoryVo);
+	}
+
+	public int delete_img(int p_front_img) {
+		// TODO Auto-generated method stub
+		return sellerDao.delete_img(p_front_img);
+	}
+
+	public int updateProduct(Map<String, String> param) {
+		// TODO Auto-generated method stub
+		return sellerDao.updateProduct(param);
+	}
+
+	public int DelYNProduct(Map<String, String> param) {
+		// TODO Auto-generated method stub
+		return sellerDao.DelYNProduct(param);
+	}
+
+	public void updateSellerImg(HashMap<String, String> imgFileName) {
+		// TODO Auto-generated method stub
+		sellerDao.updateSellerImg(imgFileName);
+	}
+
+	public void updateSellerIntro(HashMap<String, String> intro) {
+		// TODO Auto-generated method stub
+		sellerDao.updateSellerIntro(intro);
 	}
 	
 }

@@ -69,14 +69,28 @@
 						<form name="frm" action="${pageContext.request.contextPath}/seller_profileModif.do" method="post"  enctype="multipart/form-data">
 							<div class="row">
 								<div class="col-12">
-								<div style="border : 1px solid #d9d9d9;">
-								${sellerStoryVo.seller_intro}
+									<div style="position:relative; top:50%; left:5%">
+								     <div style="position:relative; float:left; width:150px; height: 150px; border-radius: 70%; overflow: hidden;">
+								   <img class="profile" src="${pageContext.request.contextPath}/resources/seller/${sellerStoryVo.seller_img}">
+								     </div>
+								   
+								     <div class="" style="position:relative; float:left; margin-left:30px;">
+								     <span style="font-size: 16px;font-weight: bold; color: #333333;">
+								     ${sellerStoryVo.seller_intro}</span>
+								     </div>
+								     
+								   </div>
+									
+								
 								</div>
+								<div class="col-12" style="position:relative;">
+										<br><br><br><br><br><br>
+								    	 <input type="submit" class="btn btn-light" value="수정">
 								</div>
 							</div>
-							<img src="${pageContext.request.contextPath}/resources/seller/${sellerStoryVo.seller_img}">
-							<p>
-							<input type="submit" class="btn btn-light" value="수정">
+							
+							
+							
 						</form>
 						
 						

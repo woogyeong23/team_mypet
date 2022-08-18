@@ -3,7 +3,8 @@
   "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 
 <mapper namespace = "com.jeonju.mypet.seller">
-
+	
+	<!-- 판매상품 리스트 출력 -->
 	<select id="getSellerProductList" resultType="Hashmap">
 		select p.*, sum(detail_cnt) as sales, e.p_ori_filename, e.p_sys_filename
 					from
@@ -14,6 +15,7 @@
 						group by a.p_idx)
 					as p left join detail d on p.p_idx = d.p_idx  join product_img e on p.p_idx=e.p_idx
 					where p.p_idx in (select p_idx from product where seller_idx=(select seller_idx from sellerstory where midx=#{member_id}))
+					and e.img_delyn='N'
 			<if  test="searching == 'searchTotal'">
 					and (p.p_idx like CONCAT('%',#{keyword},'%') or p_name like CONCAT('%',#{keyword},'%'))
 			</if>
@@ -70,19 +72,23 @@
 				</when>
 			</choose>
 	</select>
+	
+	<!-- 판매상품 상세 -->
 	<select id="getSellerProductDetail" parameterType="string" resultType="productVo">
 		select * from product where p_idx=#{p_idx}
 	</select>
+	
+	<!-- 판매상품 상세 안 이미지 -->
 	<select id="getSellerProductImgs" parameterType="string" resultType="product_imgVo">
-		select * from product_img where p_idx=#{p_idx}
+		select * from product_img where p_idx=#{p_idx} and img_delyn='N'
 	</select>
+	
+	<!-- 판매상품 명 중복체크 -->
 	<select id="checkPName" parameterType="string" resultType="int">
 		select count(*) from product where p_name = #{p_name}
 	</select>
-	<select id="checkId" parameterType="string" resultType="int">
-		select count(*) from spring_member where member_id=#{member_id}
-	</select>
-	<!-- 동적 SQL문으로 처리: choose-when-otherwise 구문 -->
+	
+	<!-- 판매상품 등록 -->
 	<insert id="addProduct" parameterType="map">
 		
 		INSERT INTO product(seller_idx,p_category_idx,p_name,p_content,p_price,p_discount,p_disprice,p_cancle_info,p_ingerdient,p_dvprice,p_dvcompany,p_limit_cnt,p_point,p_add_dvprice,p_free_dvprice,p_size,p_status,p_stock)
@@ -91,14 +97,19 @@
 			
 	</insert>
 	
+	<!-- 가장 최신 상품 p_idx ???-->
 	<select id="getPIdx" resultType="int">
 		select max(p_idx) as p_idx from product
 	</select>
+	
+	<!-- 판매자 idx -->
 	<select id="getSellerIdx" resultType="String">
 		select seller_idx
 		from members a join sellerstory b on a.midx=b.midx
 		where a.midx=#{member_id}
 	</select>
+	
+	<!-- 판매상품의 이미지 등록 -->
 	<insert id="addProductImg" parameterType="map">
 		
 		INSERT INTO product_img(p_idx,p_ori_filename,p_sys_filename)
@@ -107,12 +118,14 @@
 			
 	</insert>
 	
+	<!-- 판매상품 리스트 출력 2 ?? -->
 	<select id="getSellerProductVoList" parameterType="string" resultType="productVo">
 		select p_idx, p_name, p_dvprice
 		from product
 		where seller_idx = (select seller_idx from sellerstory where midx=#{member_id})
 	</select>
 	
+	<!-- 주문내역 -->
 	<select id="getSellerOrdersList" resultType="ordersVo">
 		
 		select orders.*, m_name, m_id, members.midx
@@ -205,6 +218,7 @@
 	-->			
 	</select>
 	
+	<!-- 주문 디테일 출력 -->
 	<select id="getSellerDetailVoList" resultType="detailVo">
 		select *
 		from (select a.seller_idx, b.fixdvprice, a.p_idx, a.p_name, b.detail_idx, c.detail_status , RANK() OVER (PARTITION BY detail_idx ORDER BY detail_status desc) AS num
@@ -214,6 +228,8 @@
 
 					
 	</select>
+	
+	<!-- 묶음배송 총가격? -->
 	<select id="getSellerOrdersPrice" resultType="String">
 		select sum(b.fixprice) as bundleprice
 		from orders a join detail b on a.orders_idx=b.orders_idx join product c on b.p_idx=c.p_idx
@@ -267,6 +283,7 @@
 					
 	</select>
 	
+	<!-- 판매자 프로필 -->
 	<select id="getSeller_profile" resultType="sellerStoryVo">
 		select b.*
 		from members a join sellerstory b on a.midx=b.midx
@@ -274,12 +291,52 @@
 					
 	</select>
 	
+	<!-- 판매자 프로필 이미지 수정-->
+	<select id="updateSellerImg" >
+		update sellerstory set seller_img=#{seller_img}
+			 where midx=#{member_id}
+					
+	</select>
+	
+	<!-- 판매자 프로필 인트로 수정-->
+	<select id="updateSellerIntro" >
+		update sellerstory set seller_intro=#{seller_intro}
+			 where midx=#{member_id}
+					
+	</select>
+	
+	<!-- 판매자 계좌 업데이트 -->
 	<update id="updateSellerAccount" parameterType="sellerStoryVo">
-	update sellerstory set seller_bank=#{seller_bank}, seller_account_number=#{seller_account_number}
+		update sellerstory set seller_bank=#{seller_bank}, seller_account_number=#{seller_account_number}
 	 where midx=#{midx}
 	</update>
 	
+	<!-- 판매상품 삭제 -->
+	<update id="delete_img" >
+	update product_img set img_delyn='Y'
+	 where p_front_img=#{p_front_img}
+	</update>
 	
+	<!-- 판매상품 수정 -->
+	<update id="updateProduct" >
+		update product set p_category_idx=#{p_category_idx},p_name=#{p_name},p_content=#{p_content},p_price=#{p_price},p_discount=#{p_discount},p_disprice=#{p_disprice},p_cancle_info=#{p_cancle_info},p_ingerdient=#{p_ingerdient},p_dvprice=#{p_dvprice},p_dvcompany=#{p_dvcompany},p_limit_cnt=#{p_limit_cnt},p_point=#{p_point},p_add_dvprice=#{p_add_dvprice},p_free_dvprice=#{p_free_dvprice},p_size=#{p_size},p_status=#{p_status},p_stock=#{p_stock},p_modifyday=now()
+		 where p_idx=#{p_idx}
+	</update>
+	
+	<!-- 판매상품 수정 -->
+	<update id="DelYNProduct" >
+		<choose>
+			<when test="p_status==2">
+				update product set p_delyn='Y'
+				 where p_idx=#{p_idx}
+			</when>
+			<otherwise>
+				update product set p_delyn='N'
+				 where p_idx=#{p_idx}
+			</otherwise>
+		</choose>
+		
+	</update>
 	
 	
 	

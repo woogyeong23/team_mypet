@@ -43,8 +43,8 @@ public class SellerController {
 		this.sellerService = sellerService;
 	}
 	
-	
-	@GetMapping("/seller_productList.do")
+	@RequestMapping(value="/seller_productList.do", method = {RequestMethod.GET, RequestMethod.POST})
+
 	public String seller_productList(String searching, 
 			String keyword, String sorting, String status, String category,
 			Model model, HttpServletRequest request) {
@@ -74,7 +74,7 @@ public class SellerController {
 		searchInfo.put("category", category);
 		searchInfo.put("keyword", keyword);
 		//System.out.println("********************************************");
-		System.out.println(member_id+searching+keyword+sorting+status+category);
+		//System.out.println(member_id+searching+keyword+sorting+status+category);
 		List<HashMap<String, Object>> productListMap = sellerService.seller_productList(searchInfo);
 		
 		model.addAttribute("productListMap", productListMap);
@@ -82,8 +82,7 @@ public class SellerController {
 		
 		return "seller/seller_productList";
 	}
-	
-	@GetMapping("/seller_productDetail.do")
+	@RequestMapping(value="/seller_productDetail.do", method = {RequestMethod.GET, RequestMethod.POST})
 	public String seller_productDetail( @RequestParam("p_idx") String p_idx, Model model, HttpServletRequest request) {
 		//@RequestParam("p_idx") String p_idx,
 		
@@ -104,96 +103,124 @@ public class SellerController {
 		return "seller/seller_productDetail";
 	}
 	
-	@GetMapping("/seller_productRegist.do")
-	public String loginProcess(Model model, HttpServletRequest request) {
-		
-		
-		return "seller/seller_productRegist";
-	}
-	@PostMapping("/checkPName.do")
-	@ResponseBody //Ajax통신의 응답내용을 보내는 것을 표시
-	public String checkPName(@RequestParam("p_name") String p_name) {
-		
-		//System.out.println("p_name: "+p_name);
-		
-		String result="N";//중복된 아이디 없음
-		
-		int flag = sellerService.checkPName(p_name);
-		
-		if(flag != 0) result = "Y";//중복된 아이디 있음
-		
-		return result;
-	}
+	@RequestMapping(value="/seller_productModif.do", method = {RequestMethod.GET, RequestMethod.POST})
+	public String seller_productModif(MultipartHttpServletRequest mRequest,
+			 @RequestParam("p_idx") String p_idx,
+			Model model, HttpServletRequest request
+			) throws IllegalStateException, IOException{
+				
 
-	/*
-	 * //test
-	 * 
-	 * @PostMapping("/checkId.do")
-	 * 
-	 * @ResponseBody //Ajax통신의 응답내용을 보내는 것을 표시 public String
-	 * checkId(@RequestParam("member_id") String id) {
-	 * 
-	 * System.out.println("id: "+id);
-	 * 
-	 * String result="N";//중복된 아이디 없음
-	 * 
-	 * int flag = sellerService.checkId(id);
-	 * 
-	 * if(flag == 1) result = "Y";//중복된 아이디 있음
-	 * 
-	 * return result; }
-	 */
+		System.out.println("여기는 상품수정");
+		ProductVo productVo = sellerService.seller_productDetail(p_idx);
+		
+		List<Product_ImgVo> productImgList = sellerService.seller_productImgs(p_idx);
+		productVo.setProduct_imgs(productImgList);
+		
+		 for (Product_ImgVo a : productImgList) {
+	            String p_sys_fileName = a.getP_sys_filename();
+	            System.out.println(p_sys_fileName+"/"+a.getP_front_img()+"~~");
+		 }
+		model.addAttribute("productImgList", productImgList);
+		model.addAttribute("productVo", productVo);
+					  
+				
+				
+		return "seller/seller_productModif";
+	}
 	
-	@RequestMapping(value="/registProcess.do", method = {RequestMethod.GET, RequestMethod.POST})
-	public String registProcess(MultipartHttpServletRequest mRequest,
+	@RequestMapping(value="/seller_productModifProcess.do", method = {RequestMethod.GET, RequestMethod.POST})
+	public String seller_productModifProcess(MultipartHttpServletRequest mRequest,
 			@RequestParam Map<String, String> param,
+			@RequestParam("p_idx") String p_idx,
 			Model model, HttpServletRequest request
 			) throws IllegalStateException, IOException{
 		
+		System.out.println("여기는 상품수정 진행중");
+
+		//기존 이미지 삭제했는지 여부 확인 후 디비 delyn Y로 바꾸기
+		List<Product_ImgVo> productImgList = sellerService.seller_productImgs(p_idx);
+
+		for (Product_ImgVo a : productImgList) {
+           
+            boolean result = param.containsKey("file_"+a.getP_front_img());// 파일 삭제를 눌렀는지 확인
+            //System.out.println(result);
+            if(result == false)//삭제하기
+            {
+            	 System.out.println(param.get("file_"+a.getP_front_img()));
+            	 int del = sellerService.delete_img(a.getP_front_img());
+            }
+            
+           
+		}
 		HttpSession session = request.getSession();
 		int midx = (int) session.getAttribute("midx");
 //		long midx = (long) session.getAttribute("midx");
 		String member_id= Integer.toString((int) midx);
 		
+		//카테고리 분류하기
 		String p_category_idx = "";
 		int p_category_large =  Integer.parseInt(param.get("p_category_large"));
 		if(p_category_large==1)
 	    {
-	    	if(param.get("p_category_small").equals("개껌")) p_category_idx ="1";
-	    	else if(param.get("p_category_small").equals("스낵")) p_category_idx ="2";
-	    	else if(param.get("p_category_small").equals("뼈/육포")) p_category_idx ="3";
-	    	else if(param.get("p_category_small").equals("스틱")) p_category_idx ="4";
-	    	else if(param.get("p_category_small").equals("프리미엄")) p_category_idx ="5";
-	    	else if(param.get("p_category_small").equals("통살")) p_category_idx ="6";
+	    	if(param.get("p_category_small").equals("개껌")||param.get("p_category_small").equals("1")) p_category_idx ="1";
+	    	else if(param.get("p_category_small").equals("스낵")||param.get("p_category_small").equals("2")) p_category_idx ="2";
+	    	else if(param.get("p_category_small").equals("뼈/육포")||param.get("p_category_small").equals("3")) p_category_idx ="3";
+	    	else if(param.get("p_category_small").equals("스틱")||param.get("p_category_small").equals("4")) p_category_idx ="4";
+	    	else if(param.get("p_category_small").equals("프리미엄")||param.get("p_category_small").equals("5")) p_category_idx ="5";
+	    	else if(param.get("p_category_small").equals("통살")||param.get("p_category_small").equals("6")) p_category_idx ="6";
 	    }
 	    else if(p_category_large==2)
 	    {
-	    	if(param.get("p_category_small").equals("츄르")) p_category_idx ="7";
-	    	else if(param.get("p_category_small").equals("스낵")) p_category_idx ="8";
-	    	else if(param.get("p_category_small").equals("캣잎")) p_category_idx ="9";
-	    	else if(param.get("p_category_small").equals("통살")) p_category_idx ="10";
-	    	else if(param.get("p_category_small").equals("프리미엄")) p_category_idx ="11";
-	    	else if(param.get("p_category_small").equals("스틱")) p_category_idx ="12";
+	    	if(param.get("p_category_small").equals("츄르")||param.get("p_category_small").equals("1")) p_category_idx ="7";
+	    	else if(param.get("p_category_small").equals("스낵")||param.get("p_category_small").equals("2")) p_category_idx ="8";
+	    	else if(param.get("p_category_small").equals("캣잎")||param.get("p_category_small").equals("3")) p_category_idx ="9";
+	    	else if(param.get("p_category_small").equals("스틱")||param.get("p_category_small").equals("4")) p_category_idx ="10";
+	    	else if(param.get("p_category_small").equals("프리미엄")||param.get("p_category_small").equals("5")) p_category_idx ="11";
+	    	else if(param.get("p_category_small").equals("통살")||param.get("p_category_small").equals("6")) p_category_idx ="12";
 	    }
 	    
 		//String p_category_idx = param.get("p_category_large");
 		
 		String seller_idx=sellerService.getSellerIdx(member_id);
 		System.out.println("------------------------------------------------"+seller_idx);
-		int result=0;//실패
+		System.out.println("p_category_idx"+param.get("p_category_idx"));
+		System.out.println("p_category_large"+param.get("p_category_large"));
+		System.out.println("p_category_small"+param.get("p_category_small"));
+
 		param.put("seller_idx", seller_idx);
 		param.put("p_category_idx", p_category_idx);
-		result = sellerService.addProduct(param);
+		//System.out.println("p_category_idx"+param.get("p_category_idx"));
+		//System.out.println("@@@@"+p_category_idx);
+		
+		int productModi = sellerService.updateProduct(param);
+		
+			int productDel = sellerService.DelYNProduct(param);
 		
 		
-
 		
-		int pidx=sellerService.getPIdx();
-		String p_idx= Integer.toString(pidx);
-		System.out.println(p_idx);
+		/*
+		System.out.println("seller_idx"+seller_idx);
+		System.out.println("p_category_idx"+param.get("p_category_idx"));
+		System.out.println("p_name"+param.get("p_name"));
+		System.out.println("p_content"+param.get("p_content"));
+		System.out.println("p_price"+param.get("p_price"));
+		System.out.println("p_discount"+param.get("p_discount"));
+		System.out.println("p_disprice"+param.get("p_disprice"));
+		System.out.println("p_cancle_info"+param.get("p_cancle_info"));
+		System.out.println("p_ingerdient"+param.get("p_ingerdient"));
+		System.out.println("p_dvprice"+param.get("p_dvprice"));
+		System.out.println("p_dvcompany"+param.get("p_dvcompany"));
+		System.out.println("p_limit_cnt"+param.get("p_limit_cnt"));
+		System.out.println("p_point"+param.get("p_point"));
+		System.out.println("p_add_dvprice"+param.get("p_add_dvprice"));
+		System.out.println("p_free_dvprice"+param.get("p_free_dvprice"));
+		System.out.println("p_size"+param.get("p_size"));
+		System.out.println("p_status"+param.get("p_status"));
+		System.out.println("p_stock"+param.get("p_stock"));
+		*/
+		
 		
 		List<MultipartFile> fileList = mRequest.getFiles("file");
-		System.out.println();
 		
         for (MultipartFile mf : fileList) {
             String p_ori_fileName = mf.getOriginalFilename().trim(); // 원본 파일 명
@@ -241,10 +268,134 @@ public class SellerController {
 	
 	  model.addAttribute("param", param);
 	  
-	  System.out.println(result); String viewPage="gallery/fileUpload";
+				
+		model.addAttribute("p_idx", p_idx);
+				//"redirect:/seller_productList.do"
+		return "redirect:/seller_productDetail.do";
+	}
+	
+	
+	
+	@GetMapping("/seller_productRegist.do")
+	public String loginProcess(Model model, HttpServletRequest request) {
+		
+		
+		return "seller/seller_productRegist";
+	}
+	@PostMapping("/checkPName.do")
+	@ResponseBody //Ajax통신의 응답내용을 보내는 것을 표시
+	public String checkPName(@RequestParam("p_name") String p_name) {
+		
+		//System.out.println("p_name: "+p_name);
+		
+		String result="N";//중복된 상품명 없음
+		
+		int flag = sellerService.checkPName(p_name);
+		
+		if(flag != 0) result = "Y";//중복된 상품명 있음
+		
+		return result;
+	}
+
+	
+	@RequestMapping(value="/registProcess.do", method = {RequestMethod.GET, RequestMethod.POST})
+	public String registProcess(MultipartHttpServletRequest mRequest,
+			@RequestParam Map<String, String> param,
+			Model model, HttpServletRequest request
+			) throws IllegalStateException, IOException{
+		
+		HttpSession session = request.getSession();
+		int midx = (int) session.getAttribute("midx");
+//		long midx = (long) session.getAttribute("midx");
+		String member_id= Integer.toString((int) midx);
+		
+		//카테고리 분류하기
+		String p_category_idx = "";
+		int p_category_large =  Integer.parseInt(param.get("p_category_large"));
+		if(p_category_large==1)
+	    {
+	    	if(param.get("p_category_small").equals("개껌")) p_category_idx ="1";
+	    	else if(param.get("p_category_small").equals("스낵")) p_category_idx ="2";
+	    	else if(param.get("p_category_small").equals("뼈/육포")) p_category_idx ="3";
+	    	else if(param.get("p_category_small").equals("스틱")) p_category_idx ="4";
+	    	else if(param.get("p_category_small").equals("프리미엄")) p_category_idx ="5";
+	    	else if(param.get("p_category_small").equals("통살")) p_category_idx ="6";
+	    }
+	    else if(p_category_large==2)
+	    {
+	    	if(param.get("p_category_small").equals("츄르")) p_category_idx ="7";
+	    	else if(param.get("p_category_small").equals("스낵")) p_category_idx ="8";
+	    	else if(param.get("p_category_small").equals("캣잎")) p_category_idx ="9";
+	    	else if(param.get("p_category_small").equals("스틱")) p_category_idx ="10";
+	    	else if(param.get("p_category_small").equals("프리미엄")) p_category_idx ="11";
+	    	else if(param.get("p_category_small").equals("통살")) p_category_idx ="12";
+	    }
+	    
+		//String p_category_idx = param.get("p_category_large");
+		
+		String seller_idx=sellerService.getSellerIdx(member_id);
+		//System.out.println("------------------------------------------------"+seller_idx);
+		int result=0;//실패
+		param.put("seller_idx", seller_idx);
+		param.put("p_category_idx", p_category_idx);
+		result = sellerService.addProduct(param);
+		
+		
+
+		//파일 저장하기
+		int pidx=sellerService.getPIdx();
+		String p_idx= Integer.toString(pidx);
+		System.out.println(p_idx);
+		
+		List<MultipartFile> fileList = mRequest.getFiles("file");
+		
+        for (MultipartFile mf : fileList) {
+            String p_ori_fileName = mf.getOriginalFilename().trim(); // 원본 파일 명
+
+          //시스템 파일명은 원본 파일명에서 파일명과 확장자를 분리한 다음 파일명에 시스템시간을 추가한 후 다시 확장자를 붙이는 식으로 생성
+    		int dot_idx = p_ori_fileName.lastIndexOf(".");
+    		String fileName1 = p_ori_fileName.substring(0, dot_idx);
+    		String extension = p_ori_fileName.substring(dot_idx+1);
+    		String fileName2 = fileName1 + new SimpleDateFormat("_yyyyMMdd_hhmmss").format(System.currentTimeMillis());
+    		String p_sys_fileName = fileName2+"."+extension;
+    		
+    		//upload 디렉토리에 대한 실제 경로 확인을 위해 ServletContext객체를 이용
+    		String upload_dir = "resources/product/";
+    		
+    		String realPath = request.getServletContext().getRealPath(upload_dir);
+    		System.out.println("이클립스로 저장된 파일의 실제 경로: " + realPath);
+    		
+    		//지정된 경로에 파일 저장
+    		String fullPath = realPath+p_sys_fileName;
+            System.out.println("********************************************");
+            System.out.println("p_sys_fileName : " + p_sys_fileName);
+            System.out.println("p_ori_fileName : " + p_ori_fileName);
+            HashMap<String,String> imgFileName = new HashMap<String,String>();
+            imgFileName.put("p_sys_fileName", p_sys_fileName);
+            imgFileName.put("p_ori_fileName", p_ori_fileName);
+            imgFileName.put("p_idx", p_idx);
+            
+            try {
+                mf.transferTo(new File(fullPath));
+                int img_result = sellerService.addProductImg(imgFileName);
+                
+            } catch (IllegalStateException e) {
+                e.printStackTrace();
+            } catch (IOException e) {
+                
+                e.printStackTrace();
+            }
+        }
+		
+		
+		
+		
+		
+		
+	
+	
+	  model.addAttribute("param", param);
 	  
-	  if(result ==1) { viewPage = "gallery/fileUpload_result"; }
-	 
 		return "redirect:/seller_productList.do";
 		
 		
@@ -373,30 +524,75 @@ public class SellerController {
 	}
 
 	@RequestMapping(value="/seller_profileModif.do", method = {RequestMethod.GET, RequestMethod.POST})
-	public String seller_profileModif( @RequestParam("introduce") String introduce,
-			@RequestParam("file") String file,
+	public String seller_profileModif( 
 			Model model, HttpServletRequest request
 			) throws IllegalStateException, IOException{
-		
-		System.out.println("************************************"+introduce+file);
 
+		  HttpSession session = request.getSession(); int midx = (int)
+		  session.getAttribute("midx"); 
+		  String member_id= Integer.toString(midx);
+		  
+		  SellerStoryVo sellerStoryVo = sellerService.seller_profile(member_id);
+		  model.addAttribute("sellerStoryVo",sellerStoryVo);
+		  
 		//System.out.println(detail_idx);
 		
 		
-		return "seller/seller_profile";
+		return "seller/seller_profileModif";
 	}
 	@RequestMapping(value="/seller_profileModifProcess.do", method = {RequestMethod.GET, RequestMethod.POST})
-	public String seller_profileModifProcess( @RequestParam("introduce") String introduce,
-			@RequestParam("file") String file,
-			Model model, HttpServletRequest request
+	public String seller_profileModifProcess( MultipartHttpServletRequest mRequest,
+			String seller_intro , Model model, HttpServletRequest request
 			) throws IllegalStateException, IOException{
 		
-		System.out.println("************************************"+introduce+file);
+					HttpSession session = request.getSession(); int midx = (int)
+				  session.getAttribute("midx"); 
+				  String member_id= Integer.toString(midx);
+				  				  
+				  List<MultipartFile> fileList = mRequest.getFiles("file");
+					
+			        for (MultipartFile mf : fileList) {
+			            String p_ori_fileName = mf.getOriginalFilename().trim(); // 원본 파일 명
 
-		//System.out.println(detail_idx);
+			          //시스템 파일명은 원본 파일명에서 파일명과 확장자를 분리한 다음 파일명에 시스템시간을 추가한 후 다시 확장자를 붙이는 식으로 생성
+			    		int dot_idx = p_ori_fileName.lastIndexOf(".");
+			    		String fileName1 = p_ori_fileName.substring(0, dot_idx);
+			    		String extension = p_ori_fileName.substring(dot_idx+1);
+			    		String fileName2 = fileName1 + new SimpleDateFormat("_yyyyMMdd_hhmmss").format(System.currentTimeMillis());
+			    		String p_sys_fileName = fileName2+"."+extension;
+			    		
+			    		//upload 디렉토리에 대한 실제 경로 확인을 위해 ServletContext객체를 이용
+			    		String upload_dir = "resources/seller/";
+			    		
+			    		String realPath = request.getServletContext().getRealPath(upload_dir);
+			    		System.out.println("이클립스로 저장된 파일의 실제 경로: " + realPath);
+			    		
+			    		//지정된 경로에 파일 저장
+			    		String fullPath = realPath+p_sys_fileName;
+			            System.out.println("********************************************");
+			            System.out.println("p_sys_fileName : " + p_sys_fileName);
+			            System.out.println("p_ori_fileName : " + p_ori_fileName);
+			            HashMap<String,String> imgFileName = new HashMap<String,String>();
+			            imgFileName.put("seller_img", p_sys_fileName);
+			            imgFileName.put("member_id", member_id);
+			            
+			            try {
+			                mf.transferTo(new File(fullPath));
+			                sellerService.updateSellerImg(imgFileName);
+			            } catch (IllegalStateException e) {
+			                e.printStackTrace();
+			            } catch (IOException e) {
+			                
+			                e.printStackTrace();
+			            }
+			        }
+			        HashMap<String,String> intro = new HashMap<String,String>();
+			        intro.put("seller_intro", seller_intro);
+			        intro.put("member_id", member_id);
+			        sellerService.updateSellerIntro(intro);
+			        
 		
-		
-		return "seller/seller_profile";
+		return "redirect:/seller_profile.do";
 	}
 	
 	@RequestMapping(value="/seller_account.do", method = {RequestMethod.GET, RequestMethod.POST})
