@@ -206,10 +206,10 @@
                                 <li><a href="${pageContext.request.contextPath}/Error">이벤트</a></li>
                                 <li><a href="${pageContext.request.contextPath}/CBList.do">커뮤니티</a></li>
                                 <li><a href="${pageContext.request.contextPath}/BSellerList.do">인기작가</a></li>
-                                 <li><a href="${pageContext.request.contextPath}/Error">더보기<i class="lni lni-chevron-right"></i></a>
+                                 <li><a href="#">더보기<i class="lni lni-chevron-right"></i></a>
                                     <ul class="inner-sub-category">
                                         <li><a href="${pageContext.request.contextPath}/Error">공지사항</a></li>
-                                        <li><a href="${pageContext.request.contextPath}/Error">자주하는 질문</a></li>
+                                        <li><a href="${pageContext.request.contextPath}/MostQuery">자주하는 질문</a></li>
                                         <li><a href="${pageContext.request.contextPath}/Error">1:1문의</a></li>
                                         <li><a href="${pageContext.request.contextPath}/Error">입점문의</a></li>
                                     </ul>
@@ -283,7 +283,7 @@
                                         <a href="${pageContext.request.contextPath}/BSellerList.do" aria-label="Toggle navigation">인기 작가</a>
                                     </li>
                                      <li class="nav-item">
-                                        <a href="${pageContext.request.contextPath}/Error" aria-label="Toggle navigation">실시간 후기</a>
+                                        <a href="${pageContext.request.contextPath}/realTime-review" aria-label="Toggle navigation">실시간 후기</a>
                                     </li>
                                 </ul>
                             </div> <!-- navbar collapse -->

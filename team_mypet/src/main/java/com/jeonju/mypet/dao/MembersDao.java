@@ -9,6 +9,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Repository;
 
 import com.jeonju.mypet.vo.MembersVo;
+import com.jeonju.mypet.vo.OrdersVo;
 import com.jeonju.mypet.vo.PetVo;
 
 
@@ -83,8 +84,12 @@ public class MembersDao {
 		return sqlSession.update(MAPPER+".getpetup",pet_idx);
 	}
 
-	public int checkNick(String m_nick) {
+	public int checknick(String m_nick) {
 		return sqlSession.selectOne(MAPPER+".getchecknick", m_nick);
+	}
+
+	public List<OrdersVo> orderList(OrdersVo ordersVo) {
+		return sqlSession.selectList(MAPPER+".getordersList", ordersVo);
 	}
 
 

@@ -128,11 +128,16 @@ button {
                                  </div>
                               </div>
                               
-                       
+                    
                         <div class="product-image" style="height: 320px;">
-                        <img style="height:100%" src="${pageContext.request.contextPath}/resources/Community/upload/${cv.cm_img}" alt="커뮤니티 이미지">
-                        </div>
                         
+                        <c:if test="${cv.cm_img ==''}">
+                            ${cv.setCm_img("image.jpg")}
+                        </c:if>
+
+                        <img style="height:100%" src="${pageContext.request.contextPath}/resources/Community/upload/${cv.cm_img}" alt="커뮤니티 이미지">
+                       
+                        </div>
                         <div class="product-info">
                             <h4 class="title" style="overflow: hidden;">
                                 <a href="${pageContext.request.contextPath}/CBView.do?cm_idx=${cv.cm_idx}">${cv.cm_subject}</a>
@@ -172,7 +177,7 @@ button {
 
   
  <c:if test="${m_id != null}">
- <div id="side_menu"><a href="${pageContext.request.contextPath}/CBInsert.do"><button type="button" class="btn btn-success" color="#aeddff"><i class="lni lni-pencil"></i></button></a></div>
+ <div id="side_menu"><a href="${pageContext.request.contextPath}/CBInsert.do"><button type="button" class="btn btn-success" color="#aeddff">게시물<br> 등록<br><i class="lni lni-pencil"></i></button></a></div>
 </c:if>  
 
 <!-- 푸터와 js************************************************ -->

@@ -11,8 +11,8 @@
                     <div class="row">
                         <div class="col-lg-3 col-md-4 col-12">
                             <div class="footer-logo">
-                                <a href="${pageContext.request.contextPath}/admin.do">
-                                    <img src="resources/assets/images/logo/mypetLogo.png" alt="#">
+                                <a href="index.html">
+                                    <img src="resources/assets/images/logo/white-logo.svg" alt="#">
                                 </a>
                             </div>
                         </div>
@@ -99,12 +99,11 @@
                             <div class="single-footer f-contact">
                                 <h3>회사정보</h3>
                                 <ul>
-                                    <li>상호 : 마이펫   </li>
+                                    <li>상호 : (주)마이펫</li>
                                     <li>대표 : 홍길동</li>
                                     <li>주소 : 서울시 용산구 독서당로 111 (우)04419</li>
                                     <li>개인정보관리 책임자 : 홍길동 (abc123@naver.com)</li>
                                     <li>사업자 등록번호 : 220-11-81508</li>
-                                    <li>인재채용</li>
                                 </ul>
                             </div>
                             <!-- End Single Widget -->
@@ -116,6 +115,10 @@
                                 <h3>마이펫 무통장 입금 계좌번호</h3>
                                 <ul>
                                     <li>국민은행 : 464801 - 01 - 061719</li>
+                                    <li>우리은행 : 1002 - 032 - 538269</li>
+                                    <li>하나은행 : 231 - 910094 - 22507</li>
+                                    <li>농협 : 084 - 12 - 135951</li>
+                                    <li>전북은행 :084 - 12 - 135951</li>
                                 </ul>
                             </div>
                             <!-- End Single Widget -->
@@ -147,8 +150,8 @@
                                 <li>
                                     <span>Follow Us On:</span>
                                 </li>
-                                <li><a href="${pageContext.request.contextPath}/Error"><i class="lni lni-facebook-filled"></i></a></li>
-                                <li><a href="${pageContext.request.contextPath}/Error"><i class="lni lni-twitter-original"></i></a></li>
+                                <li><a href="https://ko-kr.facebook.com/zuck"><i class="lni lni-facebook-filled"></i></a></li>
+                                <li><a href="https://twitter.com/elonmusk"><i class="lni lni-twitter-original"></i></a></li>
                                 <li><a href="${pageContext.request.contextPath}/Error"><i class="lni lni-instagram"></i></a></li>
                                 <li><a href="${pageContext.request.contextPath}/Error"><i class="lni lni-google"></i></a></li>
                             </ul>

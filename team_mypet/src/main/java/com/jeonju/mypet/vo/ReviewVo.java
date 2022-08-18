@@ -15,10 +15,15 @@ public class ReviewVo {
 	private int review_reply_cnt;
 	private String delyn;
 	private Date review_delday;
+	private int p_disprice;
 	
 	
 	//소현
 	private String p_sys_filename;
+
+	//test
+	private String m_profile;
+	
 	private int avg_reviews_stars;
 	private String review_nick;
 	
@@ -85,7 +90,7 @@ public class ReviewVo {
 	//소현
 	
     //  test 22.7.29
-	private String p_ori_filename;
+
 	private String p_name;
 	//
 	
@@ -168,13 +173,6 @@ public class ReviewVo {
 	public void setP_name(String p_name) {
 		this.p_name = p_name;
 	}
-	
-	public String getP_ori_filename() {
-		return p_ori_filename;
-	}
-	public void setP_ori_filename(String p_ori_filename) {
-		this.p_ori_filename = p_ori_filename;
-	}
 	// test 22.08.05
 	public int getP_category_idx() {
 		return p_category_idx;
@@ -183,6 +181,19 @@ public class ReviewVo {
 		this.p_category_idx = p_category_idx;
 	}
 	//
+	public int getP_disprice() {
+		return p_disprice;
+	}
+	public void setP_disprice(int p_disprice) {
+		this.p_disprice = p_disprice;
+	}
+	//test 22.08.17
+	public String getM_profile() {
+		return m_profile;
+	}
+	public void setM_profile(String m_profile) {
+		this.m_profile = m_profile;
+	}
 	
 
 }

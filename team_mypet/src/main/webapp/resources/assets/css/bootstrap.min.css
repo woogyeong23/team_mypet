@@ -44,9 +44,7 @@
         scroll-behavior: smooth
     }
 }
-.content{
-	width:80%;
-}
+
 body {
     margin: 0;
     font-family: var(--bs-font-sans-serif);

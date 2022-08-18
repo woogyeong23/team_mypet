@@ -76,9 +76,6 @@
 	select a.*, b.*, (select a.m_nick from members a join sellerstory b on a.midx=b.midx where b.seller_idx=(select seller_idx from product where p_idx=#{p_idx})) as m_nick,MIN(p_front_img), c.p_sys_filename, c.p_idx,IFNULL(avg(review_stars),0) AS avg_reviews_stars, COUNT(review_stars) AS cnt_reviews
 	from product a join p_category b on a.p_category_idx = b.p_category_idx join product_img c on a.p_idx=c.p_idx LEFT join review d on a.p_idx=d.p_idx
 	where a.p_delyn = 'N' AND a.p_idx=#{p_idx};
-	<!-- select a.*, b.*, MIN(p_front_img), c.p_sys_filename, c.p_idx,IFNULL(avg(review_stars),0) AS avg_reviews_stars, COUNT(review_stars) AS cnt_reviews
-	from product a join p_category b on a.p_category_idx = b.p_category_idx join product_img c on a.p_idx=c.p_idx LEFT join review d on a.p_idx=d.p_idx
-	where a.p_delyn = 'N' AND a.p_idx=#{p_idx} -->
 	</select>
 	
 	

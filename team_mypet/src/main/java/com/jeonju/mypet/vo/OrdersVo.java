@@ -7,6 +7,7 @@ public class OrdersVo {
 
 	private int orders_idx;
 	private int midx;
+	private int p_idx;
 	private Date orders_day;
 	private int orders_totalprice;
 	private int orders_status;
@@ -22,6 +23,7 @@ public class OrdersVo {
 	private String m_name;
 	private String m_id;
 	private String bundleprice;
+	
 	
 	public String getBundleprice() {
 		return bundleprice;
@@ -134,6 +136,12 @@ public class OrdersVo {
 	}
 	public void setOrders_completeday(Date orders_completeday) {
 		this.orders_completeday = orders_completeday;
+	}
+	public int getP_idx() {
+		return p_idx;
+	}
+	public void setP_idx(int p_idx) {
+		this.p_idx = p_idx;
 	}
 	
 	

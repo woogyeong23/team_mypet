@@ -34,7 +34,7 @@ public class CartDao {
 	}
 
 	//리스트뿌리기
-	public List<ProductVo> cartList(CartVo cartVo) {
+	public List<CartVo> cartList(CartVo cartVo) {
 		return sqlSession.selectList(MAPPER+".getcartList",cartVo);
 	}
 	
@@ -65,6 +65,10 @@ public class CartDao {
 	//품목 삭제하기
 	public int deleteCart(CartVo cartVo) {
 		return sqlSession.delete(MAPPER+".deleteCart",cartVo);
+	}
+
+	public int cartReset(int midx) {
+		return sqlSession.delete(MAPPER+".resetCart",midx);
 	}
 	
 
