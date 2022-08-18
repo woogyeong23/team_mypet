@@ -124,6 +124,20 @@ public class AdminDao {
 		// TODO Auto-generated method stub
 		return sqlSession.insert(MAPPER+".awInsert0", boardVo);
 	}
-	
+
+
+
+	public List<BoardVo> getBoardListd() {
+		// TODO Auto-generated method stub
+		return sqlSession.selectList(MAPPER + ".getBoardListd");
+		}
+
+
+
+	public int updateMemberGrade0(HashMap<String, Integer> map) {
+		// TODO Auto-generated method stub
+		return sqlSession.update(MAPPER+".updateMemberGrade0", map);
+	}
+
 
 }

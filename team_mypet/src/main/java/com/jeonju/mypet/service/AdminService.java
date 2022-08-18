@@ -1,12 +1,14 @@
 package com.jeonju.mypet.service;
 
 
+import java.util.HashMap;
 import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import com.jeonju.mypet.dao.AdminDao;
+import com.jeonju.mypet.dao.MembersDao;
 import com.jeonju.mypet.vo.BoardVo;
 import com.jeonju.mypet.vo.CommunityVo;
 import com.jeonju.mypet.vo.MembersVo;
@@ -21,9 +23,12 @@ public class AdminService {
 	
 	
 	
+	private MembersDao membersDao;
+	private AdminDao adminDao;
 	
+
 		
-		private AdminDao adminDao;
+		
 		
 		@Autowired
 		public AdminService(AdminDao adminDao) {
@@ -41,8 +46,8 @@ public class AdminService {
 			return adminDao.getBoardList();
 		}
 
-
-	
+		
+		
 
 		public List<BoardVo> getEventList() {
 			
@@ -102,6 +107,17 @@ public class AdminService {
 		// TODO Auto-generated method stub
 		return adminDao.awInsert0(boardVo);
 	}
+
+
+	public List<BoardVo> getBoardListd() {
+		// TODO Auto-generated method stub
+		return adminDao.getBoardListd();
+	}
+	
+
+
+
+
 
 }
 	

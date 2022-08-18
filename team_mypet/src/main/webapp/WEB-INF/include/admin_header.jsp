@@ -91,8 +91,8 @@
                 <div class="row align-items-center">
                     <div class="col-lg-3 col-md-3 col-7">
                         <!-- Start Header Logo -->
-                        <a class="navbar-brand" href="${pageContext.request.contextPath}/home.do">
-                            <img src="resources/assets/images/logo/mypetLogo.png"  style="width:100px; height:100px; margin-left:130px;" alt="Logo">
+                        <a class="navbar-brand" href="${pageContext.request.contextPath}/admin.do">
+                            <img src="resources/assets/images/logo/adminLogo.png"  style="width:100px; height:100px; margin-left:130px;" alt="Logo">
                         </a>
                         <!-- End Header Logo -->
                     </div>
@@ -199,19 +199,8 @@
                     <div class="nav-inner">
                         <!-- Start Mega Category Menu -->
                         <div class="mega-category-menu">
-                            <span class="cat-button"><i class="lni lni-menu"></i>전체 카테고리</span>
-                            <ul class="sub-category">
-                                <li><a href="productList.do?i=0&l=1">강아지</a></li>
-                                <li><a href="productList.do?i=0&l=2">고양이</a></li>
-                                <li><a href="${pageContext.request.contextPath}/Error">이벤트</a></li>
-                                <li><a href="${pageContext.request.contextPath}/CBList.do">커뮤니티</a></li>
-                                <li><a href="${pageContext.request.contextPath}/BSellerList.do">인기작가</a></li>
-                                 <li><a href="${pageContext.request.contextPath}/Error">더보기<i class="lni lni-chevron-right"></i></a>
-                                    <ul class="inner-sub-category">
-                                        <li><a href="${pageContext.request.contextPath}/Error">공지사항</a></li>
-                                        <li><a href="${pageContext.request.contextPath}/Error">자주하는 질문</a></li>
-                                        <li><a href="${pageContext.request.contextPath}/Error">1:1문의</a></li>
-                                        <li><a href="${pageContext.request.contextPath}/Error">입점문의</a></li>
+                         관리자 페이지
+                            
                                     </ul>
                                 </li>
                             </ul>
@@ -229,63 +218,59 @@
                             <div class="collapse navbar-collapse sub-menu-bar" id="navbarSupportedContent">
                                 <ul id="nav" class="navbar-nav ms-auto">
                                     <li class="nav-item">
-                                    <a href="productBest.do" aria-label="Toggle navigation">인기상품</a> 
+                                    <a href="#" aria-label="Toggle navigation">구매자 관리</a> 
 <%--                        <a href="${pageContext.request.contextPath}/home.do" class="active" aria-label="Toggle navigation">Home</a> --%>
-                                    </li>
-                                     <li class="nav-item">
-                                     <a href="productNew.do" aria-label="Toggle navigation">신상품</a>
-                                    </li>
-                                    <li class="nav-item">
-                                        <a class="dd-menu collapsed" href="javascript:void(0)" data-bs-toggle="collapse"
-                                            data-bs-target="#submenu-1-2" aria-controls="navbarSupportedContent"
-                                            aria-expanded="false" aria-label="Toggle navigation">강아지</a>
-                                        <ul class="sub-menu collapse" id="submenu-1-2">
-              			                    <li class="nav-item"><a href="productList.do?i=0&l=1">전체</a></li>
-                                         	<li class="nav-item"><a href="productList.do?i=1&l=1">껌</a></li>
-                                            <li class="nav-item"><a href="productList.do?i=2&l=1">스낵</a></li>
-                                            <li class="nav-item"><a href="productList.do?i=3&l=1">뼈/육포</a></li>
-                                            <li class="nav-item"><a href="productList.do?i=4&l=1">스틱</a></li>
-                                            <li class="nav-item"><a href="productList.do?i=5&l=1">프리미엄</a></li>
-                                            <li class="nav-item"><a href="productList.do?i=6&l=1">통살</a></li>
+
+
+
+                                 
+                                    <ul class="sub-menu collapse" id="submenu-1-2">
+              			                    <li class="nav-item"><a href="admin_memberList.do">구매자 리스트</a></li>
+                                         	<li class="nav-item"><a href="#">커뮤니티 글</a></li>
+                                            <li class="nav-item"><a href="#">주문 내역</a></li>
+                                            <li class="nav-item"><a href="#">고객문의 내역</a></li>
+                                            <li class="nav-item"><a href="#">후기</a></li>
+                                            <li class="nav-item"><a href="#">입점신청</a></li>
+                                           
                                         </ul>
                                     </li>
+                                     <li class="nav-item">
+                                     <a href="#" aria-label="Toggle navigation">판매자 관리</a>
+                                   
+                                
+                                    
+                                    
+                                         <ul class="sub-menu collapse" id="submenu-1-3">
+              			                    <li class="nav-item"><a href="#">판매자상품 관리</a></li>
+                                         	 <li class="nav-item"><a href="#">주문 내역</a></li>
+                                            <li class="nav-item"><a href="#">고객문의 내역</a></li>
+                                            <li class="nav-item"><a href="#">후기</a></li>
+                                      
+                                           
+                                        </ul>
+                                    </li>
+                                  <li class="nav-item">
+                                        <a href="admin_panme.do" aria-label="Toggle navigation">판매량차트</a>
+                                   
+                                    </li>
                                     <li class="nav-item">
-                                        <a class="dd-menu collapsed" href="javascript:void(0)" data-bs-toggle="collapse"
-                                            data-bs-target="#submenu-1-3" aria-controls="navbarSupportedContent"
-                                            aria-expanded="false" aria-label="Toggle navigation">고양이</a>
-                                        <ul class="sub-menu collapse" id="submenu-1-3">
-              <!--소현-->                    <li class="nav-item"><a href="productList.do?i=0&l=2">전체</a></li>
-                                            <li class="nav-item"><a href="productList.do?i=7&l=2">츄르 </a></li>
-                                            <li class="nav-item"><a href="productList.do?i=8&l=2">스낵</a></li>
-                                            <li class="nav-item"><a href="productList.do?i=9&l=2">캣잎</a></li>
-                                            <li class="nav-item"><a href="productList.do?i=10&l=2">통살</a></li>
-                                            <li class="nav-item"><a href="productList.do?i=11&l=2">프리미엄</a></li>
-                                            <li class="nav-item"><a href="productList.do?i=12&l=2">스틱</a></li>
-                           				</ul>
+                                     
+                                         <a href="admin_board.do" aria-label="Toggle navigation">공지사항 관리</a>
+                                       
                            
-                           <!-- 소현 --> 
+                        
                                     </li>
                                     <li class="nav-item">
-                                        <a class="dd-menu collapsed" href="javascript:void(0)" data-bs-toggle="collapse"
-                                            data-bs-target="#submenu-1-4" aria-controls="navbarSupportedContent"
-                                            aria-expanded="false" aria-label="Toggle navigation">EVENT</a>
-                                        <ul class="sub-menu collapse" id="submenu-1-4">
-                                            <li class="nav-item"><a href="${pageContext.request.contextPath}/Error">진행중인 이벤트</a>
-                                            </li>
-                                            <li class="nav-item"><a href="${pageContext.request.contextPath}/Error">종료임박 이벤트</a></li>
-                                            <li class="nav-item"><a href="${pageContext.request.contextPath}/Error">이벤트 종료</a></li>
-                                        </ul>
+                                    
+                                           <a href="admin_board2.do" aria-label="Toggle navigation">이벤트 관리</a>
+                                     
                                     </li>
                                     <li class="nav-item">
-                                        <a href="${pageContext.request.contextPath}/CBList.do" aria-label="Toggle navigation">커뮤니티</a>
+                                        <a href="admin_mune.do" aria-label="Toggle navigation">1:1문의 사항 관리</a>
                                     </li>
-                                     <li class="nav-item">
-                                        <a href="${pageContext.request.contextPath}/BSellerList.do" aria-label="Toggle navigation">인기 작가</a>
-                                    </li>
-                                     <li class="nav-item">
-                                        <a href="${pageContext.request.contextPath}/Error" aria-label="Toggle navigation">실시간 후기</a>
-                                    </li>
-                                </ul>
+                                    
+                                  
+                             
                             </div> <!-- navbar collapse -->
                         </nav>
                         <!-- End Navbar -->

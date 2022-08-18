@@ -167,6 +167,26 @@ public class AjaxController {
 		return result;
 	}
 	
+	
+	@PostMapping("/adminUpdateInfo0.do")
+	public String adminUpdateInfo0(@RequestParam("midx") int midx, @RequestParam("m_grade") int m_grade) {
+		System.out.println(midx+":"+m_grade);
+	
+		//웹브라우저에서 전달받은 2개의 값을 MyBatis의 입력값으로 사용하기 위해 HashMap객체 생성해서 저장
+		HashMap<String, Integer> map = new HashMap<String, Integer>();
+		map.put("midx", midx);
+		map.put("m_grade", m_grade);
+				
+		String result="N";//정보수정 실패
+		
+		int flag = ajaxService.updateMemberGrade0(map);
+		System.out.println(flag+"-----------------------------------------");
+		if(flag == 1) result = "Y";//정보수정 성공
+		
+		return result;
+	}
+	
+	
 
 	
 	@PostMapping("/adminDeleteInfo.do")

@@ -5,6 +5,7 @@ import java.io.File;
 import java.io.IOException;
 import java.io.PrintWriter;
 import java.text.SimpleDateFormat;
+import java.util.HashMap;
 import java.util.List;
 
 import javax.servlet.http.HttpServletRequest;
@@ -23,6 +24,7 @@ import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.multipart.MultipartFile;
 
 import com.jeonju.mypet.service.AdminService;
+import com.jeonju.mypet.service.AjaxService;
 import com.jeonju.mypet.vo.BoardVo;
 import com.jeonju.mypet.vo.CommunityVo;
 import com.jeonju.mypet.vo.MembersVo;
@@ -61,6 +63,10 @@ public class AdminController {
 	}
 	
 
+	@GetMapping("/admin_panme.do")
+	public String adminpanme() {
+		return "admin/admin_panme";
+	}
 	
 	
 	
@@ -83,8 +89,27 @@ public class AdminController {
 	}
 
 
+	@GetMapping("/admin_boardd.do")
+	public String adminboardd(Model model, HttpServletRequest request) {
+		
+		//int a=1;
+		//ProductVo productVo = new ProductVo();
+		
+		
+		
+		List<BoardVo> BoardListd = adminService.getBoardListd();
+		
+		
+		
+		model.addAttribute("BoardListd", BoardListd);
+		
+		
+		return "admin/admin_boardd";
+	}
+
 	
-	@GetMapping("/memberList.do")//get방식 요청 처리
+	
+	@GetMapping("/admin_memberList.do")//get방식 요청 처리
 	public String getMembersList(Model model, HttpServletRequest request) {
 		
 		
@@ -413,6 +438,9 @@ public String AWInsertProcess0(@RequestParam("board_subject") String board_subje
 
 			return viewPage;
 }
-}
 
+
+
+
+}
 

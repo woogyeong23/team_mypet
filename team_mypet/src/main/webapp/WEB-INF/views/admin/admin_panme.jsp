@@ -129,15 +129,13 @@ $(function() {
    
 
 	  <div class = "align-center ">
-
-<h1> 관리자 페이지에 오신것을 환영합니다.</h1>
-
+	  <h2> 2021년 판매량 </h2>
 
 
-<br>
-<br>
-<br>
-<br>
+ <img src= "resources/assets/images/panme.jpg" alt="panme">
+
+
+
 <br>
 <br>
 <br>
