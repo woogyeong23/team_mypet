@@ -453,18 +453,17 @@ element.style {
 [data-page=payment] .final-cost {
     margin-bottom: 0;
 }
-.final-cost {
-    border: 0 none;
-    background: #eee;
-    padding-top: 10px;
-    padding-bottom: 0;
-}
+
 .final-cost .table-header {
     width: 100%;
     text-align: left;
     border-bottom: 0 none;
     padding-left: 12px;
     background: #fff;
+}
+.final-cost table .total th {
+    font-size: 16px;
+    color: #333;
 }
 .final-cost .table-header {
     border-bottom: 1px solid #333;
@@ -511,6 +510,9 @@ element.style {
     margin: 0 auto;
     table-layout: fixed;
 }
+.final-cost table.spacing td {
+    width: auto;
+}
 table>* {
     color: inherit;
     font-size: inherit;
@@ -533,7 +535,6 @@ table>* {
     text-align: left;
     padding: 4px 0;
 }
-@media (max-width: 719px)
 .final-cost table {
     width: 100%;
 }
@@ -557,11 +558,15 @@ table>* {
     padding: 10px 0;
 }
 .final-cost table.spacing th {
-    width: 30%;
+    width: 35%;
 }
 .final-cost table .total td {
     font-size: 18px;
     vertical-align: middle;
+}
+.final-cost table td {
+    text-align: right;
+    width: 40%;
 }
 .final-cost table.spacing td {
     width: auto;

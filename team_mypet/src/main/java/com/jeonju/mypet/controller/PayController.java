@@ -22,6 +22,7 @@ import com.jeonju.mypet.service.PayService;
 import com.jeonju.mypet.vo.CartVo;
 import com.jeonju.mypet.vo.DetailVo;
 import com.jeonju.mypet.vo.OrdersVo;
+
 @Controller
 public class PayController {
 	
@@ -75,11 +76,11 @@ private PayService payService;
 			ordersVo.setMidx(midx);
 			
 			payService.orderInsert(ordersVo);
-			
-			detailVo.setDetail_idx((Integer.parseInt(detail_idx)));
+			detailVo.setDetail_idx(midx);
+			detailVo.setDetail_completeday(detail_idx);
 			payService.detailInsert(detailVo);
 
-		  return "redirect:/member/memberorders";
+		  return "redirect:/memberorders";
 	  }
 	
 	

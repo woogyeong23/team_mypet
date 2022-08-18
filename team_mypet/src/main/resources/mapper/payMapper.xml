@@ -13,8 +13,8 @@ select * from orders a left outer join detail b on a.orders_idx = b.orders_idx l
  values(#{orders_totalprice}, #{orders_name}, #{orders_phone}, #{orders_addr}, #{orders_detailaddr}, #{orders_payment}, #{orders_dvprice}, #{orders_point}, #{midx})
 </insert>
 <insert id="detailInsert">
- insert into detail (detail_idx,orders_idx,p_idx, detail_status, detail_cnt)
- values(#{detail_idx},#{orders_idx},#{p_idx},#{detail_status},#{detail_cnt})
+ insert into detail (orders_idx,p_idx, detail_status, detail_cnt, fixprice, detail_completeday)
+ values(#{orders_idx},#{p_idx},#{detail_status},#{detail_cnt},#{fixprice},#{detail_completeday})
 </insert>
 
 </mapper>

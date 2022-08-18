@@ -231,7 +231,7 @@ public class MembersController {
 			
 			model.addAttribute(ordersList);
 			
-			return "member/memberordes";	
+			return "member/memberorders";	
 		}
 		
 		@GetMapping("/memberrefund.do")

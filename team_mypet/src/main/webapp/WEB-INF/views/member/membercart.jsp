@@ -320,7 +320,7 @@ $(document).ready(function(){
     <jsp:include page="../../include/header.jsp" />  
 	<!-- ************************************************ -->
 <div id="wrap">
-<main class="content">
+<main class="container">
 <input type="hidden" name="midx" value="${midx}">
 
 <aside>
@@ -508,6 +508,7 @@ $(document).ready(function(){
 	</div>
 </aside>
 </main>
+</div>
 
 
 

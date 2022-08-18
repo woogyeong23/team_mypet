@@ -16,7 +16,6 @@ public class DetailVo {
 	private List<OrdersVo> orders;
 	private int detail_status;
 	
-	
 	public String getFixdvprice() {
 		return fixdvprice;
 	}

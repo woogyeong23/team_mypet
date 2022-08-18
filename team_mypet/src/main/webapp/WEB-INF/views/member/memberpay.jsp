@@ -185,7 +185,7 @@ transform:translatY(-100%);
    					<table class="spacing">
    						<tbody>
    							<tr class="total">
-   								<th>최종 결제 금액</th>
+   								<th>최종 결제금액</th>
    								<td class="hilight">
    								<span id="final_Price"></span>
    								<em>원</em>
