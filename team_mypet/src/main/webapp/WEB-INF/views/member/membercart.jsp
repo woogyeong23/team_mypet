@@ -12,31 +12,27 @@
 
 $(document).ready(function(){
 
-		itemTotal();
+		//itemTotal();
 		let cart_idx = $("#cart_idx_input").val();
 		let nci = "#NumberCounter__input"+cart_idx;
 		
-		$(nci).on("change", function(){
+		/* $(nci).on("change", function(){
+			alert(nci);
 			let cart_idx = $(this).attr("name");
 			
-			itemTotal();
+			//itemTotal();
 
-		});
-		$(nci).on("change", function(){
-			let cart_idx = $(this).attr("name");
-			
-			itemTotal();
-
-		});
+		}); */
 
 		//온체인지수량 
 
 		function itemTotal(ths){
 			 console.log("수량들어옴?");
-
+			alert("itemTotal");
 			//수량
 			let cnt = $('input[id="cart_cnt_input"]');
 			//cart_idx
+			//alert(cnt);
 			let cart_idx = $("#cart_idx_input").val();
 			let CAI = "#CartArtistItem"+cart_idx;
 			let Cart_idx = $(".CartArtistItem").data("cart_idx");
@@ -219,9 +215,11 @@ $(document).ready(function(){
 	$(".CartOptionEditingButtonGroup__button").click(function(){
 		
 		let cart_idx = $(this).attr("name");
+		//alert(cart_idx);
 		let midx = $("#midx_input").val();
-		let CAI = "#CartArtistItem"+cart_idx;
-		
+		let CAI = "#CartArtistItem__itemList"+cart_idx;
+		//alert(CAI);
+
 		
 		$.ajax({
 			type:"POST",
@@ -233,6 +231,7 @@ $(document).ready(function(){
 					console.log(result);
 					alert("삭제놉");
 				}else{
+					alert("삭제하였습니다");
 					$(CAI).remove();
 				}
 			}
@@ -249,23 +248,84 @@ $(document).ready(function(){
 			$("input[type='checkbox']").prop("checked",false);
 		}
 	});
-	//모든 체크박스가 선택되면 바뀌기..
-	$("input[type='checkbox']").on("click",function(){
+	//개별 체크박스가 선택되면 모든 체크박스 바꾸기
+	$("input[type='checkbox']").on("click", function(){
+		 
+		let totalCheckbox=0;
+		let totalChecked =0;
+		$("input[type='checkbox']:checked").each(function(){
+			totalChecked++;
+		});
+		$("input[type='checkbox']").each(function(){
+			totalCheckbox++;
+		});
 		
-		if($("input[type='checkbox']").prop("checked")){
-			$("#cart-product-all-check").prop("checked",true);			
-		}else{
-			$("#cart-product-all-check").prop("checked",false);
+		if($('#cart-product-all-check').is(':checked') == true && totalCheckbox != totalChecked){
+			//alert(totalChecked+":"+totalCheckbox+":"+$('#cart-product-all-check').is(':checked'));
+			$("#cart-product-all-check").prop("checked",false);	
 		}
+		else if($('#cart-product-all-check').is(':checked') == false && (totalChecked+1)==totalCheckbox)
+		{
+			
+			//alert("gogo");
+			$("#cart-product-all-check").prop("checked",true);	
+			
+		}
+		
 	});
-	let chk_arr = new Array();
-	$("input[tpye='chekcbox']:checked").each(function(){
-		let chk = $(this).val();
-		chk_arr.push(chk);
-	});
+	
+	
+		
 	
 });
 
+
+
+
+
+
+
+
+		function checkSelectProduct(seller_idx)  {
+			//alert(seller_idx);
+			
+			  // 셀러 전체 체크박스
+			 const checkboxes 
+			     = document.getElementsByName('item_checkedbox'+seller_idx);
+			  // 셀러 내 선택된 체크박스 수 구하기
+			  var checked =0;
+			  for(var i = 0; i < document.getElementsByName('item_checkedbox'+seller_idx).length; i++){
+			        if(document.getElementsByName('item_checkedbox'+seller_idx)[i].checked == true){
+			        	checked++;
+			        	
+			        }
+			    }
+			  
+			  // select all 체크박스
+			  const selectAll 
+			    = document.getElementsByName('artist_checkedbox'+seller_idx);
+			  			  
+			  //alert(checkboxes.length);
+			  //alert(checked);
+			  
+			  if(checkboxes.length === checked)  {
+				  document.getElementsByName('artist_checkedbox'+seller_idx)[0].checked = true;
+			  }else {
+				  document.getElementsByName('artist_checkedbox'+seller_idx)[0].checked = false;
+			  }
+		
+			}
+		
+			//셀러 체크박스 누르면 해당 셀러의 상품 체크박스 모두 변
+			function selectSeller(selectAll,seller_idx)  {
+			  const checkboxes 
+			     = document.getElementsByName('item_checkedbox'+seller_idx);
+			  //alert(checkboxes.length);
+			  checkboxes.forEach((checkbox) => {
+			    checkbox.checked = selectAll.checked
+			  })
+			}
+	
 </script>
  <!-- css************************************************ -->
     <jsp:include page="../../include/head.jsp" />  
@@ -346,107 +406,133 @@ $(document).ready(function(){
    					<div class="CartList__sticky vue-sticky-el" style="position: static; top: auto; bottom: auto; left: auto; width: auto; z-index: 201;"></div>
 <%--    					<c:if test="${countCart}" var="null" > --%>
 <%--    					</c:if> --%>
-   					<c:forEach items="${cart}" var="cart" varStatus="status">
-   					<c:set var="idx" value="${cart.cart_idx}" />
-   					<div class="CartArtistItem" id="CartArtistItem${cart.cart_idx}" data-cart_idx="${cart.cart_idx}">
-   					<input type="hidden" id="p_price_input"  value="${cart.p_price}">
-   					<input type="hidden" id="p_idx_input" value="${cart.p_idx}">
-   					<input type="hidden" id="cart_idx_input" value="${cart.cart_idx}">   					
-   					<input type="hidden" id="midx_input" value="${cart.midx}">
-   					<input type="hidden" id="p_name_input" value="${cart.p_name}">
-   					<input type="hidden" id="p_content_input" value="${cart.p_content}">
-   					<input type="hidden" id="cart_cnt_input" value="${cart.cart_cnt}">
-   					<input type="hidden" id="total_price_input${cart.cart_idx}"value="${cart.p_price * cart.cart_cnt}">
-   						<div class="CartArtistItem__header">
-   						<label>
-							<div class="checkbox">   							
-   								<div class="input-checkbox"  id="input-checkbox1">
-   									<input id="artist_checkedbox${cart.cart_idx}" name="${cart.cart_idx}" data-cart_idx="${cart.cart_idx}" type="checkbox" autocomplete="off" class="bp" value="${m_nick}" checked="checked" >
-   								</div>
-   							</div>
-   							<span  class="CartArtistItem__title" >${m_nick}</span> <!-- 작가이름 -->
-   						</label>
-   						</div>
-   							<section class="CartArtistItem__itemList" >
-   								<ul>
-   									<div class="CartProductList">   						
-   										<div class="CartProductListItem" id="CartProductListItem">   						
-   											<div class="CartProductListItem__productInfo">   						
-			   									<div class="CartProductListItem__checkboxGroup">
-   													<div class="CartProductListItem__checkboxWrap" style="display:inline-block;" >			
-   														<div class="checkbox">
-   															<div class="input-checkbox" id="input-checkbox2"  style="display: inline-block;"> 
-   																<input id="item_checkedbox${cart.cart_idx}" name="${cart.cart_idx}" data-cart_idx="${cart.cart_idx}" type="checkbox" autocomplete="off" class="bp" value="${pageContext.request.contextPath}/resources/product/${cart.p_sys_filename}" checked="checked" >   						
-   						 									</div>
-   														</div>
-   													</div>
-   													<img src="${pageContext.request.contextPath}/resources/product/${cart.p_sys_filename}">
-   												</div>
-   												<div  class="CartProductListItem__productInfoTextGroup">
-   												<a href="#" class="CartProductListItem__productName" >${cart.p_name}</a> <!-- 상품이름 -->
-   												
-   												</div>
-   												</div>
-   												
-   												<div class="CartProductListItem__optionInfo">
-   													<div class="CartOptionList">
-   														<div class="CartOptionListItem">
-   															<div class="CartOptionListItem__splitLeft">
-   																<em class="CartOptionListItem__optionText"></em>
-   																	<div class="CartOptionListItem__counter">
-   																		<label class="NumberCounter">											
-   																			<button type="button" id="NumberCounter__minus${cart.cart_idx}" name="${cart.cart_idx}" class="NumberCounter__minus" value="m" data-cart_idx="${cart.cart_idx}" >-</button>
-   																			<input  type="text" name="cart_cnt" id="NumberCounter__input${cart.cart_idx}" class="NumberCounter__input" value="${cart.cart_cnt}" readonly="readonly" onchange="itemTotal(this)">
-   																			<button type="button" id="NumberCounter__plus${cart.cart_idx}" name="${cart.cart_idx}" class="NumberCounter__plus" value="p" data-cart_idx="${cart.cart_idx}" >+</button>   						
-   																		</label>
-   																	</div>
-   															</div>
-   														
-   															<div class="CartOptionListItem__splitRight"  >
-   																<em class="CartOptionListItem__totalPrice" id="CartArtistItem__Price${cart.cart_idx}" name="${cart.p_price}">개당 금액:<fmt:formatNumber pattern="###,###,###" value="${cart.p_price}"/></em> <!-- 상품가격 -->
-   																
-   																<div class="CartOptionListItem__btnGroup">
-   																	<div class="CartOptionEditingButtonGroup">
-   																		<button  id="delete__button${cart.cart_idx}" name="${cart.cart_idx}" class="CartOptionEditingButtonGroup__button CartOptionEditingButtonGroup__button--right" >
-   																		 X
-   																		</button>
-   																	</div>
-   																</div> 
-<!--    																<em class="CartOptionListItem__totalPrice">예상 적립금 : -->
-<!--    																	<a id="CartArtistItem__Point"></a> -->
-<!--    																</em>  	예상적립금													 -->
-   															</div>
-   														</div>
-   													</div>
-   												</div>
-   						 					</div>
-   										</div>
-   										
-   								</ul>
-   							</section>
-   							<section class="CartArtistItem__section">
-   								<div class="CartArtistItem__label">
-   								작품 가격
-   								</div>
-   								<div class="CartArtistItem__price" id="totalPrice_span${cart.cart_idx}">
-									<fmt:formatNumber pattern="###,###,### 원" value="" />  
-									
-   								 <!-- 작품 가격 -->
-	   							</div>
-   							</section>
-   							<section class="CartArtistItem__section">
-   								<div class="CartArtistItem__label">
-   								배송비
-   								</div>
-   								<div class="CartArtistItem__point" id="delivery_price${cart.cart_idx}">
-
-   								<!-- 배송비 -->
-	   							</div>
-   							</section>
-   							<div class="vue-sticky-placeholder"></div>
-   						</div>   	
-   				
+					<!-- seller별로 -->
+					<c:forEach items="${cartSellerList}" var="seller">
+						
+						
+						<div class="CartArtistItem" id="CartArtistItem${seller.seller_idx}" data-cart_idx="${seller.seller_idx}">
+		   					
+		   					 <div class="CartArtistItem__header">
+		   						<label>
+									<div class="checkbox">   							
+		   								<div class="input-checkbox"  id="input-checkbox1">
+		   									<input type="checkbox" id="artist_checkedbox${seller.seller_idx}" name="artist_checkedbox${seller.seller_idx}" data-cart_idx="${seller.seller_idx}"  autocomplete="off" class="bp" value="${m_nick}" onclick='selectSeller(this,${seller.seller_idx})' checked="checked" >
+		   								</div>
+		   							</div>
+		   							<span  class="CartArtistItem__title" >${seller.m_nick}</span> <!-- 작가이름 -->
+		   						</label>
+	   						</div>
+	   						
+	   						<!-- 상품별로  -->
+	   						<c:forEach items="${cart}" var="cart" varStatus="status">
+	   							<c:if test="${seller.seller_idx eq cart.seller_idx}">
+	   								<section class="CartArtistItem__itemList" id ="CartArtistItem__itemList${cart.cart_idx}">
+	   							<input type="hidden" id="p_price_input"  value="${cart.p_price}">
+			   					<input type="hidden" id="p_idx_input" value="${cart.p_idx}">
+			   					<input type="hidden" id="cart_idx_input" value="${cart.cart_idx}">   					
+			   					<input type="hidden" id="midx_input" value="${cart.midx}">
+			   					<input type="hidden" id="p_name_input" value="${cart.p_name}">
+<%-- 			   					<input type="hidden" id="p_content_input" value="${cart.p_content}">
+ --%>			   					<input type="hidden" id="cart_cnt_input" value="${cart.cart_cnt}">
+			   					<input type="hidden" id="total_price_input${cart.cart_idx}"value="${cart.p_price * cart.cart_cnt}">
+			   								<ul>
+			   									<div class="CartProductList">   						
+			   										<div class="CartProductListItem" id="CartProductListItem">   						
+			   											<div class="CartProductListItem__productInfo">   						
+						   									<div class="CartProductListItem__checkboxGroup">
+			   													<div class="CartProductListItem__checkboxWrap" style="display:inline-block;" >			
+			   														<div class="checkbox">
+			   															<div class="input-checkbox" id=""  style="display: inline-block;"> 
+			   																<input type="checkbox" id="item_checkedbox${cart.p_idx}" name="item_checkedbox${seller.seller_idx}" data-cart_idx="${cart.cart_idx}"  autocomplete="off" class="bp" value="" onclick='checkSelectProduct(${seller.seller_idx})' checked="checked" >   						
+			   						 									</div>
+			   														</div>
+			   													</div>
+			   													<img src="${pageContext.request.contextPath}/resources/product/${cart.p_sys_filename}">
+			   												</div>
+			   												<div  class="CartProductListItem__productInfoTextGroup">
+			   												<a href="#" class="CartProductListItem__productName" >${cart.p_name}</a> <!-- 상품이름 -->
+			   												
+			   												</div>
+			   												</div>
+			   												
+			   												<div class="CartProductListItem__optionInfo">
+			   													<div class="CartOptionList">
+			   														<div class="CartOptionListItem">
+			   															<div class="CartOptionListItem__splitLeft">
+			   																<em class="CartOptionListItem__optionText"></em>
+			   																	<div class="CartOptionListItem__counter">
+			   																		<label class="NumberCounter">											
+			   																			<button type="button" id="NumberCounter__minus${cart.cart_idx}" name="${cart.cart_idx}" class="NumberCounter__minus" value="m" data-cart_idx="${cart.cart_idx}" >-</button>
+			   																			<input  type="text" name="cart_cnt" id="NumberCounter__input${cart.cart_idx}" class="NumberCounter__input" value="${cart.cart_cnt}" readonly="readonly" onchange="itemTotal(this)">
+			   																			<button type="button" id="NumberCounter__plus${cart.cart_idx}" name="${cart.cart_idx}" class="NumberCounter__plus" value="p" data-cart_idx="${cart.cart_idx}" >+</button>   						
+			   																		</label>
+			   																	</div>
+			   															</div>
+			   														
+			   															<div class="CartOptionListItem__splitRight"  >
+			   																<em class="CartOptionListItem__totalPrice" id="CartArtistItem__Price${cart.cart_idx}" name="${cart.p_price}">개당 금액:<fmt:formatNumber pattern="###,###,###" value="${cart.p_price}"/></em> <!-- 상품가격 -->
+			   																
+			   																<div class="CartOptionListItem__btnGroup">
+			   																	<div class="CartOptionEditingButtonGroup">
+			   																		<button  id="delete__button${cart.cart_idx}" name="${cart.cart_idx}" class="CartOptionEditingButtonGroup__button CartOptionEditingButtonGroup__button--right" >
+			   																		 X
+			   																		</button>
+			   																	</div>
+			   																</div> 
+			<!--    																<em class="CartOptionListItem__totalPrice">예상 적립금 : -->
+			<!--    																	<a id="CartArtistItem__Point"></a> -->
+			<!--    																</em>  	예상적립금													 -->
+			   															</div>
+			   														</div>
+			   													</div>
+			   												</div>
+			   						 					</div>
+			   										</div>
+			   										
+			   								</ul>
+			   						</section>
+	   								<section class="CartArtistItem__section">
+		   								<div class="CartArtistItem__label">
+		   								작품 가격
+		   								</div>
+		   								<div class="CartArtistItem__price" id="totalPrice_span${seller.seller_idx}">
+											<fmt:formatNumber pattern="###,###,### 원" value="" />  
+											
+		   								 <!-- 작품 가격 -->
+			   							</div>
+		   							</section>
+		   							<section class="CartArtistItem__section">
+		   								<div class="CartArtistItem__label">
+		   								배송비
+		   								</div>
+		   								<div class="CartArtistItem__point" id="delivery_price${seller.seller_idx}">
+		
+		   								<!-- 배송비 -->
+			   							</div>
+		   					</section>
+	   								
+	   								
+	   							</c:if>
+	   							
+	   							
+	   							
+	   						</c:forEach>
+	   						
+	   						
+		   					
+		   					<div class="vue-sticky-placeholder"></div>
+		   				</div> 	
+		   							
+						
+						
+						
+						
+						
+					
 					</c:forEach>
+					
+					
+   					
    					
    					
    			<div class="vue-sticky-placeholder" style="padding-top: 0px;"></div>		

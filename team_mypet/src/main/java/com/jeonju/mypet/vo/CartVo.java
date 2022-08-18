@@ -32,7 +32,7 @@ public class CartVo {
 	private int totalPrice;
 	private int totalPoint;
 
-	
+	private int seller_idx;
 	
 	public String getP_content() {
 		return p_content;
@@ -159,6 +159,12 @@ public class CartVo {
 				"p_name="+p_name+"p_content="+p_content+"p_price="+p_price+"p_sys_filename"+p_sys_filename+
 				"salePrice"+salePrice+"Point"+Point+"totalPoint"+totalPoint+
 				"totalPrice="+totalPrice+"]";
+	}
+	public int getSeller_idx() {
+		return seller_idx;
+	}
+	public void setSeller_idx(int seller_idx) {
+		this.seller_idx = seller_idx;
 	}
 	
 	 

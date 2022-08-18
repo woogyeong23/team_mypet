@@ -2,6 +2,7 @@ package com.jeonju.mypet.controller;
 
 
 import java.util.ArrayList;
+import java.util.HashMap;
 import java.util.List;
 
 import javax.servlet.http.HttpServletRequest;
@@ -21,6 +22,7 @@ import com.jeonju.mypet.service.CartService;
 import com.jeonju.mypet.vo.CartVo;
 import com.jeonju.mypet.vo.MembersVo;
 import com.jeonju.mypet.vo.ProductVo;
+import com.jeonju.mypet.vo.Product_ImgVo;
 @Controller
 public class CartController {
 	
@@ -40,6 +42,9 @@ public class CartController {
 		MembersVo membersVo = new MembersVo();
 		membersVo.getM_nick();
 		
+		List<HashMap<String, Object>> cartSellerList = cartService.cartSellerList(midx);
+		model.addAttribute("cartSellerList", cartSellerList );
+
 		cartVo.setMidx(midx);
 		 List<CartVo> list = cartService.cartList(cartVo);
 		model.addAttribute("cart", list );
@@ -48,6 +53,13 @@ public class CartController {
 		 
 		System.out.println(list);
 		 
+		System.out.println("*************************");
+		for (HashMap<String, Object> a : cartSellerList) {
+            System.out.println("seller : "+a.get("seller_idx"));
+		}
+		for (CartVo b : list) {
+            System.out.println("list : "+b.getSeller_idx());
+		}
 		return "member/membercart";	
 	}
 	

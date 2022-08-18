@@ -70,6 +70,11 @@ public class CartDao {
 	public int cartReset(int midx) {
 		return sqlSession.delete(MAPPER+".resetCart",midx);
 	}
+
+	public List<HashMap<String, Object>> cartSellerList(int midx) {
+		// TODO Auto-generated method stub
+		return sqlSession.selectList(MAPPER+".cartSellerList",midx);
+	}
 	
 
 
