@@ -81,31 +81,16 @@
     
     <!--SellerStory  -->
     <select id="getBSList" resultType="sellerStoryVo">
-SELECT m_nick, s.seller_idx AS seller_idx, seller_img, seller_intro, seller_starsavg,
-   seller_followcnt,p.p_idx AS p_idx, c.p_sys_filename
+   SELECT m_nick, s.seller_idx AS seller_idx, seller_img, seller_intro, seller_starsavg,
+   seller_followcnt,p.p_idx AS p_idx,p_sys_filename,
+   p_name
    FROM members m INNER JOIN sellerstory s ON m.midx = s.midx
-   INNER JOIN product p ON s.seller_idx=p.seller_idx
-   INNER JOIN product_img c ON p.p_idx = c.p_idx
-   GROUP BY p_idx
+   LEFT JOIN product p ON s.seller_idx=p.seller_idx
+   left JOIN product_img c ON p.p_idx = c.p_idx
+   GROUP BY seller_idx
    ORDER BY seller_followcnt DESC
     </select>
     
-    <select id="getBsList2" resultType="sellerStoryVo">
-   SELECT seller_followcnt,p.p_idx AS p_idx
-   FROM members m INNER JOIN sellerstory s ON m.midx = s.midx
-   INNER JOIN product p ON s.seller_idx=p.seller_idx
-   INNER JOIN product_img c ON p.p_idx = c.p_idx
-   GROUP BY p_idx
-   ORDER BY seller_followcnt DESC
-   </select>
-    
-    <select id="getPI" parameterType="productVo" resultType="product_imgVo">
-    SELECT p_sys_filename
-   FROM product a JOIN product_img b ON a.p_idx=b.p_idx
-   WHERE seller_idx=#{seller_idx} AND a.p_idx = #{p_idx}
-   GROUP BY a.p_idx
-    </select>
-
     <select id="getBSellerView" resultType="sellerStoryVo">
     SELECT seller_idx, seller_img, seller_intro, seller_openday, 
     seller_starsavg, seller_total, seller_wishcnt, seller_ordercnt, seller_followcnt,
@@ -115,33 +100,38 @@ SELECT m_nick, s.seller_idx AS seller_idx, seller_img, seller_intro, seller_star
     </select>
     
     <select id="getBSPList" resultType="productVo">
-<!--     SELECT product.p_idx as p_idx, p_ori_filename, p_price, p_name, p_category_idx, seller_idx, p_content -->
-<!--      FROM product INNER JOIN product_img ON product.p_idx = product_img.p_idx -->
-<!--     WHERE seller_idx = #{seller_idx} ORDER BY p_idx DESC -->
-    
-    SELECT a.p_idx as p_idx, seller_idx, p_category_idx, p_name, p_content,
-    p_price, p_discount, p_ori_filename
-    FROM product a LEFT OUTER JOIN product_img b ON a.p_idx = b.p_idx 
-    WHERE seller_idx = #{seller_idx} ORDER BY p_idx DESC
+    SELECT product.p_idx AS p_idx, p_category_idx, p_name, p_content,
+    p_price, p_discount, p_sys_filename, p_status, 
+    IFNULL(avg(review_stars),0) AS avg_reviews_stars, COUNT(review_stars) AS cnt_reviews
+    FROM product INNER JOIN product_img ON product.p_idx = product_img.p_idx 
+    LEFT JOIN review ON product.p_idx = review.p_idx
+    WHERE seller_idx = #{seller_idx} 
+    GROUP BY p_idx
+    ORDER BY p_idx DESC
     </select>
     
     <select id="getBSPCount" resultType="int">
-    SELECT DISTINCT COUNT(p_idx) FROM product WHERE p_delyn = 'N' AND seller_idx = #{seller_idx}
+    SELECT COUNT(DISTINCT p_idx) 
+    FROM product WHERE p_delyn = 'N' AND seller_idx = #{seller_idx}
     </select>
     
     <select id="getAList" resultType="reviewVo">
-  SELECT product.p_idx as p_idx,product_img.p_ori_filename as p_ori_filename, 
-  product.p_name as p_name, review_stars, review_content
-  FROM product INNER JOIN product_img ON product.p_idx = product_img.p_idx
-  INNER JOIN review ON product.p_idx = review.p_idx
-  WHERE seller_idx = #{seller_idx} ORDER BY review_idx DESC
+	SELECT product.p_idx as p_idx, p_sys_filename, 
+	p_name, review_stars, review_content, m_nick
+	FROM product INNER JOIN product_img ON product.p_idx = product_img.p_idx
+	INNER JOIN review ON product.p_idx = review.p_idx INNER JOIN members ON review.midx = members.midx
+	WHERE seller_idx = #{seller_idx}  
+	GROUP BY p_idx
+	ORDER BY review_idx DESC
+  
+  
     </select>
     
     <select id="getBSRCount" resultType="int">
-  SELECT DISTINCT COUNT(review_idx)
-  FROM product INNER JOIN product_img ON product.p_idx = product_img.p_idx
-  INNER JOIN review ON product.p_idx = review.p_idx
-  WHERE seller_idx = #{seller_idx}
+	  SELECT  COUNT(DISTINCT review_idx)
+	  FROM product INNER JOIN product_img ON product.p_idx = product_img.p_idx
+	  INNER JOIN review ON product.p_idx = review.p_idx
+	  WHERE seller_idx = #{seller_idx}
     </select>
     
     <select id="getfollowCNT" resultType="int">

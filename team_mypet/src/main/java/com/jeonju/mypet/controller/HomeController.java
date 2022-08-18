@@ -17,6 +17,7 @@ import org.springframework.web.bind.annotation.GetMapping;
 
 import com.jeonju.mypet.service.HomeService;
 import com.jeonju.mypet.vo.ProductVo;
+import com.jeonju.mypet.vo.ReviewVo;
 
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestParam;
@@ -44,6 +45,8 @@ public class HomeController {
 		List<ProductVo> hList3 = homeService.getHList3();
 		List<ProductVo> hList4 = homeService.getHList4();
 		List<ProductVo> hList5 = homeService.getHList5();
+		 //리뷰전용
+		List<ReviewVo> hList6 = homeService.getHList6();
 		
 		
 		
@@ -52,7 +55,9 @@ public class HomeController {
 				model.addAttribute("HomeList2",hList2);
 				model.addAttribute("HomeList3",hList3);
 				model.addAttribute("HomeList4",hList4);
-				model.addAttribute("HomeList5",hList5);	 
+				model.addAttribute("HomeList5",hList5);
+               //리뷰전용
+				model.addAttribute("HomeList6",hList6);
 	
 		 
 		
@@ -73,6 +78,8 @@ public class HomeController {
 		List<ProductVo> hList3 = homeService.getHList3();
 		List<ProductVo> hList4 = homeService.getHList4();
 		List<ProductVo> hList5 = homeService.getHList5();
+		 //리뷰전용
+		List<ReviewVo> hList6 = homeService.getHList6();
 		
 		
 		
@@ -83,6 +90,8 @@ public class HomeController {
 				model.addAttribute("HomeList3",hList3);
 				model.addAttribute("HomeList4",hList4);
 				model.addAttribute("HomeList5",hList5);	 
+			    //리뷰전용
+			    model.addAttribute("HomeList6",hList6);
 
 		 
 		

@@ -92,7 +92,7 @@
 							
 							
 						</form>
-						
+						${pageContext.request.contextPath}/BSellerView.do?seller_idx=${bs.seller_idx}
 						
 						
 						
