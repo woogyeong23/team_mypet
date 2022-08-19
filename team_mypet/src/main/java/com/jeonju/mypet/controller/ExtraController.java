@@ -126,6 +126,26 @@ public class ExtraController {
 		 return"Extra/MostQuery";
 	 }
 	 
+	 @GetMapping("/Notice")
+	 public String Notice() {
+		return"Extra/Notice";
+	 }
+	 
+	 @GetMapping("/EventList")
+	 public String EventList() {
+		 return"Extra/EventList";
+	 }
+	 
+	 @GetMapping("/EventView")
+	 public String EventView() {
+		 return"Extra/EventView";
+	 }
+	 
+	 @GetMapping("/EventView2")
+	 public String EventView2() {
+		 return"Extra/EventView2";
+	 }
+	 
 	 
 	
 	
