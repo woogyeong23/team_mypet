@@ -44,7 +44,7 @@
         <div class="collapse" id="oders-collapse">
           <ul class="btn-toggle-nav list-unstyled fw-normal pb-1">
             <li><a href="${pageContext.request.contextPath}/memberorder.do" class="link-dark rounded">배송정보</a></li>
-            <li><a href="${pageContext.request.contextPath}/memberorders.do" class="link-dark rounded">주문목록</a></li>
+            <li><a href="${pageContext.request.contextPath}/memberorderList.do" class="link-dark rounded">주문목록</a></li>
             <li><a href="${pageContext.request.contextPath}/membercart.do" class="link-dark rounded">장바구니</a></li>
             <li><a href="${pageContext.request.contextPath}/memberrefund.do" class="link-dark rounded">환물/교환 목록</a></li>
           </ul>

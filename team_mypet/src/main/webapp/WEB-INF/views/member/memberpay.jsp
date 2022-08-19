@@ -73,14 +73,14 @@ $(document).ready(function(){
 					pay_method: $("input[name='orders_payment']").val() ,
 					merchant_uid : 'merchant_' + new Date().getTime(),
 					name : '결제테스트', // 상품명
-					amount : '10000',
+					amount : '100',
 					buyer_name : $("[name=orders_name]").val(),
 				  	buyer_phone : $("[name=orders_phone]").val(),
 					buyer_addr1: $("#orders_addr1").val(),
 				  	buyer_addr2: $("#orders_addr2").val(),
 				  	buyer_addr3: $("#orders_addr3").val(),
 					//결제완료후 이동할 페이지 kko나 kkopay는 생략 가능
-					m_redirect_url : '${pageContext.request.contextPath}/memberorders.do'
+					m_redirect_url : '${pageContext.request.contextPath}/memberorderList.do'
 				}, function(rsp){
 					if(rsp.success){//결제 성공시
 						var msg = '결제가 완료되었습니다';
@@ -108,7 +108,7 @@ $(document).ready(function(){
 				var formObj = $("form[name='orderForm']");
 
 
-					formObj.attr("action", "/main/orderInsert");
+					formObj.attr("action", "${pageContext.request.contextPath}/orderInsert.do");
 					formObj.attr("method", "post");
 					formObj.submit();
 				
@@ -175,7 +175,7 @@ transform:translatY(-100%);
    				<div class="segment--nospacing">
    					<div class="ui_title--sub tab">
    						<span class="ui_title__txt">주문 고객</span>
-			   			<span class="ui_title__txtright--blue user-info-header-right-text" >${midx}</span>
+			   			<span class="ui_title__txtright--blue user-info-header-right-text" >${m_nick}님</span>
    					</div>
    				</div>
    				<div class="segment--nospacing">
@@ -262,7 +262,7 @@ transform:translatY(-100%);
 	   								<div class="payment-radio-item-wrapper">
 	   									<input  name="orders_payment" type="radio" class="idus-icon-radio" value="kakaopay">
 	   									<div class="PaymentMethodSelector__textGroup">
-	   										<span class="payment-method">카카오페이</span>
+	   										<span class="payment-method">--</span>
 	   									</div>
 	   								</div>
 	   							</label>

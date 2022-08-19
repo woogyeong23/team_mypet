@@ -11,6 +11,7 @@ import com.jeonju.mypet.dao.CartDao;
 import com.jeonju.mypet.dao.MembersDao;
 import com.jeonju.mypet.dao.PayDao;
 import com.jeonju.mypet.vo.DetailVo;
+import com.jeonju.mypet.vo.OrdersListVo;
 import com.jeonju.mypet.vo.OrdersVo;
 
 @Service
@@ -41,7 +42,9 @@ private CartDao cartDao;
 	public int detailInsert(DetailVo detailVo) throws Exception {
 		return payDao.detailInsert(detailVo);
 	}
-
+	public List<OrdersListVo> orderview(OrdersVo ordersVo){
+		return payDao.orderview(ordersVo);
+	}
 	
 
 	

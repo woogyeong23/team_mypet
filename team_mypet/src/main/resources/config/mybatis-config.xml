@@ -20,7 +20,8 @@
 		
 		
 		<typeAlias alias="membersVo" type="com.jeonju.mypet.vo.MembersVo"/>
-		
+
+		<typeAlias alias="ordersListVo" type="com.jeonju.mypet.vo.OrdersListVo"/>		
 		<typeAlias alias="ordersVo" type="com.jeonju.mypet.vo.OrdersVo"/>
 		<typeAlias alias="p_categoryVo" type="com.jeonju.mypet.vo.P_CategoryVo"/>
 		<typeAlias alias="petVo" type="com.jeonju.mypet.vo.PetVo"/>

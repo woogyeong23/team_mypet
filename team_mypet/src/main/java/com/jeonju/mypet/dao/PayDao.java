@@ -8,6 +8,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Repository;
 
 import com.jeonju.mypet.vo.DetailVo;
+import com.jeonju.mypet.vo.OrdersListVo;
 import com.jeonju.mypet.vo.OrdersVo;
 
 
@@ -39,10 +40,12 @@ private SqlSession sqlSession;
 
 
 	public List<OrdersVo> orderpay(OrdersVo ordersVo) {
-		return sqlSession.selectList(MAPPER+".orderpay",ordersVo);
+		return sqlSession.selectList(MAPPER+".orderList",ordersVo);
 	}		
 
-
+	public List<OrdersListVo> orderview(OrdersVo ordersVo){
+		return sqlSession.selectList(MAPPER+".orderView",ordersVo);
+	}
 	
 	
 	

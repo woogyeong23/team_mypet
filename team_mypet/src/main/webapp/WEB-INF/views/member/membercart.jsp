@@ -555,6 +555,8 @@ $(document).ready(function(){
 <%--    					<c:if test="${countCart}" var="null" > --%>
 <%--    					</c:if> --%>
 					<!-- seller별로 -->
+					<c:set var="sum" value="0" />
+					
 					<c:forEach items="${cartSellerList}" var="seller">
 						
 						
@@ -668,7 +670,7 @@ $(document).ready(function(){
 			   							</div>
 			   							
 		   					</section>
-		   					
+		   					<c:set var="sum" value="${sum + (cart.p_price * cart.cart_cnt)}" />
 		   					<div class="vue-sticky-placeholder"></div>
 		   				</div> 	
 		   							

@@ -49,13 +49,12 @@ public class CartController {
 		 List<CartVo> list = cartService.cartList(cartVo);
 		 
 		 HashMap<String, Object>ProductPriceMap = cartService.totalProductPrice(midx);
-		System.out.println("상품총가격"+ProductPriceMap.get("totalproductprice"));
 		model.addAttribute("cart", list );
 		model.addAttribute("countCart",cartService.countMemberCart(cartVo));
 		model.addAttribute("ProductPriceMap", ProductPriceMap );
 		 
 		System.out.println(list);
-		 
+		
 		System.out.println("*************************");
 		for (HashMap<String, Object> a : cartSellerList) {
             System.out.println("seller : "+a.get("seller_idx"));

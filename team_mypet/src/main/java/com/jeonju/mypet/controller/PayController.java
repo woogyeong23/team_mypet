@@ -17,10 +17,12 @@ import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
+import org.springframework.web.bind.annotation.RequestParam;
 
 import com.jeonju.mypet.service.PayService;
 import com.jeonju.mypet.vo.CartVo;
 import com.jeonju.mypet.vo.DetailVo;
+import com.jeonju.mypet.vo.OrdersListVo;
 import com.jeonju.mypet.vo.OrdersVo;
 
 @Controller
@@ -34,7 +36,7 @@ private PayService payService;
 		this.payService = payService;
 	}
 	
-	
+	//주문하기 페이지 넘어가기
 	@GetMapping("/memberpay.do")
 	public String memberpay(OrdersVo ordersVo,Model model,HttpServletRequest request) {
 
@@ -58,7 +60,7 @@ private PayService payService;
 		
 		return "member/memberpay";	
 	}
-	
+		//결제 성공 시 주문 및 카트 삭제 
 	  @PostMapping("/orderInsert.do")
 	  public String orderInsert(OrdersVo ordersVo, DetailVo detailVo, HttpServletRequest request)throws Exception{
 		 
@@ -79,15 +81,30 @@ private PayService payService;
 			ordersVo.setMidx(midx);
 			
 			payService.orderInsert(ordersVo);
+
 			
 			detailVo.setDetail_idx(midx);
 			detailVo.setDetail_completeday(detail_idx);
+			
 			payService.detailInsert(detailVo);
 
-		  return "redirect:/memberorders";
+		  return "redirect:/memberorderList.do";
 	  }
-	
-	
+	  //주문상세목록
+	  @PostMapping("/OrderView.do")
+	  public void OrderView( HttpServletRequest request, @RequestParam("n") int orders_idx,
+			  OrdersVo ordersVo, Model model) throws Exception {
+	   
+		HttpSession Session = request.getSession();
+		int midx = (int) Session.getAttribute("midx");
+	   
+		ordersVo.setMidx(midx);
+		ordersVo.setOrders_idx(orders_idx);
+	   
+	   List<OrdersListVo> orderView = payService.orderview(ordersVo);
+	   
+	   model.addAttribute("orderView", orderView);
+	  }
 	
 	
 	

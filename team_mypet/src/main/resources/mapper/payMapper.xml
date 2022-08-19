@@ -3,10 +3,9 @@
   "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 
 <mapper namespace = "com.jeonju.mypet.pay">
-<select id="orderpay"  resultType="ordersVo">
+<select id="orderList"  resultType="ordersVo">
 <!-- select * from orders a left outer join detail b on a.orders_idx = b.orders_idx left outer join product c on b.p_idx = c.p_idx left outer join cart d on c.p_idx = d.p_idx where a.midx=#{midx} ; -->
-select * from product a left outer join cart b on a.p_idx = b.p_idx left outer join members c on b.midx = c.midx left outer join orders d on c.midx = d.midx where c.midx=9;
-
+ select orders_idx, midx, orders_name, orders_addr1, orders_addr2, orders_addr3, orders_phone, orders_totalprice, orders_day from orders where midx = #{midx};
 </select>
 
 <insert id="orderInsert">
@@ -17,5 +16,17 @@ select * from product a left outer join cart b on a.p_idx = b.p_idx left outer j
  insert into detail (orders_idx,p_idx, detail_status, detail_cnt, fixprice, detail_completeday)
  values(#{orders_idx},#{p_idx},#{detail_status},#{detail_cnt},#{fixprice},#{detail_completeday})
 </insert>
-
+<insert id="orderInfo_Details">
+ insert into detail(orderDetailsNum, order_idx, p_idx, detail_cnt)
+     select #{orderId}, p_idx, cart_cnt
+         from cart   
+</insert> 
+<select id="orderView" resultType="ordersListVo">
+ select o.orders_idx, o.midx, o.orders_name , o.orders_addr1, o.orders_addr2 , o.orders_addr3, o.orders_phone, o.orders_totalprice, o.orders_day ,
+     d.detail_idx , d.p_idx , d.detail_cnt ,
+     p.p_name , p.p_sys_filename , p.p_price
+ from orders o inner join detail d on o.orders_idx = d.orders_idx
+         inner join product p on d.p_idx = p.p_idx
+     where o.midx = 29 and o.orders_idx = 34;
+</select>
 </mapper>
