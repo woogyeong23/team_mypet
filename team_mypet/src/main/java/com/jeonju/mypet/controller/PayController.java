@@ -5,6 +5,7 @@ import java.text.DecimalFormat;
 import java.util.ArrayList;
 import java.util.Calendar;
 import java.util.List;
+import java.util.Map;
 
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpSession;
@@ -38,8 +39,11 @@ private PayService payService;
 	
 	//주문하기 페이지 넘어가기
 	@GetMapping("/memberpay.do")
-	public String memberpay(OrdersVo ordersVo,Model model,HttpServletRequest request) {
+	public String memberpay(@RequestParam Map<String, String> param,OrdersVo ordersVo,Model model,HttpServletRequest request) {
 
+		String c_idxArr = param.get("c_idxArr");
+		System.out.println(c_idxArr);
+		
 		 List<OrdersVo> orderslist = new ArrayList<>();
 
 		 model.addAttribute("orderslist", orderslist);

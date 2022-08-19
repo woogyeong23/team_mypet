@@ -294,6 +294,19 @@ $(document).ready(function(){
 		}else{
 			$("input[type='checkbox']").prop("checked",false);
 		}
+		//셀러별 상품가격 업데이트
+		 $("input[type='checkbox']").each(function(){
+			if($(this).data('checked_cart_idx') != null)
+				{
+					
+					
+					seller_itemTotal(this, $(this).data('checked_cart_idx'))
+				}
+		}); 
+		
+		//전체 상품가격 업데이트
+		itemTotal();
+		
 	});
 	//모든 개별 체크박스가 선택되면 모든 체크박스 바꾸기
 	$("input[type='checkbox']").on("click", function(){
@@ -314,15 +327,11 @@ $(document).ready(function(){
 		else if($('#cart-product-all-check').is(':checked') == false && (totalChecked+1)==totalCheckbox)
 		{
 			
-			//alert("gogo");
 			$("#cart-product-all-check").prop("checked",true);	
 			
 		}
-		//전체 상품가격 업데이트
-		itemTotal();
-		
 		//셀러별 상품가격 업데이트
-		$("input[type='checkbox']:checked").each(function(){
+		$("input[type='checkbox']").each(function(){
 			if($(this).data('checked_cart_idx') != null)
 				{
 					
@@ -330,6 +339,10 @@ $(document).ready(function(){
 					seller_itemTotal(this, $(this).data('checked_cart_idx'))
 				}
 		});
+		//전체 상품가격 업데이트
+		itemTotal();
+		
+		
 		
 	});
 	
@@ -342,8 +355,7 @@ $(document).ready(function(){
 		//전체 상품가격 구하기
 		function itemTotal()
 		{
-			//체크된 거 순회해서 의 값들 구하기
-			//seller_price%{cart_idx}
+			
 			var totalProductPrice=0;
 			$("input[type='checkbox']:checked").each(function(){
 				if($(this).data('checked_cart_idx') != null)
@@ -355,12 +367,17 @@ $(document).ready(function(){
 				//alert("asdf"+$(this).data('checked_cart_idx'));
 				//alert("체크박스 값"+$(this)..data('checked_cart_idx'));
 				//alert(totalProductPrice);
-			    str="<span id='totalPrice' name='totalPrice'></span><span class='CartCheckoutDesktop__priceUnit'><input type='hidden' id='totalProduct' value='"+totalProductPrice  +"'>"+totalProductPrice.toLocaleString()+"</span>";
+			    str="<span id='totalPrice' name='totalPrice'></span><span class='CartCheckoutDesktop__priceUnit'><input type='hidden' id='totalProduct' name='totalProduct' value='"+totalProductPrice  +"'>"+totalProductPrice.toLocaleString()+"</span>";
 				document.getElementById('CartCheckoutDesktop__value').innerHTML = "";
 			 	 document.getElementById('CartCheckoutDesktop__value').innerHTML=str ;
 			});
-			
-			
+			//alert("전체"+totalProductPrice);
+			if(totalProductPrice==0)
+				{
+				str="<span id='totalPrice' name='totalPrice'></span><span class='CartCheckoutDesktop__priceUnit'><input type='hidden' id='totalProduct' name='totalProduct'  value='0'>0</span>";
+				document.getElementById('CartCheckoutDesktop__value').innerHTML = "";
+			 	 document.getElementById('CartCheckoutDesktop__value').innerHTML=str ;
+				}
 			
 		}
 		
@@ -383,10 +400,10 @@ $(document).ready(function(){
 			//seller_price=c_price.toLocaleString();
 			//alert(seller_idx);
 			  //체크박스의 checked 속성을 체크합니다.
-			  var is_checked = checkbox.checked;
+			  //var is_checked = checkbox.checked;
 			  //alert(is_checked);
 			 // totalPrice_span${seller.seller_idx}
-			 var seller_price=0;
+			 
 			 //셀러의 아이템들의 체크박스들 접근하기
 			 const checkboxes 
 		     = document.getElementsByName('item_checkedbox'+seller_idx);
@@ -394,8 +411,11 @@ $(document).ready(function(){
 			 //셀러의 아이템들이 체크박스를 돌면서 체크돼어있는 아이템들의 총가격만 계산하기
 			 //1.체크박스 돌기
 			 for(var i = 0; i < document.getElementsByName('item_checkedbox'+seller_idx).length; i++){
-				 	//2.체크돼있는 체크박스일 경우
+				 var seller_price=0;	
+				 //2.체크돼있는 체크박스일 경우
+				 	//alert(document.getElementsByName('item_checkedbox'+seller_idx)[i].checked);
 			        if(document.getElementsByName('item_checkedbox'+seller_idx)[i].checked == true){
+			        	
 			        	//checked++;
 			        	//alert(document.getElementsByName('item_checkedbox'+seller_idx)[i].dataset.checked_cart_idx);
 			        	//3.해당 아이템의 카트번호 구하기
@@ -409,14 +429,24 @@ $(document).ready(function(){
 			        	 //document.getElementById('seller_totalPrice'+seller_idx).innerHTML = "";
 			        	 //document.getElementById('seller_totalPrice'+seller_idx).innerHTML = seller_price;
 			        	 //alert("for_ seller_price:"+seller_price);
+			        	 
+			        	 //alert("cart_idx:"+check_cart+"~"+seller_price);
 			        }
-			    }
+			 }
 			  str="<input type='hidden' id='seller_totalPrice" + seller_idx + "' value='"+seller_price  +"'>"+seller_price.toLocaleString();
 
 			  document.getElementById('totalPrice_span'+seller_idx).innerHTML = "";
 			  document.getElementById('totalPrice_span'+seller_idx).innerHTML=str ;
 				
-			  
+				//alert("seller"+seller_price);
+			 	if(seller_price==0)
+				{
+			 		//str="<input type='hidden' id='seller_totalPrice" + seller_idx + "' value='0'>0";
+
+					  document.getElementById('totalPrice_span'+seller_idx).innerHTML = "";
+					  document.getElementById('totalPrice_span'+seller_idx).innerHTML="0" ;
+						
+				}
 			  //const perTotalPrice = "CartArtistItem__Price"+cart_idx;
 			  //$(perTotalPrice).val('500');
 			  
@@ -428,6 +458,10 @@ $(document).ready(function(){
 
 
 
+		
+		
+		
+		
 
 		//개별체크박스 누를때? 뭐더라?
 		function checkSelectProduct(seller_idx)  {
@@ -468,10 +502,46 @@ $(document).ready(function(){
 			  checkboxes.forEach((checkbox) => {
 			    checkbox.checked = selectAll.checked
 			  })
+			  
 			}
 			
 			
 			
+			function cart_idxArr()
+			{
+				
+				var c_idxArr=[];
+				$("input[type='checkbox']").each(function(){
+					if($(this).data('checked_cart_idx') != null)
+						{
+						c_idxArr.push($(this).data('checked_cart_idx'));
+							
+							//alert($(this).data('checked_cart_idx'));
+						}
+				});
+				
+				$("#c_idxArr").val(c_idxArr);
+				
+				
+				var fm = document.frm;   
+				
+				if(fm.totalProduct.value=="0")
+				{
+					alert("담긴 상품이 없습니다.");
+					return;
+				}
+				
+				
+				
+				alert("전송합니다..");
+		  		//fm.action = "./memberJoinOk.jsp";
+		  		//가상경로 사용 ${pageContext.request.contextPath}/registProcess.do
+		  		fm.action = "<%=request.getContextPath()%>/memberpay.do";
+		  		fm.method = "get";
+		  		fm.submit();  
+		  
+		    return;
+			}
 			
 	
 </script>
@@ -548,6 +618,7 @@ $(document).ready(function(){
    						</li>
    					</ol>
    					</div>
+   				<form name="frm" >
    				
    				<div class="CartArtistList" id="CartArtistList">
    					<div class="vue-sticky-placeholder" style="padding-top: 0px;"></div>
@@ -708,7 +779,7 @@ $(document).ready(function(){
         					<div class="CartCheckoutDesktop__label">작품금액</div>
         					<div class="CartCheckoutDesktop__value" id="CartCheckoutDesktop__value">
         						<span id="totalPrice" name="totalPrice"></span>
-        						<span class="CartCheckoutDesktop__priceUnit"><input type='hidden' id='totalProduct' value='${ProductPriceMap.totalProductPrice }'><fmt:formatNumber pattern="###,###,### 원" value="${ProductPriceMap.totalproductprice}" /></span>
+        						<span class="CartCheckoutDesktop__priceUnit"><input type='hidden' id='totalProduct'  name='totalProduct'  value='${ProductPriceMap.totalProductPrice }'><fmt:formatNumber pattern="###,###,### 원" value="${ProductPriceMap.totalproductprice}" /></span>
         					</div>
         				</div>
         				<div class="CartCheckoutDesktop__item--fixed">+</div>
@@ -736,12 +807,17 @@ $(document).ready(function(){
         		</div>
         		
         		<div class="CartPage__bottom">
-        		<button type="submit" class="CommonButton CartPage__paymentButton CommonButton--large" onclick = "location.href = '${pageContext.request.contextPath}/memberpay.do'">
-        		주문하기
+<%--         		<button type="submit" class="CommonButton CartPage__paymentButton CommonButton--large" onclick = "location.href = '${pageContext.request.contextPath}/memberpay.do'">
+ --%>        		주문하기
         		</button>
         		</div>
         	</div>
  		</div>
+ 		<input type="hidden" id="c_idxArr" name="c_idxArr">
+ 		<input type="button" class="CommonButton CartPage__paymentButton CommonButton--large" value="등록" onclick="cart_idxArr();"> 
+		</form>
+		
+		
 	</div>
 </aside>
 </main>
