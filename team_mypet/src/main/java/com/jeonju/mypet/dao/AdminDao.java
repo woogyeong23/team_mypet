@@ -127,9 +127,9 @@ public class AdminDao {
 
 
 
-	public List<BoardVo> getBoardListd() {
+	public BoardVo getBoardListd(String bidx) {
 		// TODO Auto-generated method stub
-		return sqlSession.selectList(MAPPER + ".getBoardListd");
+		return sqlSession.selectOne(MAPPER + ".getBoardListd",bidx);
 		}
 
 
@@ -138,6 +138,22 @@ public class AdminDao {
 		// TODO Auto-generated method stub
 		return sqlSession.update(MAPPER+".updateMemberGrade0", map);
 	}
+
+
+
+	public BoardVo adminmodi(String  bidx) {
+		// TODO Auto-generated method stub
+		return sqlSession.selectOne(MAPPER+".adminmodi", bidx);
+	}
+
+
+
+	public int Updateadmin(BoardVo boardVo) {
+		// TODO Auto-generated method stub
+		return sqlSession.update(MAPPER+".Updateadmin", boardVo);
+		}
+
+	
 
 
 }

@@ -119,7 +119,7 @@ $(function() {
 	</div>
 
 		<thead>
-		<td><a href="${pageContext.request.contextPath}/admin_write.do">글쓰기</a></td>
+		<td><a href="${pageContext.request.contextPath}/admin_modi.do">수정하기</a></td>
 			<tr>
 				<th>제목</th>
 				<th>내용</th>
@@ -128,27 +128,16 @@ $(function() {
 			</tr>
 		</thead>
 		<tbody>
-			<c:if test="${BoardListd.size() == 0 }">
-				<tr>
-					<td colspan="4">등록 된 게시글이 없습니다.</td>
-				</tr>
-			</c:if>
-			<c:if test="${BoardListd.size() > 0}">
-				<c:forEach var="BoardVo" items="${BoardListd}">
-					<tr>
-						
-						<td>${BoardVo.board_subject}</td>
-						<td>${BoardVo.board_content}</td>
-						<td>	${BoardVo.board_writer}</td>
-					   <td>${BoardVo.board_wday}</td>
-					   
-					</tr>
-					
-				</c:forEach>	
+		
+		
+		
 
-			
-			</c:if>
-			
+		
+		<td>${BoardListd.board_subject}</td>
+		<td>${BoardListd.board_content}	</td>
+		<td>${BoardListd.board_writer}</td>
+		<td>${BoardListd.board_wday}</td>
+	
 			
 		</tbody>
 	

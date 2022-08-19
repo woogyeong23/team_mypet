@@ -153,7 +153,7 @@ table, td, th {
 				},
 				success: function(data){
 					if(data == "N"){
-						alert("회원등급 수정 실패!");
+						alert("실패");
 					}else{
 						alert("구매자강등 성공!");
 						$(id_input).attr("disabled", true);
@@ -169,37 +169,7 @@ table, td, th {
 
 </script>
 
-<script type="text/javascript">
 
-$(function() {
-	  //nav
-	  var lnb = $("#naver").offset().top;
-	 
-	  $(window).scroll(function() {
-	   
-	    var window = $(this).scrollTop();
-	    
-	    if(lnb <= window) {
-	      $("#naver").addClass("fixed");
-	    }else{
-	      $("#naver").removeClass("fixed");
-	    }
-	  });
-	  //nav
-	  
-	  
-	  
-	  
-	  // topbar event popup 지우기
-	  $('#popup_close').click(function(){
-	        $('.popup').stop().slideUp()
-	    });
-	    
-	});
-	
-	
-	
-</script>
 </head>
 
 
@@ -214,7 +184,7 @@ $(function() {
     <jsp:include page="../../include/admin_header.jsp" />  
 <!-- ************************************************ -->
     
-    
+
   
 
 	
@@ -224,17 +194,19 @@ $(function() {
   
 <table border="1px">
 	<tr>
-		<th>회원번호</th><th>이름</th><th>아이디</th><th>비밀번호</th><th>판매자등업</th><th>구매자강등</th>
+		<th>회원번호</th><th>이름</th><th>아이디</th><th>등급</th><th>판매자등업</th><th>구매자강등</th>
 		<th>전화번호</th><th>가입일시</th><th>삭제여부</th><th>번호</th><th>DB삭제여부</th>
 	</tr>
 	
 	<c:forEach var="MembersVo" items="${memberList}">
 		<tr>
 			<td>${MembersVo.midx}</td><td>${MembersVo.m_name}</td>
-			<td>${MembersVo.m_id}</td><td>${MembersVo.m_pwd}</td>
-		
-			<td><input type="checkbox" id="m_grade${MembersVo.midx}"  value="${MembersVo.m_grade }" size="5" /><button class ="adminUpdateInfo" name="${MembersVo.midx}">판매자등업</button></td>	
-			<td><input type="checkbox" id="m_grade${MembersVo.midx}"  value="${MembersVo.m_grade }" size="5" /><button class ="adminUpdateInfo0" name="${MembersVo.midx}">구매자강등</button></td>
+			<td>${MembersVo.m_id}</td>
+				
+			<td>${MembersVo.m_grade}  </td>	
+			<td><input type="radio" id="m_grade${MembersVo.midx}"  value="${MembersVo.m_grade }" size="5"  class ="adminUpdateInfo" name="${MembersVo.midx}"/>등업</td>	
+	
+			<td><input type="radio" id="m_grade${MembersVo.midx}"  value="${MembersVo.m_grade }" size="5"  class ="adminUpdateInfo0" name="${MembersVo.midx}"/>강등</td>	
 			<td>${MembersVo.m_phone}</td><td>${MembersVo.m_wday}</td>
 			<td>${MembersVo.m_delyn}</td><td>${MembersVo.midx}</td>
 			<td>삭제<input type="checkbox" value="${MembersVo.midx}" /></td>

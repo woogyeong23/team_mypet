@@ -90,14 +90,14 @@ public class AdminController {
 
 
 	@GetMapping("/admin_boardd.do")
-	public String adminboardd(Model model, HttpServletRequest request) {
+	public String adminboardd(Model model , String bidx , HttpServletRequest request) {
 		
 		//int a=1;
 		//ProductVo productVo = new ProductVo();
 		
 		
 		
-		List<BoardVo> BoardListd = adminService.getBoardListd();
+	    BoardVo BoardListd = adminService.getBoardListd(bidx);
 		
 		
 		
@@ -442,5 +442,97 @@ public String AWInsertProcess0(@RequestParam("board_subject") String board_subje
 
 
 
+
+
+@GetMapping("/admin_modi.do")
+public String adminmodi(String  bidx, Model model) {
+	
+	BoardVo boardVo = adminService.adminmodi(bidx);
+	
+	model.addAttribute("boardVo", boardVo);
+	
+	return "admin/admin_modi";
+			
 }
+
+@PostMapping("/adminmodiProcess.do")
+public String Modi_process(@RequestParam("board_subject") String board_subject,
+		@RequestParam("uploadImg") MultipartFile uploadImg,
+		@RequestParam("board_content") String board_content, 
+		@RequestParam("bidx") int bidx,
+         Model model, HttpServletRequest request) 
+				throws IllegalStateException, IOException{
+	
+	
+	
+	String cm_origin_img = uploadImg.getOriginalFilename().trim();
+	System.out.println("cm_origin_img :"+cm_origin_img);
+	String fileName1="";
+	String extension="";
+	String fileName2="";
+	String cm_img="";
+	String view="";
+	
+	if(cm_origin_img.length() == 0) cm_origin_img = null;
+	
+
+	
+
+	
+	//upload 디렉토리에 대한 실제 경로 확인을 위해 ServletContext객체를 이용
+	
+	
+
+
+	
+	
+	//지정된 경로에 파일 저장
+			//realPath와 system_fileName을 합쳐서 전체경로를 얻어야 함
+		
+	
+
+			
+	 if(board_subject.length()==0) {
+		request.setAttribute("msg1", "제목을 입력해주세요.");
+		view = "admin/adminmodi";
+	  }
+	 else if(board_content.length()==0){
+		 request.setAttribute("msg2", "내용을 입력해주세요");
+		 view = "admin/adminmodi";
+	 }
+	 else {
+	        
+	       
+			int result=0;//0:입력 실패
+			
+		
+			BoardVo boardVo = new BoardVo();
+			boardVo.setBoard_subject(board_subject);
+			boardVo.setBoard_content(board_content);
+	
+			boardVo.setBidx(bidx);
+		
+			result = adminService.Updateadmin(boardVo);
+	
+			
+			 
+			
+			 if(result == 1) {
+				
+				view = "redirect:/admin.do";	
+			}}
+	 
+	 return view;
+	
+}
+
+
+
+	}
+
+
+
+
+
+
 

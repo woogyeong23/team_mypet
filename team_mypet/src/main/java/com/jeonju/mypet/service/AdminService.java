@@ -109,10 +109,22 @@ public class AdminService {
 	}
 
 
-	public List<BoardVo> getBoardListd() {
+	public BoardVo getBoardListd(String bidx) {
 		// TODO Auto-generated method stub
-		return adminDao.getBoardListd();
+		return adminDao.getBoardListd(bidx);
 	}
+
+
+	public BoardVo adminmodi(String  bidx) {
+		// TODO Auto-generated method stub
+		return adminDao.adminmodi(bidx);
+		}
+
+
+	public int Updateadmin(BoardVo boardVo) {
+		// TODO Auto-generated method stub
+		return adminDao.Updateadmin(boardVo);
+		}
 	
 
 
