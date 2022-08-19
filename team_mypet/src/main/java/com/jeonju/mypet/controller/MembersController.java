@@ -13,6 +13,7 @@ import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 
+import com.jeonju.mypet.service.CartService;
 import com.jeonju.mypet.service.MembersService;
 import com.jeonju.mypet.vo.CartVo;
 import com.jeonju.mypet.vo.MembersVo;
@@ -23,10 +24,13 @@ import com.jeonju.mypet.vo.PetVo;
 public class MembersController {
 	
 	private MembersService membersService;
+	private CartService cartService;
+
 	
 	@Autowired //자동 의존 주입: 생성자 방식
-	public MembersController(MembersService membersService) {
+	public MembersController(MembersService membersService,CartService cartService) {
 		this.membersService = membersService;
+		this.cartService = cartService;
 	}
 	
 	
@@ -221,12 +225,17 @@ public class MembersController {
 			return "member/memberorder";	
 		}
 		@GetMapping("/memberorderList.do")
-		public String memberorderList(HttpServletRequest request, OrdersVo ordersVo,Model model) {
+		public String memberorderList(HttpServletRequest request, OrdersVo ordersVo,CartVo cartVo,Model model) {
 			HttpSession Session = request.getSession();
 			int midx = (int) Session.getAttribute("midx");
 			
 			ordersVo.setMidx(midx);
 			
+			cartVo.setMidx(midx);
+			List<CartVo> list = cartService.cartList(cartVo);
+
+			model.addAttribute("cart", list );
+
 			List<OrdersVo> ordersList = membersService.orderList(ordersVo);
 			
 			model.addAttribute("ordersList",ordersList);

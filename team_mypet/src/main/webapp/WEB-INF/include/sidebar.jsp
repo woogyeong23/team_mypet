@@ -19,7 +19,7 @@
     <a href="${pageContext.request.contextPath}/memberInfo.do" class="d-flex align-items-center pb-3 mb-3 link-dark text-decoration-none border-bottom">
       <svg class="bi me-2" width="30" height="24"><use xlink:href="#bootstrap"/></svg>
       <span class="fs-5 fw-semibold">
-			${midx}님
+			${m_nick}님
 	    </a>
     <ul class="list-unstyled ps-0">
       <li class="mb-1">

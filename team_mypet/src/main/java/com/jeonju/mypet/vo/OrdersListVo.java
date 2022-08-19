@@ -15,7 +15,7 @@ public class OrdersListVo {
 	private int detail_idx;
 	private int p_idx;
 	private int detail_cnt;
-	
+	private String detail_completeday;
 	private String p_name;
 	private String p_sys_filename;
 	private String p_price;

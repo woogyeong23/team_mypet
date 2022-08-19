@@ -18,7 +18,7 @@
     
 <style>
 html, body{
-height: 100%
+height: 100%;
 }
 
 #wrap {
@@ -31,8 +31,14 @@ footer {
 position: relative;
 transform:translatY(-100%);
 }
+#span{
+width: 580px;
 
-
+}
+section {
+height: 100%;
+padding-bottom: 60px;
+}
 </style>
 </head>
 <body>
@@ -47,19 +53,30 @@ transform:translatY(-100%);
     <jsp:include page="../../include/sidebar.jsp" />  
 
 <section>
-<div class="card mb-3" style="max-width: 540px;">
+<div class="container px-3 py-4" id="hanging-icons" >
+    <h3 class="pb-1 border-bottom" >주문목록</h3>
+<c:forEach items="${ordersList}" var="ordersList" varStatus="status">
+
+<c:forEach items="${cart}" var="cart" varStatus="status">
+
+<div class="card mb-1" style="max-width: 100%;">
   <div class="row g-0">
     <div class="col-md-4">
-      <img src="..." class="img-fluid rounded-start" alt="...">
+      <img src="${pageContext.request.contextPath}/resources/product/${cart.p_sys_filename}" class="img-fluid rounded-start" alt="...">
     </div>
     <div class="col-md-8">
       <div class="card-body">
-        <h5 class="card-title">Card title</h5>
-        <p class="card-text">This is a wider card with supporting text below as a natural lead-in to additional content. This content is a little bit longer.</p>
-        <p class="card-text"><small class="text-muted">Last updated 3 mins ago</small></p>
+        <h5 class="card-title"><span>주문번호 : </span><a href="${pageContext.request.contextPath}/memberorder.do?orders_idx=${ordersList.orders_idx}">${ordersList.orders_idx}</a></h5>
+        <p class="card-text"><span >수령인 : </span>${ordersList.orders_name}</p>
+        <p class="card-text"><span >받을 주소 : </span>${ordersList.orders_addr1}</p>
+        <p class="cart-text"><small class="text-muted">Last updated 3 mins ago</small></p>
       </div>
     </div>
   </div>
+</div>
+
+</c:forEach>
+</c:forEach>
 </div>
 </section>
 </main>

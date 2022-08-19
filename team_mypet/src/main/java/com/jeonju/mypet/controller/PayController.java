@@ -41,13 +41,8 @@ private PayService payService;
 	public String memberpay(OrdersVo ordersVo,Model model,HttpServletRequest request) {
 
 		 List<OrdersVo> orderslist = new ArrayList<>();
-//		 for(int i=0; i < (ordersVo.getP_idx()).length; i++) {
-//			 
-//			 OrdersVo oV = new OrdersVo();
-//			 
-//			 oV.setOrders();
-//		 }
-		 model.addAttribute("order", orderslist);
+
+		 model.addAttribute("orderslist", orderslist);
 		 
 		HttpSession Session = request.getSession();
 		int midx = (int) Session.getAttribute("midx");
