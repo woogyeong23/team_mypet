@@ -5,6 +5,7 @@ import java.text.DecimalFormat;
 import java.util.ArrayList;
 import java.util.Calendar;
 import java.util.List;
+import java.util.Map;
 
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpSession;
@@ -17,6 +18,7 @@ import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
+import org.springframework.web.bind.annotation.RequestParam;
 
 import com.jeonju.mypet.service.PayService;
 import com.jeonju.mypet.vo.CartVo;
@@ -36,8 +38,11 @@ private PayService payService;
 	
 	
 	@GetMapping("/memberpay.do")
-	public String memberpay(OrdersVo ordersVo,Model model,HttpServletRequest request) {
+	public String memberpay(@RequestParam Map<String, String> param,OrdersVo ordersVo,Model model,HttpServletRequest request) {
 
+		String c_idxArr = param.get("c_idxArr");
+		System.out.println(c_idxArr);
+		
 		 List<OrdersVo> orderslist = new ArrayList<>();
 //		 for(int i=0; i < (ordersVo.getP_idx()).length; i++) {
 //			 
