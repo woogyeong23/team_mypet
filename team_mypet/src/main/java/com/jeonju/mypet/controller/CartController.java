@@ -58,10 +58,10 @@ public class CartController {
 		 
 		System.out.println("*************************");
 		for (HashMap<String, Object> a : cartSellerList) {
-            System.out.println("seller : "+a.get("seller_idx"));
+            System.out.println("seller : "+a.get("seller_idx")+a.get("seller_price"));
 		}
 		for (CartVo b : list) {
-            System.out.println("list : "+b.getSeller_idx());
+            System.out.println("list : "+b.getSeller_idx()+ b.getC_price());
 		}
 		return "member/membercart";	
 	}
