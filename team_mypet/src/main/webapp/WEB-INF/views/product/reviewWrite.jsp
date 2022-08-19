@@ -93,8 +93,13 @@
 							}
 						});
 					}
+<!-- 서머노트를 위해 추가해야할 부분 여기까지 -->	 
+	
+var review_stars = document.querySelector('input[name="reviewStar"]:checked').value;
 			</script>
-	<!-- 서머노트를 위해 추가해야할 부분 여기까지 -->	 
+	
+	
+	
 	
 <style type="text/css">
 #myform fieldset{
@@ -155,8 +160,8 @@ input[type="file"] {
     
     <center><h2>구매후기 작성</h2></center>
     <br>
+    <form class="mb-3" name="myform" id="myform" method="post" action="${pageContext.request.contextPath}/rvInsertProcess.do" enctype="multipart/form-data">
     <div class="col-lg-12">
-    <form class="mb-3" name="myform" id="myform" method="post">
     <table style="width: 100%;">
     <tr>
     <td style="text-align: left; width: 10%"><img src="${pageContext.request.contextPath}/resources/product/${ReviewWP.p_sys_filename}" alt="상품 이미지" width="100" height="100">
@@ -174,17 +179,23 @@ input[type="file"] {
 	</td>
     </tr>
     </table>
-    </form>
     </div>
-<form name="frm" action="${pageContext.request.contextPath}/insertReview.do" method="post"  enctype="multipart/form-data">
 		<div style="padding-bottom: 10px">				
 <textarea id="summernote" name="p_content"></textarea>
 </div>
+	
+	<%-- <input type="hidden" name="detail_idx" value="${detail.detail_idx}" id="detail_idx">  
+	<input type="hidden" name="orders_idx" value="${detail.orders_idx}" id="orders_idx">  
+ --%>
+
+	<input type="hidden" name="p_idx" value="${ReviewWP.p_idx}" id="p_idx"> 
+
 	<input type="button" value="돌아가기" onclick="javascript:history.back()" style="background-color: grey; color: white; border: none; border-radius: 4px; width: 90px; height: 40px">
 	<input type="submit" value="후기등록" style="background-color: #99ccff; color: white; border: none; width: 90px; height: 40px; border-radius: 4px;">
 	<!-- <label  class="filebtn" for="file">파일 업로드</label>
 	<input multiple="multiple" type="file" name="uploadFile" required="required" id="file" style={{display:"none"}}>
-	 --></form>
+	 -->
+	 </form>
 	</div>
 	</section>
 <!-- 푸터와 js************************************************ -->

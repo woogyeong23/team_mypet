@@ -24,6 +24,7 @@ public class OrdersVo {
 	private String m_id;
 	private String bundleprice;
 	
+	
 	public String getBundleprice() {
 		return bundleprice;
 	}

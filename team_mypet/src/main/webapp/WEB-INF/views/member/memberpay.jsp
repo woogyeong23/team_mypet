@@ -36,13 +36,13 @@ transform:translatY(-100%);
 
   </head>
 <body>
-<div id="wrap">
+
     <!-- 헤더와 js************************************************ -->
     <jsp:include page="../../include/header.jsp" />  
 	<!-- ************************************************ -->
-
-<div class="content">
-	<form class="form-payment">
+<div id="wrap">
+<div class="content" style="padding-bottom:0;">
+	<form class="form-payment" method="POST" action="orderInsert.do" >
 		<div class="inner-w800" style="width:800px;">
 		<div class="title-style clf">
 			<h2 class="txt fl">주문 결제하기</h2>
@@ -65,7 +65,7 @@ transform:translatY(-100%);
    				<div class="segment--nospacing">
    					<div class="ui_title--sub tab">
    						<span class="ui_title__txt">주문 고객</span>
-			   			<span class="ui_title__txtright--blue user-info-header-right-text">${m_name}</span>
+			   			<span class="ui_title__txtright--blue user-info-header-right-text" >${midx}</span>
    					</div>
    				</div>
    				<div class="segment--nospacing">
@@ -80,7 +80,7 @@ transform:translatY(-100%);
    							<div class="address-info item">
    								<div class="address-info head">
    									<em class="asterisk red">*</em>
-   									<label for="receiver">받는분</label>
+   									<label for="receiver" >받는분</label>
 				   				</div>
    								<div class="address-info body">
    									<div class="input-text">
@@ -133,7 +133,32 @@ transform:translatY(-100%);
    						</div>
    						<div class="ui_title--sub tab "></div>
    					</div>
-   				
+	   				<div class="ProductPaymentMethodSelector">
+	   					<div class="ProductPaymentMethodSelector__title">
+	   						<div class="PaymentMethodSelector radiogroup">
+	   							<label class="radio-item payment-bill payment-bill">
+	   								<div class="payment-radio-item-wrapper" >
+	   									<input  name="orders_payment" type="radio" class="idus-icon-radio" checked="checked">
+	   									<div class="PaymentMethodSelector__textGroup">
+	   										<span class="payment-method">일반 카드 결제</span>
+	   									</div>
+	   								</div>
+	   							</label>
+	   						</div>
+	   					</div>
+	   					<div class="ProductPaymentMethodSelector__title">
+	   						<div class="PaymentMethodSelector radiogroup">
+	   							<label class="radio-item payment-bill payment-bill">
+	   								<div class="payment-radio-item-wrapper">
+	   									<input  name="orders_payment" type="radio" class="idus-icon-radio">
+	   									<div class="PaymentMethodSelector__textGroup">
+	   										<span class="payment-method">계좌이체 / 무통장입금</span>
+	   									</div>
+	   								</div>
+	   							</label>
+	   						</div>
+	   					</div>
+	   				</div>
    			</section>
    			<section>
    			<div class="final-cost ui_sticky" style="top: auto;" data-ui="sticky">
@@ -160,7 +185,7 @@ transform:translatY(-100%);
    					<table class="spacing">
    						<tbody>
    							<tr class="total">
-   								<th>최종 결제 금액</th>
+   								<th>최종 결제금액</th>
    								<td class="hilight">
    								<span id="final_Price"></span>
    								<em>원</em>
@@ -179,7 +204,7 @@ transform:translatY(-100%);
    						<div class="segment--nospacing scroll-detector" style="top: 500px; bottom: 69px;">
    							<div class="mfixed">
    								<button class="ui_btn--red--large">
-   									<span id="final_Price"></span>
+   									<span id="final_Price">${orders_totalprice}</span>
    									<em>원</em>
    									<span>결제하기</span>
    									<p class="point" style="display: block;">예상적립금
@@ -190,7 +215,6 @@ transform:translatY(-100%);
    							</div>
    						 </div>
    					</div>
-   				
    			</div>
    			
    			</section>

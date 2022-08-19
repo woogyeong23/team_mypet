@@ -62,8 +62,8 @@ public class ExtraController {
 		  
 			   if(session.getAttribute("midx") != null) {
 
-				  long midx =  (long) session.getAttribute("midx");
-//				    int midx=(int) session.getAttribute("midx"); 
+//				  long midx =  (long) session.getAttribute("midx");
+				    int midx=(int) session.getAttribute("midx"); 
 				   FollowVo followVo = new FollowVo();
 				   followVo.setMidx((int) midx);
 //				   followVo.setMidx(midx);

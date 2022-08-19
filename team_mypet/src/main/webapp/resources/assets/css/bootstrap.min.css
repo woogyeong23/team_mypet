@@ -44,9 +44,7 @@
         scroll-behavior: smooth
     }
 }
-.content{
-	width:80%;
-}
+
 body {
     margin: 0;
     font-family: var(--bs-font-sans-serif);
@@ -5123,7 +5121,7 @@ fieldset:disabled .btn {
     float: left;
     padding-right: .5rem;
     color: #6c757d;
-    content: var(--bs-breadcrumb-divider, "/")
+    /* content: var(--bs-breadcrumb-divider, "/") */
 }
 
 .breadcrumb-item.active {

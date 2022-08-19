@@ -14,8 +14,7 @@ public class DetailVo {
 	private String p_name;
 	private String fixdvprice;
 	private List<OrdersVo> orders;
-	
-	
+	private int detail_status;
 	
 	public String getFixdvprice() {
 		return fixdvprice;
@@ -105,6 +104,12 @@ public class DetailVo {
 	@Override
 	public String toString() {
 		return "OrderPageDTO [orders=" + orders + "]";
+	}
+	public int getDetail_status() {
+		return detail_status;
+	}
+	public void setDetail_status(int detail_status) {
+		this.detail_status = detail_status;
 	}
 	
 	
