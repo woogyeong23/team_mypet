@@ -13,9 +13,9 @@
 $(document).ready(function(){
 
 		//itemTotal();
-		let cart_idx = $("#cart_idx_input").val();
+		/* let cart_idx = $("#cart_idx_input").val();
 		let nci = "#NumberCounter__input"+cart_idx;
-		
+		 */
 		/* $(nci).on("change", function(){
 			alert(nci);
 			let cart_idx = $(this).attr("name");
@@ -23,7 +23,7 @@ $(document).ready(function(){
 			//itemTotal();
 
 		}); */
-
+/*
 		//온체인지수량 
 
 		function itemTotal(ths){
@@ -79,14 +79,14 @@ $(document).ready(function(){
 	 			console.log("몇개야:"+[i]);
 	 		}
 			
-			/* 개당배송비 결정 */
+			// 개당배송비 결정 
 	 		if(totalPrice >= 30000){
 				dvPrice = 0;
 			} else if(totalPrice == 0){
 				dvPrice = 0;
 			} else {
 				dvPrice = 3000;	
-			}/* 총배송비 결정 */
+			}// 총배송비 결정
 			
 			totaldvPrice += dvPrice;
 			finalTotalPrice = totalPrice + totaldvPrice;
@@ -114,14 +114,27 @@ $(document).ready(function(){
 			$("#finalTotalPrice_span").text(sfinalTotalPrice);
 			
 			
-		}
-
+		}*/
+/* 
 		let salePrice = "${cartVo.p_price - (cartVo.p_price*cartVo.p_discount)}";
 		let point = salePrice*0.05;
 		point = Math.floor(point);
 		$("#totalPoint_span").text(point);
 		console.log("적립금:"+point);
-		
+		 */
+		 
+		 
+	/* 	 
+	//수량바뀔 때
+	$(".NumberCounter__input").on("onchange", function(){
+		alert("asdf");
+	});
+		  */
+		 
+		  
+		  
+		  
+		  
 	//-버튼
 	$(".NumberCounter__minus").on("click", function(){
 		
@@ -162,6 +175,11 @@ $(document).ready(function(){
 		let p_idx = $(p_idx_input).val();
 
 		let cart_cnt = $(this).parent().find('input[name="cart_cnt"]').val();
+		let p_price=$(this).val();
+		let c_price=p_price*cart_cnt;
+		//c_price=c_price.toLocaleString();
+		str="<input type='hidden' id='seller_price" + cart_idx + "' value='"+c_price  +"'>"+c_price.toLocaleString();
+
 		
 		$.ajax({
 			type:"post",
@@ -171,8 +189,14 @@ $(document).ready(function(){
 			success:function(data){
 				if(data =="Y"){
 					console.log("minus");
-					itemTotal();
-
+					//상품당 총가격 계산
+					document.getElementById('CartArtistItem__Price'+cart_idx).innerHTML = "";
+					document.getElementById('CartArtistItem__Price'+cart_idx).innerHTML=str;
+					//셀러당 총가격 계산
+					seller_itemTotal(this,cart_idx);
+					//최종 총가격 계산
+					itemTotal()
+					
 				}else{
 					console.log("minus x");
 
@@ -189,8 +213,21 @@ $(document).ready(function(){
 		let midx = $(midx_input).val();
 		let p_idx_input = $('input[id="p_idx_input"]');
 		let p_idx = $(p_idx_input).val();
-
+		
 		let cart_cnt = $(this).parent().find('input[name="cart_cnt"]').val();
+		
+		//상품당 총가격 계산
+		let p_price=$(this).val();
+		//alert(p_price);
+		//alert(cart_cnt);
+		let c_price=p_price*cart_cnt;
+		//c_price=c_price.toLocaleString();
+		//alert(c_price);
+		
+		str="<input type='hidden' id='seller_price" + cart_idx + "' value='"+c_price  +"'>"+c_price.toLocaleString();
+		
+		//alert(str);
+		
 		
 		$.ajax({
 			type:"post",
@@ -200,8 +237,18 @@ $(document).ready(function(){
 			success:function(data){
 				if(data == "Y"){
 					console.log("plus");
-					itemTotal();
-
+					
+					
+					//상품당 총가격 계산
+					document.getElementById('CartArtistItem__Price'+cart_idx).innerHTML = "";
+					document.getElementById('CartArtistItem__Price'+cart_idx).innerHTML=str;
+					
+					//셀러당 총가격 계산
+					seller_itemTotal(this,cart_idx);
+					
+					//최종 총가격 계산
+					itemTotal()
+					
 				}else{
 					console.log("plus x");
 
@@ -248,7 +295,7 @@ $(document).ready(function(){
 			$("input[type='checkbox']").prop("checked",false);
 		}
 	});
-	//개별 체크박스가 선택되면 모든 체크박스 바꾸기
+	//모든 개별 체크박스가 선택되면 모든 체크박스 바꾸기
 	$("input[type='checkbox']").on("click", function(){
 		 
 		let totalCheckbox=0;
@@ -271,6 +318,18 @@ $(document).ready(function(){
 			$("#cart-product-all-check").prop("checked",true);	
 			
 		}
+		//전체 상품가격 업데이트
+		itemTotal();
+		
+		//셀러별 상품가격 업데이트
+		$("input[type='checkbox']:checked").each(function(){
+			if($(this).data('checked_cart_idx') != null)
+				{
+					
+					
+					seller_itemTotal(this, $(this).data('checked_cart_idx'))
+				}
+		});
 		
 	});
 	
@@ -279,13 +338,98 @@ $(document).ready(function(){
 	
 });
 
+		
+		//전체 상품가격 구하기
+		function itemTotal()
+		{
+			//체크된 거 순회해서 의 값들 구하기
+			//seller_price%{cart_idx}
+			var totalProductPrice=0;
+			$("input[type='checkbox']:checked").each(function(){
+				if($(this).data('checked_cart_idx') != null)
+					{
+						//alert(getElementById('seller_price'+$(this).data('checked_cart_idx')).value);
+						totalProductPrice+=parseInt(document.getElementById('seller_price'+$(this).data('checked_cart_idx')).value);
+					//alert("ewfaesdrfvcuhsduovhbduj : "+document.getElementById('seller_price'+$(this).data('checked_cart_idx')).value);
+					}
+				//alert("asdf"+$(this).data('checked_cart_idx'));
+				//alert("체크박스 값"+$(this)..data('checked_cart_idx'));
+				//alert(totalProductPrice);
+			    str="<span id='totalPrice' name='totalPrice'></span><span class='CartCheckoutDesktop__priceUnit'><input type='hidden' id='totalProduct' value='"+totalProductPrice  +"'>"+totalProductPrice.toLocaleString()+"</span>";
+				document.getElementById('CartCheckoutDesktop__value').innerHTML = "";
+			 	 document.getElementById('CartCheckoutDesktop__value').innerHTML=str ;
+			});
+			
+			
+			
+		}
+		
+		
+		
+		
+		
+		//셀러당 총가격 구하기
+		function seller_itemTotal(obj, cart_idx)
+		{
+			//alert("여기는 셀러 총가격");
+			//이 아이템의 체크박스 접근
+			const item="item_checkedbox"+cart_idx;
+			//alert(item);
+			 const checkbox = document.getElementById(item);
+			//alert(checkbox.value);
+			//seller_idx 구하기 
+			const seller_idx=checkbox.value;
+			//let seller_price=p_price*cart_cnt;
+			//seller_price=c_price.toLocaleString();
+			//alert(seller_idx);
+			  //체크박스의 checked 속성을 체크합니다.
+			  var is_checked = checkbox.checked;
+			  //alert(is_checked);
+			 // totalPrice_span${seller.seller_idx}
+			 var seller_price=0;
+			 //셀러의 아이템들의 체크박스들 접근하기
+			 const checkboxes 
+		     = document.getElementsByName('item_checkedbox'+seller_idx);
+			 //alert("seller_price:"+seller_price);
+			 //셀러의 아이템들이 체크박스를 돌면서 체크돼어있는 아이템들의 총가격만 계산하기
+			 //1.체크박스 돌기
+			 for(var i = 0; i < document.getElementsByName('item_checkedbox'+seller_idx).length; i++){
+				 	//2.체크돼있는 체크박스일 경우
+			        if(document.getElementsByName('item_checkedbox'+seller_idx)[i].checked == true){
+			        	//checked++;
+			        	//alert(document.getElementsByName('item_checkedbox'+seller_idx)[i].dataset.checked_cart_idx);
+			        	//3.해당 아이템의 카트번호 구하기
+			        	check_cart=document.getElementsByName('item_checkedbox'+seller_idx)[i].dataset.checked_cart_idx;
+			        	//alert(document.getElementById('CartArtistItem__Price'+cart_idx);)
+			        	//alert(Number(document.getElementById('seller_price'+check_cart).value)+9);
+			        	var c_price = 0;
+			        	c_price = parseInt(document.getElementById('seller_price'+check_cart).value);
+			        	//alert("개당 가격"+c_price);
+			        	seller_price=seller_price+c_price;
+			        	 //document.getElementById('seller_totalPrice'+seller_idx).innerHTML = "";
+			        	 //document.getElementById('seller_totalPrice'+seller_idx).innerHTML = seller_price;
+			        	 //alert("for_ seller_price:"+seller_price);
+			        }
+			    }
+			  str="<input type='hidden' id='seller_totalPrice" + seller_idx + "' value='"+seller_price  +"'>"+seller_price.toLocaleString();
+
+			  document.getElementById('totalPrice_span'+seller_idx).innerHTML = "";
+			  document.getElementById('totalPrice_span'+seller_idx).innerHTML=str ;
+				
+			  
+			  //const perTotalPrice = "CartArtistItem__Price"+cart_idx;
+			  //$(perTotalPrice).val('500');
+			  
+			  
+			 // alert(checkbox.value);
+			//alert($(obj).val());
+		}
+		
 
 
 
 
-
-
-
+		//개별체크박스 누를때? 뭐더라?
 		function checkSelectProduct(seller_idx)  {
 			//alert(seller_idx);
 			
@@ -325,6 +469,10 @@ $(document).ready(function(){
 			    checkbox.checked = selectAll.checked
 			  })
 			}
+			
+			
+			
+			
 	
 </script>
  <!-- css************************************************ -->
@@ -443,7 +591,7 @@ $(document).ready(function(){
 			   													<div class="CartProductListItem__checkboxWrap" style="display:inline-block;" >			
 			   														<div class="checkbox">
 			   															<div class="input-checkbox" id=""  style="display: inline-block;"> 
-			   																<input type="checkbox" id="item_checkedbox${cart.p_idx}" name="item_checkedbox${seller.seller_idx}" data-cart_idx="${cart.cart_idx}"  autocomplete="off" class="bp" value="" onclick='checkSelectProduct(${seller.seller_idx})' checked="checked" >   						
+			   																<input type="checkbox" id="item_checkedbox${cart.cart_idx}" name="item_checkedbox${seller.seller_idx}" data-checked_cart_idx="${cart.cart_idx}" data-cart_idx="${cart.cart_idx}"  autocomplete="off" class="bp" value="${seller.seller_idx}" onclick='checkSelectProduct(${seller.seller_idx})' checked="checked" >   						
 			   						 									</div>
 			   														</div>
 			   													</div>
@@ -462,15 +610,15 @@ $(document).ready(function(){
 			   																<em class="CartOptionListItem__optionText"></em>
 			   																	<div class="CartOptionListItem__counter">
 			   																		<label class="NumberCounter">											
-			   																			<button type="button" id="NumberCounter__minus${cart.cart_idx}" name="${cart.cart_idx}" class="NumberCounter__minus" value="m" data-cart_idx="${cart.cart_idx}" >-</button>
-			   																			<input  type="text" name="cart_cnt" id="NumberCounter__input${cart.cart_idx}" class="NumberCounter__input" value="${cart.cart_cnt}" readonly="readonly" onchange="itemTotal(this)">
-			   																			<button type="button" id="NumberCounter__plus${cart.cart_idx}" name="${cart.cart_idx}" class="NumberCounter__plus" value="p" data-cart_idx="${cart.cart_idx}" >+</button>   						
+			   																			<button type="button" id="NumberCounter__minus${cart.cart_idx}" name="${cart.cart_idx}" class="NumberCounter__minus" value="${cart.p_price}" data-cart_idx="${cart.cart_idx}" >-</button>
+			   																			<input  type="text" name="cart_cnt" id="NumberCounter__input${cart.cart_idx}" class="NumberCounter__input" value="${cart.cart_cnt}" readonly="readonly" >
+			   																			<button type="button" id="NumberCounter__plus${cart.cart_idx}" name="${cart.cart_idx}" class="NumberCounter__plus" value="${cart.p_price}" data-cart_idx="${cart.cart_idx}" >+</button>   						
 			   																		</label>
 			   																	</div>
 			   															</div>
 			   														
 			   															<div class="CartOptionListItem__splitRight"  >
-			   																<em class="CartOptionListItem__totalPrice" id="CartArtistItem__Price${cart.cart_idx}" name="${cart.p_price}">개당 금액:<fmt:formatNumber pattern="###,###,###" value="${cart.p_price}"/></em> <!-- 상품가격 -->
+			   																<em class="CartOptionListItem__totalPrice" id="CartArtistItem__Price${cart.cart_idx}" name="${cart.p_price}"><input type="hidden" id='seller_price${cart.cart_idx}' value='${cart.c_price}'><fmt:formatNumber pattern="###,###,###" value="${cart.c_price}"/></em> <!-- 상품가격 -->
 			   																
 			   																<div class="CartOptionListItem__btnGroup">
 			   																	<div class="CartOptionEditingButtonGroup">
@@ -491,25 +639,7 @@ $(document).ready(function(){
 			   										
 			   								</ul>
 			   						</section>
-	   								<section class="CartArtistItem__section">
-		   								<div class="CartArtistItem__label">
-		   								작품 가격
-		   								</div>
-		   								<div class="CartArtistItem__price" id="totalPrice_span${seller.seller_idx}">
-											<fmt:formatNumber pattern="###,###,### 원" value="" />  
-											
-		   								 <!-- 작품 가격 -->
-			   							</div>
-		   							</section>
-		   							<section class="CartArtistItem__section">
-		   								<div class="CartArtistItem__label">
-		   								배송비
-		   								</div>
-		   								<div class="CartArtistItem__point" id="delivery_price${seller.seller_idx}">
-		
-		   								<!-- 배송비 -->
-			   							</div>
-		   					</section>
+	   								
 	   								
 	   								
 	   							</c:if>
@@ -518,7 +648,26 @@ $(document).ready(function(){
 	   							
 	   						</c:forEach>
 	   						
-	   						
+	   						<section class="CartArtistItem__section">
+		   								<div class="CartArtistItem__label">
+		   								작품 가격
+		   								</div>
+		   								<div class="CartArtistItem__price" id="totalPrice_span${seller.seller_idx}" >
+											<input type="hidden" id="seller_totalPrice${seller.seller_idx}" value="${seller.seller_price}"><fmt:formatNumber pattern="###,###,### 원" value="${seller.seller_price}" />  
+											
+		   								 <!-- 작품 가격 -->
+			   							</div>
+		   							</section>
+		   							<section class="CartArtistItem__section">
+		   								<div class="CartArtistItem__label">
+		   								배송비
+		   								</div>
+		   								<div class="CartArtistItem__point" id="delivery_price${seller.seller_idx}" value="${seller.p_dvprice }">
+		
+		   								<!-- 배송비 -->
+			   							</div>
+			   							
+		   					</section>
 		   					
 		   					<div class="vue-sticky-placeholder"></div>
 		   				</div> 	
@@ -555,9 +704,9 @@ $(document).ready(function(){
         			<div class="CartCheckoutDesktop">
         				<div class="CartCheckoutDesktop__item">
         					<div class="CartCheckoutDesktop__label">작품금액</div>
-        					<div class="CartCheckoutDesktop__value">
+        					<div class="CartCheckoutDesktop__value" id="CartCheckoutDesktop__value">
         						<span id="totalPrice" name="totalPrice"></span>
-        						<span class="CartCheckoutDesktop__priceUnit">원</span>
+        						<span class="CartCheckoutDesktop__priceUnit"><input type='hidden' id='totalProduct' value='${ProductPriceMap.totalProductPrice }'><fmt:formatNumber pattern="###,###,### 원" value="${ProductPriceMap.totalproductprice}" /></span>
         					</div>
         				</div>
         				<div class="CartCheckoutDesktop__item--fixed">+</div>

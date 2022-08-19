@@ -33,7 +33,13 @@ public class CartVo {
 	private int totalPoint;
 
 	private int seller_idx;
-	
+	private int c_price;
+	public int getC_price() {
+		return c_price;
+	}
+	public void setC_price(int c_price) {
+		this.c_price = c_price;
+	}
 	public String getP_content() {
 		return p_content;
 	}

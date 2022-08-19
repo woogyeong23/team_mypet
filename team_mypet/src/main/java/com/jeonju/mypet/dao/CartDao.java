@@ -75,6 +75,11 @@ public class CartDao {
 		// TODO Auto-generated method stub
 		return sqlSession.selectList(MAPPER+".cartSellerList",midx);
 	}
+
+	public HashMap<String, Object> totalProductPrice(int midx) {
+		// TODO Auto-generated method stub
+		return  sqlSession.selectOne(MAPPER+".totalProductPrice",midx);
+		}
 	
 
 

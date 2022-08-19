@@ -22,7 +22,7 @@
 
 	<!-- 장바구니에 해당 상품이 이미 있다면 (수량)업데이트 -->
 	<update id="updateCart" parameterType="cartVo">
-		update cart
+		update cart 
 		<![CDATA[
 		 set cart_cnt = cart_cnt + #{cart_cnt}
 		]]>
@@ -30,24 +30,29 @@
 		and p_idx=#{p_idx}
 	</update>
 
-	<!-- 카트 판매자 리스트 -->
+	<!-- 카트 판매자 리스트 와 판매자별 상품 총 가격 -->
 	<select id="cartSellerList" resultType="Hashmap">
-		select b.seller_idx, max(a.cart_idx), d.m_nick
+		select b.seller_idx, max(a.cart_idx), d.m_nick, a.cart_cnt, b.p_price, sum(cart_cnt*p_price) as seller_price, b.p_dvprice, b.p_free_dvprice
 		from cart a join product b on a.p_idx=b.p_idx join sellerstory c on b.seller_idx=c.seller_idx join members d on c.midx=d.midx
-		where a.midx=#{midx} 
+		where a.midx=1
 		group by b.seller_idx
 		order by a.cart_idx desc
-		
+
 	</select>
 
 	<!-- 카트 리스트 -->
 	<select id="getcartList" parameterType="list" resultType="cartVo">
-		select a.cart_idx,a.cart_cnt,a.midx,b.p_idx,b.p_content,b.p_name,b.p_discount,b.p_disprice,b.p_price,c.p_front_img,c.p_ori_filename,c.p_sys_filename , b.seller_idx 
+		select a.cart_idx,a.cart_cnt,a.midx,b.p_idx,b.p_content,b.p_name,b.p_discount,b.p_disprice,b.p_price,c.p_front_img,c.p_ori_filename,c.p_sys_filename , b.seller_idx, a.cart_cnt*b.p_price as c_price
 		from cart a join product b on a.p_idx = b.p_idx join product_img c on b.p_idx = c.p_idx 
 		where midx=#{midx} 
 		group by b.p_idx
 		order by a.cart_idx desc
 		
+	</select>
+	
+	<!-- 상품만총가격 -->
+	<select id="totalProductPrice" resultType="HashMap">
+		select sum(b.p_price*a.cart_cnt) as totalproductprice from cart a join product b on a.p_idx=b.p_idx where a.midx=#{midx} 
 	</select>
 	
 	

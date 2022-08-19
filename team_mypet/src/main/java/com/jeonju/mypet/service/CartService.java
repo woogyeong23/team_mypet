@@ -61,6 +61,12 @@ public class CartService {
 		return cartDao.cartSellerList(midx);
 	}
 
+
+	public HashMap<String, Object> totalProductPrice(int midx) {
+		// TODO Auto-generated method stub
+		return cartDao.totalProductPrice(midx);
+	}
+
 	
 
 
