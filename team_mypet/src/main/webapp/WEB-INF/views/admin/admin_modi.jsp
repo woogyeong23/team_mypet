@@ -89,11 +89,8 @@ function uploadSummernoteImageFile(file, el) {
 				<td>제목</td>
 				<td><textarea rows="1" cols="50" name="board_subject">${boardVo.board_subject}</textarea></td>
 			</tr>
-			<tr>
-			    <td>파일</td>
-				
-			</tr>
-			<tr>
+		
+			
 			<td>내용</td>
 			<td><textarea id="summernote" name="board_content" >${boardVo.board_content}</textarea>
                 <input type="text" name="boardVo_writer" value="${boardVo.board_writer}">

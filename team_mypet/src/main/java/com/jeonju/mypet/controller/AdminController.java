@@ -445,10 +445,12 @@ public String AWInsertProcess0(@RequestParam("board_subject") String board_subje
 
 
 @GetMapping("/admin_modi.do")
-public String adminmodi(String  bidx, Model model) {
+public String adminmodi(String bidx, Model model) {
+	System.out.println("**************************************");
+	System.out.println(bidx);
 	
 	BoardVo boardVo = adminService.adminmodi(bidx);
-	
+	System.out.println(boardVo.getBoard_content());
 	model.addAttribute("boardVo", boardVo);
 	
 	return "admin/admin_modi";
@@ -457,7 +459,7 @@ public String adminmodi(String  bidx, Model model) {
 
 @PostMapping("/adminmodiProcess.do")
 public String Modi_process(@RequestParam("board_subject") String board_subject,
-		@RequestParam("uploadImg") MultipartFile uploadImg,
+		
 		@RequestParam("board_content") String board_content, 
 		@RequestParam("bidx") int bidx,
          Model model, HttpServletRequest request) 
@@ -465,15 +467,20 @@ public String Modi_process(@RequestParam("board_subject") String board_subject,
 	
 	
 	
-	String cm_origin_img = uploadImg.getOriginalFilename().trim();
-	System.out.println("cm_origin_img :"+cm_origin_img);
-	String fileName1="";
-	String extension="";
-	String fileName2="";
-	String cm_img="";
-	String view="";
 	
-	if(cm_origin_img.length() == 0) cm_origin_img = null;
+	BoardVo boardVo = new BoardVo();
+	boardVo.setBoard_subject(board_subject);
+	boardVo.setBoard_content(board_content);
+	
+	boardVo.setBidx(bidx);
+
+	
+	
+	
+	int result = 0;
+	result=adminService.Updateadmin(boardVo);
+
+
 	
 
 	
@@ -491,39 +498,10 @@ public String Modi_process(@RequestParam("board_subject") String board_subject,
 		
 	
 
-			
-	 if(board_subject.length()==0) {
-		request.setAttribute("msg1", "제목을 입력해주세요.");
-		view = "admin/adminmodi";
-	  }
-	 else if(board_content.length()==0){
-		 request.setAttribute("msg2", "내용을 입력해주세요");
-		 view = "admin/adminmodi";
-	 }
-	 else {
-	        
-	       
-			int result=0;//0:입력 실패
-			
-		
-			BoardVo boardVo = new BoardVo();
-			boardVo.setBoard_subject(board_subject);
-			boardVo.setBoard_content(board_content);
+
 	
-			boardVo.setBidx(bidx);
-		
-			result = adminService.Updateadmin(boardVo);
-	
-			
-			 
-			
-			 if(result == 1) {
-				
-				view = "redirect:/admin.do";	
-			}}
 	 
-	 return view;
-	
+	return "redirect:/admin_board.do";
 }
 
 

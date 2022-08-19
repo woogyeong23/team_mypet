@@ -119,7 +119,7 @@ $(function() {
 	</div>
 
 		<thead>
-		<td><a href="${pageContext.request.contextPath}/admin_modi.do">수정하기</a></td>
+		<td><a href="${pageContext.request.contextPath}/admin_modi.do?bidx=${BoardListd.bidx}">수정하기</a></td>
 			<tr>
 				<th>제목</th>
 				<th>내용</th>
@@ -132,7 +132,7 @@ $(function() {
 		
 		
 
-		
+		${ BoardListd.bidx}
 		<td>${BoardListd.board_subject}</td>
 		<td>${BoardListd.board_content}	</td>
 		<td>${BoardListd.board_writer}</td>
