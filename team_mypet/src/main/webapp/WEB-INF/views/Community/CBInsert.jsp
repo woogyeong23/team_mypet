@@ -47,7 +47,7 @@ $(document).ready(function() {
 		  ];
 
 	var setting = {
-            height : 300,
+            height : 500,
             minHeight : null,
             maxHeight : null,
             focus : true,
@@ -92,11 +92,19 @@ function uploadSummernoteImageFile(file, el) {
 
 </script>
 
+<!-- css************************************************ -->
+    <jsp:include page="../../include/head.jsp" />  
+<!-- ************************************************ -->
+
 </head>
 <body>
-<h3 style="text-align:center">커뮤니티 글 작성</h3>
+
+<!-- 헤더와 네비************************************************ -->
+    <jsp:include page="../../include/header.jsp" />  
+<!-- ************************************************ -->
+<h3 style="text-align:center; margin-top:20px;">커뮤니티 글 작성</h3>
 <form action="${pageContext.request.contextPath}/CBInsertProcess.do" method="post" enctype="multipart/form-data">
-	<table border="1px" align="center">
+	<table border="1px" align="center" style="margin-left:20%; margin-top:50px; margin-bottom:50px;">
 			<tr>
 				<td>제목</td>
 				<td><textarea rows="1" cols="50" name="cm_subject" id="cm_subject"></textarea></td>
@@ -131,6 +139,9 @@ function uploadSummernoteImageFile(file, el) {
 		</table>
 
 </form>
+
+<!-- 푸터와 js************************************************ -->
+    <jsp:include page="../../include/footer.jsp" />  
 
 </body>
 </html>

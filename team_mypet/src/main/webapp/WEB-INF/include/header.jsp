@@ -208,10 +208,11 @@
                                 <li><a href="${pageContext.request.contextPath}/BSellerList.do">인기작가</a></li>
                                  <li><a href="#">더보기<i class="lni lni-chevron-right"></i></a>
                                     <ul class="inner-sub-category">
-                                        <li><a href="${pageContext.request.contextPath}/Error">공지사항</a></li>
+                                        <li><a href="${pageContext.request.contextPath}/Notice">공지사항</a></li>
                                         <li><a href="${pageContext.request.contextPath}/MostQuery">자주하는 질문</a></li>
-                                        <li><a href="${pageContext.request.contextPath}/Error">1:1문의</a></li>
-                                        <li><a href="${pageContext.request.contextPath}/Error">입점문의</a></li>
+                                        <li><a href="mailto:abcdeef123@naver.com">1:1문의</a></li>
+                                        <li><a href="https://docs.google.com/forms/d/e/1FAIpQLSfsBMMYEBXM_XxHIlugThMzUptM52H9wElzsGNrMBr_8sQMQw/viewform"
+                                        target="_blank">입점문의</a></li>
                                     </ul>
                                 </li>
                             </ul>
@@ -270,7 +271,7 @@
                                             data-bs-target="#submenu-1-4" aria-controls="navbarSupportedContent"
                                             aria-expanded="false" aria-label="Toggle navigation">EVENT</a>
                                         <ul class="sub-menu collapse" id="submenu-1-4">
-                                            <li class="nav-item"><a href="${pageContext.request.contextPath}/Error">진행중인 이벤트</a>
+                                            <li class="nav-item"><a href="${pageContext.request.contextPath}/EventList">진행중인 이벤트</a>
                                             </li>
                                             <li class="nav-item"><a href="${pageContext.request.contextPath}/Error">종료임박 이벤트</a></li>
                                             <li class="nav-item"><a href="${pageContext.request.contextPath}/Error">이벤트 종료</a></li>
