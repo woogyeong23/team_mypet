@@ -516,7 +516,7 @@ $(document).ready(function(){
 						{
 						c_idxArr.push($(this).data('checked_cart_idx'));
 							
-							//alert($(this).data('checked_cart_idx'));
+							alert($(this).data('checked_cart_idx'));
 						}
 				});
 				
