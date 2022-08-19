@@ -39,19 +39,16 @@ public class AjaxController {
 	@PostMapping("/checkNick.do")
 	public String checknick(@RequestParam("m_nick") String m_nick) {
 		
-		System.out.println("m_nick: "+m_nick);
+		System.out.println("닉네임 : "+m_nick);
 
-		String result="N";//중복된 아이디 없음
+		String result= "1";  //중복된 아이디 없음
 		
 		int flag = ajaxService.checknick(m_nick);
-
-		if(flag == 1) {
-			result = "Y";//중복된 아이디 있음(실패)
-		}
-		System.out.println("result: "+result);
+		
+		if(flag == 1) result = "2";  //중복된 아이디 있음
 
 		return result;
-	}	
+	}
 	
 	@PostMapping("/idfindProcess.do")
 	//@ResponseBody //Ajax통신의 응답내용을 보내는 것을 표시 <-- @RestController 로 대체 가능

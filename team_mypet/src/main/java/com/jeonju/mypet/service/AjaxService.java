@@ -19,17 +19,21 @@ public class AjaxService {
 	
 	private MembersDao membersDao;
 	private AdminDao adminDao;
-	
-	@Autowired(required=false)
-	public AjaxService(MembersDao membersDao, AdminDao adminDao) {
-		this.membersDao = membersDao;
-		this.adminDao = adminDao;
-	}
 	private CartDao cartDao;
 
+	@Autowired
+	public AjaxService(AdminDao adminDao) {
+
+		this.adminDao = adminDao;
+	}
+	@Autowired
+	public void setMembersDao(MembersDao membersDao) {
+
+		this.membersDao = membersDao;
+	}
 
 	@Autowired //의존  자동 주입 : setter 방식
-	public void setAdminDao(CartDao cartDao) {
+	public void setCartDao(CartDao cartDao) {
 		this.cartDao = cartDao;
 	}
 	
@@ -85,9 +89,9 @@ public class AjaxService {
 
 	public int checknick(String m_nick) {
 		int result=0;
-		result = membersDao.checkId(m_nick);
-		return result;
-	}
+		result = membersDao.checknick(m_nick);
+		return result;	
+		}
 	
 	
 

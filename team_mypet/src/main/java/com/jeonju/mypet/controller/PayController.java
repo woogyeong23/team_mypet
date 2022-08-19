@@ -52,6 +52,9 @@ private PayService payService;
 		
 		ordersVo.setMidx(midx);
 		
+		List<OrdersVo> ordersList = payService.orderpay(ordersVo);
+		
+		model.addAttribute("ordersList",ordersList);
 		
 		return "member/memberpay";	
 	}
@@ -76,6 +79,7 @@ private PayService payService;
 			ordersVo.setMidx(midx);
 			
 			payService.orderInsert(ordersVo);
+			
 			detailVo.setDetail_idx(midx);
 			detailVo.setDetail_completeday(detail_idx);
 			payService.detailInsert(detailVo);

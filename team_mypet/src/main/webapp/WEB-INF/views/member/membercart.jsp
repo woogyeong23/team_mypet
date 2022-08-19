@@ -266,6 +266,14 @@ $(document).ready(function(){
 	
 });
 
+
+
+
+
+
+
+
+
 </script>
  <!-- css************************************************ -->
     <jsp:include page="../../include/head.jsp" />  
@@ -376,7 +384,7 @@ $(document).ready(function(){
    													<div class="CartProductListItem__checkboxWrap" style="display:inline-block;" >			
    														<div class="checkbox">
    															<div class="input-checkbox" id="input-checkbox2"  style="display: inline-block;"> 
-   																<input id="item_checkedbox${cart.cart_idx}" name="${cart.cart_idx}" data-cart_idx="${cart.cart_idx}" type="checkbox" autocomplete="off" class="bp" value="${pageContext.request.contextPath}/resources/product/${cart.p_sys_filename}" checked="checked" >   						
+   																<input class="item_checkedbox" id="item_checkedbox${cart.cart_idx}" name="${cart.cart_idx}" data-cart_idx="${cart.cart_idx}" type="checkbox" autocomplete="off" class="bp" value="${pageContext.request.contextPath}/resources/product/${cart.p_sys_filename}" checked="checked" >   						
    						 									</div>
    														</div>
    													</div>
@@ -499,9 +507,10 @@ $(document).ready(function(){
         		</div>
         		
         		<div class="CartPage__bottom">
-        		<button type="submit" class="CommonButton CartPage__paymentButton CommonButton--large" onclick = "location.href = '${pageContext.request.contextPath}/memberpay.do'">
+        		<button type="button" class="CommonButton CartPage__paymentButton CommonButton--large" id="paymentButton" action="">
         		주문하기
         		</button>
+
         		</div>
         	</div>
  		</div>

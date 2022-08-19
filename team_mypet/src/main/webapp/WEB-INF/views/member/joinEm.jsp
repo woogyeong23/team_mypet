@@ -61,8 +61,40 @@
 	$(function(){
 		
 		
-	
-	
+			
+			$("#m_nick").blur(function(){
+				
+				let m_nick = $("#m_nick").val();
+				
+				if(m_nick == "" || m_nick.length < 2){
+					$(".successNickChk").text("이름은 2자 이상 12자 이하로 설정해주세요 :)");
+						$(".successNickChk").css("color","red");
+						$(".nickChk").val(false);
+						return;
+
+				}else{
+				
+				$.ajax({
+					type:'POST',
+					url:"${pageContext.request.contextPath}/checkNick.do",
+					data: {"m_nick":m_nick},
+					success: function(data){
+						if(data == "2"){
+							result = "이미 사용중인 아이디입니다.";
+							$(".successNickChk").html(result).css("color", "red");
+							$(".nickChk").val(false);
+							$("#m_nick").val("").trigger("focus");
+						}else{
+							result = "사용 가능한 아이디입니다.";
+							$(".successNickChk").text(result).css("color", "green");
+							$(".nickChk").val(true);
+						}
+					},
+					error: function(error){alert(error);}
+				});
+				}
+			});
+			
 			
 
 		
@@ -164,16 +196,19 @@
 		});
 
 
-		 $("#button").click(function(){
-			if($(".idChk").val() == "true" || $(".pwChk").val() == "true"){
+		 $("#login_member").click(function(){
+			if($(".emChk").val() == "true" || $(".nickChk").val() == "true"){
 				alert($("#m_name").val() +"님 환영합니다. 선택해주셔서 감사합니다 :)");
 			 }else{
 				alert("회원가입을 완료할 수 없습니다. 다시 한번 확인해 주십시오");
-				if($(".idChk").val() != "true"){
+				if($(".nickChk").val() != "true"){
 					$(".successIdChk").text("이름을 입력해주세요").css("color","red");
-				}
+				}		
 				if($(".pwChk").val() != "true"){
 					$(".successPwChk").text("비밀번호를 입력해주세요").css("color","red");
+				}
+				if($(".emChk").val() != "true"){
+					$(".successEmChk").text("이메일를 입력해주세요").css("color","red");
 				}
 				return ;	
 			} 
@@ -213,9 +248,7 @@
 	  	<input type="text" name="member_email2" id="member_email2" value="" maxlength="20" placeholder="인증번호 입력" disabled/>
 	  	<span id="emailChk2" class="doubleChk2" >확인</span> <p/>
 	  	<input type="hidden" class="emChk" /> <p/>
-	    <p class="tip">
-			*아이디,비밀번호 분실 시 필요한 정보이므로, 정확하게 기입해 주세요 	    
-	    </p>
+	   
     </div>
     <div class="form-floating">
       <input type="password"  name="m_pwd"  value="" maxlength="20" class="form-control" id="m_pwd">
@@ -226,7 +259,7 @@
       <input type="password"  name="m_pwd2"  value="" maxlength="20" class="form-control" id="m_pwd2">
       <label for="m_pwd2">Password check</label>
       <span class="point successPwChk2"></span>
-		<input type="hidden" class="pwChk"/><p/>
+		<input type="hidden" class="pwChk" /><p/>
     </div>
     <div class="form-floating">
       <input type="text" name="m_name" value="" maxlength="80" class="form-control" id="m_name">
@@ -236,7 +269,10 @@
       <input type="text"  name="m_nick"  value="" maxlength="20" class="form-control" id="m_nick">
       	<label for="m_nick">m_nick</label>
        <span class="point successNickChk">닉네임은 2자 이상 8자로 해주시길 바랍니다.</span>
-		<input type="hidden" class="nickChk" /> <p/>
+		<input type="hidden" class="NickChk" /> <p/>
+		 <p class="tip">
+			*아이디,비밀번호 분실 시 필요한 정보이므로, 정확하게 기입해 주세요 	    
+	    </p>
     </div>
     <div class="form-floating">
       <input type="text" name="m_birth" value="" maxlength="6" class="form-control" id="m_birth">

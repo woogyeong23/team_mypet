@@ -1,6 +1,8 @@
 package com.jeonju.mypet.dao;
 
 
+import java.util.List;
+
 import org.apache.ibatis.session.SqlSession;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Repository;
@@ -21,6 +23,8 @@ private SqlSession sqlSession;
 		this.sqlSession = sqlSession;
 	}
 	
+	
+	
 	public int orderInsert(OrdersVo ordersVo) {
 		return sqlSession.insert(MAPPER+".orderInsert",ordersVo);
 	}
@@ -30,6 +34,12 @@ private SqlSession sqlSession;
 	public int detailInsert(DetailVo detailVo) throws Exception{
 		return sqlSession.insert(MAPPER+".detailInsert",detailVo);
 
+	}
+
+
+
+	public List<OrdersVo> orderpay(OrdersVo ordersVo) {
+		return sqlSession.selectList(MAPPER+".orderpay",ordersVo);
 	}		
 
 

@@ -23,7 +23,7 @@
 	</select>
 	<!-- 아이디유효성 -->
 	<select id="checkId" parameterType="int" resultType="int">
-		select count(*) from members where midx= #{midx}
+		select count(*) from members where m_id= #{m_id}
 	</select>
 	<!-- 닉네임유효성 -->
 	<select id="getchecknick" parameterType="string" resultType="int">

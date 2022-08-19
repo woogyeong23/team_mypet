@@ -86,7 +86,7 @@ public class MembersDao {
 
 	public int checknick(String m_nick) {
 		return sqlSession.selectOne(MAPPER+".getchecknick", m_nick);
-	}
+	}											
 
 	public List<OrdersVo> orderList(OrdersVo ordersVo) {
 		return sqlSession.selectList(MAPPER+".getordersList", ordersVo);

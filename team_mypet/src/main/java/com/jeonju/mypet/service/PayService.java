@@ -1,6 +1,8 @@
 package com.jeonju.mypet.service;
 
 
+import java.util.List;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
@@ -24,6 +26,11 @@ private CartDao cartDao;
 		
 	}
 	
+	public List<OrdersVo> orderpay(OrdersVo ordersVo) {
+		return payDao.orderpay(ordersVo);
+
+	}
+	
 	public int orderInsert(OrdersVo ordersVo)throws Exception {
 		//장바구니 초기화
 		  cartDao.cartReset(ordersVo.getMidx());
@@ -34,6 +41,8 @@ private CartDao cartDao;
 	public int detailInsert(DetailVo detailVo) throws Exception {
 		return payDao.detailInsert(detailVo);
 	}
+
+	
 
 	
 	

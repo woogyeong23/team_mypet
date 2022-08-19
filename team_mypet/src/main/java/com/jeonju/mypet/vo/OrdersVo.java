@@ -13,8 +13,9 @@ public class OrdersVo {
 	private int orders_status;
 	private String orders_name;
 	private String orders_phone;
-	private String orders_addr;
-	private String orders_detailaddr;
+	private String orders_addr1;
+	private String orders_addr2;
+	private String orders_addr3;
 	private String orders_payment;
 	private int orders_dvprice;
 	private int orders_point;
@@ -24,6 +25,16 @@ public class OrdersVo {
 	private String m_id;
 	private String bundleprice;
 	
+	/* 민국*/
+	private int cart_cnt;
+    private String p_name;
+    private int p_price;
+    private double p_discount;
+	private int salePrice;
+	private int totalPrice;
+    private int point;
+    private int totalPoint;
+    
 	
 	public String getBundleprice() {
 		return bundleprice;
@@ -95,17 +106,17 @@ public class OrdersVo {
 	public void setOrders_phone(String orders_phone) {
 		this.orders_phone = orders_phone;
 	}
-	public String getOrders_addr() {
-		return orders_addr;
+	public String getOrders_addr1() {
+		return orders_addr1;
 	}
-	public void setOrders_addr(String orders_addr) {
-		this.orders_addr = orders_addr;
+	public void setOrders_addr1(String orders_addr1) {
+		this.orders_addr1 = orders_addr1;
 	}
-	public String getOrders_detailaddr() {
-		return orders_detailaddr;
+	public String getOrders_addr2() {
+		return orders_addr2;
 	}
-	public void setOrders_detailaddr(String orders_detailaddr) {
-		this.orders_detailaddr = orders_detailaddr;
+	public void setOrders_addr2(String orders_addr2) {
+		this.orders_addr2 = orders_addr2;
 	}
 	public String getOrders_payment() {
 		return orders_payment;
@@ -143,6 +154,88 @@ public class OrdersVo {
 	public void setP_idx(int p_idx) {
 		this.p_idx = p_idx;
 	}
+	public String getOrders_addr3() {
+		return orders_addr3;
+	}
+	public void setOrders_addr3(String orders_addr3) {
+		this.orders_addr3 = orders_addr3;
+	}
+	
+	
+	
+	public int getCart_cnt() {
+		return cart_cnt;
+	}
+	public void setCart_cnt(int cart_cnt) {
+		this.cart_cnt = cart_cnt;
+	}
+	public String getP_name() {
+		return p_name;
+	}
+	public void setP_name(String p_name) {
+		this.p_name = p_name;
+	}
+	public int getP_price() {
+		return p_price;
+	}
+	public void setP_price(int p_price) {
+		this.p_price = p_price;
+	}
+	public double getP_discount() {
+		return p_discount;
+	}
+	public void setP_discount(double p_discount) {
+		this.p_discount = p_discount;
+	}
+	public int getSalePrice() {
+		return salePrice;
+	}
+	public void setSalePrice(int salePrice) {
+		this.salePrice = salePrice;
+	}
+	public int getTotalPrice() {
+		return totalPrice;
+	}
+	public void setTotalPrice(int totalPrice) {
+		this.totalPrice = totalPrice;
+	}
+	public int getPoint() {
+		return point;
+	}
+	public void setPoint(int point) {
+		this.point = point;
+	}
+	public int getTotalPoint() {
+		return totalPoint;
+	}
+	public void setTotalPoint(int totalPoint) {
+		this.totalPoint = totalPoint;
+	}
+	
+	public void initSaleTotal() {
+		this.salePrice = (int) (this.p_price * (1-this.p_discount));
+		this.totalPrice = this.salePrice*this.cart_cnt;
+		this.point = (int)(Math.floor(this.salePrice*0.05));
+		this.totalPoint =this.point * this.cart_cnt;
+	}
+	
+	
+	@Override
+	public String toString() {
+		return "OrderPageItemDTO [p_idx=" + p_idx + ", cartcnt=" + cart_cnt + ", p_name=" + p_name
+				+ ", p_price=" + p_price + ", p_discount=" + p_discount + ", salePrice=" + salePrice
+				+ ", totalPrice=" + totalPrice + ", point=" + point + ", totalPoint=" + totalPoint + "]";
+	}
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
 	
 	
 }
