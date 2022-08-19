@@ -73,7 +73,7 @@ $(document).ready(function(){
 					pay_method: $("input[name='orders_payment']").val() ,
 					merchant_uid : 'merchant_' + new Date().getTime(),
 					name : '결제테스트', // 상품명
-					amount : $("#final_Price").val(),
+					amount : '10000',
 					buyer_name : $("[name=orders_name]").val(),
 				  	buyer_phone : $("[name=orders_phone]").val(),
 					buyer_addr1: $("#orders_addr1").val(),

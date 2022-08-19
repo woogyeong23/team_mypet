@@ -195,6 +195,8 @@ function cartAlert(result){
 	}
 }
 
+
+
 </script>
 
 
@@ -293,6 +295,23 @@ function cartAlert(result){
 padding-bottom: 20px;
 }
 	
+#spbtn {
+
+    display: inline-block;
+    text-transform: capitalize;
+    font-size: 14px;
+    font-weight: 600;
+    background-color: #99CCFF;
+    color: #fff;
+    border: none;
+    border-radius: 3px;
+    margin-right: 32px;
+    height: 40px;
+    width: 7%;
+    text-align: center;
+    float: right;
+    
+    }
 </style>
 
 <!-- css***************************************************** -->
@@ -405,13 +424,7 @@ padding-bottom: 20px;
         							<div class="plus" style="float: left; padding-right:10px"><a href="javascript:change_qty2('p')"><img src="${pageContext.request.contextPath}/resources/assets/images/logo/add.png" width="20px" height="20px" alt="+"></a></div>
         							<input type="text" style="float: left; text-align: center;" size="3" name="cart_cnt" id="cart_cnt" value="1" readonly="readonly">
        								<div class="minus" style="float: left; padding-left:10px"><a href="javascript:change_qty2('m')"><img src="${pageContext.request.contextPath}/resources/assets/images/logo/minus.png" width="20px" height="20px" alt="-"></a></div>
-								</div>     
-								<!-- <div>
-								수량 : <input type="hidden" name="p_price" value="5500">
-								<input type="button" value=" + " name="add" style="width: 25px" >
-								<input type="text" name="amount" value="1" size="3" max="" style="text-align: center;">
-								<input type="button" value=" - " name="min" style="width: 25px" >
-								</div>	 -->						
+								</div>     					
       						</div>
       						
 
@@ -437,7 +450,7 @@ padding-bottom: 20px;
 						
 								<div class="col-lg-4 col-md-4 col-12">
 									<div class="order-button">
-										<button type="button" class="btn">구매하기</button> <!-- button의 기본 타입은 submit이므로 submit 버튼이 아니라면 type="button"을 따로 지정해줘야함 -->
+										<button class="btn" onclick = "location.href = '${pageContext.request.contextPath}/memberpay.do'">구매하기</button> <!-- button의 기본 타입은 submit이므로 submit 버튼이 아니라면 type="button"을 따로 지정해줘야함 -->
 									</div>
 								</div>
 								<div class="col-lg-4 col-md-4 col-12">
@@ -530,7 +543,7 @@ padding-bottom: 20px;
 						</td>
 						<td align="right">
 						<div class="review-button">
-								<a href="reviewWrite.do?p_idx=${productView.p_idx}"><button class="btn" id="reviewWritebtn" style="width: 100px; height:40px">리뷰작성</button></a>
+							<a href="reviewWriteck.do?p_idx=${productView.p_idx}"><button type="button" class="btn" id="reviewWritebtn" style="width: 100px; height:40px">리뷰작성</button></a>
 						</div>
 						</td>
 						</tr>
@@ -542,9 +555,9 @@ padding-bottom: 20px;
 
 							<div class="single-review">
 								
-                				<c:forEach var="ReviewVo" items="${reviewList}">
+                				<c:forEach var="reviewVo" items="${reviewList}">
                 
-								<div class="reviewbox">
+								<div class="reviewbox" style="height: 170px">
 								<!-- 이미지가 눌이 아니면 -->
 								
 								<div class="col-lg-10">
@@ -554,20 +567,23 @@ padding-bottom: 20px;
 								
 								<tr>
 								<td rowspan="2">
-								<img src="${pageContext.request.contextPath}/resources/product/${ReviewVo.review_img}" style="width: 200px; height: 150px" alt="#"> <!-- 리뷰이미지 -->		
-								
+								<c:if test="${reviewVo.review_img != null}">
+								<img src="${pageContext.request.contextPath}/resources/review/${reviewVo.review_img}" style="width: 200px; height: 150px" alt="리뷰사진"> <!-- 리뷰이미지 -->		
+								</c:if>
+								<c:if test="${reviewVo.review_img == null}">
+								</c:if>
 								</td>
 								<td style="height: 30px">
-								<span style="color: #99ccff; font-size: 25px; padding-right: 10px; padding-left: 10px">${ReviewVo.p_name}</span> <!-- 해당판매상품이름/상세페이지로링크 -->
+								<span style="color: #99ccff; font-size: 20px; padding-right: 10px; padding-left: 10px">${reviewVo.p_name}</span>
 					
 								<ul class="review" style="float:right;">
-                               <c:forEach begin="1" end="${ReviewVo.avg_reviews_stars}" step="1">
+                               <c:forEach begin="1" end="${reviewVo.avg_reviews_stars}" step="1">
 									<li style="display: inline-block;"><i class="lni lni-star-filled" style="color: #fecb00; font-size: 15px"></i></li>
 								</c:forEach>
-								<c:if test="${ReviewVo.avg_reviews_stars%5 > 0}">
+								<c:if test="${reviewVo.avg_reviews_stars%5 > 0}">
 								   <li style="display: inline-block;"><i class="lni lni-star-half" style="color: #fecb00; font-size: 15px"></i></li>
 								</c:if>
-							   <c:forEach begin="1" end="${5-ReviewVo.avg_reviews_stars}" step="1">
+							   <c:forEach begin="1" end="${5-reviewVo.avg_reviews_stars}" step="1">
 							      <li style="display: inline-block;"><i class="lni lni-star-empty" style="color: #fecb00; font-size: 15px"></i></li>
 							   </c:forEach>	
 								</ul>
@@ -576,24 +592,32 @@ padding-bottom: 20px;
 								</tr>
 								
 								<tr>
-								<td>
-								<a href="reviewContent.do?review_idx=${ReviewVo.review_idx}">${ReviewVo.review_content} (후기내용)</a>
+								<td style="padding-left: 10px; height: 120px">
+								<a href="reviewContent.do?review_idx=${reviewVo.review_idx}" style="text-decoration:none; color: inherit;">${reviewVo.review_content}</a>
 								</td>
 								</tr>
 								
 								</table>
 								
-								<p class="reviewb">작성일 ${ReviewVo.review_wday }<span align="right" style="padding-right: 10px">댓글 수 ${ReviewVo.review_reply_cnt}</span></p>
+								<p class="reviewb" style="padding-left: 10px">작성일<fmt:formatDate value="${reviewVo.review_wday}" pattern="yyyy-MM-dd"/><span align="right" style="padding-right: 10px">댓글 수 ${reviewVo.review_reply_cnt}</span></p>
 								</div>
 								<div class='v-line'></div>
 								
 								<div class="col-lg-2" style="padding-left: 10px;">
+								<input type="hidden" value="${reviewVo.review_idx}">
 								<table style="height: 100%">
-								<tr><td><span style="color: #99ccff; font-size: 20px">작성자:${ReviewVo.review_nick}</span></td></tr>
-								<tr><td>반려동물정보</td></tr>
-								<tr><td>종:고양이</td></tr>
-								<tr><td>이름:강산</td></tr>
-								<tr><td>나이:4</td></tr>
+								<tr><td><span style="color: #99ccff; font-size: 20px">작성자:${reviewVo.review_nick}</span></td></tr>
+								<tr><td style="font-weight: bold;">펫 정보</td></tr>
+								
+								<c:if test="${reviewVo.pet_name != null}">
+								<tr><td>타입:${reviewVo.pet_type}</td></tr>
+								<tr><td>이름:${reviewVo.pet_name}</td></tr>
+								<tr><td>나이:${reviewVo.pet_age}</td></tr>
+								</c:if>
+								<c:if test="${reviewVo.pet_name == null}">
+								<tr><td rowspan="3">펫 정보 없음</td></tr>
+								</c:if>
+								
 								</table>
 								
 								</div>
@@ -615,9 +639,198 @@ padding-bottom: 20px;
 			<!-- 리뷰끝 -->
 				
 				<!-- 판매자의 다른 상품 -->
+				<section class="trending-product section" style="margin-top: 12px;">
+        <div class="container">
+            <div class="row">
+                <div class="col-12">
+                    <div class="section-title" style="background-color:#FFFFFF ">
+                        <h2>판매중인 상품</h2>
+                    </div>
+                </div>
+            </div>
+            <div class="row">
+            <c:choose>
+            <c:when test="${spCount == 0 }">
+             <div class="result">
+                    <div class="result_in">
+                    <h1 style="color:rgb(181, 181, 181); text-align:center"><i class="lni lni-empty-file"></i></h1>
+                               <br>
+                   <h5 style="color: rgb(181, 181, 181);">작가(판매자)님이 판매중인 상품이 없습니다.</h5>
+                   </div>
+                    </div>
+            </c:when>
+       <c:otherwise>
+          <p>총 <span class="result_span">${spCount}</span>개의 상품을 판매하고 있어요</p>
+          <a href="${pageContext.request.contextPath}/BSellerView.do?seller_idx=${productView.seller_idx}"><button type="button" id="spbtn">더보기</button></a>
+             
+             <!-- 리스트 -->
+             
+	
+	<div class="row">
+            <c:forEach var="productVo" items="${spList}" end="3">
+              <div class="col-lg-3 col-md-6 col-12">
+                    <!-- Start Single Product -->
+                    <div class="single-product" style="border:none;">
+                    <a href="${pageContext.request.contextPath}/productView.do?p_idx=${productVo.p_idx}&seller_idx=${productVo.seller_idx}">
+                    <div class="product-image" style="height: 320px;">
+                            <img style="height:100%" src="${pageContext.request.contextPath}/resources/product/${productVo.p_sys_filename}" alt="${productVo.p_name}">
+                                <c:if test="${productVo.p_discount != 0}"><!-- member_grade: 0(일반회원), 1(관리자), 2(슈퍼관리자) -->
+									<span class="sale-tag">-${productVo.p_discount}%</span>
+								</c:if>
+                    </div>
+                    </a>
+                        
+                        <div class="product-info">
+                          <span>
+								<c:choose>
+								   <c:when test="${productVo.p_category_idx == 1}">강아지 > 개껌</c:when>
+								   <c:when test="${productVo.p_category_idx == 2}">강아지 > 스낵</c:when>
+								   <c:when test="${productVo.p_category_idx == 3}">강아지 > 뼈/육포</c:when>
+								   <c:when test="${productVo.p_category_idx == 4}">강아지 > 스틱</c:when>
+								   <c:when test="${productVo.p_category_idx == 5}">강아지 > 프리미엄</c:when>
+								   <c:when test="${productVo.p_category_idx == 6}">강아지 > 통살</c:when>
+							       
+							       <c:when test="${productVo.p_category_idx == 7}">고양이 > 츄르</c:when>
+								   <c:when test="${productVo.p_category_idx == 8}">고양이 > 스낵</c:when>
+								   <c:when test="${productVo.p_category_idx == 9}">고양이 > 캣잎</c:when>
+								   <c:when test="${productVo.p_category_idx == 10}">고양이 > 통살</c:when>
+								   <c:when test="${productVo.p_category_idx == 11}">고양이 > 프리미엄</c:when>
+								   <c:when test="${productVo.p_category_idx == 12}">고양이 > 스틱</c:when>
+								</c:choose>
+							</span>
+    
+                            
+                            <h4 class="title">
+                                <a href="${pageContext.request.contextPath}/productView.do?p_idx=${productVo.p_idx}&seller_idx=${productVo.seller_idx}">
+                                ${productVo.p_name}</a>
+                            </h4>
+                            <ul class="review">
+                               <c:forEach begin="1" end="${productVo.avg_reviews_stars}" step="1">
+									<li><i class="lni lni-star-filled"></i></li>
+								</c:forEach>
+								<c:if test="${productVo.avg_reviews_stars%5 > 0}">
+								   <li><i class="lni lni-star-half"></i></li>
+								</c:if>
+							   <c:forEach begin="1" end="${5-productVo.avg_reviews_stars}" step="1">
+							      <li><i class="lni lni-star-empty"></i></li>
+							   </c:forEach>	
+								
+							</ul>
+                           <div class="price">
+							  <c:if test="${productVo.p_discount == 0}">
+							  	<span style="font-size: 25px; margin-left: 0px; text-decoration: none; font-weight: 700; color:#fae100; display: inline-block;"><fmt:formatNumber value="${productVo.p_price}" pattern="#,###"/>원</span>
+							  </c:if>
+							  <c:if test="${productVo.p_discount != 0}">
+							  	<span style="font-size: 25px; margin-left: 0px; text-decoration: none; font-weight: 700; color:#fae100; display: inline-block;"><fmt:formatNumber value="${productVo.p_disprice}" pattern="#,###"/>원</span>
+								<span class="discount-price" ><fmt:formatNumber value="${productVo.p_price}" pattern="#,###" />원</span>
+							  </c:if>
+							</div>
+                            
+                            <br>
+                       </div>
+                        
+                    </div>
+                </div>
+                </c:forEach>              
+       </div>
+    
+                    <!-- End Single Product -->
+            </c:otherwise>
+                </c:choose>
+            </div>
+        </div>
+    </section>
+    
   				<!-- 판매자의 다른 상품끝 -->
 					
+					
+					
 				<!-- 비슷한 상품 -->
+				<section class="trending-product section" style="margin-top: 12px;">
+        <div class="container">
+            <div class="row">
+                <div class="col-12">
+                    <div class="section-title" style="background-color:#FFFFFF ">
+                        <h2>이 상품과 함께 본 상품</h2>
+                    </div>
+                </div>
+            </div>
+            <div class="row">
+             <!-- 리스트 -->
+             
+	
+	<div class="row">
+            <c:forEach var="productVo" items="${cpList}" end="3">
+              <div class="col-lg-3 col-md-6 col-12">
+                    <!-- Start Single Product -->
+                    <div class="single-product" style="border:none;">
+                    <a href="${pageContext.request.contextPath}/productView.do?p_idx=${productVo.p_idx}&seller_idx=${productVo.seller_idx}">
+                    <div class="product-image" style="height: 320px;">
+                            <img style="height:100%" src="${pageContext.request.contextPath}/resources/product/${productVo.p_sys_filename}" alt="${productVo.p_name}">
+                                <c:if test="${productVo.p_discount != 0}"><!-- member_grade: 0(일반회원), 1(관리자), 2(슈퍼관리자) -->
+									<span class="sale-tag">-${productVo.p_discount}%</span>
+								</c:if>
+                    </div>
+                    </a>
+                        
+                        <div class="product-info">
+                          <span>
+								<c:choose>
+								   <c:when test="${productVo.p_category_idx == 1}">강아지 > 개껌</c:when>
+								   <c:when test="${productVo.p_category_idx == 2}">강아지 > 스낵</c:when>
+								   <c:when test="${productVo.p_category_idx == 3}">강아지 > 뼈/육포</c:when>
+								   <c:when test="${productVo.p_category_idx == 4}">강아지 > 스틱</c:when>
+								   <c:when test="${productVo.p_category_idx == 5}">강아지 > 프리미엄</c:when>
+								   <c:when test="${productVo.p_category_idx == 6}">강아지 > 통살</c:when>
+							       
+							       <c:when test="${productVo.p_category_idx == 7}">고양이 > 츄르</c:when>
+								   <c:when test="${productVo.p_category_idx == 8}">고양이 > 스낵</c:when>
+								   <c:when test="${productVo.p_category_idx == 9}">고양이 > 캣잎</c:when>
+								   <c:when test="${productVo.p_category_idx == 10}">고양이 > 통살</c:when>
+								   <c:when test="${productVo.p_category_idx == 11}">고양이 > 프리미엄</c:when>
+								   <c:when test="${productVo.p_category_idx == 12}">고양이 > 스틱</c:when>
+								</c:choose>
+							</span>
+    
+                            
+                            <h4 class="title">
+                                <a href="${pageContext.request.contextPath}/productView.do?p_idx=${productVo.p_idx}&seller_idx=${productVo.seller_idx}">
+                                ${productVo.p_name}</a>
+                            </h4>
+                            <ul class="review">
+                               <c:forEach begin="1" end="${productVo.avg_reviews_stars}" step="1">
+									<li><i class="lni lni-star-filled"></i></li>
+								</c:forEach>
+								<c:if test="${productVo.avg_reviews_stars%5 > 0}">
+								   <li><i class="lni lni-star-half"></i></li>
+								</c:if>
+							   <c:forEach begin="1" end="${5-productVo.avg_reviews_stars}" step="1">
+							      <li><i class="lni lni-star-empty"></i></li>
+							   </c:forEach>	
+								
+							</ul>
+                           <div class="price">
+							  <c:if test="${productVo.p_discount == 0}">
+							  	<span style="font-size: 25px; margin-left: 0px; text-decoration: none; font-weight: 700; color:#fae100; display: inline-block;"><fmt:formatNumber value="${productVo.p_price}" pattern="#,###"/>원</span>
+							  </c:if>
+							  <c:if test="${productVo.p_discount != 0}">
+							  	<span style="font-size: 25px; margin-left: 0px; text-decoration: none; font-weight: 700; color:#fae100; display: inline-block;"><fmt:formatNumber value="${productVo.p_disprice}" pattern="#,###"/>원</span>
+								<span class="discount-price" ><fmt:formatNumber value="${productVo.p_price}" pattern="#,###" />원</span>
+							  </c:if>
+							</div>
+                            
+                            <br>
+                       </div>
+                        
+                    </div>
+                </div>
+                </c:forEach>              
+       </div>
+    
+            </div>
+        </div>
+    </section>
+				
 				<!-- 비슷한 상품끝 -->
 			
 			
