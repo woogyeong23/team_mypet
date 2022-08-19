@@ -511,7 +511,7 @@ $(document).ready(function(){
 			{
 				
 				var c_idxArr=[];
-				$("input[type='checkbox']").each(function(){
+				$("input[type='checkbox']:checked").each(function(){
 					if($(this).data('checked_cart_idx') != null)
 						{
 						c_idxArr.push($(this).data('checked_cart_idx'));

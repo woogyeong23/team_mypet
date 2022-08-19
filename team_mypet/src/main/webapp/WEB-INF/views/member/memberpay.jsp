@@ -175,7 +175,7 @@ transform:translatY(-100%);
    				<div class="segment--nospacing">
    					<div class="ui_title--sub tab">
    						<span class="ui_title__txt">주문 고객</span>
-			   			<span class="ui_title__txtright--blue user-info-header-right-text" >${m_nick}님</span>
+			   			<span class="ui_title__txtright--blue user-info-header-right-text" >${m_nick} 님</span>
    					</div>
    				</div>
    				<div class="segment--nospacing">
