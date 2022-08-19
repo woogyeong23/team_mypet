@@ -69,7 +69,7 @@ public class AjaxService {
 		return membersDao.petupinfo(pet_idx);
 	}
 	
-	public List<ProductVo> cartList(CartVo cartVo) {
+	public List<CartVo> cartList(CartVo cartVo) {
 		
 		return cartDao.cartList(cartVo);
 	}
@@ -83,8 +83,10 @@ public class AjaxService {
 		return cartDao.deleteCart(cartVo);
 	}
 
-	public int checkNick(String m_nick) {
-		return membersDao.checkNick(m_nick);
+	public int checknick(String m_nick) {
+		int result=0;
+		result = membersDao.checkId(m_nick);
+		return result;
 	}
 	
 	

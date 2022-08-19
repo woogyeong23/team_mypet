@@ -6,7 +6,7 @@
 
 <select id="getHList" resultType="productVo">
 SELECT product.p_idx AS p_idx, seller_idx, p_category_idx, p_name, p_content,
- p_price, p_discount,p_disprice, product_img.p_sys_filename,p_status, p_wday,p_modifyday,
+ p_price, p_discount,p_disprice, p_sys_filename,p_status, p_wday,p_modifyday,
  IFNULL(avg(review_stars),0) AS avg_reviews_stars, COUNT(review_stars) AS cnt_reviews
   FROM product LEFT JOIN product_img ON product.p_idx = product_img.p_idx 
   LEFT JOIN review ON product.p_idx = review.p_idx
@@ -55,18 +55,24 @@ SELECT product.p_idx AS p_idx, seller_idx, p_category_idx, p_name, p_content,
    ORDER BY ccnntt DESC;
 </select>
 
+<select id="getHList6" resultType="reviewVo">
+ SELECT product.p_idx AS p_idx, p_name, review_stars, review_content, m_nick, m_profile,
+ review_wday
+  FROM product INNER JOIN review ON product.p_idx = review.p_idx 
+ INNER JOIN members ON review.midx = members.midx
+ GROUP BY p_idx ORDER BY review_idx DESC;
+  
+
+
+
+
+</select>
+
 
 
 
 
 <select id="getSearchList" resultType="productVo">
-<!-- <<<<<<< HEAD -->
-<!-- SELECT a.p_idx as p_idx, seller_idx, p_category_idx, p_name, p_content,  -->
-<!-- p_price, p_discount, p_ori_filename -->
-<!-- FROM product a LEFT OUTER JOIN product_img b  -->
-<!-- ON a.p_idx = b.p_idx  -->
-<!-- WHERE  p_delyn = 'N' AND p_content LIKE CONCAT('%',#{keyword},'%') OR p_name LIKE CONCAT('%',#{keyword},'%') -->
-<!-- ======= -->
 SELECT product.p_idx AS p_idx, seller_idx, p_category_idx, p_name, p_content,
  p_price, p_discount,p_disprice, product_img.p_sys_filename,p_status, p_wday,p_modifyday,
  IFNULL(avg(review_stars),0) AS avg_reviews_stars, COUNT(review_stars) AS cnt_reviews
@@ -79,18 +85,17 @@ SELECT product.p_idx AS p_idx, seller_idx, p_category_idx, p_name, p_content,
 </select>
 
 <select id="resultCount" resultType="int">
-SELECT DISTINCT COUNT(a.p_idx) FROM 
-product a LEFT OUTER JOIN product_img b 
-ON a.p_idx = b.p_idx 
+SELECT COUNT(DISTINCT p_idx) FROM product 
 WHERE p_delyn = 'N' AND p_content LIKE CONCAT('%',#{keyword},'%') OR p_name LIKE CONCAT('%',#{keyword},'%')
 </select>
 
 <select id="getReviewList" resultType="reviewVo">
-SELECT product.p_idx as p_idx,product_img.p_ori_filename as p_sys_filename, 
-product.p_name as p_name, review_stars, review_content, 
-p_discount,p_disprice,
+SELECT product.p_idx as p_idx, p_sys_filename, 
+ p_name, review_stars, review_content, m_nick
 FROM product INNER JOIN product_img ON product.p_idx = product_img.p_idx
 INNER JOIN review ON product.p_idx = review.p_idx 
+INNER JOIN members ON review.midx = members.midx 
+GROUP BY p_idx
 ORDER BY review_idx DESC;
 </select>
 

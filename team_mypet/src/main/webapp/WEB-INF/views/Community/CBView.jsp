@@ -165,7 +165,7 @@ var targetID;
 	  
   });
   
-  $("#ccDel").each(function(){
+  $(".ccDel").each(function(){
 		$(this).click(function(){
 			 
 			var ccdee = confirm("해당 댓글을 삭제하시겠습니까?");
@@ -193,30 +193,32 @@ var targetID;
 		 });
   });
   
-//   $("#likeCc").each(function(){
-// 		$(this).click(function(){
-// 			let midx = "${midx}";
-// 			let cc_idx = $(this).next().val();
+  
+  $(".likeCc").each(function(){
+		$(this).click(function(){
+			let midx = "${midx}";
+			let cc_idx = $(this).next().val();
+			alert(cc_idx+"cc_idx");
 			
-// 			$.ajax({
-// 				type:'post',
-// 				url:"${pageContext.request.contextPath}/ccLike",
-// 				data: {"midx" : midx,
-// 					"cc_idx" : cc_idx},
+			$.ajax({
+				type:'post',
+				url:"${pageContext.request.contextPath}/ccLike",
+				data: {"midx" : midx,
+					"cc_idx" : cc_idx},
 					
-// 					success: function(data){
-// 						if(data == "Y") {
-// 							alert("해당 댓글에 '좋아요'를 표시하였습니다.");
-// 							location.reload();
-// 						}else{
-// 							alert("알수없는 오류로 인해 '좋아요'가 누락되었습니다.");
-// 						}
-// 					},
-// 					error : function(error){ alert(error); }	
-// 			});
+					success: function(data){
+						if(data == "Y") {
+							alert("해당 댓글에 '좋아요'를 표시하였습니다.");
+							location.reload();
+						}else{
+							alert("알수없는 오류로 인해 '좋아요'가 누락되었습니다.");
+						}
+					},
+					error : function(error){ alert(error); }	
+			});
 
-// 		});
-// 	});
+		});
+	});
   
   
 
@@ -413,7 +415,7 @@ position: relative;
     padding-left: 20px;
 }
 
-.CommentContentActionButton {
+#CommentContentActionButton {
     font-weight: 700;
     font-size: 12px;
     line-height: 14px;
@@ -541,7 +543,10 @@ button {
 
                        
                             <div>
-                            <img class="ckr" alt="${communityVo.cm_img}" src="${pageContext.request.contextPath}/resources/Community/upload/${communityVo.cm_img}">
+                        <c:if test="${communityVo.cm_img != ''}">
+                         <img class="ckr" alt="${communityVo.cm_img}" src="${pageContext.request.contextPath}/resources/Community/upload/${communityVo.cm_img}">
+                        </c:if>
+
                             </div>
                <div style="padding-top:20px; padding-bottom:30px;">
                         <div style="text-align:center; color:black; font-size:1.3em">${communityVo.cm_subject}</div>
@@ -612,10 +617,10 @@ button {
 <div class="CommentContent__wrap">
      <div class="CommentContent__header">
          <strong class="CommentContent__userName">${cl.cc_writer}</strong> 
-<%--          <c:if test="${midx == cl.midx}"> --%>
-<!--            <button id="ccDel" style="margin-left:90%; background-color:#dae1e6; width:19px; height:19px;"><i class="lni lni-close"></i></button> -->
-<%--            <input type="hidden" name="cc_idx" value="${cl.cc_idx}"> --%>
-<%--        </c:if> --%>
+         <c:if test="${midx == cl.midx}">
+           <button class="ccDel" style="margin-left:90%; background-color:#dae1e6; width:20px; height:20px; border-radius:10%;"><i class="lni lni-close"></i></button>
+           <input type="hidden" name="cc_idx" value="${cl.cc_idx}">
+       </c:if>
      </div>
      
 <p class="CommentContent__body">
@@ -627,11 +632,11 @@ button {
   <c:choose>
        <c:when test="${midx != null}">
 
-<!--       <button type="button" class="CommentContentActionButton" id="likeCc" style="color:rgb(237,73,86);"><i class="lni lni-smile"></i> 공감하기</button> -->
-<%--               <input type="hidden" value="${cl.cc_idx}"> --%>
+      <button type="button" id="CommentContentActionButton" class="likeCc" style="color:rgb(237,73,86);"><i class="lni lni-smile"></i> 공감하기 ${cl.cc_like}</button>
+              <input type="hidden" value="${cl.cc_idx}">
 
      <a href="#pop_info_${cl.cc_idx}" class="btn_open">
-     <button type="button" class="CommentContentActionButton"><i class="lni lni-bubble"></i> 답글하기</button>
+     <button type="button" id="CommentContentActionButton"><i class="lni lni-bubble"></i> 답글하기</button>
      </a>
         </c:when>
         <c:otherwise></c:otherwise> 
@@ -650,16 +655,16 @@ button {
          <div class="CommentContent__wrap">
            <div class="CommentContent__header">
                     <strong class="CommentContent__userName">${cl.cc_writer}</strong>
-<%--             <c:choose> --%>
-<%--          <c:when test="${midx == cl.midx}"> --%>
-<!--            <button id="ccDel" style="margin-left:90%; background-color:#dae1e6; width:19px; height:19px;"><i class="lni lni-close"></i></button> -->
-<%--            <input type="hidden" name="cc_idx" value="${cl.cc_idx}"> --%>
-<%--          </c:when> --%>
-<%--          <c:otherwise> --%>
+            <c:choose>
+         <c:when test="${midx == cl.midx}">
+           <button class="ccDel" style="margin-left:90%; background-color:#dae1e6; width:19px; height:19px;"><i class="lni lni-close"></i></button>
+           <input type="hidden" value="${cl.cc_idx}">
+         </c:when>
+         <c:otherwise>
          
-<%--          </c:otherwise> --%>
-<%--          </c:choose> --%>
-           </div>
+         </c:otherwise>
+         </c:choose>
+          </div> 
                     <p class="CommentContent__body">
                     <span class="CommentContent__commentText">${cl.cc_content}</span>
                    </p>
@@ -668,7 +673,9 @@ button {
             <span class="CommentContent__createAt">${cl.cc_wday}</span>
   <c:choose>
        <c:when test="${midx != null}">
-<a href="#pop_info_${cl.cc_idx}" class="btn_open"><button type="button" class="CommentContentActionButton">답글하기</button></a>
+<button type="button" id="CommentContentActionButton" class="likeCc" style="color:rgb(237,73,86);"><i class="lni lni-smile"></i> 공감하기 ${cl.cc_like}</button>
+              <input type="hidden" value="${cl.cc_idx}">
+<a href="#pop_info_${cl.cc_idx}" class="btn_open"><button type="button" id="CommentContentActionButton"><i class="lni lni-bubble"></i> 답글하기</button></a>
         </c:when>
               <c:otherwise></c:otherwise> 
   </c:choose>

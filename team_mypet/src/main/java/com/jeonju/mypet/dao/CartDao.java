@@ -34,7 +34,7 @@ public class CartDao {
 	}
 
 	//리스트뿌리기
-	public List<ProductVo> cartList(CartVo cartVo) {
+	public List<CartVo> cartList(CartVo cartVo) {
 		return sqlSession.selectList(MAPPER+".getcartList",cartVo);
 	}
 	
@@ -66,6 +66,20 @@ public class CartDao {
 	public int deleteCart(CartVo cartVo) {
 		return sqlSession.delete(MAPPER+".deleteCart",cartVo);
 	}
+
+	public int cartReset(int midx) {
+		return sqlSession.delete(MAPPER+".resetCart",midx);
+	}
+
+	public List<HashMap<String, Object>> cartSellerList(int midx) {
+		// TODO Auto-generated method stub
+		return sqlSession.selectList(MAPPER+".cartSellerList",midx);
+	}
+
+	public HashMap<String, Object> totalProductPrice(int midx) {
+		// TODO Auto-generated method stub
+		return  sqlSession.selectOne(MAPPER+".totalProductPrice",midx);
+		}
 	
 
 

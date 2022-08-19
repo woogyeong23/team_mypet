@@ -15,21 +15,23 @@ public class ReviewVo {
 	private int review_reply_cnt;
 	private String delyn;
 	private Date review_delday;
+	private int p_disprice;
 	
 	
 	//소현
-	private String review_nick;
 	private String p_sys_filename;
-	private String m_nick;
-	
-	public String getReview_nick() {
-		return review_nick;
-	}
-	public void setReview_nick(String review_nick) {
-		this.review_nick = review_nick;
-	}
 
+	//test
+	private String m_profile;
+	
 	private int avg_reviews_stars;
+	private String review_nick;
+	
+	private int pet_idx;
+	private String pet_name;
+	private String pet_type;
+	private String pet_breed;
+	private int pet_age;
 	
 	public int getAvg_reviews_stars() {
 		return avg_reviews_stars;
@@ -46,17 +48,49 @@ public class ReviewVo {
 		this.p_sys_filename = p_sys_filename;
 	}
 
-	public String getM_nick() {
-		return m_nick;
+	public int getPet_idx() {
+		return pet_idx;
 	}
-	public void setM_nick(String m_nick) {
-		this.m_nick = m_nick;
+	public void setPet_idx(int pet_idx) {
+		this.pet_idx = pet_idx;
+	}
+	public String getPet_name() {
+		return pet_name;
+	}
+	public void setPet_name(String pet_name) {
+		this.pet_name = pet_name;
+	}
+	public String getPet_type() {
+		return pet_type;
+	}
+	public void setPet_type(String pet_type) {
+		this.pet_type = pet_type;
+	}
+	public String getPet_breed() {
+		return pet_breed;
+	}
+	public void setPet_breed(String pet_breed) {
+		this.pet_breed = pet_breed;
+	}
+	public int getPet_age() {
+		return pet_age;
+	}
+	public void setPet_age(int pet_age) {
+		this.pet_age = pet_age;
+	}
+
+	public String getReview_nick() {
+		return review_nick;
+	}
+	public void setReview_nick(String review_nick) {
+		this.review_nick = review_nick;
 	}
 	
+
 	//소현
 	
     //  test 22.7.29
-	private String p_ori_filename;
+
 	private String p_name;
 	//
 	
@@ -139,13 +173,6 @@ public class ReviewVo {
 	public void setP_name(String p_name) {
 		this.p_name = p_name;
 	}
-	
-	public String getP_ori_filename() {
-		return p_ori_filename;
-	}
-	public void setP_ori_filename(String p_ori_filename) {
-		this.p_ori_filename = p_ori_filename;
-	}
 	// test 22.08.05
 	public int getP_category_idx() {
 		return p_category_idx;
@@ -154,7 +181,19 @@ public class ReviewVo {
 		this.p_category_idx = p_category_idx;
 	}
 	//
-	
+	public int getP_disprice() {
+		return p_disprice;
+	}
+	public void setP_disprice(int p_disprice) {
+		this.p_disprice = p_disprice;
+	}
+	//test 22.08.17
+	public String getM_profile() {
+		return m_profile;
+	}
+	public void setM_profile(String m_profile) {
+		this.m_profile = m_profile;
+	}
 	
 
 }

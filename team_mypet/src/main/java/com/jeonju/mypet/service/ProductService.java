@@ -7,6 +7,7 @@ import org.springframework.stereotype.Service;
 
 import com.jeonju.mypet.dao.ProductDao;
 import com.jeonju.mypet.vo.Criteria;
+import com.jeonju.mypet.vo.PetVo;
 import com.jeonju.mypet.vo.ProductVo;
 import com.jeonju.mypet.vo.Product_ImgVo;
 import com.jeonju.mypet.vo.ReviewVo;
@@ -86,14 +87,37 @@ public class ProductService {
 	}
 
 
-	public int insertReview(ReviewVo reviewVo) {
-		return productDao.insertReview(reviewVo);
+	public int rvInsertProcess(ReviewVo reviewVo) {
+		return productDao.rvInsertProcess(reviewVo);
 	}
 
 
 	public ProductVo getReviewp(ProductVo product) {
 		return productDao.getReviewp(product);
 	}
+
+
+	
+	//상세뷰 하단 판매자의 다른 상품
+	public List<ProductVo> getspList(int seller_idx) {
+		return productDao.getspList(seller_idx);
+	}
+
+
+	public int getspCount(int seller_idx) {
+		return productDao.getspCount(seller_idx);
+	}
+
+
+	public List<ProductVo> getcpList(int p_idx) {
+		return productDao.getcpList(p_idx);
+	}
+
+
+	public int reviewWriteck(int p_idx, int midx) {
+		return productDao.reviewWriteck(p_idx, midx);
+	}
+
 
 
 

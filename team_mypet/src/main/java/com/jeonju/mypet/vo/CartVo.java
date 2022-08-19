@@ -26,12 +26,20 @@ public class CartVo {
 	private String p_sys_filename;
 	
 	//추가
+	private int Point;
+	
 	private int salePrice;
 	private int totalPrice;
 	private int totalPoint;
 
-	
-	
+	private int seller_idx;
+	private int c_price;
+	public int getC_price() {
+		return c_price;
+	}
+	public void setC_price(int c_price) {
+		this.c_price = c_price;
+	}
 	public String getP_content() {
 		return p_content;
 	}
@@ -134,20 +142,38 @@ public class CartVo {
 	public int getTotalPrice() {
 		return totalPrice;
 	}
-	
 	public int getTotalPoint() {
 		return totalPoint;
 	}
-	public void setTotalPoint() {
-		this.totalPoint = (int) (this.totalPrice * this.p_discount);
+	public int getPoint() {
+		return Point;
 	}
+	public int getSalePrice() {
+		return salePrice;
+	}
+	public void setInitPrice() {
+		this.salePrice = this.p_price * this.p_discount;  
+		this.totalPrice = this.p_price * this.cart_cnt;
+		this.Point = (int)(Math.floor(this.totalPrice * 0.05));
+		this.totalPoint = this.Point * this.cart_cnt;
+	}
+	
 	
 	@Override
 	public String toString() {
 		return "CartVo[cart_idx="+cart_idx+"midx="+midx+"p_idx"+p_idx+"cart_cnt="+cart_cnt+
-				"p_name="+p_name+"p_content="+p_content+"p_price="+p_price+
+				"p_name="+p_name+"p_content="+p_content+"p_price="+p_price+"p_sys_filename"+p_sys_filename+
+				"salePrice"+salePrice+"Point"+Point+"totalPoint"+totalPoint+
 				"totalPrice="+totalPrice+"]";
 	}
+	public int getSeller_idx() {
+		return seller_idx;
+	}
+	public void setSeller_idx(int seller_idx) {
+		this.seller_idx = seller_idx;
+	}
+	
+	 
 	
 	
 	

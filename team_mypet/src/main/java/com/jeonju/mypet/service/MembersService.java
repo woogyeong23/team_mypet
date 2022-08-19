@@ -9,6 +9,7 @@ import org.springframework.stereotype.Service;
 
 import com.jeonju.mypet.dao.MembersDao;
 import com.jeonju.mypet.vo.MembersVo;
+import com.jeonju.mypet.vo.OrdersVo;
 import com.jeonju.mypet.vo.PetVo;
 
 @Service
@@ -56,6 +57,10 @@ public class MembersService {
 	//펫리스트
 	public List<PetVo> petList(int midx) {
 		return membersDao.petList(midx);
+	}
+
+	public List<OrdersVo> orderList(OrdersVo ordersVo) {
+		return membersDao.orderList(ordersVo);
 	}
 
 	

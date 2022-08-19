@@ -36,20 +36,20 @@ public class AjaxController {
 	}
 	
 	
-	@PostMapping("/checknick.do")
+	@PostMapping("/checkNick.do")
 	public String checknick(@RequestParam("m_nick") String m_nick) {
 		
 		System.out.println("m_nick: "+m_nick);
 
 		String result="N";//중복된 아이디 없음
 		
-		int flag = ajaxService.checkNick(m_nick);
-		System.out.println("result: "+flag);
+		int flag = ajaxService.checknick(m_nick);
 
 		if(flag == 1) {
 			result = "Y";//중복된 아이디 있음(실패)
 		}
-		
+		System.out.println("result: "+result);
+
 		return result;
 	}	
 	
@@ -95,12 +95,12 @@ public class AjaxController {
 	
 	
 	@PostMapping("/cartHeaderView")
-	public List<ProductVo> cartHeaderView(CartVo cartVo,Model model,HttpServletRequest request)throws Exception {
+	public List<CartVo> cartHeaderView(CartVo cartVo,Model model,HttpServletRequest request)throws Exception {
 		
 		HttpSession Session = request.getSession();
 		int midx = (int) Session.getAttribute("midx");
 		
-		 List<ProductVo> list = new ArrayList<>();
+		 List<CartVo> list = new ArrayList<>();
 		
 			cartVo.setMidx(midx);
 			list = ajaxService.cartList(cartVo);

@@ -11,7 +11,18 @@
 <!-- css************************************************ -->
     <jsp:include page="../../include/head.jsp" />  
 <!-- ************************************************ -->
+<link rel="stylesheet" href="resources/Extra/bsCss.css">
 <style type="text/css">
+
+
+.box {
+    width: 70px;
+    height: 70px; 
+    border-radius: 70%;
+    overflow: hidden;
+    float:left;
+    background: #BDBDBD;
+}
 .profile {
     width: 100%;
     height: 100%;
@@ -62,6 +73,16 @@ font-size: 0;
     background-position: center;
 }
 </style>
+<script>
+/* Demo purposes only */
+$(".hover").mouseleave(
+  function () {
+    $(this).removeClass("hover");
+  }
+);
+</script>
+
+
 </head>
 <body>
 <!-- 헤더와 네비************************************************ -->
@@ -90,109 +111,41 @@ font-size: 0;
 <!-- Start Trending Product Area -->
     <section class="trending-product section" style="margin-top: 12px;">
         <div class="container">
-            <div class="row">
-                <div class="col-12">
-                    <div class="section-title">
-                        <h2>인기작가</h2>
-                        <p></p>
-                    </div>
-                </div>
-            </div>
-            <div class="row">
+
+            <div class="row">    
+
+              
+              
+   <c:forEach var="bs" items="${BestSellerList}">
+                       <div class="col-lg-3 col-md-6 col-12">
+      <figure class="snip1425" style="margin-bottom:50px; min-height:230px; max-height: 315px; border-radius:20px;">
+  <img src="${pageContext.request.contextPath}/resources/seller/${bs.seller_img}" alt="작가 이미지" />
+  <figcaption style="border-radius:20px;">
+    <i class="lni lni-user"></i>
+    <h5>${bs.m_nick} 작가님</h5>
+    <p>
+    팔로워 <span style="font-weight:600;">${bs.seller_followcnt}     </span>     
+    별점 <span style="font-weight:600;">${bs.seller_starsavg}</span></p>
+  </figcaption>
+  <a href="${pageContext.request.contextPath}/BSellerView.do?seller_idx=${bs.seller_idx}"></a>
+  </figure>
+  </div>
+  </c:forEach>
  
-
-     </div>
-     
-    <!--  <ul> -->
-     
-     <c:set var="seller_idx" value="${BestSEllerList[0].seller_idx}"/>
-     <!-- <div class="BSL_flex" style="display:flax; height:230px;"> 
-        -->
-    
-     <%-- <c:forEach var="bsv" items="${BestSellerList}" > --%>
-
-       <!--  <li style="height:230px; position:relative;"> -->
-      <%-- <div class="BSL_flex" style="display:flax; height:230px;">
- 
-      <div style="position:relative; top:50%; float:left; margin-left: 50px; width:96px; height: 96px; border-radius: 70%; overflow: hidden;">
-      		<img class="profile" src="${pageContext.request.contextPath}/resources/Extra/img/${bsv.seller_img}" alt="${bsv.m_nick}">
-      </div>
-      <div style="position:relative; top:50%; float:left; margin-left: 25px; font:14px;">
-	      <a style="color:black" href="${pageContext.request.contextPath}/BSellerView.do?seller_idx=${bsv.seller_idx}"><span class="category">${bsv.m_nick}</span></a>
-	      <br>
-	       <ul class="bs_review">
-	         <c:forEach begin="1" end="${bsv.seller_starsavg}">
-	            <li><i class="lni lni-star-filled"></i></li>
-	         </c:forEach>                  
-	         <c:forEach begin="1" end="${5-bsv.seller_starsavg}">
-	              <li><i class="lni lni-star"></i></li>
-	         </c:forEach>
-	              <li><span>${bsv.seller_starsavg}</span></li>
-	       </ul>
-	       <br>
-	       <a style="color:black" href="${pageContext.request.contextPath}/BSellerView.do?seller_idx=${bsv.seller_idx}">${bsv.seller_intro}</a>
-	       <br>
-	       <input type="button" id="follow" value="+ 팔로우">
-	       <a style="color:black" href="${pageContext.request.contextPath}/BSellerView.do?seller_idx=${bsv.seller_idx}">
-	       <input type="button" class="more" value="작품 더보기"></a>
-      </div>
-   
-      <div style="position:relative; top:50%; float:left; margin-left: 24px;"> --%>
-     
-     
- <ul>
-
-   
-     
-     
-    
-    <c:forEach var="bsv" items="${BestSellerList}">
-	     <c:choose>
-	     <c:when test="${seller_idx ==bsv.seller_idx}">
-	      <li style="float:right;height:200px;width: 150px; position:relative; display: inline-block;"><a href="#">
-		      <div style="float:left;">
-		      	<img src="${pageContext.request.contextPath}/resources/product/${bsv.p_sys_filename}" alt="해당사진">
-		      </div>
-	      </a>
-	      </li>
-	     </c:when>
-	     <c:otherwise>
-</ul>
-	       	<c:set var="seller_idx" value="${bsv.seller_idx}"/>
-	       	<ul>
-	       	<li style="height:230px; position:relative;"> 
-     <div class="BSL_flex" style="display:flex; height:230px; width:80%;">
- 
-      <div style="position:relative; top:50%; float:left; margin-left: 50px; width:96px; height: 96px; border-radius: 70%; overflow: hidden;">
-      		<img class="profile" src="${pageContext.request.contextPath}/resources/seller/${bsv.seller_img}" alt="${bsv.m_nick}">
-      </div>
-      <div style="position:relative; top:50%; float:left; margin-left: 25px; font:14px;">
-	      <a style="color:black" href="${pageContext.request.contextPath}/BSellerView.do?seller_idx=${bsv.seller_idx}"><span class="category">${bsv.m_nick}</span></a>
-	      <br>
-	       <ul class="bs_review">
-	         <c:forEach begin="1" end="${bsv.seller_starsavg}">
-	            <li><i class="lni lni-star-filled"></i></li>
-	         </c:forEach>                 
-	         <c:forEach begin="1" end="${5-bsv.seller_starsavg}">
-	              <li><i class="lni lni-star"></i></li>
-	         </c:forEach>
-	              <li><span>${bsv.seller_starsavg}</span></li>
-	       </ul>
-	       <br>
-	       <a style="color:black" href="${pageContext.request.contextPath}/BSellerView.do?seller_idx=${bsv.seller_idx}">${bsv.seller_intro}</a>
-	       <br>
-	       <input type="button" id="follow" value="+ 팔로우">
-	       <a style="color:black" href="${pageContext.request.contextPath}/BSellerView.do?seller_idx=${bsv.seller_idx}">
-	       <input type="button" class="more" value="작품 더보기"></a>
-      </div>
-     </li>
-	       	
-	     </c:otherwise>
-	     </c:choose>
-     </c:forEach>
-     </ul>
-
+  
+<!--   <figure class="snip1425"> -->
+<!--   <img src="https://s3-us-west-2.amazonaws.com/s.cdpn.io/331810/sq-sample19.jpg" alt="sq-sample19" /> -->
+<!--   <figcaption><i class="ion-podium"></i> -->
+<!--     <h4>Gunther</h4> -->
+<!--     <h2>Beard</h2> -->
+<!--   </figcaption> -->
+<!--   <a href="#"></a> -->
+<!-- </figure>      -->
+         </div>
+        </div>
     </section>
+    
+   
     
     
  

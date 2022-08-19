@@ -45,6 +45,10 @@ public class HomeDao {
 		return sqlSession.selectList(MAPPER+".getHList5");
 	}
 	
+	public List<ReviewVo> getHList6() {
+		return sqlSession.selectList(MAPPER+".getHList6");
+	}
+	
 
 	public List<ProductVo> getSearchList(String keyword) {
 		return sqlSession.selectList(MAPPER+".getSearchList", keyword);
@@ -81,6 +85,8 @@ public class HomeDao {
 	public CartVo getCCCart(CartVo cartVo) {
 		return sqlSession.selectOne(MAPPER+".getCCCart",cartVo);
 	}
+
+	
 
 	
 

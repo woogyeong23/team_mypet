@@ -143,13 +143,12 @@ public class CommunityController {
 		int replyCount = commuService.getReplyCount(cm_idx);
 		int plusCmView = commuService.plusCmView(cm_idx);
 		
-		int midx = 0;
-		
+
 		HttpSession session = request.getSession();
 		
 		if(session.getAttribute("midx") != null ) {
-			midx = (int)session.getAttribute("midx");
-
+			int midx = (int)session.getAttribute("midx");
+	//		long midx = (long) session.getAttribute("midx");
 			
 			Community_likeVo community_likeVo = new Community_likeVo();
 			community_likeVo.setMidx((int) midx);
