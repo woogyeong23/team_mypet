@@ -34,6 +34,22 @@ public class CartVo {
 
 	private int seller_idx;
 	private int c_price;
+	private int p_free_dvprice;
+	private int p_dvprice;
+	
+	
+	public int getP_free_dvprice() {
+		return p_free_dvprice;
+	}
+	public void setP_free_dvprice(int p_free_dvprice) {
+		this.p_free_dvprice = p_free_dvprice;
+	}
+	public int getP_dvprice() {
+		return p_dvprice;
+	}
+	public void setP_dvprice(int p_dvprice) {
+		this.p_dvprice = p_dvprice;
+	}
 	public int getC_price() {
 		return c_price;
 	}
