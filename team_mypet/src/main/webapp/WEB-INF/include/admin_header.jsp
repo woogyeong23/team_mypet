@@ -226,11 +226,9 @@
                                  
                                     <ul class="sub-menu collapse" id="submenu-1-2">
               			                    <li class="nav-item"><a href="admin_memberList.do">구매자 리스트</a></li>
-                                         	<li class="nav-item"><a href="#">커뮤니티 글</a></li>
-                                            <li class="nav-item"><a href="#">주문 내역</a></li>
-                                            <li class="nav-item"><a href="#">고객문의 내역</a></li>
+                                         	<li class="nav-item"><a href="admin_com.do">커뮤니티 글</a></li>
                                             <li class="nav-item"><a href="#">후기</a></li>
-                                            <li class="nav-item"><a href="#">입점신청</a></li>
+                                         <li class="nav-item"><a href="admin_launch.do">입점신청</a></li>
                                            
                                         </ul>
                                     </li>
@@ -241,8 +239,7 @@
                                     
                                     
                                          <ul class="sub-menu collapse" id="submenu-1-3">
-              			                    <li class="nav-item"><a href="#">판매자상품 관리</a></li>
-                                         	 <li class="nav-item"><a href="#">주문 내역</a></li>
+              			                   
                                             <li class="nav-item"><a href="#">고객문의 내역</a></li>
                                             <li class="nav-item"><a href="#">후기</a></li>
                                       

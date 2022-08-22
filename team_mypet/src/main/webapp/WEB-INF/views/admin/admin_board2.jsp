@@ -114,22 +114,16 @@ $(function() {
 
 
 <table border="1">
-
-
-
-
-
- <div class = "align-center">
-	<h2>이벤트</h2></div>
-	
+      <div class = "align-center">
+	<h2>이벤트</h2>
+	</div>
 
 		<thead>
 		<td><a href="${pageContext.request.contextPath}/admin_write2.do">글쓰기</a></td>
 			<tr>
-			
-				<th>글번호</th>
+				
 				<th>제목</th>
-				<th>작성일</th>
+			<th>작성일</th>
 			</tr>
 		</thead>
 		<tbody>
@@ -141,20 +135,25 @@ $(function() {
 			<c:if test="${EventList.size() > 0}">
 				<c:forEach var="BoardVo" items="${EventList}">
 					<tr>
-						<td>${BoardVo.bidx}</td>
-						<td>${BoardVo.board_subject}</td>
-						<td>${BoardVo.board_wday}</td>
+					
+						<td><a href="${pageContext.request.contextPath}/admin_boardd2.do?bidx=${BoardVo.bidx}">${BoardVo.board_subject}</a></td>   
+					   <td>${BoardVo.board_wday}</td>
 					</tr>
-				</c:forEach>
+				
+				
+                            
+					
+				</c:forEach>	
+
+			
 			</c:if>
+			
+			
 		</tbody>
+	
+		
 	</table>
 
-
-</div>
-
-
-</div>
 
 
 

@@ -115,7 +115,7 @@ $(function() {
 
 <table border="1">
       <div class = "align-center">
-	<h2>공지사항</h2>
+	<h2>공지사항 디테일</h2>
 	</div>
 
 		<thead>
@@ -132,7 +132,7 @@ $(function() {
 		
 		
 
-		${ BoardListd.bidx}
+	
 		<td>${BoardListd.board_subject}</td>
 		<td>${BoardListd.board_content}	</td>
 		<td>${BoardListd.board_writer}</td>

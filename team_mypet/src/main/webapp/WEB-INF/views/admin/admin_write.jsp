@@ -240,7 +240,7 @@ function uploadSummernoteImageFile(file, el) {
 			</tr>
 			<tr>
 				<td colspan="2" align="center">
-					<input type="button" value="메인페이지" onclick="document.location.href='${pageContext.request.contextPath}/home.do'"/>&nbsp;|&nbsp;
+					<input type="button" value="메인페이지" onclick="document.location.href='${pageContext.request.contextPath}/admin.do'"/>&nbsp;|&nbsp;
 					<input type="submit"  value="등록하기"/>
 				
 				</td>

@@ -110,39 +110,38 @@ $(function() {
 <!-- ************************************************ -->
     
     
-
+    
 
 
 <table border="1">
       <div class = "align-center">
-	<h2>이벤트</h2>
+	<h2>커뮤니티 글 </h2>
 	</div>
 
 		<thead>
-		<td><a href="${pageContext.request.contextPath}/admin_write2.do">글쓰기</a></td>
+
 			<tr>
-				
+				<th>번호</th>
 				<th>제목</th>
 			<th>작성일</th>
 			</tr>
 		</thead>
 		<tbody>
-			<c:if test="${MuneList.size() == 0 }">
+			<c:if test="${ComList.size() == 0 }">
 				<tr>
 					<td colspan="4">등록 된 게시글이 없습니다.</td>
 				</tr>
 			</c:if>
-			<c:if test="${MuneList.size() > 0}">
-				<c:forEach var="BoardVo" items="${MuneList}">
+			<c:if test="${ComList.size() > 0}">
+				<c:forEach var="CommunityVo" items="${ComList}">
 					<tr>
-					
-						<td><a href="${pageContext.request.contextPath}/admin_muned.do?bidx=${BoardVo.bidx}">${BoardVo.board_subject}</a></td>   
-					   <td>${BoardVo.board_wday}</td>
+						<td>${CommunityVo.cm_idx}</td>
+						<td><a href="${pageContext.request.contextPath}/admin_comd.do?cm_idx=${CommunityVo.cm_idx}">${CommunityVo.cm_subject}</a></td>   
+					   <td>${CommunityVo.cm_wday}</td>
 					</tr>
 				
 				
-                            
-					
+						
 				</c:forEach>	
 
 			
@@ -156,12 +155,15 @@ $(function() {
 
 
 
+
+
     
+
 <br><br><br><br>
-          
-          
-         <jsp:include page="../../include/footer.jsp" />  
+
+
+
+    <jsp:include page="../../include/footer.jsp" />  
 </body>
 
 </html>
-     

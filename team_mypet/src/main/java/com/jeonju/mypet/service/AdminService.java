@@ -11,6 +11,7 @@ import com.jeonju.mypet.dao.AdminDao;
 import com.jeonju.mypet.dao.MembersDao;
 import com.jeonju.mypet.vo.BoardVo;
 import com.jeonju.mypet.vo.CommunityVo;
+import com.jeonju.mypet.vo.LaunchVo;
 import com.jeonju.mypet.vo.MembersVo;
 import com.jeonju.mypet.vo.OrdersVo;
 
@@ -67,24 +68,19 @@ public class AdminService {
 			}
 
 	
-	public List<CommunityVo> getCommunityList() {
+	public List<CommunityVo> getComList() {
 			
-			return adminDao.getCommunityList();
+			return adminDao.getComList();
 		
 		}
 
 
-	public List<OrdersVo> getOrdersList() {
+
+
+	public List<LaunchVo> getLaunchList() {
 		// TODO Auto-generated method stub
-		return adminDao.getOrdersList();
-
-	
-	
-	}
-
-
-	public List<OrdersVo> getLaunchList() {
-		// TODO Auto-generated method stub
+		
+		System.out.println("서비스까지옴ㅇㅇㅇㅇㅇㅇㅇㅇㅇㅇㅇㅇㅇㅇㅇㅇㅇㅇㅇㅇㅇㅇㅇㅇㅇㅇㅇㅇㅇㅇㅇㅇㅇㅇㅇㅇㅇㅇㅇㅇㅇㅇㅇㅇㅇㅇㅇㅇㅇㅇㅇㅇㅇㅇㅇㅇㅇㅇㅇㅇㅇㅇㅇㅇㅇㅇㅇㅇㅇㅇㅇㅇㅇㅇㅇ" );
 		return adminDao.getLaunchList();
 	}
 
@@ -94,7 +90,7 @@ public class AdminService {
 		// TODO Auto-generated method stub
 		
 		
-		System.out.println("서비스까지옴ㅇㅇㅇㅇㅇㅇㅇㅇㅇㅇㅇㅇㅇㅇㅇㅇㅇㅇㅇㅇㅇㅇㅇㅇㅇㅇㅇㅇㅇㅇㅇㅇㅇㅇㅇㅇㅇㅇㅇㅇㅇㅇㅇㅇㅇㅇㅇㅇㅇㅇㅇㅇㅇㅇㅇㅇㅇㅇㅇㅇㅇㅇㅇㅇㅇㅇㅇㅇㅇㅇㅇㅇㅇㅇㅇ" );
+
 		return adminDao.awInsert(boardVo);
 		}
 
@@ -125,7 +121,43 @@ public class AdminService {
 		// TODO Auto-generated method stub
 		return adminDao.Updateadmin(boardVo);
 		}
+
+
+	public BoardVo getEventListd(String bidx) {
+		// TODO Auto-generated method stub
+		return adminDao.getEventListd(bidx);
+	}
+
+
+	public int Updateadmin2(BoardVo boardVo) {
+		// TODO Auto-generated method stub
+		return adminDao.Updateadmin2(boardVo);
+	}
+		
+	public BoardVo adminmodi2(String  bidx) {
+		// TODO Auto-generated method stub
+		return adminDao.adminmodi2(bidx);
+		}
+
+
+	public BoardVo getMuneListd(String bidx) {
+		// TODO Auto-generated method stub
+		return adminDao.getMuneListd(bidx);
+		}
+
+
+	public CommunityVo getComListd(String cm_idx) {
+		// TODO Auto-generated method stub
 	
+		return adminDao.getComListd(cm_idx);
+		}
+
+
+	public LaunchVo getLaunchListd(String launch_idx) {
+		// TODO Auto-generated method stub
+		return adminDao.getLaunchListd(launch_idx);
+	}
+
 
 
 

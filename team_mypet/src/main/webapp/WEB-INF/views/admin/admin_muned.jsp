@@ -115,44 +115,35 @@ $(function() {
 
 <table border="1">
       <div class = "align-center">
-	<h2>입점신청</h2>
+	<h2>1대1문의 디테일</h2>
 	</div>
 
 		<thead>
-	
+		
 			<tr>
-				
 				<th>제목</th>
+				<th>내용</th>
+					<th>작성자</th>
 			<th>작성일</th>
 			</tr>
 		</thead>
 		<tbody>
-			<c:if test="${launchList.size() == 0 }">
-				<tr>
-					<td colspan="4">등록 된 게시글이 없습니다.</td>
-				</tr>
-			</c:if>
-			<c:if test="${launchList.size() > 0}">
-				<c:forEach var="LaunchVo" items="${launchList}">
-					<tr>
-					
-						<td><a href="${pageContext.request.contextPath}/admin_launchd.do?launch_idx=${LaunchVo.launch_idx}">${LaunchVo.launch_subject}</a></td>   
-					   <td>${LaunchVo.launch_wday}</td>
-					</tr>
-				
-				
-                            
-					
-				</c:forEach>	
+		
+		
+		
 
-			
-			</c:if>
-			
+
+		<td>${MuneListd.board_subject}</td>
+		<td>${MuneListd.board_content}	</td>
+		<td>${MuneListd.board_writer}</td>
+		<td>${MuneListd.board_wday}</td>
+	
 			
 		</tbody>
 	
 		
 	</table>
+
 
 
 
