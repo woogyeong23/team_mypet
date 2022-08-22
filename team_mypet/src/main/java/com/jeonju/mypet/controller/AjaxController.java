@@ -126,7 +126,26 @@ public class AjaxController {
 		return result;
 		
 	}
-	
+	@PostMapping("/cartRequest.do")
+	public String cartRequest(CartVo cartVo) throws Exception {
+		
+		String result; 
+				
+		int cnt = ajaxService.modifycartcnt(cartVo);
+		
+		System.out.println("카운트:"+cartVo);
+		
+		if(cnt == 1) {
+			result = "Y";
+		}else {
+			result = "N";
+		}
+		
+		System.out.println("업데뚜:"+result);
+
+		return result;
+		
+	}
 
 	
 	
