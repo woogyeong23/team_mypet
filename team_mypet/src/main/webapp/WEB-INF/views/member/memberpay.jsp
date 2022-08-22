@@ -1,6 +1,8 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
     <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
+        <%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt" %>
+    
     <!DOCTYPE html> 
     <html>
   <head>
@@ -279,8 +281,8 @@ transform:translatY(-100%);
    							<tr>
    								<th>제품 금액</th>
    								<td>
-   								<span id="total_Price"></span>
-   								<em>원</em>   								
+   								<span id="total_Price"><input type='hidden' id='totalProduct'  name='totalProduct'  value='${ProductPriceMap.totalProductPrice}'>
+   								<fmt:formatNumber pattern="###,###,### 원" value="${ProductPriceMap.totalproductprice}" /></span>
    								</td>
    							</tr>
    							<tr>

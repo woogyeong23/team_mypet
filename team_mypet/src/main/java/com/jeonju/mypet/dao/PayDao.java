@@ -1,6 +1,7 @@
 package com.jeonju.mypet.dao;
 
 
+import java.util.HashMap;
 import java.util.List;
 
 import org.apache.ibatis.session.SqlSession;
@@ -48,7 +49,10 @@ private SqlSession sqlSession;
 	}
 	
 	
-	
+	public HashMap<String, Object> totalProductPrice(int midx) {
+		// TODO Auto-generated method stub
+		return  sqlSession.selectOne(MAPPER+".totalProductPrice",midx);
+		}
 	
 	
 	

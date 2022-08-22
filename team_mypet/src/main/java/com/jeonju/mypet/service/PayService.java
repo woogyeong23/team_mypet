@@ -1,6 +1,7 @@
 package com.jeonju.mypet.service;
 
 
+import java.util.HashMap;
 import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -46,7 +47,10 @@ private CartDao cartDao;
 		return payDao.orderview(ordersVo);
 	}
 	
-
+	public HashMap<String, Object> totalProductPrice(int midx) {
+		// TODO Auto-generated method stub
+		return cartDao.totalProductPrice(midx);
+	}
 	
 	
 	

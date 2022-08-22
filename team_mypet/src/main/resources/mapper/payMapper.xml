@@ -29,4 +29,12 @@
          inner join product p on d.p_idx = p.p_idx
      where o.midx = 29 and o.orders_idx = 34;
 </select>
+<!-- 상품만총가격 -->
+	<select id="totalProductPrice" resultType="HashMap">
+		select sum(b.p_price*a.cart_cnt) as totalproductprice from cart a join product b on a.p_idx=b.p_idx where a.midx=#{midx} 
+	</select>
+	<select id="totalProductDvPrice" resultType="HashMap">
+		select b.p_price as totalproductDvprice from cart a join product b on a.p_idx=b.p_idx where a.midx=#{midx} 
+	</select>
+
 </mapper>

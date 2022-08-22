@@ -76,7 +76,7 @@
     
                             
                             <h4 class="title">
-                                <a href="${pageContext.request.contextPath}/productView.do?p_idx=${productVo.p_idx} ">
+                                <a href="${pageContext.request.contextPath}/productView.do?p_idx=${productVo.p_idx}">
                                 ${productVo.p_name}</a>
                             </h4>
                             <ul class="review">

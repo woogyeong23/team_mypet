@@ -391,6 +391,7 @@ $(document).ready(function(){
 			//alert("여기는 셀러 총가격");
 			//이 아이템의 체크박스 접근
 			const item="item_checkedbox"+cart_idx;
+			
 			//alert(item);
 			 const checkbox = document.getElementById(item);
 			//alert(checkbox.value);
@@ -403,7 +404,7 @@ $(document).ready(function(){
 			  //var is_checked = checkbox.checked;
 			  //alert(is_checked);
 			 // totalPrice_span${seller.seller_idx}
-			 
+			
 			 //셀러의 아이템들의 체크박스들 접근하기
 			 const checkboxes 
 		     = document.getElementsByName('item_checkedbox'+seller_idx);
@@ -700,9 +701,6 @@ $(document).ready(function(){
 			   																		</button>
 			   																	</div>
 			   																</div> 
-			<!--    																<em class="CartOptionListItem__totalPrice">예상 적립금 : -->
-			<!--    																	<a id="CartArtistItem__Point"></a> -->
-			<!--    																</em>  	예상적립금													 -->
 			   															</div>
 			   														</div>
 			   													</div>
@@ -713,11 +711,7 @@ $(document).ready(function(){
 			   								</ul>
 			   						</section>
 	   								
-	   								
-	   								
 	   							</c:if>
-	   							
-	   							
 	   							
 	   						</c:forEach>
 	   						
@@ -735,28 +729,17 @@ $(document).ready(function(){
 		   								<div class="CartArtistItem__label">
 		   								배송비
 		   								</div>
-		   								<div class="CartArtistItem__point" id="delivery_price${seller.seller_idx}" value="${seller.p_dvprice }">
+		   								<div class="CartArtistItem__point" id="delivery_price${seller.seller_idx}" value="${seller.p_dvprice}">
 		
 		   								<!-- 배송비 -->
 			   							</div>
 			   							
 		   					</section>
-		   					<c:set var="sum" value="${sum + (cart.p_price * cart.cart_cnt)}" />
 		   					<div class="vue-sticky-placeholder"></div>
 		   				</div> 	
-		   							
-						
-						
-						
-						
-						
 					
 					</c:forEach>
 					
-					
-   					
-   					
-   					
    			<div class="vue-sticky-placeholder" style="padding-top: 0px;"></div>		
         	<div  sticky-side="bottom" on-stick="handleChangeStickBottom"class="CartList__sticky vue-sticky-el"  style="position: sticky; top: auto; bottom: 0px; left: auto; width: auto; z-index: 10;">   	
         	<div class="CartCheckboxControl">
@@ -779,7 +762,7 @@ $(document).ready(function(){
         					<div class="CartCheckoutDesktop__label">작품금액</div>
         					<div class="CartCheckoutDesktop__value" id="CartCheckoutDesktop__value">
         						<span id="totalPrice" name="totalPrice"></span>
-        						<span class="CartCheckoutDesktop__priceUnit"><input type='hidden' id='totalProduct'  name='totalProduct'  value='${ProductPriceMap.totalProductPrice }'><fmt:formatNumber pattern="###,###,### 원" value="${ProductPriceMap.totalproductprice}" /></span>
+        						<span class="CartCheckoutDesktop__priceUnit"><input type='hidden' id='totalProduct'  name='totalProduct'  value='${ProductPriceMap.totalProductPrice}'><fmt:formatNumber pattern="###,###,### 원" value="${ProductPriceMap.totalproductprice}" /></span>
         					</div>
         				</div>
         				<div class="CartCheckoutDesktop__item--fixed">+</div>
@@ -805,19 +788,13 @@ $(document).ready(function(){
         				</div>
         			</div>
         		</div>
-        		
-        		<div class="CartPage__bottom">
-<%--         		<button type="submit" class="CommonButton CartPage__paymentButton CommonButton--large" onclick = "location.href = '${pageContext.request.contextPath}/memberpay.do'">
- --%>        		주문하기
-        		</button>
-        		</div>
-        	</div>
+ 				<div class="CartPage__bottom"> 		
+ 					<input type="hidden" id="c_idxArr" name="c_idxArr">
+ 					<input type="button" class="CommonButton CartPage__paymentButton CommonButton--large" value="등록" onclick="cart_idxArr();">
+ 				</div> 
+ 			</div>
  		</div>
- 		<input type="hidden" id="c_idxArr" name="c_idxArr">
- 		<input type="button" class="CommonButton CartPage__paymentButton CommonButton--large" value="등록" onclick="cart_idxArr();"> 
-		</form>
-		
-		
+	</form>
 	</div>
 </aside>
 </main>

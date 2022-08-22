@@ -4,6 +4,7 @@ package com.jeonju.mypet.controller;
 import java.text.DecimalFormat;
 import java.util.ArrayList;
 import java.util.Calendar;
+import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
@@ -41,22 +42,22 @@ private PayService payService;
 	@GetMapping("/memberpay.do")
 	public String memberpay(@RequestParam Map<String, String> param,OrdersVo ordersVo,Model model,HttpServletRequest request) {
 
-		String c_idxArr = param.get("c_idxArr");
-		System.out.println(c_idxArr);
+		HttpSession Session = request.getSession();
+		int midx = (int) Session.getAttribute("midx");
 		
 		 List<OrdersVo> orderslist = new ArrayList<>();
 
 		 model.addAttribute("orderslist", orderslist);
-		 
-		HttpSession Session = request.getSession();
-		int midx = (int) Session.getAttribute("midx");
-		
+		 HashMap<String, Object>ProductPriceMap = payService.totalProductPrice(midx);
+
+	
 		ordersVo.setMidx(midx);
 		
 		List<OrdersVo> ordersList = payService.orderpay(ordersVo);
 		
 		model.addAttribute("ordersList",ordersList);
-		
+		model.addAttribute("ProductPriceMap",ProductPriceMap);
+
 		return "member/memberpay";	
 	}
 		//결제 성공 시 주문 및 카트 삭제 
