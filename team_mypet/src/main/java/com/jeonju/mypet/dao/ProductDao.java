@@ -9,6 +9,8 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Repository;
 
 import com.jeonju.mypet.vo.Criteria;
+import com.jeonju.mypet.vo.DetailVo;
+import com.jeonju.mypet.vo.OrdersVo;
 import com.jeonju.mypet.vo.PetVo;
 import com.jeonju.mypet.vo.ProductVo;
 import com.jeonju.mypet.vo.Product_ImgVo;
@@ -86,8 +88,8 @@ public class ProductDao {
 	}
 	
 	//후기작성
-	public ProductVo reviewWrite(int p_idx) {
-		return sqlSession.selectOne(MAPPER + ".reviewWrite",p_idx);
+	public ProductVo getReviewp(int p_idx) {
+		return sqlSession.selectOne(MAPPER + ".getReviewp",p_idx);
 	}
 	
 	//리뷰콘텐츠
@@ -95,11 +97,8 @@ public class ProductDao {
 		return sqlSession.selectOne(MAPPER + ".reviewContent",review_idx);
 	}
 	
-	public int rvInsertProcess(ReviewVo reviewVo) {
-		return sqlSession.insert(MAPPER + ".insertReview",reviewVo);
-	}
-	public ProductVo getReviewp(ProductVo product) {
-		return sqlSession.selectOne(MAPPER + ".getReviewp",product);
+	public int reviewInsert(ReviewVo reviewVo) {
+		return sqlSession.insert(MAPPER + ".reviewInsert",reviewVo);
 	}
 	
 	public List<ProductVo> getspList(int seller_idx) {
@@ -109,15 +108,24 @@ public class ProductDao {
 	public int getspCount(int seller_idx) {
 		return sqlSession.selectOne(MAPPER + ".getspCount",seller_idx);
 	}
+	
 	public List<ProductVo> getcpList(int p_idx) {
 		return sqlSession.selectList(MAPPER + ".getcpList",p_idx);
 	}
+	
 	public int reviewWriteck(int p_idx,int midx) {
 		HashMap<String, Object> map = new HashMap<String, Object>();
 		map.put("p_idx", p_idx);
 		map.put("midx", midx);
 		
 		return sqlSession.selectOne(MAPPER + ".reviewWriteck",map);
+	}
+	public DetailVo odIdx(int p_idx, int midx) {
+		HashMap<String, Object> map = new HashMap<String, Object>();
+		map.put("p_idx", p_idx);
+		map.put("midx", midx);
+		
+		return sqlSession.selectOne(MAPPER + ".odIdx",map);
 	}
 	
 	

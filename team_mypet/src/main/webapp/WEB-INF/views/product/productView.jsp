@@ -568,7 +568,7 @@ padding-bottom: 20px;
 								<tr>
 								<td rowspan="2">
 								<c:if test="${reviewVo.review_img != null}">
-								<img src="${pageContext.request.contextPath}/resources/review/${reviewVo.review_img}" style="width: 200px; height: 150px" alt="리뷰사진"> <!-- 리뷰이미지 -->		
+								<img src="${pageContext.request.contextPath}/resources/review/upload/${reviewVo.review_img}" style="width: 200px; height: 150px" alt="리뷰사진"> <!-- 리뷰이미지 -->		
 								</c:if>
 								<c:if test="${reviewVo.review_img == null}">
 								</c:if>

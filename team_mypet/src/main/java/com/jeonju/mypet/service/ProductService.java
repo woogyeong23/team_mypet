@@ -7,6 +7,8 @@ import org.springframework.stereotype.Service;
 
 import com.jeonju.mypet.dao.ProductDao;
 import com.jeonju.mypet.vo.Criteria;
+import com.jeonju.mypet.vo.DetailVo;
+import com.jeonju.mypet.vo.OrdersVo;
 import com.jeonju.mypet.vo.PetVo;
 import com.jeonju.mypet.vo.ProductVo;
 import com.jeonju.mypet.vo.Product_ImgVo;
@@ -77,8 +79,8 @@ public class ProductService {
 	}
 
 	//후기작성
-	public ProductVo reviewWrite(int p_idx) {
-		return productDao.reviewWrite(p_idx);
+	public ProductVo getReviewp(int p_idx) {
+		return productDao.getReviewp(p_idx);
 	}
 
 
@@ -87,15 +89,9 @@ public class ProductService {
 	}
 
 
-	public int rvInsertProcess(ReviewVo reviewVo) {
-		return productDao.rvInsertProcess(reviewVo);
+	public int reviewInsert(ReviewVo reviewVo) {
+		return productDao.reviewInsert(reviewVo);
 	}
-
-
-	public ProductVo getReviewp(ProductVo product) {
-		return productDao.getReviewp(product);
-	}
-
 
 	
 	//상세뷰 하단 판매자의 다른 상품
@@ -116,6 +112,11 @@ public class ProductService {
 
 	public int reviewWriteck(int p_idx, int midx) {
 		return productDao.reviewWriteck(p_idx, midx);
+	}
+
+
+	public DetailVo odIdx(int p_idx, int midx) {
+		return productDao.odIdx(p_idx, midx);
 	}
 
 

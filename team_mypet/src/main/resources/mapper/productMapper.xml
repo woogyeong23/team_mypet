@@ -97,7 +97,7 @@
 	
 
 	<!-- 리뷰작성화면 -->
-	<select id="reviewWrite" resultType="productVo">
+	<select id="getReviewp" resultType="productVo">
 	select a.p_name, a.p_idx, MIN(p_front_img), c.p_sys_filename
 	from product a join product_img c on a.p_idx=c.p_idx join sellerStory b on a.seller_idx=b.seller_idx
 	where a.p_idx=#{p_idx}
@@ -122,10 +122,10 @@
 	where b.review_idx=#{review_idx};
 	</select>
 	
-	<!-- 후기작성 -->
-	<select id="insertReview" resultType="reviewVo">
-	insert into review (midx, detail_idx,p_idx,orders_idx,review_content,review_stars,review_img,review_nick)
-	values(#{midx},#{detail_idx},#{p_idx},#{orders_idx},#{review_content},#{review_stars},#{review_img},#{review_nick});
+	<!-- 후기insert -->
+	<select id="reviewInsert" resultType="reviewVo">
+	insert into review (midx, detail_idx,p_idx,orders_idx,review_content,review_stars,review_img,review_nick,review_ori_img)
+	values(#{midx},#{detail_idx},#{p_idx},#{orders_idx},#{review_content},#{review_stars},#{review_img},#{review_nick},#{review_ori_img});
 	</select>
 	
 	<!-- 후기작성 상품구매했는지 -->
@@ -137,12 +137,12 @@
 	and b.orders_status=0<!-- 4가 배송완료 -->
 	</select>
 	
-	
-	<!-- 후기컨텐츠 상품정보 -->
-	<select id="getReviewp" resultType="productVo">
-	select *
-	from product
-	where p_idx=#{p_idx}
+	<!-- order_idx/detail_idx 가져오기 -->
+	<select id="odIdx" resultType="detailVo">
+	SELECT p_idx,x.*,y.*
+	from orders x join detail y on x.orders_idx=y.orders_idx join members z on x.midx=z.midx 
+	where x.midx=#{midx} 
+	and y.p_idx=#{p_idx}
 	</select>
 	
 	<!-- 상세페이지 셀러의 상품개수 -->

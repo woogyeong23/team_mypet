@@ -19,6 +19,8 @@ public class ReviewVo {
 	
 	
 	//소현
+	private int detail_idx;
+	
 	private String p_sys_filename;
 	private int pet_idx;
 	private String pet_name;
@@ -27,7 +29,13 @@ public class ReviewVo {
 	private int pet_age;
 	private String m_nick;
 	private String review_ori_img;
-	
+
+	public int getDetail_idx() {
+		return detail_idx;
+	}
+	public void setDetail_idx(int detail_idx) {
+		this.detail_idx = detail_idx;
+	}
 	private int avg_reviews_stars;
 	private String review_nick;
 	
