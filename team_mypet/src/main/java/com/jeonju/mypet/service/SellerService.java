@@ -162,5 +162,30 @@ public class SellerService {
 		// TODO Auto-generated method stub
 		sellerDao.updateSellerIntro(intro);
 	}
+
+	public List<HashMap<String, Object>> seller_orderList(HashMap<String, String> searchInfo) {
+		// TODO Auto-generated method stub
+		return sellerDao.seller_orderList(searchInfo);
+	}
+
+	public void Updatedetail_status(String detail_idx) {
+		// TODO Auto-generated method stub
+		sellerDao.Updatedetail_status(detail_idx);
+	}
+
+	public void insertDetail_Day(String detail_idx) {
+		// TODO Auto-generated method stub
+		 sellerDao.insertDetail_Day(detail_idx);
+	}
+
+	public void ordersModif(HashMap<String, Object> infoMap) {
+		// TODO Auto-generated method stub
+		sellerDao.ordersModif(infoMap);
+	}
+
+	public void detailModif(HashMap<String, Object> infoMap) {
+		// TODO Auto-generated method stub
+		sellerDao.detailModif(infoMap);
+	}
 	
 }

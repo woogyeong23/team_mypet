@@ -463,8 +463,8 @@
 								
 									
 							</table>
-							
-							<input type="button" class="btn btn-light" value="등록" onclick="check();"> 
+							<input type="button"  class="btn btn-light" onclick="history.back(-1)" value="뒤로가기">
+							<input type="button" class="btn btn-light" value="등록하기" onclick="check();"> 
 						</form>
 						
 						

@@ -126,8 +126,8 @@
 	</select>
 	
 	<!-- 주문내역 -->
-	<select id="getSellerOrdersList" resultType="ordersVo">
-		
+<!-- 	<select id="getSellerOrdersList" resultType="ordersVo">
+ -->		<!-- 
 		select orders.*, m_name, m_id, members.midx
 						from orders  join members on orders.midx=members.midx
 						where orders_idx in (select DISTINCT c.orders_idx
@@ -177,7 +177,7 @@
 					and orders.orders_status=#{status}
 				</if>
 			</if>
-		 
+		  -->
 		
 	
 	<!-- 
@@ -185,7 +185,7 @@
 		from (select t.*,  RANK() OVER (PARTITION BY detail_idx ORDER BY detail_status desc) AS num
 				from (	select a.seller_idx, a.p_idx, p_name, b.detail_idx, detail_status, fixprice, orders_day,c.orders_idx, c.midx, d.m_name, d.m_id
 						from product a join detail b on a.p_idx=b.p_idx join orders c on b.orders_idx=c.orders_idx join members d on c.midx=d.midx join detail_day e on b.detail_idx=e.detail_idx
-						where a.seller_idx = (select midx from sellerstory where midx=#{member_id})
+						where a.seller_idx = (select seller_idx from sellerstory where midx=3)
 						order by orders_day desc ) t ) orderlist
 		where num=1
 	
@@ -215,10 +215,10 @@
 					and p_idx=#{product}
 				</otherwise>
 			</choose>
-	-->			
+			
 	</select>
 	
-	<!-- 주문 디테일 출력 -->
+	주문 디테일 출력 
 	<select id="getSellerDetailVoList" resultType="detailVo">
 		select *
 		from (select a.seller_idx, b.fixdvprice, a.p_idx, a.p_name, b.detail_idx, c.detail_status , RANK() OVER (PARTITION BY detail_idx ORDER BY detail_status desc) AS num
@@ -229,20 +229,98 @@
 					
 	</select>
 	
-	<!-- 묶음배송 총가격? -->
+	묶음
 	<select id="getSellerOrdersPrice" resultType="String">
 		select sum(b.fixprice) as bundleprice
 		from orders a join detail b on a.orders_idx=b.orders_idx join product c on b.p_idx=c.p_idx
 		where a.orders_idx=#{orders_idx} and c.seller_idx = (select seller_idx from sellerstory where midx=#{member_id})
 					
 	</select>
+	-->
+	
+	
+	<!-- 주문내역 -->
+	<select id="seller_orderList" resultType="Hashmap">
+	select b.detail_idx, e.midx, a.p_name, b.detail_cnt, e.m_name, e.m_id, e.midx, b.detail_status, a.p_disprice, c.orders_day
+	from product a join detail b on a.p_idx=b.p_idx join orders c on b.orders_idx=c.orders_idx join sellerstory d on a.seller_idx=d.seller_idx join members e on c.midx=e.midx
+	where d.seller_idx = (select seller_idx from sellerstory where midx=#{member_id})
+	
+		<if  test="searching == 'searchTotal'">
+					and (e.m_name like CONCAT('%',#{keyword},'%') or e.m_id like CONCAT('%',#{keyword},'%'))
+			</if>
+			<if  test="searching == 'searchName' ">
+					and e.m_name like  CONCAT('%',#{keyword},'%')
+			</if>
+			<if  test="searching == 'searchEmail' ">
+					and e.m_id like CONCAT('%',#{keyword},'%')
+			</if>
+
+
+			<choose>
+				<when test="status=='00'">
+				</when>
+				<otherwise>
+					and detail_status=#{status}
+				</otherwise>
+			</choose>
+
+			<choose>
+				<when test="product=='00'">
+				</when>
+				<otherwise>
+					and a.p_idx=#{product}
+				</otherwise>
+			</choose>
+	order by c.orders_day
+	</select>
+	
+	<!-- 주문상태 업데이트 -->
+	<select id="Updatedetail_status" >
+		update detail set detail_status=detail_status+1
+		 where detail_idx=#{detail_idx}
+					
+	</select>
+	<!-- 주문데이 삽입 -->
+	<insert id="insertDetail_Day" parameterType="map">
+		
+		insert detail_day( detail_idx,detail_status)
+		values( #{detail_idx}, (select max(detail_status)
+		from detail
+		where detail_idx=#{detail_idx}) )
+
+			
+	</insert>
+	
+	<!-- 배송정보 업데이트 -->
+	<select id="ordersModif" >
+		update orders set  orders_addr1=#{orders_addr1}, orders_addr2=#{orders_addr2}, orders_addr3=#{orders_addr3}, orders_name=#{orders_name},orders_phone=#{orders_phone}
+		 where orders_idx=#{orders_idx}
+					
+	</select>
+	<!-- 요청사항 업데이트 -->
+	<select id="detailModif" >
+		update detail set detail_request=#{detail_request}
+		 where detail_idx=#{detail_idx}
+					
+	</select>
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
 	
 	
 	<select id="getSellerDetailDayListVo" parameterType="string" resultType="detail_dayVo">
 		select *
 		from detail_day
 		where detail_idx=#{detail_idx}
-
+		order by detail_status asc
+		
 	</select>
 	
 	<select id="getSellerRefundDayListVo" parameterType="string" resultType="refund_dayVo">

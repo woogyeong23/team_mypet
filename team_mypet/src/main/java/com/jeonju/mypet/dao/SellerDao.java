@@ -158,6 +158,32 @@ public class SellerDao {
 		// TODO Auto-generated method stub
 		sqlSession.update(MAPPER+".updateSellerIntro", intro);
 	}
+
+
+	public List<HashMap<String, Object>> seller_orderList(HashMap<String, String> searchInfo) {
+		// TODO Auto-generated method stub
+		return sqlSession.selectList(MAPPER + ".seller_orderList", searchInfo);
+	}
+
+	public void Updatedetail_status(String detail_idx) {
+		// TODO Auto-generated method stub
+		sqlSession.update(MAPPER+".Updatedetail_status", detail_idx);
+	}
+
+	public void insertDetail_Day(String detail_idx) {
+		// TODO Auto-generated method stub
+		sqlSession.insert(MAPPER+".insertDetail_Day", detail_idx);
+	}
+
+	public void ordersModif(HashMap<String, Object> infoMap) {
+		// TODO Auto-generated method stub
+		sqlSession.update(MAPPER+".ordersModif", infoMap);
+	}
+
+	public void detailModif(HashMap<String, Object> infoMap) {
+		// TODO Auto-generated method stub
+		sqlSession.update(MAPPER+".detailModif", infoMap);
+	}
 	
 	
 	
