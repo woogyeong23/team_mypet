@@ -72,4 +72,15 @@
 	<select id="getordersList" parameterType="list" resultType="ordersVo">
 	select * from members a left outer join orders b on a.midx = b.midx left outer join detail c on b.orders_idx = c.orders_idx where a.midx = #{midx};
 	</select>
+	
+	
+	<select id="selectMember" resultType="membersVo">
+	select * from members where m_id = #{m_id} and m_phone=#{m_phone}
+	</select>
+	
+	<!-- 패스워드변경 -->
+	<update id = "pwUpdate_M" parameterType="membersVO">
+	update members set m_pwd=#{m_pwd} where email= #{m_id}
+	</update>
+	
 </mapper>

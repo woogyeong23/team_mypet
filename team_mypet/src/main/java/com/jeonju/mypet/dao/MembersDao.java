@@ -92,6 +92,10 @@ public class MembersDao {
 		return sqlSession.selectList(MAPPER+".getordersList", ordersVo);
 	}
 
+	public MembersVo orderList(MembersVo vo) {
+		return sqlSession.selectOne(MAPPER+".orderList", vo);
+	}
+
 
 
 

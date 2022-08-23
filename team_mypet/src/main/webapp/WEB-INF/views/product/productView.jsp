@@ -7,6 +7,9 @@
 <head>
 <script src="http://code.jquery.com/jquery-latest.min.js"></script>
 <script type="text/javascript">
+sessionStorage.setItem("contextpath","${pageContext.request.contextPath}");
+</script>
+<script type="text/javascript">
 
 // 	$(document).ready(function() {
 // 		let p_idx = ${productVo.p_idx}
@@ -293,6 +296,39 @@ function cmButton() {
     });
 } */
 
+/**$("#btn_cart").on("click",function(e){
+		form.p_count = $("#cart_cnt").val();
+		$.ajax({
+			url : "${pageContext.request.contextPath}/member/membercart/insertCart.do", //호출할 url
+			type : 'post', // 호출할 방법(get,post)
+			data : form, //서버로 보낼 데이터
+			success : function(result){ //요청 성공시 수행될 메서드, 파라미터는 서버가 반환하는 값
+				cartAlert(result);
+			},
+		      error: function() {
+		          alert("에러 발생");
+		      }
+		})
+	}); */
+
+$("#imgCheckbox").on("click", function() {
+		let p_idx = ${productView.p_idx}
+      if ( $(this).is(':checked')) {
+    	  $.ajax({
+				type: "post",
+				url: "${pageContext.request.contextPath}/imgCheckbox.do",
+				data: {
+					"p_idx": p_idx
+				},
+				success: function(data){
+					alert("성공");
+				},
+				error: function(error){
+					alert("실패");
+				}
+			})
+      }
+    });
 
 </script>
 
@@ -629,8 +665,8 @@ padding-bottom: 20px;
 						<tr>
 						<td style="width:10%;"><h3 class="title" style="margin-bottom:0px;">구매후기</h3></td>
 						
-						<!-- 후기정렬 -->
-						<!-- <td style="align:left; width: 10%;">
+						 <!-- 후기정렬 -->
+						<td style="align:left; width: 10%;">
 							<select style="border-radius: 5px">
 								<option value="" selected>최신순</option>
 								<option value="">별점낮은순</option>
@@ -639,10 +675,10 @@ padding-bottom: 20px;
 						</td>
 						<td style="align:left;">
 						<div class="form-check">
-						<input class="form-check-input" type="checkbox" value="" id="imgCheckbox">
+						<input class="form-check-input" type="checkbox" id="imgCheckbox" name="imgCheckbox">
 						<label>사진후기만보기</label>
 						</div>
-						</td> -->
+						</td> 
 						
 						<td align="right">
 						<div class="review-button">

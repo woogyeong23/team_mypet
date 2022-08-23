@@ -134,6 +134,9 @@ public class ProductDao {
 	public void starUpdate(int p_idx) {
 		sqlSession.update(MAPPER + ".starUpdate", p_idx);
 	}
+	public List<ReviewVo> imgCheckbox(int p_idx) {
+		return sqlSession.selectList(MAPPER + ".imgCheckbox",p_idx);
+	}
 	
 	
 	

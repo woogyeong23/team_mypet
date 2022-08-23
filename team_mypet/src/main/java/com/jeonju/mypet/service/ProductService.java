@@ -131,6 +131,11 @@ public class ProductService {
 	}
 
 
+	public List<ReviewVo> imgCheckbox(int p_idx) {
+		return productDao.imgCheckbox(p_idx);
+	}
+
+
 
 
 

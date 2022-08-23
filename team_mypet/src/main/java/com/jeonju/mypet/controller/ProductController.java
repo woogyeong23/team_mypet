@@ -102,6 +102,14 @@ public class ProductController {
 		 return "product/productView"; 
 	}
 	
+	@PostMapping("/imgCheckbox.do")
+	public String imgCheckbox(@RequestParam("p_idx") int p_idx, Model model) {
+		
+		List<ReviewVo> reviewList = productService.imgCheckbox(p_idx);
+		 model.addAttribute("reviewList", reviewList);
+		
+		 return "product/productView";
+	}
 	
 	//인기순
 	@GetMapping("/productBest.do")
