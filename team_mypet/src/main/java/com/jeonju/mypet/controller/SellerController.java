@@ -54,7 +54,7 @@ public class SellerController {
 //		long midx = (long) session.getAttribute("midx");
 		
 		String member_id= Integer.toString((int) midx);
-//		String member_id= Integer.toString(midx);
+	//	String member_id= Integer.toString(midx);
 		
 		if(searching == null)
 			searching="searchTotal";

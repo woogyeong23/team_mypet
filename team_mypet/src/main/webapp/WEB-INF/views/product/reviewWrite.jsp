@@ -78,13 +78,13 @@
 			        $('#summernote').summernote(setting);
 			        });
 			        
-			        function uploadSummernoteImageFile(file, el) {
+			        function uploadSummernotervImageFile(file, el) {
 						data = new FormData();
 						data.append("file", file);
 						$.ajax({
 							data : data,
 							type : "POST",
-							url : "uploadSummernoteImageFile",
+							url : "uploadSummernotervImageFile",
 							contentType : false,
 							enctype : 'multipart/form-data',
 							processData : false,
@@ -93,8 +93,13 @@
 							}
 						});
 					}
+<!-- 서머노트를 위해 추가해야할 부분 여기까지 -->	 
+	
+var review_stars = document.querySelector('input[name="reviewStar"]:checked').value;
 			</script>
-	<!-- 서머노트를 위해 추가해야할 부분 여기까지 -->	 
+	
+	
+	
 	
 <style type="text/css">
 #myform fieldset{
@@ -125,14 +130,6 @@
 .section {
     padding-top: 20px;
 }
-input[type="file"] {
-    position: absolute;
-    width: 0;
-    height: 0;
-    padding: 0;
-    overflow: hidden;
-    border: 0;
-}
 #file {
   display: none;
 }
@@ -155,36 +152,39 @@ input[type="file"] {
     
     <center><h2>구매후기 작성</h2></center>
     <br>
+    <form class="mb-3" name="myform" id="myform" method="post" action="${pageContext.request.contextPath}/rvInsertProcess.do" enctype="multipart/form-data">
     <div class="col-lg-12">
-    <form class="mb-3" name="myform" id="myform" method="post">
     <table style="width: 100%;">
     <tr>
     <td style="text-align: left; width: 10%"><img src="${pageContext.request.contextPath}/resources/product/${ReviewWP.p_sys_filename}" alt="상품 이미지" width="100" height="100">
     <td style="font-size: 30px; color: black; font-weight: bold; width: 50%">${ReviewWP.p_name}<br>
-    <span style="font-size: 20px; color: #99ccff; font-weight:600; width: 50%">${ReviewWP.m_nick}</span>
     <td style="text-align: right; ">
     <fieldset>
 	<span class="text-bold">별점을 선택해주세요</span><br>
-    <input type="radio" name="reviewStar" value="5" id="rate1"><label for="rate1">★</label>
-	<input type="radio" name="reviewStar" value="4" id="rate2"><label for="rate2">★</label>
-	<input type="radio" name="reviewStar" value="3" id="rate3"><label for="rate3">★</label>
-	<input type="radio" name="reviewStar" value="2" id="rate4"><label for="rate4">★</label>
-	<input type="radio" name="reviewStar" value="1" id="rate5"><label for="rate5">★</label>
+    <input type="radio" name="review_stars" value="5" id="rate1" checked><label for="rate1">★</label>
+	<input type="radio" name="review_stars" value="4" id="rate2"><label for="rate2">★</label>
+	<input type="radio" name="review_stars" value="3" id="rate3"><label for="rate3">★</label>
+	<input type="radio" name="review_stars" value="2" id="rate4"><label for="rate4">★</label>
+	<input type="radio" name="review_stars" value="1" id="rate5"><label for="rate5">★</label>
 	</fieldset>
 	</td>
     </tr>
     </table>
-    </form>
     </div>
-<form name="frm" action="${pageContext.request.contextPath}/insertReview.do" method="post"  enctype="multipart/form-data">
 		<div style="padding-bottom: 10px">				
-<textarea id="summernote" name="p_content"></textarea>
+<textarea id="summernote" name="review_content"></textarea>
 </div>
+	
+	<input type="hidden" name="p_idx" value="${ReviewWP.p_idx}" id="p_idx"> 
+	<input type="hidden" name="midx" id="midx" value="${midx}">
+    <input type="hidden" name="review_nick" value="${m_nick}">
+    <input type="hidden" name="orders_idx" value="${odIdx.orders_idx}">
+    <input type="hidden" name="detail_idx" value="${odIdx.detail_idx}"> 
+    	
 	<input type="button" value="돌아가기" onclick="javascript:history.back()" style="background-color: grey; color: white; border: none; border-radius: 4px; width: 90px; height: 40px">
 	<input type="submit" value="후기등록" style="background-color: #99ccff; color: white; border: none; width: 90px; height: 40px; border-radius: 4px;">
-	<!-- <label  class="filebtn" for="file">파일 업로드</label>
-	<input multiple="multiple" type="file" name="uploadFile" required="required" id="file" style={{display:"none"}}>
-	 --></form>
+	<input type="file" name="uploadImg"/>	
+	 </form>
 	</div>
 	</section>
 <!-- 푸터와 js************************************************ -->

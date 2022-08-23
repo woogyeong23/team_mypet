@@ -4,21 +4,11 @@
 <html>
 <head>
 <meta charset="UTF-8">
-<title>자주 묻는 질문</title>
+<title>Event List</title>
 <!-- css************************************************ -->
     <jsp:include page="../../include/head.jsp" />  
 <!-- ************************************************ -->
 <style>
-/* ul li{ */
-/* margin: 30px 0px; */
-/* font-size: 18px; */
-/* line-height: normal; */
-/* } */
-
-/* ul{ */
-/* margin-left: 30%; */
-/* } */
-
 ul li summary{
 border-bottom: 1px solid #e6e6e6;
 color:rgba(0,0,0,0.87);
@@ -129,8 +119,8 @@ padding-right:20px;
                    <nav>
                        <ul>
                    			<li><a href="${pageContext.request.contextPath}/Notice">공지사항</a></li>
-                   			<li><a href="${pageContext.request.contextPath}/EventList">이벤트</a></li> 
-                   			<li><a href="#"><span class="cur">자주하는 질문</span></a></li> 
+                   			<li><a href="#"><span class="cur">이벤트</span></a></li> 
+                   			<li><a href="${pageContext.request.contextPath}/MostQuery">자주하는 질문</a></li> 
                    			<li><a href="#">1:1문의</a></li>
                    			<li><a href="#">입점문의</a></li>  
                        </ul>
@@ -139,22 +129,15 @@ padding-right:20px;
            
       <div class="outer">
                     <ul style="margin-top:50px;">
- <li><details>
-<summary>[이벤트/쿠폰/적립금]  적립금은 어떻게 누적하나요?<br><br></summary>
-<p>■ 적립금 누적 방법 안내
-<br>
-<br>
-- 적립금은 마이펫 회원 대상으로 주어지는 혜택입니다.
-<br>
-- 주문 결제 / 후기 작성 / 이벤트 참여 등으로 누적 할 수 있습니다.
-<br>
-<br>
-[참고]
-<br>
-▣ 1원 단위부터 주문서에서 사용 가능 합니다.
-<br>
-▣ 일부 상품의 경우 적립금 미지급품목이므로 구매 시 참고 바랍니다.</p>
-</details> </li>
+<li><b style="display: block;
+    padding-right: 80px;
+    font-size: 18px;
+    font-weight: bold;
+    color:#000000;"><a href="${pageContext.request.contextPath}/EventView">이벤트1111111111</a></b>
+ <span style="    display: block;
+    margin: 2px 0 13px 0;
+    color: rgba(0,0,0,0.56);
+    font-size:15px;">기간 2022.08.02~끝날때까지</span> </li>
 
 <li><details>
 <summary>[포장/배송]  상품은 어떻게 포장되나요?<br><br></summary>
