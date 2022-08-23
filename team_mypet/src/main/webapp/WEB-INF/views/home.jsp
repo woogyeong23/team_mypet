@@ -179,7 +179,7 @@ $(function() {
                     <div class="single-product" style="border:none;">
                     <c:choose>
                     <c:when test="${hv.p_discount != 0}">
-                      <a href="${pageContext.request.contextPath}/productView.do?p_idx=${hv.p_idx}">
+                      <a href="${pageContext.request.contextPath}/productView.do?p_idx=${hv.p_idx}&seller_idx=${hv.seller_idx}">
                         <div class="product-image" style="height: 320px; ">
                             <img style="height:100%" src="${pageContext.request.contextPath}/resources/product/${hv.p_sys_filename}" alt="${hv.p_name}">
 									<span class="sale-tag">-${hv.p_discount}%</span>
@@ -217,7 +217,7 @@ $(function() {
     
                             
                             <h4 class="title">
-                                <a href="${pageContext.request.contextPath}/productView.do?p_idx=${hv.p_idx}">
+                                <a href="${pageContext.request.contextPath}/productView.do?p_idx=${hv.p_idx}&seller_idx=${hv.seller_idx}">
                                 ${hv.p_name}</a>
                             </h4>
                             <ul class="review">
@@ -233,7 +233,7 @@ $(function() {
 								
 							</ul>
                             <div class="price">
-                                  <a href="${pageContext.request.contextPath}/productView.do?p_idx=${hv.p_idx}">
+                                  <a href="${pageContext.request.contextPath}/productView.do?p_idx=${hv.p_idx}&seller_idx=${hv.seller_idx}">
 							  <span style="color:rgb(51, 51, 51);"><fmt:formatNumber value="${hv.p_disprice}" pattern="#,###"/>원</span>
 								<c:if test="${hv.p_discount != 0}">
 									<span class="discount-price"><fmt:formatNumber value="${hv.p_price}" pattern="#,###" />원</span>
@@ -271,7 +271,7 @@ $(function() {
                     <div class="single-product" style="border:none;">
                     <c:choose>
                     <c:when test="${hv.p_discount != 0}">
-                      <a href="${pageContext.request.contextPath}/productView.do?p_idx=${hv.p_idx}">
+                      <a href="${pageContext.request.contextPath}/productView.do?p_idx=${hv.p_idx}&seller_idx=${hv.seller_idx}">
                         <div class="product-image" style="height: 320px; ">
                             <img style="height:100%" src="${pageContext.request.contextPath}/resources/product/${hv.p_sys_filename}" alt="${hv.p_name}">
 									<span class="sale-tag">-${hv.p_discount}%</span>
@@ -279,7 +279,7 @@ $(function() {
                         </a>
                     </c:when>
                     <c:otherwise>
-                      <a href="${pageContext.request.contextPath}/productView.do?p_idx=${hv.p_idx}">
+                      <a href="${pageContext.request.contextPath}/productView.do?p_idx=${hv.p_idx}&seller_idx=${hv.seller_idx}">
                         <div class="product-image" style="height: 320px; width:245px; ">
                             <img style="height:100%" src="${pageContext.request.contextPath}/resources/product/${hv.p_sys_filename}" alt="${hv.p_name}">
                         </div>
@@ -309,7 +309,7 @@ $(function() {
     
                             
                             <h4 class="title">
-                                <a href="${pageContext.request.contextPath}/productView.do?p_idx=${hv.p_idx}">
+                                <a href="${pageContext.request.contextPath}/productView.do?p_idx=${hv.p_idx}&seller_idx=${hv.seller_idx}">
                                 ${hv.p_name}</a>
                             </h4>
                             <ul class="review">
@@ -325,7 +325,7 @@ $(function() {
 								
 							</ul>
                             <div class="price">
-                                  <a href="${pageContext.request.contextPath}/productView.do?p_idx=${hv.p_idx}">
+                                  <a href="${pageContext.request.contextPath}/productView.do?p_idx=${hv.p_idx}&seller_idx=${hv.seller_idx}">
 							  <span style="color:rgb(51, 51, 51);"><fmt:formatNumber value="${hv.p_disprice}" pattern="#,###"/>원</span>
 								<c:if test="${hv.p_discount != 0}">
 									<span class="discount-price"><fmt:formatNumber value="${hv.p_price}" pattern="#,###" />원</span>
@@ -362,7 +362,7 @@ $(function() {
                     <div class="single-product" style="border:none;">
                     <c:choose>
                     <c:when test="${hv.p_discount != 0}">
-                      <a href="${pageContext.request.contextPath}/productView.do?p_idx=${hv.p_idx}">
+                      <a href="${pageContext.request.contextPath}/productView.do?p_idx=${hv.p_idx}&seller_idx=${hv.seller_idx}">
                         <div class="product-image" style="height: 320px; ">
                             <img style="height:100%" src="${pageContext.request.contextPath}/resources/product/${hv.p_sys_filename}" alt="${hv.p_name}">
 									<span class="sale-tag">-${hv.p_discount}%</span>
@@ -370,7 +370,7 @@ $(function() {
                         </a>
                     </c:when>
                     <c:otherwise>
-                      <a href="${pageContext.request.contextPath}/productView.do?p_idx=${hv.p_idx}">
+                      <a href="${pageContext.request.contextPath}/productView.do?p_idx=${hv.p_idx}&seller_idx=${hv.seller_idx}">
                         <div class="product-image" style="height: 320px; width:245px; ">
                             <img style="height:100%" src="${pageContext.request.contextPath}/resources/product/${hv.p_sys_filename}" alt="${hv.p_name}">
                         </div>
@@ -400,7 +400,7 @@ $(function() {
     
                             
                             <h4 class="title">
-                                <a href="${pageContext.request.contextPath}/productView.do?p_idx=${hv.p_idx}">
+                                <a href="${pageContext.request.contextPath}/productView.do?p_idx=${hv.p_idx}&seller_idx=${hv.seller_idx}">
                                 ${hv.p_name}</a>
                             </h4>
                             <ul class="review">
@@ -416,7 +416,7 @@ $(function() {
 								
 							</ul>
                             <div class="price">
-                                  <a href="${pageContext.request.contextPath}/productView.do?p_idx=${hv.p_idx}">
+                                  <a href="${pageContext.request.contextPath}/productView.do?p_idx=${hv.p_idx}&seller_idx=${hv.seller_idx}">
 							  <span style="color:rgb(51, 51, 51);"><fmt:formatNumber value="${hv.p_disprice}" pattern="#,###"/>원</span>
 								<c:if test="${hv.p_discount != 0}">
 									<span class="discount-price"><fmt:formatNumber value="${hv.p_price}" pattern="#,###" />원</span>
@@ -459,7 +459,7 @@ $(function() {
                     <div class="single-product" style="border:none;">
                     <c:choose>
                     <c:when test="${hv.p_discount != 0}">
-                      <a href="${pageContext.request.contextPath}/productView.do?p_idx=${hv.p_idx}">
+                      <a href="${pageContext.request.contextPath}/productView.do?p_idx=${hv.p_idx}&seller_idx=${hv.seller_idx}">
                         <div class="product-image" style="height: 320px; ">
                             <img style="height:100%" src="${pageContext.request.contextPath}/resources/product/${hv.p_sys_filename}" alt="${hv.p_name}">
 									<span class="sale-tag">-${hv.p_discount}%</span>
@@ -467,7 +467,7 @@ $(function() {
                         </a>
                     </c:when>
                     <c:otherwise>
-                      <a href="${pageContext.request.contextPath}/productView.do?p_idx=${hv.p_idx}">
+                      <a href="${pageContext.request.contextPath}/productView.do?p_idx=${hv.p_idx}&seller_idx=${hv.seller_idx}">
                         <div class="product-image" style="height: 320px; width:245px; ">
                             <img style="height:100%" src="${pageContext.request.contextPath}/resources/product/${hv.p_sys_filename}" alt="${hv.p_name}">
                         </div>
@@ -497,7 +497,7 @@ $(function() {
     
                             
                             <h4 class="title">
-                                <a href="${pageContext.request.contextPath}/productView.do?p_idx=${hv.p_idx}">
+                                <a href="${pageContext.request.contextPath}/productView.do?p_idx=${hv.p_idx}&seller_idx=${hv.seller_idx}">
                                 ${hv.p_name}</a>
                             </h4>
                             <ul class="review">
@@ -513,7 +513,7 @@ $(function() {
 								
 							</ul>
                             <div class="price">
-                                  <a href="${pageContext.request.contextPath}/productView.do?p_idx=${hv.p_idx}">
+                                  <a href="${pageContext.request.contextPath}/productView.do?p_idx=${hv.p_idx}&seller_idx=${hv.seller_idx}">
 							  <span style="color:rgb(51, 51, 51);"><fmt:formatNumber value="${hv.p_disprice}" pattern="#,###"/>원</span>
 								<c:if test="${hv.p_discount != 0}">
 									<span class="discount-price"><fmt:formatNumber value="${hv.p_price}" pattern="#,###" />원</span>
@@ -552,7 +552,7 @@ $(function() {
                     <div class="single-product" style="border:none;">
                     <c:choose>
                     <c:when test="${hv.p_discount != 0}">
-                      <a href="${pageContext.request.contextPath}/productView.do?p_idx=${hv.p_idx}">
+                      <a href="${pageContext.request.contextPath}/productView.do?p_idx=${hv.p_idx}&seller_idx=${hv.seller_idx}">
                         <div class="product-image" style="height: 320px; ">
                             <img style="height:100%" src="${pageContext.request.contextPath}/resources/product/${hv.p_sys_filename}" alt="${hv.p_name}">
 									<span class="sale-tag">-${hv.p_discount}%</span>
@@ -560,7 +560,7 @@ $(function() {
                         </a>
                     </c:when>
                     <c:otherwise>
-                      <a href="${pageContext.request.contextPath}/productView.do?p_idx=${hv.p_idx}">
+                      <a href="${pageContext.request.contextPath}/productView.do?p_idx=${hv.p_idx}&seller_idx=${hv.seller_idx}">
                         <div class="product-image" style="height: 320px; width:245px; ">
                             <img style="height:100%" src="${pageContext.request.contextPath}/resources/product/${hv.p_sys_filename}" alt="${hv.p_name}">
                         </div>
@@ -590,7 +590,7 @@ $(function() {
     
                             
                             <h4 class="title">
-                                <a href="${pageContext.request.contextPath}/productView.do?p_idx=${hv.p_idx}">
+                                <a href="${pageContext.request.contextPath}/productView.do?p_idx=${hv.p_idx}&seller_idx=${hv.seller_idx}">
                                 ${hv.p_name}</a>
                             </h4>
                             <ul class="review">
@@ -606,7 +606,7 @@ $(function() {
 								
 							</ul>
                             <div class="price">
-                                  <a href="${pageContext.request.contextPath}/productView.do?p_idx=${hv.p_idx}">
+                                  <a href="${pageContext.request.contextPath}/productView.do?p_idx=${hv.p_idx}&seller_idx=${hv.seller_idx}">
 							  <span style="color:rgb(51, 51, 51);"><fmt:formatNumber value="${hv.p_disprice}" pattern="#,###"/>원</span>
 								<c:if test="${hv.p_discount != 0}">
 									<span class="discount-price"><fmt:formatNumber value="${hv.p_price}" pattern="#,###" />원</span>

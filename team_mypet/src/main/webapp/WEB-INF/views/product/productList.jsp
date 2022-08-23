@@ -275,9 +275,6 @@ list-style: none;
                 </div>
                 <div class="col-lg-6 col-md-6 col-12">
                     <ul class="breadcrumb-nav">
-                       <%--  <li><a href="${pageContext.request.contextPath}/home.do"><i class="lni lni-home"></i> Home</a></li>
-                        <li><a href="#">인기상품</a></li>
-<!--                         <li>Single Product</li> --> --%>
 							<li><a href="${pageContext.request.contextPath}/home.do"><i class="lni lni-home"></i> Home</a></li>
   							<c:if test="${CodeName.categoryLargeName ==null}">
   							<c:if test="${productList.get(0).getP_category_idx() < 7}">
