@@ -147,8 +147,8 @@ public class CommunityController {
 		HttpSession session = request.getSession();
 		
 		if(session.getAttribute("midx") != null ) {
-			int midx = (int)session.getAttribute("midx");
-	//		long midx = (long) session.getAttribute("midx");
+//			int midx = (int)session.getAttribute("midx");
+			long midx = (long) session.getAttribute("midx");
 			
 			Community_likeVo community_likeVo = new Community_likeVo();
 			community_likeVo.setMidx((int) midx);

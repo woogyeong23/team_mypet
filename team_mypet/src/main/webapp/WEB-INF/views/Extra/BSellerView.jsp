@@ -457,7 +457,7 @@ border-radius: 4px;">
                              <c:forEach begin="1" end="${5-rv.review_stars}">
                               <li><i class="lni lni-star"></i></li>
                              </c:forEach>
-                                <li><span>|  ${rv.m_nick}</span></li>
+                                <li><span>|  ${rv.review_nick}</span></li>
                             </ul>
                                <p>${rv.review_content}</p>
                         </div>
