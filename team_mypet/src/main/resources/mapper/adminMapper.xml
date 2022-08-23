@@ -33,7 +33,7 @@
 	</select>
 	
 	
-		<select id="getCommunityList" resultType="communityVo">
+		<select id="getComList" resultType="communityVo">
 		SELECT * FROM community
 		
 	</select>
@@ -46,10 +46,14 @@
 	
 	
 	<update id="updateMemberGrade" parameterType="map" >
-		update members set m_grade= #{m_grade}
+		update members set m_grade= 1
 			where midx = #{midx}
 	</update>
 	
+		<update id="updateMemberGrade0" parameterType="map" >
+		update members set m_grade= 0
+			where midx = #{midx}
+	</update>
 	
 
 	
@@ -109,9 +113,93 @@
     </insert>
 
 
+
+
+	<select id="getBoardListd" resultType="boardVo">
+	SELECT * FROM board where board_name=1 and bidx = #{bidx}
+			
+		
+	
+		
+	</select>
+	
+	
+	
+	
+	
+	<select id="getEventListd" resultType="boardVo">
+	SELECT * FROM board where board_name=2 and bidx = #{bidx}
+			
+		
+	
+		
+	</select>
+	
+	<select id="getMuneListd" resultType="boardVo">
+	SELECT * FROM board where board_name=0 and bidx = #{bidx}
+			
+		
+	
+		
+	</select>
+	
+	
+		<select id="getComListd" resultType="communityVo">
+	SELECT * FROM community where cm_idx = #{cm_idx}
+			
+		
+	
+		
+	</select>
+	
+			<select id="getLaunchListd" resultType="launchVo">
+	SELECT * FROM launch where launch_idx = #{launch_idx}
+			
+		
+	
+		
+	</select>
+	
+	
+
+	
+	
+	
+
+	
+	 <select id="adminmodi" resultType="boardVo">
+    SELECT * FROM board WHERE board_name=1 and bidx = #{bidx}
+</select>
+
+
+
+	 <select id="adminmodi2" resultType="boardVo">
+    SELECT * FROM board WHERE board_name=2 and bidx = #{bidx}
+</select>
+
+
+
+     <update id="Updateadmin" parameterType="boardVo">
+   
+    UPDATE board SET board_subject = #{board_subject}, board_content = #{board_content}
+    WHERE bidx=#{bidx}
+         
+    
+        
+         </update>
+         
+         
+         
+     <update id="Updateadmin2" parameterType="boardVo">
+   
+    UPDATE board SET board_subject = #{board_subject}, board_content = #{board_content}
+    WHERE bidx=#{bidx}
+         
+    
+        
+         </update>
+ 
 </mapper>
-
-
 
 
 

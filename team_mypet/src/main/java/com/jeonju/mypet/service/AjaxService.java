@@ -90,5 +90,8 @@ public class AjaxService {
 	}
 	
 	
-
+	public int updateMemberGrade0(HashMap<String, Integer> map) {
+		// TODO Auto-generated method stub
+		return adminDao.updateMemberGrade0(map);
+	}
 }

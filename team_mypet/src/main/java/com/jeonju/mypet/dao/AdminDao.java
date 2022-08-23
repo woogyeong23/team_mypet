@@ -10,6 +10,7 @@ import org.springframework.stereotype.Repository;
 
 import com.jeonju.mypet.vo.BoardVo;
 import com.jeonju.mypet.vo.CommunityVo;
+import com.jeonju.mypet.vo.LaunchVo;
 import com.jeonju.mypet.vo.MembersVo;
 import com.jeonju.mypet.vo.OrdersVo;
 
@@ -85,30 +86,29 @@ public class AdminDao {
 
 
 
-	public List<CommunityVo> getCommunityList() {
+	public List<CommunityVo> getComList() {
 	
-		return sqlSession.selectList(MAPPER + ".getCommunityList");
+		return sqlSession.selectList(MAPPER + ".getComList");
 	}
 
 
 
-	public List<OrdersVo> getOrdersList() {
+
+
+
+
+	public List<LaunchVo> getLaunchList() {
 		// TODO Auto-generated method stub
-		return sqlSession.selectList(MAPPER + ".getOrdersList");
-	}
-
-
-
-	public List<OrdersVo> getLaunchList() {
-		// TODO Auto-generated method stub
+	
 		return sqlSession.selectList(MAPPER + ".getLaunchList");
+
 	}
 
 
 
 	public int awInsert(BoardVo boardVo) {
 		// TODO Auto-generated method stub
-		System.out.println("dao옴ㅇㅇㅇㅇㅇㅇㅇㅇㅇㅇㅇㅇㅇㅇㅇㅇㅇㅇㅇㅇㅇㅇㅇㅇㅇㅇㅇㅇㅇㅇㅇㅇㅇㅇㅇㅇㅇㅇㅇㅇㅇㅇㅇㅇㅇㅇㅇㅇㅇㅇㅇㅇㅇㅇㅇㅇㅇㅇㅇㅇㅇㅇㅇㅇㅇㅇㅇㅇㅇㅇㅇㅇㅇㅇㅇㅇ" );
+		
 			return sqlSession.insert(MAPPER+".awInsert", boardVo);
 		}
 
@@ -124,6 +124,73 @@ public class AdminDao {
 		// TODO Auto-generated method stub
 		return sqlSession.insert(MAPPER+".awInsert0", boardVo);
 	}
-	
 
+
+
+	public BoardVo getBoardListd(String bidx) {
+		// TODO Auto-generated method stub
+		return sqlSession.selectOne(MAPPER + ".getBoardListd",bidx);
+		}
+
+
+
+	public int updateMemberGrade0(HashMap<String, Integer> map) {
+		// TODO Auto-generated method stub
+		return sqlSession.update(MAPPER+".updateMemberGrade0", map);
+	}
+
+
+
+	public BoardVo adminmodi(String  bidx) {
+		// TODO Auto-generated method stub
+		return sqlSession.selectOne(MAPPER+".adminmodi", bidx);
+	}
+
+
+
+	public int Updateadmin(BoardVo boardVo) {
+		// TODO Auto-generated method stub
+		return sqlSession.update(MAPPER+".Updateadmin", boardVo);
+		}
+
+
+
+	public BoardVo getEventListd(String bidx) {
+		// TODO Auto-generated method stub
+		return sqlSession.selectOne(MAPPER + ".getEventListd",bidx);
+	}
+
+
+
+	public int Updateadmin2(BoardVo boardVo) {
+		// TODO Auto-generated method stub
+		return sqlSession.update(MAPPER+".Updateadmin2", boardVo);
+	}
+
+
+	public BoardVo adminmodi2(String  bidx) {
+		// TODO Auto-generated method stub
+		return sqlSession.selectOne(MAPPER+".adminmodi2", bidx);
+	}
+
+
+
+	public BoardVo getMuneListd(String bidx) {
+		// TODO Auto-generated method stub
+		return sqlSession.selectOne(MAPPER + ".getMuneListd",bidx);
+		}
+
+
+
+	public CommunityVo getComListd(String cm_idx) {
+		// TODO Auto-generated method stub
+		return sqlSession.selectOne(MAPPER + ".getComListd",cm_idx);
+	}
+
+
+
+	public LaunchVo getLaunchListd(String launch_idx) {
+		// TODO Auto-generated method stub
+		return sqlSession.selectOne(MAPPER + ".getLaunchListd",launch_idx);
+	}
 }

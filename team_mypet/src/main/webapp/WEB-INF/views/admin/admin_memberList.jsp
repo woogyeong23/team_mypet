@@ -1,18 +1,69 @@
-<%@ page language="java" contentType="text/html; charset=UTF-8"
-    pageEncoding="UTF-8"%>
-<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>    
+<%@ page contentType="text/html; charset=UTF-8" %>
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
+<%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt"%>
+
 <!DOCTYPE html>
-<html>
+<html class="no-js" lang="zxx">
+
+ 
+
 <head>
-<meta charset="UTF-8">
-<title>구매자 리스트</title>
+   <script type="text/javascript" src="//code.jquery.com/jquery-3.6.0.min.js"></script>
+<!-- css************************************************ -->
+    <jsp:include page="../../include/head.jsp" />
+   <!--  nav sticky -->
+    <style type="text/css">
+    #naver.fixed{
+	position: fixed;
+	left: 0;
+	top: 0;
+	width: 100%;
+	background-color:#FFFFF0
+    }
+    
+     /*  nav sticky */
 
-<script src="http://code.jquery.com/jquery-latest.min.js"></script>
+    
+    .popup{
+   width:100%; 
+   height:40px;
+    margin: 0 auto; 
+   position: relative; 
+   background-color: #D9D7F1;
+    }
+    
+   .popup_in{
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%,-50%);
+    }
+    
+    
+    #popup_close{
+    background-color: #D9D7F1;
+    border: none;
+    float: right;
+    color: #FFFFFF;
+    margin-right: 300px;
+    margin-top:10px;
+    }
+    
+    #popup_link{
+    color: #FFFFFF;
+    }
+ 
+ table {
+    margin:auto; 
+}
 
-	
-
-	<link href = "resources/assets/css/style.css"type="text/css" rel = "stylesheet">
-		
+table, td, th {
+    border-collapse : collapse;
+    border : 1px solid black;
+};
+    
+    </style>
+<!-- ************************************************ -->
 
 
 <script>
@@ -36,7 +87,7 @@
 					if(data == "N"){
 						alert("회원등급 수정 실패!");
 					}else{
-						alert("회원등급 수정 성공!");
+						alert("판매자등업 성공!");
 						$(id_input).attr("disabled", true);
 					}
 				},
@@ -83,112 +134,79 @@
 
 </script>
 
+<script>
+	$(function(){
+		
+		//수정하기 버튼 클릭시 이벤트 처리
+		$(".adminUpdateInfo0").click(function(){
+			
+			let midx = $(this).attr("name");
+			let id_input = "#m_grade"+midx;
+			let m_grade = $(id_input).val();
+			
+			$.ajax({
+				type: "post",
+				url: "${pageContext.request.contextPath}/adminUpdateInfo0.do",
+				data: {
+					"midx": midx,
+					"m_grade": m_grade
+				},
+				success: function(data){
+					if(data == "N"){
+						alert("실패");
+					}else{
+						alert("구매자강등 성공!");
+						$(id_input).attr("disabled", true);
+					}
+				},
+				error: function(error){ alert("미구현"); }
+			});
+			
+		});//end of 수정하기 버튼 클릭시 이벤트 처리
+		
+	});
+
+
+</script>
+
+
 </head>
+
+
+
 <body>
-	
-<header>	
-	
-	
-
-
-
-    <div class = "wrap">
-    <div class = "logo">
-
-
-
-관리자
-
+     <div class="popup" >
+     <div class="popup_in"><a id="popup_link" href="">지금 바로 가입하고 상품을 구입시 
+  <span>아이패드</span> Get!</a></div><button id="popup_close"><i class="lni lni-close"></i></button>
   
-</div>
- <hr/>
-    <nav class = "menu">
-           <ul class ="navi">
-            
-            <li><a href="${pageContext.request.contextPath}/admin_buyer.do">구매자 관리</a>
-           
-            
-
-
-</li>
-
-<li><a href="${pageContext.request.contextPath}/#">판매자 관리</a>
-
-
-</li>
-<li> <a href="${pageContext.request.contextPath}/#">판매량 차트</a>
-
-
-
-   
-
-</li>
-
-
-<li> <a href="${pageContext.request.contextPath}/admin_board.do">공지사항 관리</a>
-
-
- 
-   
-
-
-</li>
-
-
-
-<li> 	<a href="${pageContext.request.contextPath}/admin_board2.do">이벤트 관리</a>
-
-
+     </div>
+<!-- 헤더와 네비************************************************ -->
+    <jsp:include page="../../include/admin_header.jsp" />  
+<!-- ************************************************ -->
     
-   
-
-
-</li>
-
-
-
-<li>	<a href="${pageContext.request.contextPath}/admin_mune.do">1:1문의 사항</a>
-
-
- 
-   
-
-
-</li>
-
-
-
-    </nav>
-
-    </div>
-
-
-</header>
-
-<div class = "bodywrap">
 
   
 
-<table border="1">
-
-
-
-
+	
+<div class = "align-center">
 <h3>회원목록</h3>
 <hr/>
-
+  
 <table border="1px">
 	<tr>
-		<th>회원번호</th><th>이름</th><th>아이디</th><th>비밀번호</th><th>회원등급</th><th>등급수정</th>
-		<th>전화번호</th><th>가입일시</th><th>삭제여부</th><th>삭제요청일</th><th>DB삭제여부</th>
+		<th>회원번호</th><th>이름</th><th>아이디</th><th>등급</th><th>판매자등업</th><th>구매자강등</th>
+		<th>전화번호</th><th>가입일시</th><th>삭제여부</th><th>번호</th><th>DB삭제여부</th>
 	</tr>
 	
 	<c:forEach var="MembersVo" items="${memberList}">
 		<tr>
 			<td>${MembersVo.midx}</td><td>${MembersVo.m_name}</td>
-			<td>${MembersVo.m_id}</td><td>${MembersVo.m_pwd}</td>
-			<td><input type="text" id="m_grade${MembersVo.midx}"  value="${MembersVo.m_grade}" size="5" /></td>
-			<td><button class ="adminUpdateInfo" name="${MembersVo.midx}">수정하기</button></td>
+			<td>${MembersVo.m_id}</td>
+				
+			<td>${MembersVo.m_grade}  </td>	
+			<td><input type="radio" id="m_grade${MembersVo.midx}"  value="${MembersVo.m_grade }" size="5"  class ="adminUpdateInfo" name="${MembersVo.midx}"/>등업</td>	
+	
+			<td><input type="radio" id="m_grade${MembersVo.midx}"  value="${MembersVo.m_grade }" size="5"  class ="adminUpdateInfo0" name="${MembersVo.midx}"/>강등</td>	
 			<td>${MembersVo.m_phone}</td><td>${MembersVo.m_wday}</td>
 			<td>${MembersVo.m_delyn}</td><td>${MembersVo.midx}</td>
 			<td>삭제<input type="checkbox" value="${MembersVo.midx}" /></td>
@@ -201,93 +219,13 @@
 </table> 
 	<a href="${pageContext.request.contextPath}/admin.do">관리자 메인페이지</a>
 	
-
-	
-
-
-
-
-
-
-    
-        <div class ="contents">
-            <ul class ="tabmenu">
-                <li>
-
-                    <div class ="notice">
-                       
-                    </div>
-                  </li>
-                  <li>
-
-                    <div class ="gallery">
-                        
-
-                    </div>
-                  </li>
-
-    </ul>
-
-
-        <div class ="otherwrap">
-            <div class ="banner">
-<form method="get" action="admin_board.do">
-		<select name="searchType">
-			<option value="title" <c:if test="${!empty searchVO.searchType and searchVO.searchType eq 'title'}">selected</c:if>>제목</option>
-			<option value="contentWriter" <c:if test="${!empty searchVO.searchType and searchVO.searchType eq 'contentWriter'}">selected</c:if>>내용+작성자</option>
-		</select>
-		<input type="text" name="searchValue" <c:if test="${!empty searchVO.searchValue}">value="${searchVO.searchValue}"</c:if>>
-		<input type="submit" value="검색">
-	</form>
-           
 </div>
 
-                <div class ="shortcut">
-
-                    
-                
-
-
-</div>
-
-            </div>
-        </div>
-
-
-        
-
-</div>
 	
 
-<footer>
-
-    <div class="wrap">
-    <div class ="btlogo">
-
-     하단 로고 자리
-    </div>
-    
-    <div class="site">
-    <div class ="btmenu">
-        하단 자리
-
-   </div>
 
 
 
-<div class ="copy">
-
-copyright 자리
-
-
-
-</div>
-
-</div>
-
-
-
-</footer>
 
 
 
@@ -296,7 +234,10 @@ copyright 자리
 	
 	
 	
-	
-	
+<!-- 푸터와 js************************************************ -->
+    <jsp:include page="../../include/footer.jsp" />  
 </body>
+
+
+
 </html>

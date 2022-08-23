@@ -53,6 +53,15 @@
     color: #FFFFFF;
     }
  
+  table {
+    margin:auto; 
+}
+
+table, td, th {
+    border-collapse : collapse;
+    border : 1px solid black;
+};
+    
     
     </style>
 <!-- ************************************************ -->
@@ -90,9 +99,6 @@ $(function() {
 	
 </script>
 </head>
-
-
-
 <body>
      <div class="popup" >
      <div class="popup_in"><a id="popup_link" href="">지금 바로 가입하고 상품을 구입시 
@@ -105,50 +111,50 @@ $(function() {
     
     
     
-<!-- 최신순 -->
-    <!-- Start Trending Product Area -->
-    <section class="trending-product section" style="margin-top: 12px;">
-        <div class="container">
-            <div class="row">
-                <div class="col-12">
-                    
-                    
-                    
-                   
-                    
-               
-                    
-                    
-                    
-                    
-                </div>
-            </div>
-        </div>
-    </section>
+
+
+<section class="product-grids section">
+  <div class="container">
+<table class="table table-striped" >
+	<h2>이벤트 디테일</h2>
+	</div>
+
+		<thead>
+		<td><a href="${pageContext.request.contextPath}/admin_modi2.do?bidx=${EventListd.bidx}">수정하기</a></td>
+			<tr>
+				<th>제목</th>
+				<th>내용</th>
+					<th>작성자</th>
+			<th>작성일</th>
+			</tr>
+		</thead>
+		<tbody>
+		
+		
+		
+
+
+		<td>${EventListd.board_subject}</td>
+		<td>${EventListd.board_content}	</td>
+		<td>${EventListd.board_writer}</td>
+		<td>${EventListd.board_wday}</td>
+	
+			
+		</tbody>
+	
+		
+	</table>
+
+
+</div>
+</section>
+
     
-   
 
-	  <div class = "align-center ">
-
-<h1> 관리자 페이지에 오신것을 환영합니다.</h1>
+<br><br><br><br>
 
 
 
-<br>
-<br>
-<br>
-<br>
-<br>
-<br>
-<br>
-<br>
-<br>
-<br>
-
-   </div>
-
-
-<!-- 푸터와 js************************************************ -->
     <jsp:include page="../../include/footer.jsp" />  
 </body>
 

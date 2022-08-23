@@ -5,6 +5,7 @@ import java.io.File;
 import java.io.IOException;
 import java.io.PrintWriter;
 import java.text.SimpleDateFormat;
+import java.util.HashMap;
 import java.util.List;
 
 import javax.servlet.http.HttpServletRequest;
@@ -23,8 +24,10 @@ import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.multipart.MultipartFile;
 
 import com.jeonju.mypet.service.AdminService;
+import com.jeonju.mypet.service.AjaxService;
 import com.jeonju.mypet.vo.BoardVo;
 import com.jeonju.mypet.vo.CommunityVo;
+import com.jeonju.mypet.vo.LaunchVo;
 import com.jeonju.mypet.vo.MembersVo;
 import com.jeonju.mypet.vo.OrdersVo;
 
@@ -61,6 +64,10 @@ public class AdminController {
 	}
 	
 
+	@GetMapping("/admin_panme.do")
+	public String adminpanme() {
+		return "admin/admin_panme";
+	}
 	
 	
 	
@@ -83,8 +90,105 @@ public class AdminController {
 	}
 
 
+	@GetMapping("/admin_boardd.do")
+	public String adminboardd(Model model , String bidx , HttpServletRequest request) {
+		
+		//int a=1;
+		//ProductVo productVo = new ProductVo();
+		
+		
+		
+	    BoardVo BoardListd = adminService.getBoardListd(bidx);
+		
+		
+		
+		model.addAttribute("BoardListd", BoardListd);
+		
+		
+		return "admin/admin_boardd";
+	}
+
 	
-	@GetMapping("/memberList.do")//get방식 요청 처리
+	
+	@GetMapping("/admin_boardd2.do")
+	public String adminboardd2(Model model , String bidx , HttpServletRequest request) {
+		
+		//int a=1;
+		//ProductVo productVo = new ProductVo();
+		
+		
+		
+	    BoardVo EventListd = adminService.getEventListd(bidx);
+		
+		
+		
+		model.addAttribute("EventListd", EventListd);
+		
+		
+		return "admin/admin_boardd2";
+	}
+
+	
+	@GetMapping("/admin_muned.do")
+	public String adminmuned(Model model , String bidx , HttpServletRequest request) {
+		
+		//int a=1;
+		//ProductVo productVo = new ProductVo();
+		
+		
+		
+	    BoardVo MuneListd = adminService.getMuneListd(bidx);
+		
+		
+		
+		model.addAttribute("MuneListd", MuneListd);
+		
+		
+		return "admin/admin_muned";
+	}
+	
+	@GetMapping("/admin_comd.do")
+	public String admincomd(Model model , String cm_idx , HttpServletRequest request) {
+		
+		//int a=1;
+		//ProductVo productVo = new ProductVo();
+		
+		
+		
+		CommunityVo ComListd = adminService.getComListd(cm_idx);
+		
+		
+		
+		model.addAttribute("ComListd", ComListd);
+		
+		
+		return "admin/admin_comd";
+	}
+	
+	
+	
+	@GetMapping("/admin_launchd.do")
+	public String adminlaunchd(Model model , String launch_idx , HttpServletRequest request) {
+		
+		//int a=1;
+		//ProductVo productVo = new ProductVo();
+		
+		
+		
+		LaunchVo LaunchListd = adminService.getLaunchListd(launch_idx);
+		
+		
+		
+		model.addAttribute("LaunchListd", LaunchListd);
+		
+		
+		return "admin/admin_launchd";
+	}
+	
+
+	
+	
+	@GetMapping("/admin_memberList.do")//get방식 요청 처리
 	public String getMembersList(Model model, HttpServletRequest request) {
 		
 		
@@ -103,22 +207,22 @@ public class AdminController {
 	
 
 
-	@GetMapping("/admin_community.do")
-	public String admincommunity(Model model, HttpServletRequest request) {
+	@GetMapping("/admin_com.do")
+	public String admincom(Model model, HttpServletRequest request) {
 		
 		//int a=1;
 		//ProductVo productVo = new ProductVo();
 		
 		
 		
-		List<CommunityVo> CommunityList = adminService.getCommunityList();
+		List<CommunityVo> ComList = adminService.getComList();
 		
 		
 		
-		model.addAttribute("CommunityList", CommunityList);
+		model.addAttribute("ComList", ComList);
 		
 		
-		return "admin/admin_community";
+		return "admin/admin_com";
 	}
 	
 	
@@ -127,18 +231,18 @@ public class AdminController {
 	
 	
 	@GetMapping("/admin_launch.do")
-	public String adminLaunch(Model model, HttpServletRequest request) {
+	public String adminlaunch(Model model, HttpServletRequest request) {
 		
 		//int a=1;
 		//ProductVo productVo = new ProductVo();
 		
 		
 		
-		List<OrdersVo> LaunchList = adminService.getLaunchList();
+		List<LaunchVo> LaunchList = adminService.getLaunchList();
 		
 		
 		
-		model.addAttribute("LaunchList", LaunchList);
+		model.addAttribute("launchList", LaunchList);
 		
 		
 		return "admin/admin_launch";
@@ -148,24 +252,7 @@ public class AdminController {
 	
 	
 	
-	@GetMapping("/admin_orders.do")
-	public String adminOrders(Model model, HttpServletRequest request) {
-		
-		//int a=1;
-		//ProductVo productVo = new ProductVo();
-		
-		
-		
-		List<OrdersVo> OrdersList = adminService.getOrdersList();
-		
-		
-		
-		model.addAttribute("OrdersList", OrdersList);
-		
-		
-		return "admin/admin_orders";
-	}
-	
+
 	
 	
 	
@@ -413,6 +500,140 @@ public String AWInsertProcess0(@RequestParam("board_subject") String board_subje
 
 			return viewPage;
 }
+
+
+
+
+
+
+@GetMapping("/admin_modi.do")
+public String adminmodi(String bidx, Model model) {
+	System.out.println("**************************************");
+	System.out.println(bidx);
+	
+	BoardVo boardVo = adminService.adminmodi(bidx);
+	System.out.println(boardVo.getBoard_content());
+	model.addAttribute("boardVo", boardVo);
+	
+	return "admin/admin_modi";
+			
 }
+
+@PostMapping("/adminmodiProcess.do")
+public String adminmodiProcess(@RequestParam("board_subject") String board_subject,
+		
+		@RequestParam("board_content") String board_content, 
+		@RequestParam("bidx") int bidx,
+         Model model, HttpServletRequest request) 
+				throws IllegalStateException, IOException{
+	
+	
+	
+	
+	BoardVo boardVo = new BoardVo();
+	boardVo.setBoard_subject(board_subject);
+	boardVo.setBoard_content(board_content);
+	
+	boardVo.setBidx(bidx);
+
+	
+	
+	
+	int result = 0;
+	result=adminService.Updateadmin(boardVo);
+
+
+	
+
+	
+
+	
+	//upload 디렉토리에 대한 실제 경로 확인을 위해 ServletContext객체를 이용
+	
+	
+
+
+	
+	
+	//지정된 경로에 파일 저장
+			//realPath와 system_fileName을 합쳐서 전체경로를 얻어야 함
+		
+	
+
+
+	
+	 
+	return "redirect:/admin_board.do";
+}
+
+
+
+@GetMapping("/admin_modi2.do")
+public String adminmodi2(String bidx, Model model) {
+	System.out.println("**************************************");
+	System.out.println(bidx);
+	
+	BoardVo boardVo = adminService.adminmodi2(bidx);
+	System.out.println(boardVo.getBoard_content());
+	model.addAttribute("boardVo", boardVo);
+	
+	return "admin/admin_modi2";
+			
+}
+
+@PostMapping("/adminmodiProcess2.do")
+public String adminmodiProcess2(@RequestParam("board_subject") String board_subject,
+		
+		@RequestParam("board_content") String board_content, 
+		@RequestParam("bidx") int bidx,
+         Model model, HttpServletRequest request) 
+				throws IllegalStateException, IOException{
+	
+	
+	
+	
+	BoardVo boardVo = new BoardVo();
+	boardVo.setBoard_subject(board_subject);
+	boardVo.setBoard_content(board_content);
+	
+	boardVo.setBidx(bidx);
+
+	
+	
+	
+	int result = 0;
+	result=adminService.Updateadmin2(boardVo);
+
+
+	
+
+	
+
+	
+	//upload 디렉토리에 대한 실제 경로 확인을 위해 ServletContext객체를 이용
+	
+	
+
+
+	
+	
+	//지정된 경로에 파일 저장
+			//realPath와 system_fileName을 합쳐서 전체경로를 얻어야 함
+		
+	
+
+
+	
+	 
+	return "redirect:/admin_board2.do";
+}
+
+
+	}
+
+
+
+
+
 
 

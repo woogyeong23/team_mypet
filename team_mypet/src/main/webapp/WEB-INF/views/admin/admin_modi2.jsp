@@ -1,7 +1,3 @@
-
- 
-   
-
 <%@ page contentType="text/html; charset=UTF-8" %>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt"%>
@@ -183,9 +179,7 @@ function uploadSummernoteImageFile(file, el) {
 
 
 </head>
-
-
-
+</head>
 <body>
      <div class="popup" >
      <div class="popup_in"><a id="popup_link" href="">지금 바로 가입하고 상품을 구입시 
@@ -218,55 +212,36 @@ function uploadSummernoteImageFile(file, el) {
             </div>
         </div>
     </section>
-
-
-
-    <div class ="contents">
-    <div class = "write">
-
-<h3 style="text-align:center">1대1문의 글 작성</h3>
-<form action="${pageContext.request.contextPath}/AWInsertProcess0.do" method="post" enctype="multipart/form-data">
+    
+<h3 style="text-align:center">이벤트 수정하기</h3>
+<form action="${pageContext.request.contextPath}/adminmodiProcess2.do" method="post" enctype="multipart/form-data">
 	<table border="1px" align="center">
 			<tr>
 				<td>제목</td>
-				<td><textarea rows="1" cols="50" name="board_subject" id="board_subject"></textarea></td>
+				<td><textarea rows="1" cols="50" name="board_subject">${boardVo.board_subject}</textarea></td>
 			</tr>
-			<tr>
-			    <td>파일</td>
-				<td><input type="file" name="uploadImg" multiple/></td>
-			</tr>
-			<tr>
+		
+			
 			<td>내용</td>
-			<td><textarea id="summernote" name="board_content"></textarea>
-                <input type="hidden" name="midx" id="midx" value="${midx}">
-                <input type="hidden" name="board_writer" value="${m_nick}"></td>
+			<td><textarea id="summernote" name="board_content" >${boardVo.board_content}</textarea>
+                <input type="text" name="boardVo_writer" value="${boardVo.board_writer}">
+                <input type="hidden" name="bidx" value="${boardVo.bidx}"></td>
 			</tr>
 			<tr>
 				<td colspan="2" align="center">
 					<input type="button" value="메인페이지" onclick="document.location.href='${pageContext.request.contextPath}/admin.do'"/>&nbsp;|&nbsp;
-					<input type="submit"  value="등록하기"/>
-				
+					<input type="submit" value="저장하기 "/>
 				</td>
 			</tr>
 		</table>
 
 </form>
 
-</div>
-</div>
- 	
-<br><br>
-<br><br><br><br><br><br><br>
+<br><br><br>
+<br><br><br>
 
-
-
-
-
-	
 <!-- 푸터와 js************************************************ -->
     <jsp:include page="../../include/footer.jsp" />  
 </body>
 
 </html>
-
- 

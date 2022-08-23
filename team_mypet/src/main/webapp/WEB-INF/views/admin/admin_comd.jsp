@@ -53,6 +53,15 @@
     color: #FFFFFF;
     }
  
+  table {
+    margin:auto; 
+}
+
+table, td, th {
+    border-collapse : collapse;
+    border : 1px solid black;
+};
+    
     
     </style>
 <!-- ************************************************ -->
@@ -90,9 +99,6 @@ $(function() {
 	
 </script>
 </head>
-
-
-
 <body>
      <div class="popup" >
      <div class="popup_in"><a id="popup_link" href="">지금 바로 가입하고 상품을 구입시 
@@ -105,50 +111,51 @@ $(function() {
     
     
     
-<!-- 최신순 -->
-    <!-- Start Trending Product Area -->
-    <section class="trending-product section" style="margin-top: 12px;">
-        <div class="container">
-            <div class="row">
-                <div class="col-12">
-                    
-                    
-                    
-                   
-                    
-               
-                    
-                    
-                    
-                    
-                </div>
-            </div>
-        </div>
-    </section>
+
+
+<section class="product-grids section">
+  <div class="container">
+<table class="table table-striped" >
+	<h2>커뮤니티 글 디테일</h2>
+	</div>
+
+		<thead>
+	
+			<tr>
+			<th>번호</th>
+				<th>제목</th>
+				<th>내용</th>
+					<th>작성자</th>
+			<th>작성일</th>
+			</tr>
+		</thead>
+		<tbody>
+		
+		
+		
+
+	<td>${ComListd.cm_idx}</td>
+		<td>${ComListd.cm_subject}</td>
+		<td>${ComListd.cm_content}	</td>
+		<td>${ComListd.cm_writer}</td>
+		<td>${ComListd.cm_wday}</td>
+	
+			
+		</tbody>
+	
+		
+	</table>
+
+
+</div>
+</section>
+
     
-   
 
-	  <div class = "align-center ">
-
-<h1> 관리자 페이지에 오신것을 환영합니다.</h1>
+<br><br><br><br>
 
 
 
-<br>
-<br>
-<br>
-<br>
-<br>
-<br>
-<br>
-<br>
-<br>
-<br>
-
-   </div>
-
-
-<!-- 푸터와 js************************************************ -->
     <jsp:include page="../../include/footer.jsp" />  
 </body>
 

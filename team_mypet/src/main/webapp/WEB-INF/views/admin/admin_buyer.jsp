@@ -1,158 +1,163 @@
+
+
 <%@ page contentType="text/html; charset=UTF-8" %>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
-<html>
-<head>
-	<title>관리자페이지</title>
-	
-	
-<script src ="resources/assets/js/jquery-1.12.3.js"></script>
-	<script src ="resources/assets/js/script.js"defer type ="text/javascript"></script>
-	
+<%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt"%>
 
-	<link href = "resources/assets/css/style.css"type="text/css" rel = "stylesheet">
-		
-		
-	
-</head>
-<body>
-
-
-
-	
-<header>	
-	
-	
-
-
-
-    <div class = "wrap">
-    <div class = "logo">
-
-
-
- <li><a href="${pageContext.request.contextPath}/admin.do">관리자</a> </li>
-
-  
-</div>
- <hr/>
-    <nav class = "menu">
-           <ul class ="navi">
-            
-            <li><a href="${pageContext.request.contextPath}/admin_buyer.do">구매자 관리</a>
-           
-            
-
-
-</li>
-
-<li><a href="${pageContext.request.contextPath}/#">판매자 관리</a>
-
-
-</li>
-<li> <a href="${pageContext.request.contextPath}/#">판매량 차트</a>
-
-
-
-   
-
-</li>
-
-
-<li> <a href="${pageContext.request.contextPath}/admin_board.do">공지사항 관리</a>
-
+<!DOCTYPE html>
+<html class="no-js" lang="zxx">
 
  
+
+<head>
    
+<!-- css************************************************ -->
+    <jsp:include page="../../include/head.jsp" />
+   <!--  nav sticky -->
+    <style type="text/css">
+    #naver.fixed{
+	position: fixed;
+	left: 0;
+	top: 0;
+	width: 100%;
+	background-color:#FFFFF0
+    }
+    
+     /*  nav sticky */
 
-
-</li>
-
-
-
-<li> 	<a href="${pageContext.request.contextPath}/admin_board2.do">이벤트 관리</a>
+    
+    .popup{
+   width:100%; 
+   height:40px;
+    margin: 0 auto; 
+   position: relative; 
+   background-color: #D9D7F1;
+    }
+    
+   .popup_in{
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%,-50%);
+    }
+    
+    
+    #popup_close{
+    background-color: #D9D7F1;
+    border: none;
+    float: right;
+    color: #FFFFFF;
+    margin-right: 300px;
+    margin-top:10px;
+    }
+    
+    #popup_link{
+    color: #FFFFFF;
+    }
+    
 
 
     
-   
+    </style>
+<!-- ************************************************ -->
+
+<script type="text/javascript" src="//code.jquery.com/jquery-3.6.0.min.js"></script>
+<script type="text/javascript">
+
+$(function() {
+	  //nav
+	  var lnb = $("#naver").offset().top;
+	 
+	  $(window).scroll(function() {
+	   
+	    var window = $(this).scrollTop();
+	    
+	    if(lnb <= window) {
+	      $("#naver").addClass("fixed");
+	    }else{
+	      $("#naver").removeClass("fixed");
+	    }
+	  });
+	  //nav
+	  
+	  
+	  
+	  
+	  // topbar event popup 지우기
+	  $('#popup_close').click(function(){
+	        $('.popup').stop().slideUp()
+	    });
+	    
+	});
+	
+	
+	
+</script>
+</head>
 
 
-</li>
+</head>
+<body>
+     <div class="popup" >
+     <div class="popup_in"><a id="popup_link" href="">지금 바로 가입하고 상품을 구입시 
+  <span>아이패드</span> Get!</a></div><button id="popup_close"><i class="lni lni-close"></i></button>
+  
+     </div>
+<!-- 헤더와 네비************************************************ -->
+    <jsp:include page="../../include/admin_header.jsp" />  
+<!-- ************************************************ -->
 
 
 
-<li>	<a href="${pageContext.request.contextPath}/admin_mune.do">1:1문의 사항</a>
-
-
- 
-   
-
-
-</li>
 
 
 
-    </nav>
-
-    </div>
-
-
-</header>
-
-<div class = "bodywrap">
-<div class = "imgslide">
-
-
-<div class = "aa">
-
-                       
+  
            
 				
 				
 				
-		
-             
-<li><a href="${pageContext.request.contextPath}/memberList.do">구매자 리스트</a></li>
+		  <div class = "align-center ">
+           <br>    <br>    
+<li><a href="${pageContext.request.contextPath}/admin.memberList.do">구매자 리스트</a></li>
 <br>
 
 
 	
-를 볼 수 있는
-페이지입니다. <br>
+ <br>
        </div>
        
   
        
        
-       <div class = "bb">
+       <div class = "align-center ">
 
  <li><a href="${pageContext.request.contextPath}/admin_buyer.do">커뮤니티 글</a></li>
  
  <br>
  
  
-을 볼 수 있는
-페이지입니다. <br>
+ <br>
 
 
 
      </div>
      
-         <div class = "cc">
+         <div class = "align-center ">
 <li><a href="${pageContext.request.contextPath}/admin_buyer.do">주문 내역</a>  </li>
 <br>
 
 
 
 
-을 볼 수 있는
-페이지입니다. <br>
+ <br>
 
 </div>
 
 
 
 
-<div class = "dd">
+<div class = "align-center ">
 
 <li><a href="${pageContext.request.contextPath}/admin_buyer.do">고객문의 내역</a>  </li>
 <br>
@@ -160,36 +165,33 @@
 
 
 
-을 볼 수 있는
-페이지입니다. <br>
+ <br>
 
 
 </div>
 
 
 
-<div class = "ee">
+<div class = "align-center ">
              <li><a href="${pageContext.request.contextPath}/admin_buyer.do">후기</a> </li>
              
             
     
      <br>
              
-를볼 수 있는
-페이지입니다. <br>
+<br>
              
           </div>      
                  
              
-             <div class = "ff">
+             <div class = "align-center ">
 <li><a href="${pageContext.request.contextPath}/admin_buyer.do">입점신청</a>  </li>
 <br>
 
 
 
 
-글을 볼 수 있는
-페이지입니다. <br>
+ <br>
 
 
 
@@ -197,75 +199,39 @@
 </div>
 
 
-    <div class ="contents">
-  
-        
-            <ul class ="tabmenu">
-                <li>
-
-                    <div class ="notice">
-                       
-                    </div>
-                  
-                  <li>
-
-                    <div class ="gallery">
-                         
-                    </div>
-                  
-
-    </ul>
-
-
-        <div class ="otherwrap">
-            <div class ="banner">
-
-           
-</div>
-
-                <div class ="shortcut">
-
-     
+       
+<!-- 최신순 -->
+    <!-- Start Trending Product Area -->
+    <section class="trending-product section" style="margin-top: 12px;">
+        <div class="container">
+            <div class="row">
+                <div class="col-12">
+                    
+                    
+                    
+                   
+                    
+               
+                    
+                    
+                    
+                    
+                </div>
             </div>
         </div>
-
-
-        
-
-</div>
-
-
-
-<footer>
-
-    <div class="wrap">
-    <div class ="btlogo">
-
-     하단 로고 자리
-    </div>
+    </section>
     
-    <div class="site">
-    <div class ="btmenu">
-        하단 자리
-
-   </div>
+    
 
 
 
-<div class ="copy">
- 
 
 
-</div>
-
-</div>
+   
 
 
-
-</footer>
-
-
-	
-
+<!-- 푸터와 js************************************************ -->
+    <jsp:include page="../../include/footer.jsp" />  
 </body>
+
 </html>
