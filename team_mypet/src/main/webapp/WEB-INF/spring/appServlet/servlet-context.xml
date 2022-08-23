@@ -46,6 +46,7 @@
 			<exclude-mapping path="/idfindProcess.do"/>
 			<exclude-mapping path="/pw_auth.do"/>
 			<exclude-mapping path="/pw_new.do"/>
+			<exclude-mapping path="/pw_set.do"/>
 			<exclude-mapping path="/pwdfind.do"/>			
 			<exclude-mapping path="/joinKakao.do"/>
 			<exclude-mapping path="/joinEm.do"/>

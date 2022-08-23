@@ -32,7 +32,10 @@ import com.jeonju.mypet.vo.PetVo;
 public class MembersController {
 	
 	private MembersService membersService;
+	
+	@Autowired
 	private JavaMailSenderImpl mailSender;
+	
 	
 	@Autowired //자동 의존 주입: 생성자 방식
 	public MembersController(MembersService membersService) {
@@ -164,7 +167,7 @@ public class MembersController {
 
 			MembersVo vo = membersService.selectMember(m_id);
 			
-				System.out.println("아이디+폰 : "+m_id + m_phone);
+			System.out.println("아이디+폰 : "+m_id + m_phone);
 				
 			if(vo != null) {
 			Random r = new Random();
@@ -176,7 +179,7 @@ public class MembersController {
 			if (vo.getM_phone().equals(m_phone)) {
 				session.setAttribute("m_id", vo.getM_id());
 
-				String setfrom = "mypet@naver.com";
+				String setfrom = "sosos27@naver.com";
 				String tomail = m_id; //받는사람
 				String title = "[마이펫] 비밀번호변경 인증 이메일 입니다"; 
 				String content = System.getProperty("line.separator") + "안녕하세요 회원님" + System.getProperty("line.separator")
@@ -186,15 +189,18 @@ public class MembersController {
 					MimeMessage message = mailSender.createMimeMessage();
 					MimeMessageHelper messageHelper = new MimeMessageHelper(message, true, "utf-8");
 
+					System.out.println("센더"+mailSender.getPort());
+					
 					messageHelper.setFrom(setfrom); 
 					messageHelper.setTo(tomail); 
 					messageHelper.setSubject(title);
-					messageHelper.setText(content); 
+					messageHelper.setText(content,true); 
 
 					mailSender.send(message);
 					
 				} catch (Exception e) {
-					System.out.println("메세지"+e.getMessage());
+					System.out.println("메"+e.getMessage());
+					e.printStackTrace();
 				}
 
 				ModelAndView mv = new ModelAndView();
@@ -215,7 +221,14 @@ public class MembersController {
 		}
 		
 		@PostMapping("/pw_new.do")
-		public String pw_new(MembersVo vo, HttpSession session) throws IOException{
+		public String pw_new(MembersVo vo, HttpSession session) throws IOException, NoSuchAlgorithmException{
+			
+			String pwd = vo.getM_pwd();
+			EncryptPwd encryptPwd = new EncryptPwd(pwd);
+			pwd = encryptPwd.getPwd();
+	
+			vo.setM_pwd(pwd);
+	
 			int result = membersService.pwUpdate_M(vo);
 			
 			if(result == 1) {

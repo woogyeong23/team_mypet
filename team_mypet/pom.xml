@@ -64,10 +64,6 @@
 			<version>1.2.15</version>
 			<exclusions>
 				<exclusion>
-					<groupId>javax.mail</groupId>
-					<artifactId>mail</artifactId>
-				</exclusion>
-				<exclusion>
 					<groupId>javax.jms</groupId>
 					<artifactId>jms</artifactId>
 				</exclusion>
@@ -206,16 +202,17 @@
 		    </dependency>
 		    
 		    <!-- mail -->
+		    <!-- https://mvnrepository.com/artifact/javax.mail/javax.mail-api -->
     		<dependency>
     			<groupId>javax.mail</groupId>
     			<artifactId>mail</artifactId>
-   				<version>1.4.7</version>
+    			<version>1.4.7</version>
 			</dependency>
-			
+			<!-- https://mvnrepository.com/artifact/org.springframework/spring-context-support -->
 			<dependency>
-				<groupId>org.springframework</groupId>
-				<artifactId>spring-context-support</artifactId>
-				<version>4.1.0.RELEASE</version>
+ 				<groupId>org.springframework</groupId>
+ 				<artifactId>spring-context-support</artifactId>
+ 				<version>${org.springframework-version}</version>
 			</dependency>
 			
 	</dependencies>
