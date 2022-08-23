@@ -112,9 +112,9 @@ $(function() {
     
     
 
-
-<table border="1">
-      <div class = "align-center">
+<section class="product-grids section">
+  <div class="container">
+<table class="table table-striped" >
 	<h2>입점신청</h2>
 	</div>
 
@@ -155,6 +155,8 @@ $(function() {
 	</table>
 
 
+</div>
+</section>
 
 
     

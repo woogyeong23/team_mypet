@@ -110,16 +110,20 @@ $(function() {
 <!-- ************************************************ -->
     
     
-    
+<section class="product-grids section">
+	
+		<div class="container">
+		
+	
 
-
-<table border="1">
-      <div class = "align-center">
-	<h2>공지사항</h2>
-	</div>
-
+<h2>공지사항</h2>
+<br>
+<table class="table table-striped" >
+     
+	
+	
 		<thead>
-		<td><a href="${pageContext.request.contextPath}/admin_write.do">글쓰기</a></td>
+				<td><a href="${pageContext.request.contextPath}/admin_write.do">글쓰기</a></td>
 			<tr>
 				
 				<th>제목</th>
@@ -129,7 +133,7 @@ $(function() {
 		<tbody>
 			<c:if test="${BoardList.size() == 0 }">
 				<tr>
-					<td colspan="4">등록 된 게시글이 없습니다.</td>
+					<td colspan="2">등록 된 게시글이 없습니다.</td>
 				</tr>
 			</c:if>
 			<c:if test="${BoardList.size() > 0}">
@@ -155,9 +159,9 @@ $(function() {
 	</table>
 
 
+</div> 
 
-
-
+</section>
     
 
 <br><br><br><br>

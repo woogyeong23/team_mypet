@@ -227,7 +227,7 @@
                                     <ul class="sub-menu collapse" id="submenu-1-2">
               			                    <li class="nav-item"><a href="admin_memberList.do">구매자 리스트</a></li>
                                          	<li class="nav-item"><a href="admin_com.do">커뮤니티 글</a></li>
-                                            <li class="nav-item"><a href="#">후기</a></li>
+                                        
                                          <li class="nav-item"><a href="admin_launch.do">입점신청</a></li>
                                            
                                         </ul>
@@ -238,13 +238,7 @@
                                 
                                     
                                     
-                                         <ul class="sub-menu collapse" id="submenu-1-3">
-              			                   
-                                            <li class="nav-item"><a href="#">고객문의 내역</a></li>
-                                            <li class="nav-item"><a href="#">후기</a></li>
-                                      
-                                           
-                                        </ul>
+                                     
                                     </li>
                                   <li class="nav-item">
                                         <a href="admin_panme.do" aria-label="Toggle navigation">판매량차트</a>

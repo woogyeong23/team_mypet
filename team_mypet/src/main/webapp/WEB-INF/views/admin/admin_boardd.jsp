@@ -111,12 +111,12 @@ $(function() {
     
     
     
-
-
-<table border="1">
-      <div class = "align-center">
+<section class="product-grids section">
+  <div class="container">
+<table class="table table-striped" >
+  
 	<h2>공지사항 디테일</h2>
-	</div>
+
 
 		<thead>
 		<td><a href="${pageContext.request.contextPath}/admin_modi.do?bidx=${BoardListd.bidx}">수정하기</a></td>
@@ -144,8 +144,8 @@ $(function() {
 		
 	</table>
 
-
-
+</div>
+</section>
 
 
     

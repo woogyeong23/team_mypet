@@ -113,8 +113,9 @@ $(function() {
     
 
 
-<table border="1">
-      <div class = "align-center">
+<section class="product-grids section">
+  <div class="container">
+<table class="table table-striped" >
 	<h2>커뮤니티 글 디테일</h2>
 	</div>
 
@@ -146,8 +147,8 @@ $(function() {
 	</table>
 
 
-
-
+</div>
+</section>
 
     
 

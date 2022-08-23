@@ -112,14 +112,14 @@ $(function() {
     
 
 
-
-<table border="1">
-      <div class = "align-center">
-	<h2>이벤트</h2>
+<section class="product-grids section">
+  <div class="container">
+<table class="table table-striped" >
+	<h2>1대1 문의사항</h2>
 	</div>
 
 		<thead>
-		<td><a href="${pageContext.request.contextPath}/admin_write2.do">글쓰기</a></td>
+		
 			<tr>
 				
 				<th>제목</th>
@@ -154,6 +154,8 @@ $(function() {
 		
 	</table>
 
+</div>
+</section>
 
 
     
