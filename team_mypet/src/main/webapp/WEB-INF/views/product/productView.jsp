@@ -87,11 +87,11 @@
 	}
 	
 	
-	
+	/*
 	
 	/*
 	 * 댓글 등록하기(Ajax)
-	 */
+	 *//* 
 	function fn_comment(code){
 	    
 	    $.ajax({
@@ -114,7 +114,7 @@
 	 
 	/**
 	 * 초기 페이지 로딩시 댓글 불러오기
-	 */
+	 
 	$(function(){
 	    
 	    getCommentList();
@@ -123,7 +123,7 @@
 	 
 	/**
 	 * 댓글 불러오기(Ajax)
-	 */
+	 
 	function getCommentList(){
 	    
 	    $.ajax({
@@ -165,7 +165,7 @@
 	       }
 	        
 	    });
-	}
+	} */
 </script>
 
 
@@ -472,7 +472,7 @@ padding-bottom: 20px;
 					<div class="product-info">
 						<table style="width: 100%; margin: 0px 0px 20px;">
 							<tr>
-								<td><h4 class="seller">${productView.m_nick}>></h4></td>
+								<td><h4 class="seller"><a href="${pageContext.request.contextPath}/BSellerView.do?seller_idx=${productView.seller_idx}">${productView.m_nick}>></a></h4></td>
 								<td style="text-align: right; "><button class="chat-button">판매자와채팅</button></td>
 							</tr>
 						</table>
@@ -552,7 +552,7 @@ padding-bottom: 20px;
 						
 								<div class="col-lg-4 col-md-4 col-12">
 									<div class="order-button">
-										<button class="btn" onclick = "location.href = '${pageContext.request.contextPath}/memberpay.do'">구매하기</button> <!-- button의 기본 타입은 submit이므로 submit 버튼이 아니라면 type="button"을 따로 지정해줘야함 -->
+										<button type="button" class="btn" onclick ="location.href = '${pageContext.request.contextPath}/memberpay.do'">구매하기</button> <!-- button의 기본 타입은 submit이므로 submit 버튼이 아니라면 type="button"을 따로 지정해줘야함 -->
 									</div>
 								</div>
 								<div class="col-lg-4 col-md-4 col-12">
@@ -630,7 +630,7 @@ padding-bottom: 20px;
 						<td style="width:10%;"><h3 class="title" style="margin-bottom:0px;">구매후기</h3></td>
 						
 						<!-- 후기정렬 -->
-						<td style="align:left; width: 10%;">
+						<!-- <td style="align:left; width: 10%;">
 							<select style="border-radius: 5px">
 								<option value="" selected>최신순</option>
 								<option value="">별점낮은순</option>
@@ -642,7 +642,8 @@ padding-bottom: 20px;
 						<input class="form-check-input" type="checkbox" value="" id="imgCheckbox">
 						<label>사진후기만보기</label>
 						</div>
-						</td>
+						</td> -->
+						
 						<td align="right">
 						<div class="review-button">
 							<a href="reviewWriteck.do?p_idx=${productView.p_idx}"><button type="button" class="btn" id="reviewWritebtn" style="width: 100px; height:40px">리뷰작성</button></a>
