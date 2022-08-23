@@ -32,8 +32,30 @@ public class CartVo {
 	private int totalPrice;
 	private int totalPoint;
 
+	private int seller_idx;
+	private int c_price;
+	private int p_free_dvprice;
+	private int p_dvprice;
 	
 	
+	public int getP_free_dvprice() {
+		return p_free_dvprice;
+	}
+	public void setP_free_dvprice(int p_free_dvprice) {
+		this.p_free_dvprice = p_free_dvprice;
+	}
+	public int getP_dvprice() {
+		return p_dvprice;
+	}
+	public void setP_dvprice(int p_dvprice) {
+		this.p_dvprice = p_dvprice;
+	}
+	public int getC_price() {
+		return c_price;
+	}
+	public void setC_price(int c_price) {
+		this.c_price = c_price;
+	}
 	public String getP_content() {
 		return p_content;
 	}
@@ -159,6 +181,12 @@ public class CartVo {
 				"p_name="+p_name+"p_content="+p_content+"p_price="+p_price+"p_sys_filename"+p_sys_filename+
 				"salePrice"+salePrice+"Point"+Point+"totalPoint"+totalPoint+
 				"totalPrice="+totalPrice+"]";
+	}
+	public int getSeller_idx() {
+		return seller_idx;
+	}
+	public void setSeller_idx(int seller_idx) {
+		this.seller_idx = seller_idx;
 	}
 	
 	 

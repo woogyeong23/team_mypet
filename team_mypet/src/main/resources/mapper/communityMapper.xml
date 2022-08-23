@@ -61,7 +61,7 @@
    
     <insert id="InsertComment" parameterType="commu_commentVo">
     <selectKey keyProperty="cc_origin" resultType="int" order="BEFORE">
-     SELECT max(cc_idx)+1 FROM commu_comment
+     SELECT ifnull(max(cc_idx),0)+1 FROM commu_comment
     </selectKey>
     INSERT INTO commu_comment(cc_origin, cc_content, cm_idx, cc_writer, midx)
     VALUES(#{cc_origin}, #{cc_content}, #{cm_idx}, #{cc_writer},#{midx})

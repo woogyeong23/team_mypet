@@ -1,6 +1,7 @@
 package com.jeonju.mypet.service;
 
 
+import java.util.HashMap;
 import java.util.List;
 
 
@@ -52,6 +53,18 @@ public class CartService {
 	}
 	public int updateCart(CartVo cartVo) {
 		return cartDao.updateCart(cartVo);
+	}
+
+
+	public List<HashMap<String, Object>> cartSellerList(int midx) {
+		// TODO Auto-generated method stub
+		return cartDao.cartSellerList(midx);
+	}
+
+
+	public HashMap<String, Object> totalProductPrice(int midx) {
+		// TODO Auto-generated method stub
+		return cartDao.totalProductPrice(midx);
 	}
 
 	

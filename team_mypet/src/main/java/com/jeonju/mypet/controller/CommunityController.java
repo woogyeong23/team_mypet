@@ -148,7 +148,7 @@ public class CommunityController {
 		
 		if(session.getAttribute("midx") != null ) {
 			int midx = (int)session.getAttribute("midx");
-		//	long midx = (long) session.getAttribute("midx");
+	//		long midx = (long) session.getAttribute("midx");
 			
 			Community_likeVo community_likeVo = new Community_likeVo();
 			community_likeVo.setMidx((int) midx);

@@ -62,8 +62,8 @@ public class ExtraController {
 		  
 			   if(session.getAttribute("midx") != null) {
 
-				  long midx =  (long) session.getAttribute("midx");
-//				    int midx=(int) session.getAttribute("midx"); 
+//				  long midx =  (long) session.getAttribute("midx");
+				    int midx=(int) session.getAttribute("midx"); 
 				   FollowVo followVo = new FollowVo();
 				   followVo.setMidx((int) midx);
 //				   followVo.setMidx(midx);
@@ -124,6 +124,26 @@ public class ExtraController {
 	 public String MostQuery() {
 		 
 		 return"Extra/MostQuery";
+	 }
+	 
+	 @GetMapping("/Notice")
+	 public String Notice() {
+		return"Extra/Notice";
+	 }
+	 
+	 @GetMapping("/EventList")
+	 public String EventList() {
+		 return"Extra/EventList";
+	 }
+	 
+	 @GetMapping("/EventView")
+	 public String EventView() {
+		 return"Extra/EventView";
+	 }
+	 
+	 @GetMapping("/EventView2")
+	 public String EventView2() {
+		 return"Extra/EventView2";
 	 }
 	 
 	 

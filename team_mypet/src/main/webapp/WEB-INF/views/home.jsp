@@ -8,11 +8,18 @@
  
 
 <head>
+
+
+
+
+
+
    
 <!-- css************************************************ -->
     <jsp:include page="../include/head.jsp" />
    <!--  nav sticky -->
     <style type="text/css">
+    
     #naver.fixed{
 	position: fixed;
 	left: 0;
@@ -22,9 +29,12 @@
     }
     
      /*  nav sticky */
+     
 
-    
-    .popup{
+     
+        
+
+     .popup{
    width:100%; 
    height:40px;
    margin: 0 auto; 
@@ -110,8 +120,8 @@ $(function() {
 </head>
 <body>
      <div class="popup" >
-     <div class="popup_in"><a id="popup_link" href="${pageContext.request.contextPath}/Error">지금 바로 가입하고 상품을 구입시 
-  <span>아이패드</span> Get!</a></div><button id="popup_close"><i class="lni lni-close"></i></button>
+     <div class="popup_in"><a id="popup_link" href="${pageContext.request.contextPath}/Error">지금 바로 가입하고 상품을 구입시
+  <span>마이펫 주식을</span> Get!</a></div><button id="popup_close"><i class="lni lni-close"></i></button>
   
      </div>
 <!-- 헤더와 네비************************************************ -->
@@ -421,7 +431,9 @@ $(function() {
                     <!-- End Single Product -->
                 </div>
                 </c:forEach>
-                  <div class="secEvent" style="background-image: url(resources/Home/images/mypetEvent2.jpg);"></div>  
+                <a href="${pageContext.request.contextPath}/EventView2">
+                  <div class="secEvent" style="background-image: url(resources/Home/images/mypetEvent2.jpg);"></div> 
+                  </a> 
             </div>
         </div>
     </section>
