@@ -16,7 +16,7 @@ import com.jeonju.mypet.vo.PetVo;
 public class MembersService {
 
 	private MembersDao membersDao;
-
+	
 	@Autowired
 	public MembersService(MembersDao membersDao) {
 		this.membersDao = membersDao;
@@ -63,8 +63,12 @@ public class MembersService {
 		return membersDao.orderList(ordersVo);
 	}
 
-	public MembersVo selectMember(MembersVo vo) {
-		return membersDao.orderList(vo);
+	public int pwUpdate_M(MembersVo vo) {
+		return membersDao.pwUpdate_M(vo);
+	}
+
+	public MembersVo selectMember(String m_id) {
+		return membersDao.selectMember(m_id);
 	}
 
 	

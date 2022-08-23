@@ -44,7 +44,8 @@
 			<exclude-mapping path="/join.do"/>
 			<exclude-mapping path="/idfind.do"/>
 			<exclude-mapping path="/idfindProcess.do"/>
-			<exclude-mapping path="/pwdfindProcess.do"/>
+			<exclude-mapping path="/pw_auth.do"/>
+			<exclude-mapping path="/pw_new.do"/>
 			<exclude-mapping path="/pwdfind.do"/>			
 			<exclude-mapping path="/joinKakao.do"/>
 			<exclude-mapping path="/joinEm.do"/>
@@ -52,6 +53,7 @@
 			<exclude-mapping path="/joinProcess.do"/>
 			<exclude-mapping path="/login.do"/>
 			<exclude-mapping path="/loginProcess.do"/>
+
 
 			<exclude-mapping path="/CBList.do"/>
 			<exclude-mapping path="/CBView.do"/>

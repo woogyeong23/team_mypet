@@ -24,7 +24,7 @@
  
 <main class="form-signin">
 
-  <form action="pw_set.do" method="post">
+  <form action="${pageContext.request.contextPath}/pw_set.do" method="post">
 	<input type="hidden" name ="num" value="${num }">
 		<div class=content>
 			<div class="textbox">

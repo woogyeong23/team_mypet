@@ -56,6 +56,10 @@ button {
 }
 </style>
 
+ <script defer src="/js/ajax/ajax.js"></script>
+    <script defer src="/js/comments/commentModule.js"></script>
+    <script defer src="/js/mypage/comments.js"></script>
+
 </head>
 <body>
 <!-- 헤더와 네비************************************************ -->
@@ -96,14 +100,14 @@ button {
  <!-- Start Trending Product Area -->
     <section class="trending-product section" style="margin-top: 12px;">
         <div class="container">
-            <div class="row">
-                <div class="col-12">
-                    <div class="section-title">
-                        <h2>커뮤니티</h2>
-                        <p></p>
-                    </div>
-                </div>
-            </div>
+<!--             <div class="row"> -->
+<!--                 <div class="col-12"> -->
+<!--                     <div class="section-title"> -->
+<!--                         <h2>커뮤니티</h2> -->
+<!--                         <p></p> -->
+<!--                     </div> -->
+<!--                 </div> -->
+<!--             </div> -->
             <div class="row">
             
             <c:forEach var="cv" items="${commuList}">
@@ -111,7 +115,7 @@ button {
                     <div class="col-lg-3 col-md-6 col-12">
                     <!-- Start Single Product -->
                    
-                    <div class="single-product">
+                    <div class="single-product" style="border-radius:20px;">
                   <div id="dd" >
                 <div>
                    <div class="box">
@@ -179,6 +183,7 @@ button {
  <c:if test="${m_id != null}">
  <div id="side_menu"><a href="${pageContext.request.contextPath}/CBInsert.do"><button type="button" class="btn btn-success" color="#aeddff">게시물<br> 등록<br><i class="lni lni-pencil"></i></button></a></div>
 </c:if>  
+ 
 
 <!-- 푸터와 js************************************************ -->
     <jsp:include page="../../include/footer.jsp" />  

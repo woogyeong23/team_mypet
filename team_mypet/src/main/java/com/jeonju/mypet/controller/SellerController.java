@@ -50,8 +50,8 @@ public class SellerController {
 			Model model, HttpServletRequest request) {
 		
 		HttpSession session = request.getSession();
-		int midx = (int) session.getAttribute("midx");
-//		long midx = (long) session.getAttribute("midx");
+//		int midx = (int) session.getAttribute("midx");
+		long midx = (long) session.getAttribute("midx");
 		
 		String member_id= Integer.toString((int) midx);
 	//	String member_id= Integer.toString(midx);
@@ -93,11 +93,8 @@ public class SellerController {
 		
 		List<Product_ImgVo> productImgList = sellerService.seller_productImgs(p_idx);
 		productVo.setProduct_imgs(productImgList);
-		
-		
-		
+		System.out.println();
 		model.addAttribute("productVo", productVo);
-		
 		
 		
 		
@@ -306,8 +303,8 @@ public class SellerController {
 			) throws IllegalStateException, IOException{
 		
 		HttpSession session = request.getSession();
-		int midx = (int) session.getAttribute("midx");
-//		long midx = (long) session.getAttribute("midx");
+//		int midx = (int) session.getAttribute("midx");
+		long midx = (long) session.getAttribute("midx");
 		String member_id= Integer.toString((int) midx);
 		
 		//카테고리 분류하기
@@ -433,79 +430,156 @@ public class SellerController {
 		//List<HashMap<String, Object>> ordersListMap = sellerService.seller_ordersList(searchInfo);
 		//List<ProductVo> productVoList = sellerService.seller_productVoList(member_id);
 		//System.out.println("************************************");
+		/*
+		 * List<ProductVo> productVoList =
+		 * sellerService.seller_productVoList(member_id); List<OrdersVo> ordersVoList =
+		 * sellerService.seller_ordersList(searchInfo);
+		 * 
+		 * for(OrdersVo o: ordersVoList) { HashMap<String, String > info = new
+		 * HashMap<String, String>(); String orders_idx =
+		 * Integer.toString(o.getOrders_idx()); info.put("orders_idx", orders_idx);
+		 * info.put("member_id", member_id);
+		 * 
+		 * List<DetailVo> detailVoList = sellerService.seller_detailVoList(info);
+		 * o.setDetails(detailVoList);
+		 * 
+		 * 
+		 * 
+		 * String bundleprice = sellerService.seller_ordersPrice(info);
+		 * o.setBundleprice(bundleprice); } model.addAttribute("ordersVoList",
+		 * ordersVoList); model.addAttribute("searchInfo",searchInfo);
+		 * model.addAttribute("productVoList",productVoList);
+		 * 
+		 * 
+		 */
 		
-		List<ProductVo> productVoList = sellerService.seller_productVoList(member_id);
-		List<OrdersVo> ordersVoList = sellerService.seller_ordersList(searchInfo);
+		List<ProductVo> productList = sellerService.seller_productVoList(member_id);
 		
-		for(OrdersVo o: ordersVoList)
-		{
-			HashMap<String, String > info = new HashMap<String, String>();
-			String orders_idx =  Integer.toString(o.getOrders_idx());
-			info.put("orders_idx", orders_idx);
-			info.put("member_id", member_id);
-			
-			List<DetailVo> detailVoList = sellerService.seller_detailVoList(info);
-			o.setDetails(detailVoList);
-			
-			
-			
-			String bundleprice = sellerService.seller_ordersPrice(info);
-			o.setBundleprice(bundleprice);
-		}
-		model.addAttribute("ordersVoList", ordersVoList);
+		
+		//주문 리스트 
+		List<HashMap<String, Object>> orderList = sellerService.seller_orderList(searchInfo);
+		model.addAttribute("orderList",orderList);
+		model.addAttribute("productList",productList);
 		model.addAttribute("searchInfo",searchInfo);
-		model.addAttribute("productVoList",productVoList);
-		
-		
-		
 		
 		return "seller/seller_ordersList";
 		
 	}
 	
+
 	@RequestMapping(value="/seller_ordersDetail.do", method = {RequestMethod.GET, RequestMethod.POST})
 	public String seller_ordersDetail( @RequestParam("midx") String member_id,
-			@RequestParam("orders_idx") String orders_idx, Model model, HttpServletRequest request) {
+			@RequestParam("detail_idx") String detail_idx, Model model, HttpServletRequest request) {
 		
 		//System.out.println("************************************");
 
 		//System.out.println(detail_idx);
-		/*
-		 * //디테일 테이블 하나.. List<Detail_DayVo> detailDayListVo =
-		 * sellerService.seller_detailDayListVo(detail_idx); List<Refund_DayVo>
-		 * refundDayListVo = sellerService.seller_refundDayListVo(detail_idx);
-		 * List<Cancle_DayVo> cancleDayListVo =
-		 * sellerService.seller_cancleDayListVo(detail_idx); ReviewVo reviewVo =
-		 * sellerService.seller_reviewVo(detail_idx); HashMap<String,Object>
-		 * ordersContent = sellerService.seller_ordersContent(detail_idx);
-		 * 
-		 * 
-		 * 
-		 * 
-		 * 
-		 * model.addAttribute("detailDayListVo", detailDayListVo);
-		 * model.addAttribute("refundDayListVo", refundDayListVo);
-		 * model.addAttribute("cancleDayListVo", cancleDayListVo);
-		 * model.addAttribute("reviewVo", reviewVo); model.addAttribute("ordersContent",
-		 * ordersContent);
-		 */
-
-			HashMap<String, String > info = new HashMap<String, String>();
-			//String orders_idx =  Integer.toString(o.getOrders_idx());
-			info.put("orders_idx", orders_idx);
-			info.put("member_id", member_id);
-			
-			HashMap<String, String> orders = sellerService.seller_ordersMap(info);
-			
-			String bundleprice = sellerService.seller_ordersPrice(info);
-			orders.put("bundleprice", bundleprice);
-			System.out.println(member_id+orders_idx+"*************************************orders "+orders.get("bundleprice"));
-			
-			
-			model.addAttribute("orders", orders);
 		
+		  //디테일 테이블 하나.. 
+		  List<Detail_DayVo> detailDayListVo = sellerService.seller_detailDayListVo(detail_idx); 
+		  List<Refund_DayVo>  refundDayListVo = sellerService.seller_refundDayListVo(detail_idx);
+		  List<Cancle_DayVo> cancleDayListVo =  sellerService.seller_cancleDayListVo(detail_idx);
+		  ReviewVo reviewVo = sellerService.seller_reviewVo(detail_idx);
+		  HashMap<String,Object> ordersContent = sellerService.seller_ordersContent(detail_idx);
+		  
+		  int fixprice = (int) ordersContent.get("fixprice");
+		  int detail_cnt = (int) ordersContent.get("detail_cnt");
+		  int p_dvprice = (int) ordersContent.get("p_dvprice");
+		  int p_free_dvprice = (int) ordersContent.get("p_free_dvprice");
+		  int total_price = 0;
+		  int product_price=fixprice*detail_cnt;
+		  if(fixprice*detail_cnt<p_free_dvprice)
+		  {
+			  total_price=p_dvprice+fixprice*detail_cnt;
+		  }
+		  else
+		  {
+			  total_price=fixprice*detail_cnt;
+		  }
+
+		  model.addAttribute("member_id", member_id);
+		  model.addAttribute("detailDayListVo", detailDayListVo);
+		  model.addAttribute("refundDayListVo", refundDayListVo);
+		  model.addAttribute("cancleDayListVo", cancleDayListVo);
+		  model.addAttribute("reviewVo", reviewVo);
+		  model.addAttribute("ordersContent",ordersContent);
+		  model.addAttribute("product_price",product_price);
+		  model.addAttribute("total_price",total_price);
 		
 		return "seller/seller_ordersDetail";
+	}
+	
+	@RequestMapping(value="/seller_DetailStatusUpdate.do", method = {RequestMethod.GET, RequestMethod.POST})
+	public String seller_DetailStatusUpdate( @RequestParam("midx") String member_id,
+			@RequestParam("detail_idx") String detail_idx, Model model, HttpServletRequest request) {
+		
+			
+		sellerService.Updatedetail_status(detail_idx);
+		sellerService.insertDetail_Day(detail_idx);
+
+		  model.addAttribute("midx",member_id);
+		  model.addAttribute("detail_idx",detail_idx);
+		  
+			return "redirect:/seller_ordersDetail.do";
+	}
+	@RequestMapping(value="/seller_ordersModif.do", method = {RequestMethod.GET, RequestMethod.POST})
+	public String seller_ordersModif( @RequestParam("midx") String member_id,
+			@RequestParam("detail_idx") String detail_idx, Model model, HttpServletRequest request) {
+		
+	
+		  List<Detail_DayVo> detailDayListVo = sellerService.seller_detailDayListVo(detail_idx); 
+		  List<Refund_DayVo>  refundDayListVo = sellerService.seller_refundDayListVo(detail_idx);
+		  List<Cancle_DayVo> cancleDayListVo =  sellerService.seller_cancleDayListVo(detail_idx);
+		  ReviewVo reviewVo = sellerService.seller_reviewVo(detail_idx);
+		  HashMap<String,Object> ordersContent = sellerService.seller_ordersContent(detail_idx);
+		  
+		  int fixprice = (int) ordersContent.get("fixprice");
+		  int detail_cnt = (int) ordersContent.get("detail_cnt");
+		  int p_dvprice = (int) ordersContent.get("p_dvprice");
+		  int p_free_dvprice = (int) ordersContent.get("p_free_dvprice");
+		  int total_price = 0;
+		  int product_price=fixprice*detail_cnt;
+		  if(fixprice*detail_cnt<p_free_dvprice)
+		  {
+			  total_price=p_dvprice+fixprice*detail_cnt;
+		  }
+		  else
+		  {
+			  total_price=fixprice*detail_cnt;
+		  }
+		  
+		  model.addAttribute("member_id", member_id);
+		  model.addAttribute("detailDayListVo", detailDayListVo);
+		  model.addAttribute("refundDayListVo", refundDayListVo);
+		  model.addAttribute("cancleDayListVo", cancleDayListVo);
+		  model.addAttribute("reviewVo", reviewVo);
+		  model.addAttribute("ordersContent",ordersContent);
+		  model.addAttribute("product_price",product_price);
+		  model.addAttribute("total_price",total_price);
+		
+		
+		return "seller/seller_ordersModif";
+	}
+	@RequestMapping(value="/seller_ordersModifProcess.do", method = {RequestMethod.GET, RequestMethod.POST})
+	public String seller_ordersModifProcess( @RequestParam("midx") String member_id,
+			@RequestParam("detail_idx") String detail_idx,
+			@RequestParam Map<String, String> param,
+			Model model, HttpServletRequest request) {
+		
+			HashMap<String,Object> infoMap = new HashMap<String, Object>();
+			infoMap.put("orders_idx", param.get("orders_idx"));
+			infoMap.put("detail_request", param.get("detail_request"));
+			infoMap.put("orders_addr1", param.get("orders_addr1"));
+			infoMap.put("orders_addr2", param.get("orders_addr2"));
+			infoMap.put("orders_addr3", param.get("orders_addr3"));
+			infoMap.put("orders_name", param.get("orders_name"));
+			infoMap.put("orders_phone", param.get("orders_phone"));
+			infoMap.put("detail_idx", param.get("detail_idx"));
+			sellerService.ordersModif(infoMap);
+			sellerService.detailModif(infoMap);
+		  model.addAttribute("midx", member_id);
+		  model.addAttribute("detail_idx", detail_idx);
+		return "redirect:/seller_ordersDetail.do";
 	}
 	
 	@RequestMapping(value="/seller_profile.do", method = {RequestMethod.GET, RequestMethod.POST})
@@ -513,9 +587,10 @@ public class SellerController {
 			Model model, HttpServletRequest request
 			) throws IllegalStateException, IOException{
 				
-				  HttpSession session = request.getSession(); int midx = (int)
-				  session.getAttribute("midx"); 
-				  String member_id= Integer.toString(midx);
+				  HttpSession session = request.getSession(); 
+//				  int midx = (int)session.getAttribute("midx"); 
+				  long midx = (long)session.getAttribute("midx"); 
+				  String member_id= Integer.toString((int) midx);
 				  
 				  SellerStoryVo sellerStoryVo = sellerService.seller_profile(member_id);
 				  model.addAttribute("sellerStoryVo",sellerStoryVo);
@@ -529,9 +604,10 @@ public class SellerController {
 			Model model, HttpServletRequest request
 			) throws IllegalStateException, IOException{
 
-		  HttpSession session = request.getSession(); int midx = (int)
-		  session.getAttribute("midx"); 
-		  String member_id= Integer.toString(midx);
+		  HttpSession session = request.getSession(); 
+//		  int midx = (int)session.getAttribute("midx"); 
+		  long midx = (long)session.getAttribute("midx"); 
+		  String member_id= Integer.toString((int) midx);
 		  
 		  SellerStoryVo sellerStoryVo = sellerService.seller_profile(member_id);
 		  model.addAttribute("sellerStoryVo",sellerStoryVo);
@@ -546,9 +622,10 @@ public class SellerController {
 			String seller_intro , Model model, HttpServletRequest request
 			) throws IllegalStateException, IOException{
 		
-					HttpSession session = request.getSession(); int midx = (int)
-				  session.getAttribute("midx"); 
-				  String member_id= Integer.toString(midx);
+					HttpSession session = request.getSession(); 
+//					int midx = (int)session.getAttribute("midx"); 
+					long midx = (long)session.getAttribute("midx"); 
+				  String member_id= Integer.toString((int) midx);
 				  				  
 				  List<MultipartFile> fileList = mRequest.getFiles("file");
 					

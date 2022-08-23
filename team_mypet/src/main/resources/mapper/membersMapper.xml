@@ -75,12 +75,12 @@
 	
 	
 	<select id="selectMember" resultType="membersVo">
-	select * from members where m_id = #{m_id} and m_phone=#{m_phone}
+	select * from members where m_id = #{m_id}
 	</select>
 	
 	<!-- 패스워드변경 -->
 	<update id = "pwUpdate_M" parameterType="membersVO">
-	update members set m_pwd=#{m_pwd} where email= #{m_id}
+	update members set m_pwd=#{m_pwd} where m_id= #{m_id}
 	</update>
 	
 </mapper>

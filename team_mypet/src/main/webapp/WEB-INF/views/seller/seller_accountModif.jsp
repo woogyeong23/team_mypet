@@ -89,7 +89,7 @@
 									</tr>
 									<tr>
 										<td colspan=2>
-											<button type="submit"class="btn btn-light" style="">수정하기</button>
+											<button type="submit"class="btn btn-light" style="">수정완료</button>
 										</td>
 									</tr>
 								</tbody>
