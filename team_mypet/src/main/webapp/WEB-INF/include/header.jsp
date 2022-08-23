@@ -59,7 +59,7 @@
                                <a href="${pageContext.request.contextPath}/logout.do">로그아웃</a>
                             </li>
                             <li>
-                               <a href="${pageContext.request.contextPath}/Error">고객센터</a>
+                               <a href="${pageContext.request.contextPath}/Notice">고객센터</a>
                              
                             </li>
                             </ul>
@@ -74,7 +74,7 @@
                                     <a href="${pageContext.request.contextPath}/join.do">회원가입</a>
                                 </li>
                                  <li >
-                                    <a href="${pageContext.request.contextPath}/Error">고객센터</a>
+                                    <a href="${pageContext.request.contextPath}/Notice">고객센터</a>
                                 </li>
                             </ul>
                             </c:otherwise>
@@ -92,11 +92,11 @@
                     <div class="col-lg-3 col-md-3 col-7">
                         <!-- Start Header Logo -->
                         <a class="navbar-brand" href="${pageContext.request.contextPath}/home.do">
-                            <img src="resources/assets/images/logo/mypetLogo.png"  style="width:100px; height:100px; margin-left:130px;" alt="Logo">
+                            <img src="resources/assets/images/logo/mypetLogo.png"  style="width:100px; height:100px; position:relative" alt="Logo">
                         </a>
                         <!-- End Header Logo -->
                     </div>
-                    <div class="col-lg-5 col-md-7 d-xs-none">
+                    <div class="col-lg-5 col-md-6 d-xs-none">
                         <!-- Start Main Menu Search -->
                         <div class="main-menu-search">
                             <!-- navbar search start -->
@@ -115,7 +115,7 @@
 <!--                                     </div> -->
 <!--                                 </div> -->
                                 <div class="search-input">
-                                    <input type="text" name="keyword" id="keyword" placeholder="검색어를 입력해주세요.">
+                                    <input type="text" name="keyword" id="keyword" placeholder="검색어를 입력해주세요." style="border-radius:10px 0px 0px 10px;">
                                 </div>
                                 <div class="search-btn">
                                    <button type="submit" class="search"><i class="lni lni-search-alt"></i></button>
@@ -127,7 +127,7 @@
                         </div>
                         <!-- End Main Menu Search -->
                     </div>
-                    <div class="col-lg-4 col-md-2 col-5">
+                    <div class="col-lg-4 col-md-3 col-5">
                         <div class="middle-right-area">
                          <div class="nav-hotline">
 <!--                                 <i class="lni lni-phone"></i> -->

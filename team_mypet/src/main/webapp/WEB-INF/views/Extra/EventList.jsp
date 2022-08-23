@@ -90,14 +90,13 @@ padding-right:20px;
             <div class="row align-items-center">
                 <div class="col-lg-6 col-md-6 col-12">
                     <div class="breadcrumbs-content">
-                        <h1 class="page-title">자주하는 질문</h1>
+                        <h1 class="page-title">고객센터</h1>
                     </div>
                 </div>
                 <div class="col-lg-6 col-md-6 col-12">
                     <ul class="breadcrumb-nav">
                         <li><a href="${pageContext.request.contextPath}/home.do"><i class="lni lni-home"></i>Home</a></li>
-                        <li><a href="#">더보기</a></li>
-                        <li><a href="#">자주하는 질문</a></li>
+                        <li><a href="#">고객센터</a></li>
                     </ul>
                 </div>
             </div>
@@ -115,17 +114,25 @@ padding-right:20px;
 
                     </div>
                     <div style="display:flex; position:relative">
-                    <div class="side_nav"style="float:left;">
+                        <div class="side_nav"style="float:left;">
                    <nav>
+                   <b style=" padding: 5px 0px 35px 1px; font-weight: 500; font-size: 28px; line-height: 35px;
+    color: rgb(51, 51, 51);
+    letter-spacing: -1px;"> 고객센터 </b>
                        <ul>
-                   			<li><a href="${pageContext.request.contextPath}/Notice">공지사항</a></li>
-                   			<li><a href="#"><span class="cur">이벤트</span></a></li> 
+                   		    <li><a href="${pageContext.request.contextPath}/Notice">공지사항</a></li>
+                   		    <li><a href="#"><span class="cur">이벤트</span></a></li> 
                    			<li><a href="${pageContext.request.contextPath}/MostQuery">자주하는 질문</a></li> 
                    			<li><a href="#">1:1문의</a></li>
                    			<li><a href="#">입점문의</a></li>  
                        </ul>
                     </nav>
                     </div>
+                    
+                                
+                    
+                    
+                    
            
       <div class="outer">
                     <ul style="margin-top:50px;">

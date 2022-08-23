@@ -139,6 +139,11 @@ var targetID;
 		 });
 	  });
   
+  $("#none").click(function(){
+	  alert("로그인 후 이용가능한 서비스입니다.");
+  });
+  
+  
   $("#CBdelete").click(function(){
 		  var result = confirm("해당 게시물을 삭제하시겠습니까?");
 		  if(result){
@@ -219,6 +224,8 @@ var targetID;
 
 		});
 	});
+  
+ 
   
   
 
@@ -559,7 +566,7 @@ button {
    <c:choose>
    
      <c:when test="${midx == null}">
-     <button type="button" class="good"><i class="lni lni-heart"></i></button>
+     <button type="button" class="good" id="none"><i class="lni lni-heart"></i></button>
      </c:when>
    
      <c:when test="${CmLikeYn == 1}">

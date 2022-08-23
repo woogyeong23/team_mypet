@@ -26,5 +26,39 @@
   font-family: 'Nanum Gothic', sans-serif;
 
     } 
+    
+      #naver.fixed{
+	position: fixed;
+	left: 0;
+	top: 0;
+	width: 100%;
+	background-color:#FFFFF0
+    }
      </style>
+     
+     
+     
+     
+     <script type="text/javascript" src="//code.jquery.com/jquery-3.6.0.min.js"></script>
+<script type="text/javascript">
+
+$(function() {
+	  //nav
+	  var lnb = $("#naver").offset().top;
+	 
+	  $(window).scroll(function() {
+	   
+	    var window = $(this).scrollTop();
+	    
+	    if(lnb <= window) {
+	      $("#naver").addClass("fixed");
+	    }else{
+	      $("#naver").removeClass("fixed");
+	    }
+	  });
+	  //nav
+});
+
+
+	 </script>
     
