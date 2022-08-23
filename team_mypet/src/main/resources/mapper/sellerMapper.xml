@@ -13,7 +13,9 @@
 						from product a  join p_category b on a.p_category_idx = b.p_category_idx left join review c on a.p_idx = c.p_idx
 						where a.p_idx in (select p_idx from product where seller_idx=(select seller_idx from sellerstory where midx=#{member_id}))
 						group by a.p_idx)
-					as p left join detail d on p.p_idx = d.p_idx  join product_img e on p.p_idx=e.p_idx
+					as p left join detail d on p.p_idx = d.p_idx  join (select p_idx , min(p_front_img), p_ori_filename, p_sys_filename , img_delyn
+											from product_img
+											group by p_idx) e on p.p_idx=e.p_idx
 					where p.p_idx in (select p_idx from product where seller_idx=(select seller_idx from sellerstory where midx=#{member_id}))
 					and e.img_delyn='N'
 			<if  test="searching == 'searchTotal'">
@@ -76,6 +78,13 @@
 	<!-- 판매상품 상세 -->
 	<select id="getSellerProductDetail" parameterType="string" resultType="productVo">
 		select * from product where p_idx=#{p_idx}
+	</select>
+	<!-- 판매상품 상세 판매량 -->
+	
+	<select id="seller_productSales" parameterType="string" resultType="int">
+		select sum(detail_cnt) as sales
+		from product  a join detail b  on a.p_idx=b.p_idx
+		where a.p_idx=#{p_idx}
 	</select>
 	
 	<!-- 판매상품 상세 안 이미지 -->

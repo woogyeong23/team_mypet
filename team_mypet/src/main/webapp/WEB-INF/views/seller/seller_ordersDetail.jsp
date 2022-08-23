@@ -300,7 +300,7 @@
 function update(){
 
 		
-		  		alert("업데이");
+		  		alert("주문상세 수정 완료");
 		  		//fm.action = "./memberJoinOk.jsp";
 		  		//가상경로 사용 ${pageContext.request.contextPath}/registProcess.do
 		  		fm.enctype="multipart/form-data"

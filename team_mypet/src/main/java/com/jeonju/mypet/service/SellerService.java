@@ -187,5 +187,10 @@ public class SellerService {
 		// TODO Auto-generated method stub
 		sellerDao.detailModif(infoMap);
 	}
+
+	public int seller_productSales(String p_idx) {
+		// TODO Auto-generated method stub
+		return sellerDao.seller_productSales(p_idx);
+	}
 	
 }

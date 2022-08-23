@@ -93,11 +93,8 @@ public class SellerController {
 		
 		List<Product_ImgVo> productImgList = sellerService.seller_productImgs(p_idx);
 		productVo.setProduct_imgs(productImgList);
-		
-		
-		
+		System.out.println();
 		model.addAttribute("productVo", productVo);
-		
 		
 		
 		

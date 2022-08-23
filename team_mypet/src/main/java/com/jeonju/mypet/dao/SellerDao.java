@@ -184,6 +184,11 @@ public class SellerDao {
 		// TODO Auto-generated method stub
 		sqlSession.update(MAPPER+".detailModif", infoMap);
 	}
+
+	public int seller_productSales(String p_idx) {
+		// TODO Auto-generated method stub
+		return sqlSession.selectOne(MAPPER+".seller_productSales",p_idx);
+	}
 	
 	
 	
