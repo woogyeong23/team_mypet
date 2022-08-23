@@ -44,15 +44,18 @@
                     <div class="row">
                         <div class="col-lg-3 col-md-6 col-12">
                             <!-- Single Widget -->
-                            <div class="single-footer f-contact">
+                            <div class="single-footer f-link">
                                 <h3>고객센터</h3>
-                                <p class="phone">고객센터: 1544 - 5678 </p>
+                                <p style="color: #d6d6d6; font-size: 14px; font-weight: 500; position: relative;" class="phone">고객센터:1544 - 5678 </p>
                                 <ul>
-                                    <li><span>월요일-금요일: </span> 9.00 am - 6.00 pm</li>
-                                    <li><span>토요일: </span> 10.00 am - 2.00 pm</li>
+                                    <li style="color: #d6d6d6; font-size: 14px; font-weight: 500; position: relative;"><span>월요일-금요일: </span> 9.00 am - 6.00 pm</li>
+                                    <li style="color: #d6d6d6; font-size: 14px; font-weight: 500; position: relative;"><span>토요일: </span> 10.00 am - 2.00 pm</li>
+                                     <li><a href="mailto:abcdeef123@naver.com"> 1:1 문의하기</a></li>
+                                     <li><a href="https://docs.google.com/forms/d/e/1FAIpQLSfsBMMYEBXM_XxHIlugThMzUptM52H9wElzsGNrMBr_8sQMQw/viewform" target="_blank">
+                                     입점문의</a></li>
                                 </ul>
                                 <p class="mail">
-                                    <a href="mailto:abc123@naver.com">abc123@naver.com</a>
+                                 
                                 </p>
                             </div>
                             <!-- End Single Widget -->
@@ -141,8 +144,7 @@
                         </div>
                         <div class="col-lg-4 col-12">
                             <div class="copyright">
-                                <p>Designed and Developed by<a href="https://graygrids.com/" rel="nofollow"
-                                        target="_blank">MyPet</a></p>
+                                <p>Designed and Developed by<a href="#">MyPet</a></p>
                             </div>
                         </div>
                         <div class="col-lg-4 col-12">
@@ -150,10 +152,10 @@
                                 <li>
                                     <span>Follow Us On:</span>
                                 </li>
-                                <li><a href="https://ko-kr.facebook.com/zuck"><i class="lni lni-facebook-filled"></i></a></li>
-                                <li><a href="https://twitter.com/elonmusk"><i class="lni lni-twitter-original"></i></a></li>
-                                <li><a href="${pageContext.request.contextPath}/Error"><i class="lni lni-instagram"></i></a></li>
-                                <li><a href="${pageContext.request.contextPath}/Error"><i class="lni lni-google"></i></a></li>
+                                <li><a href="https://ko-kr.facebook.com/zuck" target="_blank"><i class="lni lni-facebook-filled"></i></a></li>
+                                <li><a href="https://twitter.com/elonmusk" target="_blank"><i class="lni lni-twitter-original"></i></a></li>
+                                <li><a href="https://www.instagram.com/instagram/" target="_blank"><i class="lni lni-instagram"></i></a></li>
+                                <li><a href="https://www.google.co.kr/" target="_blank"><i class="lni lni-google"></i></a></li>
                             </ul>
                         </div>
                     </div>

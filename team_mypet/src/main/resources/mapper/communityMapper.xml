@@ -117,7 +117,7 @@
     
     <select id="getAList" resultType="reviewVo">
 	SELECT product.p_idx as p_idx, p_sys_filename, 
-	p_name, review_stars, review_content, m_nick
+	p_name, review_stars, review_content, m_nick as review_nick
 	FROM product INNER JOIN product_img ON product.p_idx = product_img.p_idx
 	INNER JOIN review ON product.p_idx = review.p_idx INNER JOIN members ON review.midx = members.midx
 	WHERE seller_idx = #{seller_idx}  
