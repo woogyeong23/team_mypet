@@ -208,6 +208,10 @@ transform:translatY(-100%);
 		<input type="hidden" name="m_addr1" value="${member.m_addr1}">
 		<input type="hidden" name="m_addr2" value="${member.m_addr2}">
 		<input type="hidden" name="m_addr3" value="${member.m_addr3}">
+		<c:forEach  items="${ordersList}" var="ordersList" varStatus="status">
+		<input type="hidden" name="orders_idx" value="${ordersList.orders_idx}">
+		</c:forEach>
+		<input type="hidden" name="cart_idx" value="${cart.cart_idx}">
 		<div class="inner-w800" style="width:800px;">
 		<div class="title-style clf">
 			<h2 class="txt fl">주문 결제하기</h2>

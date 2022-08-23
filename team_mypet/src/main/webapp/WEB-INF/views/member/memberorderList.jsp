@@ -57,12 +57,11 @@ padding-bottom: 60px;
     <h3 class="pb-1 border-bottom" >주문목록</h3>
 <c:forEach items="${ordersList}" var="ordersList" varStatus="status">
 
-<c:forEach items="${cart}" var="cart" varStatus="status">
 
 <div class="card mb-1" style="max-width: 100%;">
   <div class="row g-0">
     <div class="col-md-4">
-      <img src="${pageContext.request.contextPath}/resources/product/${cart.p_sys_filename}" class="img-fluid rounded-start" alt="...">
+      <img src="${pageContext.request.contextPath}/resources/product/${ordersList.p_sys_filename}" class="img-fluid rounded-start" alt="...">
     </div>
     <div class="col-md-8">
       <div class="card-body">
@@ -75,7 +74,6 @@ padding-bottom: 60px;
   </div>
 </div>
 
-</c:forEach>
 </c:forEach>
 </div>
 </section>

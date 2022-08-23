@@ -725,7 +725,7 @@ $(document).ready(function(){
 		   					 <div class="CartArtistItem__header">
 		   						<label>
 									<div class="checkbox">   							
-		   								<div class="input-checkbox"  id="input-checkbox1">
+		   								<div class="input-checkbox"  id="input-checkbox1	">
 		   									<input type="checkbox" id="artist_checkedbox${seller.seller_idx}" name="artist_checkedbox${seller.seller_idx}" data-cart_idx="${seller.seller_idx}"  autocomplete="off" class="bp" value="${m_nick}" onclick='selectSeller(this,${seller.seller_idx})' checked="checked" >
 		   								</div>
 		   							</div>
@@ -911,7 +911,7 @@ $(document).ready(function(){
         		</div>
         		
         		<div class="CartPage__bottom">
- 					<input type="hidden" id="c_idxArr" name="c_idxArr">
+ 					<input type="hidden" id="c_idxArr" name="c_idxArr" value="">
  					<input type="button" class="CommonButton CartPage__paymentButton CommonButton--large" value="등록" onclick="cart_idxArr();">
  				</div> 
 				</div>

@@ -61,7 +61,6 @@
 							from cart a join product b on a.p_idx=b.p_idx join sellerstory c on b.seller_idx=c.seller_idx join members d on c.midx=d.midx
 							where a.midx=#{midx}) t
 
-
 	</select>
 	
 	
@@ -82,7 +81,7 @@
 	delete from cart where cart_idx=#{cart_idx} and midx=#{midx}
 	</delete>
 	<delete id="resetCart">
-	delete from cart where midx=#{midx}
+	delete from cart where midx=#{midx} and cart_idx=#{cart_idx}
 	</delete>
 	
 	

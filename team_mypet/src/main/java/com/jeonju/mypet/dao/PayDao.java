@@ -8,6 +8,7 @@ import org.apache.ibatis.session.SqlSession;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Repository;
 
+import com.jeonju.mypet.vo.CartVo;
 import com.jeonju.mypet.vo.DetailVo;
 import com.jeonju.mypet.vo.MembersVo;
 import com.jeonju.mypet.vo.OrdersListVo;
@@ -45,13 +46,22 @@ private SqlSession sqlSession;
 	}
 	
 	
-	public HashMap<String, Object> totalProductPrice(int midx) {
-		// TODO Auto-generated method stub
-		return  sqlSession.selectOne(MAPPER+".totalProductPrice",midx);
+	public HashMap<String, Object> totalProductPrice(int midx,int cart_idx) {
+		
+
+		HashMap<String, Object> pay = new HashMap<String, Object>(); 
+		pay.put("midx",midx);
+		pay.put("cart_idx", cart_idx);
+		
+		return  sqlSession.selectOne(MAPPER+".totalProductPrice",pay);
 		}
 	
 	public MembersVo membersinfo(int midx) {
 		return sqlSession.selectOne(MAPPER+".membersInfo",midx);
+	}
+
+	public CartVo cartinfo(int midx) {
+		return sqlSession.selectOne(MAPPER+".cartInfo",midx);
 	}
 
 

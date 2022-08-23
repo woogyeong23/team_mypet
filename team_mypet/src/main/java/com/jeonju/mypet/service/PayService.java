@@ -11,6 +11,7 @@ import org.springframework.transaction.annotation.Transactional;
 import com.jeonju.mypet.dao.CartDao;
 import com.jeonju.mypet.dao.MembersDao;
 import com.jeonju.mypet.dao.PayDao;
+import com.jeonju.mypet.vo.CartVo;
 import com.jeonju.mypet.vo.DetailVo;
 import com.jeonju.mypet.vo.MembersVo;
 import com.jeonju.mypet.vo.OrdersListVo;
@@ -36,7 +37,6 @@ private CartDao cartDao;
 	
 	public int orderInsert(OrdersVo ordersVo)throws Exception {
 		//장바구니 초기화
-		  cartDao.cartReset(ordersVo.getMidx());
 		
 		return payDao.orderInsert(ordersVo);
 	}
@@ -49,13 +49,24 @@ private CartDao cartDao;
 		return payDao.orderview(ordersVo);
 	}
 	
-	public HashMap<String, Object> totalProductPrice(int midx) {
+	public HashMap<String, Object> totalProductPrice(int midx, int cart_idx) {
 		// TODO Auto-generated method stub
-		return cartDao.totalProductPrice(midx);
+		return payDao.totalProductPrice(midx,cart_idx);
 	}
 	public MembersVo membersinfo(int midx) {
 		return payDao.membersinfo(midx);
 	}
+	public CartVo cartinfo(int midx) {
+		return payDao.cartinfo(midx);
+	}
+
+	public int cartReset(int midx) {
+		return cartDao.cartReset(midx);
+	}
+
+
+
+
 
 	
 	

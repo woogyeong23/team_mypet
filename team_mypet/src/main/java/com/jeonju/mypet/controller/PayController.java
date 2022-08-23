@@ -41,27 +41,37 @@ private PayService payService;
 	
 	//주문하기 페이지 넘어가기
 	@GetMapping("/memberpay.do")
-	public String memberpay(
+	public String memberpay(@RequestParam(value = "c_idxArr") List<String> c_idxArr,
 			@RequestParam Map<String, String> param,OrdersVo ordersVo,Model model,HttpServletRequest request) {
 
 		HttpSession Session = request.getSession();
 		int midx = (int) Session.getAttribute("midx");
 		
-		 List<OrdersVo> orderslist = new ArrayList<>();
-
-		 model.addAttribute("orderslist", orderslist);
-		 HashMap<String, Object>ProductPriceMap = payService.totalProductPrice(midx);
-		 
 		
 		MembersVo member = payService.membersinfo(midx);
-		
+		CartVo cart = payService.cartinfo(midx);
+
 		ordersVo.setMidx(midx);
 		
 		List<OrdersVo> ordersList = payService.orderpay(ordersVo);
 		
+		
+		int cart_idx = 0;
+		HashMap<String, String> map = new HashMap<String, String>();
+		
+		for(String i : c_idxArr){
+			cart_idx = Integer.parseInt(i);
+			
+			System.out.println("cart -> CHK orderList : "+cart_idx);
+		  }
+
+		HashMap<String, Object>ProductPriceMap = payService.totalProductPrice(midx,cart_idx);
+		
+		model.addAttribute("ProductPriceMap",ProductPriceMap);
+
 		model.addAttribute("ordersList",ordersList);
 		model.addAttribute("member",member);
-		model.addAttribute("ProductPriceMap",ProductPriceMap);
+		model.addAttribute("cart",cart);
 
 
 		return "member/memberpay";	
@@ -69,7 +79,9 @@ private PayService payService;
 	
 		//결제 성공 시 주문 및 카트 삭제 
 	  @PostMapping("/orderInsert.do")
-	  public String orderInsert(OrdersVo ordersVo, DetailVo detailVo, HttpServletRequest request)throws Exception{
+	  public String orderInsert( @RequestParam("cart_idx") int cart_idx,
+			  OrdersVo ordersVo, DetailVo detailVo,
+			  HttpServletRequest request)throws Exception{
 		 
 		  	HttpSession Session = request.getSession();
 			int midx = (int) Session.getAttribute("midx");
@@ -85,16 +97,26 @@ private PayService payService;
 			 
 			 String detail_idx = ymd + "_" + subNum;
 			 
+			 ordersVo.setMidx(midx);
+				
+			System.out.println("카트아이디임:"+cart_idx);
+			
+			
 			ordersVo.setMidx(midx);
 			
 			payService.orderInsert(ordersVo);
 			
+			
 			detailVo.setOrders_idx(ordersVo.getOrders_idx());
 			detailVo.setDetail_completeday(detail_idx);
 			detailVo.setFixprice(ordersVo.getOrders_totalprice());
+			detailVo.setDetail_status(1);
 			detailVo.setMidx(midx);
-			
+			detailVo.setCart_idx(cart_idx);
 			payService.detailInsert(detailVo);
+		
+			payService.cartReset(midx);
+
 
 		  return "redirect:/memberorderList.do";
 	  }

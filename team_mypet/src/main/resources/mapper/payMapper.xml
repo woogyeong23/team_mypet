@@ -3,9 +3,15 @@
   "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 
 <mapper namespace = "com.jeonju.mypet.pay">
+
 <select id="orderList"  resultType="ordersVo">
-<!-- select * from orders a left outer join detail b on a.orders_idx = b.orders_idx left outer join product c on b.p_idx = c.p_idx left outer join cart d on c.p_idx = d.p_idx where a.midx=#{midx} ; -->
- select orders_idx, midx, orders_name, orders_addr1, orders_addr2, orders_addr3, orders_phone, orders_totalprice, orders_day, orders_point from orders where midx = #{midx};
+select a.orders_idx,a.midx,a.orders_totalprice,c.p_idx,c.p_name,c.p_price,c.p_sys_filename,d.cart_cnt,d.cart_idx,d.cart_request 
+from orders a left outer join detail b on a.orders_idx = b.orders_idx 
+left outer join product c on b.p_idx = c.p_idx 
+left outer join cart d on c.p_idx = d.p_idx and a.midx = d.midx
+ where a.midx=#{midx}
+
+<!--  select orders_idx, midx, orders_name, orders_addr1, orders_addr2, orders_addr3, orders_phone, orders_totalprice, orders_day, orders_point from orders where midx = #{midx}; -->
 </select>
 
 <insert id="getorderInsert">
@@ -13,32 +19,36 @@
  values(#{orders_totalprice}, #{orders_name}, #{orders_phone}, #{orders_addr1}, #{orders_addr2}, #{orders_addr3},#{orders_payment}, #{orders_dvprice}, #{orders_point}, #{midx})
 </insert>
 <insert id="getdetailInsert">
- 	insert into detail(orders_idx, p_idx, detail_status, detail_cnt, detail_request, fixprice, detail_completeday)
-	select #{orders_idx}, p_idx, #{detail_status},cart_cnt, 'cart_request', #{fixprice}, #{detail_idx} from cart
+insert into detail(orders_idx, p_idx, detail_status, detail_cnt, detail_request, fixprice, detail_completeday)
+	select #{orders_idx}, p_idx,#{detail_status},cart_cnt,cart_request,#{fixprice},#{detail_completeday} from cart where midx=#{midx} and cart_idx = #{cart_idx}
 </insert>
-<insert id="orderInfo_Details">
- insert into detail(orderDetailsNum, order_idx, p_idx, detail_cnt)
-     select #{orderId}, p_idx, cart_cnt
-         from cart   
-</insert> 
+
 <select id="orderView" resultType="ordersListVo">
  select
      o.orders_idx, o.midx, o.orders_name , o.orders_addr1, o.orders_addr2, o.orders_addr3, o.orders_phone, o.orders_totalprice , o.orders_completeday ,
      d.detail_completeday , d.p_idx, d.detail_cnt,
      g.p_name , g.p_sys_filename , g.p_price
  from orders o left outer join detail d on o.orders_idx = d.orders_idx left outer join product g on d.p_idx = g.p_idx
- where o.midx=#{midx};
+ where o.midx=#{midx}
 </select>
 <!-- 상품만총가격 -->
-	<select id="totalProductPrice" resultType="HashMap">
+	<select id="totalProductPrice"  resultType="HashMap">
+	
 		select sum(b.p_price*a.cart_cnt) as totalproductprice, sum( IF((cart_cnt*p_price)>b.p_free_dvprice,0,b.p_dvprice) ) as totaldvprice
-		 from cart a join product b on a.p_idx=b.p_idx where a.midx=#{midx} 
+		 from cart a join product b on a.p_idx=b.p_idx where a.midx=#{midx} and a.cart_idx=#{cart_idx}
 	</select>
 	<select id="totalProductDvPrice" resultType="HashMap">
-		select b.p_price as totalproductDvprice from cart a join product b on a.p_idx=b.p_idx where a.midx=#{midx} 
+		select b.p_price as totalproductDvprice from cart a join product b on a.p_idx=b.p_idx where a.midx=#{midx} and a.cart_idx=#{cart_idx}
 	</select>
 	<select id="membersInfo" resultType="membersVo">
 	select * from members where midx=#{midx}	
 	</select>
+	<select id="cartInfo" resultType="cartVo">
+select a.cart_idx,b.p_idx,b.p_name,b.p_content,b.p_price,c.p_front_img,c.p_ori_filename,c.p_sys_filename 
+from cart a left outer join product b on a.p_idx = b.p_idx 
+left outer join product_img c on a.p_idx = c.p_idx 
+ where midx=#{midx};
+	</select>
+	
 
 </mapper>

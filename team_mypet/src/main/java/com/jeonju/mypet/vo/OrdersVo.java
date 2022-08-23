@@ -24,7 +24,7 @@ public class OrdersVo {
 	private String m_name;
 	private String m_id;
 	private String bundleprice;
-	
+	private int cart_idx;
 	private int cart_cnt;
     private String p_name;
     private int p_price;
@@ -34,6 +34,15 @@ public class OrdersVo {
     private int point;
     private int totalPoint;
     
+	private String p_sys_filename;
+	
+	
+	
+	
+	
+	
+	
+	
 	
 	public String getBundleprice() {
 		return bundleprice;
@@ -224,6 +233,18 @@ public class OrdersVo {
 		return "OrderPageItemDTO [p_idx=" + p_idx + ", cartcnt=" + cart_cnt + ", p_name=" + p_name
 				+ ", p_price=" + p_price + ", p_discount=" + p_discount + ", salePrice=" + salePrice
 				+ ", totalPrice=" + totalPrice + ", point=" + point + ", totalPoint=" + totalPoint + "]";
+	}
+	public int getCart_idx() {
+		return cart_idx;
+	}
+	public void setCart_idx(int cart_idx) {
+		this.cart_idx = cart_idx;
+	}
+	public String getP_sys_filename() {
+		return p_sys_filename;
+	}
+	public void setP_sys_filename(String p_sys_filename) {
+		this.p_sys_filename = p_sys_filename;
 	}
 	
 	

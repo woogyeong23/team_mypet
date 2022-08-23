@@ -233,9 +233,9 @@ public class MembersController {
 			
 			cartVo.setMidx(midx);
 			List<CartVo> list = cartService.cartList(cartVo);
-
+			
 			model.addAttribute("cart", list );
-
+			
 			List<OrdersVo> ordersList = membersService.orderList(ordersVo);
 			
 			model.addAttribute("ordersList",ordersList);
