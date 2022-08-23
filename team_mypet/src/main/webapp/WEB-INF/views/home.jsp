@@ -39,6 +39,15 @@
   position: relative;
   margin-top: 50px;
     }
+    
+   .secEvent2{
+   background-size: cover;
+  background-position: center;
+  background-repeat: no-repeat;
+  height: 100%;
+  width: 100%;
+   
+   }
      
      .popup{
    width:100%; 
@@ -118,9 +127,15 @@ $(function() {
 </head>
 <body>
      <div class="popup" >
-     <div class="popup_in"><a id="popup_link" href="${pageContext.request.contextPath}/Error">지금 바로 가입하고 상품을 구입시
-  <b style="font-weight: 700;">마이펫 상품 100원에</b> 가져가세요!</a></div><button id="popup_close"><i class="lni lni-close"></i></button>
-  
+     	<div class="popup_in">
+     	<a id="popup_link" href="${pageContext.request.contextPath}/Error">지금 바로 가입하고 상품을 구입시
+  <b style="font-weight: 700;">마이펫 상품 100원에</b> 가져가세요!
+        </a>
+  	</div>
+
+  	<button id="popup_close">
+  		<i class="lni lni-close"></i>
+  	</button>
      </div>
 <!-- 헤더와 네비************************************************ -->
     <jsp:include page="../include/header.jsp" />  
@@ -429,13 +444,22 @@ $(function() {
                     <!-- End Single Product -->
                 </div>
                 </c:forEach>
-                <a href="${pageContext.request.contextPath}/EventView2">
-                  <div class="secEvent" style=" background-image: url(resources/Home/images/mypetEvent2.jpg);"></div> 
-                  </a> 
+         
+       
+               
             </div>
         </div>
     </section>
-    
+       <div class="col-12">
+        
+       <div class="secEvent">
+          <a style="text-decorate:none" href="${pageContext.request.contextPath}/EventView2">
+          <img class="secEvent2" alt="이벤트 사진" src="${pageContext.request.contextPath}/resources/Home/images/mypetEvent2.jpg">
+          </a> 
+          </div> 
+            
+   	      
+   	          </div>
     
     <!-- 리뷰 갯수 순 -->
       <section class="trending-product section" style="margin-top: 12px;">

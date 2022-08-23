@@ -89,10 +89,11 @@
         <div class="header-middle">
             <div class="container">
                 <div class="row align-items-center">
-                    <div class="col-lg-3 col-md-3 col-7">
+                <div class="col-lg-1 col-none"></div>
+                    <div class="col-lg-2 col-md-3 col-7">
                         <!-- Start Header Logo -->
-                        <a class="navbar-brand" href="${pageContext.request.contextPath}/home.do">
-                            <img src="resources/assets/images/logo/mypetLogo.png"  style="width:100px; height:100px; position:relative" alt="Logo">
+                        <a style="text-align:center;" class="navbar-brand" href="${pageContext.request.contextPath}/home.do">
+                            <img src="resources/assets/images/logo/mypetLogo.png"  style="width:100px; height:100px; position:relative; " alt="Logo">
                         </a>
                         <!-- End Header Logo -->
                     </div>
