@@ -81,7 +81,7 @@ public class MembersController {
 			loginInfo.put("m_id",m_id);
 			loginInfo.put("m_pwd",m_pwd);
 			
-
+			
 			HashMap<String, Long> resultMap = membersService.login(loginInfo);
 
 			long m_auth = resultMap.get("m_auth");
@@ -102,7 +102,7 @@ public class MembersController {
 				session.setAttribute("midx",resultMap.get("midx"));
 
 				viewPage = "redirect:/home.do";
-						
+				
 			}else {
 				viewPage = "member/login";
 			}
@@ -223,7 +223,7 @@ public class MembersController {
 		public String memberorder() {
 			
 			return "member/memberorder";	
-		}
+		}			
 		@GetMapping("/memberorderList.do")
 		public String memberorderList(HttpServletRequest request, OrdersVo ordersVo,CartVo cartVo,Model model) {
 			HttpSession Session = request.getSession();

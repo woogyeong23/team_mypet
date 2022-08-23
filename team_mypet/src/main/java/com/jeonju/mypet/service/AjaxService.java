@@ -41,10 +41,13 @@ public class AjaxService {
 	public String idfind(String m_name) {
 		String result = "";
 		result = membersDao.idfind(m_name);
-		System.out.println(result);
 		return result;
 	}
-
+	public String pwdfind(String m_id,String m_phone) {
+		String result = "";
+		result = membersDao.pwdfind(m_id,m_phone);
+		return result;
+	}
 
 	public int checkId(String id) {
 		int result=0;
@@ -98,6 +101,7 @@ public class AjaxService {
 	public int cartRequestUpdate(CartVo cartVo) {
 		return cartDao.cartRequestUpdate(cartVo);
 	}
+	
 	
 	
 	

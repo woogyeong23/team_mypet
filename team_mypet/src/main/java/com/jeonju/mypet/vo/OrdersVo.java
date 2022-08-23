@@ -25,7 +25,6 @@ public class OrdersVo {
 	private String m_id;
 	private String bundleprice;
 	
-	/* 민국*/
 	private int cart_cnt;
     private String p_name;
     private int p_price;

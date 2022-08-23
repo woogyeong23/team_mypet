@@ -44,6 +44,7 @@ private CartDao cartDao;
 	public int detailInsert(DetailVo detailVo) throws Exception {
 		return payDao.detailInsert(detailVo);
 	}
+	
 	public List<OrdersListVo> orderview(OrdersVo ordersVo){
 		return payDao.orderview(ordersVo);
 	}

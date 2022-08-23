@@ -505,7 +505,7 @@ $(document).ready(function(){
 				});
 				
 				$("#c_idxArr").val(c_idxArr);
-				$("#totalcnt").text(c_idxArr);
+				
 				
 				var fm = document.frm;   
 				

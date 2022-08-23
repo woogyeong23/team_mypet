@@ -15,6 +15,7 @@ public class DetailVo {
 	private String fixdvprice;
 	private List<OrdersVo> orders;
 	private int detail_status;
+	private int midx;
 	
 	public String getFixdvprice() {
 		return fixdvprice;
@@ -110,6 +111,12 @@ public class DetailVo {
 	}
 	public void setDetail_status(int detail_status) {
 		this.detail_status = detail_status;
+	}
+	public int getMidx() {
+		return midx;
+	}
+	public void setMidx(int midx) {
+		this.midx = midx;
 	}
 	
 	

@@ -75,6 +75,14 @@ public class MembersDao {
 	public String idfind(String m_name) {
 		return sqlSession.selectOne(MAPPER+".getidfind",m_name);
 	}
+	public String pwdfind(String m_id,String m_phone) {
+		
+		HashMap<String, String> pwd = new HashMap<String, String>(); 
+		pwd.put("m_id",m_id);
+		pwd.put("m_phone", m_phone);
+		
+		return sqlSession.selectOne(MAPPER+".getpwdfind",pwd);
+	}
 
 	public int petdelinfo(List<Integer> pet_idx_list) {
 		return sqlSession.delete(MAPPER+".getpetdel",pet_idx_list);
@@ -91,6 +99,8 @@ public class MembersDao {
 	public List<OrdersVo> orderList(OrdersVo ordersVo) {
 		return sqlSession.selectList(MAPPER+".getordersList", ordersVo);
 	}
+
+	
 
 
 

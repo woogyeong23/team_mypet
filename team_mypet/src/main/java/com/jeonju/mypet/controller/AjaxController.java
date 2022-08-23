@@ -54,10 +54,19 @@ public class AjaxController {
 	//@ResponseBody //Ajax통신의 응답내용을 보내는 것을 표시 <-- @RestController 로 대체 가능
 	public String idFindProcess(@RequestParam("m_name") String m_name,Model model) {
 		
-		
-		
 		String result  = ajaxService.idfind(m_name);
 		System.out.println("아이디찾기 : "+result);
+		return result;
+	}	
+	
+	@PostMapping("/pwdFindProcess.do")
+	//@ResponseBody //Ajax통신의 응답내용을 보내는 것을 표시 <-- @RestController 로 대체 가능
+	public String pwdFindProcess(@RequestParam("m_id") String m_id,
+			@RequestParam("m_phone") String m_phone,Model model) {
+		
+		String result  = ajaxService.pwdfind(m_id,m_phone);
+		
+		System.out.println("비밀번호찾기 : "+result);
 		return result;
 	}	
 	

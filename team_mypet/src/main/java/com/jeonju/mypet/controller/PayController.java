@@ -41,7 +41,8 @@ private PayService payService;
 	
 	//주문하기 페이지 넘어가기
 	@GetMapping("/memberpay.do")
-	public String memberpay(@RequestParam Map<String, String> param,OrdersVo ordersVo,Model model,HttpServletRequest request) {
+	public String memberpay(
+			@RequestParam Map<String, String> param,OrdersVo ordersVo,Model model,HttpServletRequest request) {
 
 		HttpSession Session = request.getSession();
 		int midx = (int) Session.getAttribute("midx");
@@ -53,7 +54,7 @@ private PayService payService;
 		 
 		
 		MembersVo member = payService.membersinfo(midx);
-		 
+		
 		ordersVo.setMidx(midx);
 		
 		List<OrdersVo> ordersList = payService.orderpay(ordersVo);
@@ -65,6 +66,7 @@ private PayService payService;
 
 		return "member/memberpay";	
 	}
+	
 		//결제 성공 시 주문 및 카트 삭제 
 	  @PostMapping("/orderInsert.do")
 	  public String orderInsert(OrdersVo ordersVo, DetailVo detailVo, HttpServletRequest request)throws Exception{
@@ -86,10 +88,11 @@ private PayService payService;
 			ordersVo.setMidx(midx);
 			
 			payService.orderInsert(ordersVo);
-
 			
-			detailVo.setDetail_idx(midx);
+			detailVo.setOrders_idx(ordersVo.getOrders_idx());
 			detailVo.setDetail_completeday(detail_idx);
+			detailVo.setFixprice(ordersVo.getOrders_totalprice());
+			detailVo.setMidx(midx);
 			
 			payService.detailInsert(detailVo);
 

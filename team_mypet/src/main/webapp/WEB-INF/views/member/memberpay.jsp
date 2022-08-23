@@ -88,16 +88,23 @@ $(document).ready(function(){
 		
 	});
 	
-	$('input[type="number"]').blur(function(){
+// 	$('input[type="number"]').blur(function(){
 
-		let members_point = $("#members_point").val();
-		let orders_point = $("#orders_point").val();
-		if(members_point >= orders_point){
-			$("#use_point_chk").text("사용 가능합니다.").css("color","green");
-		}else{
-			$("#use_point_chk").text("사용 불가능").css("color","red");
-		}
-	});
+// 		let members_point = $("#members_point").val();
+// 		let orders_point = $("#orders_point").val();
+// 		let totalprice = $("#totalprice").val();
+// 		let totaldvprice = $("#totaldvprice").val();
+// 		let finalprice = $("input[name='orders_totalprice']").val()
+
+		
+// 		if(members_point >= orders_point){
+// 			$("#use_point_chk").text("사용 가능합니다.").css("color","green");
+// 		}else{
+// 			$("#use_point_chk").text("사용 불가능").css("color","red");
+// 		}
+		
+		
+// 	});
 });
 $(document).ready(function(){
 		   	  
@@ -147,7 +154,7 @@ $(document).ready(function(){
 				
 				var formObj = $("form[name='orderForm']");
 
-
+				
 					formObj.attr("action", "${pageContext.request.contextPath}/orderInsert.do");
 					formObj.attr("method", "post");
 					formObj.submit();
@@ -191,13 +198,16 @@ transform:translatY(-100%);
     <jsp:include page="../../include/header.jsp" />  
 	<!-- ************************************************ -->
 <div id="wrap">
-<input type="hidden" name="m_name" value="${member.m_name}">
-<input type="hidden" name="m_phone" value="${member.m_phone}">
-<input type="hidden" name="m_addr1" value="${member.m_addr1}">
-<input type="hidden" name="m_addr2" value="${member.m_addr2}">
-<input type="hidden" name="m_addr3" value="${member.m_addr3}">
+
 <div class="content" style="padding-bottom:0;">
+
 	<form class="form-payment" name="orderForm" >
+	
+		<input type="hidden" name="m_name" value="${member.m_name}">
+		<input type="hidden" name="m_phone" value="${member.m_phone}">
+		<input type="hidden" name="m_addr1" value="${member.m_addr1}">
+		<input type="hidden" name="m_addr2" value="${member.m_addr2}">
+		<input type="hidden" name="m_addr3" value="${member.m_addr3}">
 		<div class="inner-w800" style="width:800px;">
 		<div class="title-style clf">
 			<h2 class="txt fl">주문 결제하기</h2>
@@ -343,20 +353,20 @@ transform:translatY(-100%);
    									</span>
    								</td>
    							</tr>
-   							<tr>
-   								<th>적립금 사용</th>
-   								<td>
-   									<span id="use_Point">
-   									<input type='hidden' id='members_point' name='members_point' value='${member.m_point}'>
-   									<input style="width:100%;height:100%;" type="number" id='orders_point' name='orders_point' value=''>
+<!--    							<tr> -->
+<!--    								<th>적립금 사용</th> -->
+<!--    								<td> -->
+<!--    									<span id="use_Point"> -->
+<%--    									<input type='hidden' id='members_point' name='members_point' value='${member.m_point}'> --%>
+<!--    									<input style="width:100%;height:100%;" type="number" id='orders_point' name='orders_point' value=''> -->
    									
-   									<em id="use_point_chk">사용 가능
-   									<fmt:formatNumber pattern="###,###,### 원" value="${member.m_point}" />
-   									</em>
+<!--    									<em id="use_point_chk">사용 가능 -->
+<%--    									<fmt:formatNumber pattern="###,###,### 원" value="${member.m_point}" /> --%>
+<!--    									</em> -->
    									
-   									</span>
-   								</td>
-   							</tr>
+<!--    									</span> -->
+<!--    								</td> -->
+<!--    							</tr> -->
    						</tbody>
    					</table>
    					<table class="spacing">
@@ -365,8 +375,8 @@ transform:translatY(-100%);
    								<th>최종 결제금액</th>
    								<td class="hilight">
    									<span id="final_Price">
-   										<input type="hidden" name="orders_totalprice" value="${ProductPriceMap.totalproductprice+ProductPriceMap.totaldvprice-member.m_point}">
-   										<fmt:formatNumber pattern="###,###,### 원" value="${ProductPriceMap.totalproductprice+ProductPriceMap.totaldvprice}" />
+   										<input type="hidden" name="orders_totalprice" value="${ProductPriceMap.totalproductprice + ProductPriceMap.totaldvprice}">
+   										<fmt:formatNumber pattern="###,###,### 원" value="${ProductPriceMap.totalproductprice + ProductPriceMap.totaldvprice}" />
    									</span>
    								</td>
    							</tr>
@@ -386,8 +396,11 @@ transform:translatY(-100%);
    									<span id="final_Price">${orders_totalprice}</span>
    									<em>원</em>
    									<span>결제하기</span>
+   									
    									<p class="point" style="display: block;">예상적립금
+   									
    									<span id="total_Point">
+   									
    										<fmt:formatNumber pattern="###,###,### P" value="${ProductPriceMap.totalproductprice*0.05}" />
    									</span>
    									</p>

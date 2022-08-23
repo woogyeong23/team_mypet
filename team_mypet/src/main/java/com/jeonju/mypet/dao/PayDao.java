@@ -29,17 +29,12 @@ private SqlSession sqlSession;
 	
 	
 	public int orderInsert(OrdersVo ordersVo) {
-		return sqlSession.insert(MAPPER+".orderInsert",ordersVo);
+		return sqlSession.insert(MAPPER+".getorderInsert",ordersVo);
 	}
 
-
-	
 	public int detailInsert(DetailVo detailVo) throws Exception{
-		return sqlSession.insert(MAPPER+".detailInsert",detailVo);
-
+		return sqlSession.insert(MAPPER+".getdetailInsert",detailVo);
 	}
-
-
 
 	public List<OrdersVo> orderpay(OrdersVo ordersVo) {
 		return sqlSession.selectList(MAPPER+".orderList",ordersVo);
