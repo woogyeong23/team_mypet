@@ -9,8 +9,8 @@
 </select>
 
 <insert id="orderInsert">
- insert into orders (orders_idx,orders_totalprice, orders_name, orders_phone, orders_addr1, orders_addr2,orders_addr3, orders_payment, orders_dvprice, orders_point,midx)
- values(#{orders_idx}#{orders_totalprice}, #{orders_name}, #{orders_phone}, #{orders_addr1}, #{orders_addr2}, #{orders_addr3},#{orders_payment}, #{orders_dvprice}, #{orders_point}, #{midx})
+ insert into orders (orders_totalprice, orders_name, orders_phone, orders_addr1, orders_addr2,orders_addr3, orders_payment, orders_dvprice, orders_point,midx)
+ values(#{orders_totalprice}, #{orders_name}, #{orders_phone}, #{orders_addr1}, #{orders_addr2}, #{orders_addr3},#{orders_payment}, #{orders_dvprice}, #{orders_point}, #{midx})
 </insert>
 <insert id="detailInsert">
  insert into detail (orders_idx,p_idx, detail_status, detail_cnt, fixprice, detail_completeday)
@@ -31,10 +31,14 @@
 </select>
 <!-- 상품만총가격 -->
 	<select id="totalProductPrice" resultType="HashMap">
-		select sum(b.p_price*a.cart_cnt) as totalproductprice from cart a join product b on a.p_idx=b.p_idx where a.midx=#{midx} 
+		select sum(b.p_price*a.cart_cnt) as totalproductprice,sum( IF((cart_cnt*p_price)>b.p_free_dvprice,0,b.p_dvprice) ) as totaldvprice
+ from cart a join product b on a.p_idx=b.p_idx where a.midx=#{midx} 
 	</select>
 	<select id="totalProductDvPrice" resultType="HashMap">
 		select b.p_price as totalproductDvprice from cart a join product b on a.p_idx=b.p_idx where a.midx=#{midx} 
+	</select>
+	<select id="membersInfo" resultType="membersVo">
+	select * from members where midx=#{midx}	
 	</select>
 
 </mapper>

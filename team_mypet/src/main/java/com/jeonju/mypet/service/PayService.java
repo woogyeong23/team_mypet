@@ -12,6 +12,7 @@ import com.jeonju.mypet.dao.CartDao;
 import com.jeonju.mypet.dao.MembersDao;
 import com.jeonju.mypet.dao.PayDao;
 import com.jeonju.mypet.vo.DetailVo;
+import com.jeonju.mypet.vo.MembersVo;
 import com.jeonju.mypet.vo.OrdersListVo;
 import com.jeonju.mypet.vo.OrdersVo;
 
@@ -51,6 +52,10 @@ private CartDao cartDao;
 		// TODO Auto-generated method stub
 		return cartDao.totalProductPrice(midx);
 	}
+	public MembersVo membersinfo(int midx) {
+		return payDao.membersinfo(midx);
+	}
+
 	
 	
 	

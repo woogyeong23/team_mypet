@@ -94,5 +94,12 @@ public class AjaxService {
 		}
 	
 	
+	
+	public int cartRequestUpdate(CartVo cartVo) {
+		return cartDao.cartRequestUpdate(cartVo);
+	}
+	
+	
+	
 
 }

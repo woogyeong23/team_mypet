@@ -66,8 +66,8 @@ public class MembersController {
 		if(result == 1) {
 			viewPage = "redirect:/login.do";
 		}else {
-		 viewPage = "member/joinEm";
-		}
+		 viewPage = "joinEm.do";
+		}System.out.println("회원가입:"+result);
 		return viewPage;	
 	}
 	

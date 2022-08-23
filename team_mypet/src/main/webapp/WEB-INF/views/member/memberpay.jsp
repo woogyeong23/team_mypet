@@ -60,7 +60,45 @@ function execPostCode() {
 
 </script>
 <script>
+$(document).ready(function(){
+	
+	$('input[type="checkbox"]').on("click",function(){
+		
+		let name = $('input[name="m_name"]').val();
+		let phone = $('input[name="m_phone"]').val();
+		let addr1 = $('input[name="m_addr1"]').val();
+		let addr2 = $('input[name="m_addr2"]').val();
+		let addr3 = $('input[name="m_addr3"]').val();
+		
+		if( $('#mmm').is(':checked') == true){
+			
+		$('input[name="orders_name"]').val(name);
+		$('input[name="orders_phone"]').val(phone);
+		$('input[name="orders_addr1"]').val(addr1);
+		$('input[name="orders_addr2"]').val(addr2);
+		$('input[name="orders_addr3"]').val(addr3);
+		}else if( $('#mmm').is(':checked') == false){
 
+			$('input[name="orders_name"]').val("");
+			$('input[name="orders_phone"]').val("");
+			$('input[name="orders_addr1"]').val("");
+			$('input[name="orders_addr2"]').val("");
+			$('input[name="orders_addr3"]').val("");
+		}
+		
+	});
+	
+	$('input[type="number"]').blur(function(){
+
+		let members_point = $("#members_point").val();
+		let orders_point = $("#orders_point").val();
+		if(members_point >= orders_point){
+			$("#use_point_chk").text("사용 가능합니다.").css("color","green");
+		}else{
+			$("#use_point_chk").text("사용 불가능").css("color","red");
+		}
+	});
+});
 $(document).ready(function(){
 		   	  
 			var IMP = window.IMP;
@@ -75,7 +113,7 @@ $(document).ready(function(){
 					pay_method: $("input[name='orders_payment']").val() ,
 					merchant_uid : 'merchant_' + new Date().getTime(),
 					name : '결제테스트', // 상품명
-					amount : '100',
+					amount : $("input[name='orders_totalprice']").val(),
 					buyer_name : $("[name=orders_name]").val(),
 				  	buyer_phone : $("[name=orders_phone]").val(),
 					buyer_addr1: $("#orders_addr1").val(),
@@ -153,6 +191,11 @@ transform:translatY(-100%);
     <jsp:include page="../../include/header.jsp" />  
 	<!-- ************************************************ -->
 <div id="wrap">
+<input type="hidden" name="m_name" value="${member.m_name}">
+<input type="hidden" name="m_phone" value="${member.m_phone}">
+<input type="hidden" name="m_addr1" value="${member.m_addr1}">
+<input type="hidden" name="m_addr2" value="${member.m_addr2}">
+<input type="hidden" name="m_addr3" value="${member.m_addr3}">
 <div class="content" style="padding-bottom:0;">
 	<form class="form-payment" name="orderForm" >
 		<div class="inner-w800" style="width:800px;">
@@ -177,6 +220,7 @@ transform:translatY(-100%);
    				<div class="segment--nospacing">
    					<div class="ui_title--sub tab">
    						<span class="ui_title__txt">주문 고객</span>
+   						
 			   			<span class="ui_title__txtright--blue user-info-header-right-text" >${m_nick} 님</span>
    					</div>
    				</div>
@@ -184,6 +228,10 @@ transform:translatY(-100%);
    				
    				<div class="ui_title--sub">
    					<span class="ui_title__txt">주소(배송지)</span>
+   					<span class="ui_title__txtright--blue user-info-header-right-text" >
+   						<input type="checkbox" id="mmm">
+   						<span>구매자와 동일</span>
+   						</span>
    				</div>
    				
    				<div class="payment-contents">
@@ -281,15 +329,32 @@ transform:translatY(-100%);
    							<tr>
    								<th>제품 금액</th>
    								<td>
-   								<span id="total_Price"><input type='hidden' id='totalProduct'  name='totalProduct'  value='${ProductPriceMap.totalProductPrice}'>
+   								<span id="total_Price">
+   								<input type='hidden' id='totalprice'  name='totalprice'  value='${ProductPriceMap.totalProductPrice}'>
    								<fmt:formatNumber pattern="###,###,### 원" value="${ProductPriceMap.totalproductprice}" /></span>
    								</td>
    							</tr>
    							<tr>
    								<th>배송비</th>
    								<td>
-   								<span id="total_Point"></span>
-   								<em>원</em>
+   									<span id="total_Point">
+   									<input type='hidden' id='totaldvprice'  name='orders_dvprice'  value='${ProductPriceMap.totaldvprice }'>
+   									<fmt:formatNumber pattern="###,###,### 원" value="${ProductPriceMap.totaldvprice}" />
+   									</span>
+   								</td>
+   							</tr>
+   							<tr>
+   								<th>적립금 사용</th>
+   								<td>
+   									<span id="use_Point">
+   									<input type='hidden' id='members_point' name='members_point' value='${member.m_point}'>
+   									<input style="width:100%;height:100%;" type="number" id='orders_point' name='orders_point' value=''>
+   									
+   									<em id="use_point_chk">사용 가능
+   									<fmt:formatNumber pattern="###,###,### 원" value="${member.m_point}" />
+   									</em>
+   									
+   									</span>
    								</td>
    							</tr>
    						</tbody>
@@ -299,8 +364,10 @@ transform:translatY(-100%);
    							<tr class="total">
    								<th>최종 결제금액</th>
    								<td class="hilight">
-   								<span id="final_Price"></span>
-   								<em>원</em>
+   									<span id="final_Price">
+   										<input type="hidden" name="orders_totalprice" value="${ProductPriceMap.totalproductprice+ProductPriceMap.totaldvprice-member.m_point}">
+   										<fmt:formatNumber pattern="###,###,### 원" value="${ProductPriceMap.totalproductprice+ProductPriceMap.totaldvprice}" />
+   									</span>
    								</td>
    							</tr>
    						</tbody>
@@ -320,8 +387,9 @@ transform:translatY(-100%);
    									<em>원</em>
    									<span>결제하기</span>
    									<p class="point" style="display: block;">예상적립금
-   									<span id="total_Point"></span>
-   									<em>P</em>
+   									<span id="total_Point">
+   										<fmt:formatNumber pattern="###,###,### P" value="${ProductPriceMap.totalproductprice*0.05}" />
+   									</span>
    									</p>
    								</button>
    							</div>

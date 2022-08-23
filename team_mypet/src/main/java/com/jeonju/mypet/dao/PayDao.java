@@ -9,6 +9,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Repository;
 
 import com.jeonju.mypet.vo.DetailVo;
+import com.jeonju.mypet.vo.MembersVo;
 import com.jeonju.mypet.vo.OrdersListVo;
 import com.jeonju.mypet.vo.OrdersVo;
 
@@ -54,7 +55,11 @@ private SqlSession sqlSession;
 		return  sqlSession.selectOne(MAPPER+".totalProductPrice",midx);
 		}
 	
-	
+	public MembersVo membersinfo(int midx) {
+		return sqlSession.selectOne(MAPPER+".membersInfo",midx);
+	}
+
+
 	
 
 }

@@ -129,23 +129,19 @@ public class AjaxController {
 	@PostMapping("/cartRequest.do")
 	public String cartRequest(CartVo cartVo) throws Exception {
 		
-		String result; 
+		String result = "N";
 				
-		int cnt = ajaxService.modifycartcnt(cartVo);
 		
-		System.out.println("카운트:"+cartVo);
+			int flag = ajaxService.cartRequestUpdate(cartVo);
+		if(flag== 1) result = "Y";		
 		
-		if(cnt == 1) {
-			result = "Y";
-		}else {
-			result = "N";
-		}
 		
-		System.out.println("업데뚜:"+result);
+		System.out.println("요구사항:"+result);
 
 		return result;
 		
 	}
+	
 
 	
 	

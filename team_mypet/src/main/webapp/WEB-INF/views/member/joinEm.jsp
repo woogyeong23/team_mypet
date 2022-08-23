@@ -196,24 +196,28 @@
 		});
 
 
-// 		 $("#login_member").click(function(){
-// 			if($(".emChk").val() == "true" || $(".nickChk").val() == "true"){
-// 				alert($("#m_name").val() +"님 환영합니다. 선택해주셔서 감사합니다 :)");
-// 			 }else{
-// 				alert("회원가입을 완료할 수 없습니다. 다시 한번 확인해 주십시오");
-// 				if($(".nickChk").val() != "true"){
-// 					$(".successIdChk").text("이름을 입력해주세요").css("color","red");
-// 				}		
-// 				if($(".pwChk").val() != "true"){
-// 					$(".successPwChk").text("비밀번호를 입력해주세요").css("color","red");
-// 				}
-// 				if($(".emChk").val() != "true"){
-// 					$(".successEmChk").text("이메일를 입력해주세요").css("color","red");
-// 				}
-// 				return ;	
-// 			} 
-			
-// 		 });
+		 $("#loginmember").click(function(){
+				alert($("#m_name").val() +"님 환영합니다. 선택해주셔서 감사합니다 :)");
+
+			if($(".emChk").val() == "true" || $(".nickChk").val() == "true"){
+				alert($("#m_name").val() +"님 환영합니다. 선택해주셔서 감사합니다 :)");
+				return;
+			 }			
+
+			else{
+				alert("회원가입을 완료할 수 없습니다. 다시 한번 확인해 주십시오");
+				if($(".nickChk").val() != "true"){
+					$(".successIdChk").text("이름을 입력해주세요").css("color","red");
+				}		
+				if($(".pwChk").val() != "true"){
+					$(".successPwChk").text("비밀번호를 입력해주세요").css("color","red");
+				}
+				if($(".emChk").val() != "true"){
+					$(".successEmChk").text("이메일를 입력해주세요").css("color","red");
+				}
+				return ;	
+			} 
+		 });
 	
 		
 		
@@ -293,7 +297,7 @@
       <label for="m_phone">phone</label>
     </div>
 </div>
-    <button class="w-100 btn btn-lg btn-primary" id="login_member"type="submit">회원가입</button>
+    <button class="w-100 btn btn-lg btn-primary" id="loginmember"type="submit">회원가입</button>
   </form>
 </main>         
 

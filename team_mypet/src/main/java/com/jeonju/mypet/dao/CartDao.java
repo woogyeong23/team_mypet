@@ -80,6 +80,14 @@ public class CartDao {
 		// TODO Auto-generated method stub
 		return  sqlSession.selectOne(MAPPER+".totalProductPrice",midx);
 		}
+
+	
+	public int cartRequestUpdate(CartVo cartVo) {
+		return  sqlSession.update(MAPPER+".requestCartUpdate",cartVo);
+	}
+	
+
+	
 	
 
 

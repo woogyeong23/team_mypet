@@ -24,6 +24,7 @@ import org.springframework.web.bind.annotation.RequestParam;
 import com.jeonju.mypet.service.PayService;
 import com.jeonju.mypet.vo.CartVo;
 import com.jeonju.mypet.vo.DetailVo;
+import com.jeonju.mypet.vo.MembersVo;
 import com.jeonju.mypet.vo.OrdersListVo;
 import com.jeonju.mypet.vo.OrdersVo;
 
@@ -49,14 +50,18 @@ private PayService payService;
 
 		 model.addAttribute("orderslist", orderslist);
 		 HashMap<String, Object>ProductPriceMap = payService.totalProductPrice(midx);
-
-	
+		 
+		
+		MembersVo member = payService.membersinfo(midx);
+		 
 		ordersVo.setMidx(midx);
 		
 		List<OrdersVo> ordersList = payService.orderpay(ordersVo);
 		
 		model.addAttribute("ordersList",ordersList);
+		model.addAttribute("member",member);
 		model.addAttribute("ProductPriceMap",ProductPriceMap);
+
 
 		return "member/memberpay";	
 	}

@@ -177,56 +177,40 @@ $(document).ready(function(){
 					console.log(result);
 					alert("삭제놉");
 				}else{
-					alert("삭제하였습니다");
 					$(CAI).remove();
 				}
 			}
 		});
 	});
+			
 	
+	//주문 요청사항
+		$(".CommonButton").on("click", function(){
+		
+			let cart_idx = $(this).data("cart_idx");
+			let midx_input = $('input[id="midx_input"]');
+			let midx = $(midx_input).val();
+			let p_idx = $(this).data("p_idx");
+			let cart_request = "#cart_request"+cart_idx;
+			let cart_request_val = $(cart_request).val();
+			
+			$.ajax({
+				type:"post",
+				url:"${pageContext.request.contextPath}/cartRequest.do",
+				data:{"cart_request": cart_request_val,"p_idx":p_idx,
+						"midx":midx,"cart_idx":cart_idx },
+				success:function(data){
+					if(data == "Y"){
+						console.log("request o");
+						alert("저장되었습니다.");
+					}else{
+						console.log("request x");
 	
-	//cnt +1
-	$(".NumberCounter__plus").on("click", function(){
-		
-		let cart_idx = $(this).data("cart_idx");
-		let midx_input = $('input[id="midx_input"]');
-		let midx = $(midx_input).val();
-		let p_idx_input = $('input[id="p_idx_input"]');
-		let p_idx = $(p_idx_input).val();
-		
-		let cart_cnt = $(this).parent().find('input[name="cart_cnt"]').val();
-		
-		//상품당 총가격 계산
-		let p_price=$(this).val();
-		//alert(p_price);
-		//alert(cart_cnt);
-		let c_price=p_price*cart_cnt;
-		//c_price=c_price.toLocaleString();
-		//alert(c_price);
-		
-		str="<input type='hidden' id='seller_price" + cart_idx + "' value='"+c_price  +"'>"+c_price.toLocaleString();
-		
-		//alert(str);
-		
-		
-		$.ajax({
-			type:"post",
-			url:"${pageContext.request.contextPath}/updatecnt.do",
-			data:{"cart_cnt": cart_cnt,"cart_idx":cart_idx,
-					"midx":midx,"p_idx":p_idx},
-			success:function(data){
-				if(data == "Y"){
-					console.log("request o");
-					
-					
-				}else{
-					console.log("request x");
-
+					}
 				}
-			}
+			});
 		});
-	});
-	
+
 	
 	
 	
@@ -556,6 +540,115 @@ $(document).ready(function(){
     <link href="resources/assets/css/cart.css" rel="stylesheet">
     
     <style>
+    .CartCheckboxControl__label {
+    margin-left: 4px;
+    font-size: 12px;
+}
+
+.CommonButton--white {
+    background: #ffffff;
+    border: 1px solid #d9d9d9;
+    color: #333;
+}
+.CommonButton--middle {
+    font-size: 12px;
+    line-height: 30px;
+    padding: 0 16px;
+}
+.CommonButton {
+    display: inline-block;
+    border-radius: 2px;
+    box-shadow: 0 1px 3px 0 rgb(220 220 220 / 30%);
+    box-sizing: border-box;
+    cursor: pointer;
+    font-weight: 400;
+    text-align: center;
+    text-decoration: none;
+    transition: border-color 0.2s cubic-bezier(0.075, 0.82, 0.165, 1);
+    vertical-align: middle;
+}
+.CartCheckboxControl__label--bold {
+    font-weight: bold;
+}
+.CartOrderMessageEditor__productOrderMessage {
+    width: calc(100% - 80px);
+    display: inline-block;
+    vertical-align: middle;
+}
+.CommonTextEditor {
+    display: inline-block;
+    width: 100%;
+    height: 80px;
+    overflow: hidden;
+    position: relative;
+}
+.CommonTextEditor__textarea {
+    width: 100%;
+    height: 100%;
+    padding: 12px 30px 12px 12px;
+    border-radius: 2px;
+    resize: none;
+    line-height: 1.33;
+    border: 1px solid #ccc;
+}
+.CommonTextEditor__maxLength {
+    color: #999;
+    position: absolute;
+    bottom: 4px;
+    right: 8px;
+}
+.CartOrderMessageEditor__orderMessageSaveBtn {
+    float: right;
+}
+.CartOrderMessageEditor__orderMessageSaveBtn .CommonButton {
+    width: 72px;
+    height: 80px;
+    font-weight: bold;
+    line-height: 15px;
+    padding: 0 20px;
+}
+.CommonButton--redline {
+    background: #ffffff;
+    border: 1px solid #ffff80;
+    color: #ffff80;
+}
+.CommonButton.disabled {
+    color: #d9d9d9;
+    background: #f2f2f2;
+    cursor: default;
+}
+.CommonButton--white {
+    background: #ffffff;
+    border: 1px solid #d9d9d9;
+    color: #333;
+}
+.CommonButton--middle {
+    font-size: 12px;
+    line-height: 30px;
+    padding: 0 16px;
+}
+.CommonButton {
+    display: inline-block;
+    border-radius: 2px;
+    box-shadow: 0 1px 3px 0 rgb(220 220 220 / 30%);
+    box-sizing: border-box;
+    cursor: pointer;
+    font-weight: 400;
+    text-align: center;
+    text-decoration: none;
+    transition: border-color 0.2s cubic-bezier(0.075, 0.82, 0.165, 1);
+    vertical-align: middle;
+}
+.CartOrderMessageEditor__saveMessage {
+    margin-top: 5px;
+}
+
+.CartOrderMessageEditor__saveMessage--text] {
+    display: inline-block;
+    position: absolute;
+    margin: 0 0 0 5px;
+    font-size: 12px !important;
+}
     .NumberCounter__minus {
     display: inline-block;
     vertical-align: middle;
@@ -686,8 +779,8 @@ $(document).ready(function(){
 			   															</div>
 			   														
 			   															<div class="CartOptionListItem__splitRight"  >
-			   																<em class="CartOptionListItem__totalPrice" id="CartArtistItem__Price${cart.cart_idx}" name="${cart.p_price}"><input type="hidden" id='seller_price${cart.cart_idx}' value='${cart.c_price}'><fmt:formatNumber pattern="###,###,###" value="${cart.c_price}"/></em> <!-- 상품가격 -->
-			   																
+			   																<em class="CartOptionListItem__totalPrice" id="CartArtistItem__Price${cart.cart_idx}">
+			   																<input type="hidden" id='seller_price${cart.cart_idx}' value='${cart.c_price}'><fmt:formatNumber pattern="###,###,###" value="${cart.c_price}"/></em> <!-- 상품 가격 -->
 			   																<div class="CartOptionListItem__btnGroup">
 			   																	<div class="CartOptionEditingButtonGroup">
 			   																		<button  id="delete__button${cart.cart_idx}" name="${cart.cart_idx}" class="CartOptionEditingButtonGroup__button CartOptionEditingButtonGroup__button--right" >
@@ -703,7 +796,8 @@ $(document).ready(function(){
 			   																<div id="message${cart.cart_idx}">
 				   																<c:if test="${cart.p_free_dvprice<=cart.c_price}">무료배송</c:if>
 			   																	<c:if test="${cart.p_free_dvprice>cart.c_price}">
-			   																	<fmt:formatNumber pattern="###,###,###" value="${cart.p_free_dvprice}"/>원 이상 구매시 무료배송
+			   																	<em>배송비 : <fmt:formatNumber pattern="###,###,###" value="${cart.p_dvprice}"/>원</em><p />
+			   																	<em><fmt:formatNumber pattern="###,###,###" value="${cart.p_free_dvprice}"/>원 이상 구매시 무료배송</em>
 			   																	</c:if>
 			   																</div>
 			   																</div>	
@@ -715,12 +809,12 @@ $(document).ready(function(){
 			   													<div>
 			   														<div class="CartOrderMessageEditor__productOrderMessage">
 			   																<div class="CommonTextEditor">
-			   																	<textarea class="CommonTextEditor__textarea" id="cart_request${cart.cart_idx}" name="cart_request" maxlength="500" placeholder="주문 요청사항을 입력해주세요" ></textarea>
+			   																	<textarea class="CommonTextEditor__textarea" id="cart_request${cart.cart_idx}" name="cart_request" maxlength="500" placeholder="주문 요청사항을 입력해주세요">${cart.cart_request}</textarea>
 			   																	<em class="CommonTextEditor__maxLength"></em>
 			   																</div>
 			   														</div>
 			   														<div class="CartOrderMessageEditor__orderMessageSaveBtn">
-			   															<button type="button" class="CommonButton CommonButton--middle CommonButton--white disabled" id="CommonButton">
+			   															<button type="button" class="CommonButton CommonButton--middle CommonButton--white" id="CommonButton${cart.cart_idx}" data-cart_idx="${cart.cart_idx}" data-p_idx="${cart.p_idx}">
 			   															저장
 			   															</button>
 			   														</div>
