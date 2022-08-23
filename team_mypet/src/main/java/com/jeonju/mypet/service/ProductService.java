@@ -6,6 +6,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import com.jeonju.mypet.dao.ProductDao;
+import com.jeonju.mypet.vo.CommentVo;
 import com.jeonju.mypet.vo.Criteria;
 import com.jeonju.mypet.vo.DetailVo;
 import com.jeonju.mypet.vo.OrdersVo;
@@ -117,6 +118,16 @@ public class ProductService {
 
 	public DetailVo odIdx(int p_idx, int midx) {
 		return productDao.odIdx(p_idx, midx);
+	}
+
+
+	public List<CommentVo> getcmList(int p_idx) {
+		return productDao.getcmList(p_idx);
+	}
+
+
+	public void starUpdate(int p_idx) {
+		productDao.starUpdate(p_idx);
 	}
 
 

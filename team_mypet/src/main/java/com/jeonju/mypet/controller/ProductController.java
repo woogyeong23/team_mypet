@@ -29,6 +29,7 @@ import com.jeonju.mypet.vo.PageMaker;
 import com.jeonju.mypet.vo.ProductVo;
 import com.jeonju.mypet.vo.Product_ImgVo;
 import com.jeonju.mypet.vo.ReviewVo;
+import com.jeonju.mypet.vo.CommentVo;
 
 @Controller
 public class ProductController {
@@ -95,6 +96,9 @@ public class ProductController {
 		 
 		 System.out.println("카테고리번호"+productView.getP_category_idx());
 		 
+		 List<CommentVo> cmList = productService.getcmList(p_idx);
+		 model.addAttribute("cmList",cmList);
+		 
 		 return "product/productView"; 
 	}
 	
@@ -151,7 +155,6 @@ public class ProductController {
 			String referer = request.getHeader("Referer");
 			pageView="redirect:/"+ referer;
 		}else {
-
 			re.addAttribute("p_idx",p_idx);
 			re.addAttribute("midx",midx);
 			
@@ -173,72 +176,6 @@ public class ProductController {
 	
 	
 	//리뷰작성
-		
-		/*
-	@PostMapping("/rvInsertProcess.do")
-	public String rvInsertProcess(
-			@RequestParam("midx") int midx,
-			@RequestParam("p_idx") int p_idx,
-			@RequestParam("review_stars") int review_stars ,
-			@RequestParam("review_content") String review_content,
-			@RequestParam("review_nick") String review_nick,
-			@RequestParam("uploadImg") MultipartFile uploadImg,
-			HttpSession session,Model model,HttpServletRequest request) throws IllegalStateException, IOException{
-				
-		String review_ori_img = uploadImg.getOriginalFilename().trim();
-		System.out.println("review_ori_img :"+review_ori_img);
-		String fileName1="";
-		String extension="";
-		String fileName2="";
-		String review_img="";
-		String view="";
-		
-		if(review_ori_img.length() == 0) review_ori_img = null;
-		
-
-		if(review_ori_img != null) { 
-		int dot_idx = review_ori_img.lastIndexOf(".");
-		 fileName1 = review_ori_img.substring(0, dot_idx);
-		 extension = review_ori_img.substring(dot_idx+1);
-		fileName2 = fileName1 + new SimpleDateFormat("_yyyyMMdd_hhmmss").format(System.currentTimeMillis());
-		 review_img = fileName2+"."+extension;
-
-		int Midx =  review_img.lastIndexOf(".");
-		
-		String upload_dir = "resources/review/upload/";
-		
-		String realPath = request.getServletContext().getRealPath(upload_dir);
-		System.out.println("이클립스로 저장된 파일의 실제 경로: " + realPath);
-		
-		
-				if(review_content.length() == 0) review_content= null;
-				
-				int result=0;//0:입력 실패
-				
-				ReviewVo reviewVo = new ReviewVo();
-
-				reviewVo.setMidx(midx);
-				reviewVo.setReview_nick(review_nick);
-				reviewVo.setReview_content(review_content);
-				reviewVo.setReview_img(review_img);
-				reviewVo.setReview_ori_img(review_ori_img);
-				
-				result = productService.reviewInsert(reviewVo);
-				
-				view = "product/reviewWrite";
-				
-				if(result == 1) {
-					model.addAttribute("content", review_content);
-					model.addAttribute("writer", review_nick);
-					model.addAttribute("img", review_img);
-					
-					view = "product/reviewWrite_result";
-				}}
-
-				return view;
-	}
-	*/
-	
 	@PostMapping("/rvInsertProcess.do")
 	public String rvInsertProcess(
 			@RequestParam("midx") int midx,
@@ -303,6 +240,8 @@ public class ProductController {
 					reviewVo.setReview_ori_img(review_ori_img);
 					
 					result = productService.reviewInsert(reviewVo);
+					
+					productService.starUpdate(p_idx);
 					
 					view = "product/reviewWrite";
 					

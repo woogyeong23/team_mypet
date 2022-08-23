@@ -109,10 +109,6 @@
 	from review a join product b on a.p_idx=b.p_idx join orders c on a.orders_idx=c.orders_idx LEFT join pet d on a.midx=d.midx
 	where b.p_idx=#{p_idx}
 	GROUP BY a.review_idx;
-	<!-- select a.*, b.p_name,IFNULL(avg(review_stars),0) AS avg_reviews_stars, COUNT(review_stars) AS cnt_reviews
-	from review a join product b on a.p_idx=b.p_idx join orders c on a.orders_idx=c.orders_idx
-	where b.p_idx=#{p_idx}
-	GROUP BY a.review_idx -->
 	</select>
 	
 	<!-- 후기콘텐츠 -->
@@ -127,6 +123,13 @@
 	insert into review (midx, detail_idx,p_idx,orders_idx,review_content,review_stars,review_img,review_nick,review_ori_img)
 	values(#{midx},#{detail_idx},#{p_idx},#{orders_idx},#{review_content},#{review_stars},#{review_img},#{review_nick},#{review_ori_img});
 	</select>
+	
+	<update id="update">
+	update sellerstory set seller_starsavg = (
+	select *  from ( (select avg(review_stars)
+	from review a join product b on a.p_idx=b.p_idx join sellerstory c on b.seller_idx=c.seller_idx
+	where c.seller_idx=(select seller_idx from product where p_idx=#{p_idx}) )) as a) where seller_idx=(select seller_idx from product where p_idx=#{p_idx});
+	</update>
 	
 	<!-- 후기작성 상품구매했는지 -->
 	<select id="reviewWriteck" resultType="int">
@@ -167,6 +170,15 @@
 	GROUP BY a.p_idx
 	ORDER BY a.p_idx DESC;
     </select>
+	
+	<!-- 문의 리스트 -->
+	<select id="getcmList" resultType="commentVo">
+	select b.*,a.p_idx,c.m_nick
+	from product a join comment b on a.p_idx=b.p_idx join members c on b.midx=c.midx
+	where a.p_idx = #{p_idx}
+	ORDER BY b.commentID ASC, b.subCommentID ASC
+	</select>
+	
 	
 <!-- 소현 -->
 

@@ -8,6 +8,7 @@ import org.apache.ibatis.session.SqlSession;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Repository;
 
+import com.jeonju.mypet.vo.CommentVo;
 import com.jeonju.mypet.vo.Criteria;
 import com.jeonju.mypet.vo.DetailVo;
 import com.jeonju.mypet.vo.OrdersVo;
@@ -126,6 +127,12 @@ public class ProductDao {
 		map.put("midx", midx);
 		
 		return sqlSession.selectOne(MAPPER + ".odIdx",map);
+	}
+	public List<CommentVo> getcmList(int p_idx) {
+		return sqlSession.selectList(MAPPER + ".getcmList",p_idx);
+	}
+	public void starUpdate(int p_idx) {
+		sqlSession.update(MAPPER + ".starUpdate", p_idx);
 	}
 	
 	

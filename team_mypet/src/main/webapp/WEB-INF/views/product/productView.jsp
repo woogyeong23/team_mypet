@@ -85,6 +85,87 @@
 			alert("로그인이 필요합니다.");	
 		}
 	}
+	
+	
+	
+	
+	/*
+	 * 댓글 등록하기(Ajax)
+	 */
+	function fn_comment(code){
+	    
+	    $.ajax({
+	        type:'POST',
+	        url : "<c:url value='/product/addComment.do'/>",
+	        data:$("#commentForm").serialize(),
+	        success : function(data){
+	            if(data=="success")
+	            {
+	                getCommentList();
+	                $("#comment").val("");
+	            }
+	        },
+	        error:function(request,status,error){
+	            //alert("code:"+request.status+"\n"+"message:"+request.responseText+"\n"+"error:"+error);
+	       }
+	        
+	    });
+	}
+	 
+	/**
+	 * 초기 페이지 로딩시 댓글 불러오기
+	 */
+	$(function(){
+	    
+	    getCommentList();
+	    
+	});
+	 
+	/**
+	 * 댓글 불러오기(Ajax)
+	 */
+	function getCommentList(){
+	    
+	    $.ajax({
+	        type:'GET',
+	        url : "<c:url value='/board/commentList.do'/>",
+	        dataType : "json",
+	        data:$("#commentForm").serialize(),
+	        contentType: "application/x-www-form-urlencoded; charset=UTF-8", 
+	        success : function(data){
+	            
+	            var html = "";
+	            var cCnt = data.length;
+	            
+	            if(data.length > 0){
+	                
+	                for(i=0; i<data.length; i++){
+	                    html += "<div>";
+	                    html += "<div><table class='table'><h6><strong>"+data[i].writer+"</strong></h6>";
+	                    html += data[i].comment + "<tr><td></td></tr>";
+	                    html += "</table></div>";
+	                    html += "</div>";
+	                }
+	                
+	            } else {
+	                
+	                html += "<div>";
+	                html += "<div><table class='table'><h6><strong>등록된 댓글이 없습니다.</strong></h6>";
+	                html += "</table></div>";
+	                html += "</div>";
+	                
+	            }
+	            
+	            $("#cCnt").html(cCnt);
+	            $("#commentList").html(html);
+	            
+	        },
+	        error:function(request,status,error){
+	            
+	       }
+	        
+	    });
+	}
 </script>
 
 
@@ -194,7 +275,23 @@ function cartAlert(result){
 		alert("로그인이 필요합니다.");	
 	}
 }
+/* 
+function cmButton() {
+    $.ajax({
+        type: "post",
+        url: "${pageContext.request.contextPath}/cmInsert.do",
+        data: {"comment": $("#comment").val(), "midx": $("#midx").val(), "p_idx": $("#p_idx").val()},
+        success: function (data) {
+            if (data.result == "success") {
+                location.reload();
+            }
+        },
+        error: function (request, status, error) {
+            alert("code: " + request.status + "\n" + "error: " + error);
+        }
 
+    });
+} */
 
 
 </script>
@@ -312,6 +409,7 @@ padding-bottom: 20px;
     float: right;
     
     }
+    
 </style>
 
 <!-- css***************************************************** -->
@@ -324,6 +422,10 @@ padding-bottom: 20px;
 <!-- 헤더와 네비************************************************ -->
     <jsp:include page="../../include/header.jsp" />  
 <!-- ******************************************************** -->
+<%    
+	int p_idx = Integer.parseInt(request.getParameter("p_idx"));
+%>
+<c:set var="p_idx" value="<%=p_idx%>"/>
 
 <section class="item-details section" style="padding-top: 10px;">
 	<div class="container">
@@ -525,7 +627,7 @@ padding-bottom: 20px;
 					<div class="reviews">
 						<table style="width: 100%">
 						<tr>
-						<td style="width:10%;"><h4 class="title" style="margin-bottom:0px;">구매후기</h4></td>
+						<td style="width:10%;"><h3 class="title" style="margin-bottom:0px;">구매후기</h3></td>
 						
 						<!-- 후기정렬 -->
 						<td style="align:left; width: 10%;">
@@ -571,6 +673,7 @@ padding-bottom: 20px;
 								<img src="${pageContext.request.contextPath}/resources/review/upload/${reviewVo.review_img}" style="width: 200px; height: 150px" alt="리뷰사진"> <!-- 리뷰이미지 -->		
 								</c:if>
 								<c:if test="${reviewVo.review_img == null}">
+								<p> </p>
 								</c:if>
 								</td>
 								<td style="height: 30px">
@@ -599,7 +702,9 @@ padding-bottom: 20px;
 								
 								</table>
 								
-								<p class="reviewb" style="padding-left: 10px">작성일<fmt:formatDate value="${reviewVo.review_wday}" pattern="yyyy-MM-dd"/><span align="right" style="padding-right: 10px">댓글 수 ${reviewVo.review_reply_cnt}</span></p>
+								<p class="reviewb" style="padding-left: 10px">작성일<fmt:formatDate value="${reviewVo.review_wday}" pattern="yyyy-MM-dd"/>
+								
+								</p>
 								</div>
 								<div class='v-line'></div>
 								
@@ -637,6 +742,42 @@ padding-bottom: 20px;
 			
 			
 			<!-- 리뷰끝 -->
+				
+				<!-- 문의 -->
+			<%-- 	<input type="hidden" id="p_idx" name="p_idx" value="${p_idx}"/> <!-- 게시글 번호 -->
+				
+			
+		<section class="trending-product section" style="margin-top: 12px;">
+        <div class="container">
+        <h4>댓글</h4>
+        <hr>
+        
+            <div style="padding-left: 20px; padding-right: 20px; font-size: 20px; color: black">
+            <c:forEach var="commentVo" items="${cmList}">
+            
+            <p style="font-weight: bold;  font-size: 20px; padding-bottom: 7px">${commentVo.m_nick}</p>
+            <span>${commentVo.content}</span>
+            </c:forEach>
+			</div>		
+				
+				<div style="background-color: #fff4a6b8; border-radius: 5px; width: 100%;">
+				<span>${commentVo.m_nick}</span>
+				<span>${commentVo.content}</span>
+				</div>
+				
+				<!-- 댓입력창 -->
+				<div class="inner">
+				<form name="">
+                      <input type="text" id="comment" name="comment" placeholder="댓글을 남겨주세요">
+                    <button type="submit" class="btn" id="cmButton">등록</button>
+                </form>
+                </div>
+				<!-- 댓입력창 -->
+		</div>
+		</section>
+				 --%>
+				<!-- 문의 끝 -->
+				
 				
 				<!-- 판매자의 다른 상품 -->
 				<section class="trending-product section" style="margin-top: 12px;">
