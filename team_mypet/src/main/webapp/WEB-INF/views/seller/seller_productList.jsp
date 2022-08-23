@@ -170,7 +170,9 @@
 									<div class="col-lg-4 col-md-6 col-12">
 										<div class="single-product">
 											<div class="product-image">
-												<img src="${pageContext.request.contextPath}/resources/product/${productVo.p_sys_filename}"  width="300px" height="300px">
+												<a href="${pageContext.request.contextPath}/seller_productDetail.do?p_idx=${productVo.p_idx}">
+													<img src="${pageContext.request.contextPath}/resources/product/${productVo.p_sys_filename}"  width="300px" height="300px">
+												</a>
 												<c:if test="${productVo.p_discount != 0}"><!-- member_grade: 0(일반회원), 1(관리자), 2(슈퍼관리자) -->
 													<span class="sale-tag">-${productVo.p_discount}%</span>
 												</c:if>
@@ -228,6 +230,7 @@
 													</c:if>
 												</div>
 												<br>
+												<span class="category">판매량 : <c:if test="${productVo.sales == null}">0</c:if><c:if test="${productVo.sales != 0}">${productVo.sales }</c:if></span>
 												<span class="category">최초 등록일: 
 													<fmt:formatDate value="${productVo.p_wday}" pattern="yyyy-MM-dd"/>												</span>
 												<span class="category">마지막 수정일: <fmt:formatDate value="${productVo.p_modifyday}" pattern="yyyy-MM-dd"/></span>
@@ -238,21 +241,7 @@
 								</c:forEach>
 							</div>		
 							<!-- /일반카드 -->
-							<!-- 일반카드 페이징 -->
-							<div class="row">
-								<div class="col-12">
-									<div class="pagination left">
-										<ul class="pagination-list">
-											<li><a href="javascript:void(0)">1</a></li>
-											<li class="active"><a href="javascript:void(0)">2</a></li>
-											<li><a href="javascript:void(0)">3</a></li>
-											<li><a href="javascript:void(0)">4</a></li>
-											<li><a href="javascript:void(0)"><i class="lni lni-chevron-right"></i></a></li>
-										</ul>
-									</div>
-								</div>
-							</div>
-							<!-- 일반카드 페이징 -->
+							
 						</div>
 						<!-- /일반카드형식 뷰 -->
 						<!-- 일자카드형식 뷰 -->
@@ -266,7 +255,10 @@
 											<div class="row align-items-center">
 												<div class="col-lg-4 col-md-4 col-12">
 													<div class="product-image">
-														<img src="${pageContext.request.contextPath}/resources/product/${productVo.p_sys_filename}">
+														<a href="${pageContext.request.contextPath}/seller_productDetail.do?p_idx=${productVo.p_idx}">
+															<img src="${pageContext.request.contextPath}/resources/product/${productVo.p_sys_filename}">
+														</a>
+														
 														<c:if test="${productVo.p_discount != 0}"><!-- member_grade: 0(일반회원), 1(관리자), 2(슈퍼관리자) -->
 															<span class="sale-tag">-${productVo.p_discount}%</span>
 														</c:if>
@@ -337,23 +329,7 @@
 								</c:forEach>
 							</div>
 							<!-- /일자카드 -->
-							<!-- 일자카드 페이징 -->
-							<div class="row">
-								<div class="col-12">
-								
-									<div class="pagination left">
-										<ul class="pagination-list">
-											<li><a href="javascript:void(0)">1</a></li>
-											<li class="active"><a href="javascript:void(0)">2</a></li>
-											<li><a href="javascript:void(0)">3</a></li>
-											<li><a href="javascript:void(0)">4</a></li>
-											<li><a href="javascript:void(0)"><i class="lni lni-chevron-right"></i></a></li>
-										</ul>
-									</div>
-								
-								</div>
-							</div>
-							<!-- /일자카드 페이징 -->
+							
 						</div>	
 						<!-- /일자카드형식 뷰 -->
 					</div>

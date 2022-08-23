@@ -85,14 +85,13 @@
 								</div>
 								<div class="col-12" style="position:relative;">
 										<br><br><br><br><br><br>
-								    	 <input type="submit" class="btn btn-light" value="수정">
+								    	 <input type="submit" class="btn btn-light" value="수정하기">
 								</div>
 							</div>
 							
 							
 							
 						</form>
-						${pageContext.request.contextPath}/BSellerView.do?seller_idx=${bs.seller_idx}
 						
 						
 						

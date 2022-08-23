@@ -42,9 +42,9 @@
           <ul class="btn-toggle-nav list-unstyled fw-normal pb-1">
             <li><a  href="${pageContext.request.contextPath}/seller_ordersList.do"
 	                    class="s3">주문내역</a></li>
-            <li><a href="${pageContext.request.contextPath}/seller_refundRegist.do"
+            <li><a href="${pageContext.request.contextPath}/Error.do"
 	                    class="s4">환불내역</a></li>
-            <li><a href="${pageContext.request.contextPath}/seller_cancleRegist.do"class="s5">취소내역</a></li>
+            <li><a href="${pageContext.request.contextPath}/Error.do"class="s5">취소내역</a></li>
           </ul>
         </div>
       </li>
@@ -58,7 +58,7 @@
 	                    href="${pageContext.request.contextPath}/seller_profile.do"
 	                    class="s6">프로필 관리</a></li>
             <li><a
-	                    href="${pageContext.request.contextPath}/seller_reviewList.do"
+	                    href="${pageContext.request.contextPath}/Error.do"
 	                    class="s7">구매후기 보기</a></li>
           </ul>
         </div>
