@@ -12,125 +12,7 @@
 
 $(document).ready(function(){
 
-		//itemTotal();
-		/* let cart_idx = $("#cart_idx_input").val();
-		let nci = "#NumberCounter__input"+cart_idx;
-		 */
-		/* $(nci).on("change", function(){
-			alert(nci);
-			let cart_idx = $(this).attr("name");
-			
-			//itemTotal();
-
-		}); */
-/*
-		//온체인지수량 
-
-		function itemTotal(ths){
-			 console.log("수량들어옴?");
-			alert("itemTotal");
-			//수량
-			let cnt = $('input[id="cart_cnt_input"]');
-			//cart_idx
-			//alert(cnt);
-			let cart_idx = $("#cart_idx_input").val();
-			let CAI = "#CartArtistItem"+cart_idx;
-			let Cart_idx = $(".CartArtistItem").data("cart_idx");
-
-			let itemPrice = $('input[id="p_price_input"]');
-			
-			let count = $(itemPrice).length;
-			let itemPV = $(itemPrice).val();
-			//개당가격란
-			let totalPrice_span = "#totalPrice_span"+cart_idx;
-			
-			//가격
-			let CartArtistItem__Price = "#CartArtistItem__Price"+cart_idx;
-			let CAIP = $(CartArtistItem__Price).find("fmt").val;
-			//수량
-			let NumberCounter__input = "#NumberCounter__input"+cart_idx;
-			//아이템
-			
-			let delivery_price = "#delivery_price"+cart_idx;
-			
-			//상품하나의 가격
-			let tpi = "#total_price_input"+cart_idx;
-			let price = 0;
-			let sum = 0;
-			let totalPrice = 0;
-			let totalPoint = 0;
-			let dvPrice = 0;
-			let totaldvPrice = 0;
-			let finalTotalPrice = 0;
-	 		$(CAI).each(function(index, element){
-	 			
-	 					// 총 가격
-	  			totalPrice += parseInt($(element).find(itemPrice).val()) * parseInt($(element).find(NumberCounter__input).val());
-	 			sum = sum+totalPrice;
-	 			console.log("개당가격:"+totalPrice);
-	 					// 총 마일리지
-				totalPoint += totalPrice * 0.05;
-	 			
-	 		});
-	 		for (var i = 0; i < count; i++){
-	 			
-// 	 			sum += parseInt(itemPrice[i].value) * parseInt(NumberCounter__input[i].value);
-	 			console.log("상품가격2:"+sum);
-	 			console.log("몇개야:"+[i]);
-	 		}
-			
-			// 개당배송비 결정 
-	 		if(totalPrice >= 30000){
-				dvPrice = 0;
-			} else if(totalPrice == 0){
-				dvPrice = 0;
-			} else {
-				dvPrice = 3000;	
-			}// 총배송비 결정
-			
-			totaldvPrice += dvPrice;
-			finalTotalPrice = totalPrice + totaldvPrice;
-			totalPoint += finalTotalPrice * 0.01;
-			let stotalPrice = new Intl.NumberFormat('ko-KR', { style: 'currency', currency: 'KRW' }).format(totalPrice);
-			let stotaldvPrice = new Intl.NumberFormat('ko-KR', { style: 'currency', currency: 'KRW' }).format(totaldvPrice);
-			let sfinalTotalPrice = new Intl.NumberFormat('ko-KR', { style: 'currency', currency: 'KRW' }).format(finalTotalPrice);
-
-			
- 			$(totalPrice_span).text(totalPrice);
- 			
- 			$(delivery_price).text(dvPrice);
-
-			// 총 가격
-			console.log("배달비"+dvPrice);
-			console.log("총가격:"+totalPrice);
-			//개당
- 			//총 가격
-			$("#totalPrice").text(sum);
- 			// 총 마일리지
-	 		$("#totalPoint_span").text(totalPoint);
-			// 배송비
-			$("#delivery_Price").text(stotaldvPrice);	
- 			// 최종 가격(총 가격 + 배송비)
-			$("#finalTotalPrice_span").text(sfinalTotalPrice);
-			
-			
-		}*/
-/* 
-		let salePrice = "${cartVo.p_price - (cartVo.p_price*cartVo.p_discount)}";
-		let point = salePrice*0.05;
-		point = Math.floor(point);
-		$("#totalPoint_span").text(point);
-		console.log("적립금:"+point);
-		 */
-		 
-		 
-	/* 	 
-	//수량바뀔 때
-	$(".NumberCounter__input").on("onchange", function(){
-		alert("asdf");
-	});
-		  */
-		 
+		
 		  
 		  
 		  
@@ -195,7 +77,16 @@ $(document).ready(function(){
 					//셀러당 총가격 계산
 					seller_itemTotal(this,cart_idx);
 					//최종 총가격 계산
-					itemTotal()
+					itemTotal();
+					
+					if(document.getElementById('seller_price'+cart_idx).value-document.getElementById('itemFreeDvPrice'+cart_idx).value<0)
+		        	{
+		        		var mstr=document.getElementById('itemDvPrice'+cart_idx).value.toLocaleString()+"원"; 
+						document.getElementById('message'+cart_idx).innerHTML = "";
+					 	document.getElementById('message'+cart_idx).innerHTML=mstr;
+					 	
+		        	}
+					
 					
 				}else{
 					console.log("minus x");
@@ -247,7 +138,19 @@ $(document).ready(function(){
 					seller_itemTotal(this,cart_idx);
 					
 					//최종 총가격 계산
-					itemTotal()
+					itemTotal();
+					//alert(document.getElementById('seller_price'+cart_idx).value);
+					//alert(document.getElementById('itemFreeDvPrice'+cart_idx).value);
+					//alert(document.getElementById('seller_price'+cart_idx).value-document.getElementById('itemFreeDvPrice'+cart_idx).value);
+					if(document.getElementById('seller_price'+cart_idx).value-document.getElementById('itemFreeDvPrice'+cart_idx).value>=0)
+	        		{
+							var mstr=""; 
+							document.getElementById('message'+cart_idx).innerHTML = "";
+						 	document.getElementById('message'+cart_idx).innerHTML="무료배송";
+	 	
+	        			 
+	        		}
+					
 					
 				}else{
 					console.log("plus x");
@@ -357,27 +260,64 @@ $(document).ready(function(){
 		{
 			
 			var totalProductPrice=0;
+			var totalDvPrice=0;
 			$("input[type='checkbox']:checked").each(function(){
 				if($(this).data('checked_cart_idx') != null)
 					{
 						//alert(getElementById('seller_price'+$(this).data('checked_cart_idx')).value);
 						totalProductPrice+=parseInt(document.getElementById('seller_price'+$(this).data('checked_cart_idx')).value);
 					//alert("ewfaesdrfvcuhsduovhbduj : "+document.getElementById('seller_price'+$(this).data('checked_cart_idx')).value);
+						
+						
+						//배송비 구하기
+			        	if(parseInt(document.getElementById('seller_price'+$(this).data('checked_cart_idx')).value)>=parseInt(document.getElementById('itemFreeDvPrice'+$(this).data('checked_cart_idx')).value))
+			        		{
+			        			totalDvPrice+=0;
+									
+			        			
+			        		}
+			        	else{
+			        		totalDvPrice+=parseInt(document.getElementById('itemDvPrice'+$(this).data('checked_cart_idx')).value);
+			        		
+			        	}
+			        	
+						
+						
+						
 					}
 				//alert("asdf"+$(this).data('checked_cart_idx'));
 				//alert("체크박스 값"+$(this)..data('checked_cart_idx'));
 				//alert(totalProductPrice);
-			    str="<span id='totalPrice' name='totalPrice'></span><span class='CartCheckoutDesktop__priceUnit'><input type='hidden' id='totalProduct' name='totalProduct' value='"+totalProductPrice  +"'>"+totalProductPrice.toLocaleString()+"</span>";
-				document.getElementById('CartCheckoutDesktop__value').innerHTML = "";
-			 	 document.getElementById('CartCheckoutDesktop__value').innerHTML=str ;
+				 str="<span id='totalPrice' name='totalPrice'></span><span class='CartCheckoutDesktop__priceUnit'><input type='hidden' id='totalProduct' name='totalProduct' value='"+totalProductPrice  +"'>"+totalProductPrice.toLocaleString()+"원</span>";
+					document.getElementById('CartCheckoutDesktop__value').innerHTML = "";
+				 	document.getElementById('CartCheckoutDesktop__value').innerHTML=str ;
+				 	
+				 //배송비
+				 	var str2="<span id='delivery_Price' name='delivery_Price'></span><span class='CartCheckoutDesktop__priceUnit'><input type='hidden' id='totaldvprice'  name='totaldvprice'  value='"+totalDvPrice+"'>"+totalDvPrice.toLocaleString()+"원</span>"
+				  	document.getElementById('CartCheckoutDesktop__valueDV').innerHTML = "";
+					document.getElementById('CartCheckoutDesktop__valueDV').innerHTML=str2 ;
+				 //전체 가격
+				 	var total=totalDvPrice+totalProductPrice;
+				// alert(total);
+					var str3="<input type='hidden' id='totalprice'  name='totalprice'  value=''>"+total.toLocaleString()+"원";
+				  	document.getElementById('total_Price').innerHTML = "";
+					document.getElementById('total_Price').innerHTML=str3 ;
 			});
 			//alert("전체"+totalProductPrice);
 			if(totalProductPrice==0)
 				{
-				str="<span id='totalPrice' name='totalPrice'></span><span class='CartCheckoutDesktop__priceUnit'><input type='hidden' id='totalProduct' name='totalProduct'  value='0'>0</span>";
+				str="<span id='totalPrice' name='totalPrice'></span><span class='CartCheckoutDesktop__priceUnit'><input type='hidden' id='totalProduct' name='totalProduct'  value='0'>0원</span>";
 				document.getElementById('CartCheckoutDesktop__value').innerHTML = "";
-			 	 document.getElementById('CartCheckoutDesktop__value').innerHTML=str ;
+			 	document.getElementById('CartCheckoutDesktop__value').innerHTML="0원";
+			 	document.getElementById('CartCheckoutDesktop__valueDV').innerHTML = "";
+				document.getElementById('CartCheckoutDesktop__valueDV').innerHTML="0원" ;
+				document.getElementById('total_Price').innerHTML = "";
+				document.getElementById('total_Price').innerHTML="0원" ;
 				}
+			
+			
+			
+			
 			
 		}
 		
@@ -403,15 +343,17 @@ $(document).ready(function(){
 			  //var is_checked = checkbox.checked;
 			  //alert(is_checked);
 			 // totalPrice_span${seller.seller_idx}
-			 
+			 //seller_dvPrice${seller.seller_idx}
 			 //셀러의 아이템들의 체크박스들 접근하기
 			 const checkboxes 
 		     = document.getElementsByName('item_checkedbox'+seller_idx);
 			 //alert("seller_price:"+seller_price);
 			 //셀러의 아이템들이 체크박스를 돌면서 체크돼어있는 아이템들의 총가격만 계산하기
+			 var seller_price=0;
+			 var seller_dvprice=0;
 			 //1.체크박스 돌기
 			 for(var i = 0; i < document.getElementsByName('item_checkedbox'+seller_idx).length; i++){
-				 var seller_price=0;	
+				 //var seller_price=0;	
 				 //2.체크돼있는 체크박스일 경우
 				 	//alert(document.getElementsByName('item_checkedbox'+seller_idx)[i].checked);
 			        if(document.getElementsByName('item_checkedbox'+seller_idx)[i].checked == true){
@@ -431,10 +373,24 @@ $(document).ready(function(){
 			        	 //alert("for_ seller_price:"+seller_price);
 			        	 
 			        	 //alert("cart_idx:"+check_cart+"~"+seller_price);
+			        	 
+			        	 
+						//배송비 구하기
+						var c_dvprice=0;
+						c_dvprice = parseInt(document.getElementById('itemDvPrice'+check_cart).value);
+			        	var c_free_dvprice=0;
+			        	c_free_dvprice = parseInt(document.getElementById('itemFreeDvPrice'+check_cart).value);
+			        	//alert(c_dvprice);
+			        	if(c_price>=c_free_dvprice)
+			        		{
+			        			c_dvprice=0;
+			        		}
+			        	 
+			        	seller_dvprice=seller_dvprice+c_dvprice;
+			        	
 			        }
 			 }
-			  str="<input type='hidden' id='seller_totalPrice" + seller_idx + "' value='"+seller_price  +"'>"+seller_price.toLocaleString();
-
+			  str="<input type='hidden' id='seller_totalPrice" + seller_idx + "' value='"+seller_price  +"'>";
 			  document.getElementById('totalPrice_span'+seller_idx).innerHTML = "";
 			  document.getElementById('totalPrice_span'+seller_idx).innerHTML=str ;
 				
@@ -447,10 +403,14 @@ $(document).ready(function(){
 					  document.getElementById('totalPrice_span'+seller_idx).innerHTML="0" ;
 						
 				}
+			 	//alert("총"+seller_dvprice);
 			  //const perTotalPrice = "CartArtistItem__Price"+cart_idx;
 			  //$(perTotalPrice).val('500');
-			  
-			  
+			 		 var str2="<input type='hidden' id='seller_dvPrice" + seller_idx + "' value='"+seller_dvprice  +"'>";
+			  	/* 	document.getElementById('delivery_price'+seller_idx).innerHTML = "";
+					document.getElementById('delivery_price'+seller_idx).innerHTML="ertg" ;
+						alert(seller_dvprice);
+			   */
 			 // alert(checkbox.value);
 			//alert($(obj).val());
 		}
@@ -511,12 +471,12 @@ $(document).ready(function(){
 			{
 				
 				var c_idxArr=[];
-				$("input[type='checkbox']").each(function(){
+				$("input[type='checkbox']:checked").each(function(){
 					if($(this).data('checked_cart_idx') != null)
 						{
 						c_idxArr.push($(this).data('checked_cart_idx'));
 							
-							//alert($(this).data('checked_cart_idx'));
+							alert($(this).data('checked_cart_idx'));
 						}
 				});
 				
@@ -702,7 +662,21 @@ $(document).ready(function(){
 			<!--    																	<a id="CartArtistItem__Point"></a> -->
 			<!--    																</em>  	예상적립금													 -->
 			   															</div>
+			   															
 			   														</div>
+			   														<section class="CartArtistItem__section">
+			   															<input type="hidden" id="itemFreeDvPrice${cart.cart_idx}" value="${cart.p_free_dvprice}">
+			   															<div class="dvPrice" id="itemDvPrices${cart.cart_idx}"">
+			   															<input type="hidden" id="itemDvPrice${cart.cart_idx}" value="${cart.p_dvprice}">
+			   															</div>
+			   															<div><fmt:formatNumber pattern="###,###,###" value="${cart.p_free_dvprice}"/>원 이상 구매시 무료배송</div>
+			   															<div id="message${cart.cart_idx}">
+			   																<c:if test="${cart.p_free_dvprice<=cart.c_price}">무료배송</c:if>
+			   																<c:if test="${cart.p_free_dvprice>cart.c_price}">
+			   																	<fmt:formatNumber pattern="###,###,###" value="${cart.p_dvprice}"/>원
+			   																</c:if>
+			   															</div> 
+			   															</section>
 			   													</div>
 			   												</div>
 			   						 					</div>
@@ -719,22 +693,22 @@ $(document).ready(function(){
 	   							
 	   						</c:forEach>
 	   						
-	   						<section class="CartArtistItem__section">
-		   								<div class="CartArtistItem__label">
-		   								작품 가격
+	   						<section class="">
+		   								<div class="">
+		   								<!-- 작품 가격 -->
 		   								</div>
 		   								<div class="CartArtistItem__price" id="totalPrice_span${seller.seller_idx}" >
-											<input type="hidden" id="seller_totalPrice${seller.seller_idx}" value="${seller.seller_price}"><fmt:formatNumber pattern="###,###,### 원" value="${seller.seller_price}" />  
+											<input type="hidden" id="seller_totalPrice${seller.seller_idx}" value="${seller.seller_price}"><%-- <fmt:formatNumber pattern="###,###,### 원" value="${seller.seller_price}" /> --%>  
 											
 		   								 <!-- 작품 가격 -->
 			   							</div>
 		   							</section>
-		   							<section class="CartArtistItem__section">
-		   								<div class="CartArtistItem__label">
-		   								배송비
+		   							<section class="">
+		   								<div class="">
+		   								<!-- 배송비 -->
 		   								</div>
-		   								<div class="CartArtistItem__point" id="delivery_price${seller.seller_idx}" value="${seller.p_dvprice }">
-		
+		   								<div class="CartArtistItem__point" id="delivery_price${seller.seller_idx}">
+											<input type="hidden" id="seller_dvPrice${seller.seller_idx}" value="${seller.p_dvprice}">
 		   								<!-- 배송비 -->
 			   							</div>
 			   							
@@ -777,15 +751,15 @@ $(document).ready(function(){
         					<div class="CartCheckoutDesktop__label">작품금액</div>
         					<div class="CartCheckoutDesktop__value" id="CartCheckoutDesktop__value">
         						<span id="totalPrice" name="totalPrice"></span>
-        						<span class="CartCheckoutDesktop__priceUnit"><input type='hidden' id='totalProduct'  name='totalProduct'  value='${ProductPriceMap.totalProductPrice }'><fmt:formatNumber pattern="###,###,### 원" value="${ProductPriceMap.totalproductprice}" /></span>
+        						<span class="CartCheckoutDesktop__priceUnit"><input type='hidden' id='totalProduct'  name='totalProduct'  value='${ProductPriceMap.totalproductprice }'><fmt:formatNumber pattern="###,###,### 원" value="${ProductPriceMap.totalproductprice}" /></span>
         					</div>
         				</div>
         				<div class="CartCheckoutDesktop__item--fixed">+</div>
         				<div class="CartCheckoutDesktop__item">
         					<div class="CartCheckoutDesktop__label">배송비</div>
-        					<div class="CartCheckoutDesktop__value">
+        					<div class="CartCheckoutDesktop__value"  id="CartCheckoutDesktop__valueDV">
         						<span id="delivery_Price" name="delivery_Price"></span>
-        						<span class="CartCheckoutDesktop__priceUnit">원</span>
+        						<span class="CartCheckoutDesktop__priceUnit"><input type='hidden' id='totaldvprice'  name='totaldvprice'  value='${ProductPriceMap.totaldvprice }'><fmt:formatNumber pattern="###,###,### 원" value="${ProductPriceMap.totaldvprice}" /></span>
         					</div>
         				</div>
         				<div class="CartCheckoutDesktop__item--fixed">=</div>
@@ -794,9 +768,9 @@ $(document).ready(function(){
         					<div class="CartCheckoutDesktop__value--highlight" >
         						<span id="finalTotalPrice_span"  name="finalTotalPrice">
         						</span>
-        						<span class="CartCheckoutDesktop__priceUnit">원</span>
-        						<em class="CartOptionListItem__totalPrice">적립금 :
-   								<a id="totalPoint_span" name="totalPoint"></a>
+        						<span class="CartCheckoutDesktop__priceUnit" id="total_Price"><input type='hidden' id='totalprice'  name='totalprice'  value='${ProductPriceMap.totalprice }'><fmt:formatNumber pattern="###,###,### 원" value="${ProductPriceMap.totalprice}" /></span>
+<!--         						<em class="CartOptionListItem__totalPrice">적립금 :
+ -->   								<a id="totalPoint_span" name="totalPoint"></a>
    								</em>  	<!-- 예상적립금 -->	
         						
         					</div>
