@@ -110,19 +110,28 @@ private CartService cartService;
 			
 			payService.orderInsert(ordersVo);
 			
+			int o_idx=payService.getOrderIdx();
 			
-			cartService.cartReset(midx,cart_idx);
 
-			detailVo.setOrders_idx(ordersVo.getOrders_idx());
+			detailVo.setOrders_idx(o_idx);
 			detailVo.setDetail_completeday(detail_idx);
 			detailVo.setFixprice(ordersVo.getOrders_totalprice());
 			detailVo.setDetail_status(1);
 			detailVo.setMidx(midx);
 			detailVo.setCart_idx(cart_idx);
 			
+			int fixdvprice = payService.getFixDvPrice(cart_idx);
+			
+			detailVo.setFixdvprice(fixdvprice);
+			
 			payService.detailInsert(detailVo);
 		
+			payService.detailDayInsert();
 
+			cartService.cartReset(midx,cart_idx);
+			
+			
+			
 
 		  return "redirect:/memberorderList.do";
 	  }

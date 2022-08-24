@@ -65,6 +65,40 @@ private SqlSession sqlSession;
 	}
 
 
+
+	public void detailFixDvPriceUpdate(DetailVo detailVo) {
+		// TODO Auto-generated method stub
+		sqlSession.selectOne(MAPPER+".detailFixDvPriceUpdate");
+	}
+
+
+	public int detailIdxGet() {
+		// TODO Auto-generated method stub
+		return sqlSession.selectOne(MAPPER+".detailIdxGet");
+	}
+
+
+
+	public int getFixDvPrice(int cart_idx) {
+		// TODO Auto-generated method stub
+		return sqlSession.selectOne(MAPPER+".getFixDvPrice",cart_idx);
+	}
+
+
+
+	public int getOrderIdx() {
+		// TODO Auto-generated method stub
+		return sqlSession.selectOne(MAPPER+".getOrderIdx");
+	}
+
+
+
+	public void detailDayInsert() {
+		// TODO Auto-generated method stub
+		sqlSession.insert(MAPPER+".detailDayInsert");
+	}
+
+
 	
 
 }

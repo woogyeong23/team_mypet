@@ -500,7 +500,7 @@ $(document).ready(function(){
 						{
 						c_idxArr.push($(this).data('checked_cart_idx'));
 							
-							alert($(this).data('checked_cart_idx'));
+							//alert($(this).data('checked_cart_idx'));
 						}
 				});
 				
@@ -517,7 +517,7 @@ $(document).ready(function(){
 				
 				
 				
-				alert("전송합니다..");
+				//alert("전송합니다..");
 		  		//fm.action = "./memberJoinOk.jsp";
 		  		//가상경로 사용 ${pageContext.request.contextPath}/registProcess.do
 		  		fm.action = "<%=request.getContextPath()%>/memberpay.do";

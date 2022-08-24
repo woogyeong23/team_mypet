@@ -61,6 +61,32 @@ private CartDao cartDao;
 	}
 
 
+	public void detailFixDvPriceUpdate(DetailVo detailVo) {
+		// TODO Auto-generated method stub
+		payDao.detailFixDvPriceUpdate(detailVo);
+	}
+
+	public int detailIdxGet() {
+		// TODO Auto-generated method stub
+		return payDao.detailIdxGet();
+	}
+
+	public int getFixDvPrice(int cart_idx) {
+		// TODO Auto-generated method stub
+		return payDao.getFixDvPrice(cart_idx);
+	}
+
+	public int getOrderIdx() {
+		// TODO Auto-generated method stub
+		return payDao.getOrderIdx();
+	}
+
+	public void detailDayInsert() {
+		// TODO Auto-generated method stub
+		payDao.detailDayInsert();
+	}
+
+
 
 
 

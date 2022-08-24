@@ -19,8 +19,8 @@ left outer join cart d on c.p_idx = d.p_idx and a.midx = d.midx
  values(#{orders_totalprice}, #{orders_name}, #{orders_phone}, #{orders_addr1}, #{orders_addr2}, #{orders_addr3},#{orders_payment}, #{orders_dvprice}, #{orders_point}, #{midx})
 </insert>
 <insert id="getdetailInsert">
-insert into detail(orders_idx, p_idx, detail_status, detail_cnt, detail_request, fixprice, detail_completeday)
-	select #{orders_idx}, p_idx,#{detail_status},cart_cnt,cart_request,#{fixprice},#{detail_completeday} from cart where midx=#{midx} and cart_idx = #{cart_idx}
+insert into detail(orders_idx, p_idx, detail_status, detail_cnt, detail_request, fixprice, detail_completeday, fixdvprice)
+	select #{orders_idx}, p_idx,#{detail_status},cart_cnt,cart_request,#{fixprice},#{detail_completeday},#{fixdvprice} from cart where midx=#{midx} and cart_idx = #{cart_idx}
 </insert>
 
 <select id="orderView" resultType="ordersListVo">
@@ -51,7 +51,28 @@ left outer join product_img c on a.p_idx = c.p_idx
 	</select>
 	
 	
-	
-	
+	<select id="getOrderIdx" resultType="int">
+select max(orders_idx) as orders_idx from orders
 
+	</select>
+	
+	<select id="detailFixDvPriceUpdate" >
+		update detail set fixdvprice=(select * from(select IF((b.cart_cnt*a.p_price)>a.p_free_dvprice,0,a.p_dvprice) as fixdvprice
+		from product a join cart b on a.p_idx=b.p_idx
+		where cart_idx=#{cart_idx}) as t)
+		where detail_idx=#{detail_idx}
+	</select>
+
+
+<select id="getFixDvPrice" resultType="int" >
+		select IF((b.cart_cnt*a.p_price)>a.p_free_dvprice,0,a.p_dvprice) as fixdvprice
+		from product a join cart b on a.p_idx=b.p_idx
+		where cart_idx=#{cart_idx}
+	</select>
+
+	
+<insert id="detailDayInsert">
+insert into detail_day(detail_idx, detail_status) select max(detail_idx), 1 from detail
+
+</insert>
 </mapper>
