@@ -530,6 +530,11 @@ button {
 </div>
 <div class="col-lg-6 col-md-8 col-12">
 <div style="margin-top:40px; margin-bottom:64px;">
+	<c:if test="${msg1!=null}">
+			  <script>
+			alert("${msg1}");
+			 </script>
+			</c:if>
 
 
         <div id="dd" >

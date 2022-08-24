@@ -153,6 +153,8 @@ public class JoeAjaxController {
 		String ll = "";
 		
 		int flag = joeAjaxService.LikeCc(commu_comment_likeVo);
+	    
+		
 		int plus = joeAjaxService.plusCcLike(commu_comment_likeVo);
 		
 		if(flag + plus == 2)

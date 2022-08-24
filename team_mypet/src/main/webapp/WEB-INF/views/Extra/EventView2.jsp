@@ -35,6 +35,9 @@
     <!-- End Breadcrumbs -->
    <div class="col-12">
 <div style="margin-top:54px;margin-bottom:108px; margin-left:25%; max-width: 850px; background:#FFFFFF">
+<h4 style="text-align:center">잘 차려진 여름한상!</h4>
+<br>
+<br>
 <p>
 <img alt="이벤트!!!!!!!!" src="${pageContext.request.contextPath}/resources/Extra/summerEvent1.jpg">
 </p>
