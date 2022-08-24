@@ -103,6 +103,16 @@ public class MembersDao {
 	
 
 
+	public int pwUpdate_M(MembersVo vo) {
+		return sqlSession.update(MAPPER+".pwUpdate_M", vo);
+	}
+
+	public MembersVo selectMember(String m_id) {
+		
+		return sqlSession.selectOne(MAPPER + ".selectMember", m_id);
+	}
+
+
 
 
 

@@ -10,14 +10,14 @@
 	<select id="getProductList1" resultType="productVo" parameterType="hashMap">
 	select a.*,b.*,c.*,IFNULL(avg(review_stars),0) AS avg_reviews_stars, COUNT(review_stars) AS cnt_reviews
 	from product a join p_category b on a.p_category_idx = b.p_category_idx join product_img c on a.p_idx=c.p_idx LEFT join review d on a.p_idx=d.p_idx
-	where a.p_category_idx=#{p_category_idx}
+	where a.p_category_idx=#{p_category_idx} and c.img_delyn='N'
 	GROUP by a.p_idx;
 	</select>
 	
 	<select id="getProductList2" resultType="productVo">
 	select a.*,b.*,c.*,IFNULL(avg(review_stars),0) AS avg_reviews_stars, COUNT(review_stars) AS cnt_reviews
 	from product a join p_category b on a.p_category_idx = b.p_category_idx join product_img c on a.p_idx=c.p_idx LEFT join review d on a.p_idx=d.p_idx
-	where b.p_category_large=#{p_category_large}
+	where b.p_category_large=#{p_category_large} and c.img_delyn='N'
 	GROUP by a.p_idx;
 	</select>
 	
@@ -25,7 +25,7 @@
 	<select id="getproductImgs" resultType="Product_ImgVo">
 	select a.*
 	from product_img a join product b on a.p_idx=b.p_idx
-	where b.p_idx=#{p_idx};
+	where b.p_idx=#{p_idx} and a.img_delyn='N';
 	</select>
 	
 	
@@ -75,7 +75,7 @@
 	<select id="getProductView" resultType="productVo">	
 	select a.*, b.*, (select a.m_nick from members a join sellerstory b on a.midx=b.midx where b.seller_idx=(select seller_idx from product where p_idx=#{p_idx})) as m_nick,MIN(p_front_img), c.p_sys_filename, c.p_idx,IFNULL(avg(review_stars),0) AS avg_reviews_stars, COUNT(review_stars) AS cnt_reviews
 	from product a join p_category b on a.p_category_idx = b.p_category_idx join product_img c on a.p_idx=c.p_idx LEFT join review d on a.p_idx=d.p_idx
-	where a.p_delyn = 'N' AND a.p_idx=#{p_idx};
+	where a.p_delyn = 'N' AND a.p_idx=#{p_idx} AND c.img_delyn='N';
 	</select>
 	
 	
@@ -83,6 +83,7 @@
 	<select id="productNewList" resultType="productVo">
 		SELECT a.*,b.*,IFNULL(avg(review_stars),0) AS avg_reviews_stars, COUNT(review_stars) AS cnt_reviews
 		FROM product a join product_img b on a.p_idx=b.p_idx LEFT join review d on a.p_idx=d.p_idx
+		where b.img_delyn='N'
 		group by a.p_idx
 		ORDER BY a.p_idx DESC;
 	</select>
@@ -91,6 +92,7 @@
 	<select id="productBestList" resultType="productVo">
 		SELECT a.*,b.*, COUNT(c.orders_idx) as '판매량',IFNULL(avg(review_stars),0) AS avg_reviews_stars, COUNT(review_stars) AS cnt_reviews
 		FROM product a join product_img b on a.p_idx=b.p_idx LEFT join detail c on a.p_idx=c.p_idx LEFT join review d on a.p_idx=d.p_idx
+		where b.img_delyn='N'
 		GROUP BY a.p_idx
 		ORDER BY COUNT(c.orders_idx) DESC
 	</select>
@@ -100,7 +102,7 @@
 	<select id="getReviewp" resultType="productVo">
 	select a.p_name, a.p_idx, MIN(p_front_img), c.p_sys_filename
 	from product a join product_img c on a.p_idx=c.p_idx join sellerStory b on a.seller_idx=b.seller_idx
-	where a.p_idx=#{p_idx}
+	where a.p_idx=#{p_idx} and c.img_delyn='N'
 	</select>
 	
 	<!-- 상세페이지 리뷰리스트 -->
@@ -111,11 +113,19 @@
 	GROUP BY a.review_idx;
 	</select>
 	
+	
+	<select id="imgCheckbox" resultType="reviewVo">
+	select a.*, b.p_name,IFNULL(avg(review_stars),0) AS avg_reviews_stars, COUNT(review_stars) AS cnt_reviews,d.*
+	from review a join product b on a.p_idx=b.p_idx join orders c on a.orders_idx=c.orders_idx LEFT join pet d on a.midx=d.midx
+	where b.p_idx=#{p_idx} and not a.review_img is null
+	GROUP BY a.review_idx;
+	</select>
+	
 	<!-- 후기콘텐츠 -->
 	<select id="reviewContent" resultType="reviewVo">	
 	select a.p_idx,a.p_name, b.*, MIN(p_front_img), c.p_sys_filename,IFNULL(avg(review_stars),0) AS avg_reviews_stars, COUNT(review_stars) AS cnt_reviews
 	from product a left join product_img c on a.p_idx=c.p_idx join review b on a.p_idx=b.p_idx
-	where b.review_idx=#{review_idx};
+	where b.review_idx=#{review_idx} and c.img_delyn='N'
 	</select>
 	
 	<!-- 후기insert -->
@@ -157,7 +167,7 @@
 	<select id="getspList" resultType="productVo">
     SELECT a.*, b.*,IFNULL(avg(review_stars),0) AS avg_reviews_stars, COUNT(review_stars) AS cnt_reviews
     FROM product a JOIN product_img b ON a.p_idx = b.p_idx LEFT join review c on a.p_idx=c.p_idx
-    WHERE a.seller_idx=#{seller_idx}
+    WHERE a.seller_idx=#{seller_idx} and b.img_delyn='N'
 	GROUP BY a.p_idx
 	ORDER BY a.p_idx DESC;
     </select>
@@ -166,7 +176,7 @@
     <select id="getcpList" resultType="productVo">
     select a.*,b.*,IFNULL(avg(review_stars),0) AS avg_reviews_stars, COUNT(review_stars) AS cnt_reviews
 	from product a join product_img b on a.p_idx=b.p_idx JOIN product_img c on a.p_idx=c.p_idx LEFT JOIN review d on a.p_idx=d.p_idx
-	WHERE a.p_category_idx=#{p_category_idx}
+	WHERE a.p_category_idx=#{p_category_idx} and b.img_delyn='N'
 	GROUP BY a.p_idx
 	ORDER BY a.p_idx DESC;
     </select>

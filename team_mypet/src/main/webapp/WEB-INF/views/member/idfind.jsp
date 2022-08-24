@@ -6,7 +6,7 @@
 <html>
 <head>
 <meta charset="UTF-8">
-<title>로그인</title>
+<title>아이디 찾기</title>
    <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1">
 
