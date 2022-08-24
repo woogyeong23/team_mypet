@@ -235,7 +235,7 @@ String.prototype.format = function(){
 	  return num.format();
 	};
 	    
-var basic_amount = parseInt(${productView.p_price});
+var basic_amount = parseInt(${productView.p_disprice});
 
 function change_qty2(t){
 	  //var min_qty = '수량버튼'*1;
@@ -571,7 +571,7 @@ padding-bottom: 20px;
 						<hr>
 						<div class="total">
 							구매가능수량 ${productView.p_limit_cnt}개
-							<span>총 금액<span id="total_amount" style="color:red; font-size: 20px; padding-left: 20px">${productView.p_price}</span>원</span>
+							<span>총 금액<span id="total_amount" style="color:red; font-size: 20px; padding-left: 20px"><fmt:formatNumber value="${productView.p_disprice}" pattern="#,###"/></span>원</span>
 						</div>
 						<!-- 수량변경 버튼 끝 -->
 
