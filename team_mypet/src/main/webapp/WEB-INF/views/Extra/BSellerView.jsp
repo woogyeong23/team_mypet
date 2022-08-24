@@ -292,8 +292,9 @@ border-radius: 4px;">
 </div>
 
  <div class="artist-home">
- 
-              
+ <div style="width:100%; color:#000000">
+   <hr> 
+   </div>        
 <section class="artist-contents">
 
 
