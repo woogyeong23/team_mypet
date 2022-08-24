@@ -19,8 +19,7 @@
     		$.ajax({
     			type : "post",
     			url : "${pageContext.request.contextPath}/idfindProcess.do",
-    			data : {"m_name":m_name
-    				},
+    			data : {"m_name":m_name},
     			success : function(data){
     				if(data==null){
     					$(".id_finded").html("등록되어 있지 않은 이름입니다.").css("color","red");
@@ -59,7 +58,7 @@
       <label for="m_name">name</label>
     </div>
     
-    <span class="id_finded">gdgdgdg
+    <span class="id_finded">
     </span>
     
     <button  type="button" class="w-100 btn btn-lg btn-primary" id="id_find">아이디 찾기</button>

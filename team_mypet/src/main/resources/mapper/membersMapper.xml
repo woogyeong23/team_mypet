@@ -14,16 +14,19 @@
 		select count(*) as m_auth,m_grade,midx from members where m_id=#{m_id} and m_pwd=#{m_pwd}
 	</select>
 	<select id="loginMember1" parameterType="map" resultType="map">
-		select m_nick from members where m_id=#{m_id} and m_pwd=#{m_pwd}
+		select count(*) as m_auth,m_nick from members where m_id=#{m_id} and m_pwd=#{m_pwd}
 	</select>
 	
 	<!-- 아이디찾기 -->	
 	<select id="getidfind" parameterType="string" resultType="string">
 		select m_id from members where m_name= #{m_name}
 	</select>
+	<select id="getpwdfind" parameterType="string" resultType="string">
+		select m_pwd from members where m_id= #{m_id} and m_phone = #{m_phone}
+	</select>
 	<!-- 아이디유효성 -->
 	<select id="checkId" parameterType="int" resultType="int">
-		select count(*) from members where midx= #{midx}
+		select count(*) from members where m_id= #{m_id}
 	</select>
 	<!-- 닉네임유효성 -->
 	<select id="getchecknick" parameterType="string" resultType="int">

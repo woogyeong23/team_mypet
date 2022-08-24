@@ -359,7 +359,8 @@ list-style: none;
 							</ul>
                            <div class="price">
 							  <span><fmt:formatNumber value="${productVo.p_disprice}" pattern="#,###"/>원</span>
-								<c:if test="${productVo.p_discount != 0}">
+								<c:if test="${productVo.p_discount != 0}">                          
+								
 									<span class="discount-price"><fmt:formatNumber value="${productVo.p_price}" pattern="#,###" />원</span>
 							   </c:if>
 							</div>

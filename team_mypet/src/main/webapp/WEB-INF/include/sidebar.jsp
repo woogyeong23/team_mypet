@@ -19,7 +19,7 @@
     <a href="${pageContext.request.contextPath}/memberInfo.do" class="d-flex align-items-center pb-3 mb-3 link-dark text-decoration-none border-bottom">
       <svg class="bi me-2" width="30" height="24"><use xlink:href="#bootstrap"/></svg>
       <span class="fs-5 fw-semibold">
-			${midx}님
+			${m_nick}님
 	    </a>
     <ul class="list-unstyled ps-0">
       <li class="mb-1">
@@ -44,7 +44,7 @@
         <div class="collapse" id="oders-collapse">
           <ul class="btn-toggle-nav list-unstyled fw-normal pb-1">
             <li><a href="${pageContext.request.contextPath}/memberorder.do" class="link-dark rounded">배송정보</a></li>
-            <li><a href="${pageContext.request.contextPath}/memberorders.do" class="link-dark rounded">주문목록</a></li>
+            <li><a href="${pageContext.request.contextPath}/memberorderList.do" class="link-dark rounded">주문목록</a></li>
             <li><a href="${pageContext.request.contextPath}/membercart.do" class="link-dark rounded">장바구니</a></li>
             <li><a href="${pageContext.request.contextPath}/memberrefund.do" class="link-dark rounded">환물/교환 목록</a></li>
           </ul>
