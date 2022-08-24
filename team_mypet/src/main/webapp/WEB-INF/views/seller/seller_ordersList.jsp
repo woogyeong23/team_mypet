@@ -103,7 +103,6 @@
 													<option value="3" <c:if test="${searchInfo.get('status') == '3'}">selected</c:if>>배송중</option>
 													<option value="4" <c:if test="${searchInfo.get('status') == '4'}">selected</c:if>>배송완료</option>
 													<option value="5" <c:if test="${searchInfo.get('status') == '5'}">selected</c:if>>구매확정</option>
-													<option value="6" <c:if test="${searchInfo.get('status') == '6'}">selected</c:if>>부분배송</option>
 												</select>
 											</div>
 											<!-- /상태 -->
@@ -111,7 +110,7 @@
 											<div style=" float:right; margin-right:5px;">
 											<select class="form-select" name = "product" id="product" >
 												<option value="00" <c:if test="${searchInfo.get('product') == '00'}">selected</c:if>>전체</option>
-												<c:forEach var="productVo" items="${productVoList}">
+												<c:forEach var="productVo" items="${productList}">
 													<option value="${productVo.p_idx}" <c:if test="${searchInfo.get('product') eq productVo.p_idx}"  >selected</c:if>>${productVo.p_name}</option>
 												</c:forEach>
 												
@@ -151,29 +150,28 @@
 					    </tr>
 					  </thead>
 					  <tbody class="table-group-divider">
-					    <c:forEach var="OrdersVo" items="${ordersVoList}">
+					    <c:forEach var="map" items="${orderList}">
 							<tr>
 						      <!-- <th scope="row">1</th> -->
-						      <td><a href="${pageContext.request.contextPath}/seller_ordersDetail.do?orders_idx=${OrdersVo.orders_idx}&midx=${OrdersVo.midx}">${OrdersVo.orders_idx}</a></td>
+						      <td><a href="${pageContext.request.contextPath}/seller_ordersDetail.do?detail_idx=${map.detail_idx}&midx=${map.midx}">${map.detail_idx}</a></td>
 						      <td>
-						      	<c:forEach var="DetailVo" items="${OrdersVo.details}">
-									${DetailVo.p_name}.
-								</c:forEach>
+						     
+								${map.p_name}	(수량 : ${map.detail_cnt})
+								
 						      </td>
-						      <td>${OrdersVo.m_name}/${OrdersVo.m_id}</td>
+						      <td>${map.m_id} / ${map.m_name}</td>
 						      <td>
 						     	 <c:choose>
-						     	 	<c:when test="${OrdersVo.orders_status == 0}">입금대기</c:when>
-									<c:when test="${OrdersVo.orders_status == 1}">결제완료</c:when>
-									<c:when test="${OrdersVo.orders_status == 2}">준비중</c:when>
-									<c:when test="${OrdersVo.orders_status == 3}">배송중</c:when>
-									<c:when test="${OrdersVo.orders_status == 4}">배송완료</c:when>
-									<c:when test="${OrdersVo.orders_status == 5}">구매확정</c:when>
-									<c:when test="${OrdersVo.orders_status == 6}">부분배송</c:when>
+						     	 	<c:when test="${map.detail_status == 0}">입금대기</c:when>
+									<c:when test="${map.detail_status == 1}">결제완료</c:when>
+									<c:when test="${map.detail_status == 2}">준비중</c:when>
+									<c:when test="${map.detail_status == 3}">배송중</c:when>
+									<c:when test="${map.detail_status == 4}">배송완료</c:when>
+									<c:when test="${map.detail_status == 5}">구매확정</c:when>
 								</c:choose>
 						      </td>
-						      <td><fmt:formatNumber value="${OrdersVo.bundleprice }" pattern="#,###" />원</td>
-						      <td>${OrdersVo.orders_day}</td>
+						      <td><fmt:formatNumber value="${map.p_disprice * map.detail_cnt}" pattern="#,###" />원</td>
+						      <td>${map.orders_day}</td>
 						    </tr>
 						</c:forEach>
 					    

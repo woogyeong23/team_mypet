@@ -1,5 +1,6 @@
 package com.jeonju.mypet.controller;
 
+import java.security.NoSuchAlgorithmException;
 import java.util.HashMap;
 import java.util.List;
 
@@ -13,6 +14,7 @@ import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 
+import com.jeonju.mypet.service.EncryptPwd;
 import com.jeonju.mypet.service.MembersService;
 import com.jeonju.mypet.vo.CartVo;
 import com.jeonju.mypet.vo.MembersVo;
@@ -54,7 +56,13 @@ public class MembersController {
 	
 	
 	@PostMapping("/joinProcess.do")
-	public String joinProcess(MembersVo membersVo) {
+	public String joinProcess(MembersVo membersVo) throws NoSuchAlgorithmException {
+		
+		String pwd = membersVo.getM_pwd();
+		EncryptPwd encryptPwd = new EncryptPwd(pwd);
+		pwd = encryptPwd.getPwd();
+		
+		membersVo.setM_pwd(pwd);
 		
 		int result = membersService.join(membersVo);
 		String viewPage = null;
@@ -70,12 +78,16 @@ public class MembersController {
 	@PostMapping("/loginProcess.do")
 	public String loginProcess(@RequestParam("m_id") String m_id,
 			@RequestParam("m_pwd") String m_pwd,
-			HttpServletRequest request) {
+			HttpServletRequest request) throws NoSuchAlgorithmException {
 			
+			EncryptPwd encryptPwd = new EncryptPwd(m_pwd);
+			 
+		
+		
 			HashMap<String, String> loginInfo = new HashMap<String, String>(); 
 			
 			loginInfo.put("m_id",m_id);
-			loginInfo.put("m_pwd",m_pwd);
+			loginInfo.put("m_pwd",encryptPwd.getPwd());
 			
 
 			HashMap<String, Long> resultMap = membersService.login(loginInfo);

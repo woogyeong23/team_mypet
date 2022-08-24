@@ -7,7 +7,7 @@
 <html>
 <head>
 <meta charset="UTF-8">
-<title>주문상세내역</title>
+<title>주문상세내역 수정하기</title>
 	<script src="http://code.jquery.com/jquery-latest.min.js"></script>
 	<!-- css************************************************ -->
 	    <jsp:include page="../../include/head.jsp" />  
@@ -19,8 +19,53 @@
     <link href="resources/assets/css/sidebar.css" rel="stylesheet">
     <!-- css************************************************ -->
     <jsp:include page="../../include/membermodi.jsp" />  
+    	<script src="https://t1.daumcdn.net/mapjsapi/bundle/postcode/prod/postcode.v2.js"></script>
     
-	    
+	 <script>
+	 function execPostCode() {
+	        new daum.Postcode({
+	            oncomplete: function(data) {
+	               // 팝업에서 검색결과 항목을 클릭했을때 실행할 코드를 작성하는 부분.
+
+	               // 도로명 주소의 노출 규칙에 따라 주소를 조합한다.
+	               // 내려오는 변수가 값이 없는 경우엔 공백('')값을 가지므로, 이를 참고하여 분기 한다.
+	               var fullRoadAddr = data.roadAddress; // 도로명 주소 변수
+	               var extraRoadAddr = ''; // 도로명 조합형 주소 변수
+
+	               // 법정동명이 있을 경우 추가한다. (법정리는 제외)
+	               // 법정동의 경우 마지막 문자가 "동/로/가"로 끝난다.
+	               if(data.bname !== '' && /[동|로|가]$/g.test(data.bname)){
+	                   extraRoadAddr += data.bname;
+	               }
+	               // 건물명이 있고, 공동주택일 경우 추가한다.
+	               if(data.buildingName !== '' && data.apartment === 'Y'){
+	                  extraRoadAddr += (extraRoadAddr !== '' ? ', ' + data.buildingName : data.buildingName);
+	               }
+	               // 도로명, 지번 조합형 주소가 있을 경우, 괄호까지 추가한 최종 문자열을 만든다.
+	               if(extraRoadAddr !== ''){
+	                   extraRoadAddr = ' (' + extraRoadAddr + ')';
+	               }
+	               // 도로명, 지번 주소의 유무에 따라 해당 조합형 주소를 추가한다.
+	               if(fullRoadAddr !== ''){
+	                   fullRoadAddr += extraRoadAddr;
+	               }
+
+	               // 우편번호와 주소 정보를 해당 필드에 넣는다.
+	               console.log(data.zonecode);
+	               console.log(fullRoadAddr);
+	               
+	               
+	               $("[name=orders_addr1]").val(data.zonecode);
+	               $("[name=orders_addr2]").val(fullRoadAddr);
+	               $("[name=orders_addr3]").val("");
+	               /* document.getElementById('signUpUserPostNo').value = data.zonecode; //5자리 새우편번호 사용
+	               document.getElementById('signUpUserCompanyAddress').value = fullRoadAddr;
+	               document.getElementById('signUpUserCompanyAddressDetail').value = data.jibunAddress; */
+	           }
+	        }).open();
+	    }
+	 
+	 </script>   
 	<style>
 		html, body{
 			height: 100%
@@ -295,22 +340,7 @@
 		
 	
 	</style>
-	
-	<script>
-function update(){
 
-		
-		  		alert("주문상세 수정 완료");
-		  		//fm.action = "./memberJoinOk.jsp";
-		  		//가상경로 사용 ${pageContext.request.contextPath}/registProcess.do
-		  		fm.enctype="multipart/form-data"
-		  		fm.action = "<%=request.getContextPath()%>/seller_productModifProcess.do";
-		  		fm.method = "post";
-		  		fm.submit();  
-		  
-		    return;
-	}
-	</script>
 </head>
 
 <body>
@@ -324,6 +354,7 @@ function update(){
 	
 	
 	<section class="product-grids section">
+	<form name="frm" action="${pageContext.request.contextPath}/seller_ordersModifProcess.do?midx=${member_id}&detail_idx=${ordersContent.detail_idx}" method="post"  enctype="multipart/form-data">
 	
 		<div class="container">
 			<div class="row">
@@ -340,7 +371,7 @@ function update(){
 				<!-- content -->
 				<div class="col-md-9 col-12">
 					<div class="tab-content" id="nav-tabContent">
-						<h3 class="pb-1 border-bottom" style="margin-bottom:10px; font-size: 24px;font-weight: bold;vertical-align: middle;color: #333;">주문 상세내역</h3>
+						<h3 class="pb-1 border-bottom" style="margin-bottom:10px; font-size: 24px;font-weight: bold;vertical-align: middle;color: #333;">주문 상세내역 수정</h3>
 						
 						
 						<section>
@@ -386,31 +417,41 @@ function update(){
 								    font-size: 15px;
 								    resize: none;
 								    color: #000;"
-								    readonly
+								    name="detail_request"
+								    required
 								    value="${ordersContent.detail_request}">
 								    
 			                    
-			                    <br>
-			                    
-			                    
-			                    
+			                   <br>
+			                   <br>
 				            <div class="">
 				                <h2 class="title2-style mt30">배송 정보</h2><br>
 				                <table class="table-style-head-left">
 				                    <tbody>
 				                        <tr>
 				                            <th>받는분</th>
-				                            <td>${ordersContent.orders_name}</td>
+				                            <td><input type="text" required name = "orders_name" value="${ordersContent.orders_name}"></td>
 				                        </tr>
 				                        <tr>
 				                            <th>전화</th>
-				                            <td>${ordersContent.orders_phone}</td>
+				                            <td><input type="text" required name = "orders_phone" value="${ordersContent.orders_phone}"></td>
 				                        </tr>
 				                        <tr>
 				                            <th>주소</th>
-				                            <td>${ordersContent.orders_addr1} 
-				                            <br>${ordersContent.orders_addr2}
-				                            <br> ${ordersContent.orders_addr3}</td>
+				                            <td>
+				                            	<div class="form-group">                   
+												<input class=" " style="width: 40%; display: inline;" placeholder="우편번호" name="orders_addr1" id="orders_addr1" type="text" value="${ordersContent.orders_addr1}" readonly="readonly" >
+												    <button type="button" class="btn btn-default" onclick="execPostCode();"><i class="fa fa-search"></i> 우편번호 찾기</button>                               
+												</div>
+												<div class="form-group">
+												    <input class=" " style="top: 5px;" placeholder="도로명 주소" name="orders_addr2" id="orders_addr2" type="text" value="${ordersContent.orders_addr2}" readonly="readonly" />
+												</div>
+												<br>
+												<div class="form-group">
+												    <input class=" " placeholder="상세주소" name="orders_addr3" id="orders_addr3" value="${ordersContent.orders_addr3}" type="text"  />
+												</div>
+				                            
+				                             </td>
 				                        </tr>
 				                    </tbody>
 				                </table>
@@ -418,126 +459,14 @@ function update(){
 
                    			<br>
 			                 <div >
-			                    <h2 class="title2-style mt30">결제 정보</h2>
 			                    <br>
-			                    <div class="order-result root">
-			                        <div class="row">
-			                            <div class="col order-result artist-list">
-			                                    <div class="artist-item">
-			                                        <div class="value-list" style="color:black">
-			                                            <div class="value-item">
-			                                                <div class="value-name">
-			                                                        ${ordersContent.p_name} ( ${ordersContent.detail_cnt}개 )   
-			                                                </div>
-			                                                <div class="value-price">
-			                                                        <fmt:formatNumber value="${product_price}" pattern="#,###" />원                                                  
-			                                                </div>
-			                                            </div>
-			                                            <div class="value-item">
-			                                                <div class="value-name">
-			                                                    배송비
-			                                                </div>
-			                                                <div class="value-price">
-			                                                     <c:if test="${ordersContent.fixprice >= ordersContent.p_free_dvprice}">0원</c:if>
-			                                                     <c:if test="${ordersContent.fixprice < ordersContent.p_free_dvprice}"><fmt:formatNumber value="${ordersContent.p_dvprice}" pattern="#,###" />원</c:if>    
-			                                                </div>
-			                                            </div>
-			                                            <div class="value-item">
-			                                                <div class="value-name">
-			                                                    제주 / 도서산간 추가비용
-			                                                </div>
-			                                                <div class="value-price">
-			                                                    0원
-			                                                </div>
-			                                            </div>
-			                                            <div class="value-item">
-			                                                <div class="value-name">
-			                                                    사용 적립금
-			                                                </div>
-			                                                <div class="value-price">
-			                                                    0원                                                
-			                                                </div>
-			                                            </div>
-			                                            <div class="value-item">
-			                                                <div class="value-name">
-			                                                    총 가격
-			                                                </div>
-			                                                <div class="value-price">
-			                                                	<fmt:formatNumber value="${total_price}" pattern="#,###" />원      
-			                                                </div>
-			                                            </div>
-			                                        </div>
-			                                    </div>
-			                            </div>
-			                            
-			
-			                        </div>
-			                        
-			                	</div>    
-			                	<br><br>
-			                
-			                	<form name="frm2" action="${pageContext.request.contextPath}/seller_DetailStatusUpdate.do?midx=${member_id}&detail_idx=${ordersContent.detail_idx}" method="post"  enctype="multipart/form-data">
-			                	
-			                    <h2 class="title2-style mt30">진행 내역 
-			                    	<c:if test="${ordersContent.detail_status = '1' || ordersContent.detail_status == '2' || ordersContent.detail_status == '3'}">
-			                    	<input type="submit" style="float:right" class="btn btn-danger" value="업데이트">
-			                    	</c:if>
-			                    	
-			                    </h2>
-			                    </form>
-			                    <br>
-			                	<table class="table">
-								  
-								  <tbody>
-								    <tr class="table-active">
-								    	<td>상태</td>
-								    	<td>진행 일시</td>
-								    </tr>
-								    <c:forEach var="Detail_DayVo" items="${detailDayListVo}">
-										<tr>
-											<td>
-											
-											
-												<c:if test="${Detail_DayVo.detail_status == '0'}">입금대기</c:if>
-												<c:if test="${Detail_DayVo.detail_status == '1'}">결제완료</c:if>
-												<c:if test="${Detail_DayVo.detail_status == '2'}">준비중</c:if>
-												<c:if test="${Detail_DayVo.detail_status == '3'}">배송중</c:if>
-												<c:if test="${Detail_DayVo.detail_status == '4'}">배송완료</c:if>
-												<c:if test="${Detail_DayVo.detail_status == '5'}">구매확정</c:if>
-											</td>
-											<td><fmt:formatDate value="${Detail_DayVo.detail_progressday}" pattern="yyyy-MM-dd"/>	
-											
-											</td>
-										</tr>
-										
-										
-										
-										
-									</c:forEach>
-								  </tbody>
-								</table>
-			                	
-			                	
-			                	
-			                	
-							</div>
+			                    
                                     </section>
-						<br>
-			            <form name="frm1" action="${pageContext.request.contextPath}/seller_ordersModif.do?midx=${member_id}&detail_idx=${ordersContent.detail_idx}" method="post"  enctype="multipart/form-data">
-							<input type="button"  class="btn btn-light" onclick="history.back(-1)" value="뒤로가기">
-<%-- 							<input type="button"  class="btn btn-light" onclick="location.href='${pageContext.request.contextPath}/seller_ordersList.do'" value="목록">
- --%>							
-							<input type="hidden" name="orders_idx" value="${ordersContent.orders_idx} ">
-							<input type="hidden" name="detail_idx" value="${ordersContent.detail_idx} ">
-							<c:if test="${ordersContent.detail_status == '0' || ordersContent.detail_status == '1'|| ordersContent.detail_status == '2'}">
-							<input type="submit" class="btn btn-light" value="요청사항/배송사항 수정하기">
-							</c:if>
-						</form>
-						<c:if test="${ordersContent.detail_status == '0' || ordersContent.detail_status == '1'|| ordersContent.detail_status == '2'}">
-							<input type="button" style="float:right; margin-right:30px;" name="cancle" class="btn btn-light" value="취소신청">
-							<input type="button" style="float:right; margin-right:30px;" name="cancle" class="btn btn-light" value="환불신청">
+						<input type="hidden" name="orders_idx" value="${ordersContent.orders_idx}">
+							<input type="button"  class="btn btn-light" onclick="history.back(-1)" value="취소">
+						<input type="submit" class="btn btn-light" value="수정완료">
 						
-						</c:if>
+						
 						
 					</div>
 				</div>
@@ -545,6 +474,7 @@ function update(){
 				
 			</div>
 		</div>
+	</form>
 	</section>
 	
 </div>

@@ -400,7 +400,7 @@ $(document).ready(function(){
 			 		//str="<input type='hidden' id='seller_totalPrice" + seller_idx + "' value='0'>0";
 
 					  document.getElementById('totalPrice_span'+seller_idx).innerHTML = "";
-					  document.getElementById('totalPrice_span'+seller_idx).innerHTML="0" ;
+					  document.getElementById('totalPrice_span'+seller_idx).innerHTML="" ;
 						
 				}
 			 	//alert("총"+seller_dvprice);
