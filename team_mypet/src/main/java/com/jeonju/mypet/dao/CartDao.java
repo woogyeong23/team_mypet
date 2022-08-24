@@ -67,8 +67,13 @@ public class CartDao {
 		return sqlSession.delete(MAPPER+".deleteCart",cartVo);
 	}
 
-	public int cartReset(int midx) {
-		return sqlSession.delete(MAPPER+".resetCart",midx);
+	public int cartReset(int midx, int cart_idx) {
+		
+		HashMap<String, Object> cart = new HashMap<String, Object>(); 
+		cart.put("midx",midx);
+		cart.put("cart_idx", cart_idx);
+		
+		return sqlSession.delete(MAPPER+".resetCart",cart);
 	}
 
 	public List<HashMap<String, Object>> cartSellerList(int midx) {

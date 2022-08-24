@@ -67,6 +67,12 @@ public class CartService {
 		return cartDao.totalProductPrice(midx);
 	}
 
+
+	public int cartReset(int midx, int cart_idx) {
+		return cartDao.cartReset(midx,cart_idx);
+
+	}
+
 	
 
 

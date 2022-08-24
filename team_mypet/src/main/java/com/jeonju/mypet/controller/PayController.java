@@ -21,6 +21,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
 
+import com.jeonju.mypet.service.CartService;
 import com.jeonju.mypet.service.PayService;
 import com.jeonju.mypet.vo.CartVo;
 import com.jeonju.mypet.vo.DetailVo;
@@ -33,10 +34,13 @@ public class PayController {
 	
 	
 private PayService payService;
+private CartService cartService;
 	
 	@Autowired //자동 의존 주입: 생성자 방식
-	public PayController(PayService payService) {
+	public PayController(PayService payService,CartService cartService) {
 		this.payService = payService;
+		this.cartService = cartService;
+
 	}
 	
 	//주문하기 페이지 넘어가기
@@ -107,6 +111,8 @@ private PayService payService;
 			payService.orderInsert(ordersVo);
 			
 			
+			cartService.cartReset(midx,cart_idx);
+
 			detailVo.setOrders_idx(ordersVo.getOrders_idx());
 			detailVo.setDetail_completeday(detail_idx);
 			detailVo.setFixprice(ordersVo.getOrders_totalprice());
@@ -116,7 +122,6 @@ private PayService payService;
 			
 			payService.detailInsert(detailVo);
 		
-			payService.cartReset(midx);
 
 
 		  return "redirect:/memberorderList.do";
