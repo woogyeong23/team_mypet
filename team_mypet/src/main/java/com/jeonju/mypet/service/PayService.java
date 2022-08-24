@@ -60,9 +60,6 @@ private CartDao cartDao;
 		return payDao.cartinfo(midx);
 	}
 
-	public int cartReset(int midx) {
-		return cartDao.cartReset(midx);
-	}
 
 
 

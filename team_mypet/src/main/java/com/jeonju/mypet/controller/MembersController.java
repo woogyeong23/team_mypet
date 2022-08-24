@@ -50,12 +50,6 @@ public class MembersController {
 	public String joinEm() {
 		return "member/joinEm";	
 	}
-	@GetMapping("/NewFile.do")
-	public String NewFile() {
-		return "member/NewFile";	
-	}
-	
-	
 	
 	@PostMapping("/joinProcess.do")
 	public String joinProcess(MembersVo membersVo) {
@@ -144,13 +138,13 @@ public class MembersController {
 		@GetMapping("/membergrade.do")
 		public String membergrade() {
 				
-			return "member/membergrade";	
+			return "Error";	
 		}
 		
 		@GetMapping("/memberpoint.do")
 		public String memberpoint() {
 				
-			return "member/memberpoint";	
+			return "Error";	
 		}
 		
 		@GetMapping("/membermodi.do")
@@ -246,7 +240,7 @@ public class MembersController {
 		@GetMapping("/memberrefund.do")
 		public String memberrefund() {
 			
-			return "member/memberrefund";	
+			return "Error";	
 		}
 		
 		

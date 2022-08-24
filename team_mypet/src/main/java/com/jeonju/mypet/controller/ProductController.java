@@ -90,6 +90,8 @@ public class ProductController {
 	}
 	
 	
+	
+	
 	//인기순
 	@GetMapping("/productBest.do")
 	public String getproductBest(Model model) {
