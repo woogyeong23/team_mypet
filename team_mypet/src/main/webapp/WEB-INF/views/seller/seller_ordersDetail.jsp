@@ -479,7 +479,7 @@ function update(){
 			                	<form name="frm2" action="${pageContext.request.contextPath}/seller_DetailStatusUpdate.do?midx=${member_id}&detail_idx=${ordersContent.detail_idx}" method="post"  enctype="multipart/form-data">
 			                	
 			                    <h2 class="title2-style mt30">진행 내역 
-			                    	<c:if test="${ordersContent.detail_status = '1' || ordersContent.detail_status == '2' || ordersContent.detail_status == '3'}">
+			                    	<c:if test="${ordersContent.detail_status == '1' || ordersContent.detail_status == '2' || ordersContent.detail_status == '3'}">
 			                    	<input type="submit" style="float:right" class="btn btn-danger" value="업데이트">
 			                    	</c:if>
 			                    	

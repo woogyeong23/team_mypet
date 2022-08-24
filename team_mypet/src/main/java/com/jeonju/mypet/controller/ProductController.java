@@ -111,6 +111,8 @@ public class ProductController {
 		 return "product/productView";
 	}
 	
+	
+	
 	//인기순
 	@GetMapping("/productBest.do")
 	public String getproductBest(Model model) {
@@ -249,6 +251,9 @@ public class ProductController {
 					
 					result = productService.reviewInsert(reviewVo);
 					
+					
+					System.out.println("33333333333333333333333333");
+					System.out.println(p_idx);
 					productService.starUpdate(p_idx);
 					
 					view = "product/reviewWrite";

@@ -39,28 +39,34 @@ public class AjaxController {
 	@PostMapping("/checkNick.do")
 	public String checknick(@RequestParam("m_nick") String m_nick) {
 		
-		System.out.println("m_nick: "+m_nick);
+		System.out.println("닉네임 : "+m_nick);
 
-		String result="N";//중복된 아이디 없음
+		String result= "1";  //중복된 아이디 없음
 		
 		int flag = ajaxService.checknick(m_nick);
-
-		if(flag == 1) {
-			result = "Y";//중복된 아이디 있음(실패)
-		}
-		System.out.println("result: "+result);
+		
+		if(flag == 1) result = "2";  //중복된 아이디 있음
 
 		return result;
-	}	
+	}
 	
 	@PostMapping("/idfindProcess.do")
 	//@ResponseBody //Ajax통신의 응답내용을 보내는 것을 표시 <-- @RestController 로 대체 가능
 	public String idFindProcess(@RequestParam("m_name") String m_name,Model model) {
 		
-		
-		
 		String result  = ajaxService.idfind(m_name);
 		System.out.println("아이디찾기 : "+result);
+		return result;
+	}	
+	
+	@PostMapping("/pwdFindProcess.do")
+	//@ResponseBody //Ajax통신의 응답내용을 보내는 것을 표시 <-- @RestController 로 대체 가능
+	public String pwdFindProcess(@RequestParam("m_id") String m_id,
+			@RequestParam("m_phone") String m_phone,Model model) {
+		
+		String result  = ajaxService.pwdfind(m_id,m_phone);
+		
+		System.out.println("비밀번호찾기 : "+result);
 		return result;
 	}	
 	
@@ -129,6 +135,21 @@ public class AjaxController {
 		return result;
 		
 	}
+	@PostMapping("/cartRequest.do")
+	public String cartRequest(CartVo cartVo) throws Exception {
+		
+		String result = "N";
+				
+		
+			int flag = ajaxService.cartRequestUpdate(cartVo);
+		if(flag== 1) result = "Y";		
+		
+		
+		System.out.println("요구사항:"+result);
+
+		return result;
+		
+	}
 	
 
 	
@@ -166,6 +187,26 @@ public class AjaxController {
 		
 		return result;
 	}
+	
+	
+	@PostMapping("/adminUpdateInfo0.do")
+	public String adminUpdateInfo0(@RequestParam("midx") int midx, @RequestParam("m_grade") int m_grade) {
+		System.out.println(midx+":"+m_grade);
+	
+		//웹브라우저에서 전달받은 2개의 값을 MyBatis의 입력값으로 사용하기 위해 HashMap객체 생성해서 저장
+		HashMap<String, Integer> map = new HashMap<String, Integer>();
+		map.put("midx", midx);
+		map.put("m_grade", m_grade);
+				
+		String result="N";//정보수정 실패
+		
+		int flag = ajaxService.updateMemberGrade(map);
+		System.out.println(flag+"-----------------------------------------");
+		if(flag == 1) result = "Y";//정보수정 성공
+		
+		return result;
+	}
+	
 	
 
 	

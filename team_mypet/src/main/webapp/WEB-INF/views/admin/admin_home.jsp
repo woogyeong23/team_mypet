@@ -1,181 +1,155 @@
 <%@ page contentType="text/html; charset=UTF-8" %>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
-<html>
-<head>
-	<title>관리자페이지</title>
-	
-	
-<script src ="resources/assets/js/jquery-1.12.3.js"></script>
-	<script src ="resources/assets/js/script.js"defer type ="text/javascript"></script>
-	
+<%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt"%>
 
-	<link href = "resources/assets/css/style.css"type="text/css" rel = "stylesheet">
-		
-		
-	
-</head>
-<body>
-
-
-
-	
-<header>	
-	
-	
-
-
-
-    <div class = "wrap">
-    <div class = "logo">
-
-
-
-관리자
-
-  
-</div>
- <hr/>
-    <nav class = "menu">
-           <ul class ="navi">
-            
-            <li><a href="${pageContext.request.contextPath}/admin_buyer.do">구매자 관리</a>
-           
-            
-
-
-</li>
-
-<li><a href="${pageContext.request.contextPath}/#">판매자 관리</a>
-
-
-</li>
-<li> <a href="${pageContext.request.contextPath}/#">판매량 차트</a>
-
-
-
-   
-
-</li>
-
-
-<li> <a href="${pageContext.request.contextPath}/admin_board.do">공지사항 관리</a>
-
+<!DOCTYPE html>
+<html class="no-js" lang="zxx">
 
  
+
+<head>
    
-
-
-</li>
-
-
-
-<li> 	<a href="${pageContext.request.contextPath}/admin_board2.do">이벤트 관리</a>
-
+<!-- css************************************************ -->
+    <jsp:include page="../../include/head.jsp" />
+   <!--  nav sticky -->
+    <style type="text/css">
+    #naver.fixed{
+	position: fixed;
+	left: 0;
+	top: 0;
+	width: 100%;
+	background-color:#FFFFF0
+    }
+    
+     /*  nav sticky */
 
     
-   
-
-
-</li>
-
-
-
-<li>	<a href="${pageContext.request.contextPath}/admin_mune.do">1:1문의 사항</a>
-
-
+    .popup{
+   width:100%; 
+   height:40px;
+    margin: 0 auto; 
+   position: relative; 
+   background-color: #D9D7F1;
+    }
+    
+   .popup_in{
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%,-50%);
+    }
+    
+    
+    #popup_close{
+    background-color: #D9D7F1;
+    border: none;
+    float: right;
+    color: #FFFFFF;
+    margin-right: 300px;
+    margin-top:10px;
+    }
+    
+    #popup_link{
+    color: #FFFFFF;
+    }
  
-   
+    
+    </style>
+<!-- ************************************************ -->
+
+<script type="text/javascript" src="//code.jquery.com/jquery-3.6.0.min.js"></script>
+<script type="text/javascript">
+
+$(function() {
+	  //nav
+	  var lnb = $("#naver").offset().top;
+	 
+	  $(window).scroll(function() {
+	   
+	    var window = $(this).scrollTop();
+	    
+	    if(lnb <= window) {
+	      $("#naver").addClass("fixed");
+	    }else{
+	      $("#naver").removeClass("fixed");
+	    }
+	  });
+	  //nav
+	  
+	  
+	  
+	  
+	  // topbar event popup 지우기
+	  $('#popup_close').click(function(){
+	        $('.popup').stop().slideUp()
+	    });
+	    
+	});
+	
+	
+	
+</script>
+</head>
 
 
-</li>
 
-
-
-    </nav>
-
-    </div>
-
-
-</header>
-
-<div class = "bodywrap">
-<div class = "imgslide">
-
-
-
-</div>
-    <div class ="contents">
+<body>
+     <div class="popup" >
+     <div class="popup_in"><a id="popup_link" href="">지금 바로 가입하고 상품을 구입시 
+  <span>아이패드</span> Get!</a></div><button id="popup_close"><i class="lni lni-close"></i></button>
   
-        
-            <ul class ="tabmenu">
-                <li>
-
-                    <div class ="notice">
-                        
-                    </div>
-                  </li>
-                  <li>
-
-                    <div class ="gallery">
-                     
-                    </div>
-                  </li>
-
-    </ul>
-
-
-        <div class ="otherwrap">
-            <div class ="banner">
-
-           
-</div>
-
-                <div class ="shortcut">
-
+     </div>
+<!-- 헤더와 네비************************************************ -->
+    <jsp:include page="../../include/admin_header.jsp" />  
+<!-- ************************************************ -->
+    
+    
+    
+<!-- 최신순 -->
+    <!-- Start Trending Product Area -->
+    <section class="trending-product section" style="margin-top: 12px;">
+        <div class="container">
+            <div class="row">
+                <div class="col-12">
+                    
+                    
+                    
                    
-
+                    
+               
+                    
+                    
+                    
+                    
+                </div>
             </div>
         </div>
-
-
-        
-
-</div>
-
-
-
-<footer>
-
-    <div class="wrap">
-    <div class ="btlogo">
-
-     하단 로고 자리
-    </div>
+    </section>
     
-    <div class="site">
-    <div class ="btmenu">
-        하단 자리
+   
+
+	  <div class = "align-center ">
+
+<h1> 관리자 페이지에 오신것을 환영합니다.</h1>
+
+
+
+<br>
+<br>
+<br>
+<br>
+<br>
+<br>
+<br>
+<br>
+<br>
+<br>
 
    </div>
 
 
-
-<div class ="copy">
-
-copyright 자리
-
-
-
-</div>
-
-</div>
-
-
-
-</footer>
-
-
-	
-
+<!-- 푸터와 js************************************************ -->
+    <jsp:include page="../../include/footer.jsp" />  
 </body>
+
 </html>

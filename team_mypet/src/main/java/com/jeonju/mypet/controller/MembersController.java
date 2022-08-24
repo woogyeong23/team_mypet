@@ -336,7 +336,7 @@ public class MembersController {
 			
 			return "member/memberorder";	
 		}
-		@GetMapping("/memberorders.do")
+		@GetMapping("/memberorderList.do")
 		public String memberorderList(HttpServletRequest request, OrdersVo ordersVo,Model model) {
 			HttpSession Session = request.getSession();
 			int midx = (int) Session.getAttribute("midx");
@@ -347,7 +347,7 @@ public class MembersController {
 			
 			model.addAttribute(ordersList);
 			
-			return "member/memberorders";	
+			return "member/memberorderList";	
 		}
 		
 		@GetMapping("/memberrefund.do")

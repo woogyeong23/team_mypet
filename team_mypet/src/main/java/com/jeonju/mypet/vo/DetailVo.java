@@ -12,14 +12,17 @@ public class DetailVo {
 	private String detail_completeday;
 	private int fixprice;
 	private String p_name;
-	private String fixdvprice;
+	private int fixdvprice;
 	private List<OrdersVo> orders;
 	private int detail_status;
+	private int midx;
+	private int cart_idx;
+
 	
-	public String getFixdvprice() {
+	public int getFixdvprice() {
 		return fixdvprice;
 	}
-	public void setFixdvprice(String fixdvprice) {
+	public void setFixdvprice(int fixdvprice) {
 		this.fixdvprice = fixdvprice;
 	}
 	public String getP_name() {
@@ -110,6 +113,18 @@ public class DetailVo {
 	}
 	public void setDetail_status(int detail_status) {
 		this.detail_status = detail_status;
+	}
+	public int getMidx() {
+		return midx;
+	}
+	public void setMidx(int midx) {
+		this.midx = midx;
+	}
+	public int getCart_idx() {
+		return cart_idx;
+	}
+	public void setCart_idx(int cart_idx) {
+		this.cart_idx = cart_idx;
 	}
 	
 	

@@ -280,7 +280,7 @@
 					and a.p_idx=#{product}
 				</otherwise>
 			</choose>
-	order by c.orders_day
+	order by c.orders_day desc
 	</select>
 	
 	<!-- 주문상태 업데이트 -->

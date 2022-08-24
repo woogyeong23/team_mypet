@@ -29,7 +29,17 @@ public class ReviewVo {
 	private int pet_age;
 	private String m_nick;
 	private String review_ori_img;
+	
+	private int seller_idx;
+	
+	
 
+	public int getSeller_idx() {
+		return seller_idx;
+	}
+	public void setSeller_idx(int seller_idx) {
+		this.seller_idx = seller_idx;
+	}
 	public int getDetail_idx() {
 		return detail_idx;
 	}

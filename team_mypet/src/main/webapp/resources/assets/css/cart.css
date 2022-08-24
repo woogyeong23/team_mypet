@@ -14,9 +14,7 @@
     padding-top: 40px;
     vertical-align: middle;
 }
-div {
-    display: block;
-}
+
 .CartPage {
     width: 800px;
     margin: 0 auto;    
@@ -438,33 +436,3 @@ label {
     text-align: center;
 }
 
-.CartCheckboxControl__label {
-    margin-left: 4px;
-    font-size: 12px;
-}
-
-.CommonButton--white {
-    background: #ffffff;
-    border: 1px solid #d9d9d9;
-    color: #333;
-}
-.CommonButton--middle {
-    font-size: 12px;
-    line-height: 30px;
-    padding: 0 16px;
-}
-.CommonButton {
-    display: inline-block;
-    border-radius: 2px;
-    box-shadow: 0 1px 3px 0 rgb(220 220 220 / 30%);
-    box-sizing: border-box;
-    cursor: pointer;
-    font-weight: 400;
-    text-align: center;
-    text-decoration: none;
-    transition: border-color 0.2s cubic-bezier(0.075, 0.82, 0.165, 1);
-    vertical-align: middle;
-}
-.CartCheckboxControl__label--bold {
-    font-weight: bold;
-}

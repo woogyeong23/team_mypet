@@ -13,10 +13,6 @@
 $(document).ready(function(){
 
 		
-		  
-		  
-		  
-		  
 	//-버튼
 	$(".NumberCounter__minus").on("click", function(){
 		
@@ -181,12 +177,41 @@ $(document).ready(function(){
 					console.log(result);
 					alert("삭제놉");
 				}else{
-					alert("삭제하였습니다");
 					$(CAI).remove();
 				}
 			}
 		});
 	});
+			
+	
+	//주문 요청사항
+		$(".CommonButton").on("click", function(){
+		
+			let cart_idx = $(this).data("cart_idx");
+			let midx_input = $('input[id="midx_input"]');
+			let midx = $(midx_input).val();
+			let p_idx = $(this).data("p_idx");
+			let cart_request = "#cart_request"+cart_idx;
+			let cart_request_val = $(cart_request).val();
+			
+			$.ajax({
+				type:"post",
+				url:"${pageContext.request.contextPath}/cartRequest.do",
+				data:{"cart_request": cart_request_val,"p_idx":p_idx,
+						"midx":midx,"cart_idx":cart_idx },
+				success:function(data){
+					if(data == "Y"){
+						console.log("request o");
+						alert("저장되었습니다.");
+					}else{
+						console.log("request x");
+	
+					}
+				}
+			});
+		});
+
+	
 	
 	
 	//모든 체크 박스 선택
@@ -467,8 +492,7 @@ $(document).ready(function(){
 			
 			
 			
-			function cart_idxArr()
-			{
+			function cart_idxArr(){
 				
 				var c_idxArr=[];
 				$("input[type='checkbox']:checked").each(function(){
@@ -476,7 +500,7 @@ $(document).ready(function(){
 						{
 						c_idxArr.push($(this).data('checked_cart_idx'));
 							
-							alert($(this).data('checked_cart_idx'));
+							//alert($(this).data('checked_cart_idx'));
 						}
 				});
 				
@@ -493,7 +517,7 @@ $(document).ready(function(){
 				
 				
 				
-				alert("전송합니다..");
+				//alert("전송합니다..");
 		  		//fm.action = "./memberJoinOk.jsp";
 		  		//가상경로 사용 ${pageContext.request.contextPath}/registProcess.do
 		  		fm.action = "<%=request.getContextPath()%>/memberpay.do";
@@ -516,6 +540,115 @@ $(document).ready(function(){
     <link href="resources/assets/css/cart.css" rel="stylesheet">
     
     <style>
+    .CartCheckboxControl__label {
+    margin-left: 4px;
+    font-size: 12px;
+}
+
+.CommonButton--white {
+    background: #ffffff;
+    border: 1px solid #d9d9d9;
+    color: #333;
+}
+.CommonButton--middle {
+    font-size: 12px;
+    line-height: 30px;
+    padding: 0 16px;
+}
+.CommonButton {
+    display: inline-block;
+    border-radius: 2px;
+    box-shadow: 0 1px 3px 0 rgb(220 220 220 / 30%);
+    box-sizing: border-box;
+    cursor: pointer;
+    font-weight: 400;
+    text-align: center;
+    text-decoration: none;
+    transition: border-color 0.2s cubic-bezier(0.075, 0.82, 0.165, 1);
+    vertical-align: middle;
+}
+.CartCheckboxControl__label--bold {
+    font-weight: bold;
+}
+.CartOrderMessageEditor__productOrderMessage {
+    width: calc(100% - 80px);
+    display: inline-block;
+    vertical-align: middle;
+}
+.CommonTextEditor {
+    display: inline-block;
+    width: 100%;
+    height: 80px;
+    overflow: hidden;
+    position: relative;
+}
+.CommonTextEditor__textarea {
+    width: 100%;
+    height: 100%;
+    padding: 12px 30px 12px 12px;
+    border-radius: 2px;
+    resize: none;
+    line-height: 1.33;
+    border: 1px solid #ccc;
+}
+.CommonTextEditor__maxLength {
+    color: #999;
+    position: absolute;
+    bottom: 4px;
+    right: 8px;
+}
+.CartOrderMessageEditor__orderMessageSaveBtn {
+    float: right;
+}
+.CartOrderMessageEditor__orderMessageSaveBtn .CommonButton {
+    width: 72px;
+    height: 80px;
+    font-weight: bold;
+    line-height: 15px;
+    padding: 0 20px;
+}
+.CommonButton--redline {
+    background: #ffffff;
+    border: 1px solid #ffff80;
+    color: #ffff80;
+}
+.CommonButton.disabled {
+    color: #d9d9d9;
+    background: #f2f2f2;
+    cursor: default;
+}
+.CommonButton--white {
+    background: #ffffff;
+    border: 1px solid #d9d9d9;
+    color: #333;
+}
+.CommonButton--middle {
+    font-size: 12px;
+    line-height: 30px;
+    padding: 0 16px;
+}
+.CommonButton {
+    display: inline-block;
+    border-radius: 2px;
+    box-shadow: 0 1px 3px 0 rgb(220 220 220 / 30%);
+    box-sizing: border-box;
+    cursor: pointer;
+    font-weight: 400;
+    text-align: center;
+    text-decoration: none;
+    transition: border-color 0.2s cubic-bezier(0.075, 0.82, 0.165, 1);
+    vertical-align: middle;
+}
+.CartOrderMessageEditor__saveMessage {
+    margin-top: 5px;
+}
+
+.CartOrderMessageEditor__saveMessage--text] {
+    display: inline-block;
+    position: absolute;
+    margin: 0 0 0 5px;
+    font-size: 12px !important;
+}
     .NumberCounter__minus {
     display: inline-block;
     vertical-align: middle;
@@ -583,9 +716,7 @@ $(document).ready(function(){
    				<div class="CartArtistList" id="CartArtistList">
    					<div class="vue-sticky-placeholder" style="padding-top: 0px;"></div>
    					<div class="CartList__sticky vue-sticky-el" style="position: static; top: auto; bottom: auto; left: auto; width: auto; z-index: 201;"></div>
-<%--    					<c:if test="${countCart}" var="null" > --%>
-<%--    					</c:if> --%>
-					<!-- seller별로 -->
+
 					<c:forEach items="${cartSellerList}" var="seller">
 						
 						
@@ -594,7 +725,7 @@ $(document).ready(function(){
 		   					 <div class="CartArtistItem__header">
 		   						<label>
 									<div class="checkbox">   							
-		   								<div class="input-checkbox"  id="input-checkbox1">
+		   								<div class="input-checkbox"  id="input-checkbox1	">
 		   									<input type="checkbox" id="artist_checkedbox${seller.seller_idx}" name="artist_checkedbox${seller.seller_idx}" data-cart_idx="${seller.seller_idx}"  autocomplete="off" class="bp" value="${m_nick}" onclick='selectSeller(this,${seller.seller_idx})' checked="checked" >
 		   								</div>
 		   							</div>
@@ -611,8 +742,7 @@ $(document).ready(function(){
 			   					<input type="hidden" id="cart_idx_input" value="${cart.cart_idx}">   					
 			   					<input type="hidden" id="midx_input" value="${cart.midx}">
 			   					<input type="hidden" id="p_name_input" value="${cart.p_name}">
-<%-- 			   					<input type="hidden" id="p_content_input" value="${cart.p_content}">
- --%>			   					<input type="hidden" id="cart_cnt_input" value="${cart.cart_cnt}">
+			   					<input type="hidden" id="cart_cnt_input" value="${cart.cart_cnt}">
 			   					<input type="hidden" id="total_price_input${cart.cart_idx}"value="${cart.p_price * cart.cart_cnt}">
 			   								<ul>
 			   									<div class="CartProductList">   						
@@ -649,8 +779,8 @@ $(document).ready(function(){
 			   															</div>
 			   														
 			   															<div class="CartOptionListItem__splitRight"  >
-			   																<em class="CartOptionListItem__totalPrice" id="CartArtistItem__Price${cart.cart_idx}" name="${cart.p_price}"><input type="hidden" id='seller_price${cart.cart_idx}' value='${cart.c_price}'><fmt:formatNumber pattern="###,###,###" value="${cart.c_price}"/></em> <!-- 상품가격 -->
-			   																
+			   																<em class="CartOptionListItem__totalPrice" id="CartArtistItem__Price${cart.cart_idx}">
+			   																<input type="hidden" id='seller_price${cart.cart_idx}' value='${cart.c_price}'><fmt:formatNumber pattern="###,###,###" value="${cart.c_price}"/></em> <!-- 상품 가격 -->
 			   																<div class="CartOptionListItem__btnGroup">
 			   																	<div class="CartOptionEditingButtonGroup">
 			   																		<button  id="delete__button${cart.cart_idx}" name="${cart.cart_idx}" class="CartOptionEditingButtonGroup__button CartOptionEditingButtonGroup__button--right" >
@@ -658,26 +788,42 @@ $(document).ready(function(){
 			   																		</button>
 			   																	</div>
 			   																</div> 
-			<!--    																<em class="CartOptionListItem__totalPrice">예상 적립금 : -->
-			<!--    																	<a id="CartArtistItem__Point"></a> -->
-			<!--    																</em>  	예상적립금													 -->
+			   																<div class="CartOptionListItem__totalPrice">
+			   																	<input type="hidden" id="itemFreeDvPrice${cart.cart_idx}" value="${cart.p_free_dvprice}">
+			   																<div class="dvPrice" id="itemDvPrices${cart.cart_idx}">
+			   																	<input type="hidden" id="itemDvPrice${cart.cart_idx}" value="${cart.p_dvprice}">
+			   																</div>
+			   																<div id="message${cart.cart_idx}">
+				   																<c:if test="${cart.p_free_dvprice<=cart.c_price}">무료배송</c:if>
+			   																	<c:if test="${cart.p_free_dvprice>cart.c_price}">
+			   																	<em>배송비 : <fmt:formatNumber pattern="###,###,###" value="${cart.p_dvprice}"/>원</em><p />
+			   																	<em><fmt:formatNumber pattern="###,###,###" value="${cart.p_free_dvprice}"/>원 이상 구매시 무료배송</em>
+			   																	</c:if>
+			   																</div>
+			   																</div>	
 			   															</div>
 			   															
 			   														</div>
-			   														<section class="CartArtistItem__section">
-			   															<input type="hidden" id="itemFreeDvPrice${cart.cart_idx}" value="${cart.p_free_dvprice}">
-			   															<div class="dvPrice" id="itemDvPrices${cart.cart_idx}"">
-			   															<input type="hidden" id="itemDvPrice${cart.cart_idx}" value="${cart.p_dvprice}">
-			   															</div>
-			   															<div><fmt:formatNumber pattern="###,###,###" value="${cart.p_free_dvprice}"/>원 이상 구매시 무료배송</div>
-			   															<div id="message${cart.cart_idx}">
-			   																<c:if test="${cart.p_free_dvprice<=cart.c_price}">무료배송</c:if>
-			   																<c:if test="${cart.p_free_dvprice>cart.c_price}">
-			   																	<fmt:formatNumber pattern="###,###,###" value="${cart.p_dvprice}"/>원
-			   																</c:if>
-			   															</div> 
-			   															</section>
+			   														 
 			   													</div>
+			   													<div>
+			   														<div class="CartOrderMessageEditor__productOrderMessage">
+			   																<div class="CommonTextEditor">
+			   																	<textarea class="CommonTextEditor__textarea" id="cart_request${cart.cart_idx}" name="cart_request" maxlength="500" placeholder="주문 요청사항을 입력해주세요">${cart.cart_request}</textarea>
+			   																	<em class="CommonTextEditor__maxLength"></em>
+			   																</div>
+			   														</div>
+			   														<div class="CartOrderMessageEditor__orderMessageSaveBtn">
+			   															<button type="button" class="CommonButton CommonButton--middle CommonButton--white" id="CommonButton${cart.cart_idx}" data-cart_idx="${cart.cart_idx}" data-p_idx="${cart.p_idx}">
+			   															저장
+			   															</button>
+			   														</div>
+			   														<div class="CartOrderMessageEditor__saveMessage">
+			   															<div class="CartOrderMessageEditor__saveMessage--text">
+			   															</div>
+			   														</div>
+			   													</div>
+			   													
 			   												</div>
 			   						 					</div>
 			   										</div>
@@ -685,10 +831,7 @@ $(document).ready(function(){
 			   								</ul>
 			   						</section>
 	   								
-	   								
-	   								
 	   							</c:if>
-	   							
 	   							
 	   							
 	   						</c:forEach>
@@ -716,19 +859,9 @@ $(document).ready(function(){
 		   					
 		   					<div class="vue-sticky-placeholder"></div>
 		   				</div> 	
-		   							
-						
-						
-						
-						
-						
-					
+		   				
 					</c:forEach>
 					
-					
-   					
-   					
-   					
    			<div class="vue-sticky-placeholder" style="padding-top: 0px;"></div>		
         	<div  sticky-side="bottom" on-stick="handleChangeStickBottom"class="CartList__sticky vue-sticky-el"  style="position: sticky; top: auto; bottom: 0px; left: auto; width: auto; z-index: 10;">   	
         	<div class="CartCheckboxControl">
@@ -739,7 +872,7 @@ $(document).ready(function(){
         			<label for="cart-product-all-check">
         				<span class="CartCheckboxControl__label">
         				전체 선택 (
-            			<span class="CartCheckboxControl__label--bold" id="totalcnt">1</span>
+            			<span class="CartCheckboxControl__label--bold" id="totalcnt"></span>
             			/${countCart}) 
             			</span>
         			</label>
@@ -769,24 +902,20 @@ $(document).ready(function(){
         						<span id="finalTotalPrice_span"  name="finalTotalPrice">
         						</span>
         						<span class="CartCheckoutDesktop__priceUnit" id="total_Price"><input type='hidden' id='totalprice'  name='totalprice'  value='${ProductPriceMap.totalprice }'><fmt:formatNumber pattern="###,###,### 원" value="${ProductPriceMap.totalprice}" /></span>
-<!--         						<em class="CartOptionListItem__totalPrice">적립금 :
- -->   								<a id="totalPoint_span" name="totalPoint"></a>
-   								</em>  	<!-- 예상적립금 -->	
-        						
+        						<em class="CartOptionListItem__totalPrice">적립금 :
+  								<a id="totalPoint_span" name="totalPoint"></a>
+        						</em>
         					</div>
         				</div>
         			</div>
         		</div>
         		
         		<div class="CartPage__bottom">
-<%--         		<button type="submit" class="CommonButton CartPage__paymentButton CommonButton--large" onclick = "location.href = '${pageContext.request.contextPath}/memberpay.do'">
- --%>        		주문하기
-        		</button>
-        		</div>
-        	</div>
- 		</div>
- 		<input type="hidden" id="c_idxArr" name="c_idxArr">
- 		<input type="button" class="CommonButton CartPage__paymentButton CommonButton--large" value="등록" onclick="cart_idxArr();"> 
+ 					<input type="hidden" id="c_idxArr" name="c_idxArr" value="">
+ 					<input type="button" class="CommonButton CartPage__paymentButton CommonButton--large" value="등록" onclick="cart_idxArr();">
+ 				</div> 
+				</div>
+ 			</div>
 		</form>
 		
 		

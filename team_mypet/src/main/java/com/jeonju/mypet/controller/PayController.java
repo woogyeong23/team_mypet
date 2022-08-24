@@ -4,6 +4,7 @@ package com.jeonju.mypet.controller;
 import java.text.DecimalFormat;
 import java.util.ArrayList;
 import java.util.Calendar;
+import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
@@ -20,9 +21,12 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
 
+import com.jeonju.mypet.service.CartService;
 import com.jeonju.mypet.service.PayService;
 import com.jeonju.mypet.vo.CartVo;
 import com.jeonju.mypet.vo.DetailVo;
+import com.jeonju.mypet.vo.MembersVo;
+import com.jeonju.mypet.vo.OrdersListVo;
 import com.jeonju.mypet.vo.OrdersVo;
 
 @Controller
@@ -30,39 +34,58 @@ public class PayController {
 	
 	
 private PayService payService;
+private CartService cartService;
 	
 	@Autowired //자동 의존 주입: 생성자 방식
-	public PayController(PayService payService) {
+	public PayController(PayService payService,CartService cartService) {
 		this.payService = payService;
+		this.cartService = cartService;
+
 	}
 	
-	
+	//주문하기 페이지 넘어가기
 	@GetMapping("/memberpay.do")
-	public String memberpay(@RequestParam Map<String, String> param,OrdersVo ordersVo,Model model,HttpServletRequest request) {
+	public String memberpay(@RequestParam(value = "c_idxArr") List<String> c_idxArr,
+			@RequestParam Map<String, String> param,OrdersVo ordersVo,Model model,HttpServletRequest request) {
 
-		String c_idxArr = param.get("c_idxArr");
-		System.out.println(c_idxArr);
-		
-		 List<OrdersVo> orderslist = new ArrayList<>();
-//		 for(int i=0; i < (ordersVo.getP_idx()).length; i++) {
-//			 
-//			 OrdersVo oV = new OrdersVo();
-//			 
-//			 oV.setOrders();
-//		 }
-		 model.addAttribute("order", orderslist);
-		 
 		HttpSession Session = request.getSession();
 		int midx = (int) Session.getAttribute("midx");
 		
+		
+		MembersVo member = payService.membersinfo(midx);
+		CartVo cart = payService.cartinfo(midx);
+
 		ordersVo.setMidx(midx);
 		
+		List<OrdersVo> ordersList = payService.orderpay(ordersVo);
 		
+		
+		int cart_idx = 0;
+		HashMap<String, String> map = new HashMap<String, String>();
+		
+		for(String i : c_idxArr){
+			cart_idx = Integer.parseInt(i);
+			
+			System.out.println("cart -> CHK orderList : "+cart_idx);
+		  }
+
+		HashMap<String, Object>ProductPriceMap = payService.totalProductPrice(midx,cart_idx);
+		
+		model.addAttribute("ProductPriceMap",ProductPriceMap);
+
+		model.addAttribute("ordersList",ordersList);
+		model.addAttribute("member",member);
+		model.addAttribute("cart",cart);
+
+
 		return "member/memberpay";	
 	}
 	
+		//결제 성공 시 주문 및 카트 삭제 
 	  @PostMapping("/orderInsert.do")
-	  public String orderInsert(OrdersVo ordersVo, DetailVo detailVo, HttpServletRequest request)throws Exception{
+	  public String orderInsert( @RequestParam("cart_idx") int cart_idx,
+			  OrdersVo ordersVo, DetailVo detailVo,
+			  HttpServletRequest request)throws Exception{
 		 
 		  	HttpSession Session = request.getSession();
 			int midx = (int) Session.getAttribute("midx");
@@ -78,17 +101,55 @@ private PayService payService;
 			 
 			 String detail_idx = ymd + "_" + subNum;
 			 
+			 ordersVo.setMidx(midx);
+				
+			System.out.println("카트아이디임:"+cart_idx);
+			
+			
 			ordersVo.setMidx(midx);
 			
 			payService.orderInsert(ordersVo);
-			detailVo.setDetail_idx(midx);
-			detailVo.setDetail_completeday(detail_idx);
-			payService.detailInsert(detailVo);
+			
+			int o_idx=payService.getOrderIdx();
+			
 
-		  return "redirect:/memberorders";
+			detailVo.setOrders_idx(o_idx);
+			detailVo.setDetail_completeday(detail_idx);
+			detailVo.setFixprice(ordersVo.getOrders_totalprice());
+			detailVo.setDetail_status(1);
+			detailVo.setMidx(midx);
+			detailVo.setCart_idx(cart_idx);
+			
+			int fixdvprice = payService.getFixDvPrice(cart_idx);
+			
+			detailVo.setFixdvprice(fixdvprice);
+			
+			payService.detailInsert(detailVo);
+		
+			payService.detailDayInsert();
+
+			cartService.cartReset(midx,cart_idx);
+			
+			
+			
+
+		  return "redirect:/memberorderList.do";
 	  }
-	
-	
+	  //주문상세목록
+	  @PostMapping("/OrderView.do")
+	  public void OrderView( HttpServletRequest request, @RequestParam("n") int orders_idx,
+			  OrdersVo ordersVo, Model model) throws Exception {
+	   
+		HttpSession Session = request.getSession();
+		int midx = (int) Session.getAttribute("midx");
+	   
+		ordersVo.setMidx(midx);
+		ordersVo.setOrders_idx(orders_idx);
+	   
+	   List<OrdersListVo> orderView = payService.orderview(ordersVo);
+	   
+	   model.addAttribute("orderView", orderView);
+	  }
 	
 	
 	

@@ -1,100 +1,223 @@
+
+ 
+   
+
 <%@ page contentType="text/html; charset=UTF-8" %>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
-<html>
-<head>
-	<title>관리자페이지</title>
-	
-	
-<script src ="resources/assets/js/jquery-1.12.3.js"></script>
-	<script src ="resources/assets/js/script.js"defer type ="text/javascript"></script>
-	
+<%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt"%>
 
-	<link href = "resources/assets/css/style.css"type="text/css" rel = "stylesheet">
-		
-		
-	
-</head>
-<body>
-
-
-
-	
-<header>	
-	
-	
-
-
-
-    <div class = "wrap">
-    <div class = "logo">
-
-
-
-관리자
-
-  
-</div>
- <hr/>
-    <nav class = "menu">
-           <ul class ="navi">
-            
-            <li><a href="${pageContext.request.contextPath}/#">구매자 관리</a>
-           
-            
-
-
-</li>
-
-<li><a href="${pageContext.request.contextPath}/#">판매자 관리</a>
-
-
-</li>
-<li> <a href="${pageContext.request.contextPath}/#">판매량 차트</a>
-
-
-
-   
-
-</li>
-
-
-<li> <a href="${pageContext.request.contextPath}/admin_borad.do">공지사항 관리</a>
-
+<!DOCTYPE html>
+<html class="no-js" lang="zxx">
 
  
+
+<head>
    
-
-
-</li>
-
-
-
-<li> 	<a href="${pageContext.request.contextPath}/admin_borad2.do">이벤트 관리</a>
-
+<!-- css************************************************ -->
+    <jsp:include page="../../include/head.jsp" />
+   <!--  nav sticky -->
+    <style type="text/css">
+    #naver.fixed{
+	position: fixed;
+	left: 0;
+	top: 0;
+	width: 100%;
+	background-color:#FFFFF0
+    }
+    
+     /*  nav sticky */
 
     
-   
+    .popup{
+   width:100%; 
+   height:40px;
+    margin: 0 auto; 
+   position: relative; 
+   background-color: #D9D7F1;
+    }
+    
+   .popup_in{
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%,-50%);
+    }
+    
+    
+    #popup_close{
+    background-color: #D9D7F1;
+    border: none;
+    float: right;
+    color: #FFFFFF;
+    margin-right: 300px;
+    margin-top:10px;
+    }
+    
+    #popup_link{
+    color: #FFFFFF;
+    }
+  table {
+    margin:auto; 
+}
+
+table, td, th {
+    border-collapse : collapse;
+    border : 1px solid black;
+};
+    
+    
+    </style>
+<!-- ************************************************ -->
+
+<script type="text/javascript" src="//code.jquery.com/jquery-3.6.0.min.js"></script>
+<script type="text/javascript">
+
+$(function() {
+	  //nav
+	  var lnb = $("#naver").offset().top;
+	 
+	  $(window).scroll(function() {
+	   
+	    var window = $(this).scrollTop();
+	    
+	    if(lnb <= window) {
+	      $("#naver").addClass("fixed");
+	    }else{
+	      $("#naver").removeClass("fixed");
+	    }
+	  });
+	  //nav
+	  
+	  
+	  
+	  
+	  // topbar event popup 지우기
+	  $('#popup_close').click(function(){
+	        $('.popup').stop().slideUp()
+	    });
+	    
+	});
+	
+	
+	
+</script>
 
 
-</li>
+ <script src="${pageContext.request.contextPath}/resources/summernote/summernote-lite.js"></script>
+ <script src="${pageContext.request.contextPath}/resources/summernote/lang/summernote-ko-KR.js"></script>
+ <link rel="stylesheet" href="${pageContext.request.contextPath}/resources/summernote/summernote-lite.css">
+
+<script>
+$(document).ready(function() {
+	// alert 창이 먼저 나오는 오류 수정 필요
+
+	
+
+	var toolbar = [
+		    // 글꼴 설정
+		    ['fontname', ['fontname']],
+		    // 글자 크기 설정
+		    ['fontsize', ['fontsize']],
+		    // 굵기, 기울임꼴, 밑줄,취소 선, 서식지우기
+		    ['style', ['bold', 'italic', 'underline','strikethrough', 'clear']],
+		    // 글자색
+		    ['color', ['forecolor','color']],
+		    // 표만들기
+		    ['table', ['table']],
+		    // 글머리 기호, 번호매기기, 문단정렬
+		    ['para', ['ul', 'ol', 'paragraph']],
+		    // 줄간격
+		    ['height', ['height']],
+		    // 그림첨부, 링크만들기, 동영상첨부
+		    ['insert',['picture','link','video']],
+		    // 코드보기, 확대해서보기, 도움말
+		    ['view', ['codeview','fullscreen', 'help']]
+		  ];
+
+	var setting = {
+            height : 300,
+            minHeight : null,
+            maxHeight : null,
+            focus : true,
+            lang : 'ko-KR',
+            toolbar : toolbar,
+            callbacks : { //여기 부분이 이미지를 첨부하는 부분
+            onImageUpload : function(files, editor,
+            welEditable) {
+            for (var i = files.length - 1; i >= 0; i--) {
+            uploadSummernoteImageFile(files[i],
+            this);
+            		}
+            	}
+            }
+         };
+        $('#summernote').summernote(setting);
+       
+        });
+        
+
+
+        
+        
+function uploadSummernoteImageFile(file, el) {
+	data = new FormData();
+	data.append("file", file);
+	$.ajax({
+		data : data,
+		type : "POST",
+		url : "${pageContext.request.contextPath}/uploadSummernoteImageFile",
+		contentType : false,
+		enctype : 'multipart/form-data',
+		processData : false,
+		success : function(data) {
+			alert(data.url);
+			$(el).summernote('editor.insertImage', data.url);
+		}
+	});
+}
 
 
 
-<li>	<a href="${pageContext.request.contextPath}/#">1:1문의 사항</a>
-
-
- 
-   
-
-
-</li>
+</script>
 
 
 
-    </nav>
+</head>
 
-    </div>
 
+
+<body>
+     <div class="popup" >
+     <div class="popup_in"><a id="popup_link" href="">지금 바로 가입하고 상품을 구입시 
+  <span>아이패드</span> Get!</a></div><button id="popup_close"><i class="lni lni-close"></i></button>
+  
+     </div>
+<!-- 헤더와 네비************************************************ -->
+    <jsp:include page="../../include/admin_header.jsp" />  
+<!-- ************************************************ -->
+    
+    
+    
+<!-- 최신순 -->
+    <!-- Start Trending Product Area -->
+    <section class="trending-product section" style="margin-top: 12px;">
+        <div class="container">
+            <div class="row">
+                <div class="col-12">
+                    
+                    
+                    
+                   
+                    
+               
+                    
+                    
+                    
+                    
+                </div>
+            </div>
+        </div>
+    </section>
 
 
 
@@ -109,7 +232,7 @@
 				<td><textarea rows="1" cols="50" name="board_subject" id="board_subject"></textarea></td>
 			</tr>
 			<tr>
-			    <td>대표사진 설정</td>
+			    <td>파일</td>
 				<td><input type="file" name="uploadImg" multiple/></td>
 			</tr>
 			<tr>
@@ -120,7 +243,7 @@
 			</tr>
 			<tr>
 				<td colspan="2" align="center">
-					<input type="button" value="메인페이지" onclick="document.location.href='${pageContext.request.contextPath}/home.do'"/>&nbsp;|&nbsp;
+					<input type="button" value="메인페이지" onclick="document.location.href='${pageContext.request.contextPath}/admin.do'"/>&nbsp;|&nbsp;
 					<input type="submit"  value="등록하기"/>
 				
 				</td>
@@ -131,77 +254,19 @@
 
 </div>
 </div>
-        
-            <ul class ="tabmenu">
-                <li>
-
-                    <div class ="notice">
-                   
-                    </div>
-                  </li>
-                  <li>
-
-                    <div class ="gallery">
-                   
-                    </div>
-                  </li>
-
-    </ul>
-
-
-        <div class ="otherwrap">
-            <div class ="banner">
-
-           
-</div>
-
-                <div class ="shortcut">
-
-                 
-                
-
-            </div>
-        </div>
-
-
-        
-
-</div>
-
-</header>
-
-<footer>
-
-    <div class="wrap">
-    <div class ="btlogo">
-
-     하단 로고 자리
-    </div>
-    
-    <div class="site">
-    <div class ="btmenu">
-        하단 자리
-
-   </div>
+ 	
+<br><br>
+<br><br><br><br><br><br><br>
 
 
 
-<div class ="copy">
-
-copyright 자리
-
-
-
-</div>
-
-</div>
-
-
-
-</footer>
 
 
 	
-
+<!-- 푸터와 js************************************************ -->
+    <jsp:include page="../../include/footer.jsp" />  
 </body>
+
 </html>
+
+ 
