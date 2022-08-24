@@ -111,7 +111,6 @@ private CartService cartService;
 			payService.orderInsert(ordersVo);
 			
 			
-			cartService.cartReset(midx,cart_idx);
 
 			detailVo.setOrders_idx(ordersVo.getOrders_idx());
 			detailVo.setDetail_completeday(detail_idx);
@@ -121,6 +120,7 @@ private CartService cartService;
 			detailVo.setCart_idx(cart_idx);
 			payService.detailInsert(detailVo);
 		
+			cartService.cartReset(midx,cart_idx);
 
 
 		  return "redirect:/memberorderList.do";

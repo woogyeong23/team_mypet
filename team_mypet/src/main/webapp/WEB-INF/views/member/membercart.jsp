@@ -53,10 +53,14 @@ $(document).ready(function(){
 		let p_idx = $(p_idx_input).val();
 
 		let cart_cnt = $(this).parent().find('input[name="cart_cnt"]').val();
+		let p_dicprice = $(this).parent().data("p_disprice");
+		let c_disprice = p_dicprice*cart_cnt;
+
 		let p_price=$(this).val();
 		let c_price=p_price*cart_cnt;
 		//c_price=c_price.toLocaleString();
 		str="<input type='hidden' id='seller_price" + cart_idx + "' value='"+c_price  +"'>"+c_price.toLocaleString();
+		str1="<input type='hidden' id='seller_disprice" + cart_idx + "' value='"+c_disprice  +"'>"+c_disprice.toLocaleString();
 
 		
 		$.ajax({
@@ -70,6 +74,8 @@ $(document).ready(function(){
 					//상품당 총가격 계산
 					document.getElementById('CartArtistItem__Price'+cart_idx).innerHTML = "";
 					document.getElementById('CartArtistItem__Price'+cart_idx).innerHTML=str;
+					document.getElementById('CartArtistItem__Price2'+cart_idx).innerHTML=str1;
+
 					//셀러당 총가격 계산
 					seller_itemTotal(this,cart_idx);
 					//최종 총가격 계산
@@ -105,14 +111,17 @@ $(document).ready(function(){
 		
 		//상품당 총가격 계산
 		let p_price=$(this).val();
-		//alert(p_price);
-		//alert(cart_cnt);
+		let p_dicprice = $(this).parent().data("p_disprice");
+// 		alert(p_disprice);
+// 		alert(cart_cnt);
 		let c_price=p_price*cart_cnt;
-		//c_price=c_price.toLocaleString();
-		//alert(c_price);
+		let c_disprice = p_dicprice*cart_cnt;
+		
+// 		alert(c_disprice=c_disprice.toLocaleString());
 		
 		str="<input type='hidden' id='seller_price" + cart_idx + "' value='"+c_price  +"'>"+c_price.toLocaleString();
-		
+		str1="<input type='hidden' id='seller_disprice" + cart_idx + "' value='"+c_disprice  +"'>"+c_disprice.toLocaleString();
+
 		//alert(str);
 		
 		
@@ -125,11 +134,11 @@ $(document).ready(function(){
 				if(data == "Y"){
 					console.log("plus");
 					
-					
 					//상품당 총가격 계산
 					document.getElementById('CartArtistItem__Price'+cart_idx).innerHTML = "";
 					document.getElementById('CartArtistItem__Price'+cart_idx).innerHTML=str;
-					
+					document.getElementById('CartArtistItem__Price2'+cart_idx).innerHTML=str1;
+
 					//셀러당 총가격 계산
 					seller_itemTotal(this,cart_idx);
 					
@@ -290,7 +299,7 @@ $(document).ready(function(){
 				if($(this).data('checked_cart_idx') != null)
 					{
 						//alert(getElementById('seller_price'+$(this).data('checked_cart_idx')).value);
-						totalProductPrice+=parseInt(document.getElementById('seller_price'+$(this).data('checked_cart_idx')).value);
+						totalProductPrice+=parseInt(document.getElementById('seller_disprice'+$(this).data('checked_cart_idx')).value);
 					//alert("ewfaesdrfvcuhsduovhbduj : "+document.getElementById('seller_price'+$(this).data('checked_cart_idx')).value);
 						
 						
@@ -391,6 +400,9 @@ $(document).ready(function(){
 			        	//alert(Number(document.getElementById('seller_price'+check_cart).value)+9);
 			        	var c_price = 0;
 			        	c_price = parseInt(document.getElementById('seller_price'+check_cart).value);
+			        	var c_disprice = 0;
+			        	c_disprice = parseInt(document.getElementById('seller_disprice'+check_cart).value);
+
 			        	//alert("개당 가격"+c_price);
 			        	seller_price=seller_price+c_price;
 			        	 //document.getElementById('seller_totalPrice'+seller_idx).innerHTML = "";
@@ -770,7 +782,7 @@ $(document).ready(function(){
 			   															<div class="CartOptionListItem__splitLeft">
 			   																<em class="CartOptionListItem__optionText"></em>
 			   																	<div class="CartOptionListItem__counter">
-			   																		<label class="NumberCounter">											
+			   																		<label class="NumberCounter" data-p_disprice="${cart.p_disprice}">											
 			   																			<button type="button" id="NumberCounter__minus${cart.cart_idx}" name="${cart.cart_idx}" class="NumberCounter__minus" value="${cart.p_price}" data-cart_idx="${cart.cart_idx}" >-</button>
 			   																			<input  type="text" name="cart_cnt" id="NumberCounter__input${cart.cart_idx}" class="NumberCounter__input" value="${cart.cart_cnt}" readonly="readonly" >
 			   																			<button type="button" id="NumberCounter__plus${cart.cart_idx}" name="${cart.cart_idx}" class="NumberCounter__plus" value="${cart.p_price}" data-cart_idx="${cart.cart_idx}" >+</button>   						
@@ -780,7 +792,12 @@ $(document).ready(function(){
 			   														
 			   															<div class="CartOptionListItem__splitRight"  >
 			   																<em class="CartOptionListItem__totalPrice" id="CartArtistItem__Price${cart.cart_idx}">
-			   																<input type="hidden" id='seller_price${cart.cart_idx}' value='${cart.c_price}'><fmt:formatNumber pattern="###,###,###" value="${cart.c_price}"/></em> <!-- 상품 가격 -->
+			   																<input type="hidden" id='seller_price${cart.cart_idx}' value='${cart.c_price}'><fmt:formatNumber pattern="###,###,###원" value="${cart.c_price}"/></em> <!-- 상품 가격 -->
+			   																<em class="CartOptionListItem__totalPrice" id="CartArtistItem__Price2${cart.cart_idx}">
+			   																<input type="hidden" id='seller_disprice${cart.cart_idx}' value='${cart.p_disprice}'><fmt:formatNumber pattern="###,###,###원" value="${cart.p_disprice}"/></em> <!-- 상품 세일가격 -->
+			   																<em class="CartOptionListItem__totalPrice" id="CartArtistItem__Price3${cart.cart_idx}" style="color: red; font-size:10px; text-decoration: none;">
+			   																<input type="hidden" id='seller_discount${cart.cart_idx}' value='${cart.p_discount}'><fmt:formatNumber pattern="###,###,###" value="${cart.p_discount}"/>%</em> <!-- 할인률 -->
+			   																
 			   																<div class="CartOptionListItem__btnGroup">
 			   																	<div class="CartOptionEditingButtonGroup">
 			   																		<button  id="delete__button${cart.cart_idx}" name="${cart.cart_idx}" class="CartOptionEditingButtonGroup__button CartOptionEditingButtonGroup__button--right" >
@@ -797,7 +814,7 @@ $(document).ready(function(){
 				   																<c:if test="${cart.p_free_dvprice<=cart.c_price}">무료배송</c:if>
 			   																	<c:if test="${cart.p_free_dvprice>cart.c_price}">
 			   																	<em>배송비 : <fmt:formatNumber pattern="###,###,###" value="${cart.p_dvprice}"/>원</em><p />
-			   																	<em><fmt:formatNumber pattern="###,###,###" value="${cart.p_free_dvprice}"/>원 이상 구매시 무료배송</em>
+			   																	<em style="text-size:5px;"><fmt:formatNumber pattern="###,###,###" value="${cart.p_free_dvprice}"/>원 이상 구매시 무료배송</em>
 			   																	</c:if>
 			   																</div>
 			   																</div>	

@@ -34,6 +34,8 @@ public class CartVo {
 
 	private int seller_idx;
 	private int c_price;
+	private int c_disprice;
+
 	private int p_free_dvprice;
 	private int p_dvprice;
 	
