@@ -99,6 +99,7 @@ GROUP BY p_idx
 ORDER BY review_idx DESC;
 </select>
 
+<!-- 팔로우 부분 -->
 <insert id="getFollow" parameterType="followVo">
 INSERT INTO follow(seller_idx, midx)
 VALUES(#{seller_idx}, #{midx})
@@ -108,6 +109,7 @@ VALUES(#{seller_idx}, #{midx})
 UPDATE sellerstory SET  seller_followcnt = seller_followcnt +1 WHERE seller_idx = #{seller_idx}
 </update>
 
+<!-- 언팔로우 부분 -->
 <update id="getUnfollow" parameterType="followVo">
 UPDATE follow SET delyn = 'Y' WHERE delyn = 'N' AND seller_idx = #{seller_idx} AND midx = #{midx}
 </update>

@@ -104,7 +104,9 @@ public class JoeAjaxService {
 	public int getFollow(FollowVo followVo) {
 		return homeDao.getFollow(followVo);
 	}
+	
 
+    // 언팔로우
 	public int getUnfollow(FollowVo followVo) {
 		return homeDao.getUnfollow(followVo);
 	}
