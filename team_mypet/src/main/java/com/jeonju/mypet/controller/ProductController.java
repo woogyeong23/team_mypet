@@ -111,6 +111,8 @@ public class ProductController {
 		 return "product/productView";
 	}
 	
+	
+	
 	//인기순
 	@GetMapping("/productBest.do")
 	public String getproductBest(Model model) {
