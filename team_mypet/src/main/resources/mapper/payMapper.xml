@@ -5,7 +5,7 @@
 <mapper namespace = "com.jeonju.mypet.pay">
 
 <select id="orderList"  resultType="ordersVo">
-select a.orders_idx,a.midx,a.orders_totalprice,c.p_idx,c.p_name,c.p_price,c.p_sys_filename,d.cart_cnt,d.cart_idx,d.cart_request 
+select a.orders_idx,a.midx,a.orders_totalprice,c.p_idx,c.p_name,c.p_price,d.cart_cnt,d.cart_idx,d.cart_request
 from orders a left outer join detail b on a.orders_idx = b.orders_idx 
 left outer join product c on b.p_idx = c.p_idx 
 left outer join cart d on c.p_idx = d.p_idx and a.midx = d.midx
@@ -44,11 +44,14 @@ insert into detail(orders_idx, p_idx, detail_status, detail_cnt, detail_request,
 	select * from members where midx=#{midx}	
 	</select>
 	<select id="cartInfo" resultType="cartVo">
-select a.cart_idx,b.p_idx,b.p_name,b.p_content,b.p_price,c.p_front_img,c.p_ori_filename,c.p_sys_filename 
+select a.cart_idx,b.p_idx,b.p_name,b.p_content,b.p_price,c.p_front_img,c.p_ori_filename,p_sys_filename
 from cart a left outer join product b on a.p_idx = b.p_idx 
 left outer join product_img c on a.p_idx = c.p_idx 
- where midx=#{midx};
+ where midx=#{midx} group by a.cart_idx;
 	</select>
+	
+	
+	
 	
 
 </mapper>

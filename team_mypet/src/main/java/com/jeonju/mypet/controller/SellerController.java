@@ -50,8 +50,8 @@ public class SellerController {
 			Model model, HttpServletRequest request) {
 		
 		HttpSession session = request.getSession();
-//		int midx = (int) session.getAttribute("midx");
-		long midx = (long) session.getAttribute("midx");
+		int midx = (int) session.getAttribute("midx");
+//		long midx = (long) session.getAttribute("midx");
 		
 		String member_id= Integer.toString((int) midx);
 	//	String member_id= Integer.toString(midx);
@@ -303,8 +303,8 @@ public class SellerController {
 			) throws IllegalStateException, IOException{
 		
 		HttpSession session = request.getSession();
-//		int midx = (int) session.getAttribute("midx");
-		long midx = (long) session.getAttribute("midx");
+		int midx = (int) session.getAttribute("midx");
+//		long midx = (long) session.getAttribute("midx");
 		String member_id= Integer.toString((int) midx);
 		
 		//카테고리 분류하기
@@ -588,8 +588,8 @@ public class SellerController {
 			) throws IllegalStateException, IOException{
 				
 				  HttpSession session = request.getSession(); 
-//				  int midx = (int)session.getAttribute("midx"); 
-				  long midx = (long)session.getAttribute("midx"); 
+				  int midx = (int)session.getAttribute("midx"); 
+//				  long midx = (long)session.getAttribute("midx"); 
 				  String member_id= Integer.toString((int) midx);
 				  
 				  SellerStoryVo sellerStoryVo = sellerService.seller_profile(member_id);
@@ -605,8 +605,8 @@ public class SellerController {
 			) throws IllegalStateException, IOException{
 
 		  HttpSession session = request.getSession(); 
-//		  int midx = (int)session.getAttribute("midx"); 
-		  long midx = (long)session.getAttribute("midx"); 
+		  int midx = (int)session.getAttribute("midx"); 
+//		  long midx = (long)session.getAttribute("midx"); 
 		  String member_id= Integer.toString((int) midx);
 		  
 		  SellerStoryVo sellerStoryVo = sellerService.seller_profile(member_id);
@@ -623,8 +623,8 @@ public class SellerController {
 			) throws IllegalStateException, IOException{
 		
 					HttpSession session = request.getSession(); 
-//					int midx = (int)session.getAttribute("midx"); 
-					long midx = (long)session.getAttribute("midx"); 
+					int midx = (int)session.getAttribute("midx"); 
+//					long midx = (long)session.getAttribute("midx"); 
 				  String member_id= Integer.toString((int) midx);
 				  				  
 				  List<MultipartFile> fileList = mRequest.getFiles("file");

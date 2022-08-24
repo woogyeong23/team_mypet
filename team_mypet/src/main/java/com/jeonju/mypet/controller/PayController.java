@@ -113,6 +113,7 @@ private PayService payService;
 			detailVo.setDetail_status(1);
 			detailVo.setMidx(midx);
 			detailVo.setCart_idx(cart_idx);
+			
 			payService.detailInsert(detailVo);
 		
 			payService.cartReset(midx);

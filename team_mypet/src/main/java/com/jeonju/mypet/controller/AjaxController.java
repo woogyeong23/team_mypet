@@ -200,7 +200,7 @@ public class AjaxController {
 				
 		String result="N";//정보수정 실패
 		
-		int flag = ajaxService.updateMemberGrade0(map);
+		int flag = ajaxService.updateMemberGrade(map);
 		System.out.println(flag+"-----------------------------------------");
 		if(flag == 1) result = "Y";//정보수정 성공
 		
