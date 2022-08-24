@@ -139,6 +139,11 @@ var targetID;
 		 });
 	  });
   
+  $("#none").click(function(){
+	  alert("로그인 후 이용가능한 서비스입니다.");
+  });
+  
+  
   $("#CBdelete").click(function(){
 		  var result = confirm("해당 게시물을 삭제하시겠습니까?");
 		  if(result){
@@ -219,6 +224,8 @@ var targetID;
 
 		});
 	});
+  
+ 
   
   
 
@@ -517,7 +524,12 @@ button {
     <jsp:include page="../../include/header.jsp" />  
 <!-- ************************************************ -->
 
-<div style="margin:30px 400px 64px 400px;">
+<!-- <div style="margin:30px 400px 64px 400px;"> -->
+<div class="row">
+<div class="col-lg-3 col-md-2 col-12">
+</div>
+<div class="col-lg-6 col-md-8 col-12">
+<div style="margin-top:40px; margin-bottom:64px;">
 
 
         <div id="dd" >
@@ -528,7 +540,7 @@ button {
                     <div style="float:left">
                    <span style="margin-left: 15px; font-size:1.3em; color:black; margin-top:10px; top:60%">${communityVo.cm_writer}</span>
                    </div>
-                   <div style="margin-left:900px; float:right; margin-top:20px; top:60%"><span style="">${communityVo.cm_wday}</span>
+                   <div style="margin-left:750px; float:right; margin-top:20px; top:60%"><span style="">${communityVo.cm_wday}</span>
                    <br>
                    <c:if test="${midx == communityVo.midx}">
 <a href="${pageContext.request.contextPath}/modi_cm?cm_idx=${communityVo.cm_idx}"><button type="button" style="background-color:blue; color:#ffffff; border-radius:10%;">수정</button></a>
@@ -559,7 +571,7 @@ button {
    <c:choose>
    
      <c:when test="${midx == null}">
-     <button type="button" class="good"><i class="lni lni-heart"></i></button>
+     <button type="button" class="good" id="none"><i class="lni lni-heart"></i></button>
      </c:when>
    
      <c:when test="${CmLikeYn == 1}">
@@ -709,12 +721,11 @@ button {
 <!--       <button type="button" class="btn_close">닫기</button> -->
 </c:forEach>
 
-
-
-
-
+			</div>
+		</div>
+	</div>
+<div class="col-lg-3 col-md-2 col-12">
 </div>
-
 
 
 
