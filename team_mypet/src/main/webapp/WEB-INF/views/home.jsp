@@ -149,16 +149,21 @@ $(function() {
                         <!-- Start Hero Slider -->
                         <div class="hero-slider">
                             <!-- Start Single Slider -->
-                            <a href="#">
-
-                            <div class="single-slider" style="background-image: url(resources/assets/images/hero/event5.jpg);">
+                            <a href="${pageContext.request.contextPath}/EventView">
+                            <div class="single-slider" style="height:450px;">
+                            <img alt="이벤트 사진" style="width:100%; height:100%" src="${pageContext.request.contextPath}/resources/Extra/img/Event 0823(Y).jpg">
                             </div>  </a>
                             <!-- End Single Slider -->
                             <!-- Start Single Slider -->
-                            <a href="#">
-                            <div class="single-slider" style="background-image: url(resources/assets/images/hero/event2.jpg);">
-                            </div>
-                            </a>
+                            <a href="${pageContext.request.contextPath}/EventView4">
+                           <div class="single-slider" style="height:450px;">
+                            <img alt="이벤트 사진" style="width:100%; height:100%" src="${pageContext.request.contextPath}/resources/Extra/img/event112.jpg">
+                            </div></a>
+                            
+                             <a href="${pageContext.request.contextPath}/EventView5">
+                            <div class="single-slider" style="height:450px;">
+                            <img alt="이벤트 사진" style="width:100%; height:100%" src="${pageContext.request.contextPath}/resources/Extra/img/Event 0823(y2).png">
+                            </div></a>
                             <!-- End Single Slider -->
                         </div>
                         <!-- End Hero Slider -->

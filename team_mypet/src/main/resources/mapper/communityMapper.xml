@@ -135,7 +135,7 @@
     </select>
     
     <select id="getfollowCNT" resultType="int">
-    SELECT DISTINCT COUNT(follow_idx)
+    SELECT  COUNT(DISTINCT follow_idx)
     FROM follow WHERE delyn = 'N' 
     AND seller_idx = #{seller_idx} AND midx = #{midx} 
     </select>
