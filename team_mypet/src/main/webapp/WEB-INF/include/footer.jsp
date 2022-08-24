@@ -11,9 +11,9 @@
                     <div class="row">
                         <div class="col-lg-3 col-md-4 col-12">
                             <div class="footer-logo">
-                                <a href="index.html">
-                                    <img src="resources/assets/images/logo/white-logo.svg" alt="#">
-                                </a>
+                                <a style="text-align:center;" class="navbar-brand" href="${pageContext.request.contextPath}/home.do">
+		                            <img src="resources/assets/images/logo/mypetLogo.png"  style="width:100px; height:100px; position:relative; " alt="Logo">
+		                        </a>
                             </div>
                         </div>
                         <div class="col-lg-9 col-md-8 col-12">
