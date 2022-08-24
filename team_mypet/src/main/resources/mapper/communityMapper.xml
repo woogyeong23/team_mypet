@@ -116,7 +116,7 @@
     </select>
     
     <select id="getAList" resultType="reviewVo">
-	SELECT product.p_idx as p_idx, p_sys_filename, 
+	SELECT product.p_idx as p_idx, p_sys_filename, seller_idx, 
 	p_name, review_stars, review_content, m_nick as review_nick
 	FROM product INNER JOIN product_img ON product.p_idx = product_img.p_idx
 	INNER JOIN review ON product.p_idx = review.p_idx INNER JOIN members ON review.midx = members.midx
@@ -135,7 +135,7 @@
     </select>
     
     <select id="getfollowCNT" resultType="int">
-    SELECT  COUNT(DISTINCT follow_idx)
+    SELECT  COUNT(follow_idx)
     FROM follow WHERE delyn = 'N' 
     AND seller_idx = #{seller_idx} AND midx = #{midx} 
     </select>

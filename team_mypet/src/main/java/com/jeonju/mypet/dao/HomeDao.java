@@ -71,7 +71,7 @@ public class HomeDao {
 	}
 
 	public int getUnfollow(FollowVo followVo) {
-		return sqlSession.update(MAPPER+".getFollow",followVo);
+		return sqlSession.update(MAPPER+".getUnfollow",followVo);
 	}
 
 	public int plusFollowCNT(FollowVo followVo) {
