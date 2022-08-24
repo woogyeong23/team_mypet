@@ -272,10 +272,8 @@
                                             data-bs-target="#submenu-1-4" aria-controls="navbarSupportedContent"
                                             aria-expanded="false" aria-label="Toggle navigation">EVENT</a>
                                         <ul class="sub-menu collapse" id="submenu-1-4">
-                                            <li class="nav-item"><a href="${pageContext.request.contextPath}/EventList">진행중인 이벤트</a>
-                                            </li>
-                                            <li class="nav-item"><a href="${pageContext.request.contextPath}/Error">종료임박 이벤트</a></li>
-                                            <li class="nav-item"><a href="${pageContext.request.contextPath}/Error">이벤트 종료</a></li>
+                                            <li class="nav-item"><a href="${pageContext.request.contextPath}/EventList">진행중인 이벤트</a></li>
+                                            <li class="nav-item"><a href="${pageContext.request.contextPath}/EventList2">종료된 이벤트</a></li>
                                         </ul>
                                     </li>
                                     <li class="nav-item">
