@@ -9,16 +9,6 @@
     <jsp:include page="../../include/head.jsp" />  
 <!-- ************************************************ -->
 <style>
-/* ul li{ */
-/* margin: 30px 0px; */
-/* font-size: 18px; */
-/* line-height: normal; */
-/* } */
-
-/* ul{ */
-/* margin-left: 30%; */
-/* } */
-
 ul li summary{
 border-bottom: 1px solid #e6e6e6;
 color:rgba(0,0,0,0.87);
@@ -94,20 +84,19 @@ padding-right:20px;
 <!-- 헤더와 네비************************************************ -->
     <jsp:include page="../../include/header.jsp" />  
 <!-- ************************************************ -->
-    <!-- Start Breadcrumbs -->
+ <!-- Start Breadcrumbs -->
     <div class="breadcrumbs">
         <div class="container">
             <div class="row align-items-center">
                 <div class="col-lg-6 col-md-6 col-12">
                     <div class="breadcrumbs-content">
-                        <h1 class="page-title">자주하는 질문</h1>
+                        <h1 class="page-title">고객센터</h1>
                     </div>
                 </div>
                 <div class="col-lg-6 col-md-6 col-12">
                     <ul class="breadcrumb-nav">
                         <li><a href="${pageContext.request.contextPath}/home.do"><i class="lni lni-home"></i>Home</a></li>
-                        <li><a href="#">더보기</a></li>
-                        <li><a href="#">자주하는 질문</a></li>
+                        <li><a href="#">고객센터</a></li>
                     </ul>
                 </div>
             </div>
@@ -119,14 +108,15 @@ padding-right:20px;
             <div class="row">
                 <div class="col-12">
                     <div class="section-title">
-
                         <h2><span class="cur">자주하는 질문</span></h2>
                         <p>고객님들께서 가장 자주하시는 질문을 모두 모았습니다.</p>
-
                     </div>
                     <div style="display:flex; position:relative">
                     <div class="side_nav"style="float:left;">
                    <nav>
+                           <b style=" padding: 5px 0px 35px 1px; font-weight: 500; font-size: 28px; line-height: 35px;
+    color: rgb(51, 51, 51);
+    letter-spacing: -1px;"> 고객 센터 </b>
                        <ul>
                    			<li><a href="${pageContext.request.contextPath}/Notice">공지사항</a></li>
                    			<li><a href="${pageContext.request.contextPath}/EventList">이벤트</a></li> 

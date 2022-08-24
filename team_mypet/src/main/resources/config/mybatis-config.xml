@@ -36,6 +36,8 @@
 		<typeAlias alias="community_likeVo" type="com.jeonju.mypet.vo.Community_likeVo"/>
 		<typeAlias alias="commu_comment_likeVo" type="com.jeonju.mypet.vo.Commu_Comment_LikeVo"/>
 
+		
+		<typeAlias alias="commentVo" type="com.jeonju.mypet.vo.CommentVo"/>
 	</typeAliases>  
 
 </configuration>  

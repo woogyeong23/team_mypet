@@ -167,7 +167,13 @@
 										</tr>
 										<tr>
 											<th>소개말</th>
-											<td><textarea name="seller_intro" cols="30" rows="5" value="">${sellerStoryVo.seller_intro}</textarea></td>
+											<td><textarea style="  width: 100%;
+								    height: 130px;
+								    padding: 9px;
+								    border: 1px solid #ddd;
+								    font-size: 15px;
+								    resize: none;
+								    color: #000;" name="seller_intro" cols="30" rows="5" value="">${sellerStoryVo.seller_intro}</textarea></td>
 										</tr>
 									</tbody>
 								</table>

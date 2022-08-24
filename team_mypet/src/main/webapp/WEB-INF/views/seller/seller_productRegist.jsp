@@ -190,7 +190,7 @@
 		  		return;
 		  }
 		  
-		  		alert("전송합니다..");
+		  		alert("상품등록 완료");
 		  		//fm.action = "./memberJoinOk.jsp";
 		  		//가상경로 사용 ${pageContext.request.contextPath}/registProcess.do
 		  		fm.enctype="multipart/form-data"
@@ -322,7 +322,15 @@
 			position: relative;
 			transform:translatY(-100%);
 		}
-	
+		textarea {
+			width: 100%;
+			height: 130px;
+			padding: 9px;
+			border: 1px solid #ddd;
+			font-size: 15px;
+			resize: none;
+			color: #000;"
+		}
 	</style>
 	<!-- /footer 가만히 있어 -->
 	
@@ -363,8 +371,8 @@
 									<tr>
 								 		<th style="width:120px">상품명</th>
 										<td>
-								 			<input type="text" name="p_name" id="p_name" maxlength="40" value="" placeholder="입력하세요">
-								 			<input type="button" id="checkPName" value="중복검사"/><br/>
+								 			<div class="input-text size-m"><input type="text" name="p_name" id="p_name" maxlength="40" value="" placeholder="입력하세요"></div>
+								 			<input type="button"  class="btn btn-light"  id="checkPName" value="중복검사"/><br/>
 											<div style="height:20px"><span id="result_checkPName" style="font-size:12px;"></span><input type="hidden" id="result_p_name" value=""></div>
 								 		</td>
 								 	</tr>
@@ -420,42 +428,42 @@
 								 	</tr> 
 								 	<tr>
 								 		<th>재고-주문제작</th>
-								 		<td><input type="text" name="p_stock" maxlength="40" value="" placeholder="입력하세요"></td>
+								 		<td><div class="input-text size-m"><input type="text" name="p_stock" maxlength="40" value="" placeholder="입력하세요"></div></td>
 								 	</tr>
 								 	<tr>
-								 		<th>재고-제한수량</th><td><input type="text" name="p_limit_cnt" maxlength="40" value="" placeholder="입력하세요"></td>
+								 		<th>재고-제한수량</th><td><div class="input-text size-m"><input type="text" name="p_limit_cnt" maxlength="40" value="" placeholder="입력하세요"></div></td>
 								 	</tr>
 								 	
 								 	<tr>
-								 		<th>원가격</th><td><input type="text" name="p_price" id="p_price" maxlength="40" value="" placeholder="입력하세요"></td>
+								 		<th>원가격</th><td><div class="input-text size-m"><input type="text" name="p_price" id="p_price" maxlength="40" value="" placeholder="입력하세요"></div></td>
 								 	</tr>
 								 	<tr>
-								 		<th>할인률</th><td><input type="text" name="p_discount" id="p_discount" maxlength="40" value="" placeholder="입력하세요"></td>
+								 		<th>할인률</th><td><div class="input-text size-m"><input type="text" name="p_discount" id="p_discount" maxlength="40" value="" placeholder="입력하세요"></div></td>
 								 	</tr>
 								 	<tr>
 								 		<th>할인 적용 가격</th>
 								 		<td>
-								 			<input type="text" name="p_disprice" id="p_disprice" maxlength="100" value="" placeholder="적용버튼을 누르세요" readonly>
-								 			<input type="button" value="적용"  onClick="calPrice2()" />
+								 			<div class="input-text size-m"><input type="text" name="p_disprice" id="p_disprice" maxlength="100" value="" placeholder="적용버튼을 누르세요" readonly></div>
+								 			<input type="button"  class="btn btn-light" value="적용"  onClick="calPrice2()" />
 								 		</td>
 								 	</tr>
 								 	<tr>
-								 		<th>일반 배송비</th><td><input type="text" name="p_dvprice" maxlength="40" value="" placeholder="입력하세요"></td>
+								 		<th>일반 배송비</th><td><div class="input-text size-m"><input type="text" name="p_dvprice" maxlength="40" value="" placeholder="입력하세요"></div></td>
 								 	</tr>
 								 	<tr>
-								 		<th>추가배송비</th><td><input type="text" name="p_add_dvprice" maxlength="40" value="" placeholder="입력하세요"></td>
+								 		<th>추가배송비</th><td><div class="input-text size-m"><input type="text" name="p_add_dvprice" maxlength="40" value="" placeholder="입력하세요"></div></td>
 								 	</tr>
 								 	<tr>
-								 		<th>무료배송</th><td><input type="text" name="p_free_dvprice" maxlength="40" value="" placeholder="입력하세요"></td>
+								 		<th>무료배송</th><td><div class="input-text size-m"><input type="text" name="p_free_dvprice" maxlength="40" value="" placeholder="입력하세요"></div></td>
 								 	</tr>
 								 	<tr>
-								 		<th>택배사</th><td><input type="text" name="p_dvcompany" maxlength="40" value="" placeholder="입력하세요"></td>
+								 		<th>택배사</th><td><div class="input-text size-m"><input type="text" name="p_dvcompany" maxlength="40" value="" placeholder="입력하세요"></div></td>
 								 	</tr>
 								 	<tr>
-								 		<th>성분표시</th><td><input type="text" name="p_ingerdient" maxlength="40" value="" placeholder="입력하세요"></td>
+								 		<th>성분표시</th><td><textarea  name="p_ingerdient" maxlength="40" value=""  placeholder="입력하세요"></textarea></td>
 								 	</tr>
 								 	<tr>
-								 		<th>배송/환불정보</th><td><input type="text" name="p_cancle_info" maxlength="40" value="" placeholder="입력하세요"></td>
+								 		<th>배송/환불정보</th><td><textarea  name="p_cancle_info" maxlength="40" value=""  placeholder="입력하세요">${productVo.p_cancle_info}</textarea></td>
 								 	</tr>
 								 	
 								
@@ -463,8 +471,8 @@
 								
 									
 							</table>
-							
-							<input type="button" class="btn btn-light" value="등록" onclick="check();"> 
+							<input type="button"  class="btn btn-light" onclick="history.back(-1)" value="뒤로가기">
+							<input type="button" class="btn btn-light" value="등록하기" onclick="check();"> 
 						</form>
 						
 						

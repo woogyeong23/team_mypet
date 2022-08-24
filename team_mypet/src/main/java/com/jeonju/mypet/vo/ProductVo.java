@@ -28,8 +28,19 @@ public class ProductVo {
 	private String p_delyn;
 	private String p_stock;
 	
+	private int sales;
+	
+	
 	//08.08 ver
 	
+	public int getSales() {
+		return sales;
+	}
+	public void setSales(int sales) {
+		this.sales = sales;
+	}
+
+
 	private int avg_reviews_stars;
 
 	

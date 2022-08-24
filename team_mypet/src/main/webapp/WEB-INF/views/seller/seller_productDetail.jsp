@@ -75,7 +75,7 @@
 							<table class="table-style-head-left" style="margin-left:0;">
 								<tbody>
 									<tr>
-								 		<th>상품명</th><td>${productVo.p_name }</td>
+								 		<th>상품명</th><td><a href="${pageContext.request.contextPath}/productView.do?p_idx=${productVo.p_idx}">${productVo.p_name }</a></td>
 								 	</tr>
 								 	<tr>
 								 		<th>상품번호</th><td>${productVo.p_idx }</td>
@@ -174,6 +174,7 @@
 								 	<tr>
 								 		<th>등록일</th><td><fmt:formatDate value="${productVo.p_wday }" pattern="yyyy-MM-dd"/></td>
 								 	</tr>
+								 	
 								 	<tr>
 								 		<th>마지막 수정일</th><td><fmt:formatDate value="${productVo.p_modifyday }" pattern="yyyy-MM-dd"/>	</td>
 								 	</tr>
@@ -182,7 +183,8 @@
 								
 									
 							</table>
-							
+							<br>
+							<input type="button"  class="btn btn-light" onclick="history.back(-1)" value="뒤로가기">
 							<input type="submit" class="btn btn-light" value="수정">
 						</form>
 						
