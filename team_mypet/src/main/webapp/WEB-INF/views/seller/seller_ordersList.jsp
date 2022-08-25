@@ -153,7 +153,7 @@
 					    <c:forEach var="map" items="${orderList}">
 							<tr>
 						      <!-- <th scope="row">1</th> -->
-						      <td><a href="${pageContext.request.contextPath}/seller_ordersDetail.do?detail_idx=${map.detail_idx}&midx=${map.midx}">${map.detail_idx}</a></td>
+						      <td><a href="${pageContext.request.contextPath}/seller_ordersDetail.do?detail_idx=${map.detail_idx}&midx=${map.midx}">${map.detail_completeday}</a></td>
 						      <td>
 						     
 								${map.p_name}	(수량 : ${map.detail_cnt})

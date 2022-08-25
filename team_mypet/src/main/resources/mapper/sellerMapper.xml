@@ -250,7 +250,7 @@
 	
 	<!-- 주문내역 -->
 	<select id="seller_orderList" resultType="Hashmap">
-	select b.detail_idx, e.midx, a.p_name, b.detail_cnt, e.m_name, e.m_id, e.midx, b.detail_status, a.p_disprice, c.orders_day
+	select b.detail_idx, e.midx, a.p_name, b.detail_cnt, e.m_name, e.m_id, e.midx, b.detail_status,b.detail_completeday, a.p_disprice, c.orders_day
 	from product a join detail b on a.p_idx=b.p_idx join orders c on b.orders_idx=c.orders_idx join sellerstory d on a.seller_idx=d.seller_idx join members e on c.midx=e.midx
 	where d.seller_idx = (select seller_idx from sellerstory where midx=#{member_id})
 	
@@ -353,7 +353,7 @@
 
 	</select>
 	<select id="getSellerOrdersContent" resultType="Hashmap">
-		select a.*, b.*, c.*, d.m_name, d.m_id, f.p_sys_filename
+		select a.*, b.*, c.*, d.m_name, d.m_id, f.p_sys_filename, b.detail_completeday
 		from product a join detail b on a.p_idx=b.p_idx join orders c on b.orders_idx=c.orders_idx join members d on c.midx=d.midx join detail_day e on b.detail_idx=e.detail_idx join product_img f on a.p_idx=f.p_idx
 		where b.detail_idx=#{detail_idx}
 		order by detail_status desc limit 0,1

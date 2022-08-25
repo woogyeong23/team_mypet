@@ -666,7 +666,7 @@ padding-bottom: 20px;
 						<td style="width:10%;"><h3 class="title" style="margin-bottom:0px;">구매후기</h3></td>
 						
 						 <!-- 후기정렬 -->
-						<td style="align:left; width: 10%;">
+						<!-- <td style="align:left; width: 10%;">
 							<select style="border-radius: 5px">
 								<option value="" selected>최신순</option>
 								<option value="">별점낮은순</option>
@@ -678,11 +678,11 @@ padding-bottom: 20px;
 						<input class="form-check-input" type="checkbox" id="imgCheckbox" name="imgCheckbox">
 						<label>사진후기만보기</label>
 						</div>
-						</td> 
+						</td>  -->
 						
 						<td align="right">
 						<div class="review-button">
-							<a href="reviewWriteck.do?p_idx=${productView.p_idx}"><button type="button" class="btn" id="reviewWritebtn" style="width: 100px; height:40px">리뷰작성</button></a>
+							<a href="reviewWriteck.do?p_idx=${productView.p_idx}&seller_idx=${productView.seller_idx}"><button type="button" class="btn" id="reviewWritebtn" style="width: 100px; height:40px">리뷰작성</button></a>
 						</div>
 						</td>
 						</tr>

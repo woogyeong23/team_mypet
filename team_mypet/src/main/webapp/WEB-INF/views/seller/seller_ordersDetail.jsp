@@ -358,8 +358,8 @@ function update(){
 							  </thead>
 							  <tbody class="table-group-divider">
 									<tr>
-								      <td><a href="${pageContext.request.contextPath}/seller_ordersDetail.do?detail_idx=${ordersContent.detail_idx}">${ordersContent.detail_idx}</a></td>
-								      <td>${ordersContent.p_name}</td>
+								      <td>${ordersContent.detail_completeday}</td>
+								      <td><a href="${pageContext.request.contextPath}/productView.do?p_idx=${ordersContent.p_idx}&seller_idx=${ordersContent.p_idx}">${ordersContent.p_name}</a></td>
 								      <td>${ordersContent.m_name} / ${ordersContent.m_id}</td>
 								      <td>
 								     	 <c:choose>
@@ -535,10 +535,12 @@ function update(){
 						</form>
 						<c:if test="${ordersContent.detail_status == '0' || ordersContent.detail_status == '1'|| ordersContent.detail_status == '2'}">
 							<input type="button" style="float:right; margin-right:30px;" name="cancle" class="btn btn-light" value="취소신청">
+						
+						</c:if>
+						<c:if test="${ordersContent.detail_status == '3' || ordersContent.detail_status == '4'}">
 							<input type="button" style="float:right; margin-right:30px;" name="cancle" class="btn btn-light" value="환불신청">
 						
 						</c:if>
-						
 					</div>
 				</div>
 				<!-- /content -->

@@ -53,20 +53,20 @@
                             <c:when test="${m_id != null}"><!-- 로그인이 이루어진 경우 -->
                             <ul class="user-login">
                             <li>
-                            <p><span>${m_nick}</span>님 환영합니다!</p>
+                            <p><span>관리자</span>님 환영합니다!</p>
                             </li>
                             <li>
                                <a href="${pageContext.request.contextPath}/logout.do">로그아웃</a>
                             </li>
                             <li>
-                               <a href="${pageContext.request.contextPath}/Error">고객센터</a>
-                             
+<%--                                <a href="${pageContext.request.contextPath}/Error">고객센터</a>
+ --%>                             
                             </li>
                             </ul>
                             </c:when>
                             
                             <c:otherwise>
-                            <ul class="user-login">  <!--로그인 X 상태  -->
+                            <%-- <ul class="user-login">  <!--로그인 X 상태  -->
                                 <li>
                                     <a href="${pageContext.request.contextPath}/login.do">로그인</a>
                                 </li>
@@ -76,7 +76,7 @@
                                  <li >
                                     <a href="${pageContext.request.contextPath}/Error">고객센터</a>
                                 </li>
-                            </ul>
+                            </ul> --%>
                             </c:otherwise>
                             </c:choose>
                         </div>
@@ -114,13 +114,13 @@
 <!--                                         </select> -->
 <!--                                     </div> -->
 <!--                                 </div> -->
-                                <div class="search-input">
+                               <!--  <div class="search-input">
                                     <input type="text" name="keyword" id="keyword" placeholder="검색어를 입력해주세요.">
                                 </div>
                                 <div class="search-btn">
                                    <button type="submit" class="search"><i class="lni lni-search-alt"></i></button>
-<!--                                      <input type="submit" name="submit"> -->
-                                </div>
+                                     <input type="submit" name="submit">
+                                </div> -->
                             </div>
                             </form>
                             <!-- navbar search Ends -->
@@ -140,34 +140,34 @@
                             
                               <c:choose>
                              <c:when test="${midx != null}">
-                             <div class="wishlist">
+                             <%-- <div class="wishlist">
                                     <a href="${pageContext.request.contextPath}/memberInfo.do">
                                         <i class="lni lni-user"></i>
 <!--                                 <span class="total-items">0</span> -->
                                     </a>
-                                </div>
+                                </div> --%>
                                 </c:when>
                                 <c:otherwise>
                                 
                                 </c:otherwise>
                                 </c:choose>
                             
-                                <div class="wishlist">
+                                <%-- <div class="wishlist">
                                     <a href="${pageContext.request.contextPath}/Error">
                                         <i class="lni lni-heart"></i>
 <!--                                         <span class="total-items">0</span> -->
                                     </a>
-                                </div>
+                                </div> --%>
                                 
                                 <!-- 판매자 전용 버튼 -->
                                 <c:choose>
                                 <c:when test="${m_grade == 1}">
-                                 <div class="wishlist">
+                                 <%-- <div class="wishlist">
                                     <a href="${pageContext.request.contextPath}/seller_productList.do">
                                         <i class="lni lni-investment"></i>
 <!--                                         <span class="total-items">0</span> -->
                                     </a>
-                                </div>
+                                </div> --%>
                                 </c:when>
                                 <c:otherwise>
                                 
@@ -176,12 +176,12 @@
                                 <!-- /판매자 전용 버튼 -->
                                 
                                 <!-- 장바구니 login X시 인터셉터에 막힘 -->
-                                  <div class="cart-items">
+                                  <%-- <div class="cart-items">
                                     <a href="${pageContext.request.contextPath}/membercart.do" class="main-btn">
                                         <i class="lni lni-cart"></i>
                                 
                                     </a>
-                                </div>
+                                </div> --%>
 
                           
                             </div>

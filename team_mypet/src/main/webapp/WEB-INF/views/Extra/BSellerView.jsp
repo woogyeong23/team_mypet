@@ -260,7 +260,7 @@ $(document).ready(function(){
       <div style="position:relative; margin-left:100px;">
       <p>상품 찜</p>
        <span style="font-size: 16px;font-weight: bold; color: #333333; margin-left:20px;">
-       ${SSV.seller_followcnt}</span>
+       ${SSV.seller_wishcnt}</span>
       </div>
       <p>${SSV.seller_intro}</p>
         

@@ -150,7 +150,8 @@ public class ProductController {
 	}
 	
 	@GetMapping("/reviewWriteck.do")
-	public String reviewWriteck(@RequestParam("p_idx") int p_idx,Model model,HttpServletRequest request,RedirectAttributes re,HttpServletResponse response) throws IOException {
+	public String reviewWriteck(@RequestParam("p_idx") int p_idx,
+			@RequestParam("seller_idx") int seller_idx, Model model,HttpServletRequest request,RedirectAttributes re,HttpServletResponse response) throws IOException {
 		
 		HttpSession session = request.getSession();
 		int midx = (int) session.getAttribute("midx");
@@ -163,7 +164,7 @@ public class ProductController {
 		
 		if (count == 0) {
 			String referer = request.getHeader("Referer");
-			pageView="redirect:/"+ referer;
+			pageView="redirect:/productView.do?p_idx="+p_idx+"&seller_idx="+seller_idx;
 		}else {
 			re.addAttribute("p_idx",p_idx);
 			re.addAttribute("midx",midx);

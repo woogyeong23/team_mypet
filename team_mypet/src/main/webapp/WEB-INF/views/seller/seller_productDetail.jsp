@@ -75,7 +75,7 @@
 							<table class="table-style-head-left" style="margin-left:0;">
 								<tbody>
 									<tr>
-								 		<th>상품명</th><td><a href="${pageContext.request.contextPath}/productView.do?p_idx=${productVo.p_idx}">${productVo.p_name }</a></td>
+								 		<th>상품명</th><td><a href="${pageContext.request.contextPath}/productView.do?p_idx=${productVo.p_idx}&seller_idx=${productVo.seller_idx}">${productVo.p_name }</a></td>
 								 	</tr>
 								 	<tr>
 								 		<th>상품번호</th><td>${productVo.p_idx }</td>

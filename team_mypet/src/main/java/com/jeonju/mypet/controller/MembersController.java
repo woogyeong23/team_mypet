@@ -113,6 +113,7 @@ public class MembersController {
 			
 			String viewPage = null;
 			
+			
 			if(m_auth == 1) {
 				HttpSession session = request.getSession();
 				session.setAttribute("m_id",m_id);
@@ -120,12 +121,19 @@ public class MembersController {
 				session.setAttribute("m_nick",m_nick);
 				session.setAttribute("midx",resultMap.get("midx"));
 
+				
 				viewPage = "redirect:/home.do";
 						
-			}else {
+			}
+			else {
 				viewPage = "member/login";
 			}
-			
+			if ((int) m_grade == 2)
+			{
+				System.out.println("eeeeeeeeeeeeeeeeeeeeeeeeeeeeee"+m_grade);
+				viewPage = "redirect:/admin.do";
+			}
+			System.out.println(viewPage);
 		return viewPage;
 	}
 	

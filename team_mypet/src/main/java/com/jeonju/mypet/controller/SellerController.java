@@ -151,8 +151,8 @@ public class SellerController {
            
 		}
 		HttpSession session = request.getSession();
-//		int midx = (int) session.getAttribute("midx");
-		long midx = (long) session.getAttribute("midx");
+		int midx = (int) session.getAttribute("midx");
+//		long midx = (long) session.getAttribute("midx");
 		String member_id= Integer.toString((int) midx);
 		
 		//카테고리 분류하기

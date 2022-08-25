@@ -204,7 +204,7 @@
                             <ul class="sub-category">
                                 <li><a href="productList.do?i=0&l=1">강아지</a></li>
                                 <li><a href="productList.do?i=0&l=2">고양이</a></li>
-                                <li><a href="${pageContext.request.contextPath}/Error">이벤트</a></li>
+                                <li><a href="${pageContext.request.contextPath}/EventList.do">이벤트</a></li>
                                 <li><a href="${pageContext.request.contextPath}/CBList.do">커뮤니티</a></li>
                                 <li><a href="${pageContext.request.contextPath}/BSellerList.do">인기작가</a></li>
                                  <li><a href="#">더보기<i class="lni lni-chevron-right"></i></a>

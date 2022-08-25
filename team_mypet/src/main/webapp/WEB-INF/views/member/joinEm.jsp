@@ -196,28 +196,28 @@
 		});
 
 
-		 $("#loginmember").click(function(){
-				alert($("#m_name").val() +"님 환영합니다. 선택해주셔서 감사합니다 :)");
+// 		 $("#loginmember").click(function(){
+// 				alert($("#m_name").val() +"님 환영합니다. 선택해주셔서 감사합니다 :)");
 
-			if($(".emChk").val() == "true" || $(".nickChk").val() == "true"){
-				alert($("#m_name").val() +"님 환영합니다. 선택해주셔서 감사합니다 :)");
-				return;
-			 }			
+// 			if($(".emChk").val() == "true" || $(".nickChk").val() == "true"){
+// 				alert($("#m_name").val() +"님 환영합니다. 선택해주셔서 감사합니다 :)");
+// 				return;
+// 			 }			
 
-			else{
-				alert("회원가입을 완료할 수 없습니다. 다시 한번 확인해 주십시오");
-				if($(".nickChk").val() != "true"){
-					$(".successIdChk").text("이름을 입력해주세요").css("color","red");
-				}		
-				if($(".pwChk").val() != "true"){
-					$(".successPwChk").text("비밀번호를 입력해주세요").css("color","red");
-				}
-				if($(".emChk").val() != "true"){
-					$(".successEmChk").text("이메일를 입력해주세요").css("color","red");
-				}
-				return ;	
-			} 
-		 });
+// 			else{
+// 				alert("회원가입을 완료할 수 없습니다. 다시 한번 확인해 주십시오");
+// 				if($(".nickChk").val() != "true"){
+// 					$(".successIdChk").text("이름을 입력해주세요").css("color","red");
+// 				}		
+// 				if($(".pwChk").val() != "true"){
+// 					$(".successPwChk").text("비밀번호를 입력해주세요").css("color","red");
+// 				}
+// 				if($(".emChk").val() != "true"){
+// 					$(".successEmChk").text("이메일를 입력해주세요").css("color","red");
+// 				}
+// 				return ;	
+// 			} 
+// 		 });
 	
 		
 		
@@ -245,14 +245,14 @@
     <div class="form-floating">
       <input type="email" name="m_id" value="" maxlength="80" class="form-control" id="m_id">
       <label for="m_id">Email address</label>
-      
+      <!-- 
       <span id="emailChk" class="doubleChk">인증번호 보내기</span><p/>
 	  	<span class="point successEmChk"></span><p/>
 	  	<input type="hidden" class="emChk2" /> <p/>
 	  	<input type="text" name="member_email2" id="member_email2" value="" maxlength="20" placeholder="인증번호 입력" disabled/>
 	  	<span id="emailChk2" class="doubleChk2" >확인</span> <p/>
 	  	<input type="hidden" class="emChk" /> <p/>
-	   
+	    -->
     </div>
     <div class="form-floating">
       <input type="password"  name="m_pwd"  value="" maxlength="20" class="form-control" id="m_pwd">
