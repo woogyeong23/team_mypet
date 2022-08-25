@@ -61,7 +61,9 @@ padding-bottom: 60px;
 <div class="card mb-1" style="max-width: 100%;">
   <div class="row g-0">
     <div class="col-md-4">
-      <img src="${pageContext.request.contextPath}/resources/product/${ordersList.p_sys_filename}" class="img-fluid rounded-start" alt="...">
+<c:forEach items="${ordersVo}" var="ordersVo" varStatus="status">
+      <img src="${pageContext.request.contextPath}/resources/product/${ordersVo.p_sys_filename}" class="img-fluid rounded-start" alt="...">
+</c:forEach> 
     </div>
     <div class="col-md-8">
       <div class="card-body">
@@ -73,6 +75,7 @@ padding-bottom: 60px;
     </div>
   </div>
 </div>
+
 
 </c:forEach>
 </div>

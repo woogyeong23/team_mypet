@@ -63,6 +63,10 @@ public class MembersService {
 		return membersDao.orderList(ordersVo);
 	}
 
+	public MembersVo memberinfo(int midx) {
+		return membersDao.memberinfo(midx);
+	}
+
 	
 
 

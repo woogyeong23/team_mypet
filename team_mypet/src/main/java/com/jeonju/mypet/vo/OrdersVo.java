@@ -35,6 +35,8 @@ public class OrdersVo {
     private int totalPoint;
     
 	private String p_sys_filename;
+	private String p_sys_filename_1;
+	private String p_ori_filename_1;
 	
 	
 	
@@ -43,7 +45,18 @@ public class OrdersVo {
 	
 	
 	
-	
+	public String getP_sys_filename_1() {
+		return p_sys_filename_1;
+	}
+	public void setP_sys_filename_1(String p_sys_filename_1) {
+		this.p_sys_filename_1 = p_sys_filename_1;
+	}
+	public String getP_ori_filename_1() {
+		return p_ori_filename_1;
+	}
+	public void setP_ori_filename_1(String p_ori_filename_1) {
+		this.p_ori_filename_1 = p_ori_filename_1;
+	}
 	public String getBundleprice() {
 		return bundleprice;
 	}

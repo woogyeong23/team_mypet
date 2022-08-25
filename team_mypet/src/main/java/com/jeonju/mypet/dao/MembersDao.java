@@ -100,6 +100,10 @@ public class MembersDao {
 		return sqlSession.selectList(MAPPER+".getordersList", ordersVo);
 	}
 
+	public MembersVo memberinfo(int midx) {
+		return sqlSession.selectOne(MAPPER+".getmemberinfo", midx);
+	}
+
 	
 
 

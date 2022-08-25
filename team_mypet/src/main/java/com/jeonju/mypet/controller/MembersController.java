@@ -116,8 +116,15 @@ public class MembersController {
 		
 		
 		@GetMapping("/memberInfo.do")
-		public String memberInfo() {
-				
+		public String memberInfo(Model model,HttpServletRequest request) {
+			
+		HttpSession Session = request.getSession();
+		int midx = (int) Session.getAttribute("midx");
+		
+		MembersVo membersVo = membersService.memberinfo(midx);
+		
+		model.addAttribute("membersVo",membersVo);
+		
 			return "member/memberInfo";	
 		}
 		
@@ -233,7 +240,9 @@ public class MembersController {
 			List<OrdersVo> ordersList = membersService.orderList(ordersVo);
 			
 			model.addAttribute("ordersList",ordersList);
-			
+			model.addAttribute("ordersVo",ordersVo);
+
+			System.out.println("오더:"+ordersVo);
 			return "member/memberorderList";	
 		}
 		
