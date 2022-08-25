@@ -794,8 +794,8 @@ $(document).ready(function(){
 			   																<em class="CartOptionListItem__totalPrice" id="CartArtistItem__Price${cart.cart_idx}">
 			   																<input type="hidden" id='seller_price${cart.cart_idx}' value='${cart.c_price}'><fmt:formatNumber pattern="###,###,###원" value="${cart.c_price}"/></em> <!-- 상품 가격 -->
 			   																<em class="CartOptionListItem__totalPrice" id="CartArtistItem__Price2${cart.cart_idx}">
-			   																<input type="hidden" id='seller_disprice${cart.cart_idx}' value='${cart.p_disprice}'><fmt:formatNumber pattern="###,###,###원" value="${cart.p_disprice}"/></em> <!-- 상품 세일가격 -->
-			   																<em class="CartOptionListItem__totalPrice" id="CartArtistItem__Price3${cart.cart_idx}" style="color: red; font-size:10px; text-decoration: none;">
+			   																<input type="hidden" id='seller_disprice${cart.cart_idx}' value='${cart.p_disprice}'><fmt:formatNumber pattern="###,###,###원" value="${cart.p_disprice*cart.cart_cnt}"/></em> <!-- 상품 세일가격 -->
+			   																<em class="CartOptionListItem__totalPrice" id="CartArtistItem__Price3${cart.cart_idx}" style="color: red; font-size:10px; text-decoration: none;"> 
 			   																<input type="hidden" id='seller_discount${cart.cart_idx}' value='${cart.p_discount}'><fmt:formatNumber pattern="###,###,###" value="${cart.p_discount}"/>%</em> <!-- 할인률 -->
 			   																
 			   																<div class="CartOptionListItem__btnGroup">

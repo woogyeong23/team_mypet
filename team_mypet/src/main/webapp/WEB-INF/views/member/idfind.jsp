@@ -21,17 +21,18 @@
     			url : "${pageContext.request.contextPath}/idfindProcess.do",
     			data : {"m_name":m_name},
     			success : function(data){
-    				if(data==null){
-    					$(".id_finded").html("등록되어 있지 않은 이름입니다.").css("color","red");
-
-    				}else{
+    				if(data!=null){
     					result="아이디는 :"+data+"입니다.";
     					$(".id_finded").text(result).css("color","green");
+
+
+    				}else{
+    					$(".id_finded").html("등록되어 있지 않은 이름입니다.").css("color","red");
 
     				}
     					
     			},
-    			error: function(error){alert(error);}
+    			error: function(error){alert("이름을 입력해주세요");}
     		});
     	});  	 
      });

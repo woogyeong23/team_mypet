@@ -23,11 +23,12 @@
     		$.ajax({
     			type : "post",
     			url : "${pageContext.request.contextPath}/pwdFindProcess.do",
-    			data : {"m_id":m_id, "m_phone":m_phone},
+    			data : {"m_id":m_id,
+    					"m_phone":m_phone},
     			success : function(data){
-    				if(data==null){
+    				if(data == null){
     					$(".pwd_finded").html("등록되어 있지 않은 아이디 및 핸드폰번호입니다.").css("color","red");
-
+						
     				}else{
     					result="비밀번호는 :"+data+"입니다.";
     					$(".pwd_finded").text(result).css("color","green");
@@ -35,7 +36,7 @@
     				}
     					
     			},
-    			error: function(error){alert(error);}
+    			error: function(error){alert("아이디와 핸드폰 번호를 입력해주세요");}
     		});
     	});  	 
      });
@@ -58,17 +59,18 @@
     <h1 class="h3 mb-3 fw-normal">비밀번호 찾기</h1>
 
     <div class="form-floating">
-      <input type="email" name="m_id" value="" maxlength="80" class="form-control" id="floatingInput">
-      <label for="floatingInput">Email address</label>
+      <input type="email" name="m_id" value="" maxlength="80" class="form-control" id="m_id">
+      <label for="m_id">Email address</label>
     </div>
     <div class="form-floating">
-      <input type="text"  name="m_phone"  value="" maxlength="20" class="form-control" id="floatingInput">
-      <label for="floatingInput">phone</label>
+      <input type="text"  name="m_phone"  value="" maxlength="20" class="form-control" id="m_phone">
+      <label for="m_phone">phone</label>
     </div>
 
     <span class="pwd_finded">
     </span>
-    <button class="w-100 btn btn-lg btn-primary" id="pwd_find" type="button" >비밀번호 찾기</button>
+    
+    <button type="button" class="w-100 btn btn-lg btn-primary" id="pwd_find" >비밀번호 찾기</button>
   </form>
 </main>         
 		

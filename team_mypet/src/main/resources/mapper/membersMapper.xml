@@ -21,7 +21,7 @@
 	<select id="getidfind" parameterType="string" resultType="string">
 		select m_id from members where m_name= #{m_name}
 	</select>
-	<select id="getpwdfind" parameterType="string" resultType="string">
+	<select id="getpwdfind" parameterType="map" resultType="string">
 		select m_pwd from members where m_id= #{m_id} and m_phone = #{m_phone}
 	</select>
 	<!-- 아이디유효성 -->
