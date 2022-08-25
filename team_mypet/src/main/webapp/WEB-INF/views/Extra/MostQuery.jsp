@@ -90,13 +90,13 @@ padding-right:20px;
             <div class="row align-items-center">
                 <div class="col-lg-6 col-md-6 col-12">
                     <div class="breadcrumbs-content">
-                        <h1 class="page-title">고객센터</h1>
+                        <h1 class="page-title">자주하는 질문</h1>
                     </div>
                 </div>
                 <div class="col-lg-6 col-md-6 col-12">
                     <ul class="breadcrumb-nav">
                         <li><a href="${pageContext.request.contextPath}/home.do"><i class="lni lni-home"></i>Home</a></li>
-                        <li><a href="#">고객센터</a></li>
+                        <li><a href="#">자주하는 질문</a></li>
                     </ul>
                 </div>
             </div>

@@ -25,13 +25,20 @@
 <main class="form-signin">
 
   <form action="${pageContext.request.contextPath}/pw_set.do" method="post">
+  
+    <img class="mb-4" src="resources/assets/images/logo/mypetLogo.png" alt="" width="250" height="200" >
 	<input type="hidden" name ="num" value="${num }">
 		<div class=content>
-			<div class="textbox">
-			<input type="text" name="email_injeung" placeholder="인증번호를 입력하세요"><label>인증번호 </label>
-			<div class="error"> </div>
+		<div class="form-floating">
+      <input type="text" name="email_injeung" value="" maxlength="20" class="form-control">
+      <label for="email_injeung">인증번호</label>
+      <div class="error"> </div>
+    </div>
+		
+		
 		</div><br><br>
-			<input type="submit" id="check" value="확인">
+		   <button class="w-100 btn btn-lg btn-primary" id="check" type="submit">인증</button>
+ 
 </form>
 </main>         
 		
