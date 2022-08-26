@@ -120,7 +120,7 @@ table, td, th {
 						$("tr:has(input:checked)").remove();
 					}
 				},
-				error: function(error){ alert("미구현"); }
+				error: function(error){ alert("수정삭제 금지"); }
 			});
 			
 		});//end of 삭제하기 버튼 클릭시 이벤트 처리
@@ -204,12 +204,12 @@ table, td, th {
 			<td>${MembersVo.m_id}</td>
 				
 			<td>${MembersVo.m_grade}  </td>	
-			<td><input type="radio" id="m_grade${MembersVo.midx}"  value="${MembersVo.m_grade }" size="5"  class ="adminUpdateInfo" name="${MembersVo.midx}"/>등업</td>	
+			<td><input type="radio" id="m_grade${MembersVo.midx}"  value="${MembersVo.m_grade }" size="5"  class ="adminUpdateInfo" name="${MembersVo.midx}" disabled/>등업</td>	
 	
-			<td><input type="radio" id="m_grade${MembersVo.midx}"  value="${MembersVo.m_grade }" size="5"  class ="adminUpdateInfo0" name="${MembersVo.midx}"/>강등</td>	
+			<td><input type="radio" id="m_grade${MembersVo.midx}"  value="${MembersVo.m_grade }" size="5"  class ="adminUpdateInfo0" name="${MembersVo.midx}" disabled/>강등</td>	
 			<td>${MembersVo.m_phone}</td><td>${MembersVo.m_wday}</td>
 			<td>${MembersVo.m_delyn}</td><td>${MembersVo.midx}</td>
-			<td>삭제<input type="checkbox" value="${MembersVo.midx}" /></td>
+			<td><input type="checkbox" value="${MembersVo.midx} " disabled/>삭제</td>
 		</tr>
 	</c:forEach>
 		<tr>

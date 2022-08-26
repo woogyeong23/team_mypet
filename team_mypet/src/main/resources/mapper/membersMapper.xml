@@ -72,9 +72,16 @@
 	pet_age=#{pet_age},pet_type=#{pet_type},pet_breed=#{pet_breed}
 	 where pet_idx=#{pet_idx}
 	</update>
+	
 	<select id="getordersList" parameterType="list" resultType="ordersVo">
-	select * from members a left outer join orders b on a.midx = b.midx left outer join detail c on b.orders_idx = c.orders_idx where a.midx = #{midx};
-	</select>
+ select  o.orders_idx, o.midx, o.orders_name , o.orders_addr1, o.orders_addr2, o.orders_addr3, o.orders_phone, o.orders_totalprice , o.orders_completeday ,
+     d.detail_completeday , d.p_idx, d.detail_cnt,
+     g.p_name , c.p_sys_filename , g.p_price
+ from orders o left outer join detail d on d.orders_idx = o.orders_idx 
+ left outer join product g on  d.p_idx= g.p_idx 
+ left outer join (select p_sys_filename, min(p_front_img), p_idx from product_img where img_delyn='N' group by p_idx) c on d.p_idx = c.p_idx
+ where o.midx=#{midx}
+ </select>
 	
 	
 	<select id="selectMember" resultType="membersVo">

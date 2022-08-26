@@ -658,7 +658,7 @@ $(function() {
            <div class="row">
         <h4>마이펫 구매후기</h4>   
          <c:forEach var="hv" items="${HomeList6}" end="2">
-                       <a style="text-decoration: none; color:#646464;" href="${pageContext.request.contextPath}/productView.do?p_idx=${hv.p_idx}">
+                       <a style="text-decoration: none; color:#646464;" href="${pageContext.request.contextPath}/productView.do?p_idx=${hv.p_idx}&seller_idx=${hv.seller_idx}">
                     <div class="col-lg-4 col-md-6 col-12">
                     <!-- Start Single Product -->
                     <div class="single-product" style="border:none;">

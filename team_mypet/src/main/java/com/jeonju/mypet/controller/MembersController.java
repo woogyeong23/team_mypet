@@ -22,8 +22,10 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.servlet.ModelAndView;
 
+import com.jeonju.mypet.service.CartService;
 import com.jeonju.mypet.service.EncryptPwd;
 import com.jeonju.mypet.service.MembersService;
+import com.jeonju.mypet.vo.CartVo;
 import com.jeonju.mypet.vo.MembersVo;
 import com.jeonju.mypet.vo.OrdersVo;
 import com.jeonju.mypet.vo.PetVo;
@@ -32,14 +34,16 @@ import com.jeonju.mypet.vo.PetVo;
 public class MembersController {
 	
 	private MembersService membersService;
+	private CartService cartService;
 	
 	@Autowired
 	private JavaMailSenderImpl mailSender;
 	
 	
 	@Autowired //자동 의존 주입: 생성자 방식
-	public MembersController(MembersService membersService) {
+	public MembersController(MembersService membersService,CartService cartService) {
 		this.membersService = membersService;
+		this.cartService = cartService;
 	}
 	
 	
@@ -345,16 +349,23 @@ public class MembersController {
 			return "member/memberorder";	
 		}
 		@GetMapping("/memberorderList.do")
-		public String memberorderList(HttpServletRequest request, OrdersVo ordersVo,Model model) {
+		public String memberorderList(HttpServletRequest request, OrdersVo ordersVo,CartVo cartVo,Model model) {
 			HttpSession Session = request.getSession();
 			int midx = (int) Session.getAttribute("midx");
 			
 			ordersVo.setMidx(midx);
 			
+			cartVo.setMidx(midx);
+			List<CartVo> list = cartService.cartList(cartVo);
+			
+			model.addAttribute("cart", list );
+			
 			List<OrdersVo> ordersList = membersService.orderList(ordersVo);
 			
-			model.addAttribute(ordersList);
-			
+			model.addAttribute("ordersList",ordersList);
+			model.addAttribute("ordersVo",ordersVo);
+
+			System.out.println("오더:"+ordersVo);
 			return "member/memberorderList";	
 		}
 		

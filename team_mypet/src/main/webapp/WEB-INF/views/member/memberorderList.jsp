@@ -74,6 +74,7 @@ padding-bottom: 60px;
   </div>
 </div>
 
+
 </c:forEach>
 </div>
 </section>
