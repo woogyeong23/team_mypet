@@ -91,6 +91,9 @@
 
 <script type="text/javascript" src="//code.jquery.com/jquery-3.6.0.min.js"></script>
 <script type="text/javascript">
+$(document).ready(function(){
+	$("#myModal").modal("show");
+});
 
 $(function() {
 	  //nav
@@ -693,6 +696,36 @@ $(function() {
            </c:forEach>
            </div>
         </div>
+        
+        <!-- Button trigger modal -->
+
+
+<!-- Modal -->
+<div class="modal fade" id="myModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+  <div class="modal-dialog">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h5 class="modal-title" id="exampleModalLabel">테스트 아이디</h5>
+        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+      </div>
+      <div class="modal-body">
+        판매자 계정<br>
+        aaaaa@naver.com/1234<br>
+        bbbbb@naver.com/1234<br>
+        test12@naver.com/1234<br>
+        test13@naver.com/1234<br>
+        test14@naver.com/1234<br>
+        test15@naver.com/1234<br>
+        관리자 계정<br>
+        admin@mypet.com<br>
+      </div>
+      <div class="modal-footer">
+        <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">닫기</button>
+      </div>
+    </div>
+  </div>
+</div>
+        
         </section>
 
 

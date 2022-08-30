@@ -87,7 +87,7 @@ function uploadSummernoteImageFile(file, el) {
 		enctype : 'multipart/form-data',
 		processData : false,
 		success : function(data) {
-			alert(data.url);
+			//alert(data.url);
 			$(el).summernote('editor.insertImage', data.url);
 		}
 	});
@@ -113,7 +113,7 @@ function uploadSummernoteImageFile(file, el) {
 				<td><textarea rows="1" cols="50" name="cm_subject" id="cm_subject"></textarea></td>
 				<c:if test="${msg1!=null}">
 				  <script>
-				  alert("${msg1}");
+				  //alert("${msg1}");
 				  </script>
 				</c:if>
 			</tr>
@@ -126,7 +126,7 @@ function uploadSummernoteImageFile(file, el) {
 			<td><textarea id="summernote" name="cm_content"></textarea>
 			<c:if test="${msg2!=null}">
 			  <script>
-			alert("${msg2}");
+			//alert("${msg2}");
 			 </script>
 			</c:if>
                 <input type="hidden" name="midx" id="midx" value="${midx}">

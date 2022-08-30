@@ -10,6 +10,7 @@ SELECT product.p_idx AS p_idx, seller_idx, p_category_idx, p_name, p_content,
  IFNULL(avg(review_stars),0) AS avg_reviews_stars, COUNT(review_stars) AS cnt_reviews
   FROM product LEFT JOIN product_img ON product.p_idx = product_img.p_idx 
   LEFT JOIN review ON product.p_idx = review.p_idx
+  where product.p_status=0
   GROUP BY product.p_idx
   ORDER BY p_idx DESC;
 </select>
@@ -20,6 +21,7 @@ SELECT product.p_idx AS p_idx, seller_idx, p_category_idx, p_name, p_content,
  IFNULL(avg(review_stars),0) AS avg_reviews_stars, COUNT(review_stars) AS cnt_reviews
   FROM product LEFT JOIN product_img ON product.p_idx = product_img.p_idx 
   LEFT JOIN review ON product.p_idx = review.p_idx LEFT JOIN detail ON product.p_idx = detail.p_idx
+  where product.p_status=0
   GROUP BY product.p_idx
   ORDER BY p_discount DESC;
 </select>
@@ -30,6 +32,7 @@ SELECT product.p_idx AS p_idx, seller_idx, p_category_idx, p_name, p_content,
  IFNULL(avg(review_stars),0) AS avg_reviews_stars, COUNT(review_stars) AS cnt_reviews
   FROM product LEFT JOIN product_img ON product.p_idx = product_img.p_idx
   LEFT JOIN review ON product.p_idx = review.p_idx LEFT JOIN detail ON product.p_idx = detail.p_idx
+  where product.p_status=0
   GROUP BY product.p_idx
   ORDER BY avg_reviews_stars DESC;
 </select>
@@ -40,6 +43,7 @@ SELECT product.p_idx AS p_idx, seller_idx, p_category_idx, p_name, p_content,
  IFNULL(avg(review_stars),0) AS avg_reviews_stars, COUNT(review_stars) AS cnt_reviews
   FROM product LEFT JOIN product_img ON product.p_idx = product_img.p_idx
   LEFT JOIN review ON product.p_idx = review.p_idx LEFT JOIN detail ON product.p_idx = detail.p_idx
+  where product.p_status=0
   GROUP BY product.p_idx
   ORDER BY cnt_reviews DESC;
 </select>
@@ -51,6 +55,7 @@ SELECT product.p_idx AS p_idx, seller_idx, p_category_idx, p_name, p_content,
  count(detail.detail_idx) as ccnntt
   FROM product LEFT JOIN product_img ON product.p_idx = product_img.p_idx
   LEFT JOIN review ON product.p_idx = review.p_idx LEFT JOIN detail ON product.p_idx = detail.p_idx
+  where product.p_status=0
   GROUP BY product.p_idx
    ORDER BY ccnntt DESC;
 </select>
@@ -60,6 +65,7 @@ SELECT product.p_idx AS p_idx, seller_idx, p_category_idx, p_name, p_content,
  review_wday
   FROM product INNER JOIN review ON product.p_idx = review.p_idx 
  INNER JOIN members ON review.midx = members.midx
+ where product.p_status=0
  GROUP BY p_idx ORDER BY review_idx DESC;
   
 
@@ -78,7 +84,7 @@ SELECT product.p_idx AS p_idx, seller_idx, p_category_idx, p_name, p_content,
  IFNULL(avg(review_stars),0) AS avg_reviews_stars, COUNT(review_stars) AS cnt_reviews
   FROM product LEFT JOIN product_img ON product.p_idx = product_img.p_idx
   LEFT JOIN review ON product.p_idx = review.p_idx
-  where p_delyn = 'N' AND p_content LIKE CONCAT('%',#{keyword},'%') OR p_name LIKE CONCAT('%',#{keyword},'%')
+  where p_delyn = 'N' AND p_content LIKE CONCAT('%',#{keyword},'%') OR p_name LIKE CONCAT('%',#{keyword},'%') and p_status=0
   GROUP BY product.p_idx
   ORDER BY p_idx DESC
 
@@ -86,7 +92,7 @@ SELECT product.p_idx AS p_idx, seller_idx, p_category_idx, p_name, p_content,
 
 <select id="resultCount" resultType="int">
 SELECT COUNT(DISTINCT p_idx) FROM product 
-WHERE p_delyn = 'N' AND p_content LIKE CONCAT('%',#{keyword},'%') OR p_name LIKE CONCAT('%',#{keyword},'%')
+WHERE p_delyn = 'N' AND p_content LIKE CONCAT('%',#{keyword},'%') OR p_name LIKE CONCAT('%',#{keyword},'%') and p_status=0
 </select>
 
 <select id="getReviewList" resultType="reviewVo">

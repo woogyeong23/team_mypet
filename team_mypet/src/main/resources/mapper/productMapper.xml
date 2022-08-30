@@ -10,14 +10,14 @@
 	<select id="getProductList1" resultType="productVo" parameterType="hashMap">
 	select a.*,b.*,c.*,IFNULL(avg(review_stars),0) AS avg_reviews_stars, COUNT(review_stars) AS cnt_reviews
 	from product a join p_category b on a.p_category_idx = b.p_category_idx join product_img c on a.p_idx=c.p_idx LEFT join review d on a.p_idx=d.p_idx
-	where a.p_category_idx=#{p_category_idx} and c.img_delyn='N'
+	where a.p_category_idx=#{p_category_idx} and c.img_delyn='N' and a.p_status=0
 	GROUP by a.p_idx;
 	</select>
 	
 	<select id="getProductList2" resultType="productVo">
 	select a.*,b.*,c.*,IFNULL(avg(review_stars),0) AS avg_reviews_stars, COUNT(review_stars) AS cnt_reviews
 	from product a join p_category b on a.p_category_idx = b.p_category_idx join product_img c on a.p_idx=c.p_idx LEFT join review d on a.p_idx=d.p_idx
-	where b.p_category_large=#{p_category_large} and c.img_delyn='N'
+	where b.p_category_large=#{p_category_large} and c.img_delyn='N' and a.p_status=0
 	GROUP by a.p_idx;
 	</select>
 	
@@ -25,7 +25,7 @@
 	<select id="getproductImgs" resultType="Product_ImgVo">
 	select a.*
 	from product_img a join product b on a.p_idx=b.p_idx
-	where b.p_idx=#{p_idx} and a.img_delyn='N';
+	where b.p_idx=#{p_idx} and a.img_delyn='N'; and b.p_status=0
 	</select>
 	
 	
@@ -83,7 +83,7 @@
 	<select id="productNewList" resultType="productVo">
 		SELECT a.*,b.*,IFNULL(avg(review_stars),0) AS avg_reviews_stars, COUNT(review_stars) AS cnt_reviews
 		FROM product a join product_img b on a.p_idx=b.p_idx LEFT join review d on a.p_idx=d.p_idx
-		where b.img_delyn='N'
+		where b.img_delyn='N' and a.p_status=0
 		group by a.p_idx
 		ORDER BY a.p_idx DESC;
 	</select>
@@ -92,7 +92,7 @@
 	<select id="productBestList" resultType="productVo">
 		SELECT a.*,b.*, COUNT(c.orders_idx) as '판매량',IFNULL(avg(review_stars),0) AS avg_reviews_stars, COUNT(review_stars) AS cnt_reviews
 		FROM product a join product_img b on a.p_idx=b.p_idx LEFT join detail c on a.p_idx=c.p_idx LEFT join review d on a.p_idx=d.p_idx
-		where b.img_delyn='N'
+		where b.img_delyn='N' and a.p_status=0
 		GROUP BY a.p_idx
 		ORDER BY COUNT(c.orders_idx) DESC
 	</select>
