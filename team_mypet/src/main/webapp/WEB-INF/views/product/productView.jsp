@@ -330,6 +330,9 @@ $("#imgCheckbox").on("click", function() {
       }
     });
 
+
+	
+	
 </script>
 
 
@@ -588,6 +591,8 @@ padding-bottom: 20px;
 						
 								<div class="col-lg-4 col-md-4 col-12">
 									<div class="order-button">
+									
+					 					<input type="hidden" id="c_idxArr" name="c_idxArr" value="">
 										<button type="button" class="btn" onclick ="location.href = '${pageContext.request.contextPath}/memberpay.do'">구매하기</button> <!-- button의 기본 타입은 submit이므로 submit 버튼이 아니라면 type="button"을 따로 지정해줘야함 -->
 									</div>
 								</div>

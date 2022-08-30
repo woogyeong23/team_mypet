@@ -162,8 +162,8 @@ public class ProductController {
 		System.out.println("count"+count);
 		
 		if (count == 0) {
-			String referer = request.getHeader("Referer");
-			pageView="redirect:/"+ referer;
+			String referer = request.getHeader("referer");
+			pageView="redirect:"+ referer;
 		}else {
 			re.addAttribute("p_idx",p_idx);
 			re.addAttribute("midx",midx);
