@@ -656,13 +656,15 @@ $(function() {
     </section>
     
          <!-- 리뷰 -->
-        <section class="trending-product section" style="margin-top: 12px;">
-        <div class="container">
-           <div class="row">
-        <h4>마이펫 구매후기</h4>   
+   <section class="trending-product section" style="margin-top: 12px;">
+      <div class="container">
+        <div class="row">
+        <h4>마이펫 구매후기</h4>
+         
          <c:forEach var="hv" items="${HomeList6}" end="2">
+            <div class="col-lg-3 col-md-6 col-12">  
                        <a style="text-decoration: none; color:#646464;" href="${pageContext.request.contextPath}/productView.do?p_idx=${hv.p_idx}&seller_idx=${hv.seller_idx}">
-                    <div class="col-lg-4 col-md-6 col-12">
+                 
                     <!-- Start Single Product -->
                     <div class="single-product" style="border:none;">
 
@@ -691,41 +693,38 @@ $(function() {
                         </div>
                     </div>
                     <!-- End Single Product -->
-                </div>
+              
                 </a>
-           </c:forEach>
-           </div>
-        </div>
-        
-        <!-- Button trigger modal -->
-
-
-<!-- Modal -->
-<div class="modal fade" id="myModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
-  <div class="modal-dialog">
-    <div class="modal-content">
-      <div class="modal-header">
-        <h5 class="modal-title" id="exampleModalLabel">테스트 아이디</h5>
-        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
-      </div>
-      <div class="modal-body">
-        판매자 계정<br>
-        aaaaa@naver.com/1234<br>
-        bbbbb@naver.com/1234<br>
-        test12@naver.com/1234<br>
-        test13@naver.com/1234<br>
-        test14@naver.com/1234<br>
-        test15@naver.com/1234<br>
-        관리자 계정<br>
-        admin@mypet.com<br>
-      </div>
-      <div class="modal-footer">
-        <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">닫기</button>
-      </div>
-    </div>
-  </div>
-</div>
-        
+                  </div>
+          					 </c:forEach>
+           				</div>
+         		  </div>
+         		  
+       <!-- Modal -->
+		<div class="modal fade" id="myModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+		  <div class="modal-dialog">
+		    <div class="modal-content">
+		      <div class="modal-header">
+		        <h5 class="modal-title" id="exampleModalLabel">테스트 아이디</h5>
+		        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+		      </div>
+		      <div class="modal-body">
+		        판매자 계정<br>
+		        aaaaa@naver.com/1234<br>
+		        bbbbb@naver.com/1234<br>
+		        test12@naver.com/1234<br>
+		        test13@naver.com/1234<br>
+		        test14@naver.com/1234<br>
+		        test15@naver.com/1234<br>
+		        관리자 계정<br>
+		        admin@mypet.com/admin<br>
+		      </div>
+		      <div class="modal-footer">
+		        <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">닫기</button>
+		      </div>
+		    </div>
+		  </div>
+		</div>
         </section>
 
 

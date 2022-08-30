@@ -34,7 +34,7 @@ insert into detail(orders_idx, p_idx, detail_status, detail_cnt, detail_request,
 <!-- 상품만총가격 -->
 	<select id="totalProductPrice"  resultType="HashMap">
 	
-		select sum(b.p_price*a.cart_cnt) as totalproductprice, sum( IF((cart_cnt*p_price)>b.p_free_dvprice,0,b.p_dvprice) ) as totaldvprice
+		select sum(b.p_price*a.cart_cnt) as totalproductprice, sum( IF((cart_cnt*p_price)>=b.p_free_dvprice,0,b.p_dvprice) ) as totaldvprice
 		 from cart a join product b on a.p_idx=b.p_idx where a.midx=#{midx} and a.cart_idx=#{cart_idx}
 	</select>
 	<select id="totalProductDvPrice" resultType="HashMap">

@@ -439,7 +439,7 @@ function update(){
 			                                                </div>
 			                                                <div class="value-price">
 			                                                     <c:if test="${ordersContent.fixprice >= ordersContent.p_free_dvprice}">0원</c:if>
-			                                                     <c:if test="${ordersContent.fixprice < ordersContent.p_free_dvprice}"><fmt:formatNumber value="${ordersContent.p_dvprice}" pattern="#,###" />원</c:if>    
+			                                                     <c:if test="${ordersContent.fixprice < ordersContent.p_free_dvprice}"><fmt:formatNumber value="${p_dvprice}" pattern="#,###" />원</c:if>    
 			                                                </div>
 			                                            </div>
 			                                            <div class="value-item">
@@ -463,7 +463,7 @@ function update(){
 			                                                    총 가격
 			                                                </div>
 			                                                <div class="value-price">
-			                                                	<fmt:formatNumber value="${total_price}" pattern="#,###" />원      
+			                                                	<fmt:formatNumber value="${ordersContent.fixprice}" pattern="#,###" />원      
 			                                                </div>
 			                                            </div>
 			                                        </div>

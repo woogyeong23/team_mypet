@@ -25,7 +25,7 @@
 	<select id="getproductImgs" resultType="Product_ImgVo">
 	select a.*
 	from product_img a join product b on a.p_idx=b.p_idx
-	where b.p_idx=#{p_idx} and a.img_delyn='N'; and b.p_status=0
+	where b.p_idx=#{p_idx} and a.img_delyn='N' and b.p_status=0
 	</select>
 	
 	

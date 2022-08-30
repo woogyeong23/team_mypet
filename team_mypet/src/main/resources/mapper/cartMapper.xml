@@ -57,7 +57,7 @@
 	<select id="totalProductPrice" resultType="HashMap">
 	select *,totalproductprice+totaldvprice as totalprice
  							from  (select sum(cart_cnt*p_disprice) as totalproductprice,
-	  			  		 	sum( IF((cart_cnt*p_price)>b.p_free_dvprice,0,b.p_dvprice) ) as totaldvprice
+	  			  		 	sum( IF((cart_cnt*p_price)>=b.p_free_dvprice,0,b.p_dvprice) ) as totaldvprice
 							from cart a join product b on a.p_idx=b.p_idx join sellerstory c on b.seller_idx=c.seller_idx join members d on c.midx=d.midx
 							where a.midx=#{midx}) t
 

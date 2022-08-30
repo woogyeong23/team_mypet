@@ -483,28 +483,31 @@ public class SellerController {
 		  HashMap<String,Object> ordersContent = sellerService.seller_ordersContent(detail_idx);
 		  
 		  int fixprice = (int) ordersContent.get("fixprice");
-		  int detail_cnt = (int) ordersContent.get("detail_cnt");
+		  int detail_cnt = (int) ordersContent.get("fixprice");
 		  int p_dvprice = (int) ordersContent.get("p_dvprice");
 		  int p_free_dvprice = (int) ordersContent.get("p_free_dvprice");
 		  int total_price = 0;
-		  int product_price=fixprice*detail_cnt;
+		  int product_price=0;
 		  if(fixprice*detail_cnt<p_free_dvprice)
 		  {
-			  total_price=p_dvprice+fixprice*detail_cnt;
+			  
+			  product_price=fixprice;
+			  System.out.println("유료");
 		  }
 		  else
 		  {
-			  total_price=fixprice*detail_cnt;
+			  product_price=fixprice-p_dvprice;
+			  System.out.println("무료");
 		  }
-
+System.out.println("p_free_dvprice"+p_free_dvprice+" p_dvprice"+ p_dvprice+" product_price"+product_price+" total_price"+total_price);
 		  model.addAttribute("member_id", member_id);
 		  model.addAttribute("detailDayListVo", detailDayListVo);
 		  model.addAttribute("refundDayListVo", refundDayListVo);
 		  model.addAttribute("cancleDayListVo", cancleDayListVo);
 		  model.addAttribute("reviewVo", reviewVo);
 		  model.addAttribute("ordersContent",ordersContent);
+		  model.addAttribute("p_dvprice",p_dvprice);
 		  model.addAttribute("product_price",product_price);
-		  model.addAttribute("total_price",total_price);
 		
 		return "seller/seller_ordersDetail";
 	}
