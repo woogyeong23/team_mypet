@@ -13,10 +13,37 @@
 <!-- 헤더와 네비************************************************ -->
     <jsp:include page="../../include/header.jsp" />  
 <!-- ************************************************ -->
-<div style="margin-top:54px; margin-left:30%; max-width: 724px;">
+   <!-- Start Breadcrumbs -->
+    <div class="breadcrumbs">
+        <div class="container">
+            <div class="row align-items-center">
+                <div class="col-lg-6 col-md-6 col-12">
+                    <div class="breadcrumbs-content">
+                        <h1 class="page-title">이벤트</h1>
+                    </div>
+                </div>
+                <div class="col-lg-6 col-md-6 col-12">
+                    <ul class="breadcrumb-nav">
+                        <li><a href="${pageContext.request.contextPath}/home.do"><i class="lni lni-home"></i>Home</a></li>
+                        <li><a href="${pageContext.request.contextPath}/EventList">이벤트</a></li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+    </div>
+    <!-- End Breadcrumbs -->
+
+<div>
+<div class="col-12">
+<div style="margin-top:54px;margin-bottom:108px; margin-left:25%; max-width: 850px; background:#FFFFFF">
+<h4>&nbsp;&nbsp; 깜짝 놀랄만한 선물을 주기 위해 준비한 포토리뷰 이벤트!!</h4>
+<br>
+<br>
 <p>
-<img alt="이벤트!!!!!!!!" src="${pageContext.request.contextPath}/resources/Extra/Event 1222.gif">
+<img alt="이벤트!!!!!!!!" src="${pageContext.request.contextPath}/resources/Extra/EventView(1).jpg">
 </p>
+</div>
+</div>
 </div>
 
 <!-- 푸터와 js************************************************ -->

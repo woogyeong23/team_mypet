@@ -90,7 +90,7 @@ WHERE p_delyn = 'N' AND p_content LIKE CONCAT('%',#{keyword},'%') OR p_name LIKE
 </select>
 
 <select id="getReviewList" resultType="reviewVo">
-SELECT product.p_idx as p_idx, p_sys_filename, 
+SELECT product.p_idx as p_idx, p_sys_filename, seller_idx,
  p_name, review_stars, review_content, m_nick as review_nick
 FROM product INNER JOIN product_img ON product.p_idx = product_img.p_idx
 INNER JOIN review ON product.p_idx = review.p_idx 
@@ -99,6 +99,7 @@ GROUP BY p_idx
 ORDER BY review_idx DESC;
 </select>
 
+<!-- 팔로우 부분 -->
 <insert id="getFollow" parameterType="followVo">
 INSERT INTO follow(seller_idx, midx)
 VALUES(#{seller_idx}, #{midx})
@@ -108,6 +109,7 @@ VALUES(#{seller_idx}, #{midx})
 UPDATE sellerstory SET  seller_followcnt = seller_followcnt +1 WHERE seller_idx = #{seller_idx}
 </update>
 
+<!-- 언팔로우 부분 -->
 <update id="getUnfollow" parameterType="followVo">
 UPDATE follow SET delyn = 'Y' WHERE delyn = 'N' AND seller_idx = #{seller_idx} AND midx = #{midx}
 </update>

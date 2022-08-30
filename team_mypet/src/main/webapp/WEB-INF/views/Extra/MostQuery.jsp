@@ -121,8 +121,8 @@ padding-right:20px;
                    			<li><a href="${pageContext.request.contextPath}/Notice">공지사항</a></li>
                    			<li><a href="${pageContext.request.contextPath}/EventList">이벤트</a></li> 
                    			<li><a href="#"><span class="cur">자주하는 질문</span></a></li> 
-                   			<li><a href="#">1:1문의</a></li>
-                   			<li><a href="#">입점문의</a></li>  
+                   			<li><a href="mailto:abcdeef123@naver.com">1:1문의</a></li>
+                   			<li><a href="https://docs.google.com/forms/d/e/1FAIpQLSfsBMMYEBXM_XxHIlugThMzUptM52H9wElzsGNrMBr_8sQMQw/viewform" target="_blank">입점문의</a></li>  
                        </ul>
                     </nav>
                     </div>

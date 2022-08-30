@@ -136,6 +136,11 @@ public class ExtraController {
 		 return"Extra/EventList";
 	 }
 	 
+	 @GetMapping("/EventList2")
+	 public String EventList2() {
+		 return "Extra/EventList2";
+	 }
+	 
 	 @GetMapping("/EventView")
 	 public String EventView() {
 		 return"Extra/EventView";
@@ -145,6 +150,47 @@ public class ExtraController {
 	 public String EventView2() {
 		 return"Extra/EventView2";
 	 }
+	 
+	 @GetMapping("/EventView3")
+	 public String EventView3() {
+		 return"Extra/EventView3";
+	 }
+	 
+	 @GetMapping("/EventView4")
+	 public String EventView4() {
+		 return"Extra/EventView4";
+	 } 
+	 
+	 @GetMapping("/EventView5")
+	 public String EventView5() {
+		 return"Extra/EventView5";
+	 } 
+	 
+	 @GetMapping("/EventView6")
+	 public String EventView6() {
+		 return"Extra/EventView6";
+	 } 
+	 
+	 @GetMapping("/EventView7")
+	 public String EventView7() {
+		 return"Extra/EventView7";
+	 } 
+	 
+	 @GetMapping("/EventView8")
+	 public String EventView8() {
+		 return"Extra/EventView8";
+	 } 
+	 
+	 @GetMapping("/EventView9")
+	 public String EventView9() {
+		 return"Extra/EventView9";
+	 } 
+	 
+	 @GetMapping("/EventView10")
+	 public String EventView10() {
+		 return"Extra/EventView10";
+	 } 
+	 
 	 
 	 
 	

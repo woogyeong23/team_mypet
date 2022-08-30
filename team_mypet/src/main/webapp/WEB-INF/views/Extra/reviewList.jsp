@@ -62,7 +62,7 @@
                         </div>
                         <div class="product-info">
 <%--                             <span class="category">${rv.p_name}</span> --%>
-                            <h4 class="title"><a href="${pageContext.request.contextPath}/productView.do?p_idx=${rv.p_idx}">${rv.p_name}</a></h4>
+                            <h4 class="title"><a href="${pageContext.request.contextPath}/productView.do?p_idx=${rv.p_idx}&seller_idx=${rv.seller_idx}">${rv.p_name}</a></h4>
                             </div>
                         <div class="product-info" style="background:#f5f5f5; ">
                             <ul class="review">

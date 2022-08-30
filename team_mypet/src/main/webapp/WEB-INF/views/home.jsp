@@ -128,7 +128,7 @@ $(function() {
 <body>
      <div class="popup" >
      	<div class="popup_in">
-     	<a id="popup_link" href="${pageContext.request.contextPath}/Error">지금 바로 가입하고 상품을 구입시
+     	<a id="popup_link" href="${pageContext.request.contextPath}/EventView3">지금 바로 가입하고 상품을 구입시
   <b style="font-weight: 700;">마이펫 상품 100원에</b> 가져가세요!
         </a>
   	</div>
@@ -149,16 +149,21 @@ $(function() {
                         <!-- Start Hero Slider -->
                         <div class="hero-slider">
                             <!-- Start Single Slider -->
-                            <a href="#">
-
-                            <div class="single-slider" style="background-image: url(resources/assets/images/hero/event5.jpg);">
+                            <a href="${pageContext.request.contextPath}/EventView">
+                            <div class="single-slider" style="height:500px;">
+                            <img alt="이벤트 사진" style="width:100%; height:100%" src="${pageContext.request.contextPath}/resources/Extra/img/Event 0823(Y).jpg">
                             </div>  </a>
                             <!-- End Single Slider -->
                             <!-- Start Single Slider -->
-                            <a href="#">
-                            <div class="single-slider" style="background-image: url(resources/assets/images/hero/event2.jpg);">
-                            </div>
-                            </a>
+                            <a href="${pageContext.request.contextPath}/EventView4">
+                           <div class="single-slider" style="height:500px;">
+                            <img alt="이벤트 사진" style="width:100%; height:100%" src="${pageContext.request.contextPath}/resources/Extra/img/event112.jpg">
+                            </div></a>
+                            
+                             <a href="${pageContext.request.contextPath}/EventView5">
+                            <div class="single-slider" style="height:500px;">
+                            <img alt="이벤트 사진" style="width:100%; height:100%" src="${pageContext.request.contextPath}/resources/Extra/img/Event 0823(y2).png">
+                            </div></a>
                             <!-- End Single Slider -->
                         </div>
                         <!-- End Hero Slider -->
@@ -575,7 +580,7 @@ $(function() {
                     <c:choose>
                     <c:when test="${hv.p_discount != 0}">
                       <a href="${pageContext.request.contextPath}/productView.do?p_idx=${hv.p_idx}&seller_idx=${hv.seller_idx}">
-                        <div class="product-image" style="height: 320px; ">
+                        <div class="product-image" style="height: 320px;">
                             <img style="height:100%" src="${pageContext.request.contextPath}/resources/product/${hv.p_sys_filename}" alt="${hv.p_name}">
 									<span class="sale-tag">-${hv.p_discount}%</span>
                         </div>
@@ -648,13 +653,15 @@ $(function() {
     </section>
     
          <!-- 리뷰 -->
-        <section class="trending-product section" style="margin-top: 12px;">
-        <div class="container">
-           <div class="row">
-        <h4>마이펫 구매후기</h4>   
+   <section class="trending-product section" style="margin-top: 12px;">
+      <div class="container">
+        <div class="row">
+        <h4>마이펫 구매후기</h4>
+         
          <c:forEach var="hv" items="${HomeList6}" end="2">
+            <div class="col-lg-3 col-md-6 col-12">  
                        <a style="text-decoration: none; color:#646464;" href="${pageContext.request.contextPath}/productView.do?p_idx=${hv.p_idx}">
-                    <div class="col-lg-4 col-md-6 col-12">
+                 
                     <!-- Start Single Product -->
                     <div class="single-product" style="border:none;">
 
@@ -683,11 +690,13 @@ $(function() {
                         </div>
                     </div>
                     <!-- End Single Product -->
-                </div>
+              
                 </a>
-           </c:forEach>
-           </div>
-        </div>
+                  </div>
+          					 </c:forEach>
+           				</div>
+         		  </div>
+       
         </section>
 
 
