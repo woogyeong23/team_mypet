@@ -653,13 +653,15 @@ $(function() {
     </section>
     
          <!-- 리뷰 -->
-        <section class="trending-product section" style="margin-top: 12px;">
-        <div class="container">
-           <div class="row">
-        <h4>마이펫 구매후기</h4>   
+   <section class="trending-product section" style="margin-top: 12px;">
+      <div class="container">
+        <div class="row">
+        <h4>마이펫 구매후기</h4>
+         
          <c:forEach var="hv" items="${HomeList6}" end="2">
+            <div class="col-lg-3 col-md-6 col-12">  
                        <a style="text-decoration: none; color:#646464;" href="${pageContext.request.contextPath}/productView.do?p_idx=${hv.p_idx}">
-                    <div class="col-lg-4 col-md-6 col-12">
+                 
                     <!-- Start Single Product -->
                     <div class="single-product" style="border:none;">
 
@@ -688,11 +690,13 @@ $(function() {
                         </div>
                     </div>
                     <!-- End Single Product -->
-                </div>
+              
                 </a>
-           </c:forEach>
-           </div>
-        </div>
+                  </div>
+          					 </c:forEach>
+           				</div>
+         		  </div>
+       
         </section>
 
 

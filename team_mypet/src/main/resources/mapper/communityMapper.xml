@@ -123,8 +123,6 @@
 	WHERE seller_idx = #{seller_idx}  
 	GROUP BY p_idx
 	ORDER BY review_idx DESC
-  
-  
     </select>
     
     <select id="getBSRCount" resultType="int">
